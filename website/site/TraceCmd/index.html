@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><link rel="canonical" href="https://www.tcl.tk/man/tcl8.6.13/TclCmd/contents.html/TraceCmd/" />
+      <link rel="shortcut icon" href="../img/favicon.ico" />
+    <title>NAME - Tcl/Tk</title>
+    <link rel="stylesheet" href="../css/theme.css" />
+    <link rel="stylesheet" href="../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "NAME";
+        var mkdocs_page_input_path = "TraceCmd.md";
+        var mkdocs_page_url = "/man/tcl8.6.13/TclCmd/contents.html/TraceCmd/";
+      </script>
+    
+    <script src="../js/jquery-3.6.0.min.js" defer></script>
+    <!--[if lt IE 9]>
+      <script src="../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
+      <script>hljs.initHighlightingOnLoad();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href=".." class="icon icon-home"> Tcl/Tk
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="..">Home</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="" href="../command.md">Commands</a>
+                </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="..">Tcl/Tk</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href=".." class="icon icon-home" aria-label="Docs"></a> &raquo;</li>
+      <li>NAME</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="name">NAME</h1>
+<p>Tcl_CommandTraceInfo, Tcl_TraceCommand, Tcl_UntraceCommand - monitor
+renames and deletes of a command</p>
+<h1 id="synopsis">SYNOPSIS</h1>
+<pre><code>#include &lt;tcl.h&gt;
+
+void *
+Tcl_CommandTraceInfo(interp, cmdName, flags, proc, prevClientData)
+
+int
+Tcl_TraceCommand(interp, cmdName, flags, proc, clientData)
+
+void
+Tcl_UntraceCommand(interp, cmdName, flags, proc, clientData)
+</code></pre>
+<h1 id="arguments">ARGUMENTS</h1>
+<p>Interpreter containing the command.</p>
+<p>Name of command.</p>
+<p>OR\'ed collection of the values <strong>TCL_TRACE_RENAME</strong> and
+<strong>TCL_TRACE_DELETE</strong>.</p>
+<p>Procedure to call when specified operations occur to <em>cmdName</em>.</p>
+<p>Arbitrary argument to pass to <em>proc</em>.</p>
+<p>If non-NULL, gives last value returned by <strong>Tcl_CommandTraceInfo</strong>, so
+this call will return information about next trace. If NULL, this call
+will return information about first trace.</p>
+<h1 id="description">DESCRIPTION</h1>
+<p><strong>Tcl_TraceCommand</strong> allows a C procedure to monitor operations
+performed on a Tcl command, so that the C procedure is invoked whenever
+the command is renamed or deleted. If the trace is created successfully
+then <strong>Tcl_TraceCommand</strong> returns <strong>TCL_OK</strong>. If an error occurred (e.g.
+<em>cmdName</em> specifies a non-existent command) then <strong>TCL_ERROR</strong> is
+returned and an error message is left in the interpreter\'s result.</p>
+<p>The <em>flags</em> argument to <strong>Tcl_TraceCommand</strong> indicates when the trace
+procedure is to be invoked. It consists of an OR\'ed combination of any
+of the following values:</p>
+<p><strong>TCL_TRACE_RENAME</strong></p>
+<p>:   Invoke <em>proc</em> whenever the command is renamed.</p>
+<p><strong>TCL_TRACE_DELETE</strong></p>
+<p>:   Invoke <em>proc</em> when the command is deleted.</p>
+<p>Whenever one of the specified operations occurs to the command, <em>proc</em>
+will be invoked. It should have arguments and result that match the type
+<strong>Tcl_CommandTraceProc</strong>:</p>
+<p>typedef void <strong>Tcl_CommandTraceProc</strong>( void *<em>clientData</em>, Tcl_Interp
+*<em>interp</em>, const char *<em>oldName</em>, const char *<em>newName</em>, int
+<em>flags</em>);</p>
+<p>The <em>clientData</em> and <em>interp</em> parameters will have the same values as
+those passed to <strong>Tcl_TraceCommand</strong> when the trace was created.
+<em>clientData</em> typically points to an application-specific data structure
+that describes what to do when <em>proc</em> is invoked. <em>OldName</em> gives the
+name of the command being renamed, and <em>newName</em> gives the name that the
+command is being renamed to (or NULL when the command is being deleted.)
+<em>Flags</em> is an OR\'ed combination of bits potentially providing several
+pieces of information. One of the bits <strong>TCL_TRACE_RENAME</strong> and
+<strong>TCL_TRACE_DELETE</strong> will be set in <em>flags</em> to indicate which operation
+is being performed on the command. The bit <strong>TCL_TRACE_DESTROYED</strong> will
+be set in <em>flags</em> if the trace is about to be destroyed; this
+information may be useful to <em>proc</em> so that it can clean up its own
+internal data structures (see the section <strong>TCL_TRACE_DESTROYED</strong> below
+for more details). Because the deletion of commands can take place as
+part of the deletion of the interp that contains them, <em>proc</em> must be
+careful about checking what the passed in <em>interp</em> value can be called
+upon to do. The routine <strong>Tcl_InterpDeleted</strong> is an important tool for
+this. When <strong>Tcl_InterpDeleted</strong> returns 1, <em>proc</em> will not be able to
+invoke any scripts in <em>interp</em>. The function of <em>proc</em> in that
+circumstance is limited to the cleanup of its own data structures.</p>
+<p><strong>Tcl_UntraceCommand</strong> may be used to remove a trace. If the command
+specified by <em>interp</em>, <em>cmdName</em>, and <em>flags</em> has a trace set with
+<em>flags</em>, <em>proc</em>, and <em>clientData</em>, then the corresponding trace is
+removed. If no such trace exists, then the call to
+<strong>Tcl_UntraceCommand</strong> has no effect. The same bits are valid for
+<em>flags</em> as for calls to <strong>Tcl_TraceCommand</strong>.</p>
+<p><strong>Tcl_CommandTraceInfo</strong> may be used to retrieve information about
+traces set on a given command. The return value from
+<strong>Tcl_CommandTraceInfo</strong> is the <em>clientData</em> associated with a
+particular trace. The trace must be on the command specified by the
+<em>interp</em>, <em>cmdName</em>, and <em>flags</em> arguments (note that currently the
+flags are ignored; <em>flags</em> should be set to 0 for future compatibility)
+and its trace procedure must the same as the <em>proc</em> argument. If the
+<em>prevClientData</em> argument is NULL then the return value corresponds to
+the first (most recently created) matching trace, or NULL if there are
+no matching traces. If the <em>prevClientData</em> argument is not NULL, then
+it should be the return value from a previous call to
+<strong>Tcl_CommandTraceInfo</strong>. In this case, the new return value will
+correspond to the next matching trace after the one whose <em>clientData</em>
+matches <em>prevClientData</em>, or NULL if no trace matches <em>prevClientData</em>
+or if there are no more matching traces after it. This mechanism makes
+it possible to step through all of the traces for a given command that
+have the same <em>proc</em>.</p>
+<h1 id="calling-commands-during-traces">CALLING COMMANDS DURING TRACES</h1>
+<p>During rename traces, the command being renamed is visible with both
+names simultaneously, and the command still exists during delete traces,
+unless the interp that contains it is being deleted. However, there is
+no mechanism for signaling that an error occurred in a trace procedure,
+so great care should be taken that errors do not get silently lost.</p>
+<h1 id="multiple-traces">MULTIPLE TRACES</h1>
+<p>It is possible for multiple traces to exist on the same command. When
+this happens, all of the trace procedures will be invoked on each
+access, in order from most-recently-created to least-recently-created.
+Attempts to delete the command during a delete trace will fail silently,
+since the command is already scheduled for deletion anyway. If the
+command being renamed is renamed by one of its rename traces, that
+renaming takes precedence over the one that triggered the trace and the
+collection of traces will not be reexecuted; if several traces rename
+the command, the last renaming takes precedence.</p>
+<h1 id="tcl_trace_destroyed-flag">TCL_TRACE_DESTROYED FLAG</h1>
+<p>In a delete callback to <em>proc</em>, the <strong>TCL_TRACE_DESTROYED</strong> bit is set
+in <em>flags</em>.</p>
+<h1 id="keywords">KEYWORDS</h1>
+<p>clientData, trace, command</p>
+              
+            </div>
+          </div><footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+    
+  </span>
+</div>
+    <script>var base_url = '..';</script>
+    <script src="../js/theme_extra.js" defer></script>
+    <script src="../js/theme.js" defer></script>
+      <script src="../search/main.js" defer></script>
+    <script defer>
+        window.onload = function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        };
+    </script>
+
+</body>
+</html>

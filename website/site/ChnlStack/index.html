@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><link rel="canonical" href="https://www.tcl.tk/man/tcl8.6.13/TclCmd/contents.html/ChnlStack/" />
+      <link rel="shortcut icon" href="../img/favicon.ico" />
+    <title>NAME - Tcl/Tk</title>
+    <link rel="stylesheet" href="../css/theme.css" />
+    <link rel="stylesheet" href="../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "NAME";
+        var mkdocs_page_input_path = "ChnlStack.md";
+        var mkdocs_page_url = "/man/tcl8.6.13/TclCmd/contents.html/ChnlStack/";
+      </script>
+    
+    <script src="../js/jquery-3.6.0.min.js" defer></script>
+    <!--[if lt IE 9]>
+      <script src="../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
+      <script>hljs.initHighlightingOnLoad();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href=".." class="icon icon-home"> Tcl/Tk
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="..">Home</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="" href="../command.md">Commands</a>
+                </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="..">Tcl/Tk</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href=".." class="icon icon-home" aria-label="Docs"></a> &raquo;</li>
+      <li>NAME</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="name">NAME</h1>
+<p>Tcl_StackChannel, Tcl_UnstackChannel, Tcl_GetStackedChannel,
+Tcl_GetTopChannel - manipulate stacked I/O channels</p>
+<h1 id="synopsis">SYNOPSIS</h1>
+<pre><code>#include &lt;tcl.h&gt;
+
+Tcl_Channel
+Tcl_StackChannel(interp, typePtr, clientData, mask, channel)
+
+int
+Tcl_UnstackChannel(interp, channel)
+
+Tcl_Channel
+Tcl_GetStackedChannel(channel)
+
+Tcl_Channel
+Tcl_GetTopChannel(channel)
+</code></pre>
+<h1 id="arguments">ARGUMENTS</h1>
+<p>Interpreter for error reporting.</p>
+<p>The new channel I/O procedures to use for <em>channel</em>.</p>
+<p>Arbitrary one-word value to pass to channel I/O procedures.</p>
+<p>Conditions under which <em>channel</em> will be used: OR-ed combination of
+<strong>TCL_READABLE</strong>, <strong>TCL_WRITABLE</strong> and <strong>TCL_EXCEPTION</strong>. This can be a
+subset of the operations currently allowed on <em>channel</em>.</p>
+<p>An existing Tcl channel such as returned by <strong>Tcl_CreateChannel</strong>.</p>
+<h1 id="description">DESCRIPTION</h1>
+<p>These functions are for use by extensions that add processing layers to
+Tcl I/O channels. Examples include compression and encryption modules.
+These functions transparently stack and unstack a new channel on top of
+an existing one. Any number of channels can be stacked together.</p>
+<p>The <strong>Tcl_ChannelType</strong> version currently supported is
+<strong>TCL_CHANNEL_VERSION_5</strong>. See <strong>Tcl_CreateChannel</strong> for details.</p>
+<p><strong>Tcl_StackChannel</strong> stacks a new <em>channel</em> on an existing channel with
+the same name that was registered for <em>channel</em> by
+<strong>Tcl_RegisterChannel</strong>.</p>
+<p><strong>Tcl_StackChannel</strong> works by creating a new channel structure and
+placing itself on top of the channel stack. EOL translation, encoding
+and buffering options are shared between all channels in the stack. The
+hidden channel does no buffering, newline translations, or character set
+encoding. Instead, the buffering, newline translations, and encoding
+functions all remain at the top of the channel stack. A pointer to the
+new top channel structure is returned. If an error occurs when stacking
+the channel, NULL is returned instead.</p>
+<p>The <em>mask</em> parameter specifies the operations that are allowed on the
+new channel. These can be a subset of the operations allowed on the
+original channel. For example, a read-write channel may become read-only
+after the <strong>Tcl_StackChannel</strong> call.</p>
+<p>Closing a channel closes the channels stacked below it. The close of
+stacked channels is executed in a way that allows buffered data to be
+properly flushed.</p>
+<p><strong>Tcl_UnstackChannel</strong> reverses the process. The old channel is
+associated with the channel name, and the processing module added by
+<strong>Tcl_StackChannel</strong> is destroyed. If there is no old channel, then
+<strong>Tcl_UnstackChannel</strong> is equivalent to <strong>Tcl_Close</strong>. If an error
+occurs unstacking the channel, <strong>TCL_ERROR</strong> is returned, otherwise
+<strong>TCL_OK</strong> is returned.</p>
+<p><strong>Tcl_GetTopChannel</strong> returns the top channel in the stack of channels
+the supplied channel is part of.</p>
+<p><strong>Tcl_GetStackedChannel</strong> returns the channel in the stack of channels
+which is just below the supplied channel.</p>
+<h1 id="see-also">SEE ALSO</h1>
+<p>Notifier(3), Tcl_CreateChannel(3), Tcl_OpenFileChannel(3), vwait(n).</p>
+<h1 id="keywords">KEYWORDS</h1>
+<p>channel, compression</p>
+              
+            </div>
+          </div><footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+    
+  </span>
+</div>
+    <script>var base_url = '..';</script>
+    <script src="../js/theme_extra.js" defer></script>
+    <script src="../js/theme.js" defer></script>
+      <script src="../search/main.js" defer></script>
+    <script defer>
+        window.onload = function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        };
+    </script>
+
+</body>
+</html>

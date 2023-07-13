@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><link rel="canonical" href="https://www.tcl.tk/man/tcl8.6.13/TclCmd/contents.html/FindExec/" />
+      <link rel="shortcut icon" href="../img/favicon.ico" />
+    <title>NAME - Tcl/Tk</title>
+    <link rel="stylesheet" href="../css/theme.css" />
+    <link rel="stylesheet" href="../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "NAME";
+        var mkdocs_page_input_path = "FindExec.md";
+        var mkdocs_page_url = "/man/tcl8.6.13/TclCmd/contents.html/FindExec/";
+      </script>
+    
+    <script src="../js/jquery-3.6.0.min.js" defer></script>
+    <!--[if lt IE 9]>
+      <script src="../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
+      <script>hljs.initHighlightingOnLoad();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href=".." class="icon icon-home"> Tcl/Tk
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="..">Home</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="" href="../command.md">Commands</a>
+                </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="..">Tcl/Tk</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href=".." class="icon icon-home" aria-label="Docs"></a> &raquo;</li>
+      <li>NAME</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="name">NAME</h1>
+<p>Tcl_FindExecutable, Tcl_GetNameOfExecutable - identify or return the
+name of the binary file containing the application</p>
+<h1 id="synopsis">SYNOPSIS</h1>
+<pre><code>#include &lt;tcl.h&gt;
+
+const char *
+Tcl_FindExecutable(argv0)
+
+const char *
+Tcl_GetNameOfExecutable()
+</code></pre>
+<h1 id="arguments">ARGUMENTS</h1>
+<p>The first command-line argument to the program, which gives the
+application\'s name.</p>
+<h1 id="description">DESCRIPTION</h1>
+<p>The <strong>Tcl_FindExecutable</strong> procedure computes the full path name of the
+executable file from which the application was invoked and saves it for
+Tcl\'s internal use. The executable\'s path name is needed for several
+purposes in Tcl. For example, it is needed on some platforms in the
+implementation of the <strong>load</strong> command. It is also returned by the
+<strong>info nameofexecutable</strong> command.</p>
+<p>The result of <strong>Tcl_FindExecutable</strong> is the full Tcl version with build
+information (e.g., <strong>9.0.0+abcdef...abcdef.gcc-1002</strong>).</p>
+<p>On UNIX platforms this procedure is typically invoked as the very first
+thing in the application\'s main program; it must be passed <em>argv[0]</em>
+as its argument. It is important not to change the working directory
+before the invocation. <strong>Tcl_FindExecutable</strong> uses <em>argv0</em> along with
+the <strong>PATH</strong> environment variable to find the application\'s executable,
+if possible. If it fails to find the binary, then future calls to <strong>info
+nameofexecutable</strong> will return an empty string.</p>
+<p>On Windows platforms this procedure is typically invoked as the very
+first thing in the application\'s main program as well; Its <em>argv[0]</em>
+argument is only used to indicate whether the executable has a stderr
+channel (any non-null value) or not (the value null). If
+<strong>Tcl_SetPanicProc</strong> is never called and no debugger is running, this
+determines whether the panic message is sent to stderr or to a standard
+system dialog.</p>
+<p><strong>Tcl_GetNameOfExecutable</strong> simply returns a pointer to the internal
+full path name of the executable file as computed by
+<strong>Tcl_FindExecutable</strong>. This procedure call is the C API equivalent to
+the <strong>info nameofexecutable</strong> command. NULL is returned if the internal
+full path name has not been computed or unknown.</p>
+<p><strong>Tcl_FindExecutable</strong> can not be used in stub-enabled extensions.</p>
+<h1 id="keywords">KEYWORDS</h1>
+<p>binary, executable file</p>
+              
+            </div>
+          </div><footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+    
+  </span>
+</div>
+    <script>var base_url = '..';</script>
+    <script src="../js/theme_extra.js" defer></script>
+    <script src="../js/theme.js" defer></script>
+      <script src="../search/main.js" defer></script>
+    <script defer>
+        window.onload = function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        };
+    </script>
+
+</body>
+</html>

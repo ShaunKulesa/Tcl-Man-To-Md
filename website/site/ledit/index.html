@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><link rel="canonical" href="https://www.tcl.tk/man/tcl8.6.13/TclCmd/contents.html/ledit/" />
+      <link rel="shortcut icon" href="../img/favicon.ico" />
+    <title>NAME - Tcl/Tk</title>
+    <link rel="stylesheet" href="../css/theme.css" />
+    <link rel="stylesheet" href="../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "NAME";
+        var mkdocs_page_input_path = "ledit.md";
+        var mkdocs_page_url = "/man/tcl8.6.13/TclCmd/contents.html/ledit/";
+      </script>
+    
+    <script src="../js/jquery-3.6.0.min.js" defer></script>
+    <!--[if lt IE 9]>
+      <script src="../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
+      <script>hljs.initHighlightingOnLoad();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href=".." class="icon icon-home"> Tcl/Tk
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="..">Home</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="" href="../command.md">Commands</a>
+                </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="..">Tcl/Tk</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href=".." class="icon icon-home" aria-label="Docs"></a> &raquo;</li>
+      <li>NAME</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="name">NAME</h1>
+<p>ledit - Replace elements of a list stored in variable</p>
+<h1 id="synopsis">SYNOPSIS</h1>
+<p><strong>ledit </strong><em>listVar first last </em>?<em>value value ...</em>?</p>
+<h1 id="description">DESCRIPTION</h1>
+<p>The command fetches the list value in variable <em>listVar</em> and replaces
+the elements in the range given by indices <em>first</em> to <em>last</em> (inclusive)
+with the <em>value</em> arguments. The resulting list is then stored back in
+<em>listVar</em> and returned as the result of the command.</p>
+<p>Arguments <em>first</em> and <em>last</em> are index values specifying the first and
+last elements of the range to replace. They are interpreted the same as
+index values for the command <strong>string index</strong>, supporting simple index
+arithmetic and indices relative to the end of the list. The index 0
+refers to the first element of the list, and <strong>end</strong> refers to the last
+element of the list.</p>
+<p>If either <em>first</em> or <em>last</em> is less than zero, it is considered to refer
+to the position before the first element of the list. This allows
+elements to be prepended.</p>
+<p>If either <em>first</em> or <em>last</em> indicates a position greater than the index
+of the last element of the list, it is treated as if it is an index one
+greater than the last element. This allows elements to be appended.</p>
+<p>If <em>last</em> is less than <em>first</em>, then any specified elements will be
+inserted into the list before the element specified by <em>first</em> with no
+elements being deleted.</p>
+<p>The <em>value</em> arguments specify zero or more new elements to be added to
+the list in place of those that were deleted. Each <em>value</em> argument will
+become a separate element of the list. If no <em>value</em> arguments are
+specified, then the elements between <em>first</em> and <em>last</em> are simply
+deleted.</p>
+<h1 id="examples">EXAMPLES</h1>
+<p>Prepend to a list.</p>
+<p>\% set lst {c d e f g} c d e f g % ledit lst -1 -1 a b a b c d e f g</p>
+<p>Append to the list.</p>
+<p>\% ledit lst end+1 end+1 h i a b c d e f g h i</p>
+<p>Delete third and fourth elements.</p>
+<p>\% ledit lst 2 3 a b e f g h i</p>
+<p>Replace two elements with three.</p>
+<p>\% ledit lst 2 3 x y z a b x y z g h i % set lst a b x y z g h i</p>
+<h1 id="see-also">SEE ALSO</h1>
+<p>list(n), lappend(n), lassign(n), lindex(n), linsert(n), llength(n),
+lmap(n), lpop(n), lrange(n), lremove(n), lrepeat(n), lreplace(n),
+lreverse(n), lsearch(n), lseq(n), lset(n), lsort(n), string(n)</p>
+<h1 id="keywords">KEYWORDS</h1>
+<p>element, list, replace</p>
+              
+            </div>
+          </div><footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+    
+  </span>
+</div>
+    <script>var base_url = '..';</script>
+    <script src="../js/theme_extra.js" defer></script>
+    <script src="../js/theme.js" defer></script>
+      <script src="../search/main.js" defer></script>
+    <script defer>
+        window.onload = function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        };
+    </script>
+
+</body>
+</html>

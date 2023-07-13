@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><link rel="canonical" href="https://www.tcl.tk/man/tcl8.6.13/TclCmd/contents.html/mathfunc/" />
+      <link rel="shortcut icon" href="../img/favicon.ico" />
+    <title>NAME - Tcl/Tk</title>
+    <link rel="stylesheet" href="../css/theme.css" />
+    <link rel="stylesheet" href="../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "NAME";
+        var mkdocs_page_input_path = "mathfunc.md";
+        var mkdocs_page_url = "/man/tcl8.6.13/TclCmd/contents.html/mathfunc/";
+      </script>
+    
+    <script src="../js/jquery-3.6.0.min.js" defer></script>
+    <!--[if lt IE 9]>
+      <script src="../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
+      <script>hljs.initHighlightingOnLoad();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href=".." class="icon icon-home"> Tcl/Tk
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="..">Home</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="" href="../command.md">Commands</a>
+                </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="..">Tcl/Tk</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href=".." class="icon icon-home" aria-label="Docs"></a> &raquo;</li>
+      <li>NAME</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="name">NAME</h1>
+<p>mathfunc - Mathematical functions for Tcl expressions</p>
+<h1 id="synopsis">SYNOPSIS</h1>
+<p>package require <strong>Tcl 8.5-</strong></p>
+<p><strong>::tcl::mathfunc::abs</strong> <em>arg</em>\
+<strong>::tcl::mathfunc::acos</strong> <em>arg</em>\
+<strong>::tcl::mathfunc::asin</strong> <em>arg</em>\
+<strong>::tcl::mathfunc::atan</strong> <em>arg</em>\
+<strong>::tcl::mathfunc::atan2</strong> <em>y</em> <em>x</em>\
+<strong>::tcl::mathfunc::bool</strong> <em>arg</em>\
+<strong>::tcl::mathfunc::ceil</strong> <em>arg</em>\
+<strong>::tcl::mathfunc::cos</strong> <em>arg</em>\
+<strong>::tcl::mathfunc::cosh</strong> <em>arg</em>\
+<strong>::tcl::mathfunc::double</strong> <em>arg</em>\
+<strong>::tcl::mathfunc::entier</strong> <em>arg</em>\
+<strong>::tcl::mathfunc::exp</strong> <em>arg</em>\
+<strong>::tcl::mathfunc::floor</strong> <em>arg</em>\
+<strong>::tcl::mathfunc::fmod</strong> <em>x</em> <em>y</em>\
+<strong>::tcl::mathfunc::hypot</strong> <em>x</em> <em>y</em>\
+<strong>::tcl::mathfunc::int</strong> <em>arg</em>\</p>
+<p><strong>::tcl::mathfunc::isfinite</strong> <em>arg</em>\
+<strong>::tcl::mathfunc::isinf</strong> <em>arg</em>\
+<strong>::tcl::mathfunc::isnan</strong> <em>arg</em>\
+<strong>::tcl::mathfunc::isnormal</strong> <em>arg</em></p>
+<p>\
+<strong>::tcl::mathfunc::isqrt</strong> <em>arg</em>\</p>
+<p><strong>::tcl::mathfunc::issubnormal</strong> <em>arg</em>\
+<strong>::tcl::mathfunc::isunordered</strong> <em>x y</em></p>
+<p>\
+<strong>::tcl::mathfunc::log</strong> <em>arg</em>\
+<strong>::tcl::mathfunc::log10</strong> <em>arg</em>\
+<strong>::tcl::mathfunc::max</strong> <em>arg</em> ?<em>arg</em> ...?\
+<strong>::tcl::mathfunc::min</strong> <em>arg</em> ?<em>arg</em> ...?\
+<strong>::tcl::mathfunc::pow</strong> <em>x</em> <em>y</em>\
+<strong>::tcl::mathfunc::rand</strong>\
+<strong>::tcl::mathfunc::round</strong> <em>arg</em>\
+<strong>::tcl::mathfunc::sin</strong> <em>arg</em>\
+<strong>::tcl::mathfunc::sinh</strong> <em>arg</em>\
+<strong>::tcl::mathfunc::sqrt</strong> <em>arg</em>\
+<strong>::tcl::mathfunc::srand</strong> <em>arg</em>\
+<strong>::tcl::mathfunc::tan</strong> <em>arg</em>\
+<strong>::tcl::mathfunc::tanh</strong> <em>arg</em>\
+<strong>::tcl::mathfunc::wide</strong> <em>arg</em></p>
+<h1 id="description">DESCRIPTION</h1>
+<p>The <strong>expr</strong> command handles mathematical functions of the form
+<strong>sin(\$x)</strong> or <strong>atan2(\$y,\$x)</strong> by converting them to calls of the
+form <strong>[tcl::mathfunc::sin [expr {\$x}]]</strong> or
+<strong>[tcl::mathfunc::atan2 [expr {\$y}] [expr {\$x}]]</strong>. A number of
+math functions are available by default within the namespace
+<strong>::tcl::mathfunc</strong>; these functions are also available for code apart
+from <strong>expr</strong>, by invoking the given commands directly.</p>
+<p>Tcl supports the following mathematical functions in expressions, all of
+which work solely with floating-point numbers unless otherwise noted:</p>
+<p><strong>abs</strong> <strong>acos</strong> <strong>asin</strong> <strong>atan</strong> <strong>atan2</strong> <strong>bool</strong> <strong>ceil</strong> <strong>cos</strong>
+<strong>cosh</strong> <strong>double</strong> <strong>entier</strong> <strong>exp</strong> <strong>floor</strong> <strong>fmod</strong> <strong>hypot</strong>
+<strong>int</strong> <strong>isfinite</strong> <strong>isinf</strong> <strong>isnan</strong> <strong>isnormal</strong> <strong>isqrt</strong>
+<strong>issubnormal</strong> <strong>isunordered</strong> <strong>log</strong> <strong>log10</strong> <strong>max</strong> <strong>min</strong>
+<strong>pow</strong> <strong>rand</strong> <strong>round</strong> <strong>sin</strong> <strong>sinh</strong> <strong>sqrt</strong> <strong>srand</strong> <strong>tan</strong>
+<strong>tanh</strong> <strong>wide</strong></p>
+<p>In addition to these predefined functions, applications may define
+additional functions by using <strong>proc</strong> (or any other method, such as
+<strong>interp alias</strong> or <strong>Tcl_CreateObjCommand</strong>) to define new commands in
+the <strong>tcl::mathfunc</strong> namespace.</p>
+<h2 id="detailed-definitions">DETAILED DEFINITIONS</h2>
+<p><strong>abs </strong><em>arg</em></p>
+<p>:   Returns the absolute value of <em>arg</em>. <em>Arg</em> may be either integer or
+    floating-point, and the result is returned in the same form.</p>
+<p><strong>acos </strong><em>arg</em></p>
+<p>:   Returns the arc cosine of <em>arg</em>, in the range [<em>0</em>,<em>pi</em>] radians.
+    <em>Arg</em> should be in the range [<em>-1</em>,<em>1</em>].</p>
+<p><strong>asin </strong><em>arg</em></p>
+<p>:   Returns the arc sine of <em>arg</em>, in the range [<em>-pi/2</em>,<em>pi/2</em>]
+    radians. <em>Arg</em> should be in the range [<em>-1</em>,<em>1</em>].</p>
+<p><strong>atan </strong><em>arg</em></p>
+<p>:   Returns the arc tangent of <em>arg</em>, in the range [<em>-pi/2</em>,<em>pi/2</em>]
+    radians.</p>
+<p><strong>atan2 </strong><em>y x</em></p>
+<p>:   Returns the arc tangent of <em>y</em>/<em>x</em>, in the range [<em>-pi</em>,<em>pi</em>]
+    radians. <em>x</em> and <em>y</em> cannot both be 0. If <em>x</em> is greater than <em>0</em>,
+    this is equivalent to</p>
+<pre><code>&lt;!-- --&gt;
+</code></pre>
+<p><strong>bool </strong><em>arg</em></p>
+<p>:   Accepts any numeric value, or any string acceptable to <strong>string is
+    boolean</strong>, and returns the corresponding boolean value <strong>0</strong> or
+    <strong>1</strong>. Non-zero numbers are true. Other numbers are false.
+    Non-numeric strings produce boolean value in agreement with <strong>string
+    is true</strong> and <strong>string is false</strong>.</p>
+<p><strong>ceil </strong><em>arg</em></p>
+<p>:   Returns the smallest integral floating-point value (i.e. with a zero
+    fractional part) not less than <em>arg</em>. The argument may be any
+    numeric value.</p>
+<p><strong>cos </strong><em>arg</em></p>
+<p>:   Returns the cosine of <em>arg</em>, measured in radians.</p>
+<p><strong>cosh </strong><em>arg</em></p>
+<p>:   Returns the hyperbolic cosine of <em>arg</em>. If the result would cause an
+    overflow, an error is returned.</p>
+<p><strong>double </strong><em>arg</em></p>
+<p>:   The argument may be any numeric value, If <em>arg</em> is a floating-point
+    value, returns <em>arg</em>, otherwise converts <em>arg</em> to floating-point and
+    returns the converted value. May return <strong>Inf</strong> or <strong>-Inf</strong> when the
+    argument is a numeric value that exceeds the floating-point range.</p>
+<p><strong>entier </strong><em>arg</em></p>
+<p>:   The argument may be any numeric value. The integer part of <em>arg</em> is
+    determined and returned. The integer range returned by this function
+    is unlimited, unlike <strong>int</strong> and <strong>wide</strong> which truncate their range
+    to fit in particular storage widths.</p>
+<p><strong>exp </strong><em>arg</em></p>
+<p>:   Returns the exponential of <em>arg</em>, defined as <em>e</em>**<em>arg</em>. If the
+    result would cause an overflow, an error is returned.</p>
+<p><strong>floor </strong><em>arg</em></p>
+<p>:   Returns the largest integral floating-point value (i.e. with a zero
+    fractional part) not greater than <em>arg</em>. The argument may be any
+    numeric value.</p>
+<p><strong>fmod </strong><em>x y</em></p>
+<p>:   Returns the floating-point remainder of the division of <em>x</em> by <em>y</em>.
+    If <em>y</em> is 0, an error is returned.</p>
+<p><strong>hypot </strong><em>x y</em></p>
+<p>:   Computes the length of the hypotenuse of a right-angled triangle,
+    approximately</p>
+<p>except for being more numerically stable when the two arguments have
+substantially different magnitudes.</p>
+<p><strong>int </strong><em>arg</em></p>
+<p>:   The argument may be any numeric value. The integer part of <em>arg</em> is
+    determined, and then the low order bits of that integer value up to
+    the machine word size are returned as an integer value. For
+    reference, the number of bytes in the machine word are stored in the
+    <strong>wordSize</strong> element of the <strong>tcl_platform</strong> array.</p>
+<p><strong>isfinite </strong><em>arg</em></p>
+<p>:   </p>
+<p>Returns 1 if the floating-point number <em>arg</em> is finite. That is, if it
+is zero, subnormal, or normal. Returns 0 if the number is infinite or
+NaN. Throws an error if <em>arg</em> cannot be promoted to a floating-point
+value.</p>
+<p><strong>isinf </strong><em>arg</em></p>
+<p>:   </p>
+<p>Returns 1 if the floating-point number <em>arg</em> is infinite. Returns 0 if
+the number is finite or NaN. Throws an error if <em>arg</em> cannot be promoted
+to a floating-point value.</p>
+<p><strong>isnan </strong><em>arg</em></p>
+<p>:   </p>
+<p>Returns 1 if the floating-point number <em>arg</em> is Not-a-Number. Returns 0
+if the number is finite or infinite. Throws an error if <em>arg</em> cannot be
+promoted to a floating-point value.</p>
+<p><strong>isnormal </strong><em>arg</em></p>
+<p>:   </p>
+<p>Returns 1 if the floating-point number <em>arg</em> is normal. Returns 0 if the
+number is zero, subnormal, infinite or NaN. Throws an error if <em>arg</em>
+cannot be promoted to a floating-point value.</p>
+<p><strong>isqrt </strong><em>arg</em></p>
+<p>:   Computes the integer part of the square root of <em>arg</em>. <em>Arg</em> must be
+    a positive value, either an integer or a floating point number.
+    Unlike <strong>sqrt</strong>, which is limited to the precision of a floating
+    point number, <em>isqrt</em> will return a result of arbitrary precision.</p>
+<p><strong>issubnormal </strong><em>arg</em></p>
+<p>:   </p>
+<p>Returns 1 if the floating-point number <em>arg</em> is subnormal, i.e., the
+result of gradual underflow. Returns 0 if the number is zero, normal,
+infinite or NaN. Throws an error if <em>arg</em> cannot be promoted to a
+floating-point value.</p>
+<p><strong>isunordered </strong><em>x y</em></p>
+<p>:   </p>
+<p>Returns 1 if <em>x</em> and <em>y</em> cannot be compared for ordering, that is, if
+either one is NaN. Returns 0 if both values can be ordered, that is, if
+they are both chosen from among the set of zero, subnormal, normal and
+infinite values. Throws an error if either <em>x</em> or <em>y</em> cannot be promoted
+to a floating-point value.</p>
+<p><strong>log </strong><em>arg</em></p>
+<p>:   Returns the natural logarithm of <em>arg</em>. <em>Arg</em> must be a positive
+    value.</p>
+<p><strong>log10 </strong><em>arg</em></p>
+<p>:   Returns the base 10 logarithm of <em>arg</em>. <em>Arg</em> must be a positive
+    value.</p>
+<p><strong>max </strong><em>arg</em><strong> </strong><em>...</em></p>
+<p>:   Accepts one or more numeric arguments. Returns the one argument with
+    the greatest value.</p>
+<p><strong>min </strong><em>arg</em><strong> </strong><em>...</em></p>
+<p>:   Accepts one or more numeric arguments. Returns the one argument with
+    the least value.</p>
+<p><strong>pow </strong><em>x y</em></p>
+<p>:   Computes the value of <em>x</em> raised to the power <em>y</em>. If <em>x</em> is
+    negative, <em>y</em> must be an integer value.</p>
+<p><strong>rand</strong></p>
+<p>:   Returns a pseudo-random floating-point value in the range (<em>0</em>,<em>1</em>).
+    The generator algorithm is a simple linear congruential generator
+    that is not cryptographically secure. Each result from <strong>rand</strong>
+    completely determines all future results from subsequent calls to
+    <strong>rand</strong>, so <strong>rand</strong> should not be used to generate a sequence of
+    secrets, such as one-time passwords. The seed of the generator is
+    initialized from the internal clock of the machine or may be set
+    with the <strong>srand</strong> function.</p>
+<p><strong>round </strong><em>arg</em></p>
+<p>:   If <em>arg</em> is an integer value, returns <em>arg</em>, otherwise converts
+    <em>arg</em> to integer by rounding and returns the converted value.</p>
+<p><strong>sin </strong><em>arg</em></p>
+<p>:   Returns the sine of <em>arg</em>, measured in radians.</p>
+<p><strong>sinh </strong><em>arg</em></p>
+<p>:   Returns the hyperbolic sine of <em>arg</em>. If the result would cause an
+    overflow, an error is returned.</p>
+<p><strong>sqrt </strong><em>arg</em></p>
+<p>:   The argument may be any non-negative numeric value. Returns a
+    floating-point value that is the square root of <em>arg</em>. May return
+    <strong>Inf</strong> when the argument is a numeric value that exceeds the square
+    of the maximum value of the floating-point range.</p>
+<p><strong>srand </strong><em>arg</em></p>
+<p>:   The <em>arg</em>, which must be an integer, is used to reset the seed for
+    the random number generator of <strong>rand</strong>. Returns the first random
+    number (see <strong>rand</strong>) from that seed. Each interpreter has its own
+    seed.</p>
+<p><strong>tan </strong><em>arg</em></p>
+<p>:   Returns the tangent of <em>arg</em>, measured in radians.</p>
+<p><strong>tanh </strong><em>arg</em></p>
+<p>:   Returns the hyperbolic tangent of <em>arg</em>.</p>
+<p><strong>wide </strong><em>arg</em></p>
+<p>:   The argument may be any numeric value. The integer part of <em>arg</em> is
+    determined, and then the low order 64 bits of that integer value are
+    returned as an integer value.</p>
+<h1 id="see-also">SEE ALSO</h1>
+<p>expr(n), fpclassify(n), mathop(n), namespace(n)</p>
+<h1 id="copyright">COPYRIGHT</h1>
+<pre><code>Copyright © 1993 The Regents of the University of California.
+Copyright © 1994-2000 Sun Microsystems Incorporated.
+Copyright © 2005-2006 Kevin B. Kenny &lt;kennykb@acm.org&gt;.
+</code></pre>
+              
+            </div>
+          </div><footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+    
+  </span>
+</div>
+    <script>var base_url = '..';</script>
+    <script src="../js/theme_extra.js" defer></script>
+    <script src="../js/theme.js" defer></script>
+      <script src="../search/main.js" defer></script>
+    <script defer>
+        window.onload = function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        };
+    </script>
+
+</body>
+</html>

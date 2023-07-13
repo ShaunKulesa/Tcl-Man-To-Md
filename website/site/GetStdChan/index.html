@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><link rel="canonical" href="https://www.tcl.tk/man/tcl8.6.13/TclCmd/contents.html/GetStdChan/" />
+      <link rel="shortcut icon" href="../img/favicon.ico" />
+    <title>NAME - Tcl/Tk</title>
+    <link rel="stylesheet" href="../css/theme.css" />
+    <link rel="stylesheet" href="../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "NAME";
+        var mkdocs_page_input_path = "GetStdChan.md";
+        var mkdocs_page_url = "/man/tcl8.6.13/TclCmd/contents.html/GetStdChan/";
+      </script>
+    
+    <script src="../js/jquery-3.6.0.min.js" defer></script>
+    <!--[if lt IE 9]>
+      <script src="../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
+      <script>hljs.initHighlightingOnLoad();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href=".." class="icon icon-home"> Tcl/Tk
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="..">Home</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="" href="../command.md">Commands</a>
+                </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="..">Tcl/Tk</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href=".." class="icon icon-home" aria-label="Docs"></a> &raquo;</li>
+      <li>NAME</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="name">NAME</h1>
+<p>Tcl_GetStdChannel, Tcl_SetStdChannel - procedures for retrieving and
+replacing the standard channels</p>
+<h1 id="synopsis">SYNOPSIS</h1>
+<pre><code>#include &lt;tcl.h&gt;
+
+Tcl_Channel
+Tcl_GetStdChannel(type)
+
+Tcl_SetStdChannel(channel, type)
+</code></pre>
+<h1 id="arguments">ARGUMENTS</h1>
+<p>The identifier for the standard channel to retrieve or modify. Must be
+one of <strong>TCL_STDIN</strong>, <strong>TCL_STDOUT</strong>, or <strong>TCL_STDERR</strong>.</p>
+<p>The channel to use as the new value for the specified standard channel.</p>
+<h1 id="description">DESCRIPTION</h1>
+<p>Tcl defines three special channels that are used by various I/O related
+commands if no other channels are specified. The standard input channel
+has a channel name of <strong>stdin</strong> and is used by <strong>read</strong> and <strong>gets</strong>.
+The standard output channel is named <strong>stdout</strong> and is used by <strong>puts</strong>.
+The standard error channel is named <strong>stderr</strong> and is used for reporting
+errors. In addition, the standard channels are inherited by any child
+processes created using <strong>exec</strong> or <strong>open</strong> in the absence of any other
+redirections.</p>
+<p>The standard channels are actually aliases for other normal channels.
+The current channel associated with a standard channel can be retrieved
+by calling <strong>Tcl_GetStdChannel</strong> with one of <strong>TCL_STDIN</strong>,
+<strong>TCL_STDOUT</strong>, or <strong>TCL_STDERR</strong> as the <em>type</em>. The return value will
+be a valid channel, or NULL.</p>
+<p>A new channel can be set for the standard channel specified by <em>type</em> by
+calling <strong>Tcl_SetStdChannel</strong> with a new channel or NULL in the
+<em>channel</em> argument. If the specified channel is closed by a later call
+to <strong>Tcl_Close</strong>, then the corresponding standard channel will
+automatically be set to NULL.</p>
+<p>If a non-NULL value for <em>channel</em> is passed to <strong>Tcl_SetStdChannel</strong>,
+then that same value should be passed to <strong>Tcl_RegisterChannel</strong>, like
+so:</p>
+<p>Tcl_RegisterChannel(NULL, channel);</p>
+<p>This is a workaround for a misfeature in <strong>Tcl_SetStdChannel</strong> that it
+fails to do some reference counting housekeeping. This misfeature cannot
+be corrected without contradicting the assumptions of some existing code
+that calls <strong>Tcl_SetStdChannel</strong>.</p>
+<p>If <strong>Tcl_GetStdChannel</strong> is called before <strong>Tcl_SetStdChannel</strong>, Tcl
+will construct a new channel to wrap the appropriate platform-specific
+standard file handle. If <strong>Tcl_SetStdChannel</strong> is called before
+<strong>Tcl_GetStdChannel</strong>, then the default channel will not be created.</p>
+<p>If one of the standard channels is set to NULL, either by calling
+<strong>Tcl_SetStdChannel</strong> with a NULL <em>channel</em> argument, or by calling
+<strong>Tcl_Close</strong> on the channel, then the next call to
+<strong>Tcl_CreateChannel</strong> will automatically set the standard channel with
+the newly created channel. If more than one standard channel is NULL,
+then the standard channels will be assigned starting with standard
+input, followed by standard output, with standard error being last.</p>
+<p>See <strong>Tcl_StandardChannels</strong> for a general treatise about standard
+channels and the behavior of the Tcl library with regard to them.</p>
+<h1 id="see-also">SEE ALSO</h1>
+<p>Tcl_Close(3), Tcl_CreateChannel(3), Tcl_Main(3), tclsh(1)</p>
+<h1 id="keywords">KEYWORDS</h1>
+<p>standard channel, standard input, standard output, standard error</p>
+              
+            </div>
+          </div><footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+    
+  </span>
+</div>
+    <script>var base_url = '..';</script>
+    <script src="../js/theme_extra.js" defer></script>
+    <script src="../js/theme.js" defer></script>
+      <script src="../search/main.js" defer></script>
+    <script defer>
+        window.onload = function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        };
+    </script>
+
+</body>
+</html>

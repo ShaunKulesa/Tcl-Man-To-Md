@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><link rel="canonical" href="https://www.tcl.tk/man/tcl8.6.13/TclCmd/contents.html/dde/" />
+      <link rel="shortcut icon" href="../img/favicon.ico" />
+    <title>NAME - Tcl/Tk</title>
+    <link rel="stylesheet" href="../css/theme.css" />
+    <link rel="stylesheet" href="../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "NAME";
+        var mkdocs_page_input_path = "dde.md";
+        var mkdocs_page_url = "/man/tcl8.6.13/TclCmd/contents.html/dde/";
+      </script>
+    
+    <script src="../js/jquery-3.6.0.min.js" defer></script>
+    <!--[if lt IE 9]>
+      <script src="../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
+      <script>hljs.initHighlightingOnLoad();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href=".." class="icon icon-home"> Tcl/Tk
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="..">Home</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="" href="../command.md">Commands</a>
+                </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="..">Tcl/Tk</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href=".." class="icon icon-home" aria-label="Docs"></a> &raquo;</li>
+      <li>NAME</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="name">NAME</h1>
+<p>dde - Execute a Dynamic Data Exchange command</p>
+<h1 id="synopsis">SYNOPSIS</h1>
+<p><strong>package require dde 1.4</strong></p>
+<p><strong>dde servername</strong> ?<strong>-force</strong>? ?<strong>-handler </strong><em>proc</em>? ?<strong>- -</strong>?
+?<em>topic</em>?</p>
+<p><strong>dde execute</strong> ?<strong>-async</strong>? ?<strong>-binary</strong>? <em>service topic data</em></p>
+<p><strong>dde poke</strong> ?<strong>-binary</strong>? <em>service topic item data</em></p>
+<p><strong>dde request</strong> ?<strong>-binary</strong>? <em>service topic item</em></p>
+<p><strong>dde services </strong><em>service topic</em></p>
+<p><strong>dde eval</strong> ?<strong>-async</strong>? <em>topic cmd </em>?<em>arg arg ...</em>?</p>
+<h1 id="description">DESCRIPTION</h1>
+<p>This command allows an application to send Dynamic Data Exchange (DDE)
+command when running under Microsoft Windows. Dynamic Data Exchange is a
+mechanism where applications can exchange raw data. Each DDE transaction
+needs a <em>service name</em> and a <em>topic</em>. Both the <em>service name</em> and
+<em>topic</em> are application defined; Tcl uses the service name <strong>TclEval</strong>,
+while the topic name is the name of the interpreter given by <strong>dde
+servername</strong>. Other applications have their own <em>service names</em> and
+<em>topics</em>. For instance, Microsoft Excel has the service name <strong>Excel</strong>.</p>
+<h1 id="dde-commands">DDE COMMANDS</h1>
+<p>The following commands are a subset of the full Dynamic Data Exchange
+set of commands.</p>
+<p><strong>dde servername </strong>?<strong>-force</strong>? ?<strong>-handler </strong><em>proc</em>? ?<strong>- -</strong>? ?<em>topic</em>?</p>
+<p>:   <strong>dde servername</strong> registers the interpreter as a DDE server with
+    the service name <strong>TclEval</strong> and the topic name specified by
+    <em>topic</em>. If no <em>topic</em> is given, <strong>dde servername</strong> returns the name
+    of the current topic or the empty string if it is not registered as
+    a service. If the given <em>topic</em> name is already in use, then a
+    suffix of the form</p>
+<p>or</p>
+<p>is appended to the name to make it unique. The command\'s result will be
+the name actually used. The <strong>-force</strong> option is used to force
+registration of precisely the given <em>topic</em> name.</p>
+<blockquote>
+<p>The <strong>-handler</strong> option specifies a Tcl procedure that will be called
+to process calls to the dde server. If the package has been loaded
+into a safe interpreter then a <strong>-handler</strong> procedure must be defined.
+The procedure is called with all the arguments provided by the remote
+call.</p>
+</blockquote>
+<p><strong>dde execute</strong> ?<strong>-async</strong>? ?<strong>-binary</strong>? <em>service topic data</em></p>
+<p>:   <strong>dde execute</strong> takes the <em>data</em> and sends it to the server
+    indicated by <em>service</em> with the topic indicated by <em>topic</em>.
+    Typically, <em>service</em> is the name of an application, and <em>topic</em> is a
+    file to work on. The <em>data</em> field is given to the remote
+    application. Typically, the application treats the <em>data</em> field as a
+    script, and the script is run in the application. The <strong>-async</strong>
+    option requests asynchronous invocation. The command returns an
+    error message if the script did not run, unless the <strong>-async</strong> flag
+    was used, in which case the command returns immediately with no
+    error. Without the <strong>-binary</strong> option all data will be sent in
+    unicode. For dde clients which don\'t implement the CF_UNICODE
+    clipboard format, this will automatically be translated to the
+    system encoding. You can use the <strong>-binary</strong> option in combination
+    with the result of <strong>encoding convertto</strong> to send data in any other
+    encoding.</p>
+<p><strong>dde poke</strong> ?<strong>-binary</strong>? <em>service topic item data</em></p>
+<p>:   <strong>dde poke</strong> passes the <em>data</em> to the server indicated by <em>service</em>
+    using the <em>topic</em> and <em>item</em> specified. Typically, <em>service</em> is the
+    name of an application. <em>topic</em> is application specific but can be a
+    command to the server or the name of a file to work on. The <em>item</em>
+    is also application specific and is often not used, but it must
+    always be non-null. The <em>data</em> field is given to the remote
+    application. Without the <strong>-binary</strong> option all data will be sent in
+    unicode. For dde clients which don\'t implement the CF_UNICODE
+    clipboard format, this will automatically be translated to the
+    system encoding. You can use the <strong>-binary</strong> option in combination
+    with the result of <strong>encoding convertto</strong> to send data in any other
+    encoding.</p>
+<p><strong>dde request</strong> ?<strong>-binary</strong>? <em>service topic item</em></p>
+<p>:   <strong>dde request</strong> is typically used to get the value of something; the
+    value of a cell in Microsoft Excel or the text of a selection in
+    Microsoft Word. <em>service</em> is typically the name of an application,
+    <em>topic</em> is typically the name of the file, and <em>item</em> is
+    application-specific. The command returns the value of <em>item</em> as
+    defined in the application. Normally this is interpreted to be a
+    string with terminating null. If <strong>-binary</strong> is specified, the
+    result is returned as a byte array.</p>
+<p><strong>dde services </strong><em>service topic</em></p>
+<p>:   <strong>dde services</strong> returns a list of service-topic pairs that
+    currently exist on the machine. If <em>service</em> and <em>topic</em> are both
+    empty strings ({}), then all service-topic pairs currently available
+    on the system are returned. If <em>service</em> is empty and <em>topic</em> is
+    not, then all services with the specified topic are returned. If
+    <em>service</em> is non-empty and <em>topic</em> is, all topics for a given
+    service are returned. If both are non-empty, if that service-topic
+    pair currently exists, it is returned; otherwise, an empty string is
+    returned.</p>
+<p><strong>dde eval</strong> ?<strong>-async</strong>? <em>topic cmd </em>?<em>arg arg ...</em>?</p>
+<p>:   <strong>dde eval</strong> evaluates a command and its arguments using the
+    interpreter specified by <em>topic</em>. The DDE service must be the
+    <strong>TclEval</strong> service. The <strong>-async</strong> option requests asynchronous
+    invocation. The command returns an error message if the script did
+    not run, unless the <strong>-async</strong> flag was used, in which case the
+    command returns immediately with no error. This command can be used
+    to replace send on Windows.</p>
+<h1 id="dde-and-tcl">DDE AND TCL</h1>
+<p>A Tcl interpreter always has a service name of <strong>TclEval</strong>. Each
+different interpreter of all running Tcl applications must be given a
+unique name specified by <strong>dde servername</strong>. Each interp is available as
+a DDE topic only if the <strong>dde servername</strong> command was used to set the
+name of the topic for each interp. So a <strong>dde services TclEval {}</strong>
+command will return a list of service-topic pairs, where each of the
+currently running interps will be a topic.</p>
+<p>When Tcl processes a <strong>dde execute</strong> command, the data for the execute
+is run as a script in the interp named by the topic of the <strong>dde
+execute</strong> command.</p>
+<p>When Tcl processes a <strong>dde request</strong> command, it returns the value of
+the variable given in the dde command in the context of the interp named
+by the dde topic. Tcl reserves the variable
+<strong>\$TCLEVAL\$EXECUTE\$RESULT</strong> for internal use, and <strong>dde request</strong>
+commands for that variable will give unpredictable results.</p>
+<p>An external application which wishes to run a script in Tcl should have
+that script store its result in a variable, run the <strong>dde execute</strong>
+command, and then run <strong>dde request</strong> to get the value of the variable.</p>
+<p>When using DDE, be careful to ensure that the event queue is flushed
+using either <strong>update</strong> or <strong>vwait</strong>. This happens by default when using
+<strong>wish</strong> unless a blocking command is called (such as <strong>exec</strong> without
+adding the <strong>&amp;</strong> to place the process in the background). If for any
+reason the event queue is not flushed, DDE commands may hang until the
+event queue is flushed. This can create a deadlock situation.</p>
+<h1 id="example">EXAMPLE</h1>
+<p>This asks Internet Explorer (which must already be running) to go to a
+particularly important website:</p>
+<p>package require dde <strong>dde execute</strong> -async iexplore WWW_OpenURL
+http://www.tcl-lang.org/</p>
+<h1 id="see-also">SEE ALSO</h1>
+<p>tk(n), winfo(n), send(n)</p>
+<h1 id="keywords">KEYWORDS</h1>
+<p>application, dde, name, remote execution</p>
+              
+            </div>
+          </div><footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+    
+  </span>
+</div>
+    <script>var base_url = '..';</script>
+    <script src="../js/theme_extra.js" defer></script>
+    <script src="../js/theme.js" defer></script>
+      <script src="../search/main.js" defer></script>
+    <script defer>
+        window.onload = function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        };
+    </script>
+
+</body>
+</html>

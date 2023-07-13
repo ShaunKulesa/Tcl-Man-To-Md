@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><link rel="canonical" href="https://www.tcl.tk/man/tcl8.6.13/TclCmd/contents.html/CrtCommand/" />
+      <link rel="shortcut icon" href="../img/favicon.ico" />
+    <title>NAME - Tcl/Tk</title>
+    <link rel="stylesheet" href="../css/theme.css" />
+    <link rel="stylesheet" href="../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "NAME";
+        var mkdocs_page_input_path = "CrtCommand.md";
+        var mkdocs_page_url = "/man/tcl8.6.13/TclCmd/contents.html/CrtCommand/";
+      </script>
+    
+    <script src="../js/jquery-3.6.0.min.js" defer></script>
+    <!--[if lt IE 9]>
+      <script src="../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
+      <script>hljs.initHighlightingOnLoad();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href=".." class="icon icon-home"> Tcl/Tk
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="..">Home</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="" href="../command.md">Commands</a>
+                </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="..">Tcl/Tk</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href=".." class="icon icon-home" aria-label="Docs"></a> &raquo;</li>
+      <li>NAME</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="name">NAME</h1>
+<p>Tcl_CreateCommand - implement new commands in C</p>
+<h1 id="synopsis">SYNOPSIS</h1>
+<pre><code>#include &lt;tcl.h&gt;
+
+Tcl_Command
+Tcl_CreateCommand(interp, cmdName, proc, clientData, deleteProc)
+</code></pre>
+<h1 id="arguments">ARGUMENTS</h1>
+<p>Interpreter in which to create new command.</p>
+<p>Name of command.</p>
+<p>Implementation of new command: <em>proc</em> will be called whenever <em>cmdName</em>
+is invoked as a command.</p>
+<p>Arbitrary one-word value to pass to <em>proc</em> and <em>deleteProc</em>.</p>
+<p>Procedure to call before <em>cmdName</em> is deleted from the interpreter;
+allows for command-specific cleanup. If NULL, then no procedure is
+called before the command is deleted.</p>
+<h1 id="description">DESCRIPTION</h1>
+<p><strong>Tcl_CreateCommand</strong> defines a new command in <em>interp</em> and associates
+it with procedure <em>proc</em> such that whenever <em>cmdName</em> is invoked as a
+Tcl command (via a call to <strong>Tcl_Eval</strong>) the Tcl interpreter will call
+<em>proc</em> to process the command. It differs from <strong>Tcl_CreateObjCommand</strong>
+in that a new string-based command is defined; that is, a command
+procedure is defined that takes an array of argument strings instead of
+values. The value-based command procedures registered by
+<strong>Tcl_CreateObjCommand</strong> can execute significantly faster than the
+string-based command procedures defined by <strong>Tcl_CreateCommand</strong>. This
+is because they take Tcl values as arguments and those values can retain
+an internal representation that can be manipulated more efficiently.
+Also, Tcl\'s interpreter now uses values internally. In order to invoke
+a string-based command procedure registered by <strong>Tcl_CreateCommand</strong>, it
+must generate and fetch a string representation from each argument value
+before the call. New commands should be defined using
+<strong>Tcl_CreateObjCommand</strong>. We support <strong>Tcl_CreateCommand</strong> for backwards
+compatibility.</p>
+<p>The procedures <strong>Tcl_DeleteCommand</strong>, <strong>Tcl_GetCommandInfo</strong>, and
+<strong>Tcl_SetCommandInfo</strong> are used in conjunction with
+<strong>Tcl_CreateCommand</strong>.</p>
+<p><strong>Tcl_CreateCommand</strong> will delete an existing command <em>cmdName</em>, if one
+is already associated with the interpreter. It returns a token that may
+be used to refer to the command in subsequent calls to
+<strong>Tcl_GetCommandName</strong>. If <em>cmdName</em> contains any <strong>::</strong> namespace
+qualifiers, then the command is added to the specified namespace;
+otherwise the command is added to the global namespace. If
+<strong>Tcl_CreateCommand</strong> is called for an interpreter that is in the
+process of being deleted, then it does not create a new command and it
+returns NULL. <em>Proc</em> should have arguments and result that match the
+type <strong>Tcl_CmdProc</strong>:</p>
+<p>typedef int <strong>Tcl_CmdProc</strong>( void *<em>clientData</em>, Tcl_Interp *<em>interp</em>,
+int <em>argc</em>, const char *<em>argv</em>[]);</p>
+<p>When <em>proc</em> is invoked the <em>clientData</em> and <em>interp</em> parameters will be
+copies of the <em>clientData</em> and <em>interp</em> arguments given to
+<strong>Tcl_CreateCommand</strong>. Typically, <em>clientData</em> points to an
+application-specific data structure that describes what to do when the
+command procedure is invoked. <em>Argc</em> and <em>argv</em> describe the arguments
+to the command, <em>argc</em> giving the number of arguments (including the
+command name) and <em>argv</em> giving the values of the arguments as strings.
+The <em>argv</em> array will contain <em>argc</em>+1 values; the first <em>argc</em> values
+point to the argument strings, and the last value is NULL. Note that the
+argument strings should not be modified as they may point to constant
+strings or may be shared with other parts of the interpreter.</p>
+<p>Note that the argument strings are encoded in normalized UTF-8 since
+version 8.1 of Tcl.</p>
+<p><em>Proc</em> must return an integer code that is expected to be one of
+<strong>TCL_OK</strong>, <strong>TCL_ERROR</strong>, <strong>TCL_RETURN</strong>, <strong>TCL_BREAK</strong>, or
+<strong>TCL_CONTINUE</strong>. See the Tcl overview man page for details on what
+these codes mean. Most normal commands will only return <strong>TCL_OK</strong> or
+<strong>TCL_ERROR</strong>. In addition, <em>proc</em> must set the interpreter result; in
+the case of a <strong>TCL_OK</strong> return code this gives the result of the
+command, and in the case of <strong>TCL_ERROR</strong> it gives an error message. The
+<strong>Tcl_SetResult</strong> procedure provides an easy interface for setting the
+return value; for complete details on how the interpreter result field
+is managed, see the <strong>Tcl_Interp</strong> man page. Before invoking a command
+procedure, <strong>Tcl_Eval</strong> sets the interpreter result to point to an empty
+string, so simple commands can return an empty result by doing nothing
+at all.</p>
+<p>The contents of the <em>argv</em> array belong to Tcl and are not guaranteed to
+persist once <em>proc</em> returns: <em>proc</em> should not modify them, nor should
+it set the interpreter result to point anywhere within the <em>argv</em>
+values. Call <strong>Tcl_SetResult</strong> with status <strong>TCL_VOLATILE</strong> if you want
+to return something from the <em>argv</em> array.</p>
+<p><em>DeleteProc</em> will be invoked when (if) <em>cmdName</em> is deleted. This can
+occur through a call to <strong>Tcl_DeleteCommand</strong> or <strong>Tcl_DeleteInterp</strong>,
+or by replacing <em>cmdName</em> in another call to <strong>Tcl_CreateCommand</strong>.
+<em>DeleteProc</em> is invoked before the command is deleted, and gives the
+application an opportunity to release any structures associated with the
+command. <em>DeleteProc</em> should have arguments and result that match the
+type <strong>Tcl_CmdDeleteProc</strong>:</p>
+<p>typedef void <strong>Tcl_CmdDeleteProc</strong>( void *<em>clientData</em>);</p>
+<p>The <em>clientData</em> argument will be the same as the <em>clientData</em> argument
+passed to <strong>Tcl_CreateCommand</strong>.</p>
+<h1 id="see-also">SEE ALSO</h1>
+<p>Tcl_CreateObjCommand, Tcl_DeleteCommand, Tcl_GetCommandInfo,
+Tcl_SetCommandInfo, Tcl_GetCommandName, Tcl_SetObjResult</p>
+<h1 id="keywords">KEYWORDS</h1>
+<p>bind, command, create, delete, interpreter, namespace</p>
+              
+            </div>
+          </div><footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+    
+  </span>
+</div>
+    <script>var base_url = '..';</script>
+    <script src="../js/theme_extra.js" defer></script>
+    <script src="../js/theme.js" defer></script>
+      <script src="../search/main.js" defer></script>
+    <script defer>
+        window.onload = function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        };
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><link rel="canonical" href="https://www.tcl.tk/man/tcl8.6.13/TclCmd/contents.html/Class/" />
+      <link rel="shortcut icon" href="../img/favicon.ico" />
+    <title>NAME - Tcl/Tk</title>
+    <link rel="stylesheet" href="../css/theme.css" />
+    <link rel="stylesheet" href="../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "NAME";
+        var mkdocs_page_input_path = "Class.md";
+        var mkdocs_page_url = "/man/tcl8.6.13/TclCmd/contents.html/Class/";
+      </script>
+    
+    <script src="../js/jquery-3.6.0.min.js" defer></script>
+    <!--[if lt IE 9]>
+      <script src="../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
+      <script>hljs.initHighlightingOnLoad();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href=".." class="icon icon-home"> Tcl/Tk
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="..">Home</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="" href="../command.md">Commands</a>
+                </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="..">Tcl/Tk</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href=".." class="icon icon-home" aria-label="Docs"></a> &raquo;</li>
+      <li>NAME</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="name">NAME</h1>
+<p>oo::class - class of all classes</p>
+<h1 id="synopsis">SYNOPSIS</h1>
+<pre><code>package require tcl::oo
+
+oo::class method ?arg ...?
+</code></pre>
+<h1 id="class-hierarchy">CLASS HIERARCHY</h1>
+<pre><code>oo::object
+   → oo::class
+</code></pre>
+<h1 id="description">DESCRIPTION</h1>
+<p>Classes are objects that can manufacture other objects according to a
+pattern stored in the factory object (the class). An instance of the
+class is created by calling one of the class\'s factory methods,
+typically either <strong>create</strong> if an explicit name is being given, or
+<strong>new</strong> if an arbitrary unique name is to be automatically selected.</p>
+<p>The <strong>oo::class</strong> class is the class of all classes; every class is an
+instance of this class, which is consequently an instance of itself.
+This class is a subclass of <strong>oo::object</strong>, so every class is also an
+object. Additional metaclasses (i.e., classes of classes) can be defined
+if necessary by subclassing <strong>oo::class</strong>. Note that the <strong>oo::class</strong>
+object hides the <strong>new</strong> method on itself, so new classes should always
+be made using the <strong>create</strong> method.</p>
+<h2 id="constructor">CONSTRUCTOR</h2>
+<p>The constructor of the <strong>oo::class</strong> class takes an optional argument
+which, if present, is sent to the <strong>oo::define</strong> command (along with the
+name of the newly-created class) to allow the class to be conveniently
+configured at creation time.</p>
+<h2 id="destructor">DESTRUCTOR</h2>
+<p>The <strong>oo::class</strong> class does not define an explicit destructor. However,
+when a class is destroyed, all its subclasses and instances are also
+destroyed, along with all objects that it has been mixed into.</p>
+<h2 id="exported-methods">EXPORTED METHODS</h2>
+<p><em>cls </em><strong>create </strong><em>name </em>?<em>arg ...</em>?</p>
+<p>:   This creates a new instance of the class <em>cls</em> called <em>name</em> (which
+    is resolved within the calling context\'s namespace if not fully
+    qualified), passing the arguments, <em>arg ...</em>, to the constructor,
+    and (if that returns a successful result) returning the fully
+    qualified name of the created object (the result of the constructor
+    is ignored). If the constructor fails (i.e. returns a non-OK result)
+    then the object is destroyed and the error message is the result of
+    this method call.</p>
+<p><em>cls </em><strong>new </strong>?<em>arg ...</em>?</p>
+<p>:   This creates a new instance of the class <em>cls</em> with a new unique
+    name, passing the arguments, <em>arg ...</em>, to the constructor, and (if
+    that returns a successful result) returning the fully qualified name
+    of the created object (the result of the constructor is ignored). If
+    the constructor fails (i.e., returns a non-OK result) then the
+    object is destroyed and the error message is the result of this
+    method call.</p>
+<pre><code>Note that this method is not exported by the **oo::class** object
+itself, so classes should not be created using this method.
+</code></pre>
+<h2 id="non-exported-methods">NON-EXPORTED METHODS</h2>
+<p>The <strong>oo::class</strong> class supports the following non-exported methods:</p>
+<p><em>cls </em><strong>createWithNamespace</strong><em> name nsName</em> ?<em>arg ...</em>?</p>
+<p>:   This creates a new instance of the class <em>cls</em> called <em>name</em> (which
+    is resolved within the calling context\'s namespace if not fully
+    qualified), passing the arguments, <em>arg ...</em>, to the constructor,
+    and (if that returns a successful result) returning the fully
+    qualified name of the created object (the result of the constructor
+    is ignored). The name of the instance\'s internal namespace will be
+    <em>nsName</em> unless that namespace already exists (when an arbitrary
+    name will be chosen instead). If the constructor fails (i.e.,
+    returns a non-OK result) then the object is destroyed and the error
+    message is the result of this method call.</p>
+<h1 id="examples">EXAMPLES</h1>
+<p>This example defines a simple class hierarchy and creates a new instance
+of it. It then invokes a method of the object before destroying the
+hierarchy and showing that the destruction is transitive.</p>
+<p><strong>oo::class create</strong> fruit { method eat {} { puts \"yummy!\" } }
+<strong>oo::class create</strong> banana { superclass fruit constructor {} { my
+variable peeled set peeled 0 } method peel {} { my variable peeled set
+peeled 1 puts \"skin now off\" } method edible? {} { my variable peeled
+return \$peeled } method eat {} { if {![my edible?]} { my peel } next
+} } set b [banana <strong>new</strong>] \$b eat <em>→ prints \"skin now off\" and
+\"yummy!\"</em> fruit destroy \$b eat <em>→ error \"unknown command\"</em></p>
+<h1 id="see-also">SEE ALSO</h1>
+<p>oo::define(n), oo::object(n)</p>
+<h1 id="keywords">KEYWORDS</h1>
+<p>class, metaclass, object</p>
+              
+            </div>
+          </div><footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+    
+  </span>
+</div>
+    <script>var base_url = '..';</script>
+    <script src="../js/theme_extra.js" defer></script>
+    <script src="../js/theme.js" defer></script>
+      <script src="../search/main.js" defer></script>
+    <script defer>
+        window.onload = function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        };
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><link rel="canonical" href="https://www.tcl.tk/man/tcl8.6.13/TclCmd/contents.html/lpop/" />
+      <link rel="shortcut icon" href="../img/favicon.ico" />
+    <title>NAME - Tcl/Tk</title>
+    <link rel="stylesheet" href="../css/theme.css" />
+    <link rel="stylesheet" href="../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "NAME";
+        var mkdocs_page_input_path = "lpop.md";
+        var mkdocs_page_url = "/man/tcl8.6.13/TclCmd/contents.html/lpop/";
+      </script>
+    
+    <script src="../js/jquery-3.6.0.min.js" defer></script>
+    <!--[if lt IE 9]>
+      <script src="../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
+      <script>hljs.initHighlightingOnLoad();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href=".." class="icon icon-home"> Tcl/Tk
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="..">Home</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="" href="../command.md">Commands</a>
+                </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="..">Tcl/Tk</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href=".." class="icon icon-home" aria-label="Docs"></a> &raquo;</li>
+      <li>NAME</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="name">NAME</h1>
+<p>lpop - Get and remove an element in a list</p>
+<h1 id="synopsis">SYNOPSIS</h1>
+<p><strong>lpop </strong><em>varName ?index ...?</em></p>
+<h1 id="description">DESCRIPTION</h1>
+<p>The <strong>lpop</strong> command accepts a parameter, <em>varName</em>, which it interprets
+as the name of a variable containing a Tcl list. It also accepts one or
+more <em>indices</em> into the list. If no indices are presented, it defaults
+to \"end\".</p>
+<p>When presented with a single index, the <strong>lpop</strong> command addresses the
+<em>index</em>\'th element in it, removes if from the list and returns the
+element.</p>
+<p>If <em>index</em> is negative or greater or equal than the number of elements
+in <em>\$varName</em>, then an error occurs.</p>
+<p>The interpretation of each simple <em>index</em> value is the same as for the
+command <strong>string index</strong>, supporting simple index arithmetic and indices
+relative to the end of the list.</p>
+<p>If additional <em>index</em> arguments are supplied, then each argument is used
+in turn to address an element within a sublist designated by the
+previous indexing operation, allowing the script to remove elements in
+sublists. The command,</p>
+<p><strong>lpop</strong> a 1 2</p>
+<p>gets and removes element 2 of sublist 1.</p>
+<h1 id="examples">EXAMPLES</h1>
+<p>In each of these examples, the initial value of <em>x</em> is:</p>
+<p>set x [list [list a b c] [list d e f] [list g h i]] <em>→ {a b c}
+{d e f} {g h i}</em></p>
+<p>The indicated value becomes the new value of <em>x</em> (except in the last
+case, which is an error which leaves the value of <em>x</em> unchanged.)</p>
+<p><strong>lpop</strong> x 0 <em>→ {d e f} {g h i}</em> <strong>lpop</strong> x 2 <em>→ {a b c} {d e f}</em>
+<strong>lpop</strong> x end <em>→ {a b c} {d e f}</em> <strong>lpop</strong> x end-1 <em>→ {a b c} {g h i}</em>
+<strong>lpop</strong> x 2 1 <em>→ {a b c} {d e f} {g i}</em> <strong>lpop</strong> x 2 3 j <em>→ list index
+out of range</em></p>
+<p>In the following examples, the initial value of <em>x</em> is:</p>
+<p>set x [list [list [list a b] [list c d]] \ [list [list e f]
+[list g h]]] <em>→ {{a b} {c d}} {{e f} {g h}}</em></p>
+<p>The indicated value becomes the new value of <em>x</em>.</p>
+<p><strong>lpop</strong> x 1 1 0 <em>→ {{a b} {c d}} {{e f} h}</em></p>
+<h1 id="see-also">SEE ALSO</h1>
+<p>list(n), lappend(n), lassign(n), ledit(n), lindex(n), linsert(n),
+llength(n), lmap(n), lrange(n), lremove(n), lrepeat(n), lreplace(n),
+lreverse(n), lsearch(n), lseq(n), lset(n), lsort(n), string(n)</p>
+<h1 id="keywords">KEYWORDS</h1>
+<p>element, index, list, remove, pop, stack, queue</p>
+              
+            </div>
+          </div><footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+    
+  </span>
+</div>
+    <script>var base_url = '..';</script>
+    <script src="../js/theme_extra.js" defer></script>
+    <script src="../js/theme.js" defer></script>
+      <script src="../search/main.js" defer></script>
+    <script defer>
+        window.onload = function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        };
+    </script>
+
+</body>
+</html>

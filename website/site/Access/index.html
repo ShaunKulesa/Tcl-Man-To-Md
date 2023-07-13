@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><link rel="canonical" href="https://www.tcl.tk/man/tcl8.6.13/TclCmd/contents.html/Access/" />
+      <link rel="shortcut icon" href="../img/favicon.ico" />
+    <title>NAME - Tcl/Tk</title>
+    <link rel="stylesheet" href="../css/theme.css" />
+    <link rel="stylesheet" href="../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "NAME";
+        var mkdocs_page_input_path = "Access.md";
+        var mkdocs_page_url = "/man/tcl8.6.13/TclCmd/contents.html/Access/";
+      </script>
+    
+    <script src="../js/jquery-3.6.0.min.js" defer></script>
+    <!--[if lt IE 9]>
+      <script src="../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
+      <script>hljs.initHighlightingOnLoad();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href=".." class="icon icon-home"> Tcl/Tk
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="..">Home</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="" href="../command.md">Commands</a>
+                </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="..">Tcl/Tk</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href=".." class="icon icon-home" aria-label="Docs"></a> &raquo;</li>
+      <li>NAME</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="name">NAME</h1>
+<p>Tcl_Access, Tcl_Stat - check file permissions and other attributes</p>
+<h1 id="synopsis">SYNOPSIS</h1>
+<pre><code>#include &lt;tcl.h&gt;
+
+int
+Tcl_Access(path, mode)
+
+int
+Tcl_Stat(path, statPtr)
+</code></pre>
+<h1 id="arguments">ARGUMENTS</h1>
+<p>Native name of the file to check the attributes of.</p>
+<p>Mask consisting of one or more of <strong>R_OK</strong>, <strong>W_OK</strong>, <strong>X_OK</strong> and
+<strong>F_OK</strong>. <strong>R_OK</strong>, <strong>W_OK</strong> and <strong>X_OK</strong> request checking whether the
+file exists and has read, write and execute permissions, respectively.
+<strong>F_OK</strong> just requests a check for the existence of the file.</p>
+<p>The structure that contains the result.</p>
+<h1 id="description">DESCRIPTION</h1>
+<p>As of Tcl 8.4, the object-based APIs <strong>Tcl_FSAccess</strong> and <strong>Tcl_FSStat</strong>
+should be used in preference to <strong>Tcl_Access</strong> and <strong>Tcl_Stat</strong>,
+wherever possible. Those functions also support Tcl\'s virtual
+filesystem layer, which these do not.</p>
+<h2 id="obsolete-functions">OBSOLETE FUNCTIONS</h2>
+<p>There are two reasons for calling <strong>Tcl_Access</strong> and <strong>Tcl_Stat</strong> rather
+than calling system level functions <strong>access</strong> and <strong>stat</strong> directly.
+First, the Windows implementation of both functions fixes some bugs in
+the system level calls. Second, both <strong>Tcl_Access</strong> and <strong>Tcl_Stat</strong> (as
+well as <strong>Tcl_OpenFileChannelProc</strong>) hook into a linked list of
+functions. This allows the possibility to reroute file access to
+alternative media or access methods.</p>
+<p><strong>Tcl_Access</strong> checks whether the process would be allowed to read,
+write or test for existence of the file (or other file system object)
+whose name is <em>path</em>. If <em>path</em> is a symbolic link on Unix, then
+permissions of the file referred by this symbolic link are tested.</p>
+<p>On success (all requested permissions granted), zero is returned. On
+error (at least one bit in mode asked for a permission that is denied,
+or some other error occurred), -1 is returned.</p>
+<p><strong>Tcl_Stat</strong> fills the stat structure <em>statPtr</em> with information about
+the specified file. You do not need any access rights to the file to get
+this information but you need search rights to all directories named in
+the path leading to the file. The stat structure includes info regarding
+device, inode (always 0 on Windows), privilege mode, nlink (always 1 on
+Windows), user id (always 0 on Windows), group id (always 0 on Windows),
+rdev (same as device on Windows), size, last access time, last
+modification time, and creation time.</p>
+<p>If <em>path</em> exists, <strong>Tcl_Stat</strong> returns 0 and the stat structure is
+filled with data. Otherwise, -1 is returned, and no stat info is given.</p>
+<h1 id="keywords">KEYWORDS</h1>
+<p>stat, access</p>
+<h1 id="see-also">SEE ALSO</h1>
+<p>Tcl_FSAccess(3), Tcl_FSStat(3)</p>
+              
+            </div>
+          </div><footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+    
+  </span>
+</div>
+    <script>var base_url = '..';</script>
+    <script src="../js/theme_extra.js" defer></script>
+    <script src="../js/theme.js" defer></script>
+      <script src="../search/main.js" defer></script>
+    <script defer>
+        window.onload = function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        };
+    </script>
+
+</body>
+</html>

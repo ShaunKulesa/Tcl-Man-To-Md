@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><link rel="canonical" href="https://www.tcl.tk/man/tcl8.6.13/TclCmd/contents.html/my/" />
+      <link rel="shortcut icon" href="../img/favicon.ico" />
+    <title>NAME - Tcl/Tk</title>
+    <link rel="stylesheet" href="../css/theme.css" />
+    <link rel="stylesheet" href="../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "NAME";
+        var mkdocs_page_input_path = "my.md";
+        var mkdocs_page_url = "/man/tcl8.6.13/TclCmd/contents.html/my/";
+      </script>
+    
+    <script src="../js/jquery-3.6.0.min.js" defer></script>
+    <!--[if lt IE 9]>
+      <script src="../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
+      <script>hljs.initHighlightingOnLoad();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href=".." class="icon icon-home"> Tcl/Tk
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="..">Home</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="" href="../command.md">Commands</a>
+                </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="..">Tcl/Tk</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href=".." class="icon icon-home" aria-label="Docs"></a> &raquo;</li>
+      <li>NAME</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="name">NAME</h1>
+<p>my, myclass - invoke any method of current object or its class</p>
+<h1 id="synopsis">SYNOPSIS</h1>
+<pre><code>package require tcl::oo
+
+my methodName ?arg ...?
+myclass methodName ?arg ...?
+</code></pre>
+<h1 id="description">DESCRIPTION</h1>
+<p>The <strong>my</strong> command is used to allow methods of objects to invoke methods
+of the object (or its class),</p>
+<p>and the <strong>myclass</strong> command is used to allow methods of objects to
+invoke methods of the current class of the object <em>as an object</em>.</p>
+<p>In particular, the set of valid values for <em>methodName</em> is the set of
+all methods supported by an object and its superclasses, including those
+that are not exported</p>
+<p>and private methods of the object or class when used within another
+method defined by that object or class.</p>
+<p>The object upon which the method is invoked via <strong>my</strong> is the one that
+owns the namespace that the <strong>my</strong> command is contained in initially
+(<strong>NB:</strong> the link remains if the command is renamed), which is the
+currently invoked object by default.</p>
+<p>Similarly, the object on which the method is invoked via <strong>myclass</strong> is
+the object that is the current class of the object that owns the
+namespace that the <strong>myclass</strong> command is contained in initially. As
+with <strong>my</strong>, the link remains even if the command is renamed into
+another namespace, and defaults to being the manufacturing class of the
+current object.</p>
+<p>Each object has its own <strong>my</strong> and <strong>myclass</strong> commands, contained in
+its instance namespace.</p>
+<h1 id="examples">EXAMPLES</h1>
+<p>This example shows basic use of <strong>my</strong> to use the <strong>variables</strong> method
+of the <strong>oo::object</strong> class, which is not publicly visible by default:</p>
+<p>oo::class create c { method count {} { <strong>my</strong> variable counter puts
+[incr counter] } }</p>
+<p>c create o o count <em>→ prints \"1\"</em> o count <em>→ prints \"2\"</em> o count <em>→
+prints \"3\"</em></p>
+<p>This example shows how you can use <strong>my</strong> to make callbacks to private
+methods from outside the object (from a <strong>trace</strong>), using <strong>namespace
+code</strong> to enter the correct context. (See the <strong>callback</strong> command for
+the recommended way of doing this.)</p>
+<p>oo::class create HasCallback { method makeCallback {} { return
+[namespace code { <strong>my</strong> Callback }] }</p>
+<p>method Callback {args} { puts \"callback: \$args\" } }</p>
+<p>set o [HasCallback new] trace add variable xyz write [\$o
+makeCallback] set xyz \"called\" <em>→ prints \"callback: xyz {} write\"</em></p>
+<p>This example shows how to access a private method of a class from an
+instance of that class. (See the <strong>classmethod</strong> declaration in
+<strong>oo::define</strong> for a higher level interface for doing this.)</p>
+<p>oo::class create CountedSteps { self { variable count method Count {} {
+return [incr count] } } method advanceTwice {} { puts \"in [self]
+step A: [<strong>myclass</strong> Count]\" puts \"in [self] step B: [<strong>myclass</strong>
+Count]\" } }</p>
+<p>CountedSteps create x CountedSteps create y x advanceTwice <em>→ prints
+\"in ::x step A: 1\"</em> <em>→ prints \"in ::x step B: 2\"</em> y advanceTwice <em>→
+prints \"in ::y step A: 3\"</em> <em>→ prints \"in ::y step B: 4\"</em> x
+advanceTwice <em>→ prints \"in ::x step A: 5\"</em> <em>→ prints \"in ::x step B:
+6\"</em> y advanceTwice <em>→ prints \"in ::y step A: 7\"</em> <em>→ prints \"in ::y
+step B: 8\"</em></p>
+<h1 id="see-also">SEE ALSO</h1>
+<p>next(n), oo::object(n), self(n)</p>
+<h1 id="keywords">KEYWORDS</h1>
+<p>method, method visibility, object, private method, public method</p>
+              
+            </div>
+          </div><footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+    
+  </span>
+</div>
+    <script>var base_url = '..';</script>
+    <script src="../js/theme_extra.js" defer></script>
+    <script src="../js/theme.js" defer></script>
+      <script src="../search/main.js" defer></script>
+    <script defer>
+        window.onload = function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        };
+    </script>
+
+</body>
+</html>

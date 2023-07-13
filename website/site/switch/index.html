@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><link rel="canonical" href="https://www.tcl.tk/man/tcl8.6.13/TclCmd/contents.html/switch/" />
+      <link rel="shortcut icon" href="../img/favicon.ico" />
+    <title>NAME - Tcl/Tk</title>
+    <link rel="stylesheet" href="../css/theme.css" />
+    <link rel="stylesheet" href="../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "NAME";
+        var mkdocs_page_input_path = "switch.md";
+        var mkdocs_page_url = "/man/tcl8.6.13/TclCmd/contents.html/switch/";
+      </script>
+    
+    <script src="../js/jquery-3.6.0.min.js" defer></script>
+    <!--[if lt IE 9]>
+      <script src="../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
+      <script>hljs.initHighlightingOnLoad();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href=".." class="icon icon-home"> Tcl/Tk
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="..">Home</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="" href="../command.md">Commands</a>
+                </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="..">Tcl/Tk</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href=".." class="icon icon-home" aria-label="Docs"></a> &raquo;</li>
+      <li>NAME</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="name">NAME</h1>
+<p>switch - Evaluate one of several scripts, depending on a given value</p>
+<h1 id="synopsis">SYNOPSIS</h1>
+<p><strong>switch </strong>?<em>options</em>?<em> string pattern body </em>?<em>pattern body </em>...?</p>
+<p><strong>switch </strong>?<em>options</em>?<em> string </em>{<em>pattern body </em>?<em>pattern body </em>...?}</p>
+<h1 id="description">DESCRIPTION</h1>
+<p>The <strong>switch</strong> command matches its <em>string</em> argument against each of the
+<em>pattern</em> arguments in order. As soon as it finds a <em>pattern</em> that
+matches <em>string</em> it evaluates the following <em>body</em> argument by passing
+it recursively to the Tcl interpreter and returns the result of that
+evaluation. If the last <em>pattern</em> argument is <strong>default</strong> then it
+matches anything. If no <em>pattern</em> argument matches <em>string</em> and no
+default is given, then the <strong>switch</strong> command returns an empty string.</p>
+<p>If the initial arguments to <strong>switch</strong> start with <strong>-</strong> then they are
+treated as options unless there are exactly two arguments to <strong>switch</strong>
+(in which case the first must the <em>string</em> and the second must be the
+<em>pattern</em>/<em>body</em> list). The following options are currently supported:</p>
+<p><strong>-exact</strong></p>
+<p>:   Use exact matching when comparing <em>string</em> to a pattern. This is the
+    default.</p>
+<p><strong>-glob</strong></p>
+<p>:   When matching <em>string</em> to the patterns, use glob-style matching
+    (i.e. the same as implemented by the <strong>string match</strong> command).</p>
+<p><strong>-regexp</strong></p>
+<p>:   When matching <em>string</em> to the patterns, use regular expression
+    matching (as described in the <strong>re_syntax</strong> reference page).</p>
+<p><strong>-nocase</strong></p>
+<p>:   Causes comparisons to be handled in a case-insensitive manner.</p>
+<p><strong>-matchvar</strong> <em>varName</em></p>
+<p>:   This option (only legal when <strong>-regexp</strong> is also specified)
+    specifies the name of a variable into which the list of matches
+    found by the regular expression engine will be written. The first
+    element of the list written will be the overall substring of the
+    input string (i.e. the <em>string</em> argument to <strong>switch</strong>) matched, the
+    second element of the list will be the substring matched by the
+    first capturing parenthesis in the regular expression that matched,
+    and so on. When a <strong>default</strong> branch is taken, the variable will
+    have the empty list written to it. This option may be specified at
+    the same time as the <strong>-indexvar</strong> option.</p>
+<p><strong>-indexvar</strong> <em>varName</em></p>
+<p>:   This option (only legal when <strong>-regexp</strong> is also specified)
+    specifies the name of a variable into which the list of indices
+    referring to matching substrings found by the regular expression
+    engine will be written. The first element of the list written will
+    be a two-element list specifying the index of the start and index of
+    the first character after the end of the overall substring of the
+    input string (i.e. the <em>string</em> argument to <strong>switch</strong>) matched, in
+    a similar way to the <strong>-indices</strong> option to the <strong>regexp</strong> can
+    obtain. Similarly, the second element of the list refers to the
+    first capturing parenthesis in the regular expression that matched,
+    and so on. When a <strong>default</strong> branch is taken, the variable will
+    have the empty list written to it. This option may be specified at
+    the same time as the <strong>-matchvar</strong> option.</p>
+<p><strong>- -</strong></p>
+<p>:   Marks the end of options. The argument following this one will be
+    treated as <em>string</em> even if it starts with a <strong>-</strong>. This is not
+    required when the matching patterns and bodies are grouped together
+    in a single argument.</p>
+<p>Two syntaxes are provided for the <em>pattern</em> and <em>body</em> arguments. The
+first uses a separate argument for each of the patterns and commands;
+this form is convenient if substitutions are desired on some of the
+patterns or commands. The second form places all of the patterns and
+commands together into a single argument; the argument must have proper
+list structure, with the elements of the list being the patterns and
+commands. The second form makes it easy to construct multi-line switch
+commands, since the braces around the whole list make it unnecessary to
+include a backslash at the end of each line. Since the <em>pattern</em>
+arguments are in braces in the second form, no command or variable
+substitutions are performed on them; this makes the behavior of the
+second form different than the first form in some cases.</p>
+<p>If a <em>body</em> is specified as</p>
+<p>it means that the <em>body</em> for the next pattern should also be used as the
+body for this pattern (if the next pattern also has a body of</p>
+<p>then the body after that is used, and so on). This feature makes it
+possible to share a single <em>body</em> among several patterns.</p>
+<p>Beware of how you place comments in <strong>switch</strong> commands. Comments should
+only be placed <strong>inside</strong> the execution body of one of the patterns, and
+not intermingled with the patterns.</p>
+<h1 id="examples">EXAMPLES</h1>
+<p>The <strong>switch</strong> command can match against variables and not just
+literals, as shown here (the result is <em>2</em>):</p>
+<p>set foo \"abc\" <strong>switch</strong> abc a - b {expr {1}} \$foo {expr {2}} default
+{expr {3}}</p>
+<p>Using glob matching and the fall-through body is an alternative to
+writing regular expressions with alternations, as can be seen here (this
+returns <em>1</em>):</p>
+<p><strong>switch</strong> -glob aaab { a*b - b {expr {1}} a* {expr {2}} default {expr
+{3}} }</p>
+<p>Whenever nothing matches, the <strong>default</strong> clause (which must be last) is
+taken. This example has a result of <em>3</em>:</p>
+<p><strong>switch</strong> xyz { a - b { # Correct Comment Placement expr {1} } c {
+expr {2} } default { expr {3} } }</p>
+<p>When matching against regular expressions, information about what
+exactly matched is easily obtained using the <strong>-matchvar</strong> option:</p>
+<p><strong>switch</strong> -regexp -matchvar foo -- \$bar { a(b*)c { puts \"Found
+[string length [lindex \$foo 1]] \'b\'s\" } d(e*)f(g*)h { puts
+\"Found [string length [lindex \$foo 1]] \'e\'s and\ [string
+length [lindex \$foo 2]] \'g\'s\" } }</p>
+<h1 id="see-also">SEE ALSO</h1>
+<p>for(n), if(n), regexp(n)</p>
+<h1 id="keywords">KEYWORDS</h1>
+<p>switch, match, regular expression</p>
+              
+            </div>
+          </div><footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+    
+  </span>
+</div>
+    <script>var base_url = '..';</script>
+    <script src="../js/theme_extra.js" defer></script>
+    <script src="../js/theme.js" defer></script>
+      <script src="../search/main.js" defer></script>
+    <script defer>
+        window.onload = function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        };
+    </script>
+
+</body>
+</html>

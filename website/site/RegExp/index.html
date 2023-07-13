@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><link rel="canonical" href="https://www.tcl.tk/man/tcl8.6.13/TclCmd/contents.html/RegExp/" />
+      <link rel="shortcut icon" href="../img/favicon.ico" />
+    <title>NAME - Tcl/Tk</title>
+    <link rel="stylesheet" href="../css/theme.css" />
+    <link rel="stylesheet" href="../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "NAME";
+        var mkdocs_page_input_path = "RegExp.md";
+        var mkdocs_page_url = "/man/tcl8.6.13/TclCmd/contents.html/RegExp/";
+      </script>
+    
+    <script src="../js/jquery-3.6.0.min.js" defer></script>
+    <!--[if lt IE 9]>
+      <script src="../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
+      <script>hljs.initHighlightingOnLoad();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href=".." class="icon icon-home"> Tcl/Tk
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="..">Home</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="" href="../command.md">Commands</a>
+                </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="..">Tcl/Tk</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href=".." class="icon icon-home" aria-label="Docs"></a> &raquo;</li>
+      <li>NAME</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="name">NAME</h1>
+<p>regexp - Match a regular expression against a string</p>
+<h1 id="synopsis">SYNOPSIS</h1>
+<p><strong>regexp </strong>?<em>switches</em>? <em>exp string </em>?<em>matchVar</em>? ?<em>subMatchVar
+subMatchVar ...</em>?</p>
+<h1 id="description">DESCRIPTION</h1>
+<p>Determines whether the regular expression <em>exp</em> matches part or all of
+<em>string</em> and returns 1 if it does, 0 if it does not, unless <strong>-inline</strong>
+is specified (see below). (Regular expression matching is described in
+the <strong>re_syntax</strong> reference page.)</p>
+<p>If additional arguments are specified after <em>string</em> then they are
+treated as the names of variables in which to return information about
+which part(s) of <em>string</em> matched <em>exp</em>. <em>MatchVar</em> will be set to the
+range of <em>string</em> that matched all of <em>exp</em>. The first <em>subMatchVar</em>
+will contain the characters in <em>string</em> that matched the leftmost
+parenthesized subexpression within <em>exp</em>, the next <em>subMatchVar</em> will
+contain the characters that matched the next parenthesized subexpression
+to the right in <em>exp</em>, and so on.</p>
+<p>If the initial arguments to <strong>regexp</strong> start with <strong>-</strong> then they are
+treated as switches. The following switches are currently supported:</p>
+<p><strong>-about</strong></p>
+<p>:   Instead of attempting to match the regular expression, returns a
+    list containing information about the regular expression. The first
+    element of the list is a subexpression count. The second element is
+    a list of property names that describe various attributes of the
+    regular expression. This switch is primarily intended for debugging
+    purposes.</p>
+<p><strong>-expanded</strong></p>
+<p>:   Enables use of the expanded regular expression syntax where
+    whitespace and comments are ignored. This is the same as specifying
+    the <strong>(?x)</strong> embedded option (see the <strong>re_syntax</strong> manual page).</p>
+<p><strong>-indices</strong></p>
+<p>:   Changes what is stored in the <em>matchVar</em> and <em>subMatchVar</em>s. Instead
+    of storing the matching characters from <em>string</em>, each variable will
+    contain a list of two decimal strings giving the indices in <em>string</em>
+    of the first and last characters in the matching range of
+    characters.</p>
+<p><strong>-line</strong></p>
+<p>:   Enables newline-sensitive matching. By default, newline is a
+    completely ordinary character with no special meaning. With this
+    flag,</p>
+<p>bracket expressions and</p>
+<p>never match newline,</p>
+<p>matches an empty string after any newline in addition to its normal
+function, and</p>
+<p>matches an empty string before any newline in addition to its normal
+function. This flag is equivalent to specifying both <strong>-linestop</strong> and
+<strong>-lineanchor</strong>, or the <strong>(?n)</strong> embedded option (see the <strong>re_syntax</strong>
+manual page).</p>
+<p><strong>-linestop</strong></p>
+<p>:   Changes the behavior of</p>
+<p>bracket expressions and</p>
+<p>so that they stop at newlines. This is the same as specifying the
+<strong>(?p)</strong> embedded option (see the <strong>re_syntax</strong> manual page).</p>
+<p><strong>-lineanchor</strong></p>
+<p>:   Changes the behavior of</p>
+<p>and</p>
+<p>(the</p>
+<p>so they match the beginning and end of a line respectively. This is the
+same as specifying the <strong>(?w)</strong> embedded option (see the <strong>re_syntax</strong>
+manual page).</p>
+<p><strong>-nocase</strong></p>
+<p>:   Causes upper-case characters in <em>string</em> to be treated as lower case
+    during the matching process.</p>
+<p><strong>-all</strong></p>
+<p>:   Causes the regular expression to be matched as many times as
+    possible in the string, returning the total number of matches found.
+    If this is specified with match variables, they will contain
+    information for the last match only.</p>
+<p><strong>-inline</strong></p>
+<p>:   Causes the command to return, as a list, the data that would
+    otherwise be placed in match variables. When using <strong>-inline</strong>,
+    match variables may not be specified. If used with <strong>-all</strong>, the
+    list will be concatenated at each iteration, such that a flat list
+    is always returned. For each match iteration, the command will
+    append the overall match data, plus one element for each
+    subexpression in the regular expression. Examples are:</p>
+<pre><code>**regexp** -inline \-- {\\w(\\w)} \" inlined \" *→ in n* **regexp**
+-all -inline \-- {\\w(\\w)} \" inlined \" *→ in n li i ne e*
+</code></pre>
+<p><strong>-start</strong> <em>index</em></p>
+<p>:   Specifies a character index offset into the string to start matching
+    the regular expression at. The <em>index</em> value is interpreted in the
+    same manner as the <em>index</em> argument to <strong>string index</strong>. When using
+    this switch,</p>
+<p>will not match the beginning of the line, and \A will still match the
+start of the string at <em>index</em>. If <strong>-indices</strong> is specified, the
+indices will be indexed starting from the absolute beginning of the
+input string. <em>index</em> will be constrained to the bounds of the input
+string.</p>
+<p><strong>- -</strong></p>
+<p>:   Marks the end of switches. The argument following this one will be
+    treated as <em>exp</em> even if it starts with a <strong>-</strong>.</p>
+<p>If there are more <em>subMatchVar</em>s than parenthesized subexpressions
+within <em>exp</em>, or if a particular subexpression in <em>exp</em> does not match
+the string (e.g. because it was in a portion of the expression that was
+not matched), then the corresponding <em>subMatchVar</em> will be set to</p>
+<p>if <strong>-indices</strong> has been specified or to an empty string otherwise.</p>
+<h1 id="examples">EXAMPLES</h1>
+<p>Find the first occurrence of a word starting with <strong>foo</strong> in a string
+that is not actually an instance of <strong>foobar</strong>, and get the letters
+following it up to the end of the word into a variable:</p>
+<p><strong>regexp</strong> {\mfoo(?!bar\M)(\w*)} \$string -> restOfWord</p>
+<p>Note that the whole matched substring has been placed in the variable</p>
+<p>which is a name chosen to look nice given that we are not actually
+interested in its contents.</p>
+<p>Find the index of the word <strong>badger</strong> (in any case) within a string and
+store that in the variable <strong>location</strong>:</p>
+<p><strong>regexp</strong> -indices {(?i)\mbadger\M} \$string location</p>
+<p>This could also be written as a <em>basic</em> regular expression (as opposed
+to using the default syntax of <em>advanced</em> regular expressions) match by
+prefixing the expression with a suitable flag:</p>
+<p><strong>regexp</strong> -indices {(?ib)\\&lt;badger\>} \$string location</p>
+<p>This counts the number of octal digits in a string:</p>
+<p><strong>regexp</strong> -all {[0-7]} \$string</p>
+<p>This lists all words (consisting of all sequences of non-whitespace
+characters) in a string, and is useful as a more powerful version of the
+<strong>split</strong> command:</p>
+<p><strong>regexp</strong> -all -inline {\S+} \$string</p>
+<h1 id="see-also">SEE ALSO</h1>
+<p>re_syntax(n), regsub(n), string(n)</p>
+<h1 id="keywords">KEYWORDS</h1>
+<p>match, parsing, pattern, regular expression, splitting, string</p>
+              
+            </div>
+          </div><footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+    
+  </span>
+</div>
+    <script>var base_url = '..';</script>
+    <script src="../js/theme_extra.js" defer></script>
+    <script src="../js/theme.js" defer></script>
+      <script src="../search/main.js" defer></script>
+    <script defer>
+        window.onload = function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        };
+    </script>
+
+</body>
+</html>

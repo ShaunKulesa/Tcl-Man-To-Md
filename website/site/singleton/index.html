@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><link rel="canonical" href="https://www.tcl.tk/man/tcl8.6.13/TclCmd/contents.html/singleton/" />
+      <link rel="shortcut icon" href="../img/favicon.ico" />
+    <title>NAME - Tcl/Tk</title>
+    <link rel="stylesheet" href="../css/theme.css" />
+    <link rel="stylesheet" href="../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "NAME";
+        var mkdocs_page_input_path = "singleton.md";
+        var mkdocs_page_url = "/man/tcl8.6.13/TclCmd/contents.html/singleton/";
+      </script>
+    
+    <script src="../js/jquery-3.6.0.min.js" defer></script>
+    <!--[if lt IE 9]>
+      <script src="../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
+      <script>hljs.initHighlightingOnLoad();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href=".." class="icon icon-home"> Tcl/Tk
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="..">Home</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="" href="../command.md">Commands</a>
+                </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="..">Tcl/Tk</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href=".." class="icon icon-home" aria-label="Docs"></a> &raquo;</li>
+      <li>NAME</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="name">NAME</h1>
+<p>oo::singleton - a class that does only allows one instance of itself</p>
+<h1 id="synopsis">SYNOPSIS</h1>
+<pre><code>package require tcl::oo
+
+oo::singleton method ?arg ...?
+</code></pre>
+<h1 id="class-hierarchy">CLASS HIERARCHY</h1>
+<pre><code>oo::object
+   → oo::class
+       → oo::singleton
+</code></pre>
+<h1 id="description">DESCRIPTION</h1>
+<p>Singleton classes are classes that only permit at most one instance of
+themselves to exist. They unexport the <strong>create</strong> and
+<strong>createWithNamespace</strong> methods entirely, and override the <strong>new</strong>
+method so that it only makes a new instance if there is no existing
+instance. It is not recommended to inherit from a singleton class;
+singleton-ness is <em>not</em> inherited. It is not recommended that a
+singleton class\'s constructor take any arguments.</p>
+<p>Instances have their<strong> destroy</strong> method overridden with a method that
+always returns an error in order to discourage destruction of the
+object, but destruction remains possible if strictly necessary (e.g., by
+destroying the class or using <strong>rename</strong> to delete it). They also have a
+(non-exported) <strong>\&lt;cloned></strong> method defined on them that similarly
+always returns errors to make attempts to use the singleton instance
+with <strong>oo::copy</strong> fail.</p>
+<h2 id="constructor">CONSTRUCTOR</h2>
+<p>The <strong>oo::singleton</strong> class does not define an explicit constructor;
+this means that it is effectively the same as the constructor of the
+<strong>oo::class</strong> class.</p>
+<h2 id="destructor">DESTRUCTOR</h2>
+<p>The <strong>oo::singleton</strong> class does not define an explicit destructor;
+destroying an instance of it is just like destroying an ordinary class
+(and will destroy the singleton object).</p>
+<h2 id="exported-methods">EXPORTED METHODS</h2>
+<p><em>cls </em><strong>new </strong>?<em>arg ...</em>?</p>
+<p>:   This returns the current instance of the singleton class, if one
+    exists, and creates a new instance only if there is no existing
+    instance. The additional arguments, <em>arg ...</em>, are only used if a
+    new instance is actually manufactured; that construction is via the
+    <strong>oo::class</strong> class\'s <strong>new</strong> method.</p>
+<pre><code>This is an override of the behaviour of a superclass\'s method with
+an identical call signature to the superclass\'s implementation.
+</code></pre>
+<h2 id="non-exported-methods">NON-EXPORTED METHODS</h2>
+<p>The <strong>oo::singleton</strong> class explicitly states that <strong>create</strong> and
+<strong>createWithNamespace</strong> are unexported; callers should not assume that
+they have control over either the name or the namespace name of the
+singleton instance.</p>
+<h1 id="example">EXAMPLE</h1>
+<p>This example demonstrates that there is only one instance even though
+the <strong>new</strong> method is called three times.</p>
+<p><strong>oo::singleton</strong> create Highlander { method say {} { puts \"there can
+be only one\" } }</p>
+<p>set h1 [Highlander new] set h2 [Highlander new] if {\$h1 eq \$h2} {
+puts \"equal objects\" <em>→ prints \"equal objects\"</em> } set h3
+[Highlander new] if {\$h1 eq \$h3} { puts \"equal objects\" <em>→ prints
+\"equal objects\"</em> }</p>
+<p>Note that the name of the instance of the singleton is not guaranteed to
+be anything in particular.</p>
+<h1 id="see-also">SEE ALSO</h1>
+<p>oo::class(n)</p>
+<h1 id="keywords">KEYWORDS</h1>
+<p>class, metaclass, object, single instance</p>
+              
+            </div>
+          </div><footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+    
+  </span>
+</div>
+    <script>var base_url = '..';</script>
+    <script src="../js/theme_extra.js" defer></script>
+    <script src="../js/theme.js" defer></script>
+      <script src="../search/main.js" defer></script>
+    <script defer>
+        window.onload = function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        };
+    </script>
+
+</body>
+</html>

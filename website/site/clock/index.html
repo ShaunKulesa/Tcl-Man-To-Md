@@ -1,0 +1,858 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><link rel="canonical" href="https://www.tcl.tk/man/tcl8.6.13/TclCmd/contents.html/clock/" />
+      <link rel="shortcut icon" href="../img/favicon.ico" />
+    <title>NAME - Tcl/Tk</title>
+    <link rel="stylesheet" href="../css/theme.css" />
+    <link rel="stylesheet" href="../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "NAME";
+        var mkdocs_page_input_path = "clock.md";
+        var mkdocs_page_url = "/man/tcl8.6.13/TclCmd/contents.html/clock/";
+      </script>
+    
+    <script src="../js/jquery-3.6.0.min.js" defer></script>
+    <!--[if lt IE 9]>
+      <script src="../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
+      <script>hljs.initHighlightingOnLoad();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href=".." class="icon icon-home"> Tcl/Tk
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="..">Home</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="" href="../command.md">Commands</a>
+                </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="..">Tcl/Tk</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href=".." class="icon icon-home" aria-label="Docs"></a> &raquo;</li>
+      <li>NAME</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="name">NAME</h1>
+<p>clock - Obtain and manipulate dates and times</p>
+<h1 id="synopsis">SYNOPSIS</h1>
+<p>package require <strong>Tcl 8.5-</strong></p>
+<p><strong>clock add</strong> <em>timeVal</em> ?<em>count unit...</em>? ?<em>-option value</em>?</p>
+<p><strong>clock clicks</strong> ?<em>-option</em>?</p>
+<p><strong>clock format</strong> <em>timeVal</em> ?<em>-option value</em>...?</p>
+<p><strong>clock microseconds</strong></p>
+<p><strong>clock milliseconds</strong></p>
+<p><strong>clock scan</strong> <em>inputString</em> ?<em>-option value</em>...?</p>
+<p><strong>clock seconds</strong></p>
+<h1 id="description">DESCRIPTION</h1>
+<p>The <strong>clock</strong> command performs several operations that obtain and
+manipulate values that represent times. The command supports several
+subcommands that determine what action is carried out by the command.</p>
+<p><strong>clock add</strong> <em>timeVal</em> ?<em>count unit...</em>? ?<em>-option value</em>?</p>
+<p>:   Adds a (possibly negative) offset to a time that is expressed as an
+    integer number of seconds. See <strong>CLOCK ARITHMETIC</strong> for a full
+    description.</p>
+<p><strong>clock clicks</strong> ?<em>-option</em>?</p>
+<p>:   If no <em>-option</em> argument is supplied, returns a high-resolution time
+    value as a system-dependent integer value. The unit of the value is
+    system-dependent but should be the highest resolution clock
+    available on the system such as a CPU cycle counter. See <strong>HIGH
+    RESOLUTION TIMERS</strong> for a full description.</p>
+<pre><code>If the *-option* argument is **-milliseconds**, then the command is
+synonymous with **clock milliseconds** (see below). This usage is
+obsolete, and **clock milliseconds** is to be considered the
+preferred way of obtaining a count of milliseconds.
+
+If the *-option* argument is **-microseconds**, then the command is
+synonymous with **clock microseconds** (see below). This usage is
+obsolete, and **clock microseconds** is to be considered the
+preferred way of obtaining a count of microseconds.
+</code></pre>
+<p><strong>clock format</strong> <em>timeVal</em> ?<em>-option value</em>...?</p>
+<p>:   Formats a time that is expressed as an integer number of seconds
+    into a format intended for consumption by users or external
+    programs. See <strong>FORMATTING TIMES</strong> for a full description.</p>
+<p><strong>clock microseconds</strong></p>
+<p>:   Returns the current time as an integer number of microseconds. See
+    <strong>HIGH RESOLUTION TIMERS</strong> for a full description.</p>
+<p><strong>clock milliseconds</strong></p>
+<p>:   Returns the current time as an integer number of milliseconds. See
+    <strong>HIGH RESOLUTION TIMERS</strong> for a full description.</p>
+<p><strong>clock scan</strong> <em>inputString</em> ?<em>-option value</em>...?</p>
+<p>:   Scans a time that is expressed as a character string and produces an
+    integer number of seconds. See <strong>SCANNING TIMES</strong> for a full
+    description.</p>
+<p><strong>clock seconds</strong></p>
+<p>:   Returns the current time as an integer number of seconds.</p>
+<h2 id="parameters">PARAMETERS</h2>
+<p><em>count</em></p>
+<p>:   An integer representing a count of some unit of time. See <strong>CLOCK
+    ARITHMETIC</strong> for the details.</p>
+<p><em>timeVal</em></p>
+<p>:   An integer value passed to the <strong>clock</strong> command that represents an
+    absolute time as a number of seconds from the <em>epoch time</em> of 1
+    January 1970, 00:00 UTC. Note that the count of seconds does not
+    include any leap seconds; seconds are counted as if each UTC day has
+    exactly 86400 seconds. Tcl responds to leap seconds by speeding or
+    slowing its clock by a tiny fraction for some minutes until it is
+    back in sync with UTC; its data model does not represent minutes
+    that have 59 or 61 seconds.</p>
+<p><em>unit</em></p>
+<p>:   One of the words, <strong>seconds</strong>, <strong>minutes</strong>, <strong>hours</strong>, <strong>days</strong>,
+    <strong>weekdays</strong>, <strong>weeks</strong>, <strong>months</strong>, or <strong>years</strong>. Used in
+    conjunction with <em>count</em> to identify an interval of time, for
+    example, <em>3 seconds</em> or <em>1 year</em>.</p>
+<h2 id="options">OPTIONS</h2>
+<p><strong>-base</strong> time</p>
+<p>:   Specifies that any relative times present in a <strong>clock scan</strong>
+    command are to be given relative to <em>time</em>. <em>time</em> must be expressed
+    as a count of nominal seconds from the epoch time of 1 January 1970,
+    00:00 UTC.</p>
+<p><strong>-format</strong> format</p>
+<p>:   Specifies the desired output format for <strong>clock format</strong> or the
+    expected input format for <strong>clock scan</strong>. The <em>format</em> string
+    consists of any number of characters other than the per-cent sign</p>
+<p>interspersed with any number of <em>format groups</em>, which are two-character
+sequences beginning with the per-cent sign. The permissible format
+groups, and their interpretation, are described under <strong>FORMAT GROUPS</strong>.</p>
+<blockquote>
+<p>On <strong>clock format</strong>, the default format is</p>
+<p>%a %b %d %H:%M:%S %Z %Y</p>
+<p>On <strong>clock scan</strong>, the lack of a <strong>-format</strong> option indicates that a</p>
+<p>is requested; see <strong>FREE FORM SCAN</strong> for a description of what
+happens.</p>
+</blockquote>
+<p><strong>-gmt</strong> boolean</p>
+<p>:   If <em>boolean</em> is true, specifies that a time specified to <strong>clock
+    add</strong>, <strong>clock format</strong> or <strong>clock scan</strong> should be processed in
+    UTC. If <em>boolean</em> is false, the processing defaults to the local
+    time zone. This usage is obsolete; the correct current usage is to
+    specify the UTC time zone with</p>
+<p>or any of the equivalent ways to specify it.</p>
+<p><strong>-locale</strong> localeName</p>
+<p>:   Specifies that locale-dependent scanning and formatting (and date
+    arithmetic for dates preceding the adoption of the Gregorian
+    calendar) is to be done in the locale identified by <em>localeName</em>.
+    The locale name may be any of the locales acceptable to the
+    <strong>msgcat</strong> package, or it may be the special name <em>system</em>, which
+    represents the current locale of the process, or the null string,
+    which represents Tcl\'s default locale.</p>
+<pre><code>The effect of locale on scanning and formatting is discussed in the
+descriptions of the individual format groups under **FORMAT
+GROUPS**. The effect of locale on clock arithmetic is discussed
+under **CLOCK ARITHMETIC**.
+</code></pre>
+<p><strong>-timezone</strong> zoneName</p>
+<p>:   Specifies that clock arithmetic, formatting, and scanning are to be
+    done according to the rules for the time zone specified by
+    <em>zoneName</em>. The permissible values, and their interpretation, are
+    discussed under <strong>TIME ZONES</strong>. On subcommands that expect a
+    <strong>-timezone</strong> argument, the default is to use the <em>current time
+    zone</em>. The current time zone is determined, in order of preference,
+    by:</p>
+<pre><code>\[1\]
+
+:   the environment variable **TCL_TZ**.
+
+\[2\]
+
+:   the environment variable **TZ**.
+
+\[3\]
+
+:   on Windows systems, the time zone settings from the Control
+    Panel.
+</code></pre>
+<p>If none of these is present, the C <strong>localtime</strong> and <strong>mktime</strong>
+functions are used to attempt to convert times between local and
+Greenwich. On 32-bit systems, this approach is likely to have bugs,
+particularly for times that lie outside the window (approximately the
+years 1902 to 2037) that can be represented in a 32-bit integer.</p>
+<h1 id="clock-arithmetic">CLOCK ARITHMETIC</h1>
+<p>The <strong>clock add</strong> command performs clock arithmetic on a value
+(expressed as nominal seconds from the epoch time of 1 January 1970,
+00:00 UTC) given as its first argument. The remaining arguments (other
+than the possible <strong>-timezone</strong>, <strong>-locale</strong> and <strong>-gmt</strong> options) are
+integers and keywords in alternation, where the keywords are chosen from
+<strong>seconds</strong>, <strong>minutes</strong>, <strong>hours</strong>, <strong>days</strong>, <strong>weekdays</strong>, <strong>weeks</strong>,
+<strong>months</strong>, or <strong>years</strong>.</p>
+<p>Addition of seconds, minutes and hours is fairly straightforward; the
+given time increment (times sixty for minutes, or 3600 for hours) is
+simply added to the <em>timeVal</em> given to the <strong>clock add</strong> command. The
+result is interpreted as a nominal number of seconds from the Epoch.</p>
+<p>Surprising results may be obtained when crossing a point at which a leap
+second is inserted or removed; the <strong>clock add</strong> command simply ignores
+leap seconds and therefore assumes that times come in sequence,
+23:59:58, 23:59:59, 00:00:00. This assumption is handled by the fact
+that Tcl\'s model of time reacts to leap seconds by speeding or slowing
+the clock by a miniscule amount until Tcl\'s time is back in step with
+the world.</p>
+<p>The fact that adding and subtracting hours is defined in terms of
+absolute time means that it will add fixed amounts of time in time zones
+that observe summer time (Daylight Saving Time). For example, the
+following code sets the value of <strong>x</strong> to <strong>04:00:00</strong> because the clock
+has changed in the interval in question.</p>
+<p>set s [<strong>clock scan</strong> {2004-10-30 05:00:00} \ -format {%Y-%m-%d
+%H:%M:%S} \ -timezone :America/New_York] set a [<strong>clock add</strong> \$s 24
+hours -timezone :America/New_York] set x [<strong>clock format</strong> \$a \
+-format {%H:%M:%S} -timezone :America/New_York]</p>
+<p>Adding and subtracting days and weeks is accomplished by converting the
+given time to a calendar day and time of day in the appropriate time
+zone and locale. The requisite number of days (weeks are converted to
+days by multiplying by seven) is added to the calendar day, and the date
+and time are then converted back to a count of seconds from the epoch
+time. The <strong>weekdays</strong> keyword is similar to <strong>days</strong>, with the only
+difference that weekends - Saturdays and Sundays - are skipped.</p>
+<p>Adding and subtracting a given number of days across the point that the
+time changes at the start or end of summer time (Daylight Saving Time)
+results in the <em>same local time</em> on the day in question. For instance,
+the following code sets the value of <strong>x</strong> to <strong>05:00:00</strong>.</p>
+<p>set s [<strong>clock scan</strong> {2004-10-30 05:00:00} \ -format {%Y-%m-%d
+%H:%M:%S} \ -timezone :America/New_York] set a [<strong>clock add</strong> \$s 1
+day -timezone :America/New_York] set x [<strong>clock format</strong> \$a \
+-format {%H:%M:%S} -timezone :America/New_York]</p>
+<p>In cases of ambiguity, where the same local time happens twice on the
+same day, the earlier time is used. In cases where the conversion yields
+an impossible time (for instance, 02:30 during the Spring Daylight
+Saving Time change using US rules), the time is converted as if the
+clock had not changed. Thus, the following code will set the value of
+<strong>x</strong> to <strong>03:30:00</strong>.</p>
+<p>set s [<strong>clock scan</strong> {2004-04-03 02:30:00} \ -format {%Y-%m-%d
+%H:%M:%S} \ -timezone :America/New_York] set a [<strong>clock add</strong> \$s 1
+day -timezone :America/New_York] set x [<strong>clock format</strong> \$a \
+-format {%H:%M:%S} -timezone :America/New_York]</p>
+<p>Adding a given number of days or weeks works correctly across the
+conversion between the Julian and Gregorian calendars; the omitted days
+are skipped. The following code sets <strong>z</strong> to <strong>1752-09-14</strong>.</p>
+<p>set x [<strong>clock scan</strong> 1752-09-02 -format %Y-%m-%d -locale en_US] set y
+[<strong>clock add</strong> \$x 1 day -locale en_US] set z [<strong>clock format</strong> \$y
+-format %Y-%m-%d -locale en_US]</p>
+<p>In the bizarre case that adding the given number of days yields a date
+that does not exist because it falls within the dropped days of the
+Julian-to-Gregorian conversion, the date is converted as if it was on
+the Julian calendar.</p>
+<p>Adding a number of months, or a number of years, is similar; it converts
+the given time to a calendar date and time of day. It then adds the
+requisite number of months or years, and reconverts the resulting date
+and time of day to an absolute time.</p>
+<p>If the resulting date is impossible because the month has too few days
+(for example, when adding 1 month to 31 January), the last day of the
+month is substituted. Thus, adding 1 month to 31 January will result in
+28 February in a common year or 29 February in a leap year.</p>
+<p>The rules for handling anomalies relating to summer time and to the
+Gregorian calendar are the same when adding/subtracting months and years
+as they are when adding/subtracting days and weeks.</p>
+<p>If multiple <em>count unit</em> pairs are present on the command, they are
+evaluated consecutively, from left to right.</p>
+<h1 id="high-resolution-timers">HIGH RESOLUTION TIMERS</h1>
+<p>Most of the subcommands supported by the <strong>clock</strong> command deal with
+times represented as a count of seconds from the epoch time, and this is
+the representation that <strong>clock seconds</strong> returns. There are three
+exceptions, which are all intended for use where higher-resolution times
+are required. <strong>clock milliseconds</strong> returns the count of milliseconds
+from the epoch time, and <strong>clock microseconds</strong> returns the count of
+microseconds from the epoch time. In addition, there is a <strong>clock
+clicks</strong> command that returns a platform-dependent high-resolution
+timer. Unlike <strong>clock seconds</strong> and <strong>clock milliseconds</strong>, the value of
+<strong>clock clicks</strong> is not guaranteed to be tied to any fixed epoch; it is
+simply intended to be the most precise interval timer available, and is
+intended only for relative timing studies such as benchmarks.</p>
+<h1 id="formatting-times">FORMATTING TIMES</h1>
+<p>The <strong>clock format</strong> command produces times for display to a user or
+writing to an external medium. The command accepts times that are
+expressed in seconds from the epoch time of 1 January 1970, 00:00 UTC,
+as returned by <strong>clock seconds</strong>, <strong>clock scan</strong>, <strong>clock add</strong>, <strong>file
+atime</strong> or <strong>file mtime</strong>.</p>
+<p>If a <strong>-format</strong> option is present, the following argument is a string
+that specifies how the date and time are to be formatted. The string
+consists of any number of characters other than the per-cent sign</p>
+<p>interspersed with any number of <em>format groups</em>, which are two-character
+sequences beginning with the per-cent sign. The permissible format
+groups, and their interpretation, are described under <strong>FORMAT GROUPS</strong>.</p>
+<p>If a <strong>-timezone</strong> option is present, the following argument is a string
+that specifies the time zone in which the date and time are to be
+formatted. As an alternative to</p>
+<p>the obsolete usage</p>
+<p>may be used. See <strong>TIME ZONES</strong> for the permissible variants for the
+time zone.</p>
+<p>If a <strong>-locale</strong> option is present, the following argument is a string
+that specifies the locale in which the time is to be formatted, in the
+same format that is used for the <strong>msgcat</strong> package. Note that the
+default, if <strong>-locale</strong> is not specified, is the root locale <strong>{}</strong>
+rather than the current locale. The current locale may be obtained by
+using <strong>-locale</strong> <strong>current</strong>. In addition, some platforms support a
+<strong>system</strong> locale that reflects the user\'s current choices. For
+instance, on Windows, the format that the user has selected from dates
+and times in the Control Panel can be obtained by using the <strong>system</strong>
+locale. On platforms that do not define a user selection of date and
+time formats separate from <strong>LC_TIME</strong>, <strong>-locale</strong> <strong>system</strong> is
+synonymous with <strong>-locale</strong> <strong>current</strong>.</p>
+<h1 id="scanning-times">SCANNING TIMES</h1>
+<p>The <strong>clock scan</strong> command accepts times that are formatted as strings
+and converts them to counts of seconds from the epoch time of 1 January
+1970, 00:00 UTC. It normally takes a <strong>-format</strong> option that is followed
+by a string describing the expected format of the input. (See <strong>FREE
+FORM SCAN</strong> for the effect of <strong>clock scan</strong> without such an argument.)
+The string consists of any number of characters other than the per-cent
+sign</p>
+<p>interspersed with any number of <em>format groups</em>, which are two-character
+sequences beginning with the per-cent sign. The permissible format
+groups, and their interpretation, are described under <strong>FORMAT GROUPS</strong>.</p>
+<p>If a <strong>-timezone</strong> option is present, the following argument is a string
+that specifies the time zone in which the date and time are to be
+interpreted. As an alternative to <strong>-timezone</strong> <em>:UTC</em>, the obsolete
+usage <strong>-gmt</strong> <em>true</em> may be used. See <strong>TIME ZONES</strong> for the
+permissible variants for the time zone.</p>
+<p>If a <strong>-locale</strong> option is present, the following argument is a string
+that specifies the locale in which the time is to be interpreted, in the
+same format that is used for the <strong>msgcat</strong> package. Note that the
+default, if <strong>-locale</strong> is not specified, is the root locale <strong>{}</strong>
+rather than the current locale. The current locale may be obtained by
+using <strong>-locale</strong> <strong>current</strong>. In addition, some platforms support a
+<strong>system</strong> locale that reflects the user\'s current choices. For
+instance, on Windows, the format that the user has selected from dates
+and times in the Control Panel can be obtained by using the <strong>system</strong>
+locale. On platforms that do not define a user selection of date and
+time formats separate from <strong>LC_TIME</strong>, <strong>-locale</strong> <strong>system</strong> is
+synonymous with <strong>-locale</strong> <strong>current</strong>.</p>
+<p>If a <strong>-base</strong> option is present, the following argument is a time
+(expressed in seconds from the epoch time) that is used as a <em>base time</em>
+for interpreting relative times. If no <strong>-base</strong> option is present, the
+base time is the current time.</p>
+<p>Scanning of times in fixed format works by determining three things: the
+date, the time of day, and the time zone. These three are then combined
+into a point in time, which is returned as the number of seconds from
+the epoch.</p>
+<p>Before scanning begins, the format string is preprocessed to replace
+<strong>%c</strong>, <strong>%Ec</strong>, <strong>%x</strong>, <strong>%Ex</strong>, <strong>%X</strong>. <strong>%Ex</strong>, <strong>%r</strong>, <strong>%R</strong>,
+<strong>%T</strong>, <strong>%D</strong>, <strong>%EY</strong> and <strong>%+</strong> format groups with counterparts that
+are appropriate to the current locale and contain none of the above
+groups. For instance, <strong>%D</strong> will (in the <strong>en_US</strong> locale) be replaced
+with <strong>%m/%d/%Y</strong>.</p>
+<p>The date is determined according to the fields that are present in the
+preprocessed format string. In order of preference:</p>
+<p>[1]</p>
+<p>:   If the string contains a <strong>%s</strong> format group, representing seconds
+    from the epoch, that group is used to determine the date.</p>
+<p>[2]</p>
+<p>:   If the string contains a <strong>%J</strong> format group, representing the
+    Julian Day Number, that group is used to determine the date.</p>
+<p>[3]</p>
+<p>:   If the string contains a complete set of format groups specifying
+    century, year, month, and day of month; century, year, and day of
+    year; or ISO8601 fiscal year, week of year, and day of week; those
+    groups are combined and used to determine the date. If more than one
+    complete set is present, the one at the rightmost position in the
+    string is used.</p>
+<p>[4]</p>
+<p>:   If the string lacks a century but contains a set of format groups
+    specifying year of century, month and day of month; year of century
+    and day of year; or two-digit ISO8601 fiscal year, week of year, and
+    day of week; those groups are combined and used to determine the
+    date. If more than one complete set is present, the one at the
+    rightmost position in the string is used. The year is presumed to
+    lie in the range 1938 to 2037 inclusive.</p>
+<p>[5]</p>
+<p>:   If the string entirely lacks any specification for the year (or
+    contains the year only on the locale\'s alternative calendar) and
+    contains a set of format groups specifying month and day of month,
+    day of year, or week of year and day of week, those groups are
+    combined and used to determine the date. If more than one complete
+    set is present, the one at the rightmost position in the string is
+    used. The year is determined by interpreting the base time in the
+    given time zone.</p>
+<p>[6]</p>
+<p>:   If the string contains none of the above sets, but has a day of the
+    month or day of the week, the day of the month or day of the week
+    are used to determine the date by interpreting the base time in the
+    given time zone and returning the given day of the current week or
+    month. (The week runs from Monday to Sunday, ISO8601-fashion.) If
+    both day of month and day of week are present, the day of the month
+    takes priority.</p>
+<p>[7]</p>
+<p>:   If none of the above rules results in a usable date, the date of the
+    base time in the given time zone is used.</p>
+<p>The time is also determined according to the fields that are present in
+the preprocessed format string. In order of preference:</p>
+<p>[1]</p>
+<p>:   If the string contains a <strong>%s</strong> format group, representing seconds
+    from the epoch, that group determines the time of day.</p>
+<p>[2]</p>
+<p>:   If the string contains either an hour on the 24-hour clock or an
+    hour on the 12-hour clock plus an AM/PM indicator, that hour
+    determines the hour of the day. If the string further contains a
+    group specifying the minute of the hour, that group combines with
+    the hour. If the string further contains a group specifying the
+    second of the minute, that group combines with the hour and minute.</p>
+<p>[3]</p>
+<p>:   If the string contains neither a <strong>%s</strong> format group nor a group
+    specifying the hour of the day, then midnight (<strong>00:00</strong>, the start
+    of the given date) is used. The time zone is determined by either
+    the <strong>-timezone</strong> or <strong>-gmt</strong> options, or by using the current time
+    zone.</p>
+<p>If a format string lacks a <strong>%z</strong> or <strong>%Z</strong> format group, it is possible
+for the time to be ambiguous because it appears twice in the same day,
+once without and once with Daylight Saving Time. If this situation
+occurs, the first occurrence of the time is chosen. (For this reason, it
+is wise to have the input string contain the time zone when converting
+local times. This caveat does not apply to UTC times.)</p>
+<p>If the interpretation of the groups yields an impossible time because a
+field is out of range, enough of that field\'s unit will be added to or
+subtracted from the time to bring it in range. Thus, if attempting to
+scan or format day 0 of the month, one day will be subtracted from day 1
+of the month, yielding the last day of the previous month.</p>
+<p>If the interpretation of the groups yields an impossible time because a
+Daylight Saving Time change skips over that time, or an ambiguous time
+because a Daylight Saving Time change skips back so that the clock
+observes the given time twice, and no time zone specifier (<strong>%z</strong> or
+<strong>%Z</strong>) is present in the format, the time is interpreted as if the
+clock had not changed.</p>
+<h1 id="format-groups">FORMAT GROUPS</h1>
+<p>The following format groups are recognized by the <strong>clock scan</strong> and
+<strong>clock format</strong> commands.</p>
+<p><strong>%a</strong></p>
+<p>:   On output, produces an abbreviation (<em>e.g.,</em> <strong>Mon</strong>) for the day of
+    the week in the given locale. On input, matches the name of the day
+    of the week in the given locale (in either abbreviated or full form,
+    or any unique prefix of either form).</p>
+<p><strong>%A</strong></p>
+<p>:   On output, produces the full name (<em>e.g.,</em> <strong>Monday</strong>) of the day of
+    the week in the given locale. On input, matches the name of the day
+    of the week in the given locale (in either abbreviated or full form,
+    or any unique prefix of either form).</p>
+<p><strong>%b</strong></p>
+<p>:   On output, produces an abbreviation (<em>e.g.,</em> <strong>Jan</strong>) for the name
+    of the month in the given locale. On input, matches the name of the
+    month in the given locale (in either abbreviated or full form, or
+    any unique prefix of either form).</p>
+<p><strong>%B</strong></p>
+<p>:   On output, produces the full name (<em>e.g.,</em> <strong>January</strong>) of the month
+    in the given locale. On input, matches the name of the month in the
+    given locale (in either abbreviated or full form, or any unique
+    prefix of either form).</p>
+<p><strong>%c</strong></p>
+<p>:   On output, produces a localized representation of date and time of
+    day; the localized representation is expected to use the Gregorian
+    calendar. On input, matches whatever <strong>%c</strong> produces.</p>
+<p><strong>%C</strong></p>
+<p>:   On output, produces the number of the century in Indo-Arabic
+    numerals. On input, matches one or two digits, possibly with leading
+    whitespace, that are expected to be the number of the century.</p>
+<p><strong>%d</strong></p>
+<p>:   On output, produces the number of the day of the month, as two
+    decimal digits. On input, matches one or two digits, possibly with
+    leading whitespace, that are expected to be the number of the day of
+    the month.</p>
+<p><strong>%D</strong></p>
+<p>:   This format group is synonymous with <strong>%m/%d/%Y</strong>. It should be used
+    only in exchanging data within the <strong>en_US</strong> locale, since other
+    locales typically do not use this order for the fields of the date.</p>
+<p><strong>%e</strong></p>
+<p>:   On output, produces the number of the day of the month, as one or
+    two decimal digits (with a leading blank for one-digit dates). On
+    input, matches one or two digits, possibly with leading whitespace,
+    that are expected to be the number of the day of the month.</p>
+<p><strong>%Ec</strong></p>
+<p>:   On output, produces a locale-dependent representation of the date
+    and time of day in the locale\'s alternative calendar. On input,
+    matches whatever <strong>%Ec</strong> produces. The locale\'s alternative
+    calendar need not be the Gregorian calendar.</p>
+<p><strong>%EC</strong></p>
+<p>:   On output, produces a locale-dependent name of an era in the
+    locale\'s alternative calendar. On input, matches the name of the
+    era or any unique prefix.</p>
+<p><strong>%EE</strong></p>
+<p>:   On output, produces the string <strong>B.C.E.</strong> or <strong>C.E.</strong>, or a string
+    of the same meaning in the locale, to indicate whether <strong>%Y</strong> refers
+    to years before or after Year 1 of the Common Era. On input, accepts
+    the string <strong>B.C.E.</strong>, <strong>B.C.</strong>, <strong>C.E.</strong>, <strong>A.D.</strong>, or the
+    abbreviation appropriate to the current locale, and uses it to fix
+    whether <strong>%Y</strong> refers to years before or after Year 1 of the Common
+    Era.</p>
+<p><strong>%Ex</strong></p>
+<p>:   On output, produces a locale-dependent representation of the date in
+    the locale\'s alternative calendar. On input, matches whatever
+    <strong>%Ex</strong> produces. The locale\'s alternative calendar need not be the
+    Gregorian calendar.</p>
+<p><strong>%EX</strong></p>
+<p>:   On output, produces a locale-dependent representation of the time of
+    day in the locale\'s alternative numerals. On input, matches
+    whatever <strong>%EX</strong> produces.</p>
+<p><strong>%Ey</strong></p>
+<p>:   On output, produces a locale-dependent number of the year of the era
+    in the locale\'s alternative calendar and numerals. On input,
+    matches such a number.</p>
+<p><strong>%EY</strong></p>
+<p>:   On output, produces a representation of the year in the locale\'s
+    alternative calendar and numerals. On input, matches what <strong>%EY</strong>
+    produces. Often synonymous with <strong>%EC%Ey</strong>.</p>
+<p><strong>%g</strong></p>
+<p>:   On output, produces a two-digit year number suitable for use with
+    the week-based ISO8601 calendar; that is, the year number
+    corresponds to the week number produced by <strong>%V</strong>. On input, accepts
+    such a two-digit year number, possibly with leading whitespace.</p>
+<p><strong>%G</strong></p>
+<p>:   On output, produces a four-digit year number suitable for use with
+    the week-based ISO8601 calendar; that is, the year number
+    corresponds to the week number produced by <strong>%V</strong>. On input, accepts
+    such a four-digit year number, possibly with leading whitespace.</p>
+<p><strong>%h</strong></p>
+<p>:   This format group is synonymous with <strong>%b</strong>.</p>
+<p><strong>%H</strong></p>
+<p>:   On output, produces a two-digit number giving the hour of the day
+    (00-23) on a 24-hour clock. On input, accepts such a number.</p>
+<p><strong>%I</strong></p>
+<p>:   On output, produces a two-digit number giving the hour of the day
+    (12-11) on a 12-hour clock. On input, accepts such a number.</p>
+<p><strong>%j</strong></p>
+<p>:   On output, produces a three-digit number giving the day of the year
+    (001-366). On input, accepts such a number.</p>
+<p><strong>%J</strong></p>
+<p>:   On output, produces a string of digits giving the Julian Day Number.
+    On input, accepts a string of digits and interprets it as a Julian
+    Day Number. The Julian Day Number is a count of the number of
+    calendar days that have elapsed since 1 January, 4713 BCE of the
+    proleptic Julian calendar. The epoch time of 1 January 1970
+    corresponds to Julian Day Number 2440588.</p>
+<p><strong>%k</strong></p>
+<p>:   On output, produces a one- or two-digit number giving the hour of
+    the day (0-23) on a 24-hour clock. On input, accepts such a number.</p>
+<p><strong>%l</strong></p>
+<p>:   On output, produces a one- or two-digit number giving the hour of
+    the day (12-11) on a 12-hour clock. On input, accepts such a number.</p>
+<p><strong>%m</strong></p>
+<p>:   On output, produces the number of the month (01-12) with exactly two
+    digits. On input, accepts two digits and interprets them as the
+    number of the month.</p>
+<p><strong>%M</strong></p>
+<p>:   On output, produces the number of the minute of the hour (00-59)
+    with exactly two digits. On input, accepts two digits and interprets
+    them as the number of the minute of the hour.</p>
+<p><strong>%N</strong></p>
+<p>:   On output, produces the number of the month (1-12) with one or two
+    digits, and a leading blank for one-digit dates. On input, accepts
+    one or two digits, possibly with leading whitespace, and interprets
+    them as the number of the month.</p>
+<p><strong>%Od</strong>, <strong>%Oe</strong>, <strong>%OH</strong>, <strong>%OI</strong>, <strong>%Ok</strong>, <strong>%Ol</strong>, <strong>%Om</strong>, <strong>%OM</strong>, <strong>%OS</strong>, <strong>%Ou</strong>, <strong>%Ow</strong>, <strong>%Oy</strong></p>
+<p>:   All of these format groups are synonymous with their counterparts
+    without the</p>
+<p>except that the string is produced and parsed in the locale-dependent
+alternative numerals.</p>
+<p><strong>%p</strong></p>
+<p>:   On output, produces an indicator for the part of the day, <strong>AM</strong> or
+    <strong>PM</strong>, appropriate to the given locale. If the script of the given
+    locale supports multiple letterforms, lowercase is preferred. On
+    input, matches the representation <strong>AM</strong> or <strong>PM</strong> in the given
+    locale, in either case.</p>
+<p><strong>%P</strong></p>
+<p>:   On output, produces an indicator for the part of the day, <strong>am</strong> or
+    <strong>pm</strong>, appropriate to the given locale. If the script of the given
+    locale supports multiple letterforms, uppercase is preferred. On
+    input, matches the representation <strong>AM</strong> or <strong>PM</strong> in the given
+    locale, in either case.</p>
+<p><strong>%Q</strong></p>
+<p>:   This format group is reserved for internal use within the Tcl
+    library.</p>
+<p><strong>%r</strong></p>
+<p>:   On output, produces a locale-dependent time of day representation on
+    a 12-hour clock. On input, accepts whatever <strong>%r</strong> produces.</p>
+<p><strong>%R</strong></p>
+<p>:   On output, the time in 24-hour notation (%H:%M). For a version
+    including the seconds, see <strong>%T</strong> below. On input, accepts whatever
+    <strong>%R</strong> produces.</p>
+<p><strong>%s</strong></p>
+<p>:   On output, simply formats the <em>timeVal</em> argument as a decimal
+    integer and inserts it into the output string. On input, accepts a
+    decimal integer and uses is as the time value without any further
+    processing. Since <strong>%s</strong> uniquely determines a point in time, it
+    overrides all other input formats.</p>
+<p><strong>%S</strong></p>
+<p>:   On output, produces a two-digit number of the second of the minute
+    (00-59). On input, accepts two digits and uses them as the second of
+    the minute.</p>
+<p><strong>%t</strong></p>
+<p>:   On output, produces a TAB character. On input, matches a TAB
+    character.</p>
+<p><strong>%T</strong></p>
+<p>:   Synonymous with <strong>%H:%M:%S</strong>.</p>
+<p><strong>%u</strong></p>
+<p>:   On output, produces the number of the day of the week (<strong>1</strong>→Monday,
+    <strong>7</strong>→Sunday). On input, accepts a single digit and interprets it as
+    the day of the week. Sunday may be either <strong>0</strong> or <strong>7</strong>.</p>
+<p><strong>%U</strong></p>
+<p>:   On output, produces the ordinal number of the week of the year
+    (00-53). The first Sunday of the year is the first day of week 01.
+    On input accepts two digits which are otherwise ignored. This format
+    group is never used in determining an input date. This
+    interpretation of the week of the year was once common in US banking
+    but is now largely obsolete. See <strong>%V</strong> for the ISO8601 week number.</p>
+<p><strong>%V</strong></p>
+<p>:   On output, produces the number of the ISO8601 week as a two digit
+    number (01-53). Week 01 is the week containing January 4; or the
+    first week of the year containing at least 4 days; or the week
+    containing the first Thursday of the year (the three statements are
+    equivalent). Each week begins on a Monday. On input, accepts the
+    ISO8601 week number.</p>
+<p><strong>%w</strong></p>
+<p>:   On output, produces the ordinal number of the day of the week
+    (Sunday==0; Saturday==6). On input, accepts a single digit and
+    interprets it as the day of the week; Sunday may be represented as
+    either 0 or 7. Note that <strong>%w</strong> is not the ISO8601 weekday number,
+    which is produced and accepted by <strong>%u</strong>.</p>
+<p><strong>%W</strong></p>
+<p>:   On output, produces a week number (00-53) within the year; week 01
+    begins on the first Monday of the year. On input, accepts two
+    digits, which are otherwise ignored. This format group is never used
+    in determining an input date. It is not the ISO8601 week number;
+    that week is produced and accepted by <strong>%V</strong>.</p>
+<p><strong>%x</strong></p>
+<p>:   On output, produces the date in a locale-dependent representation.
+    On input, accepts whatever <strong>%x</strong> produces and is used to determine
+    calendar date.</p>
+<p><strong>%X</strong></p>
+<p>:   On output, produces the time of day in a locale-dependent
+    representation. On input, accepts whatever <strong>%X</strong> produces and is
+    used to determine time of day.</p>
+<p><strong>%y</strong></p>
+<p>:   On output, produces the two-digit year of the century. On input,
+    accepts two digits, and is used to determine calendar date. The date
+    is presumed to lie between 1938 and 2037 inclusive. Note that <strong>%y</strong>
+    does not yield a year appropriate for use with the ISO8601 week
+    number <strong>%V</strong>; programs should use <strong>%g</strong> for that purpose.</p>
+<p><strong>%Y</strong></p>
+<p>:   On output, produces the four-digit calendar year. On input, accepts
+    four digits and may be used to determine calendar date. Note that
+    <strong>%Y</strong> does not yield a year appropriate for use with the ISO8601
+    week number <strong>%V</strong>; programs should use <strong>%G</strong> for that purpose.</p>
+<p><strong>%z</strong></p>
+<p>:   On output, produces the current time zone, expressed in hours and
+    minutes east (+hhmm) or west (-hhmm) of Greenwich. On input, accepts
+    a time zone specifier (see <strong>TIME ZONES</strong> below) that will be used
+    to determine the time zone.</p>
+<p><strong>%Z</strong></p>
+<p>:   On output, produces the current time zone\'s name, possibly
+    translated to the given locale. On input, accepts a time zone
+    specifier (see <strong>TIME ZONES</strong> below) that will be used to determine
+    the time zone. This option should, in general, be used on input only
+    when parsing RFC822 dates. Other uses are fraught with ambiguity;
+    for instance, the string <strong>BST</strong> may represent British Summer Time
+    or Brazilian Standard Time. It is recommended that date/time strings
+    for use by computers use numeric time zones instead.</p>
+<p><strong>%%</strong></p>
+<p>:   On output, produces a literal</p>
+<p>character. On input, matches a literal</p>
+<p>character.</p>
+<p><strong>%+</strong></p>
+<p>:   Synonymous with</p>
+<h1 id="time-zones">TIME ZONES</h1>
+<p>When the <strong>clock</strong> command is processing a local time, it has several
+possible sources for the time zone to use. In order of preference, they
+are:</p>
+<p>[1]</p>
+<p>:   A time zone specified inside a string being parsed and matched by a
+    <strong>%z</strong> or <strong>%Z</strong> format group.</p>
+<p>[2]</p>
+<p>:   A time zone specified with the <strong>-timezone</strong> option to the <strong>clock</strong>
+    command (or, equivalently, by <strong>-gmt</strong> <strong>1</strong>).</p>
+<p>[3]</p>
+<p>:   A time zone specified in an environment variable <strong>TCL_TZ</strong>.</p>
+<p>[4]</p>
+<p>:   A time zone specified in an environment variable <strong>TZ</strong>.</p>
+<p>[5]</p>
+<p>:   The local time zone from the Control Panel on Windows systems.</p>
+<p>[6]</p>
+<p>:   The C library\'s idea of the local time zone, as defined by the
+    <strong>mktime</strong> and <strong>localtime</strong> functions.</p>
+<p>In case [1] <em>only,</em> the string is tested to see if it is one of the
+strings:</p>
+<p>gmt ut utc bst wet wat at nft nst ndt ast adt est edt cst cdt mst mdt
+pst pdt yst ydt hst hdt cat ahst nt idlw cet cest met mewt mest swt sst
+eet eest bt it zp4 zp5 ist zp6 wast wadt jt cct jst cast cadt east eadt
+gst nzt nzst nzdt idle</p>
+<p>If it is a string in the above list, it designates a known time zone,
+and is interpreted as such.</p>
+<p>For time zones in case [1] that do not match any of the above strings,
+and always for cases [2]-[6], the following rules apply.</p>
+<p>If the time zone begins with a colon, it is one of a standardized list
+of names like <strong>:America/New_York</strong> that give the rules for various
+locales. A complete list of the location names is too lengthy to be
+listed here. On most Tcl installations, the definitions of the locations
+are to be found in named files in the directory</p>
+<p>On some Unix systems, these files are omitted, and the definitions are
+instead obtained from system files in</p>
+<p>or</p>
+<p>As a special case, the name <strong>:localtime</strong> refers to the local time zone
+as defined by the C library.</p>
+<p>A time zone string consisting of a plus or minus sign followed by four
+or six decimal digits is interpreted as an offset in hours, minutes, and
+seconds (if six digits are present) from UTC. The plus sign denotes a
+sign east of Greenwich; the minus sign one west of Greenwich.</p>
+<p>A time zone string conforming to the Posix specification of the <strong>TZ</strong>
+environment variable will be recognized. The specification may be found
+at
+<em>https://pubs.opengroup.org/onlinepubs/009695399/basedefs/xbd_chap08.html</em>.</p>
+<p>If the Posix time zone string contains a DST (Daylight Savings Time)
+part, but doesn\'t contain a rule stating when DST starts or ends, then
+default rules are used. For Timezones with an offset between 0 and +12,
+the current European/Russian rules are used, otherwise the current US
+rules are used. In Europe (offset +0 to +2) the switch to summertime is
+done each last Sunday in March at 1:00 GMT, and the switch back is each
+last Sunday in October at 2:00 GMT. In Russia (offset +3 to +12), the
+switch dates are the same, only the switch to summertime is at 2:00
+local time, and the switch back is at 3:00 local time in all time zones.
+The US switch to summertime takes place each second Sunday in March at
+2:00 local time, and the switch back is each first Sunday in November at
+3:00 local time. These default rules mean that in all European, Russian
+and US (or compatible) time zones, DST calculations will be correct for
+dates in 2007 and later, unless in the future the rules change again.</p>
+<p>Any other time zone string is processed by prefixing a colon and
+attempting to use it as a location name, as above.</p>
+<h1 id="localization">LOCALIZATION</h1>
+<p>Developers wishing to localize the date and time formatting and parsing
+are referred to <em>https://tip.tcl-lang.org/173</em> for a specification.</p>
+<h1 id="free-form-scan">FREE FORM SCAN</h1>
+<p>If the <strong>clock scan</strong> command is invoked without a <strong>-format</strong> option,
+then it requests a <em>free-form scan.</em> This form of scan is deprecated.
+The reason for the deprecation is that there are too many ambiguities.
+(Does the string</p>
+<p>represent a year, a time of day, or a quantity?) No set of rules for
+interpreting free-form dates and times has been found to give
+unsurprising results in all cases.</p>
+<p>If free-form scan is used, only the <strong>-base</strong> and <strong>-gmt</strong> options are
+accepted. The <strong>-timezone</strong> and <strong>-locale</strong> options will result in an
+error if <strong>-format</strong> is not supplied.</p>
+<p>For the benefit of users who need to understand legacy code that uses
+free-form scan, the documentation for how free-form scan interprets a
+string is included here:</p>
+<p>If only a time is specified, the current date is assumed. If the
+<em>inputString</em> does not contain a time zone mnemonic, the local time zone
+is assumed, unless the <strong>-gmt</strong> argument is true, in which case the
+clock value is calculated assuming that the specified time is relative
+to Greenwich Mean Time. <strong>-gmt</strong>, if specified, affects only the
+computed time value; it does not impact the interpretation of <strong>-base</strong>.</p>
+<p>If the <strong>-base</strong> flag is specified, the next argument should contain an
+integer clock value. Only the date in this value is used, not the time.
+This is useful for determining the time on a specific day or doing other
+date-relative conversions.</p>
+<p>The <em>inputString</em> argument consists of zero or more specifications of
+the following form:</p>
+<p><em>time</em></p>
+<p>:   A time of day, which is of the form:</p>
+<p>or</p>
+<p>If no <em>meridian</em> is specified, <em>hh</em> is interpreted on a 24-hour clock.</p>
+<p><em>date</em></p>
+<p>:   A specific month and day with optional year. The acceptable formats
+    are</p>
+<p>and</p>
+<p>The default year is the current year. If the year is less than 100, we
+treat the years 00-68 as 2000-2068 and the years 69-99 as 1969-1999. Not
+all platforms can represent the years 38-70, so an error may result if
+these years are used.</p>
+<p><em>ISO 8601 point-in-time</em></p>
+<p>:   An ISO 8601 point-in-time specification, such as</p>
+<p>where <strong>T</strong> is the literal</p>
+<p>or</p>
+<p>Note that only these four formats are accepted. The command does <em>not</em>
+accept the full range of point-in-time specifications specified in
+ISO8601. Other formats can be recognized by giving an explicit
+<strong>-format</strong> option to the <strong>clock scan</strong> command.</p>
+<p><em>relative time</em></p>
+<p>:   A specification relative to the current time. The format is
+    <strong>number</strong> unit. Acceptable units are <strong>year</strong>, <strong>fortnight</strong>,
+    <strong>month</strong>, <strong>week</strong>, <strong>day</strong>, <strong>hour</strong>, <strong>minute</strong> (or <strong>min</strong>), and
+    <strong>second</strong> (or <strong>sec</strong>). The unit can be specified as a singular or
+    plural, as in <strong>3 weeks</strong>. These modifiers may also be specified:
+    <strong>tomorrow</strong>, <strong>yesterday</strong>, <strong>today</strong>, <strong>now</strong>, <strong>last</strong>, <strong>this</strong>,
+    <strong>next</strong>, <strong>ago</strong>.</p>
+<p>The actual date is calculated according to the following steps.</p>
+<p>First, any absolute date and/or time is processed and converted. Using
+that time as the base, day-of-week specifications are added. Next,
+relative specifications are used. If a date or day is specified, and no
+absolute or relative time is given, midnight is used. Finally, a
+correction is applied so that the correct hour of the day is produced
+after allowing for daylight savings time differences and the correct
+date is given when going from the end of a long month to a short month.</p>
+<h1 id="see-also">SEE ALSO</h1>
+<p>msgcat(n)</p>
+<h1 id="keywords">KEYWORDS</h1>
+<p>clock, date, time</p>
+<h1 id="copyright">COPYRIGHT</h1>
+<p>Copyright © 2004 Kevin B. Kenny \&lt;kennykb@acm.org>. All rights
+reserved.</p>
+              
+            </div>
+          </div><footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+    
+  </span>
+</div>
+    <script>var base_url = '..';</script>
+    <script src="../js/theme_extra.js" defer></script>
+    <script src="../js/theme.js" defer></script>
+      <script src="../search/main.js" defer></script>
+    <script defer>
+        window.onload = function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        };
+    </script>
+
+</body>
+</html>

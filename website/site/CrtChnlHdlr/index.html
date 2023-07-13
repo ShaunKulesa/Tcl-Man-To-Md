@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><link rel="canonical" href="https://www.tcl.tk/man/tcl8.6.13/TclCmd/contents.html/CrtChnlHdlr/" />
+      <link rel="shortcut icon" href="../img/favicon.ico" />
+    <title>NAME - Tcl/Tk</title>
+    <link rel="stylesheet" href="../css/theme.css" />
+    <link rel="stylesheet" href="../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "NAME";
+        var mkdocs_page_input_path = "CrtChnlHdlr.md";
+        var mkdocs_page_url = "/man/tcl8.6.13/TclCmd/contents.html/CrtChnlHdlr/";
+      </script>
+    
+    <script src="../js/jquery-3.6.0.min.js" defer></script>
+    <!--[if lt IE 9]>
+      <script src="../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
+      <script>hljs.initHighlightingOnLoad();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href=".." class="icon icon-home"> Tcl/Tk
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="..">Home</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="" href="../command.md">Commands</a>
+                </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="..">Tcl/Tk</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href=".." class="icon icon-home" aria-label="Docs"></a> &raquo;</li>
+      <li>NAME</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="name">NAME</h1>
+<p>Tcl_CreateChannelHandler, Tcl_DeleteChannelHandler - call a procedure
+when a channel becomes readable or writable</p>
+<h1 id="synopsis">SYNOPSIS</h1>
+<pre><code>#include &lt;tcl.h&gt;
+
+void
+Tcl_CreateChannelHandler(channel, mask, proc, clientData)
+
+void
+Tcl_DeleteChannelHandler(channel, proc, clientData)
+</code></pre>
+<h1 id="arguments">ARGUMENTS</h1>
+<p>Tcl channel such as returned by <strong>Tcl_CreateChannel</strong>.</p>
+<p>Conditions under which <em>proc</em> should be called: OR-ed combination of
+<strong>TCL_READABLE</strong>, <strong>TCL_WRITABLE</strong> and <strong>TCL_EXCEPTION</strong>. Specify a zero
+value to temporarily disable an existing handler.</p>
+<p>Procedure to invoke whenever the channel indicated by <em>channel</em> meets
+the conditions specified by <em>mask</em>.</p>
+<p>Arbitrary one-word value to pass to <em>proc</em>.</p>
+<h1 id="description">DESCRIPTION</h1>
+<p><strong>Tcl_CreateChannelHandler</strong> arranges for <em>proc</em> to be called in the
+future whenever input or output becomes possible on the channel
+identified by <em>channel</em>, or whenever an exceptional condition exists for
+<em>channel</em>. The conditions of interest under which <em>proc</em> will be invoked
+are specified by the <em>mask</em> argument. See the manual entry for
+<strong>fileevent</strong> for a precise description of what it means for a channel
+to be readable or writable. <em>Proc</em> must conform to the following
+prototype:</p>
+<p>typedef void <strong>Tcl_ChannelProc</strong>( void *<em>clientData</em>, int <em>mask</em>);</p>
+<p>The <em>clientData</em> argument is the same as the value passed to
+<strong>Tcl_CreateChannelHandler</strong> when the handler was created. Typically,
+<em>clientData</em> points to a data structure containing application-specific
+information about the channel. <em>Mask</em> is an integer mask indicating
+which of the requested conditions actually exists for the channel; it
+will contain a subset of the bits from the <em>mask</em> argument to
+<strong>Tcl_CreateChannelHandler</strong> when the handler was created.</p>
+<p>Each channel handler is identified by a unique combination of <em>channel</em>,
+<em>proc</em> and <em>clientData</em>. There may be many handlers for a given channel
+as long as they do not have the same <em>channel</em>, <em>proc</em>, and
+<em>clientData</em>. If <strong>Tcl_CreateChannelHandler</strong> is invoked when there is
+already a handler for <em>channel</em>, <em>proc</em>, and <em>clientData</em>, then no new
+handler is created; instead, the <em>mask</em> is changed for the existing
+handler.</p>
+<p><strong>Tcl_DeleteChannelHandler</strong> deletes a channel handler identified by
+<em>channel</em>, <em>proc</em> and <em>clientData</em>; if no such handler exists, the call
+has no effect.</p>
+<p>Channel handlers are invoked via the Tcl event mechanism, so they are
+only useful in applications that are event-driven. Note also that the
+conditions specified in the <em>mask</em> argument to <em>proc</em> may no longer
+exist when <em>proc</em> is invoked: for example, if there are two handlers for
+<strong>TCL_READABLE</strong> on the same channel, the first handler could consume
+all of the available input so that the channel is no longer readable
+when the second handler is invoked. For this reason it may be useful to
+use nonblocking I/O on channels for which there are event handlers.</p>
+<h1 id="see-also">SEE ALSO</h1>
+<p>Notifier(3), Tcl_CreateChannel(3), Tcl_OpenFileChannel(3), vwait(n).</p>
+<h1 id="keywords">KEYWORDS</h1>
+<p>blocking, callback, channel, events, handler, nonblocking.</p>
+              
+            </div>
+          </div><footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+    
+  </span>
+</div>
+    <script>var base_url = '..';</script>
+    <script src="../js/theme_extra.js" defer></script>
+    <script src="../js/theme.js" defer></script>
+      <script src="../search/main.js" defer></script>
+    <script defer>
+        window.onload = function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        };
+    </script>
+
+</body>
+</html>

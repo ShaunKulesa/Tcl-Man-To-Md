@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><link rel="canonical" href="https://www.tcl.tk/man/tcl8.6.13/TclCmd/contents.html/AssocData/" />
+      <link rel="shortcut icon" href="../img/favicon.ico" />
+    <title>NAME - Tcl/Tk</title>
+    <link rel="stylesheet" href="../css/theme.css" />
+    <link rel="stylesheet" href="../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "NAME";
+        var mkdocs_page_input_path = "AssocData.md";
+        var mkdocs_page_url = "/man/tcl8.6.13/TclCmd/contents.html/AssocData/";
+      </script>
+    
+    <script src="../js/jquery-3.6.0.min.js" defer></script>
+    <!--[if lt IE 9]>
+      <script src="../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
+      <script>hljs.initHighlightingOnLoad();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href=".." class="icon icon-home"> Tcl/Tk
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="..">Home</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="" href="../command.md">Commands</a>
+                </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="..">Tcl/Tk</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href=".." class="icon icon-home" aria-label="Docs"></a> &raquo;</li>
+      <li>NAME</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="name">NAME</h1>
+<p>Tcl_GetAssocData, Tcl_SetAssocData, Tcl_DeleteAssocData - manage
+associations of string keys and user specified data with Tcl
+interpreters</p>
+<h1 id="synopsis">SYNOPSIS</h1>
+<pre><code>#include &lt;tcl.h&gt;
+
+void *
+Tcl_GetAssocData(interp, key, delProcPtr)
+
+Tcl_SetAssocData(interp, key, delProc, clientData)
+
+Tcl_DeleteAssocData(interp, key)
+</code></pre>
+<h1 id="arguments">ARGUMENTS</h1>
+<p>Interpreter in which to execute the specified command.</p>
+<p>Key for association with which to store data or from which to delete or
+retrieve data. Typically the module prefix for a package.</p>
+<p>Procedure to call when <em>interp</em> is deleted.</p>
+<p>Pointer to location in which to store address of current deletion
+procedure for association. Ignored if NULL.</p>
+<p>Arbitrary one-word value associated with the given key in this
+interpreter. This data is owned by the caller.</p>
+<h1 id="description">DESCRIPTION</h1>
+<p>These procedures allow extensions to associate their own data with a Tcl
+interpreter. An association consists of a string key, typically the name
+of the extension, and a one-word value, which is typically a pointer to
+a data structure holding data specific to the extension. Tcl makes no
+interpretation of either the key or the value for an association.</p>
+<p>Storage management is facilitated by storing with each association a
+procedure to call when the interpreter is deleted. This procedure can
+dispose of the storage occupied by the client\'s data in any way it sees
+fit.</p>
+<p><strong>Tcl_SetAssocData</strong> creates an association between a string key and a
+user specified datum in the given interpreter. If there is already an
+association with the given <em>key</em>, <strong>Tcl_SetAssocData</strong> overwrites it
+with the new information. It is up to callers to organize their use of
+names to avoid conflicts, for example, by using package names as the
+keys. If the <em>deleteProc</em> argument is non-NULL it specifies the address
+of a procedure to invoke if the interpreter is deleted before the
+association is deleted. <em>DeleteProc</em> should have arguments and result
+that match the type <strong>Tcl_InterpDeleteProc</strong>:</p>
+<p>typedef void <strong>Tcl_InterpDeleteProc</strong>( void *<em>clientData</em>, Tcl_Interp
+*<em>interp</em>);</p>
+<p>When <em>deleteProc</em> is invoked the <em>clientData</em> and <em>interp</em> arguments
+will be the same as the corresponding arguments passed to
+<strong>Tcl_SetAssocData</strong>. The deletion procedure will <em>not</em> be invoked if
+the association is deleted before the interpreter is deleted.</p>
+<p><strong>Tcl_GetAssocData</strong> returns the datum stored in the association with
+the specified key in the given interpreter, and if the <em>delProcPtr</em>
+field is non-<strong>NULL</strong>, the address indicated by it gets the address of
+the delete procedure stored with this association. If no association
+with the specified key exists in the given interpreter
+<strong>Tcl_GetAssocData</strong> returns <strong>NULL</strong>.</p>
+<p><strong>Tcl_DeleteAssocData</strong> deletes an association with a specified key in
+the given interpreter. Then it calls the deletion procedure.</p>
+<h1 id="keywords">KEYWORDS</h1>
+<p>association, data, deletion procedure, interpreter, key</p>
+              
+            </div>
+          </div><footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+    
+  </span>
+</div>
+    <script>var base_url = '..';</script>
+    <script src="../js/theme_extra.js" defer></script>
+    <script src="../js/theme.js" defer></script>
+      <script src="../search/main.js" defer></script>
+    <script defer>
+        window.onload = function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        };
+    </script>
+
+</body>
+</html>

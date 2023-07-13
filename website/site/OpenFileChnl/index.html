@@ -1,0 +1,674 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><link rel="canonical" href="https://www.tcl.tk/man/tcl8.6.13/TclCmd/contents.html/OpenFileChnl/" />
+      <link rel="shortcut icon" href="../img/favicon.ico" />
+    <title>NAME - Tcl/Tk</title>
+    <link rel="stylesheet" href="../css/theme.css" />
+    <link rel="stylesheet" href="../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "NAME";
+        var mkdocs_page_input_path = "OpenFileChnl.md";
+        var mkdocs_page_url = "/man/tcl8.6.13/TclCmd/contents.html/OpenFileChnl/";
+      </script>
+    
+    <script src="../js/jquery-3.6.0.min.js" defer></script>
+    <!--[if lt IE 9]>
+      <script src="../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
+      <script>hljs.initHighlightingOnLoad();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href=".." class="icon icon-home"> Tcl/Tk
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="..">Home</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="" href="../command.md">Commands</a>
+                </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="..">Tcl/Tk</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href=".." class="icon icon-home" aria-label="Docs"></a> &raquo;</li>
+      <li>NAME</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="name">NAME</h1>
+<p>Tcl_OpenFileChannel, Tcl_OpenCommandChannel, Tcl_MakeFileChannel,
+Tcl_GetChannel, Tcl_GetChannelNames, Tcl_GetChannelNamesEx,
+Tcl_RegisterChannel, Tcl_UnregisterChannel, Tcl_DetachChannel,
+Tcl_IsStandardChannel, Tcl_Close, Tcl_ReadChars, Tcl_Read, Tcl_GetsObj,
+Tcl_Gets, Tcl_WriteObj, Tcl_WriteChars, Tcl_Write, Tcl_Flush, Tcl_Seek,
+Tcl_Tell, Tcl_TruncateChannel, Tcl_GetChannelOption,
+Tcl_SetChannelOption, Tcl_Eof, Tcl_InputBlocked, Tcl_InputBuffered,
+Tcl_OutputBuffered, Tcl_Ungets, Tcl_ReadRaw, Tcl_WriteRaw - buffered I/O
+facilities using channels</p>
+<h1 id="synopsis">SYNOPSIS</h1>
+<pre><code>#include &lt;tcl.h&gt;
+
+Tcl_Channel
+Tcl_OpenFileChannel(interp, fileName, mode, permissions)
+
+Tcl_Channel
+Tcl_OpenCommandChannel(interp, argc, argv, flags)
+
+Tcl_Channel
+Tcl_MakeFileChannel(handle, readOrWrite)
+
+Tcl_Channel
+Tcl_GetChannel(interp, channelName, modePtr)
+
+int
+Tcl_GetChannelNames(interp)
+
+int
+Tcl_GetChannelNamesEx(interp, pattern)
+
+void
+Tcl_RegisterChannel(interp, channel)
+
+int
+Tcl_UnregisterChannel(interp, channel)
+
+int
+Tcl_DetachChannel(interp, channel)
+
+int
+Tcl_IsStandardChannel(channel)
+
+int
+Tcl_Close(interp, channel)
+
+int
+Tcl_ReadChars(channel, readObjPtr, charsToRead, appendFlag)
+
+int
+Tcl_Read(channel, readBuf, bytesToRead)
+
+Tcl_Size
+Tcl_GetsObj(channel, lineObjPtr)
+
+Tcl_Size
+Tcl_Gets(channel, lineRead)
+
+Tcl_Size
+Tcl_Ungets(channel, input, inputLen, addAtEnd)
+
+Tcl_Size
+Tcl_WriteObj(channel, writeObjPtr)
+
+Tcl_Size
+Tcl_WriteChars(channel, charBuf, bytesToWrite)
+
+Tcl_Size
+Tcl_Write(channel, byteBuf, bytesToWrite)
+
+Tcl_Size
+Tcl_ReadRaw(channel, readBuf, bytesToRead)
+
+Tcl_Size
+Tcl_WriteRaw(channel, byteBuf, bytesToWrite)
+
+int
+Tcl_Eof(channel)
+
+int
+Tcl_Flush(channel)
+
+int
+Tcl_InputBlocked(channel)
+
+int
+Tcl_InputBuffered(channel)
+
+int
+Tcl_OutputBuffered(channel)
+
+long long
+Tcl_Seek(channel, offset, seekMode)
+
+long long
+Tcl_Tell(channel)
+
+int
+Tcl_TruncateChannel(channel, length)
+
+int
+Tcl_GetChannelOption(interp, channel, optionName, optionValue)
+
+int
+Tcl_SetChannelOption(interp, channel, optionName, newValue)
+</code></pre>
+<h1 id="arguments">ARGUMENTS</h1>
+<p>Used for error reporting and to look up a channel registered in it.</p>
+<p>The name of a local or network file.</p>
+<p>Specifies how the file is to be accessed. May have any of the values
+allowed for the <em>mode</em> argument to the Tcl <strong>open</strong> command.</p>
+<p>POSIX-style permission flags such as 0644. If a new file is created,
+these permissions will be set on the created file.</p>
+<p>The number of elements in <em>argv</em>.</p>
+<p>Arguments for constructing a command pipeline. These values have the
+same meaning as the non-switch arguments to the Tcl <strong>exec</strong> command.</p>
+<p>Specifies the disposition of the stdio handles in pipeline: OR-ed
+combination of <strong>TCL_STDIN</strong>, <strong>TCL_STDOUT</strong>, <strong>TCL_STDERR</strong>, and
+<strong>TCL_ENFORCE_MODE</strong>. If <strong>TCL_STDIN</strong> is set, stdin for the first child
+in the pipe is the pipe channel, otherwise it is the same as the
+standard input of the invoking process; likewise for <strong>TCL_STDOUT</strong> and
+<strong>TCL_STDERR</strong>. If <strong>TCL_ENFORCE_MODE</strong> is not set, then the pipe can
+redirect stdio handles to override the stdio handles for which
+<strong>TCL_STDIN</strong>, <strong>TCL_STDOUT</strong> and <strong>TCL_STDERR</strong> have been set. If it is
+set, then such redirections cause an error.</p>
+<p>Operating system specific handle for I/O to a file. For Unix this is a
+file descriptor, for Windows it is a HANDLE.</p>
+<p>OR-ed combination of <strong>TCL_READABLE</strong> and <strong>TCL_WRITABLE</strong> to indicate
+what operations are valid on <em>handle</em>.</p>
+<p>The name of the channel.</p>
+<p>Points at an integer variable that will receive an OR-ed combination of
+<strong>TCL_READABLE</strong> and <strong>TCL_WRITABLE</strong> denoting whether the channel is
+open for reading and writing.</p>
+<p>The pattern to match on, passed to Tcl_StringMatch, or NULL.</p>
+<p>A Tcl channel for input or output. Must have been the return value from
+a procedure such as <strong>Tcl_OpenFileChannel</strong>.</p>
+<p>A pointer to a Tcl value in which to store the characters read from the
+channel.</p>
+<p>The number of characters to read from the channel. If the channel\'s
+encoding is <strong>binary</strong>, this is equivalent to the number of bytes to
+read from the channel.</p>
+<p>If non-zero, data read from the channel will be appended to the value.
+Otherwise, the data will replace the existing contents of the value.</p>
+<p>A buffer in which to store the bytes read from the channel.</p>
+<p>The number of bytes to read from the channel. The buffer <em>readBuf</em> must
+be large enough to hold this many bytes.</p>
+<p>A pointer to a Tcl value in which to store the line read from the
+channel. The line read will be appended to the current value of the
+value.</p>
+<p>A pointer to a Tcl dynamic string in which to store the line read from
+the channel. Must have been initialized by the caller. The line read
+will be appended to any data already in the dynamic string.</p>
+<p>The input to add to a channel buffer.</p>
+<p>Length of the input</p>
+<p>Flag indicating whether the input should be added to the end or
+beginning of the channel buffer.</p>
+<p>A pointer to a Tcl value whose contents will be output to the channel.</p>
+<p>A buffer containing the characters to output to the channel.</p>
+<p>A buffer containing the bytes to output to the channel.</p>
+<p>The number of bytes to consume from <em>charBuf</em> or <em>byteBuf</em> and output to
+the channel.</p>
+<p>How far to move the access point in the channel at which the next input
+or output operation will be applied, measured in bytes from the position
+given by <em>seekMode</em>. May be either positive or negative.</p>
+<p>Relative to which point to seek; used with <em>offset</em> to calculate the new
+access point for the channel. Legal values are <strong>SEEK_SET</strong>,
+<strong>SEEK_CUR</strong>, and <strong>SEEK_END</strong>.</p>
+<p>The (non-negative) length to truncate the channel the channel to.</p>
+<p>The name of an option applicable to this channel, such as <strong>-blocking</strong>.
+May have any of the values accepted by the <strong>fconfigure</strong> command.</p>
+<p>Where to store the value of an option or a list of all options and their
+values. Must have been initialized by the caller.</p>
+<p>New value for the option given by <em>optionName</em>.</p>
+<h1 id="description">DESCRIPTION</h1>
+<p>The Tcl channel mechanism provides a device-independent and
+platform-independent mechanism for performing buffered input and output
+operations on a variety of file, socket, and device types. The channel
+mechanism is extensible to new channel types, by providing a low-level
+channel driver for the new type; the channel driver interface is
+described in the manual entry for <strong>Tcl_CreateChannel</strong>. The channel
+mechanism provides a buffering scheme modeled after Unix\'s standard
+I/O, and it also allows for nonblocking I/O on channels.</p>
+<p>The procedures described in this manual entry comprise the C APIs of the
+generic layer of the channel architecture. For a description of the
+channel driver architecture and how to implement channel drivers for new
+types of channels, see the manual entry for <strong>Tcl_CreateChannel</strong>.</p>
+<h1 id="tcl_openfilechannel">TCL_OPENFILECHANNEL</h1>
+<p><strong>Tcl_OpenFileChannel</strong> opens a file specified by <em>fileName</em> and returns
+a channel handle that can be used to perform input and output on the
+file. This API is modeled after the <strong>fopen</strong> procedure of the Unix
+standard I/O library. The syntax and meaning of all arguments is similar
+to those given in the Tcl <strong>open</strong> command when opening a file. If an
+error occurs while opening the channel, <strong>Tcl_OpenFileChannel</strong> returns
+NULL and records a POSIX error code that can be retrieved with
+<strong>Tcl_GetErrno</strong>. In addition, if <em>interp</em> is non-NULL,
+<strong>Tcl_OpenFileChannel</strong> leaves an error message in <em>interp</em>\'s result
+after any error. As of Tcl 8.4, the value-based API
+<strong>Tcl_FSOpenFileChannel</strong> should be used in preference to
+<strong>Tcl_OpenFileChannel</strong> wherever possible.</p>
+<p>The newly created channel is not registered in the supplied interpreter;
+to register it, use <strong>Tcl_RegisterChannel</strong>, described below. If one of
+the standard channels, <strong>stdin</strong>, <strong>stdout</strong> or <strong>stderr</strong> was
+previously closed, the act of creating the new channel also assigns it
+as a replacement for the standard channel.</p>
+<h1 id="tcl_opencommandchannel">TCL_OPENCOMMANDCHANNEL</h1>
+<p><strong>Tcl_OpenCommandChannel</strong> provides a C-level interface to the functions
+of the <strong>exec</strong> and <strong>open</strong> commands. It creates a sequence of
+subprocesses specified by the <em>argv</em> and <em>argc</em> arguments and returns a
+channel that can be used to communicate with these subprocesses. The
+<em>flags</em> argument indicates what sort of communication will exist with
+the command pipeline.</p>
+<p>If the <strong>TCL_STDIN</strong> flag is set then the standard input for the first
+subprocess will be tied to the channel: writing to the channel will
+provide input to the subprocess. If <strong>TCL_STDIN</strong> is not set, then
+standard input for the first subprocess will be the same as this
+application\'s standard input. If <strong>TCL_STDOUT</strong> is set then standard
+output from the last subprocess can be read from the channel; otherwise
+it goes to this application\'s standard output. If <strong>TCL_STDERR</strong> is
+set, standard error output for all subprocesses is returned to the
+channel and results in an error when the channel is closed; otherwise it
+goes to this application\'s standard error. If <strong>TCL_ENFORCE_MODE</strong> is
+not set, then <em>argc</em> and <em>argv</em> can redirect the stdio handles to
+override <strong>TCL_STDIN</strong>, <strong>TCL_STDOUT</strong>, and <strong>TCL_STDERR</strong>; if it is
+set, then it is an error for argc and argv to override stdio channels
+for which <strong>TCL_STDIN</strong>, <strong>TCL_STDOUT</strong>, and <strong>TCL_STDERR</strong> have been
+set.</p>
+<p>If an error occurs while opening the channel, <strong>Tcl_OpenCommandChannel</strong>
+returns NULL and records a POSIX error code that can be retrieved with
+<strong>Tcl_GetErrno</strong>. In addition, <strong>Tcl_OpenCommandChannel</strong> leaves an
+error message in the interpreter\'s result. <em>interp</em> cannot be NULL.</p>
+<p>The newly created channel is not registered in the supplied interpreter;
+to register it, use <strong>Tcl_RegisterChannel</strong>, described below. If one of
+the standard channels, <strong>stdin</strong>, <strong>stdout</strong> or <strong>stderr</strong> was
+previously closed, the act of creating the new channel also assigns it
+as a replacement for the standard channel.</p>
+<h1 id="tcl_makefilechannel">TCL_MAKEFILECHANNEL</h1>
+<p><strong>Tcl_MakeFileChannel</strong> makes a <strong>Tcl_Channel</strong> from an existing,
+platform-specific, file handle. The newly created channel is not
+registered in the supplied interpreter; to register it, use
+<strong>Tcl_RegisterChannel</strong>, described below. If one of the standard
+channels, <strong>stdin</strong>, <strong>stdout</strong> or <strong>stderr</strong> was previously closed, the
+act of creating the new channel also assigns it as a replacement for the
+standard channel.</p>
+<h1 id="tcl_getchannel">TCL_GETCHANNEL</h1>
+<p><strong>Tcl_GetChannel</strong> returns a channel given the <em>channelName</em> used to
+create it with <strong>Tcl_CreateChannel</strong> and a pointer to a Tcl interpreter
+in <em>interp</em>. If a channel by that name is not registered in that
+interpreter, the procedure returns NULL. If the <em>modePtr</em> argument is
+not NULL, it points at an integer variable that will receive an OR-ed
+combination of <strong>TCL_READABLE</strong> and <strong>TCL_WRITABLE</strong> describing whether
+the channel is open for reading and writing.</p>
+<p><strong>Tcl_GetChannelNames</strong> and <strong>Tcl_GetChannelNamesEx</strong> write the names of
+the registered channels to the interpreter\'s result as a list value.
+<strong>Tcl_GetChannelNamesEx</strong> will filter these names according to the
+<em>pattern</em>. If <em>pattern</em> is NULL, then it will not do any filtering. The
+return value is <strong>TCL_OK</strong> if no errors occurred writing to the result,
+otherwise it is <strong>TCL_ERROR</strong>, and the error message is left in the
+interpreter\'s result.</p>
+<h1 id="tcl_registerchannel">TCL_REGISTERCHANNEL</h1>
+<p><strong>Tcl_RegisterChannel</strong> adds a channel to the set of channels accessible
+in <em>interp</em>. After this call, Tcl programs executing in that interpreter
+can refer to the channel in input or output operations using the name
+given in the call to <strong>Tcl_CreateChannel</strong>. After this call, the channel
+becomes the property of the interpreter, and the caller should not call
+<strong>Tcl_Close</strong> for the channel; the channel will be closed automatically
+when it is unregistered from the interpreter.</p>
+<p>Code executing outside of any Tcl interpreter can call
+<strong>Tcl_RegisterChannel</strong> with <em>interp</em> as NULL, to indicate that it
+wishes to hold a reference to this channel. Subsequently, the channel
+can be registered in a Tcl interpreter and it will only be closed when
+the matching number of calls to <strong>Tcl_UnregisterChannel</strong> have been
+made. This allows code executing outside of any interpreter to safely
+hold a reference to a channel that is also registered in a Tcl
+interpreter.</p>
+<p>This procedure interacts with the code managing the standard channels.
+If no standard channels were initialized before the first call to
+<strong>Tcl_RegisterChannel</strong>, they will get initialized by that call. See
+<strong>Tcl_StandardChannels</strong> for a general treatise about standard channels
+and the behavior of the Tcl library with regard to them.</p>
+<h1 id="tcl_unregisterchannel">TCL_UNREGISTERCHANNEL</h1>
+<p><strong>Tcl_UnregisterChannel</strong> removes a channel from the set of channels
+accessible in <em>interp</em>. After this call, Tcl programs will no longer be
+able to use the channel\'s name to refer to the channel in that
+interpreter. If this operation removed the last registration of the
+channel in any interpreter, the channel is also closed and destroyed.</p>
+<p>Code not associated with a Tcl interpreter can call
+<strong>Tcl_UnregisterChannel</strong> with <em>interp</em> as NULL, to indicate to Tcl that
+it no longer holds a reference to that channel. If this is the last
+reference to the channel, it will now be closed.
+<strong>Tcl_UnregisterChannel</strong> is very similar to <strong>Tcl_DetachChannel</strong>
+except that it will also close the channel if no further references to
+it exist.</p>
+<h1 id="tcl_detachchannel">TCL_DETACHCHANNEL</h1>
+<p><strong>Tcl_DetachChannel</strong> removes a channel from the set of channels
+accessible in <em>interp</em>. After this call, Tcl programs will no longer be
+able to use the channel\'s name to refer to the channel in that
+interpreter. Beyond that, this command has no further effect. It cannot
+be used on the standard channels (<strong>stdout</strong>, <strong>stderr</strong>, <strong>stdin</strong>),
+and will return <strong>TCL_ERROR</strong> if passed one of those channels.</p>
+<p>Code not associated with a Tcl interpreter can call
+<strong>Tcl_DetachChannel</strong> with <em>interp</em> as NULL, to indicate to Tcl that it
+no longer holds a reference to that channel. If this is the last
+reference to the channel, unlike <strong>Tcl_UnregisterChannel</strong>, it will not
+be closed.</p>
+<h1 id="tcl_isstandardchannel">TCL_ISSTANDARDCHANNEL</h1>
+<p><strong>Tcl_IsStandardChannel</strong> tests whether a channel is one of the three
+standard channels, <strong>stdin</strong>, <strong>stdout</strong> or <strong>stderr</strong>. If so, it
+returns 1, otherwise 0.</p>
+<p>No attempt is made to check whether the given channel or the standard
+channels are initialized or otherwise valid.</p>
+<h1 id="tcl_close">TCL_CLOSE</h1>
+<p><strong>Tcl_Close</strong> destroys the channel <em>channel</em>, which must denote a
+currently open channel. The channel should not be registered in any
+interpreter when <strong>Tcl_Close</strong> is called. Buffered output is flushed to
+the channel\'s output device prior to destroying the channel, and any
+buffered input is discarded. If this is a blocking channel, the call
+does not return until all buffered data is successfully sent to the
+channel\'s output device. If this is a nonblocking channel and there is
+buffered output that cannot be written without blocking, the call
+returns immediately; output is flushed in the background and the channel
+will be closed once all of the buffered data has been output. In this
+case errors during flushing are not reported.</p>
+<p>If the channel was closed successfully, <strong>Tcl_Close</strong> returns
+<strong>TCL_OK</strong>. If an error occurs, <strong>Tcl_Close</strong> returns <strong>TCL_ERROR</strong> and
+records a POSIX error code that can be retrieved with <strong>Tcl_GetErrno</strong>.
+If the channel is being closed synchronously and an error occurs during
+closing of the channel and <em>interp</em> is not NULL, an error message is
+left in the interpreter\'s result.</p>
+<p>Note: it is not safe to call <strong>Tcl_Close</strong> on a channel that has been
+registered using <strong>Tcl_RegisterChannel</strong>; see the documentation for
+<strong>Tcl_RegisterChannel</strong>, above, for details. If the channel has ever
+been given as the <strong>chan</strong> argument in a call to
+<strong>Tcl_RegisterChannel</strong>, you should instead use
+<strong>Tcl_UnregisterChannel</strong>, which will internally call <strong>Tcl_Close</strong> when
+all calls to <strong>Tcl_RegisterChannel</strong> have been matched by corresponding
+calls to <strong>Tcl_UnregisterChannel</strong>.</p>
+<h1 id="tcl_readchars-and-tcl_read">TCL_READCHARS AND TCL_READ</h1>
+<p><strong>Tcl_ReadChars</strong> consumes bytes from <em>channel</em>, converting the bytes to
+UTF-8 based on the channel\'s encoding and storing the produced data in
+<em>readObjPtr</em>\'s string representation. The return value of
+<strong>Tcl_ReadChars</strong> is the number of characters, up to <em>charsToRead</em>, that
+were stored in <em>readObjPtr</em>. If an error occurs while reading, the
+return value is -1 and <strong>Tcl_ReadChars</strong> records a POSIX error code that
+can be retrieved with <strong>Tcl_GetErrno</strong>.</p>
+<p>Setting <em>charsToRead</em> to -1 will cause the command to read all
+characters currently available (non-blocking) or everything until eof
+(blocking mode).</p>
+<p>The return value may be smaller than the value to read, indicating that
+less data than requested was available. This is called a <em>short read</em>.
+In blocking mode, this can only happen on an end-of-file. In nonblocking
+mode, a short read can also occur if there is not enough input currently
+available: <strong>Tcl_ReadChars</strong> returns a short count rather than waiting
+for more data.</p>
+<p>If the channel is in blocking mode, a return value of zero indicates an
+end-of-file condition. If the channel is in nonblocking mode, a return
+value of zero indicates either that no input is currently available or
+an end-of-file condition. Use <strong>Tcl_Eof</strong> and <strong>Tcl_InputBlocked</strong> to
+tell which of these conditions actually occurred.</p>
+<p><strong>Tcl_ReadChars</strong> translates the various end-of-line representations
+into the canonical <strong>\n</strong> internal representation according to the
+current end-of-line recognition mode. End-of-line recognition and the
+various platform-specific modes are described in the manual entry for
+the Tcl <strong>fconfigure</strong> command.</p>
+<p>As a performance optimization, when reading from a channel with the
+encoding <strong>binary</strong>, the bytes are not converted to UTF-8 as they are
+read. Instead, they are stored in <em>readObjPtr</em>\'s internal
+representation as a byte-array value. The string representation of this
+value will only be constructed if it is needed (e.g., because of a call
+to <strong>Tcl_GetStringFromObj</strong>). In this way, byte-oriented data can be
+read from a channel, manipulated by calling <strong>Tcl_GetByteArrayFromObj</strong>
+and related functions, and then written to a channel without the expense
+of ever converting to or from UTF-8.</p>
+<p><strong>Tcl_Read</strong> is similar to <strong>Tcl_ReadChars</strong>, except that it does not do
+encoding conversions, regardless of the channel\'s encoding. It is
+deprecated and exists for backwards compatibility with
+non-internationalized Tcl extensions. It consumes bytes from <em>channel</em>
+and stores them in <em>readBuf</em>, performing end-of-line translations on the
+way. The return value of <strong>Tcl_Read</strong> is the number of bytes, up to
+<em>bytesToRead</em>, written in <em>readBuf</em>. The buffer produced by <strong>Tcl_Read</strong>
+is not null-terminated. Its contents are valid from the zeroth position
+up to and excluding the position indicated by the return value.</p>
+<p><strong>Tcl_ReadRaw</strong> is the same as <strong>Tcl_Read</strong> but does not compensate for
+stacking. While <strong>Tcl_Read</strong> (and the other functions in the API) always
+get their data from the topmost channel in the stack the supplied
+channel is part of, <strong>Tcl_ReadRaw</strong> does not. Thus this function is
+<strong>only</strong> usable for transformational channel drivers, i.e. drivers used
+in the middle of a stack of channels, to move data from the channel
+below into the transformation.</p>
+<h1 id="tcl_getsobj-and-tcl_gets">TCL_GETSOBJ AND TCL_GETS</h1>
+<p><strong>Tcl_GetsObj</strong> consumes bytes from <em>channel</em>, converting the bytes to
+UTF-8 based on the channel\'s encoding, until a full line of input has
+been seen. If the channel\'s encoding is <strong>binary</strong>, each byte read from
+the channel is treated as an individual Unicode character. All of the
+characters of the line except for the terminating end-of-line
+character(s) are appended to <em>lineObjPtr</em>\'s string representation. The
+end-of-line character(s) are read and discarded.</p>
+<p>If a line was successfully read, the return value is greater than or
+equal to zero and indicates the number of bytes stored in <em>lineObjPtr</em>.
+If an error occurs, <strong>Tcl_GetsObj</strong> returns -1 and records a POSIX error
+code that can be retrieved with <strong>Tcl_GetErrno</strong>. <strong>Tcl_GetsObj</strong> also
+returns -1 if the end of the file is reached; the <strong>Tcl_Eof</strong> procedure
+can be used to distinguish an error from an end-of-file condition.</p>
+<p>If the channel is in nonblocking mode, the return value can also be -1
+if no data was available or the data that was available did not contain
+an end-of-line character. When -1 is returned, the <strong>Tcl_InputBlocked</strong>
+procedure may be invoked to determine if the channel is blocked because
+of input unavailability.</p>
+<p><strong>Tcl_Gets</strong> is the same as <strong>Tcl_GetsObj</strong> except the resulting
+characters are appended to the dynamic string given by <em>lineRead</em> rather
+than a Tcl value.</p>
+<h1 id="tcl_ungets">TCL_UNGETS</h1>
+<p><strong>Tcl_Ungets</strong> is used to add data to the input queue of a channel, at
+either the head or tail of the queue. The pointer <em>input</em> points to the
+data that is to be added. The length of the input to add is given by
+<em>inputLen</em>. A non-zero value of <em>addAtEnd</em> indicates that the data is to
+be added at the end of queue; otherwise it will be added at the head of
+the queue. If <em>channel</em> has a</p>
+<p>EOF set, no data will be added to the input queue. <strong>Tcl_Ungets</strong>
+returns <em>inputLen</em> or -1 if an error occurs.</p>
+<h1 id="tcl_writechars-tcl_writeobj-and-tcl_write">TCL_WRITECHARS, TCL_WRITEOBJ, AND TCL_WRITE</h1>
+<p><strong>Tcl_WriteChars</strong> accepts <em>bytesToWrite</em> bytes of character data at
+<em>charBuf</em>. The UTF-8 characters in the buffer are converted to the
+channel\'s encoding and queued for output to <em>channel</em>. If
+<em>bytesToWrite</em> is negative, <strong>Tcl_WriteChars</strong> expects <em>charBuf</em> to be
+null-terminated and it outputs everything up to the null.</p>
+<p>Data queued for output may not appear on the output device immediately,
+due to internal buffering. If the data should appear immediately, call
+<strong>Tcl_Flush</strong> after the call to <strong>Tcl_WriteChars</strong>, or set the
+<strong>-buffering</strong> option on the channel to <strong>none</strong>. If you wish the data
+to appear as soon as a complete line is accepted for output, set the
+<strong>-buffering</strong> option on the channel to <strong>line</strong> mode.</p>
+<p>The return value of <strong>Tcl_WriteChars</strong> is a count of how many bytes were
+accepted for output to the channel. This is either -1 to indicate that
+an error occurred or another number greater than zero to indicate
+success. If an error occurs, <strong>Tcl_WriteChars</strong> records a POSIX error
+code that may be retrieved with <strong>Tcl_GetErrno</strong>.</p>
+<p>Newline characters in the output data are translated to
+platform-specific end-of-line sequences according to the
+<strong>-translation</strong> option for the channel. This is done even if the
+channel has no encoding.</p>
+<p><strong>Tcl_WriteObj</strong> is similar to <strong>Tcl_WriteChars</strong> except it accepts a
+Tcl value whose contents will be output to the channel. The UTF-8
+characters in <em>writeObjPtr</em>\'s string representation are converted to
+the channel\'s encoding and queued for output to <em>channel</em>. As a
+performance optimization, when writing to a channel with the encoding
+<strong>binary</strong>, UTF-8 characters are not converted as they are written.
+Instead, the bytes in <em>writeObjPtr</em>\'s internal representation as a
+byte-array value are written to the channel. The byte-array
+representation of the value will be constructed if it is needed. In this
+way, byte-oriented data can be read from a channel, manipulated by
+calling <strong>Tcl_GetByteArrayFromObj</strong> and related functions, and then
+written to a channel without the expense of ever converting to or from
+UTF-8.</p>
+<p><strong>Tcl_Write</strong> is similar to <strong>Tcl_WriteChars</strong> except that it does not
+do encoding conversions, regardless of the channel\'s encoding. It is
+deprecated and exists for backwards compatibility with
+non-internationalized Tcl extensions. It accepts <em>bytesToWrite</em> bytes of
+data at <em>byteBuf</em> and queues them for output to <em>channel</em>. If
+<em>bytesToWrite</em> is negative, <strong>Tcl_Write</strong> expects <em>byteBuf</em> to be
+null-terminated and it outputs everything up to the null.</p>
+<p><strong>Tcl_WriteRaw</strong> is the same as <strong>Tcl_Write</strong> but does not compensate
+for stacking. While <strong>Tcl_Write</strong> (and the other functions in the API)
+always feed their input to the topmost channel in the stack the supplied
+channel is part of, <strong>Tcl_WriteRaw</strong> does not. Thus this function is
+<strong>only</strong> usable for transformational channel drivers, i.e. drivers used
+in the middle of a stack of channels, to move data from the
+transformation into the channel below it.</p>
+<h1 id="tcl_flush">TCL_FLUSH</h1>
+<p><strong>Tcl_Flush</strong> causes all of the buffered output data for <em>channel</em> to be
+written to its underlying file or device as soon as possible. If the
+channel is in blocking mode, the call does not return until all the
+buffered data has been sent to the channel or some error occurred. The
+call returns immediately if the channel is nonblocking; it starts a
+background flush that will write the buffered data to the channel
+eventually, as fast as the channel is able to absorb it.</p>
+<p>The return value is normally <strong>TCL_OK</strong>. If an error occurs,
+<strong>Tcl_Flush</strong> returns <strong>TCL_ERROR</strong> and records a POSIX error code that
+can be retrieved with <strong>Tcl_GetErrno</strong>.</p>
+<h1 id="tcl_seek">TCL_SEEK</h1>
+<p><strong>Tcl_Seek</strong> moves the access point in <em>channel</em> where subsequent data
+will be read or written. Buffered output is flushed to the channel and
+buffered input is discarded, prior to the seek operation.</p>
+<p><strong>Tcl_Seek</strong> normally returns the new access point. If an error occurs,
+<strong>Tcl_Seek</strong> returns -1 and records a POSIX error code that can be
+retrieved with <strong>Tcl_GetErrno</strong>. After an error, the access point may or
+may not have been moved.</p>
+<h1 id="tcl_tell">TCL_TELL</h1>
+<p><strong>Tcl_Tell</strong> returns the current access point for a channel. The
+returned value is -1 if the channel does not support seeking.</p>
+<h1 id="tcl_truncatechannel">TCL_TRUNCATECHANNEL</h1>
+<p><strong>Tcl_TruncateChannel</strong> truncates the file underlying <em>channel</em> to a
+given <em>length</em> of bytes. It returns <strong>TCL_OK</strong> if the operation
+succeeded, and <strong>TCL_ERROR</strong> otherwise.</p>
+<h1 id="tcl_getchanneloption">TCL_GETCHANNELOPTION</h1>
+<p><strong>Tcl_GetChannelOption</strong> retrieves, in <em>optionValue</em>, the value of one
+of the options currently in effect for a channel, or a list of all
+options and their values. The <em>channel</em> argument identifies the channel
+for which to query an option or retrieve all options and their values.
+If <em>optionName</em> is not NULL, it is the name of the option to query; the
+option\'s value is copied to the Tcl dynamic string denoted by
+<em>optionValue</em>. If <em>optionName</em> is NULL, the function stores an
+alternating list of option names and their values in <em>optionValue</em>,
+using a series of calls to <strong>Tcl_DStringAppendElement</strong>. The various
+preexisting options and their possible values are described in the
+manual entry for the Tcl <strong>fconfigure</strong> command. Other options can be
+added by each channel type. These channel type specific options are
+described in the manual entry for the Tcl command that creates a channel
+of that type; for example, the additional options for TCP-based channels
+are described in the manual entry for the Tcl <strong>socket</strong> command. The
+procedure normally returns <strong>TCL_OK</strong>. If an error occurs, it returns
+<strong>TCL_ERROR</strong> and calls <strong>Tcl_SetErrno</strong> to store an appropriate POSIX
+error code.</p>
+<h1 id="tcl_setchanneloption">TCL_SETCHANNELOPTION</h1>
+<p><strong>Tcl_SetChannelOption</strong> sets a new value <em>newValue</em> for an option
+<em>optionName</em> on <em>channel</em>. The procedure normally returns <strong>TCL_OK</strong>. If
+an error occurs, it returns <strong>TCL_ERROR</strong>; in addition, if <em>interp</em> is
+non-NULL, <strong>Tcl_SetChannelOption</strong> leaves an error message in the
+interpreter\'s result.</p>
+<h1 id="tcl_eof">TCL_EOF</h1>
+<p><strong>Tcl_Eof</strong> returns a nonzero value if <em>channel</em> encountered an end of
+file during the last input operation.</p>
+<h1 id="tcl_inputblocked">TCL_INPUTBLOCKED</h1>
+<p><strong>Tcl_InputBlocked</strong> returns a nonzero value if <em>channel</em> is in
+nonblocking mode and the last input operation returned less data than
+requested because there was insufficient data available. The call always
+returns zero if the channel is in blocking mode.</p>
+<h1 id="tcl_inputbuffered">TCL_INPUTBUFFERED</h1>
+<p><strong>Tcl_InputBuffered</strong> returns the number of bytes of input currently
+buffered in the internal buffers for a channel. If the channel is not
+open for reading, this function always returns zero.</p>
+<h1 id="tcl_outputbuffered">TCL_OUTPUTBUFFERED</h1>
+<p><strong>Tcl_OutputBuffered</strong> returns the number of bytes of output currently
+buffered in the internal buffers for a channel. If the channel is not
+open for writing, this function always returns zero.</p>
+<h1 id="platform-issues">PLATFORM ISSUES</h1>
+<p>The handles returned from <strong>Tcl_GetChannelHandle</strong> depend on the
+platform and the channel type. On Unix platforms, the handle is always a
+Unix file descriptor as returned from the <strong>open</strong> system call. On
+Windows platforms, the handle is a file <strong>HANDLE</strong> when the channel was
+created with <strong>Tcl_OpenFileChannel</strong>, <strong>Tcl_OpenCommandChannel</strong>, or
+<strong>Tcl_MakeFileChannel</strong>. Other channel types may return a different type
+of handle on Windows platforms.</p>
+<h1 id="reference-count-management">REFERENCE COUNT MANAGEMENT</h1>
+<p>The <em>readObjPtr</em> argument to <strong>Tcl_ReadChars</strong> must be an unshared
+value; it will be modified by this function. Using the interpreter
+result for this purpose is <em>strongly</em> not recommended; the preferred
+pattern is to use a new value from <strong>Tcl_NewObj</strong> to receive the data
+and only to pass it to <strong>Tcl_SetObjResult</strong> if this function succeeds.</p>
+<p>The <em>lineObjPtr</em> argument to <strong>Tcl_GetsObj</strong> must be an unshared value;
+it will be modified by this function. Using the interpreter result for
+this purpose is <em>strongly</em> not recommended; the preferred pattern is to
+use a new value from <strong>Tcl_NewObj</strong> to receive the data and only to pass
+it to <strong>Tcl_SetObjResult</strong> if this function succeeds.</p>
+<p>The <em>writeObjPtr</em> argument to <strong>Tcl_WriteObj</strong> should be a value with
+any reference count. This function will not modify the reference count.
+Using the interpreter result without adding an additional reference to
+it is not recommended.</p>
+<h1 id="see-also">SEE ALSO</h1>
+<p>DString(3), fconfigure(n), filename(n), fopen(3), Tcl_CreateChannel(3)</p>
+<h1 id="keywords">KEYWORDS</h1>
+<p>access point, blocking, buffered I/O, channel, channel driver, end of
+file, flush, input, nonblocking, output, read, seek, write</p>
+              
+            </div>
+          </div><footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+    
+  </span>
+</div>
+    <script>var base_url = '..';</script>
+    <script src="../js/theme_extra.js" defer></script>
+    <script src="../js/theme.js" defer></script>
+      <script src="../search/main.js" defer></script>
+    <script defer>
+        window.onload = function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        };
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><link rel="canonical" href="https://www.tcl.tk/man/tcl8.6.13/TclCmd/contents.html/Thread/" />
+      <link rel="shortcut icon" href="../img/favicon.ico" />
+    <title>NAME - Tcl/Tk</title>
+    <link rel="stylesheet" href="../css/theme.css" />
+    <link rel="stylesheet" href="../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "NAME";
+        var mkdocs_page_input_path = "Thread.md";
+        var mkdocs_page_url = "/man/tcl8.6.13/TclCmd/contents.html/Thread/";
+      </script>
+    
+    <script src="../js/jquery-3.6.0.min.js" defer></script>
+    <!--[if lt IE 9]>
+      <script src="../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
+      <script>hljs.initHighlightingOnLoad();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href=".." class="icon icon-home"> Tcl/Tk
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="..">Home</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="" href="../command.md">Commands</a>
+                </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="..">Tcl/Tk</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href=".." class="icon icon-home" aria-label="Docs"></a> &raquo;</li>
+      <li>NAME</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="name">NAME</h1>
+<p>Tcl_ConditionNotify, Tcl_ConditionWait, Tcl_ConditionFinalize,
+Tcl_GetThreadData, Tcl_MutexLock, Tcl_MutexUnlock, Tcl_MutexFinalize,
+Tcl_CreateThread, Tcl_JoinThread - Tcl thread support</p>
+<h1 id="synopsis">SYNOPSIS</h1>
+<pre><code>#include &lt;tcl.h&gt;
+
+void
+Tcl_ConditionNotify(condPtr)
+
+void
+Tcl_ConditionWait(condPtr, mutexPtr, timePtr)
+
+void
+Tcl_ConditionFinalize(condPtr)
+
+Void *
+Tcl_GetThreadData(keyPtr, size)
+
+void
+Tcl_MutexLock(mutexPtr)
+
+void
+Tcl_MutexUnlock(mutexPtr)
+
+void
+Tcl_MutexFinalize(mutexPtr)
+
+int
+Tcl_CreateThread(idPtr, proc, clientData, stackSize, flags)
+
+int
+Tcl_JoinThread(id, result)
+</code></pre>
+<h1 id="arguments">ARGUMENTS</h1>
+<p>A condition variable, which must be associated with a mutex lock.</p>
+<p>A recursive mutex lock.</p>
+<p>A time limit on the condition wait. NULL to wait forever. Note that a
+polling value of 0 seconds does not make much sense.</p>
+<p>This identifies a block of thread local storage. The key should be
+static and process-wide, yet each thread will end up associating a
+different block of storage with this key.</p>
+<p>The size of the thread local storage block. This amount of data is
+allocated and initialized to zero the first time each thread calls
+<strong>Tcl_GetThreadData</strong>.</p>
+<p>The referred storage will contain the id of the newly created thread as
+returned by the operating system.</p>
+<p>Id of the thread waited upon.</p>
+<p>This procedure will act as the <strong>main()</strong> of the newly created thread.
+The specified <em>clientData</em> will be its sole argument.</p>
+<p>Arbitrary information. Passed as sole argument to the <em>proc</em>.</p>
+<p>The size of the stack given to the new thread.</p>
+<p>Bitmask containing flags allowing the caller to modify behavior of the
+new thread.</p>
+<p>The referred storage is used to place the exit code of the thread waited
+upon into it.</p>
+<h1 id="introduction">INTRODUCTION</h1>
+<p>Beginning with the 8.1 release, the Tcl core is thread safe, which
+allows you to incorporate Tcl into multithreaded applications without
+customizing the Tcl core. Starting with the 8.6 release, Tcl
+multithreading support is on by default. To disable Tcl multithreading
+support, you must include the <strong>- -disable-threads</strong> option to
+<strong>configure</strong> when you configure and compile your Tcl core.</p>
+<p>An important constraint of the Tcl threads implementation is that <em>only
+the thread that created a Tcl interpreter can use that</em> interpreter. In
+other words, multiple threads can not access the same Tcl interpreter.
+(However, a single thread can safely create and use multiple
+interpreters.)</p>
+<h1 id="description">DESCRIPTION</h1>
+<p>Tcl provides <strong>Tcl_CreateThread</strong> for creating threads. The caller can
+determine the size of the stack given to the new thread and modify the
+behavior through the supplied <em>flags</em>. The value
+<strong>TCL_THREAD_STACK_DEFAULT</strong> for the <em>stackSize</em> indicates that the
+default size as specified by the operating system is to be used for the
+new thread. As for the flags, currently only the values
+<strong>TCL_THREAD_NOFLAGS</strong> and <strong>TCL_THREAD_JOINABLE</strong> are defined. The
+first of them invokes the default behavior with no special settings.
+Using the second value marks the new thread as <em>joinable</em>. This means
+that another thread can wait for the such marked thread to exit and join
+it.</p>
+<p>Restrictions: On some UNIX systems the pthread-library does not contain
+the functionality to specify the stack size of a thread. The specified
+value for the stack size is ignored on these systems. Windows currently
+does not support joinable threads. This flag value is therefore ignored
+on this platform.</p>
+<p>Tcl provides the <strong>Tcl_ExitThread</strong> and <strong>Tcl_FinalizeThread</strong> functions
+for terminating threads and invoking optional per-thread exit handlers.
+See the <strong>Tcl_Exit</strong> page for more information on these procedures.</p>
+<p>The <strong>Tcl_JoinThread</strong> function is provided to allow threads to wait
+upon the exit of another thread, which must have been marked as joinable
+through usage of the <strong>TCL_THREAD_JOINABLE</strong>-flag during its creation
+via <strong>Tcl_CreateThread</strong>.</p>
+<p>Trying to wait for the exit of a non-joinable thread or a thread which
+is already waited upon will result in an error. Waiting for a joinable
+thread which already exited is possible, the system will retain the
+necessary information until after the call to <strong>Tcl_JoinThread</strong>. This
+means that not calling <strong>Tcl_JoinThread</strong> for a joinable thread will
+cause a memory leak.</p>
+<p>The <strong>Tcl_GetThreadData</strong> call returns a pointer to a block of
+thread-private data. Its argument is a key that is shared by all threads
+and a size for the block of storage. The storage is automatically
+allocated and initialized to all zeros the first time each thread asks
+for it. The storage is automatically deallocated by
+<strong>Tcl_FinalizeThread</strong>.</p>
+<h2 id="synchronization-and-communication">SYNCHRONIZATION AND COMMUNICATION</h2>
+<p>Tcl provides <strong>Tcl_ThreadQueueEvent</strong> and <strong>Tcl_ThreadAlert</strong> for
+handling event queuing in multithreaded applications. See the
+<strong>Notifier</strong> manual page for more information on these procedures.</p>
+<p>A mutex is a lock that is used to serialize all threads through a piece
+of code by calling <strong>Tcl_MutexLock</strong> and <strong>Tcl_MutexUnlock</strong>. If one
+thread holds a mutex, any other thread calling <strong>Tcl_MutexLock</strong> will
+block until <strong>Tcl_MutexUnlock</strong> is called. A mutex can be destroyed
+after its use by calling <strong>Tcl_MutexFinalize</strong>.</p>
+<p>Mutexes are reentrant: they can be locked several times from the same
+thread. However there must be exactly one call to <strong>Tcl_MutexUnlock</strong>
+for each call to <strong>Tcl_MutexLock</strong> in order for a thread to release a
+mutex completely.</p>
+<p>The <strong>Tcl_MutexLock</strong>, <strong>Tcl_MutexUnlock</strong> and <strong>Tcl_MutexFinalize</strong>
+procedures are defined as empty macros if not compiling with threads
+enabled. For declaration of mutexes the <strong>TCL_DECLARE_MUTEX</strong> macro
+should be used. This macro assures correct mutex handling even when the
+core is compiled without threads enabled.</p>
+<p>A condition variable is used as a signaling mechanism: a thread can lock
+a mutex and then wait on a condition variable with
+<strong>Tcl_ConditionWait</strong>. This atomically releases the mutex lock and
+blocks the waiting thread until another thread calls
+<strong>Tcl_ConditionNotify</strong>. The caller of <strong>Tcl_ConditionNotify</strong> should
+have the associated mutex held by previously calling <strong>Tcl_MutexLock</strong>,
+but this is not enforced. Notifying the condition variable unblocks all
+threads waiting on the condition variable, but they do not proceed until
+the mutex is released with <strong>Tcl_MutexUnlock</strong>. The implementation of
+<strong>Tcl_ConditionWait</strong> automatically locks the mutex before returning.</p>
+<p>The caller of <strong>Tcl_ConditionWait</strong> should be prepared for spurious
+notifications by calling <strong>Tcl_ConditionWait</strong> within a while loop that
+tests some invariant.</p>
+<p>A condition variable can be destroyed after its use by calling
+<strong>Tcl_ConditionFinalize</strong>.</p>
+<p>The <strong>Tcl_ConditionNotify</strong>, <strong>Tcl_ConditionWait</strong> and
+<strong>Tcl_ConditionFinalize</strong> procedures are defined as empty macros if not
+compiling with threads enabled.</p>
+<h2 id="initialization">INITIALIZATION</h2>
+<p>All of these synchronization objects are self-initializing. They are
+implemented as opaque pointers that should be NULL upon first use. The
+mutexes and condition variables are either cleaned up by process exit
+handlers (if living that long) or explicitly by calls to
+<strong>Tcl_MutexFinalize</strong> or <strong>Tcl_ConditionFinalize</strong>. Thread local storage
+is reclaimed during <strong>Tcl_FinalizeThread</strong>.</p>
+<h1 id="script-level-access-to-threads">SCRIPT-LEVEL ACCESS TO THREADS</h1>
+<p>Tcl provides no built-in commands for scripts to use to create, manage,
+or join threads, nor any script-level access to mutex or condition
+variables. It provides such facilities only via C interfaces, and leaves
+it up to packages to expose these matters to the script level. One such
+package is the <strong>Thread</strong> package.</p>
+<h1 id="example">EXAMPLE</h1>
+<p>To create a thread with portable code, its implementation function
+should be declared as follows:</p>
+<p>static <strong>Tcl_ThreadCreateProc</strong> MyThreadImplFunc;</p>
+<p>It should then be defined like this example, which just counts up to a
+given value and then finishes.</p>
+<p>static <strong>Tcl_ThreadCreateType</strong> MyThreadImplFunc( void *clientData) {
+int i, limit = (int) clientData; for (i=0 ; i\&lt;limit ; i++) { /* doing
+nothing at all here */ } <strong>TCL_THREAD_CREATE_RETURN</strong>; }</p>
+<p>To create the above thread, make it execute, and wait for it to finish,
+we would do this:</p>
+<p>int limit = 1000000000; void *limitData = (void*)((intptr_t) limit);
+Tcl_ThreadId id; <em>/* holds identity of thread created */</em> int result;</p>
+<p>if (<strong>Tcl_CreateThread</strong>(&amp;id, MyThreadImplFunc, limitData,
+<strong>TCL_THREAD_STACK_DEFAULT</strong>, <strong>TCL_THREAD_JOINABLE</strong>) != TCL_OK) { <em>/*
+Thread did not create correctly */</em> return; } <em>/* Do something else
+for a while here */</em> if (<strong>Tcl_JoinThread</strong>(id, &amp;result) != TCL_OK) {
+<em>/* Thread did not finish properly */</em> return; } <em>/* All cleaned up
+nicely */</em></p>
+<h1 id="see-also">SEE ALSO</h1>
+<p>Tcl_GetCurrentThread(3), Tcl_ThreadQueueEvent(3), Tcl_ThreadAlert(3),
+Tcl_ExitThread(3), Tcl_FinalizeThread(3),
+Tcl_CreateThreadExitHandler(3), Tcl_DeleteThreadExitHandler(3), Thread</p>
+<h1 id="keywords">KEYWORDS</h1>
+<p>thread, mutex, condition variable, thread local storage</p>
+              
+            </div>
+          </div><footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+    
+  </span>
+</div>
+    <script>var base_url = '..';</script>
+    <script src="../js/theme_extra.js" defer></script>
+    <script src="../js/theme.js" defer></script>
+      <script src="../search/main.js" defer></script>
+    <script defer>
+        window.onload = function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        };
+    </script>
+
+</body>
+</html>

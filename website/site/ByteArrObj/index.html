@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><link rel="canonical" href="https://www.tcl.tk/man/tcl8.6.13/TclCmd/contents.html/ByteArrObj/" />
+      <link rel="shortcut icon" href="../img/favicon.ico" />
+    <title>NAME - Tcl/Tk</title>
+    <link rel="stylesheet" href="../css/theme.css" />
+    <link rel="stylesheet" href="../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "NAME";
+        var mkdocs_page_input_path = "ByteArrObj.md";
+        var mkdocs_page_url = "/man/tcl8.6.13/TclCmd/contents.html/ByteArrObj/";
+      </script>
+    
+    <script src="../js/jquery-3.6.0.min.js" defer></script>
+    <!--[if lt IE 9]>
+      <script src="../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
+      <script>hljs.initHighlightingOnLoad();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href=".." class="icon icon-home"> Tcl/Tk
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="..">Home</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="" href="../command.md">Commands</a>
+                </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="..">Tcl/Tk</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href=".." class="icon icon-home" aria-label="Docs"></a> &raquo;</li>
+      <li>NAME</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="name">NAME</h1>
+<p>Tcl_NewByteArrayObj, Tcl_SetByteArrayObj, Tcl_GetBytesFromObj,
+Tcl_GetByteArrayFromObj, Tcl_SetByteArrayLength - manipulate a Tcl value
+as an array of bytes</p>
+<h1 id="synopsis">SYNOPSIS</h1>
+<pre><code>#include &lt;tcl.h&gt;
+
+Tcl_Obj *
+Tcl_NewByteArrayObj(bytes, numBytes)
+
+void
+Tcl_SetByteArrayObj(objPtr, bytes, numBytes)
+
+unsigned char *
+Tcl_GetBytesFromObj(interp, objPtr, numBytesPtr)
+
+unsigned char *
+Tcl_GetByteArrayFromObj(objPtr, numBytesPtr)
+
+unsigned char *
+Tcl_SetByteArrayLength(objPtr, numBytes)
+</code></pre>
+<h1 id="arguments">ARGUMENTS</h1>
+<p>The array of bytes used to initialize or set a byte-array value. May be
+NULL even if <em>numBytes</em> is non-zero.</p>
+<p>The number of bytes in the array.</p>
+<p>For <strong>Tcl_SetByteArrayObj</strong>, this points to an unshared value to be
+overwritten by a byte-array value. For <strong>Tcl_GetBytesFromObj</strong>,
+<strong>Tcl_GetByteArrayFromObj</strong> and <strong>Tcl_SetByteArrayLength</strong>, this points
+to the value from which to extract an array of bytes.</p>
+<p>Interpreter to use for error reporting.</p>
+<p>Points to space where the number of bytes in the array may be written.
+Caller may pass NULL when it does not need this information.</p>
+<h1 id="description">DESCRIPTION</h1>
+<p>These routines are used to create, modify, store, transfer, and retrieve
+arbitrary binary data in Tcl values. Specifically, data that can be
+represented as a sequence of arbitrary byte values is supported. This
+includes data read from binary channels, values created by the
+<strong>binary</strong> command, encrypted data, or other information representable
+as a finite byte sequence.</p>
+<p>A byte is an 8-bit quantity with no inherent meaning. When the 8 bits
+are interpreted as an integer value, the range of possible values is
+(0-255). The C type best suited to store a byte is the <strong>unsigned
+char</strong>. An <strong>unsigned char</strong> array of size <em>N</em> stores an aribtrary
+binary value of size <em>N</em> bytes. We call this representation a
+byte-array. Here we document the routines that allow us to operate on
+Tcl values as byte-arrays.</p>
+<p>All Tcl values must correspond to a string representation. When a
+byte-array value must be processed as a string, the sequence of <em>N</em>
+bytes is transformed into the corresponding sequence of <em>N</em> characters,
+where each byte value transforms to the same character codepoint value
+in the range (U+0000 - U+00FF). Obtaining the string representation of a
+byte-array value (by calling <strong>Tcl_GetStringFromObj</strong>) produces this
+string in Tcl\'s usual Modified UTF-8 encoding.</p>
+<p><strong>Tcl_NewByteArrayObj</strong> and <strong>Tcl_SetByteArrayObj</strong> create a new value
+or overwrite an existing unshared value, respectively, to hold a
+byte-array value of <em>numBytes</em> bytes. When a caller passes a non-NULL
+value of <em>bytes</em>, it must point to memory from which <em>numBytes</em> bytes
+can be read. These routines allocate <em>numBytes</em> bytes of memory, copy
+<em>numBytes</em> bytes from <em>bytes</em> into it, and keep the result in the
+internal representation of the new or overwritten value. When the caller
+passes a NULL value of <em>bytes</em>, the data copying step is skipped, and
+the bytes stored in the value are undefined. A <em>bytes</em> value of NULL is
+useful only when the caller will arrange to write known contents into
+the byte-array through a pointer retrieved by a call to one of the
+routines explained below. <strong>Tcl_NewByteArrayObj</strong> returns a pointer to
+the created value with a reference count of zero.
+<strong>Tcl_SetByteArrayObj</strong> overwrites and invalidates any old contents of
+the unshared <em>objPtr</em> as appropriate, and keeps its reference count (0
+or 1) unchanged. The value produced by these routines has no string
+representation. Any memory allocation failure may cause a panic.</p>
+<p><strong>Tcl_GetBytesFromObj</strong> performs the opposite function of
+<strong>Tcl_SetByteArrayObj</strong>, providing access to read a byte-array from a
+Tcl value that was previously written into it. When <em>objPtr</em> is a value
+previously produced by <strong>Tcl_NewByteArrayObj</strong> or
+<strong>Tcl_SetByteArrayObj</strong>, then <strong>Tcl_GetBytesFromObj</strong> returns a pointer
+to the byte-array kept in the value\'s internal representation. If the
+caller provides a non-NULL value for <em>numBytesPtr</em>, it must point to
+memory where <strong>Tcl_GetBytesFromObj</strong> can write the number of bytes in
+the value\'s internal byte-array. With both pieces of information, the
+caller is able to retrieve any information about the contents of that
+byte-array that it seeks. When <em>objPtr</em> does not already contain an
+internal byte-array, <strong>Tcl_GetBytesFromObj</strong> will try to create one from
+the value\'s string representation. Any string value that does not
+include any character codepoints outside the range (U+0000 - U+00FF)
+will successfully translate to a unique byte-array value. With the
+created byte-array, the routine returns as before. For any string
+representation which does contain a forbidden character codepoint, the
+conversion fails, and <strong>Tcl_GetBytesFromObj</strong> returns NULL to signal
+that failure. On failure, nothing will be written to <em>numBytesPtr</em>, and
+if the <em>interp</em> argument is non-NULL, then error messages and codes are
+left in it recording the error.</p>
+<p><strong>Tcl_GetByteArrayFromObj</strong> performs exactly the same function as
+<strong>Tcl_GetBytesFromObj</strong> does when called with the <em>interp</em> argument
+passed the value NULL. This is incompatible with the way
+<strong>Tcl_GetByteArrayFromObj</strong> functioned in Tcl 8. <strong>Tcl_GetBytesFromObj</strong>
+is the more capable interface and should usually be favored for use over
+<strong>Tcl_GetByteArrayFromObj</strong>.</p>
+<p>On success, both <strong>Tcl_GetByteFromObj</strong> and <strong>Tcl_GetByteArrayFromObj</strong>
+return a pointer into the internal representation of a <strong>Tcl_Obj</strong>. That
+pointer must not be freed by the caller, and should not be retained for
+use beyond the known time the internal representation of the value has
+not been disturbed. The pointer may be used to overwrite the byte
+contents of the internal representation, so long as the value is
+unshared and any string representation is invalidated.</p>
+<p>On success, both <strong>Tcl_GetBytesFromObj</strong> and <strong>Tcl_GetByteArrayFromObj</strong>
+write the number of bytes in the byte-array value of <em>objPtr</em> to the
+space pointed to by <em>numBytesPtr</em>. This space may be of type
+<strong>Tcl_Size</strong> or of type <strong>int</strong>. It is recommended that callers provide
+a <strong>Tcl_Size</strong> space for this purpose. If the caller provides only an
+<strong>int</strong> space and the number of bytes in the byte-array value of
+<em>objPtr</em> is greater than <strong>INT_MAX</strong>, the routine will fail due to being
+unable to correctly report the byte-array size to the caller. The
+ability to provide an <strong>int</strong> space is best considered a migration aid
+for codebases constrained to continue operating with Tcl releases older
+than 8.7.</p>
+<p><strong>Tcl_SetByteArrayLength</strong> enables a caller to change the size of a
+byte-array in the internal representation of an unshared <em>objPtr</em> to
+become <em>numBytes</em> bytes. This is most often useful after the bytes of
+the internal byte-array have been directly overwritten and it has been
+discovered that the required size differs from the first estimate used
+in the allocation. <strong>Tcl_SetByteArrayLength</strong> returns a pointer to the
+resized byte-array. Because resizing the byte-array changes the internal
+representation, <strong>Tcl_SetByteArrayLength</strong> also invalidates any string
+representation in <em>objPtr</em>. If resizing grows the byte-array, the new
+byte values are undefined. If <em>objPtr</em> does not already possess an
+internal byte-array, one is produced in the same way that
+<strong>Tcl_GetBytesFromObj</strong> does, also returning NULL when any characters of
+the value in <em>objPtr</em> (up to <em>numBytes</em> of them) are not valid bytes.</p>
+<h1 id="reference-count-management">REFERENCE COUNT MANAGEMENT</h1>
+<p><strong>Tcl_NewByteArrayObj</strong> always returns a zero-reference object, much
+like <strong>Tcl_NewObj</strong>.</p>
+<p><strong>Tcl_SetByteArrayObj</strong> and <strong>Tcl_SetByteArrayLength</strong> do not modify the
+reference count of their <em>objPtr</em> arguments, but do require that the
+object be unshared.</p>
+<p><strong>Tcl_GetBytesFromObj</strong> and <strong>Tcl_GetByteArrayFromObj</strong> do not modify
+the reference count of <em>objPtr</em>; they only read.</p>
+<h1 id="see-also">SEE ALSO</h1>
+<p>Tcl_GetStringFromObj, Tcl_NewObj, Tcl_IncrRefCount, Tcl_DecrRefCount</p>
+<h1 id="keywords">KEYWORDS</h1>
+<p>value, binary data, byte array, utf, unicode</p>
+              
+            </div>
+          </div><footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+    
+  </span>
+</div>
+    <script>var base_url = '..';</script>
+    <script src="../js/theme_extra.js" defer></script>
+    <script src="../js/theme.js" defer></script>
+      <script src="../search/main.js" defer></script>
+    <script defer>
+        window.onload = function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        };
+    </script>
+
+</body>
+</html>

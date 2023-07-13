@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><link rel="canonical" href="https://www.tcl.tk/man/tcl8.6.13/TclCmd/contents.html/SplitList/" />
+      <link rel="shortcut icon" href="../img/favicon.ico" />
+    <title>NAME - Tcl/Tk</title>
+    <link rel="stylesheet" href="../css/theme.css" />
+    <link rel="stylesheet" href="../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "NAME";
+        var mkdocs_page_input_path = "SplitList.md";
+        var mkdocs_page_url = "/man/tcl8.6.13/TclCmd/contents.html/SplitList/";
+      </script>
+    
+    <script src="../js/jquery-3.6.0.min.js" defer></script>
+    <!--[if lt IE 9]>
+      <script src="../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
+      <script>hljs.initHighlightingOnLoad();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href=".." class="icon icon-home"> Tcl/Tk
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="..">Home</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="" href="../command.md">Commands</a>
+                </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="..">Tcl/Tk</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href=".." class="icon icon-home" aria-label="Docs"></a> &raquo;</li>
+      <li>NAME</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="name">NAME</h1>
+<p>Tcl_SplitList, Tcl_Merge, Tcl_ScanElement, Tcl_ConvertElement,
+Tcl_ScanCountedElement, Tcl_ConvertCountedElement - manipulate Tcl lists</p>
+<h1 id="synopsis">SYNOPSIS</h1>
+<pre><code>#include &lt;tcl.h&gt;
+
+int
+Tcl_SplitList(interp, list, argcPtr, argvPtr)
+
+char *
+Tcl_Merge(argc, argv)
+
+Tcl_Size
+Tcl_ScanElement(src, flagsPtr)
+
+Tcl_Size
+Tcl_ScanCountedElement(src, length, flagsPtr)
+
+Tcl_Size
+Tcl_ConvertElement(src, dst, flags)
+
+Tcl_Size
+Tcl_ConvertCountedElement(src, length, dst, flags)
+</code></pre>
+<h1 id="arguments">ARGUMENTS</h1>
+<p>Interpreter to use for error reporting. If NULL, then no error message
+is left.</p>
+<p>Pointer to a string with proper list structure.</p>
+<p>Filled in with number of elements in <em>list</em>.</p>
+<p><em>*argvPtr</em> will be filled in with the address of an array of pointers
+to the strings that are the extracted elements of <em>list</em>. There will be
+<em>*argcPtr</em> valid entries in the array, followed by a NULL entry.</p>
+<p>Number of elements in <em>argv</em>.</p>
+<p>Array of strings to merge together into a single list. Each string will
+become a separate element of the list.</p>
+<p>String that is to become an element of a list.</p>
+<p>Pointer to word to fill in with information about <em>src</em>. The value of
+*<em>flagsPtr</em> must be passed to <strong>Tcl_ConvertElement</strong>.</p>
+<p>Number of bytes in string <em>src</em>.</p>
+<p>Place to copy converted list element. Must contain enough characters to
+hold converted string.</p>
+<p>Information about <em>src</em>. Must be value returned by previous call to
+<strong>Tcl_ScanElement</strong>, possibly OR-ed with <strong>TCL_DONT_USE_BRACES</strong>.</p>
+<h1 id="description">DESCRIPTION</h1>
+<p>These procedures may be used to disassemble and reassemble Tcl lists.
+<strong>Tcl_SplitList</strong> breaks a list up into its constituent elements,
+returning an array of pointers to the elements using <em>argcPtr</em> and
+<em>argvPtr</em>. While extracting the arguments, <strong>Tcl_SplitList</strong> obeys the
+usual rules for backslash substitutions and braces. The area of memory
+pointed to by <em>*argvPtr</em> is dynamically allocated; in addition to the
+array of pointers, it also holds copies of all the list elements. It is
+the caller\'s responsibility to free up all of this storage. For
+example, suppose that you have called <strong>Tcl_SplitList</strong> with the
+following code:</p>
+<p>Tcl_Size argc; int code; char *string; char **argv; ... code =
+<strong>Tcl_SplitList</strong>(interp, string, &amp;argc, &amp;argv);</p>
+<p>Then you should eventually free the storage with a call like the
+following:</p>
+<p>Tcl_Free(argv);</p>
+<p><strong>Tcl_SplitList</strong> normally returns <strong>TCL_OK</strong>, which means the list was
+successfully parsed. If <em>sizePtr</em> points to a variable of type <strong>int</strong>
+and the list contains more than 2**31 key/value pairs, or there was a
+syntax error in <em>list</em>, then <strong>TCL_ERROR</strong> is returned and the
+interpreter\'s result will point to an error message describing the
+problem (if <em>interp</em> was not NULL). If <strong>TCL_ERROR</strong> is returned then no
+memory is allocated and <em>*argvPtr</em> is not modified.</p>
+<p><strong>Tcl_Merge</strong> is the inverse of <strong>Tcl_SplitList</strong>: it takes a collection
+of strings given by <em>argc</em> and <em>argv</em> and generates a result string that
+has proper list structure. This means that commands like <strong>index</strong> may
+be used to extract the original elements again. In addition, if the
+result of <strong>Tcl_Merge</strong> is passed to <strong>Tcl_Eval</strong>, it will be parsed
+into <em>argc</em> words whose values will be the same as the <em>argv</em> strings
+passed to <strong>Tcl_Merge</strong>. <strong>Tcl_Merge</strong> will modify the list elements
+with braces and/or backslashes in order to produce proper Tcl list
+structure. The result string is dynamically allocated using
+<strong>Tcl_Alloc</strong>; the caller must eventually release the space using
+<strong>Tcl_Free</strong>.</p>
+<p>If the result of <strong>Tcl_Merge</strong> is passed to <strong>Tcl_SplitList</strong>, the
+elements returned by <strong>Tcl_SplitList</strong> will be identical to those passed
+into <strong>Tcl_Merge</strong>. However, the converse is not true: if
+<strong>Tcl_SplitList</strong> is passed a given string, and the resulting <em>argc</em> and
+<em>argv</em> are passed to <strong>Tcl_Merge</strong>, the resulting string may not be the
+same as the original string passed to <strong>Tcl_SplitList</strong>. This is because
+<strong>Tcl_Merge</strong> may use backslashes and braces differently than the
+original string.</p>
+<p><strong>Tcl_ScanElement</strong> and <strong>Tcl_ConvertElement</strong> are the procedures that
+do all of the real work of <strong>Tcl_Merge</strong>. <strong>Tcl_ScanElement</strong> scans its
+<em>src</em> argument and determines how to use backslashes and braces when
+converting it to a list element. It returns an overestimate of the
+number of characters required to represent <em>src</em> as a list element, and
+it stores information in <em>*flagsPtr</em> that is needed by
+<strong>Tcl_ConvertElement</strong>.</p>
+<p><strong>Tcl_ConvertElement</strong> is a companion procedure to <strong>Tcl_ScanElement</strong>.
+It does the actual work of converting a string to a list element. Its
+<em>flags</em> argument must be the same as the value returned by
+<strong>Tcl_ScanElement</strong>. <strong>Tcl_ConvertElement</strong> writes a proper list element
+to memory starting at *<em>dst</em> and returns a count of the total number of
+characters written, which will be no more than the result returned by
+<strong>Tcl_ScanElement</strong>. <strong>Tcl_ConvertElement</strong> writes out only the actual
+list element without any leading or trailing spaces: it is up to the
+caller to include spaces between adjacent list elements.</p>
+<p><strong>Tcl_ConvertElement</strong> uses one of two different approaches to handle
+the special characters in <em>src</em>. Wherever possible, it handles special
+characters by surrounding the string with braces. This produces
+clean-looking output, but cannot be used in some situations, such as
+when <em>src</em> contains unmatched braces. In these situations,
+<strong>Tcl_ConvertElement</strong> handles special characters by generating
+backslash sequences for them. The caller may insist on the second
+approach by OR-ing the flag value returned by <strong>Tcl_ScanElement</strong> with
+<strong>TCL_DONT_USE_BRACES</strong>. Although this will produce an uglier result, it
+is useful in some special situations, such as when
+<strong>Tcl_ConvertElement</strong> is being used to generate a portion of an
+argument for a Tcl command. In this case, surrounding <em>src</em> with curly
+braces would cause the command not to be parsed correctly.</p>
+<p>By default, <strong>Tcl_ConvertElement</strong> will use quoting in its output to be
+sure the first character of an element is not the hash character</p>
+<p>This is to be sure the first element of any list passed to <strong>eval</strong> is
+not mis-parsed as the beginning of a comment. When a list element is not
+the first element of a list, this quoting is not necessary. When the
+caller can be sure that the element is not the first element of a list,
+it can disable quoting of the leading hash character by OR-ing the flag
+value returned by <strong>Tcl_ScanElement</strong> with <strong>TCL_DONT_QUOTE_HASH</strong>.</p>
+<p><strong>Tcl_ScanCountedElement</strong> and <strong>Tcl_ConvertCountedElement</strong> are the
+same as <strong>Tcl_ScanElement</strong> and <strong>Tcl_ConvertElement</strong>, except the
+length of string <em>src</em> is specified by the <em>length</em> argument, and the
+string may contain embedded nulls.</p>
+<h1 id="see-also">SEE ALSO</h1>
+<p>Tcl_ListObjGetElements(3)</p>
+<h1 id="keywords">KEYWORDS</h1>
+<p>backslash, convert, element, list, merge, split, strings</p>
+              
+            </div>
+          </div><footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+    
+  </span>
+</div>
+    <script>var base_url = '..';</script>
+    <script src="../js/theme_extra.js" defer></script>
+    <script src="../js/theme.js" defer></script>
+      <script src="../search/main.js" defer></script>
+    <script defer>
+        window.onload = function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        };
+    </script>
+
+</body>
+</html>

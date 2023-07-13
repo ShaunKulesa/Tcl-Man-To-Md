@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><link rel="canonical" href="https://www.tcl.tk/man/tcl8.6.13/TclCmd/contents.html/Limit/" />
+      <link rel="shortcut icon" href="../img/favicon.ico" />
+    <title>NAME - Tcl/Tk</title>
+    <link rel="stylesheet" href="../css/theme.css" />
+    <link rel="stylesheet" href="../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "NAME";
+        var mkdocs_page_input_path = "Limit.md";
+        var mkdocs_page_url = "/man/tcl8.6.13/TclCmd/contents.html/Limit/";
+      </script>
+    
+    <script src="../js/jquery-3.6.0.min.js" defer></script>
+    <!--[if lt IE 9]>
+      <script src="../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
+      <script>hljs.initHighlightingOnLoad();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href=".." class="icon icon-home"> Tcl/Tk
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="..">Home</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="" href="../command.md">Commands</a>
+                </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="..">Tcl/Tk</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href=".." class="icon icon-home" aria-label="Docs"></a> &raquo;</li>
+      <li>NAME</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="name">NAME</h1>
+<p>Tcl_LimitAddHandler, Tcl_LimitCheck, Tcl_LimitExceeded,
+Tcl_LimitGetCommands, Tcl_LimitGetGranularity, Tcl_LimitGetTime,
+Tcl_LimitReady, Tcl_LimitRemoveHandler, Tcl_LimitSetCommands,
+Tcl_LimitSetGranularity, Tcl_LimitSetTime, Tcl_LimitTypeEnabled,
+Tcl_LimitTypeExceeded, Tcl_LimitTypeReset, Tcl_LimitTypeSet - manage and
+check resource limits on interpreters</p>
+<h1 id="synopsis">SYNOPSIS</h1>
+<pre><code>#include &lt;tcl.h&gt;
+
+int
+Tcl_LimitCheck(interp)
+
+int
+Tcl_LimitReady(interp)
+
+int
+Tcl_LimitExceeded(interp)
+
+int
+Tcl_LimitTypeExceeded(interp, type)
+
+int
+Tcl_LimitTypeEnabled(interp, type)
+
+void
+Tcl_LimitTypeSet(interp, type)
+
+void
+Tcl_LimitTypeReset(interp, type)
+
+int
+Tcl_LimitGetCommands(interp)
+
+void
+Tcl_LimitSetCommands(interp, commandLimit)
+
+void
+Tcl_LimitGetTime(interp, timeLimitPtr)
+
+void
+Tcl_LimitSetTime(interp, timeLimitPtr)
+
+int
+Tcl_LimitGetGranularity(interp, type)
+
+void
+Tcl_LimitSetGranularity(interp, type, granularity)
+
+void
+Tcl_LimitAddHandler(interp, type, handlerProc, clientData, deleteProc)
+
+void
+Tcl_LimitRemoveHandler(interp, type, handlerProc, clientData)
+</code></pre>
+<h1 id="arguments">ARGUMENTS</h1>
+<p>Interpreter that the limit being managed applies to or that will have
+its limits checked.</p>
+<p>The type of limit that the operation refers to. This must be either
+<strong>TCL_LIMIT_COMMANDS</strong> or <strong>TCL_LIMIT_TIME</strong>.</p>
+<p>The maximum number of commands (as reported by <strong>info cmdcount</strong>) that
+may be executed in the interpreter.</p>
+<p>A pointer to a structure that will either have the new time limit read
+from (<strong>Tcl_LimitSetTime</strong>) or the current time limit written to
+(<strong>Tcl_LimitGetTime</strong>).</p>
+<p>Divisor that indicates how often a particular limit should really be
+checked. Must be at least 1.</p>
+<p>Function to call when a particular limit is exceeded. If the
+<em>handlerProc</em> removes or raises the limit during its processing, the
+limited interpreter will be permitted to continue to process after the
+handler returns. Many handlers may be attached to the same interpreter
+limit; their order of execution is not defined, and they must be
+identified by <em>handlerProc</em> and <em>clientData</em> when they are deleted.</p>
+<p>Arbitrary pointer-sized word used to pass some context to the
+<em>handlerProc</em> function.</p>
+<p>Function to call whenever a handler is deleted. May be NULL if the
+<em>clientData</em> requires no deletion.</p>
+<h1 id="description">DESCRIPTION</h1>
+<p>Tcl\'s interpreter resource limit subsystem allows for close control
+over how much computation time a script may use, and is useful for cases
+where a program is divided into multiple pieces where some parts are
+more trusted than others (e.g. web application servers).</p>
+<p>Every interpreter may have a limit on the wall-time for execution, and a
+limit on the number of commands that the interpreter may execute. Since
+checking of these limits is potentially expensive (especially the time
+limit), each limit also has a checking granularity, which is a divisor
+for an internal count of the number of points in the core where a check
+may be performed (which is immediately before executing a command and at
+an unspecified frequency between running commands, which can happen in
+empty-bodied <strong>while</strong> loops).</p>
+<p>The final component of the limit engine is a callback scheme which
+allows for notifications of when a limit has been exceeded. These
+callbacks can just provide logging, or may allocate more resources to
+the interpreter to permit it to continue processing longer.</p>
+<p>When a limit is exceeded (and the callbacks have run; the order of
+execution of the callbacks is unspecified) execution in the limited
+interpreter is stopped by raising an error and setting a flag that
+prevents the <strong>catch</strong> command in that interpreter from trapping that
+error. It is up to the context that started execution in that
+interpreter (typically the main interpreter) to handle the error.</p>
+<h1 id="limit-checking-api">LIMIT CHECKING API</h1>
+<p>To check the resource limits for an interpreter, call
+<strong>Tcl_LimitCheck</strong>, which returns <strong>TCL_OK</strong> if the limit was not
+exceeded (after processing callbacks) and <strong>TCL_ERROR</strong> if the limit was
+exceeded (in which case an error message is also placed in the
+interpreter result). That function should only be called when
+<strong>Tcl_LimitReady</strong> returns non-zero so that granularity policy is
+enforced. This API is designed to be similar in usage to
+<strong>Tcl_AsyncReady</strong> and <strong>Tcl_AsyncInvoke</strong>.</p>
+<p>When writing code that may behave like <strong>catch</strong> in respect of errors,
+you should only trap an error if <strong>Tcl_LimitExceeded</strong> returns zero. If
+it returns non-zero, the interpreter is in a limit-exceeded state and
+errors should be allowed to propagate to the calling context. You can
+also check whether a particular type of limit has been exceeded using
+<strong>Tcl_LimitTypeExceeded</strong>.</p>
+<h1 id="limit-configuration">LIMIT CONFIGURATION</h1>
+<p>To check whether a limit has been set (but not whether it has actually
+been exceeded) on an interpreter, call <strong>Tcl_LimitTypeEnabled</strong> with the
+type of limit you want to check. To enable a particular limit call
+<strong>Tcl_LimitTypeSet</strong>, and to disable a limit call
+<strong>Tcl_LimitTypeReset</strong>.</p>
+<p>The level of a command limit may be set using <strong>Tcl_LimitSetCommands</strong>,
+and retrieved using <strong>Tcl_LimitGetCommands</strong>. Similarly for a time limit
+with <strong>Tcl_LimitSetTime</strong> and <strong>Tcl_LimitGetTime</strong> respectively, but
+with that API the time limit is copied from and to the Tcl_Time
+structure that the <em>timeLimitPtr</em> argument points to.</p>
+<p>The checking granularity for a particular limit may be set using
+<strong>Tcl_LimitSetGranularity</strong> and retrieved using
+<strong>Tcl_LimitGetGranularity</strong>. Note that granularities must always be
+positive.</p>
+<h2 id="limit-callbacks">LIMIT CALLBACKS</h2>
+<p>To add a handler callback to be invoked when a limit is exceeded, call
+<strong>Tcl_LimitAddHandler</strong>. The <em>handlerProc</em> argument describes the
+function that will actually be called; it should have the following
+prototype:</p>
+<p>typedef void <strong>Tcl_LimitHandlerProc</strong>( void *<em>clientData</em>, Tcl_Interp
+*<em>interp</em>);</p>
+<p>The <em>clientData</em> argument to the handler will be whatever is passed to
+the <em>clientData</em> argument to <strong>Tcl_LimitAddHandler</strong>, and the <em>interp</em>
+is the interpreter that had its limit exceeded.</p>
+<p>The <em>deleteProc</em> argument to <strong>Tcl_LimitAddHandler</strong> is a function to
+call to delete the <em>clientData</em> value. It may be <strong>TCL_STATIC</strong> or NULL
+if no deletion action is necessary, or <strong>TCL_DYNAMIC</strong> if all that is
+necessary is to free the structure with <strong>Tcl_Free</strong>. Otherwise, it
+should refer to a function with the following prototype:</p>
+<p>typedef void <strong>Tcl_LimitHandlerDeleteProc</strong>( void *<em>clientData</em>);</p>
+<p>A limit handler may be deleted using <strong>Tcl_LimitRemoveHandler</strong>; the
+handler removed will be the first one found (out of the handlers added
+with <strong>Tcl_LimitAddHandler</strong>) with exactly matching <em>type</em>,
+<em>handlerProc</em> and <em>clientData</em> arguments. This function always invokes
+the <em>deleteProc</em> on the <em>clientData</em> (unless the <em>deleteProc</em> was NULL
+or <strong>TCL_STATIC</strong>).</p>
+<h1 id="keywords">KEYWORDS</h1>
+<p>interpreter, resource, limit, commands, time, callback</p>
+              
+            </div>
+          </div><footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+    
+  </span>
+</div>
+    <script>var base_url = '..';</script>
+    <script src="../js/theme_extra.js" defer></script>
+    <script src="../js/theme.js" defer></script>
+      <script src="../search/main.js" defer></script>
+    <script defer>
+        window.onload = function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        };
+    </script>
+
+</body>
+</html>

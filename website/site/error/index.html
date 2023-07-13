@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><link rel="canonical" href="https://www.tcl.tk/man/tcl8.6.13/TclCmd/contents.html/error/" />
+      <link rel="shortcut icon" href="../img/favicon.ico" />
+    <title>NAME - Tcl/Tk</title>
+    <link rel="stylesheet" href="../css/theme.css" />
+    <link rel="stylesheet" href="../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "NAME";
+        var mkdocs_page_input_path = "error.md";
+        var mkdocs_page_url = "/man/tcl8.6.13/TclCmd/contents.html/error/";
+      </script>
+    
+    <script src="../js/jquery-3.6.0.min.js" defer></script>
+    <!--[if lt IE 9]>
+      <script src="../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
+      <script>hljs.initHighlightingOnLoad();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href=".." class="icon icon-home"> Tcl/Tk
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="..">Home</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="" href="../command.md">Commands</a>
+                </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="..">Tcl/Tk</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href=".." class="icon icon-home" aria-label="Docs"></a> &raquo;</li>
+      <li>NAME</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="name">NAME</h1>
+<p>error - Generate an error</p>
+<h1 id="synopsis">SYNOPSIS</h1>
+<p><strong>error </strong><em>message</em> ?<em>info</em>? ?<em>code</em>?</p>
+<h1 id="description">DESCRIPTION</h1>
+<p>Returns a <strong>TCL_ERROR</strong> code, which causes command interpretation to be
+unwound. <em>Message</em> is a string that is returned to the application to
+indicate what went wrong.</p>
+<p>The <strong>-errorinfo</strong> return option of an interpreter is used to accumulate
+a stack trace of what was in progress when an error occurred; as nested
+commands unwind, the Tcl interpreter adds information to the
+<strong>-errorinfo</strong> return option. If the <em>info</em> argument is present, it is
+used to initialize the <strong>-errorinfo</strong> return options and the first
+increment of unwind information will not be added by the Tcl
+interpreter. In other words, the command containing the <strong>error</strong>
+command will not appear in the stack trace; in its place will be <em>info</em>.
+Historically, this feature had been most useful in conjunction with the
+<strong>catch</strong> command: if a caught error cannot be handled successfully,
+<em>info</em> can be used to return a stack trace reflecting the original point
+of occurrence of the error:</p>
+<p>catch {...} errMsg set savedInfo \$::errorInfo ... <strong>error</strong> \$errMsg
+\$savedInfo</p>
+<p>When working with Tcl 8.5 or later, the following code should be used
+instead:</p>
+<p>catch {...} errMsg options ... return -options \$options \$errMsg</p>
+<p>If the <em>code</em> argument is present, then its value is stored in the
+<strong>-errorcode</strong> return option. The <strong>-errorcode</strong> return option is
+intended to hold a machine-readable description of the error in cases
+where such information is available; see the <strong>return</strong> manual page for
+information on the proper format for this option\'s value.</p>
+<h1 id="example">EXAMPLE</h1>
+<p>Generate an error if a basic mathematical operation fails:</p>
+<p>if {1+2 != 3} { <strong>error</strong> \"something is very wrong with addition\" }</p>
+<h1 id="see-also">SEE ALSO</h1>
+<p>catch(n), return(n)</p>
+<h1 id="keywords">KEYWORDS</h1>
+<p>error, exception</p>
+              
+            </div>
+          </div><footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+    
+  </span>
+</div>
+    <script>var base_url = '..';</script>
+    <script src="../js/theme_extra.js" defer></script>
+    <script src="../js/theme.js" defer></script>
+      <script src="../search/main.js" defer></script>
+    <script defer>
+        window.onload = function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        };
+    </script>
+
+</body>
+</html>

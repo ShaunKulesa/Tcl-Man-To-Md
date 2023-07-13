@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><link rel="canonical" href="https://www.tcl.tk/man/tcl8.6.13/TclCmd/contents.html/CrtInterp/" />
+      <link rel="shortcut icon" href="../img/favicon.ico" />
+    <title>NAME - Tcl/Tk</title>
+    <link rel="stylesheet" href="../css/theme.css" />
+    <link rel="stylesheet" href="../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "NAME";
+        var mkdocs_page_input_path = "CrtInterp.md";
+        var mkdocs_page_url = "/man/tcl8.6.13/TclCmd/contents.html/CrtInterp/";
+      </script>
+    
+    <script src="../js/jquery-3.6.0.min.js" defer></script>
+    <!--[if lt IE 9]>
+      <script src="../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
+      <script>hljs.initHighlightingOnLoad();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href=".." class="icon icon-home"> Tcl/Tk
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="..">Home</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="" href="../command.md">Commands</a>
+                </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="..">Tcl/Tk</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href=".." class="icon icon-home" aria-label="Docs"></a> &raquo;</li>
+      <li>NAME</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="name">NAME</h1>
+<p>Tcl_CreateInterp, Tcl_DeleteInterp, Tcl_InterpActive,
+Tcl_InterpDeleted - create and delete Tcl command interpreters</p>
+<h1 id="synopsis">SYNOPSIS</h1>
+<pre><code>#include &lt;tcl.h&gt;
+
+Tcl_Interp *
+Tcl_CreateInterp()
+
+Tcl_DeleteInterp(interp)
+
+int
+Tcl_InterpDeleted(interp)
+
+int
+Tcl_InterpActive(interp)
+</code></pre>
+<h1 id="arguments">ARGUMENTS</h1>
+<p>Token for interpreter to be destroyed or queried.</p>
+<h1 id="description">DESCRIPTION</h1>
+<p><strong>Tcl_CreateInterp</strong> creates a new interpreter structure and returns a
+token for it. The token is required in calls to most other Tcl
+procedures, such as <strong>Tcl_CreateCommand</strong>, <strong>Tcl_Eval</strong>, and
+<strong>Tcl_DeleteInterp</strong>. The token returned by <strong>Tcl_CreateInterp</strong> may
+only be passed to Tcl routines called from the same thread as the
+original <strong>Tcl_CreateInterp</strong> call. It is not safe for multiple threads
+to pass the same token to Tcl\'s routines. The new interpreter is
+initialized with the built-in Tcl commands and with standard variables
+like <strong>tcl_platform</strong> and <strong>env</strong>. To bind in additional commands, call
+<strong>Tcl_CreateCommand</strong>, and to create additional variables, call
+<strong>Tcl_SetVar</strong>.</p>
+<p><strong>Tcl_DeleteInterp</strong> marks an interpreter as deleted; the interpreter
+will eventually be deleted when all calls to <strong>Tcl_Preserve</strong> for it
+have been matched by calls to <strong>Tcl_Release</strong>. At that time, all of the
+resources associated with it, including variables, procedures, and
+application-specific command bindings, will be deleted. After
+<strong>Tcl_DeleteInterp</strong> returns any attempt to use <strong>Tcl_Eval</strong> on the
+interpreter will fail and return <strong>TCL_ERROR</strong>. After the call to
+<strong>Tcl_DeleteInterp</strong> it is safe to examine the interpreter\'s result,
+query or set the values of variables, define, undefine or retrieve
+procedures, and examine the runtime evaluation stack. See below, in the
+section <strong>INTERPRETERS AND MEMORY MANAGEMENT</strong> for details.</p>
+<p><strong>Tcl_InterpDeleted</strong> returns nonzero if <strong>Tcl_DeleteInterp</strong> was called
+with <em>interp</em> as its argument; this indicates that the interpreter will
+eventually be deleted, when the last call to <strong>Tcl_Preserve</strong> for it is
+matched by a call to <strong>Tcl_Release</strong>. If nonzero is returned, further
+calls to <strong>Tcl_Eval</strong> in this interpreter will return <strong>TCL_ERROR</strong>.</p>
+<p><strong>Tcl_InterpDeleted</strong> is useful in deletion callbacks to distinguish
+between when only the memory the callback is responsible for is being
+deleted and when the whole interpreter is being deleted. In the former
+case the callback may recreate the data being deleted, but this would
+lead to an infinite loop if the interpreter were being deleted.</p>
+<p><strong>Tcl_InterpActive</strong> is useful for determining whether there is any
+execution of scripts ongoing in an interpreter, which is a useful piece
+of information when Tcl is embedded in a garbage-collected environment
+and it becomes necessary to determine whether the interpreter is a
+candidate for deletion. The function returns a true value if the
+interpreter has at least one active execution running inside it, and a
+false value otherwise.</p>
+<h1 id="interpreters-and-memory-management">INTERPRETERS AND MEMORY MANAGEMENT</h1>
+<p><strong>Tcl_DeleteInterp</strong> can be called at any time on an interpreter that
+may be used by nested evaluations and C code in various extensions. Tcl
+implements a simple mechanism that allows callers to use interpreters
+without worrying about the interpreter being deleted in a nested call,
+and without requiring special code to protect the interpreter, in most
+cases. This mechanism ensures that nested uses of an interpreter can
+safely continue using it even after <strong>Tcl_DeleteInterp</strong> is called.</p>
+<p>The mechanism relies on matching up calls to <strong>Tcl_Preserve</strong> with calls
+to <strong>Tcl_Release</strong>. If <strong>Tcl_DeleteInterp</strong> has been called, only when
+the last call to <strong>Tcl_Preserve</strong> is matched by a call to
+<strong>Tcl_Release</strong>, will the interpreter be freed. See the manual entry for
+<strong>Tcl_Preserve</strong> for a description of these functions.</p>
+<p>The rules for when the user of an interpreter must call <strong>Tcl_Preserve</strong>
+and <strong>Tcl_Release</strong> are simple:</p>
+<p><strong>Interpreters Passed As Arguments</strong></p>
+<p>:   Functions that are passed an interpreter as an argument can safely
+    use the interpreter without any special protection. Thus, when you
+    write an extension consisting of new Tcl commands, no special code
+    is needed to protect interpreters received as arguments. This covers
+    the majority of all uses.</p>
+<p><strong>Interpreter Creation And Deletion</strong></p>
+<p>:   When a new interpreter is created and used in a call to
+    <strong>Tcl_Eval</strong>, <strong>Tcl_VarEval</strong>, <strong>Tcl_GlobalEval</strong>, <strong>Tcl_SetVar</strong>,
+    or <strong>Tcl_GetVar</strong>, a pair of calls to <strong>Tcl_Preserve</strong> and
+    <strong>Tcl_Release</strong> should be wrapped around all uses of the
+    interpreter. Remember that it is unsafe to use the interpreter once
+    <strong>Tcl_Release</strong> has been called. To ensure that the interpreter is
+    properly deleted when it is no longer needed, call
+    <strong>Tcl_InterpDeleted</strong> to test if some other code already called
+    <strong>Tcl_DeleteInterp</strong>; if not, call <strong>Tcl_DeleteInterp</strong> before
+    calling <strong>Tcl_Release</strong> in your own code.</p>
+<p><strong>Retrieving An Interpreter From A Data Structure</strong></p>
+<p>:   When an interpreter is retrieved from a data structure (e.g. the
+    client data of a callback) for use in one of the evaluation
+    functions (<strong>Tcl_Eval</strong>, <strong>Tcl_VarEval</strong>, <strong>Tcl_GlobalEval</strong>,
+    <strong>Tcl_EvalObjv</strong>, etc.) or variable access functions
+    (<strong>Tcl_SetVar</strong>, <strong>Tcl_GetVar</strong>, <strong>Tcl_SetVar2Ex</strong>, etc.), a pair of
+    calls to <strong>Tcl_Preserve</strong> and <strong>Tcl_Release</strong> should be wrapped
+    around all uses of the interpreter; it is unsafe to reuse the
+    interpreter once <strong>Tcl_Release</strong> has been called. If an interpreter
+    is stored inside a callback data structure, an appropriate deletion
+    cleanup mechanism should be set up by the code that creates the data
+    structure so that the interpreter is removed from the data structure
+    (e.g. by setting the field to NULL) when the interpreter is deleted.
+    Otherwise, you may be using an interpreter that has been freed and
+    whose memory may already have been reused.</p>
+<p>All uses of interpreters in Tcl and Tk have already been protected.
+Extension writers should ensure that their code also properly protects
+any additional interpreters used, as described above.</p>
+<p>Note that the protection mechanisms do not work well with conventional
+garbage collection systems. When in such a managed environment,
+<strong>Tcl_InterpActive</strong> should be used to determine when an interpreter is
+a candidate for deletion due to inactivity.</p>
+<h1 id="see-also">SEE ALSO</h1>
+<p>Tcl_Preserve(3), Tcl_Release(3)</p>
+<h1 id="keywords">KEYWORDS</h1>
+<p>command, create, delete, interpreter</p>
+              
+            </div>
+          </div><footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+    
+  </span>
+</div>
+    <script>var base_url = '..';</script>
+    <script src="../js/theme_extra.js" defer></script>
+    <script src="../js/theme.js" defer></script>
+      <script src="../search/main.js" defer></script>
+    <script defer>
+        window.onload = function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        };
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><link rel="canonical" href="https://www.tcl.tk/man/tcl8.6.13/TclCmd/contents.html/linsert/" />
+      <link rel="shortcut icon" href="../img/favicon.ico" />
+    <title>NAME - Tcl/Tk</title>
+    <link rel="stylesheet" href="../css/theme.css" />
+    <link rel="stylesheet" href="../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "NAME";
+        var mkdocs_page_input_path = "linsert.md";
+        var mkdocs_page_url = "/man/tcl8.6.13/TclCmd/contents.html/linsert/";
+      </script>
+    
+    <script src="../js/jquery-3.6.0.min.js" defer></script>
+    <!--[if lt IE 9]>
+      <script src="../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
+      <script>hljs.initHighlightingOnLoad();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href=".." class="icon icon-home"> Tcl/Tk
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="..">Home</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="" href="../command.md">Commands</a>
+                </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="..">Tcl/Tk</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href=".." class="icon icon-home" aria-label="Docs"></a> &raquo;</li>
+      <li>NAME</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="name">NAME</h1>
+<p>linsert - Insert elements into a list</p>
+<h1 id="synopsis">SYNOPSIS</h1>
+<p><strong>linsert </strong><em>list index </em>?<em>element element ...</em>?</p>
+<h1 id="description">DESCRIPTION</h1>
+<p>This command produces a new list from <em>list</em> by inserting all of the
+<em>element</em> arguments just before the <em>index</em>\'th element of <em>list</em>. Each
+<em>element</em> argument will become a separate element of the new list. If
+<em>index</em> is less than or equal to zero, then the new elements are
+inserted at the beginning of the list, and if <em>index</em> is greater or
+equal to the length of <em>list</em>, it is as if it was <strong>end</strong>. As with
+<strong>string index</strong>, the <em>index</em> value supports both simple index
+arithmetic and end-relative indexing.</p>
+<p>Subject to the restrictions that indices must refer to locations inside
+the list and that the <em>element</em>s will always be inserted in order,
+insertions are done so that when <em>index</em> is start-relative, the first
+<em>element</em> will be at that index in the resulting list, and when <em>index</em>
+is end-relative, the last <em>element</em> will be at that index in the
+resulting list.</p>
+<h1 id="example">EXAMPLE</h1>
+<p>Putting some values into a list, first indexing from the start and then
+indexing from the end, and then chaining them together:</p>
+<p>set oldList {the fox jumps over the dog} set midList [<strong>linsert</strong>
+\$oldList 1 quick] set newList [<strong>linsert</strong> \$midList end-1 lazy] #
+The old lists still exist though... set newerList [<strong>linsert</strong>
+[<strong>linsert</strong> \$oldList end-1 quick] 1 lazy]</p>
+<h1 id="see-also">SEE ALSO</h1>
+<p>list(n), lappend(n), lassign(n), ledit(n), lindex(n), llength(n),
+lmap(n), lpop(n), lrange(n), lremove(n), lrepeat(n), lreplace(n),
+lreverse(n), lsearch(n), lseq(n), lset(n), lsort(n), string(n)</p>
+<h1 id="keywords">KEYWORDS</h1>
+<p>element, insert, list</p>
+              
+            </div>
+          </div><footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+    
+  </span>
+</div>
+    <script>var base_url = '..';</script>
+    <script src="../js/theme_extra.js" defer></script>
+    <script src="../js/theme.js" defer></script>
+      <script src="../search/main.js" defer></script>
+    <script defer>
+        window.onload = function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        };
+    </script>
+
+</body>
+</html>

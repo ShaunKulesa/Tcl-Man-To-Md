@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><link rel="canonical" href="https://www.tcl.tk/man/tcl8.6.13/TclCmd/contents.html/seek/" />
+      <link rel="shortcut icon" href="../img/favicon.ico" />
+    <title>NAME - Tcl/Tk</title>
+    <link rel="stylesheet" href="../css/theme.css" />
+    <link rel="stylesheet" href="../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "NAME";
+        var mkdocs_page_input_path = "seek.md";
+        var mkdocs_page_url = "/man/tcl8.6.13/TclCmd/contents.html/seek/";
+      </script>
+    
+    <script src="../js/jquery-3.6.0.min.js" defer></script>
+    <!--[if lt IE 9]>
+      <script src="../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
+      <script>hljs.initHighlightingOnLoad();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href=".." class="icon icon-home"> Tcl/Tk
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="..">Home</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="" href="../command.md">Commands</a>
+                </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="..">Tcl/Tk</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href=".." class="icon icon-home" aria-label="Docs"></a> &raquo;</li>
+      <li>NAME</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="name">NAME</h1>
+<p>seek - Change the access position for an open channel</p>
+<h1 id="synopsis">SYNOPSIS</h1>
+<p><strong>seek </strong><em>channelId offset </em>?<em>origin</em>?</p>
+<h1 id="description">DESCRIPTION</h1>
+<p>Changes the current access position for <em>channelId</em>.</p>
+<p><em>ChannelId</em> must be an identifier for an open channel such as a Tcl
+standard channel (<strong>stdin</strong>, <strong>stdout</strong>, or <strong>stderr</strong>), the return
+value from an invocation of <strong>open</strong> or <strong>socket</strong>, or the result of a
+channel creation command provided by a Tcl extension.</p>
+<p>The <em>offset</em> and <em>origin</em> arguments specify the position at which the
+next read or write will occur for <em>channelId</em>. <em>Offset</em> must be an
+integer (which may be negative) and <em>origin</em> must be one of the
+following:</p>
+<p><strong>start</strong></p>
+<p>:   The new access position will be <em>offset</em> bytes from the start of the
+    underlying file or device.</p>
+<p><strong>current</strong></p>
+<p>:   The new access position will be <em>offset</em> bytes from the current
+    access position; a negative <em>offset</em> moves the access position
+    backwards in the underlying file or device.</p>
+<p><strong>end</strong></p>
+<p>:   The new access position will be <em>offset</em> bytes from the end of the
+    file or device. A negative <em>offset</em> places the access position
+    before the end of file, and a positive <em>offset</em> places the access
+    position after the end of file.</p>
+<p>The <em>origin</em> argument defaults to <strong>start</strong>.</p>
+<p>The command flushes all buffered output for the channel before the
+command returns, even if the channel is in non-blocking mode. It also
+discards any buffered and unread input. This command returns an empty
+string. An error occurs if this command is applied to channels whose
+underlying file or device does not support seeking.</p>
+<p>Note that <em>offset</em> values are byte offsets, not character offsets. Both
+<strong>seek</strong> and <strong>tell</strong> operate in terms of bytes, not characters, unlike
+<strong>read</strong>.</p>
+<h1 id="examples">EXAMPLES</h1>
+<p>Read a file twice:</p>
+<p>set f [open file.txt] set data1 [read \$f] <strong>seek</strong> \$f 0 set data2
+[read \$f] close \$f # \$data1 eq \$data2 if the file wasn\'t updated</p>
+<p>Read the last 10 bytes from a file:</p>
+<p>set f [open file.data] # This is guaranteed to work with binary data
+but # may fail with other encodings... fconfigure \$f -translation
+binary <strong>seek</strong> \$f -10 end set data [read \$f 10] close \$f</p>
+<h1 id="see-also">SEE ALSO</h1>
+<p>file(n), open(n), close(n), gets(n), tell(n), Tcl_StandardChannels(3)</p>
+<h1 id="keywords">KEYWORDS</h1>
+<p>access position, file, seek</p>
+              
+            </div>
+          </div><footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+    
+  </span>
+</div>
+    <script>var base_url = '..';</script>
+    <script src="../js/theme_extra.js" defer></script>
+    <script src="../js/theme.js" defer></script>
+      <script src="../search/main.js" defer></script>
+    <script defer>
+        window.onload = function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        };
+    </script>
+
+</body>
+</html>

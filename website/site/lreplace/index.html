@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><link rel="canonical" href="https://www.tcl.tk/man/tcl8.6.13/TclCmd/contents.html/lreplace/" />
+      <link rel="shortcut icon" href="../img/favicon.ico" />
+    <title>NAME - Tcl/Tk</title>
+    <link rel="stylesheet" href="../css/theme.css" />
+    <link rel="stylesheet" href="../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "NAME";
+        var mkdocs_page_input_path = "lreplace.md";
+        var mkdocs_page_url = "/man/tcl8.6.13/TclCmd/contents.html/lreplace/";
+      </script>
+    
+    <script src="../js/jquery-3.6.0.min.js" defer></script>
+    <!--[if lt IE 9]>
+      <script src="../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
+      <script>hljs.initHighlightingOnLoad();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href=".." class="icon icon-home"> Tcl/Tk
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="..">Home</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="" href="../command.md">Commands</a>
+                </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="..">Tcl/Tk</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href=".." class="icon icon-home" aria-label="Docs"></a> &raquo;</li>
+      <li>NAME</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="name">NAME</h1>
+<p>lreplace - Replace elements in a list with new elements</p>
+<h1 id="synopsis">SYNOPSIS</h1>
+<p><strong>lreplace </strong><em>list first last </em>?<em>element element ...</em>?</p>
+<h1 id="description">DESCRIPTION</h1>
+<p><strong>lreplace</strong> returns a new list formed by replacing zero or more
+elements of <em>list</em> with the <em>element</em> arguments. <em>first</em> and <em>last</em> are
+index values specifying the first and last elements of the range to
+replace. The index values <em>first</em> and <em>last</em> are interpreted the same as
+index values for the command <strong>string index</strong>, supporting simple index
+arithmetic and indices relative to the end of the list. 0 refers to the
+first element of the list, and <strong>end</strong> refers to the last element of the
+list.</p>
+<p>If either <em>first</em> or <em>last</em> is less than zero, it is considered to refer
+to before the first element of the list. This allows <strong>lreplace</strong> to
+prepend elements to <em>list</em>.</p>
+<p>If either <em>first</em> or <em>last</em> indicates a position greater than the index
+of the last element of the list, it is treated as if it is an index one
+greater than the last element. This allows <strong>lreplace</strong> to append
+elements to <em>list</em>.</p>
+<p>If <em>last</em> is less than <em>first</em>, then any specified elements will be
+inserted into the list before the element specified by <em>first</em> with no
+elements being deleted.</p>
+<p>The <em>element</em> arguments specify zero or more new elements to be added to
+the list in place of those that were deleted. Each <em>element</em> argument
+will become a separate element of the list. If no <em>element</em> arguments
+are specified, then the elements between <em>first</em> and <em>last</em> are simply
+deleted.</p>
+<h1 id="examples">EXAMPLES</h1>
+<p>Replacing an element of a list with another:</p>
+<p>\% <strong>lreplace</strong> {a b c d e} 1 1 foo a foo c d e</p>
+<p>Replacing two elements of a list with three:</p>
+<p>\% <strong>lreplace</strong> {a b c d e} 1 2 three more elements a three more
+elements d e</p>
+<p>Deleting the last element from a list in a variable:</p>
+<p>\% set var {a b c d e} a b c d e % set var [<strong>lreplace</strong> \$var end
+end] a b c d</p>
+<p>A procedure to delete a given element from a list:</p>
+<p>proc lremove {listVariable value} { upvar 1 \$listVariable var set idx
+[lsearch -exact \$var \$value] set var [<strong>lreplace</strong> \$var \$idx
+\$idx] }</p>
+<p>Appending elements to the list; note that <strong>end+2</strong> will initially be
+treated as if it is <strong>6</strong> here, but both that and <strong>12345</strong> are greater
+than the index of the final item so they behave identically:</p>
+<p>\% set var {a b c d e} a b c d e % set var [<strong>lreplace</strong> \$var 12345
+end+2 f g h i] a b c d e f g h i</p>
+<h1 id="see-also">SEE ALSO</h1>
+<p>list(n), lappend(n), lassign(n), ledit(n), lindex(n), linsert(n),
+llength(n), lmap(n), lpop(n), lrange(n), lremove(n), lrepeat(n),
+lreverse(n), lsearch(n), lseq(n), lset(n), lsort(n), string(n)</p>
+<h1 id="keywords">KEYWORDS</h1>
+<p>element, list, replace</p>
+              
+            </div>
+          </div><footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+    
+  </span>
+</div>
+    <script>var base_url = '..';</script>
+    <script src="../js/theme_extra.js" defer></script>
+    <script src="../js/theme.js" defer></script>
+      <script src="../search/main.js" defer></script>
+    <script defer>
+        window.onload = function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        };
+    </script>
+
+</body>
+</html>

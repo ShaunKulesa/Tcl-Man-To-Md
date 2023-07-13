@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><link rel="canonical" href="https://www.tcl.tk/man/tcl8.6.13/TclCmd/contents.html/prefix/" />
+      <link rel="shortcut icon" href="../img/favicon.ico" />
+    <title>NAME - Tcl/Tk</title>
+    <link rel="stylesheet" href="../css/theme.css" />
+    <link rel="stylesheet" href="../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "NAME";
+        var mkdocs_page_input_path = "prefix.md";
+        var mkdocs_page_url = "/man/tcl8.6.13/TclCmd/contents.html/prefix/";
+      </script>
+    
+    <script src="../js/jquery-3.6.0.min.js" defer></script>
+    <!--[if lt IE 9]>
+      <script src="../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
+      <script>hljs.initHighlightingOnLoad();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href=".." class="icon icon-home"> Tcl/Tk
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="..">Home</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="" href="../command.md">Commands</a>
+                </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="..">Tcl/Tk</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href=".." class="icon icon-home" aria-label="Docs"></a> &raquo;</li>
+      <li>NAME</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="name">NAME</h1>
+<p>tcl::prefix - facilities for prefix matching</p>
+<h1 id="synopsis">SYNOPSIS</h1>
+<pre><code>::tcl::prefix all table string
+::tcl::prefix longest table string
+::tcl::prefix match ?option ...? table string
+</code></pre>
+<h1 id="description">DESCRIPTION</h1>
+<p>This document describes commands looking up a prefix in a list of
+strings. The following commands are supported:</p>
+<p><strong>::tcl::prefix all</strong> <em>table string</em></p>
+<p>:   Returns a list of all elements in <em>table</em> that begin with the prefix
+    <em>string</em>.</p>
+<p><strong>::tcl::prefix longest</strong> <em>table string</em></p>
+<p>:   Returns the longest common prefix of all elements in <em>table</em> that
+    begin with the prefix <em>string</em>.</p>
+<p><strong>::tcl::prefix match</strong> ?<em>options</em>? <em>table string</em></p>
+<p>:   If <em>string</em> equals one element in <em>table</em> or is a prefix to exactly
+    one element, the matched element is returned. If not, the result
+    depends on the <strong>-error</strong> option. (It is recommended that the
+    <em>table</em> be sorted before use with this subcommand, so that the list
+    of matches presented in the error message also becomes sorted,
+    though this is not strictly necessary for the operation of this
+    subcommand itself.)</p>
+<pre><code>**-exact**
+
+:   Accept only exact matches.
+
+**-message ***string*
+
+:   Use *string* in the error message at a mismatch. Default is
+
+**-error ***options*
+
+:   The *options* are used when no match is found. If *options* is
+    empty, no error is generated and an empty string is returned.
+    Otherwise the *options* are used as **return** options when
+    generating the error message. The default corresponds to setting
+
+Example: If
+
+is used, an error would be generated as:
+
+&gt; return -errorcode MyError -level 1 -code error \\ \"ambiguous
+&gt; option \...\"
+</code></pre>
+<h1 id="examples">EXAMPLES</h1>
+<p>Basic use:</p>
+<p>namespace import ::tcl::prefix <strong>prefix match</strong> {apa bepa cepa} apa <em>→
+apa</em> <strong>prefix match</strong> {apa bepa cepa} a <em>→ apa</em> <strong>prefix match</strong> -exact
+{apa bepa cepa} a <em>→ bad option \"a\": must be apa, bepa, or cepa</em>
+<strong>prefix match</strong> -message \"switch\" {apa ada bepa cepa} a <em>→ ambiguous
+switch \"a\": must be apa, ada, bepa, or cepa</em> <strong>prefix longest</strong>
+{fblocked fconfigure fcopy file fileevent flush} fc <em>→ fco</em> <strong>prefix
+all</strong> {fblocked fconfigure fcopy file fileevent flush} fc <em>→ fconfigure
+fcopy</em></p>
+<p>Simplifying option matching:</p>
+<p>array set opts {-apa 1 -bepa \"\" -cepa 0} foreach {arg val} \$args {
+set opts([<strong>prefix match</strong> {-apa -bepa -cepa} \$arg]) \$val }</p>
+<p>Creating a <strong>switch</strong> that supports prefixes:</p>
+<p>switch [<strong>prefix match</strong> {apa bepa cepa} \$arg] { apa { } bepa { }
+cepa { } }</p>
+<h1 id="see-also">SEE ALSO</h1>
+<p>lsearch(n), namespace(n), string(n), Tcl_GetIndexFromObj(3)</p>
+<h1 id="keywords">KEYWORDS</h1>
+<p>prefix, table lookup</p>
+              
+            </div>
+          </div><footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+    
+  </span>
+</div>
+    <script>var base_url = '..';</script>
+    <script src="../js/theme_extra.js" defer></script>
+    <script src="../js/theme.js" defer></script>
+      <script src="../search/main.js" defer></script>
+    <script defer>
+        window.onload = function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        };
+    </script>
+
+</body>
+</html>

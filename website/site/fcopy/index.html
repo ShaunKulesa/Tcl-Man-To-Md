@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><link rel="canonical" href="https://www.tcl.tk/man/tcl8.6.13/TclCmd/contents.html/fcopy/" />
+      <link rel="shortcut icon" href="../img/favicon.ico" />
+    <title>NAME - Tcl/Tk</title>
+    <link rel="stylesheet" href="../css/theme.css" />
+    <link rel="stylesheet" href="../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "NAME";
+        var mkdocs_page_input_path = "fcopy.md";
+        var mkdocs_page_url = "/man/tcl8.6.13/TclCmd/contents.html/fcopy/";
+      </script>
+    
+    <script src="../js/jquery-3.6.0.min.js" defer></script>
+    <!--[if lt IE 9]>
+      <script src="../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
+      <script>hljs.initHighlightingOnLoad();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href=".." class="icon icon-home"> Tcl/Tk
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="..">Home</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="" href="../command.md">Commands</a>
+                </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="..">Tcl/Tk</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href=".." class="icon icon-home" aria-label="Docs"></a> &raquo;</li>
+      <li>NAME</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="name">NAME</h1>
+<p>fcopy - Copy data from one channel to another</p>
+<h1 id="synopsis">SYNOPSIS</h1>
+<p><strong>fcopy </strong><em>inputChan</em> <em>outputChan</em> ?<strong>-size </strong><em>size</em>? ?<strong>-command
+</strong><em>callback</em>?</p>
+<h1 id="description">DESCRIPTION</h1>
+<p>Reads characters from <em>inputChan</em> and writes them to <em>outputChan</em> until
+all characters are copied, blocking until the copy is complete and
+returning the number of characters copied. Leverages internal buffers to
+avoid extra copies and to avoid buffering too much data in main memory
+when copying large files to slow destinations like network sockets.</p>
+<p><strong>-size</strong> limits the number of characters copied.</p>
+<p><strong>-command</strong> makes <strong>fcopy</strong> return immediately, work in the background,
+and call <em>callback</em> when the copy completes, providing as an additional
+argument the number of characters written to <em>outputChan</em>. If an error
+occurres during the background copy, another argument provides the
+message for the error. <em>inputChan</em> and <em>outputChan</em> are automatically
+configured for non-blocking mode if needed. Background copying only
+works correctly if events are being processed e.g. via <strong>vwait</strong> or Tk.</p>
+<p>During a background copy no other read operation may be performed on
+<em>inputChan</em>, and no other write operation may be performed on
+<em>outputChan</em>. However, write operations may by performed on <em>inputChan</em>
+and read operations may be performed on <em>outputChan</em>, as exhibited by
+the bidirectional copy example below.</p>
+<p>If either <em>inputChan</em> or <em>outputChan</em> is closed while the copy is in
+progress, copying ceases and <strong>no</strong> callback is made. If <em>inputChan</em> is
+closed all data already queued is written to <em>outputChan</em>.</p>
+<p>There should be no event handler established for <em>inputChan</em> because it
+may become readable during a background copy. An attempt to read or
+write from within an event handler results result in the error,
+\"channel busy\". Any wrong-sided I/O attempted (by a <strong>fileevent</strong>
+handler or otherwise) results in a</p>
+<p>error.</p>
+<h1 id="examples">EXAMPLES</h1>
+<p>The first example transfers the contents of one channel exactly to
+another. Note that when copying one file to another, it is better to use
+<strong>file copy</strong> which also copies file metadata (e.g. the file access
+permissions) where possible.</p>
+<p>fconfigure \$in -translation binary fconfigure \$out -translation binary
+<strong>fcopy</strong> \$in \$out</p>
+<p>This second example shows how the callback gets passed the number of
+bytes transferred. It also uses vwait to put the application into the
+event loop. Of course, this simplified example could be done without the
+command callback.</p>
+<p>proc Cleanup {in out bytes {error {}}} { global total set total \$bytes
+close \$in close \$out if {[string length \$error] != 0} { # error
+occurred during the copy } } set in [open \$file1] set out [socket
+\$server \$port] <strong>fcopy</strong> \$in \$out -command [list Cleanup \$in
+\$out] vwait total</p>
+<p>The third example copies in chunks and tests for end of file in the
+command callback.</p>
+<p>proc CopyMore {in out chunk bytes {error {}}} { global total done incr
+total \$bytes if {([string length \$error] != 0) || [eof \$in]} {
+set done \$total close \$in close \$out } else { <strong>fcopy</strong> \$in \$out
+-size \$chunk \ -command [list CopyMore \$in \$out \$chunk] } } set
+in [open \$file1] set out [socket \$server \$port] set chunk 1024
+set total 0 <strong>fcopy</strong> \$in \$out -size \$chunk \ -command [list
+CopyMore \$in \$out \$chunk] vwait done</p>
+<p>The fourth example starts an asynchronous, bidirectional fcopy between
+two sockets. Those could also be pipes from two [open \"|hal 9000\"
+r+] (though their conversation would remain secret to the script, since
+all four fileevent slots are busy).</p>
+<p>set flows 2 proc Done {dir args} { global flows done puts \"\$dir is
+over.\" incr flows -1 if {\$flows\&lt;=0} {set done 1} } <strong>fcopy</strong> \$sok1
+\$sok2 -command [list Done UP] <strong>fcopy</strong> \$sok2 \$sok1 -command [list
+Done DOWN] vwait done</p>
+<h1 id="see-also">SEE ALSO</h1>
+<p>eof(n), fblocked(n), fconfigure(n), file(n)</p>
+<h1 id="keywords">KEYWORDS</h1>
+<p>blocking, channel, end of line, end of file, nonblocking, read,
+translation</p>
+              
+            </div>
+          </div><footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+    
+  </span>
+</div>
+    <script>var base_url = '..';</script>
+    <script src="../js/theme_extra.js" defer></script>
+    <script src="../js/theme.js" defer></script>
+      <script src="../search/main.js" defer></script>
+    <script defer>
+        window.onload = function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        };
+    </script>
+
+</body>
+</html>

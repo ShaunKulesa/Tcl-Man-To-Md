@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><link rel="canonical" href="https://www.tcl.tk/man/tcl8.6.13/TclCmd/contents.html/mathop/" />
+      <link rel="shortcut icon" href="../img/favicon.ico" />
+    <title>NAME - Tcl/Tk</title>
+    <link rel="stylesheet" href="../css/theme.css" />
+    <link rel="stylesheet" href="../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "NAME";
+        var mkdocs_page_input_path = "mathop.md";
+        var mkdocs_page_url = "/man/tcl8.6.13/TclCmd/contents.html/mathop/";
+      </script>
+    
+    <script src="../js/jquery-3.6.0.min.js" defer></script>
+    <!--[if lt IE 9]>
+      <script src="../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
+      <script>hljs.initHighlightingOnLoad();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href=".." class="icon icon-home"> Tcl/Tk
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="..">Home</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="" href="../command.md">Commands</a>
+                </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="..">Tcl/Tk</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href=".." class="icon icon-home" aria-label="Docs"></a> &raquo;</li>
+      <li>NAME</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="name">NAME</h1>
+<p>mathop - Mathematical operators as Tcl commands</p>
+<h1 id="synopsis">SYNOPSIS</h1>
+<p>package require <strong>Tcl 8.5-</strong></p>
+<p><strong>::tcl::mathop::!</strong> <em>number</em>\
+<strong>::tcl::mathop::\~</strong> <em>number</em>\
+<strong>::tcl::mathop::+</strong> ?<em>number</em> ...?\
+<strong>::tcl::mathop::-</strong> <em>number</em> ?<em>number</em> ...?\
+<strong>::tcl::mathop::*</strong> ?<em>number</em> ...?\
+<strong>::tcl::mathop::/</strong> <em>number</em> ?<em>number</em> ...?\
+<strong>::tcl::mathop::%</strong> <em>number number</em>\
+<strong>::tcl::mathop::**</strong> ?<em>number</em> ...?\
+<strong>::tcl::mathop::&amp;</strong> ?<em>number</em> ...?\
+<strong>::tcl::mathop::|</strong> ?<em>number</em> ...?\
+<strong>::tcl::mathop::\^</strong> ?<em>number</em> ...?\
+<strong>::tcl::mathop::\&lt;\&lt;</strong> <em>number number</em>\
+<strong>::tcl::mathop::>></strong> <em>number number</em>\
+<strong>::tcl::mathop::==</strong> ?<em>arg</em> ...?\
+<strong>::tcl::mathop::!=</strong> <em>arg arg</em>\
+<strong>::tcl::mathop::\&lt;</strong> ?<em>arg</em> ...?\
+<strong>::tcl::mathop::\&lt;=</strong> ?<em>arg</em> ...?\
+<strong>::tcl::mathop::>=</strong> ?<em>arg</em> ...?\
+<strong>::tcl::mathop::></strong> ?<em>arg</em> ...?\
+<strong>::tcl::mathop::eq</strong> ?<em>arg</em> ...?\
+<strong>::tcl::mathop::ne</strong> <em>arg arg</em>\</p>
+<p><strong>::tcl::mathop::lt</strong> ?<em>arg</em> ...?\
+<strong>::tcl::mathop::le</strong> ?<em>arg</em> ...?\
+<strong>::tcl::mathop::gt</strong> ?<em>arg</em> ...?\
+<strong>::tcl::mathop::ge</strong> ?<em>arg</em> ...?</p>
+<p>\
+<strong>::tcl::mathop::in</strong> <em>arg list</em>\
+<strong>::tcl::mathop::ni</strong> <em>arg list</em></p>
+<h1 id="description">DESCRIPTION</h1>
+<p>The commands in the <strong>::tcl::mathop</strong> namespace implement the same set
+of operations as supported by the <strong>expr</strong> command. All are exported
+from the namespace, but are not imported into any other namespace by
+default. Note that renaming, reimplementing or deleting any of the
+commands in the namespace does <em>not</em> alter the way that the <strong>expr</strong>
+command behaves, and nor does defining any new commands in the
+<strong>::tcl::mathop</strong> namespace.</p>
+<p>The following operator commands are supported:</p>
+<p><strong>\~</strong> <strong>!</strong> <strong>+</strong> <strong>-</strong> <strong>*</strong> <strong>/</strong> <strong>%</strong> <strong>**</strong> <strong>&amp;</strong> <strong>|</strong> <strong>\^</strong>
+<strong>>></strong> <strong>\&lt;\&lt;</strong> <strong>==</strong> <strong>eq</strong> <strong>!=</strong> <strong>ne</strong> <strong>\&lt;</strong> <strong>\&lt;=</strong> <strong>></strong>
+<strong>>=</strong> <strong>in</strong> <strong>ni</strong> <strong>lt</strong> <strong>le</strong> <strong>gt</strong> <strong>ge</strong></p>
+<h2 id="mathematical-operators">MATHEMATICAL OPERATORS</h2>
+<p>The behaviors of the mathematical operator commands are as follows:</p>
+<p><strong>!</strong> <em>boolean</em></p>
+<p>:   Returns the boolean negation of <em>boolean</em>, where <em>boolean</em> may be
+    any numeric value or any other form of boolean value (i.e. it
+    returns truth if the argument is falsity or zero, and falsity if the
+    argument is truth or non-zero).</p>
+<p><strong>+</strong> ?<em>number</em> ...?</p>
+<p>:   Returns the sum of arbitrarily many arguments. Each <em>number</em>
+    argument may be any numeric value. If no arguments are given, the
+    result will be zero (the summation identity).</p>
+<p><strong>-</strong> <em>number</em> ?<em>number</em> ...?</p>
+<p>:   If only a single <em>number</em> argument is given, returns the negation of
+    that numeric value. Otherwise returns the number that results when
+    all subsequent numeric values are subtracted from the first one. All
+    <em>number</em> arguments must be numeric values. At least one argument
+    must be given.</p>
+<p><strong>*</strong> ?<em>number</em> ...?</p>
+<p>:   Returns the product of arbitrarily many arguments. Each <em>number</em> may
+    be any numeric value. If no arguments are given, the result will be
+    one (the multiplicative identity).</p>
+<p><strong>/</strong> <em>number</em> ?<em>number</em> ...?</p>
+<p>:   If only a single <em>number</em> argument is given, returns the reciprocal
+    of that numeric value (i.e. the value obtained by dividing 1.0 by
+    that value). Otherwise returns the number that results when the
+    first numeric argument is divided by all subsequent numeric
+    arguments. All <em>number</em> arguments must be numeric values. At least
+    one argument must be given.</p>
+<pre><code>Note that when the leading values in the list of arguments are
+integers, integer division will be used for those initial steps
+(i.e. the intermediate results will be as if the functions *floor*
+and *int* are applied to them, in that order). If all values in the
+operation are integers, the result will be an integer.
+</code></pre>
+<p><strong>%</strong> <em>number number</em></p>
+<p>:   Returns the integral modulus (i.e., remainder) of the first argument
+    with respect to the second. Each <em>number</em> must have an integral
+    value. Also, the sign of the result will be the same as the sign of
+    the second <em>number</em>, which must not be zero.</p>
+<pre><code>Note that Tcl defines this operation exactly even for negative
+numbers, so that the following command returns a true value
+(omitting the namespace for clarity):
+
+**==** \[**\*** \[**/*** x y*\] *y*\] \[**-*** x* \[**%*** x y*\]\]
+</code></pre>
+<p><strong>**</strong> ?<em>number</em> ...?</p>
+<p>:   Returns the result of raising each value to the power of the result
+    of recursively operating on the result of processing the following
+    arguments, so</p>
+<p>is the same as</p>
+<p>Each <em>number</em> may be any numeric value, though the second number must
+not be fractional if the first is negative. The maximum exponent value
+that Tcl can handle if the first number is an integer > 1 is 268435455.
+If no arguments are given, the result will be one, and if only one
+argument is given, the result will be that argument. The result will
+have an integral value only when all arguments are integral values.</p>
+<h2 id="comparison-operators">COMPARISON OPERATORS</h2>
+<p>The behaviors of the comparison operator commands (most of which operate
+preferentially on numeric arguments) are as follows:</p>
+<p><strong>==</strong> ?<em>arg</em> ...?</p>
+<p>:   Returns whether each argument is equal to the arguments on each side
+    of it in the sense of the <strong>expr</strong> == operator (<em>i.e.</em>, numeric
+    comparison if possible, exact string comparison otherwise). If fewer
+    than two arguments are given, this operation always returns a true
+    value.</p>
+<p><strong>eq</strong> ?<em>arg</em> ...?</p>
+<p>:   Returns whether each argument is equal to the arguments on each side
+    of it using exact string comparison. If fewer than two arguments are
+    given, this operation always returns a true value.</p>
+<p><strong>!=</strong> <em>arg arg</em></p>
+<p>:   Returns whether the two arguments are not equal to each other, in
+    the sense of the <strong>expr</strong> != operator (<em>i.e.</em>, numeric comparison if
+    possible, exact string comparison otherwise).</p>
+<p><strong>ne</strong> <em>arg arg</em></p>
+<p>:   Returns whether the two arguments are not equal to each other using
+    exact string comparison.</p>
+<p><strong>\&lt;</strong> ?<em>arg</em> ...?</p>
+<p>:   Returns whether the arbitrarily-many arguments are ordered, with
+    each argument after the first having to be strictly more than the
+    one preceding it. Comparisons are performed preferentially on the
+    numeric values, and are otherwise performed using UNICODE string
+    comparison. If fewer than two arguments are present, this operation
+    always returns a true value. When the arguments are numeric but
+    should be compared as strings, the <strong>lt</strong> operator or the <strong>string
+    compare</strong> command should be used instead.</p>
+<p><strong>\&lt;=</strong> ?<em>arg</em> ...?</p>
+<p>:   Returns whether the arbitrarily-many arguments are ordered, with
+    each argument after the first having to be equal to or more than the
+    one preceding it. Comparisons are performed preferentially on the
+    numeric values, and are otherwise performed using UNICODE string
+    comparison. If fewer than two arguments are present, this operation
+    always returns a true value. When the arguments are numeric but
+    should be compared as strings, the <strong>le</strong> operator or the <strong>string
+    compare</strong> command should be used instead.</p>
+<p><strong>></strong> ?<em>arg</em> ...?</p>
+<p>:   Returns whether the arbitrarily-many arguments are ordered, with
+    each argument after the first having to be strictly less than the
+    one preceding it. Comparisons are performed preferentially on the
+    numeric values, and are otherwise performed using UNICODE string
+    comparison. If fewer than two arguments are present, this operation
+    always returns a true value. When the arguments are numeric but
+    should be compared as strings, the <strong>gt</strong> operator or the <strong>string
+    compare</strong> command should be used instead.</p>
+<p><strong>>=</strong> ?<em>arg</em> ...?</p>
+<p>:   Returns whether the arbitrarily-many arguments are ordered, with
+    each argument after the first having to be equal to or less than the
+    one preceding it. Comparisons are performed preferentially on the
+    numeric values, and are otherwise performed using UNICODE string
+    comparison. If fewer than two arguments are present, this operation
+    always returns a true value. When the arguments are numeric but
+    should be compared as strings, the <strong>ge</strong> operator or the <strong>string
+    compare</strong> command should be used instead.</p>
+<p><strong>lt</strong> ?<em>arg</em> ...?</p>
+<p>:   </p>
+<p>Returns whether the arbitrarily-many arguments are ordered, with each
+argument after the first having to be strictly more than the one
+preceding it. Comparisons are performed using UNICODE string comparison.
+If fewer than two arguments are present, this operation always returns a
+true value.</p>
+<p><strong>le</strong> ?<em>arg</em> ...?</p>
+<p>:   </p>
+<p>Returns whether the arbitrarily-many arguments are ordered, with each
+argument after the first having to be equal to or strictly more than the
+one preceding it. Comparisons are performed using UNICODE string
+comparison. If fewer than two arguments are present, this operation
+always returns a true value.</p>
+<p><strong>gt</strong> ?<em>arg</em> ...?</p>
+<p>:   </p>
+<p>Returns whether the arbitrarily-many arguments are ordered, with each
+argument after the first having to be strictly less than the one
+preceding it. Comparisons are performed using UNICODE string comparison.
+If fewer than two arguments are present, this operation always returns a
+true value.</p>
+<p><strong>ge</strong> ?<em>arg</em> ...?</p>
+<p>:   </p>
+<p>Returns whether the arbitrarily-many arguments are ordered, with each
+argument after the first having to be equal to or strictly less than the
+one preceding it. Comparisons are performed using UNICODE string
+comparison. If fewer than two arguments are present, this operation
+always returns a true value.</p>
+<h2 id="bit-wise-operators">BIT-WISE OPERATORS</h2>
+<p>The behaviors of the bit-wise operator commands (all of which only
+operate on integral arguments) are as follows:</p>
+<p><strong>\~</strong> <em>number</em></p>
+<p>:   Returns the bit-wise negation of <em>number</em>. <em>Number</em> may be an
+    integer of any size. Note that the result of this operation will
+    always have the opposite sign to the input <em>number</em>.</p>
+<p><strong>&amp;</strong> ?<em>number</em> ...?</p>
+<p>:   Returns the bit-wise AND of each of the arbitrarily many arguments.
+    Each <em>number</em> must have an integral value. If no arguments are
+    given, the result will be minus one.</p>
+<p><strong>|</strong> ?<em>number</em> ...?</p>
+<p>:   Returns the bit-wise OR of each of the arbitrarily many arguments.
+    Each <em>number</em> must have an integral value. If no arguments are
+    given, the result will be zero.</p>
+<p><strong>\^</strong> ?<em>number</em> ...?</p>
+<p>:   Returns the bit-wise XOR of each of the arbitrarily many arguments.
+    Each <em>number</em> must have an integral value. If no arguments are
+    given, the result will be zero.</p>
+<p><strong>\&lt;\&lt;</strong> <em>number number</em></p>
+<p>:   Returns the result of bit-wise shifting the first argument left by
+    the number of bits specified in the second argument. Each <em>number</em>
+    must have an integral value.</p>
+<p><strong>>></strong> <em>number number</em></p>
+<p>:   Returns the result of bit-wise shifting the first argument right by
+    the number of bits specified in the second argument. Each <em>number</em>
+    must have an integral value.</p>
+<h2 id="list-operators">LIST OPERATORS</h2>
+<p>The behaviors of the list-oriented operator commands are as follows:</p>
+<p><strong>in</strong> <em>arg list</em></p>
+<p>:   Returns whether the value <em>arg</em> is present in the list <em>list</em>
+    (according to exact string comparison of elements).</p>
+<p><strong>ni</strong> <em>arg list</em></p>
+<p>:   Returns whether the value <em>arg</em> is not present in the list <em>list</em>
+    (according to exact string comparison of elements).</p>
+<h1 id="examples">EXAMPLES</h1>
+<p>The simplest way to use the operators is often by using <strong>namespace
+path</strong> to make the commands available. This has the advantage of not
+affecting the set of commands defined by the current namespace.</p>
+<p>namespace path {<strong>::tcl::mathop</strong> ::tcl::mathfunc}</p>
+<p><em># Compute the sum of some numbers</em> set sum [<strong>+</strong> 1 2 3]</p>
+<p><em># Compute the average of a list</em> set list {1 2 3 4 5 6} set mean
+[<strong>/</strong> [<strong>+</strong> {*}\$list] [double [llength \$list]]]</p>
+<p><em># Test for list membership</em> set gotIt [<strong>in</strong> 3 \$list]</p>
+<p><em># Test to see if a value is within some defined range</em> set inRange
+[<strong>\&lt;=</strong> 1 \$x 5]</p>
+<p><em># Test to see if a list is numerically sorted</em> set sorted [<strong>\&lt;=</strong>
+{*}\$list]</p>
+<p><em># Test to see if a list is lexically sorted</em> set alphaList {a b c d e
+f} set sorted [<strong>le</strong> {*}\$alphaList]</p>
+<h1 id="see-also">SEE ALSO</h1>
+<p>expr(n), mathfunc(n), namespace(n)</p>
+<h1 id="keywords">KEYWORDS</h1>
+<p>command, expression, operator</p>
+              
+            </div>
+          </div><footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+    
+  </span>
+</div>
+    <script>var base_url = '..';</script>
+    <script src="../js/theme_extra.js" defer></script>
+    <script src="../js/theme.js" defer></script>
+      <script src="../search/main.js" defer></script>
+    <script defer>
+        window.onload = function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        };
+    </script>
+
+</body>
+</html>

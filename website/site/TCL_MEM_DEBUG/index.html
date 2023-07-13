@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><link rel="canonical" href="https://www.tcl.tk/man/tcl8.6.13/TclCmd/contents.html/TCL_MEM_DEBUG/" />
+      <link rel="shortcut icon" href="../img/favicon.ico" />
+    <title>NAME - Tcl/Tk</title>
+    <link rel="stylesheet" href="../css/theme.css" />
+    <link rel="stylesheet" href="../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "NAME";
+        var mkdocs_page_input_path = "TCL_MEM_DEBUG.md";
+        var mkdocs_page_url = "/man/tcl8.6.13/TclCmd/contents.html/TCL_MEM_DEBUG/";
+      </script>
+    
+    <script src="../js/jquery-3.6.0.min.js" defer></script>
+    <!--[if lt IE 9]>
+      <script src="../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
+      <script>hljs.initHighlightingOnLoad();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href=".." class="icon icon-home"> Tcl/Tk
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="..">Home</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="" href="../command.md">Commands</a>
+                </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="..">Tcl/Tk</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href=".." class="icon icon-home" aria-label="Docs"></a> &raquo;</li>
+      <li>NAME</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="name">NAME</h1>
+<p>TCL_MEM_DEBUG - Compile-time flag to enable Tcl memory debugging</p>
+<h1 id="description">DESCRIPTION</h1>
+<p>When Tcl is compiled with <strong>TCL_MEM_DEBUG</strong> defined, a powerful set of
+memory debugging aids is included in the compiled binary. This includes
+C and Tcl functions which can aid with debugging memory leaks, memory
+allocation overruns, and other memory related errors.</p>
+<h1 id="enabling-memory-debugging">ENABLING MEMORY DEBUGGING</h1>
+<p>To enable memory debugging, Tcl should be recompiled from scratch with
+<strong>TCL_MEM_DEBUG</strong> defined (e.g. by passing the <em>--enable-symbols=mem</em>
+flag to the <em>configure</em> script when building). This will also compile in
+a non-stub version of <strong>Tcl_InitMemory</strong> to add the <strong>memory</strong> command
+to Tcl.</p>
+<p><strong>TCL_MEM_DEBUG</strong> must be either left defined for all modules or
+undefined for all modules that are going to be linked together. If they
+are not, link errors will occur, with either <strong>Tcl_DbCkfree</strong> and
+<strong>Tcl_DbCkalloc</strong> or <strong>Tcl_Alloc</strong> and <strong>Tcl_Free</strong> being undefined.</p>
+<p>Once memory debugging support has been compiled into Tcl, the C
+functions <strong>Tcl_ValidateAllMemory</strong>, and <strong>Tcl_DumpActiveMemory</strong>, and
+the Tcl <strong>memory</strong> command can be used to validate and examine memory
+usage.</p>
+<h1 id="guard-zones">GUARD ZONES</h1>
+<p>When memory debugging is enabled, whenever a call to <strong>Tcl_Alloc</strong> is
+made, slightly more memory than requested is allocated so the memory
+debugging code can keep track of the allocated memory, and eight-byte</p>
+<p>are placed in front of and behind the space that will be returned to the
+caller. (The sizes of the guard zones are defined by the C #define
+<strong>LOW_GUARD_SIZE</strong> and #define <strong>HIGH_GUARD_SIZE</strong> in the file
+<em>generic/tclCkalloc.c</em> --- it can be extended if you suspect large
+overwrite problems, at some cost in performance.) A known pattern is
+written into the guard zones and, on a call to <strong>Tcl_Free</strong>, the guard
+zones of the space being freed are checked to see if either zone has
+been modified in any way. If one has been, the guard bytes and their new
+contents are identified, and a</p>
+<p>or</p>
+<p>message is issued. The</p>
+<p>message includes the address of the memory packet and the file name and
+line number of the code that called <strong>Tcl_Free</strong>. This allows you to
+detect the common sorts of one-off problems, where not enough space was
+allocated to contain the data written, for example.</p>
+<h1 id="debugging-difficult-memory-corruption-problems">DEBUGGING DIFFICULT MEMORY CORRUPTION PROBLEMS</h1>
+<p>Normally, Tcl compiled with memory debugging enabled will make it easy
+to isolate a corruption problem. Turning on memory validation with the
+memory command can help isolate difficult problems. If you suspect (or
+know) that corruption is occurring before the Tcl interpreter comes up
+far enough for you to issue commands, you can set <strong>MEM_VALIDATE</strong>
+define, recompile tclCkalloc.c and rebuild Tcl. This will enable memory
+validation from the first call to <strong>Tcl_Alloc</strong>, again, at a large
+performance impact.</p>
+<p>If you are desperate and validating memory on every call to
+<strong>Tcl_Alloc</strong> and <strong>Tcl_Free</strong> is not enough, you can explicitly call
+<strong>Tcl_ValidateAllMemory</strong> directly at any point. It takes a <em>char</em> *
+and an <em>int</em> which are normally the filename and line number of the
+caller, but they can actually be anything you want. Remember to remove
+the calls after you find the problem.</p>
+<h1 id="see-also">SEE ALSO</h1>
+<p>Tcl_Alloc, memory, Tcl_ValidateAllMemory, Tcl_DumpActiveMemory</p>
+<h1 id="keywords">KEYWORDS</h1>
+<p>memory, debug</p>
+              
+            </div>
+          </div><footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+    
+  </span>
+</div>
+    <script>var base_url = '..';</script>
+    <script src="../js/theme_extra.js" defer></script>
+    <script src="../js/theme.js" defer></script>
+      <script src="../search/main.js" defer></script>
+    <script defer>
+        window.onload = function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        };
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><link rel="canonical" href="https://www.tcl.tk/man/tcl8.6.13/TclCmd/contents.html/zipfs/" />
+      <link rel="shortcut icon" href="../img/favicon.ico" />
+    <title>NAME - Tcl/Tk</title>
+    <link rel="stylesheet" href="../css/theme.css" />
+    <link rel="stylesheet" href="../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "NAME";
+        var mkdocs_page_input_path = "zipfs.md";
+        var mkdocs_page_url = "/man/tcl8.6.13/TclCmd/contents.html/zipfs/";
+      </script>
+    
+    <script src="../js/jquery-3.6.0.min.js" defer></script>
+    <!--[if lt IE 9]>
+      <script src="../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
+      <script>hljs.initHighlightingOnLoad();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href=".." class="icon icon-home"> Tcl/Tk
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="..">Home</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="" href="../command.md">Commands</a>
+                </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="..">Tcl/Tk</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href=".." class="icon icon-home" aria-label="Docs"></a> &raquo;</li>
+      <li>NAME</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="name">NAME</h1>
+<p>zipfs - Mount and work with ZIP files within Tcl</p>
+<h1 id="synopsis">SYNOPSIS</h1>
+<pre><code>package require tcl::zipfs ?1.0?
+
+zipfs canonical ?mntpnt? filename ?ZIPFS?
+zipfs exists filename
+zipfs find directoryName
+zipfs info filename
+zipfs list ?(-glob|-regexp)? ?pattern?
+zipfs lmkimg outfile inlist ?password infile?
+zipfs lmkzip outfile inlist ?password?
+zipfs mkimg outfile indir ?strip? ?password? ?infile?
+zipfs mkkey password
+zipfs mkzip outfile indir ?strip? ?password?
+zipfs mount ?mountpoint? ?zipfile? ?password?
+zipfs root
+zipfs unmount mountpoint
+</code></pre>
+<h1 id="description">DESCRIPTION</h1>
+<p>The <strong>zipfs</strong> command (the sole public command provided by the built-in
+package with the same name) provides Tcl with the ability to mount the
+contents of a ZIP archive file as a virtual file system. ZIP archives
+support simple encryption, sufficient to prevent casual inspection of
+their contents but not able to prevent access by even a moderately
+determined attacker.</p>
+<p><strong>zipfs canonical</strong> ?<em>mountpoint</em>? <em>filename</em> ?<em>inZipfs</em>?</p>
+<p>:   This takes the name of a file, <em>filename</em>, and produces where it
+    would be mapped into a zipfs mount as its result. If specified,
+    <em>mountpoint</em> says within which mount the mapping will be done; if
+    omitted, the main root of the zipfs system is used. The <em>inZipfs</em>
+    argument is a an optional boolean which controls whether to fully
+    canonicalise the name; it defaults to true.</p>
+<p><strong>zipfs exists</strong> <em>filename</em></p>
+<p>:   Return 1 if the given filename exists in the mounted zipfs and 0 if
+    it does not.</p>
+<p><strong>zipfs find</strong> <em>directoryName</em></p>
+<p>:   Recursively lists files including and below the directory
+    <em>directoryName</em>. The result list consists of relative path names
+    starting from the given directory. This command is also used by the
+    <strong>zipfs mkzip</strong> and <strong>zipfs</strong> mkimg commands.</p>
+<p><strong>zipfs info</strong> <em>file</em></p>
+<p>:   Return information about the given <em>file</em> in the mounted zipfs. The
+    information consists of:</p>
+<pre><code>(1) the name of the ZIP archive file that contains the file,
+
+(2) the size of the file after decompressions,
+
+(3) the compressed size of the file, and
+
+(4) the offset of the compressed data in the ZIP archive file.
+
+Note: querying the mount point gives the start of the zip data as
+the offset in (4), which can be used to truncate the zip information
+from an executable.
+</code></pre>
+<p><strong>zipfs list</strong> ?(<strong>-glob</strong>|<strong>-regexp</strong>)? ?<em>pattern</em>?</p>
+<p>:   Return a list of all files in the mounted zipfs, or just those
+    matching <em>pattern</em> (optionally controlled by the option parameters).
+    The order of the names in the list is arbitrary.</p>
+<p><strong>zipfs mount</strong> ?<em>mountpoint</em>? ?<em>zipfile</em>? ?<em>password</em>?</p>
+<p>:   The <strong>zipfs mount</strong> command mounts a ZIP archive file as a Tcl
+    virtual filesystem at <em>mountpoint</em>. After this command executes,
+    files contained in <em>zipfile</em> will appear to Tcl to be regular files
+    at the mount point.</p>
+<pre><code>With no *zipfile*, returns the zipfile mounted at *mountpoint*. With
+no *mountpoint*, return all zipfile/mount pairs. If *mountpoint* is
+specified as an empty string, mount on file path.
+
+**NB:** because the current working directory is a concept
+maintained by the operating system, using **cd** into a mounted
+archive will only work in the current process, and then not entirely
+consistently (e.g., if a shared library uses direct access to the OS
+rather than through Tcl\'s filesystem API, it will not see the
+current directory as being inside the mount and will not be able to
+access the files inside the mount).
+</code></pre>
+<p><strong>zipfs root</strong></p>
+<p>:   Returns a constant string which indicates the mount point for zipfs
+    volumes for the current platform. On Windows, this value is</p>
+<p>On Unix, this value is</p>
+<p><strong>zipfs unmount </strong><em>mountpoint</em></p>
+<p>:   Unmounts a previously mounted ZIP archive mounted to <em>mountpoint</em>.</p>
+<h2 id="zip-creation-commands">ZIP CREATION COMMANDS</h2>
+<p>This package also provides several commands to aid the creation of ZIP
+archives as Tcl applications.</p>
+<p><strong>zipfs mkzip</strong> <em>outfile indir</em> ?<em>strip</em>? ?<em>password</em>?</p>
+<p>:   Creates a ZIP archive file named <em>outfile</em> from the contents of the
+    input directory <em>indir</em> (contained regular files only) with optional
+    ZIP password <em>password</em>. While processing the files below <em>indir</em>
+    the optional file name prefix given in <em>strip</em> is stripped off the
+    beginning of the respective file name. When stripping, it is common
+    to remove either the whole source directory name or the name of its
+    parent directory.</p>
+<pre><code>**Caution:** the choice of the *indir* parameter (less the optional
+stripped prefix) determines the later root name of the archive\'s
+content.
+</code></pre>
+<p><strong>zipfs mkimg</strong> <em>outfile indir</em> ?<em>strip</em>? ?<em>password</em>? ?<em>infile</em>?</p>
+<p>:   Creates an image (potentially a new executable file) similar to
+    <strong>zipfs</strong> mkzip; see that command for a description of most
+    parameters to this command, as they behave identically here.</p>
+<pre><code>If the *infile* parameter is specified, this file is prepended in
+front of the ZIP archive, otherwise the file returned by **info
+nameofexecutable** (i.e., the executable file of the running
+process) is used. If the *password* parameter is not empty, an
+obfuscated version of that password (see **zipfs mkkey**) is placed
+between the image and ZIP chunks of the output file and the contents
+of the ZIP chunk are protected with that password. If the starting
+image has a ZIP archive already attached to it, it is removed from
+the copy in *outfile* before the new ZIP archive is added.
+
+If there is a file, **main.tcl**, in the root directory of the
+resulting archive and the image file that the archive is attached to
+is a **tclsh** (or **wish**) instance (true by default, but depends
+on your configuration), then the resulting image is an executable
+that will **source** the script in that **main.tcl** after mounting
+the ZIP archive, and will **exit** once that script has been
+executed.
+
+**Caution:** highly experimental, not usable on Android, only
+partially tested on Linux and Windows.
+</code></pre>
+<p><strong>zipfs mkkey</strong> <em>password</em></p>
+<p>:   Given the clear text <em>password</em> argument, an obfuscated string
+    version is returned with the same format used in the <strong>zipfs mkimg</strong>
+    command.</p>
+<p><strong>zipfs lmkimg</strong> <em>outfile inlist</em> ?<em>password infile</em>?</p>
+<p>:   This command is like <strong>zipfs mkimg</strong>, but instead of an input
+    directory, <em>inlist</em> must be a Tcl list where the odd elements are
+    the names of files to be copied into the archive in the image, and
+    the even elements are their respective names within that archive.</p>
+<p><strong>zipfs lmkzip</strong> <em>outfile inlist</em> ?<em>password</em>?</p>
+<p>:   This command is like <strong>zipfs mkzip</strong>, but instead of an input
+    directory, <em>inlist</em> must be a Tcl list where the odd elements are
+    the names of files to be copied into the archive, and the even
+    elements are their respective names within that archive.</p>
+<h1 id="examples">EXAMPLES</h1>
+<p>Mounting an ZIP archive as an application directory and running code out
+of it before unmounting it again:</p>
+<p>set zip myApp.zip set base [file join [<strong>zipfs root</strong>] myApp]</p>
+<p><strong>zipfs mount</strong> \$base \$zip # \$base now has the contents of myApp.zip</p>
+<p>source [file join \$base app.tcl] # use the contents, load libraries
+from it, etc...</p>
+<p><strong>zipfs unmount</strong> \$zip</p>
+<p>Creating a ZIP archive, given that a directory exists containing the
+content to put in the archive. Note that the source directory is given
+twice, in order to strip the exterior directory name from each filename
+in the archive.</p>
+<p>set sourceDirectory [file normalize myApp] set targetZip myApp.zip</p>
+<p><strong>zipfs mkzip</strong> \$targetZip \$sourceDirectory \$sourceDirectory</p>
+<p>Encryption can be applied to ZIP archives by providing a password when
+building the ZIP and when mounting it.</p>
+<p>set zip myApp.zip set sourceDir [file normalize myApp] set password
+\"hunter2\" set base [file join [<strong>zipfs root</strong>] myApp]</p>
+<p># Create with password <strong>zipfs mkzip</strong> \$targetZip \$sourceDir
+\$sourceDir \$password</p>
+<p># Mount with password <strong>zipfs mount</strong> \$base \$zip \$password</p>
+<p>When creating an executable image with a password, the password is
+placed within the executable in a shrouded form so that the application
+can read files inside the embedded ZIP archive yet casual inspection
+cannot read it.</p>
+<p>set appDir [file normalize myApp] set img \"myApp.bin\" set password
+\"hunter2\"</p>
+<p># Create some simple content to define a basic application file mkdir
+\$appDir set f [open \$appDir/main.tcl] puts \$f { puts \"Hi. This is
+[info script]\" } close \$f</p>
+<p># Create the executable <strong>zipfs mkimg</strong> \$img \$appDir \$appDir
+\$password</p>
+<p># Launch the executable, printing its output to stdout exec \$img
+>@stdout # prints: <em>Hi. This is //zipfs:/app/main.tcl</em></p>
+<h1 id="see-also">SEE ALSO</h1>
+<p>tclsh(1), file(n), zipfs(3), zlib(n)</p>
+<h1 id="keywords">KEYWORDS</h1>
+<p>compress, filesystem, zip</p>
+              
+            </div>
+          </div><footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+    
+  </span>
+</div>
+    <script>var base_url = '..';</script>
+    <script src="../js/theme_extra.js" defer></script>
+    <script src="../js/theme.js" defer></script>
+      <script src="../search/main.js" defer></script>
+    <script defer>
+        window.onload = function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        };
+    </script>
+
+</body>
+</html>

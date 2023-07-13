@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><link rel="canonical" href="https://www.tcl.tk/man/tcl8.6.13/TclCmd/contents.html/unload/" />
+      <link rel="shortcut icon" href="../img/favicon.ico" />
+    <title>NAME - Tcl/Tk</title>
+    <link rel="stylesheet" href="../css/theme.css" />
+    <link rel="stylesheet" href="../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "NAME";
+        var mkdocs_page_input_path = "unload.md";
+        var mkdocs_page_url = "/man/tcl8.6.13/TclCmd/contents.html/unload/";
+      </script>
+    
+    <script src="../js/jquery-3.6.0.min.js" defer></script>
+    <!--[if lt IE 9]>
+      <script src="../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
+      <script>hljs.initHighlightingOnLoad();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href=".." class="icon icon-home"> Tcl/Tk
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="..">Home</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="" href="../command.md">Commands</a>
+                </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="..">Tcl/Tk</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href=".." class="icon icon-home" aria-label="Docs"></a> &raquo;</li>
+      <li>NAME</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="name">NAME</h1>
+<p>unload - Unload machine code</p>
+<h1 id="synopsis">SYNOPSIS</h1>
+<p><strong>unload </strong>?<em>switches</em>? <em>fileName</em>\
+<strong>unload </strong>?<em>switches</em>? <em>fileName prefix</em>\
+<strong>unload </strong>?<em>switches</em>? <em>fileName prefix interp</em></p>
+<h1 id="description">DESCRIPTION</h1>
+<p>This command tries to unload shared libraries previously loaded with
+<strong>load</strong> from the application\'s address space. <em>fileName</em> is the name
+of the file containing the library file to be unload; it must be the
+same as the filename provided to <strong>load</strong> for loading the library. The
+<em>prefix</em> argument is the prefix (as determined by or passed to
+<strong>load</strong>), and is used to compute the name of the unload procedure; if
+not supplied, it is computed from <em>fileName</em> in the same manner as
+<strong>load</strong>. The <em>interp</em> argument is the path name of the interpreter from
+which to unload the package (see the <strong>interp</strong> manual entry for
+details); if <em>interp</em> is omitted, it defaults to the interpreter in
+which the <strong>unload</strong> command was invoked.</p>
+<p>If the initial arguments to <strong>unload</strong> start with <strong>-</strong> then they are
+treated as switches. The following switches are currently supported:</p>
+<p><strong>-nocomplain</strong></p>
+<p>:   Suppresses all error messages. If this switch is given, <strong>unload</strong>
+    will never report an error.</p>
+<p><strong>-keeplibrary</strong></p>
+<p>:   This switch will prevent <strong>unload</strong> from issuing the operating
+    system call that will unload the library from the process.</p>
+<p><strong>- -</strong></p>
+<p>:   Marks the end of switches. The argument following this one will be
+    treated as a <em>fileName</em> even if it starts with a <strong>-</strong>.</p>
+<h2 id="unload-operation">UNLOAD OPERATION</h2>
+<p>When a file containing a shared library is loaded through the <strong>load</strong>
+command, Tcl associates two reference counts to the library file. The
+first counter shows how many times the library has been loaded into
+normal (trusted) interpreters while the second describes how many times
+the library has been loaded into safe interpreters. As a file containing
+a shared library can be loaded only once by Tcl (with the first <strong>load</strong>
+call on the file), these counters track how many interpreters use the
+library. Each subsequent call to <strong>load</strong> after the first simply
+increments the proper reference count.</p>
+<p><strong>unload</strong> works in the opposite direction. As a first step, <strong>unload</strong>
+will check whether the library is unloadable: an unloadable library
+exports a special unload procedure. The name of the unload procedure is
+determined by <em>prefix</em> and whether or not the target interpreter is a
+safe one. For normal interpreters the name of the initialization
+procedure will have the form <em>pfx</em><strong>_Unload</strong>, where <em>pfx</em> is the same
+as <em>prefix</em> except that the first letter is converted to upper case and
+all other letters are converted to lower case. For example, if <em>prefix</em>
+is <strong>foo</strong> or <strong>FOo</strong>, the initialization procedure\'s name will be
+<strong>Foo_Unload</strong>. If the target interpreter is a safe interpreter, then
+the name of the initialization procedure will be <em>pkg</em><strong>_SafeUnload</strong>
+instead of <em>pkg</em><strong>_Unload</strong>.</p>
+<p>If <strong>unload</strong> determines that a library is not unloadable (or unload
+functionality has been disabled during compilation), an error will be
+returned. If the library is unloadable, then <strong>unload</strong> will call the
+unload procedure. If the unload procedure returns <strong>TCL_OK</strong>, <strong>unload</strong>
+will proceed and decrease the proper reference count (depending on the
+target interpreter type). When both reference counts have reached 0, the
+library will be detached from the process.</p>
+<h2 id="unload-hook-prototype">UNLOAD HOOK PROTOTYPE</h2>
+<p>The unload procedure must match the following prototype:</p>
+<p>typedef int <strong>Tcl_LibraryUnloadProc</strong>( Tcl_Interp *<em>interp</em>, int
+<em>flags</em>);</p>
+<p>The <em>interp</em> argument identifies the interpreter from which the library
+is to be unloaded. The unload procedure must return <strong>TCL_OK</strong> or
+<strong>TCL_ERROR</strong> to indicate whether or not it completed successfully; in
+the event of an error it should set the interpreter\'s result to point
+to an error message. In this case, the result of the <strong>unload</strong> command
+will be the result returned by the unload procedure.</p>
+<p>The <em>flags</em> argument can be either
+<strong>TCL_UNLOAD_DETACH_FROM_INTERPRETER</strong> or
+<strong>TCL_UNLOAD_DETACH_FROM_PROCESS</strong>. In case the library will remain
+attached to the process after the unload procedure returns (i.e. because
+the library is used by other interpreters),
+<strong>TCL_UNLOAD_DETACH_FROM_INTERPRETER</strong> will be defined. However, if the
+library is used only by the target interpreter and the library will be
+detached from the application as soon as the unload procedure returns,
+the <em>flags</em> argument will be set to <strong>TCL_UNLOAD_DETACH_FROM_PROCESS</strong>.</p>
+<h2 id="notes">NOTES</h2>
+<p>The <strong>unload</strong> command cannot unload libraries that are statically
+linked with the application. If <em>fileName</em> is an empty string, then the
+<em>prefix</em> argument must be specified.</p>
+<p>If <em>prefix</em> is omitted or specified as an empty string, Tcl tries to
+guess the prefix. This may be done differently on different platforms.
+The default guess, which is used on most UNIX platforms, is to take the
+last element of <em>fileName</em>, strip off the first three characters if they
+are <strong>lib</strong>, then strip off the next three characters if they are
+<strong>tcl9</strong>, and use any following wordchars but not digits, converted to
+titlecase as the prefix. For example, the command <strong>unload
+libxyz4.2.so</strong> uses the prefix <strong>Xyz</strong> and the command <strong>unload
+bin/last.so {}</strong> uses the prefix <strong>Last</strong>.</p>
+<h1 id="portability-issues">PORTABILITY ISSUES</h1>
+<p><strong>Unix</strong>     </p>
+<p>:   Not all unix operating systems support library unloading. Under such
+    an operating system <strong>unload</strong> returns an error (unless
+    <strong>-nocomplain</strong> has been specified).</p>
+<h1 id="bugs">BUGS</h1>
+<p>If the same file is <strong>load</strong>ed by different <em>fileName</em>s, it will be
+loaded into the process\'s address space multiple times. The behavior of
+this varies from system to system (some systems may detect the redundant
+loads, others may not). In case a library has been silently detached by
+the operating system (and as a result Tcl thinks the library is still
+loaded), it may be dangerous to use <strong>unload</strong> on such a library (as the
+library will be completely detached from the application while some
+interpreters will continue to use it).</p>
+<h1 id="example">EXAMPLE</h1>
+<p>If an unloadable module in the file <strong>foobar.dll</strong> had been loaded using
+the <strong>load</strong> command like this (on Windows):</p>
+<p>load c:/some/dir/foobar.dll</p>
+<p>then it would be unloaded like this:</p>
+<p><strong>unload</strong> c:/some/dir/foobar.dll</p>
+<p>This allows a C code module to be installed temporarily into a
+long-running Tcl program and then removed again (either because it is no
+longer needed or because it is being updated with a new version) without
+having to shut down the overall Tcl process.</p>
+<h1 id="see-also">SEE ALSO</h1>
+<p>info sharedlibextension, load(n), safe(n)</p>
+<h1 id="keywords">KEYWORDS</h1>
+<p>binary code, unloading, safe interpreter, shared library</p>
+              
+            </div>
+          </div><footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+    
+  </span>
+</div>
+    <script>var base_url = '..';</script>
+    <script src="../js/theme_extra.js" defer></script>
+    <script src="../js/theme.js" defer></script>
+      <script src="../search/main.js" defer></script>
+    <script defer>
+        window.onload = function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        };
+    </script>
+
+</body>
+</html>

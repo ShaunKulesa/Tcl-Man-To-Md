@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><link rel="canonical" href="https://www.tcl.tk/man/tcl8.6.13/TclCmd/contents.html/LinkVar/" />
+      <link rel="shortcut icon" href="../img/favicon.ico" />
+    <title>NAME - Tcl/Tk</title>
+    <link rel="stylesheet" href="../css/theme.css" />
+    <link rel="stylesheet" href="../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "NAME";
+        var mkdocs_page_input_path = "LinkVar.md";
+        var mkdocs_page_url = "/man/tcl8.6.13/TclCmd/contents.html/LinkVar/";
+      </script>
+    
+    <script src="../js/jquery-3.6.0.min.js" defer></script>
+    <!--[if lt IE 9]>
+      <script src="../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
+      <script>hljs.initHighlightingOnLoad();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href=".." class="icon icon-home"> Tcl/Tk
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="..">Home</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="" href="../command.md">Commands</a>
+                </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="..">Tcl/Tk</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href=".." class="icon icon-home" aria-label="Docs"></a> &raquo;</li>
+      <li>NAME</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="name">NAME</h1>
+<p>Tcl_LinkArray, Tcl_LinkVar, Tcl_UnlinkVar, Tcl_UpdateLinkedVar - link
+Tcl variable to C variable</p>
+<h1 id="synopsis">SYNOPSIS</h1>
+<pre><code>#include &lt;tcl.h&gt;
+
+int
+Tcl_LinkVar(interp, varName, addr, type)
+
+int
+Tcl_LinkArray(interp, varName, addr, type, size)
+
+Tcl_UnlinkVar(interp, varName)
+
+Tcl_UpdateLinkedVar(interp, varName)
+</code></pre>
+<h1 id="arguments">ARGUMENTS</h1>
+<p>Interpreter that contains <em>varName</em>. Also used by <strong>Tcl_LinkVar</strong> to
+return error messages.</p>
+<p>Name of global variable.</p>
+<p>Address of C variable that is to be linked to <em>varName</em>.</p>
+<p>In <strong>Tcl_LinkArray</strong>, may be NULL to tell Tcl to create the storage for
+the array in the variable.</p>
+<p>Type of C variable for <strong>Tcl_LinkVar</strong> or type of array element for
+<strong>Tcl_LinkArray</strong>. Must be one of <strong>TCL_LINK_INT</strong>, <strong>TCL_LINK_UINT</strong>,
+<strong>TCL_LINK_CHAR</strong>, <strong>TCL_LINK_UCHAR</strong>, <strong>TCL_LINK_SHORT</strong>,
+<strong>TCL_LINK_USHORT</strong>, <strong>TCL_LINK_LONG</strong>, <strong>TCL_LINK_ULONG</strong>,
+<strong>TCL_LINK_WIDE_INT</strong>, <strong>TCL_LINK_WIDE_UINT</strong>, <strong>TCL_LINK_FLOAT</strong>,
+<strong>TCL_LINK_DOUBLE</strong>, <strong>TCL_LINK_BOOLEAN</strong>, or one of the extra ones
+listed below.</p>
+<p>In <strong>Tcl_LinkVar</strong>, the additional linked type <strong>TCL_LINK_STRING</strong> may
+be used.</p>
+<p>In <strong>Tcl_LinkArray</strong>, the additional linked types <strong>TCL_LINK_CHARS</strong> and
+<strong>TCL_LINK_BINARY</strong> may be used.</p>
+<p>All the above for both functions may be optionally OR\'ed with
+<strong>TCL_LINK_READ_ONLY</strong> to make the Tcl variable read-only.</p>
+<p>The number of elements in the C array. Must be greater than zero.</p>
+<h1 id="description">DESCRIPTION</h1>
+<p><strong>Tcl_LinkVar</strong> uses variable traces to keep the Tcl variable named by
+<em>varName</em> in sync with the C variable at the address given by <em>addr</em>.
+Whenever the Tcl variable is read the value of the C variable will be
+returned, and whenever the Tcl variable is written the C variable will
+be updated to have the same value. <strong>Tcl_LinkVar</strong> normally returns
+<strong>TCL_OK</strong>; if an error occurs while setting up the link (e.g. because
+<em>varName</em> is the name of array) then <strong>TCL_ERROR</strong> is returned and the
+interpreter\'s result contains an error message.</p>
+<p><strong>Tcl_LinkArray</strong> is similar, but for arrays of fixed size (given by the
+<em>size</em> argument). When asked to allocate the backing C array storage
+(via the <em>addr</em> argument being NULL), it writes the address that it
+allocated to the Tcl interpreter result.</p>
+<p>The <em>type</em> argument specifies the type of the C variable, or the type of
+the elements of the C array, and must have one of the following values,
+optionally OR\'ed with <strong>TCL_LINK_READ_ONLY</strong>:</p>
+<p><strong>TCL_LINK_INT</strong></p>
+<p>:   The C variable, or each element of the C array, is of type <strong>int</strong>.
+    Any value written into the Tcl variable must have a proper integer
+    form acceptable to <strong>Tcl_GetIntFromObj</strong>; attempts to write
+    non-integer values into <em>varName</em> will be rejected with Tcl errors.
+    Incomplete integer representations (like the empty string, \'+\',
+    \'-\' or the hex/octal/decimal/binary prefix) are accepted as if
+    they are valid too.</p>
+<p><strong>TCL_LINK_UINT</strong></p>
+<p>:   The C variable, or each element of the C array, is of type
+    <strong>unsigned int</strong>. Any value written into the Tcl variable must have
+    a proper unsigned integer form acceptable to
+    <strong>Tcl_GetWideIntFromObj</strong> and in the platform\'s defined range for
+    the <strong>unsigned int</strong> type; attempts to write non-integer values (or
+    values outside the range) into <em>varName</em> will be rejected with Tcl
+    errors. Incomplete integer representations (like the empty string,
+    \'+\', \'-\' or the hex/octal/decimal/binary prefix) are accepted as
+    if they are valid too.</p>
+<p><strong>TCL_LINK_CHAR</strong></p>
+<p>:   The C variable, or each element of the C array, is of type <strong>char</strong>.
+    Any value written into the Tcl variable must have a proper integer
+    form acceptable to <strong>Tcl_GetIntFromObj</strong> and be in the range of the
+    <strong>char</strong> datatype; attempts to write non-integer or out-of-range
+    values into <em>varName</em> will be rejected with Tcl errors. Incomplete
+    integer representations (like the empty string, \'+\', \'-\' or the
+    hex/octal/decimal/binary prefix) are accepted as if they are valid
+    too.</p>
+<pre><code>If using an array of these, consider using **TCL_LINK_CHARS**
+instead.
+</code></pre>
+<p><strong>TCL_LINK_CHARS</strong></p>
+<p>:   </p>
+<p>The C array is of type <strong>char *</strong> and is mapped into Tcl as a string.
+Any value written into the Tcl variable must have the same length as the
+underlying storage. Only supported with <strong>Tcl_LinkArray</strong>.</p>
+<p><strong>TCL_LINK_UCHAR</strong></p>
+<p>:   The C variable, or each element of the C array, is of type
+    <strong>unsigned char</strong>. Any value written into the Tcl variable must have
+    a proper unsigned integer form acceptable to <strong>Tcl_GetIntFromObj</strong>
+    and in the platform\'s defined range for the <strong>unsigned char</strong> type;
+    attempts to write non-integer values (or values outside the range)
+    into <em>varName</em> will be rejected with Tcl errors. Incomplete integer
+    representations (like the empty string, \'+\', \'-\' or the
+    hex/octal/decimal/binary prefix) are accepted as if they are valid
+    too.</p>
+<pre><code>If using an array of these, consider using **TCL_LINK_BINARY**
+instead.
+</code></pre>
+<p><strong>TCL_LINK_BINARY</strong></p>
+<p>:   </p>
+<p>The C array is of type <strong>unsigned char *</strong> and is mapped into Tcl as a
+bytearray. Any value written into the Tcl variable must have the same
+length as the underlying storage. Only supported with <strong>Tcl_LinkArray</strong>.</p>
+<p><strong>TCL_LINK_SHORT</strong></p>
+<p>:   The C variable, or each element of the C array, is of type
+    <strong>short</strong>. Any value written into the Tcl variable must have a
+    proper integer form acceptable to <strong>Tcl_GetIntFromObj</strong> and be in
+    the range of the <strong>short</strong> datatype; attempts to write non-integer
+    or out-of-range values into <em>varName</em> will be rejected with Tcl
+    errors. Incomplete integer representations (like the empty string,
+    \'+\', \'-\' or the hex/octal/decimal/binary prefix) are accepted as
+    if they are valid too.</p>
+<p><strong>TCL_LINK_USHORT</strong></p>
+<p>:   The C variable, or each element of the C array, is of type
+    <strong>unsigned short</strong>. Any value written into the Tcl variable must
+    have a proper unsigned integer form acceptable to
+    <strong>Tcl_GetIntFromObj</strong> and in the platform\'s defined range for the
+    <strong>unsigned short</strong> type; attempts to write non-integer values (or
+    values outside the range) into <em>varName</em> will be rejected with Tcl
+    errors. Incomplete integer representations (like the empty string,
+    \'+\', \'-\' or the hex/octal/decimal/binary prefix) are accepted as
+    if they are valid too.</p>
+<p><strong>TCL_LINK_LONG</strong></p>
+<p>:   The C variable, or each element of the C array, is of type <strong>long</strong>.
+    Any value written into the Tcl variable must have a proper integer
+    form acceptable to <strong>Tcl_GetLongFromObj</strong>; attempts to write
+    non-integer or out-of-range values into <em>varName</em> will be rejected
+    with Tcl errors. Incomplete integer representations (like the empty
+    string, \'+\', \'-\' or the hex/octal/decimal/binary prefix) are
+    accepted as if they are valid too.</p>
+<p><strong>TCL_LINK_ULONG</strong></p>
+<p>:   The C variable, or each element of the C array, is of type
+    <strong>unsigned long</strong>. Any value written into the Tcl variable must have
+    a proper unsigned integer form acceptable to
+    <strong>Tcl_GetWideIntFromObj</strong> and in the platform\'s defined range for
+    the <strong>unsigned long</strong> type; attempts to write non-integer values (or
+    values outside the range) into <em>varName</em> will be rejected with Tcl
+    errors. Incomplete integer representations (like the empty string,
+    \'+\', \'-\' or the hex/octal/decimal/binary prefix) are accepted as
+    if they are valid too.</p>
+<p><strong>TCL_LINK_DOUBLE</strong></p>
+<p>:   The C variable, or each element of the C array, is of type
+    <strong>double</strong>. Any value written into the Tcl variable must have a
+    proper real form acceptable to <strong>Tcl_GetDoubleFromObj</strong>; attempts to
+    write non-real values into <em>varName</em> will be rejected with Tcl
+    errors. Incomplete integer or real representations (like the empty
+    string, \'.\', \'+\', \'-\' or the hex/octal/decimal/binary prefix)
+    are accepted as if they are valid too.</p>
+<p><strong>TCL_LINK_FLOAT</strong></p>
+<p>:   The C variable, or each element of the C array, is of type
+    <strong>float</strong>. Any value written into the Tcl variable must have a
+    proper real form acceptable to <strong>Tcl_GetDoubleFromObj</strong> and must be
+    within the range acceptable for a <strong>float</strong>; attempts to write
+    non-real values (or values outside the range) into <em>varName</em> will be
+    rejected with Tcl errors. Incomplete integer or real representations
+    (like the empty string, \'.\', \'+\', \'-\' or the
+    hex/octal/decimal/binary prefix) are accepted as if they are valid
+    too.</p>
+<p><strong>TCL_LINK_WIDE_INT</strong></p>
+<p>:   The C variable, or each element of the C array, is of type
+    <strong>Tcl_WideInt</strong> (which is an integer type at least 64-bits wide on
+    all platforms that can support it.) Any value written into the Tcl
+    variable must have a proper integer form acceptable to
+    <strong>Tcl_GetWideIntFromObj</strong>; attempts to write non-integer values into
+    <em>varName</em> will be rejected with Tcl errors. Incomplete integer
+    representations (like the empty string, \'+\', \'-\' or the
+    hex/octal/decimal/binary prefix) are accepted as if they are valid
+    too.</p>
+<p><strong>TCL_LINK_WIDE_UINT</strong></p>
+<p>:   The C variable, or each element of the C array, is of type
+    <strong>Tcl_WideUInt</strong> (which is an unsigned integer type at least 64-bits
+    wide on all platforms that can support it.) Any value written into
+    the Tcl variable must have a proper unsigned wideinteger form
+    acceptable to <strong>Tcl_GetWideUIntFromObj</strong>; attempts to write
+    non-integer values into <em>varName</em> will be rejected with Tcl errors.
+    Incomplete integer representations (like the empty string, \'+\',
+    \'-\' or the hex/octal/decimal/binary prefix) are accepted as if
+    they are valid too.</p>
+<p><strong>TCL_LINK_BOOLEAN</strong></p>
+<p>:   The C variable, or each element of the C array, is of type <strong>int</strong>.
+    If its value is zero then it will read from Tcl as</p>
+<p>otherwise it will read from Tcl as</p>
+<p>Whenever <em>varName</em> is modified, the C variable will be set to a 0 or 1
+value. Any value written into the Tcl variable must have a proper
+boolean form acceptable to <strong>Tcl_GetBooleanFromObj</strong>; attempts to write
+non-boolean values into <em>varName</em> will be rejected with Tcl errors.</p>
+<p><strong>TCL_LINK_STRING</strong></p>
+<p>:   The C variable is of type <strong>char *</strong>. If its value is not NULL then
+    it must be a pointer to a string allocated with <strong>Tcl_Alloc</strong>.
+    Whenever the Tcl variable is modified the current C string will be
+    freed and new memory will be allocated to hold a copy of the
+    variable\'s new value. If the C variable contains a NULL pointer
+    then the Tcl variable will read as</p>
+<p>This is only supported by <strong>Tcl_LinkVar</strong>.</p>
+<p>If the <strong>TCL_LINK_READ_ONLY</strong> flag is present in <em>type</em> then the
+variable will be read-only from Tcl, so that its value can only be
+changed by modifying the C variable. Attempts to write the variable from
+Tcl will be rejected with errors.</p>
+<p><strong>Tcl_UnlinkVar</strong> removes the link previously set up for the variable
+given by <em>varName</em>. If there does not exist a link for <em>varName</em> then
+the procedure has no effect.</p>
+<p><strong>Tcl_UpdateLinkedVar</strong> may be invoked after the C variable has changed
+to force the Tcl variable to be updated immediately. In many cases this
+procedure is not needed, since any attempt to read the Tcl variable will
+return the latest value of the C variable. However, if a trace has been
+set on the Tcl variable (such as a Tk widget that wishes to display the
+value of the variable), the trace will not trigger when the C variable
+has changed. <strong>Tcl_UpdateLinkedVar</strong> ensures that any traces on the Tcl
+variable are invoked.</p>
+<p>Note that, as with any call to a Tcl interpreter,
+<strong>Tcl_UpdateLinkedVar</strong> must be called from the same thread that created
+the interpreter. The safest mechanism is to ensure that the C variable
+is only ever updated from the same thread that created the interpreter
+(possibly in response to an event posted with <strong>Tcl_ThreadQueueEvent</strong>),
+but when it is necessary to update the variable in a separate thread, it
+is advised that <strong>Tcl_AsyncMark</strong> be used to indicate to the thread
+hosting the interpreter that it is ready to run <strong>Tcl_UpdateLinkedVar</strong>.</p>
+<h1 id="see-also">SEE ALSO</h1>
+<p>Tcl_TraceVar(3)</p>
+<h1 id="keywords">KEYWORDS</h1>
+<p>boolean, integer, link, read-only, real, string, trace, variable</p>
+              
+            </div>
+          </div><footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+    
+  </span>
+</div>
+    <script>var base_url = '..';</script>
+    <script src="../js/theme_extra.js" defer></script>
+    <script src="../js/theme.js" defer></script>
+      <script src="../search/main.js" defer></script>
+    <script defer>
+        window.onload = function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        };
+    </script>
+
+</body>
+</html>

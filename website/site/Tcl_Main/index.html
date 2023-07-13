@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><link rel="canonical" href="https://www.tcl.tk/man/tcl8.6.13/TclCmd/contents.html/Tcl_Main/" />
+      <link rel="shortcut icon" href="../img/favicon.ico" />
+    <title>NAME - Tcl/Tk</title>
+    <link rel="stylesheet" href="../css/theme.css" />
+    <link rel="stylesheet" href="../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "NAME";
+        var mkdocs_page_input_path = "Tcl_Main.md";
+        var mkdocs_page_url = "/man/tcl8.6.13/TclCmd/contents.html/Tcl_Main/";
+      </script>
+    
+    <script src="../js/jquery-3.6.0.min.js" defer></script>
+    <!--[if lt IE 9]>
+      <script src="../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
+      <script>hljs.initHighlightingOnLoad();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href=".." class="icon icon-home"> Tcl/Tk
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="..">Home</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="" href="../command.md">Commands</a>
+                </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="..">Tcl/Tk</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href=".." class="icon icon-home" aria-label="Docs"></a> &raquo;</li>
+      <li>NAME</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="name">NAME</h1>
+<p>Tcl_Main, Tcl_MainEx, Tcl_MainExW, Tcl_SetStartupScript,
+Tcl_GetStartupScript, Tcl_SetMainLoop - main program, startup script,
+and event loop definition for Tcl-based applications</p>
+<h1 id="synopsis">SYNOPSIS</h1>
+<pre><code>#include &lt;tcl.h&gt;
+
+Tcl_Main(argc, argv, appInitProc)
+
+Tcl_MainEx(argc, charargv, appInitProc, interp)
+
+Tcl_MainExW(argc, wideargv, appInitProc, interp)
+
+Tcl_SetStartupScript(path, encoding)
+
+Tcl_Obj *
+Tcl_GetStartupScript(encodingPtr)
+
+Tcl_SetMainLoop(mainLoopProc)
+</code></pre>
+<h1 id="arguments">ARGUMENTS</h1>
+<p>Number of elements in <em>argv</em>.</p>
+<p>Array of strings containing command-line arguments. On Windows, when
+using -DUNICODE, the parameter type changes to wchar_t *.</p>
+<p>As argv, but does not change type to wchar_t.</p>
+<p>As argv, but type is always wchar_t.</p>
+<p>Address of an application-specific initialization procedure. The value
+for this argument is usually <strong>Tcl_AppInit</strong>.</p>
+<p>Name of file to use as startup script, or NULL.</p>
+<p>Encoding of file to use as startup script, or NULL.</p>
+<p>If non-NULL, location to write a copy of the (const char *) pointing to
+the encoding name.</p>
+<p>Address of an application-specific event loop procedure.</p>
+<p>Already created Tcl Interpreter.</p>
+<h1 id="description">DESCRIPTION</h1>
+<p><strong>Tcl_Main</strong> can serve as the main program for Tcl-based shell
+applications. A</p>
+<p>is a program like tclsh or wish that supports both interactive
+interpretation of Tcl and evaluation of a script contained in a file
+given as a command line argument. <strong>Tcl_Main</strong> is offered as a
+convenience to developers of shell applications, so they do not have to
+reproduce all of the code for proper initialization of the Tcl library
+and interactive shell operation. Other styles of embedding Tcl in an
+application are not supported by <strong>Tcl_Main</strong>. Those must be achieved by
+calling lower level functions in the Tcl library directly.</p>
+<p>The <strong>Tcl_Main</strong> function has been offered by the Tcl library since
+release Tcl 7.4. In older releases of Tcl, the Tcl library itself
+defined a function <strong>main</strong>, but that lacks flexibility of embedding
+style and having a function <strong>main</strong> in a library (particularly a shared
+library) causes problems on many systems. Having <strong>main</strong> in the Tcl
+library would also make it hard to use Tcl in C++ programs, since C++
+programs must have special C++ <strong>main</strong> functions.</p>
+<p>Normally each shell application contains a small <strong>main</strong> function that
+does nothing but invoke <strong>Tcl_Main</strong>. <strong>Tcl_Main</strong> then does all the
+work of creating and running a <strong>tclsh</strong>-like application.</p>
+<p><strong>Tcl_Main</strong> is not provided by the public interface of Tcl\'s stub
+library. Programs that call <strong>Tcl_Main</strong> must be linked against the
+standard Tcl library. If the standard Tcl library is a dll (so, not a
+static .lib/.a) , then the program must be linked against the stub
+library as well. Extensions (stub-enabled or not) are not intended to
+call <strong>Tcl_Main</strong>.</p>
+<p><strong>Tcl_Main</strong> is not thread-safe. It should only be called by a single
+main thread of a multi-threaded application. This restriction is not a
+problem with normal use described above.</p>
+<p><strong>Tcl_Main</strong> and therefore all applications based upon it, like
+<strong>tclsh</strong>, use <strong>Tcl_GetStdChannel</strong> to initialize the standard channels
+to their default values. See <strong>Tcl_StandardChannels</strong> for more
+information.</p>
+<p><strong>Tcl_Main</strong> supports two modes of operation, depending on whether the
+filename and encoding of a startup script has been established. The
+routines <strong>Tcl_SetStartupScript</strong> and <strong>Tcl_GetStartupScript</strong> are the
+tools for controlling this configuration of <strong>Tcl_Main</strong>.</p>
+<p><strong>Tcl_SetStartupScript</strong> registers the value <em>path</em> as the name of the
+file for <strong>Tcl_Main</strong> to evaluate as its startup script. The value
+<em>encoding</em> is Tcl\'s name for the encoding used to store the text in
+that file. A value of <strong>NULL</strong> for <em>encoding</em> is a signal to use the
+system encoding. A value of <strong>NULL</strong> for <em>path</em> erases any existing
+registration so that <strong>Tcl_Main</strong> will not evaluate any startup script.</p>
+<p><strong>Tcl_GetStartupScript</strong> queries the registered file name and encoding
+set by the most recent <strong>Tcl_SetStartupScript</strong> call in the same thread.
+The stored file name is returned, and the stored encoding name is
+written to space pointed to by <em>encodingPtr</em>, when that is not NULL.</p>
+<p>The file name and encoding values managed by the routines
+<strong>Tcl_SetStartupScript</strong> and <strong>Tcl_GetStartupScript</strong> are stored
+per-thread. Although the storage and retrieval functions of these
+routines work in any thread, only those calls in the same main thread as
+<strong>Tcl_Main</strong> can have any influence on it.</p>
+<p>The caller of <strong>Tcl_Main</strong> may call <strong>Tcl_SetStartupScript</strong> first to
+establish its desired startup script. If <strong>Tcl_Main</strong> finds that no such
+startup script has been established, it consults the first few arguments
+in <em>argv</em>. If they match ?<strong>-encoding </strong><em>name</em>? <em>fileName</em>, where
+<em>fileName</em> does not begin with the character <em>-</em>, then <em>fileName</em> is
+taken to be the name of a file containing a <em>startup script</em>, and <em>name</em>
+is taken to be the name of the encoding of the contents of that file.
+<strong>Tcl_Main</strong> then calls <strong>Tcl_SetStartupScript</strong> with these values.</p>
+<p><strong>Tcl_Main</strong> then defines in its main interpreter the Tcl variables
+<em>argc</em>, <em>argv</em>, <em>argv0</em>, and <em>tcl_interactive</em>, as described in the
+documentation for <strong>tclsh</strong>.</p>
+<p>When it has finished its own initialization, but before it processes
+commands, <strong>Tcl_Main</strong> calls the procedure given by the <em>appInitProc</em>
+argument. This procedure provides a</p>
+<p>for the application to perform its own initialization of the interpreter
+created by <strong>Tcl_Main</strong>, such as defining application-specific commands.
+The application initialization routine might also call
+<strong>Tcl_SetStartupScript</strong> to (re-)set the file and encoding to be used as
+a startup script. The procedure must have an interface that matches the
+type <strong>Tcl_AppInitProc</strong>:</p>
+<p>typedef int <strong>Tcl_AppInitProc</strong>( Tcl_Interp *<em>interp</em>);</p>
+<p><em>AppInitProc</em> is almost always a pointer to <strong>Tcl_AppInit</strong>; for more
+details on this procedure, see the documentation for <strong>Tcl_AppInit</strong>.</p>
+<p>When the <em>appInitProc</em> is finished, <strong>Tcl_Main</strong> calls
+<strong>Tcl_GetStartupScript</strong> to determine what startup script has been
+requested, if any. If a startup script has been provided, <strong>Tcl_Main</strong>
+attempts to evaluate it. Otherwise, interactive mode begins with
+examination of the variable <em>tcl_rcFileName</em> in the main interpreter. If
+that variable exists and holds the name of a readable file, the contents
+of that file are evaluated in the main interpreter. Then interactive
+operations begin, with prompts and command evaluation results written to
+the standard output channel, and commands read from the standard input
+channel and then evaluated. The prompts written to the standard output
+channel may be customized by defining the Tcl variables <em>tcl_prompt1</em>
+and <em>tcl_prompt2</em> as described in the documentation for <strong>tclsh</strong>. The
+prompts and command evaluation results are written to the standard
+output channel only if the Tcl variable <em>tcl_interactive</em> in the main
+interpreter holds a non-zero integer value.</p>
+<p><strong>Tcl_SetMainLoop</strong> allows setting an event loop procedure to be run.
+This allows, for example, Tk to be dynamically loaded and set its event
+loop. The event loop will run following the startup script. If you are
+in interactive mode, setting the main loop procedure will cause the
+prompt to become fileevent based and then the loop procedure is called.
+When the loop procedure returns in interactive mode, interactive
+operation will continue. The main loop procedure must have an interface
+that matches the type <strong>Tcl_MainLoopProc</strong>:</p>
+<p>typedef void <strong>Tcl_MainLoopProc</strong>(void);</p>
+<p><strong>Tcl_Main</strong> does not return. Normally a program based on <strong>Tcl_Main</strong>
+will terminate when the <strong>exit</strong> command is evaluated. In interactive
+mode, if an EOF or channel error is encountered on the standard input
+channel, then <strong>Tcl_Main</strong> itself will evaluate the <strong>exit</strong> command
+after the main loop procedure (if any) returns. In non-interactive mode,
+after <strong>Tcl_Main</strong> evaluates the startup script, and the main loop
+procedure (if any) returns, <strong>Tcl_Main</strong> will also evaluate the <strong>exit</strong>
+command.</p>
+<p><strong>Tcl_Main</strong> can not be used in stub-enabled extensions.</p>
+<p>The difference between Tcl_MainEx and Tcl_MainExW is that the arguments
+are passed as characters or wide characters. When used in stub-enabled
+embedders, the stubs table must be first initialized using one of
+<strong>Tcl_InitSubsystems</strong>, <strong>Tcl_SetPanicProc</strong>, <strong>Tcl_FindExecutable</strong> or
+<strong>TclZipfs_AppHook</strong>.</p>
+<h1 id="reference-count-management">REFERENCE COUNT MANAGEMENT</h1>
+<p><strong>Tcl_SetStartupScript</strong> takes a value (or NULL) for its <em>path</em>
+argument, and will increment the reference count of it.</p>
+<p><strong>Tcl_GetStartupScript</strong> returns a value with reference count at least
+1, or NULL. It\'s <em>encodingPtr</em> is also used (if non-NULL) to return a
+value with a reference count at least 1, or NULL. In both cases, the
+owner of the values is the current thread.</p>
+<h1 id="see-also">SEE ALSO</h1>
+<p>tclsh(1), Tcl_GetStdChannel(3), Tcl_StandardChannels(3), Tcl_AppInit(3),
+exit(n), encoding(n)</p>
+<h1 id="keywords">KEYWORDS</h1>
+<p>application-specific initialization, command-line arguments, main
+program</p>
+              
+            </div>
+          </div><footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+    
+  </span>
+</div>
+    <script>var base_url = '..';</script>
+    <script src="../js/theme_extra.js" defer></script>
+    <script src="../js/theme.js" defer></script>
+      <script src="../search/main.js" defer></script>
+    <script defer>
+        window.onload = function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        };
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><link rel="canonical" href="https://www.tcl.tk/man/tcl8.6.13/TclCmd/contents.html/GetTime/" />
+      <link rel="shortcut icon" href="../img/favicon.ico" />
+    <title>NAME - Tcl/Tk</title>
+    <link rel="stylesheet" href="../css/theme.css" />
+    <link rel="stylesheet" href="../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "NAME";
+        var mkdocs_page_input_path = "GetTime.md";
+        var mkdocs_page_url = "/man/tcl8.6.13/TclCmd/contents.html/GetTime/";
+      </script>
+    
+    <script src="../js/jquery-3.6.0.min.js" defer></script>
+    <!--[if lt IE 9]>
+      <script src="../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
+      <script>hljs.initHighlightingOnLoad();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href=".." class="icon icon-home"> Tcl/Tk
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="..">Home</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="" href="../command.md">Commands</a>
+                </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="..">Tcl/Tk</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href=".." class="icon icon-home" aria-label="Docs"></a> &raquo;</li>
+      <li>NAME</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="name">NAME</h1>
+<p>Tcl_GetTime, Tcl_SetTimeProc, Tcl_QueryTimeProc - get date and time</p>
+<h1 id="synopsis">SYNOPSIS</h1>
+<pre><code>#include &lt;tcl.h&gt;
+
+Tcl_GetTime(timePtr)
+
+Tcl_SetTimeProc(getProc, scaleProc, clientData)
+
+Tcl_QueryTimeProc(getProcPtr, scaleProcPtr, clientDataPtr)
+</code></pre>
+<h1 id="arguments">ARGUMENTS</h1>
+<p>Points to memory in which to store the date and time information.</p>
+<p>Pointer to handler function replacing <strong>Tcl_GetTime</strong>\'s access to the
+OS.</p>
+<p>Pointer to handler function for the conversion of time delays in the
+virtual domain to real-time.</p>
+<p>Value passed through to the two handler functions.</p>
+<p>Pointer to place the currently registered get handler function into.</p>
+<p>Pointer to place the currently registered scale handler function into.</p>
+<p>Pointer to place the currently registered pass-through value into.</p>
+<h1 id="description">DESCRIPTION</h1>
+<p>The <strong>Tcl_GetTime</strong> function retrieves the current time as a <em>Tcl_Time</em>
+structure in memory the caller provides. This structure has the
+following definition:</p>
+<p>typedef struct Tcl_Time { long <em>sec</em>; long <em>usec</em>; } <strong>Tcl_Time</strong>;</p>
+<p>On return, the <em>sec</em> member of the structure is filled in with the
+number of seconds that have elapsed since the <em>epoch:</em> the epoch is the
+point in time of 00:00 UTC, 1 January 1970. This number does <em>not</em> count
+leap seconds - an interval of one day advances it by 86400 seconds
+regardless of whether a leap second has been inserted.</p>
+<p>The <em>usec</em> member of the structure is filled in with the number of
+microseconds that have elapsed since the start of the second designated
+by <em>sec</em>. The Tcl library makes every effort to keep this number as
+precise as possible, subject to the limitations of the computer system.
+On multiprocessor variants of Windows, this number may be limited to the
+10- or 20-ms granularity of the system clock. (On single-processor
+Windows systems, the <em>usec</em> field is derived from a performance counter
+and is highly precise.)</p>
+<h2 id="virtualized-time">VIRTUALIZED TIME</h2>
+<p>The <strong>Tcl_SetTimeProc</strong> function registers two related handler functions
+with the core. The first handler function is a replacement for
+<strong>Tcl_GetTime</strong>, or rather the OS access made by <strong>Tcl_GetTime</strong>. The
+other handler function is used by the Tcl notifier to convert wait/block
+times from the virtual domain into real time.</p>
+<p>The <strong>Tcl_QueryTimeProc</strong> function returns the currently registered
+handler functions. If no external handlers were set then this will
+return the standard handlers accessing and processing the native time of
+the OS. The arguments to the function are allowed to be NULL; and any
+argument which is NULL is ignored and not set.</p>
+<p>The signatures of the handler functions are as follows:</p>
+<p>typedef void <strong>Tcl_GetTimeProc</strong>( Tcl_Time *<em>timebuf</em>, void
+*<em>clientData</em>); typedef void <strong>Tcl_ScaleTimeProc</strong>( Tcl_Time
+*<em>timebuf</em>, void *<em>clientData</em>);</p>
+<p>The <em>timebuf</em> fields contain the time to manipulate, and the
+<em>clientData</em> fields contain a pointer supplied at the time the handler
+functions were registered.</p>
+<p>Any handler pair specified has to return data which is consistent
+between them. In other words, setting one handler of the pair to
+something assuming a 10-times slowdown, and the other handler of the
+pair to something assuming a two-times slowdown is wrong and not
+allowed.</p>
+<p>The set handler functions are allowed to run the delivered time
+backwards, however this should be avoided. We have to allow it as the
+native time can run backwards as the user can fiddle with the system
+time one way or other. Note that the insertion of the hooks will not
+change the behavior of the Tcl core with regard to this situation, i.e.
+the existing behavior is retained.</p>
+<h1 id="see-also">SEE ALSO</h1>
+<p>clock(n)</p>
+<h1 id="keywords">KEYWORDS</h1>
+<p>date, time</p>
+              
+            </div>
+          </div><footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+    
+  </span>
+</div>
+    <script>var base_url = '..';</script>
+    <script src="../js/theme_extra.js" defer></script>
+    <script src="../js/theme.js" defer></script>
+      <script src="../search/main.js" defer></script>
+    <script defer>
+        window.onload = function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        };
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><link rel="canonical" href="https://www.tcl.tk/man/tcl8.6.13/TclCmd/contents.html/transchan/" />
+      <link rel="shortcut icon" href="../img/favicon.ico" />
+    <title>NAME - Tcl/Tk</title>
+    <link rel="stylesheet" href="../css/theme.css" />
+    <link rel="stylesheet" href="../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "NAME";
+        var mkdocs_page_input_path = "transchan.md";
+        var mkdocs_page_url = "/man/tcl8.6.13/TclCmd/contents.html/transchan/";
+      </script>
+    
+    <script src="../js/jquery-3.6.0.min.js" defer></script>
+    <!--[if lt IE 9]>
+      <script src="../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
+      <script>hljs.initHighlightingOnLoad();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href=".." class="icon icon-home"> Tcl/Tk
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="..">Home</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="" href="../command.md">Commands</a>
+                </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="..">Tcl/Tk</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href=".." class="icon icon-home" aria-label="Docs"></a> &raquo;</li>
+      <li>NAME</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="name">NAME</h1>
+<p>transchan - command handler API of channel transforms</p>
+<h1 id="synopsis">SYNOPSIS</h1>
+<p><strong>cmdPrefix </strong><em>option</em> ?<em>arg arg ...</em>?</p>
+<h1 id="description">DESCRIPTION</h1>
+<p>The Tcl-level handler for a channel transformation has to be a command
+with subcommands (termed an <em>ensemble</em> despite not implying that it must
+be created with <strong>namespace ensemble create</strong>; this mechanism is not
+tied to <strong>namespace ensemble</strong> in any way). Note that <em>cmdPrefix</em> is
+whatever was specified in the call to <strong>chan push</strong>, and may consist of
+multiple arguments; this will be expanded to multiple words in place of
+the prefix.</p>
+<p>Of all the possible subcommands, the handler <em>must</em> support
+<strong>initialize</strong> and <strong>finalize</strong>. Transformations for writable channels
+must also support <strong>write</strong>, and transformations for readable channels
+must also support <strong>read</strong>.</p>
+<p>Note that in the descriptions below <em>cmdPrefix</em> may be more than one
+word, and <em>handle</em> is the value returned by the <strong>chan push</strong> call used
+to create the transformation.</p>
+<h2 id="generic-subcommands">GENERIC SUBCOMMANDS</h2>
+<p>The following subcommands are relevant to all types of channel.</p>
+<p><em>cmdPrefix </em><strong>clear </strong><em>handle</em></p>
+<p>:   This optional subcommand is called to signify to the transformation
+    that any data stored in internal buffers (either incoming or
+    outgoing) must be cleared. It is called when a <strong>chan seek</strong> is
+    performed on the channel being transformed.</p>
+<p><em>cmdPrefix </em><strong>finalize </strong><em>handle</em></p>
+<p>:   This mandatory subcommand is called last for the given <em>handle</em>, and
+    then never again, and it exists to allow for cleaning up any
+    Tcl-level data structures associated with the transformation.
+    <em>Warning!</em> Any errors thrown by this subcommand will be ignored. It
+    is not guaranteed to be called if the interpreter is deleted.</p>
+<p><em>cmdPrefix </em><strong>initialize </strong><em>handle mode</em></p>
+<p>:   This mandatory subcommand is called first, and then never again (for
+    the given <em>handle</em>). Its responsibility is to initialize all parts
+    of the transformation at the Tcl level. The <em>mode</em> is a list
+    containing any of <strong>read </strong>and <strong>write</strong>.</p>
+<pre><code>**write**
+
+:   implies that the channel is writable.
+
+**read**
+
+:   implies that the channel is readable.
+
+The return value of the subcommand should be a list containing the
+names of all subcommands supported by this handler. Any error thrown
+by the subcommand will prevent the creation of the transformation.
+The thrown error will appear as error thrown by **chan push**.
+</code></pre>
+<h2 id="read-related-subcommands">READ-RELATED SUBCOMMANDS</h2>
+<p>These subcommands are used for handling transformations applied to
+readable channels; though strictly <strong>read </strong>is optional, it must be
+supported if any of the others is or the channel will be made
+non-readable.</p>
+<p><em>cmdPrefix </em><strong>drain </strong><em>handle</em></p>
+<p>:   This optional subcommand is called whenever data in the
+    transformation input (i.e. read) buffer has to be forced upward,
+    i.e. towards the user or script. The result returned by the method
+    is taken as the <em>binary</em> data to push upward to the level above this
+    transformation (the reader or a higher-level transformation).</p>
+<pre><code>In other words, when this method is called the transformation cannot
+defer the actual transformation operation anymore and has to
+transform all data waiting in its internal read buffers and return
+the result of that action.
+</code></pre>
+<p><em>cmdPrefix </em><strong>limit? </strong><em>handle</em></p>
+<p>:   This optional subcommand is called to allow the Tcl I/O engine to
+    determine how far ahead it should read. If present, it should return
+    an integer number greater than zero which indicates how many bytes
+    ahead should be read, or an integer less than zero to indicate that
+    the I/O engine may read as far ahead as it likes.</p>
+<p><em>cmdPrefix </em><strong>read </strong><em>handle buffer</em></p>
+<p>:   This subcommand, which must be present if the transformation is to
+    work with readable channels, is called whenever the base channel, or
+    a transformation below this transformation, pushes data upward. The
+    <em>buffer</em> contains the binary data which has been given to us from
+    below. It is the responsibility of this subcommand to actually
+    transform the data. The result returned by the subcommand is taken
+    as the binary data to push further upward to the transformation
+    above this transformation. This can also be the user or script that
+    originally read from the channel.</p>
+<pre><code>Note that the result is allowed to be empty, or even less than the
+data we received; the transformation is not required to transform
+everything given to it right now. It is allowed to store incoming
+data in internal buffers and to defer the actual transformation
+until it has more data.
+</code></pre>
+<h2 id="write-related-subcommands">WRITE-RELATED SUBCOMMANDS</h2>
+<p>These subcommands are used for handling transformations applied to
+writable channels; though strictly <strong>write</strong> is optional, it must be
+supported if any of the others is or the channel will be made
+non-writable.</p>
+<p><em>cmdPrefix </em><strong>flush </strong><em>handle</em></p>
+<p>:   This optional subcommand is called whenever data in the
+    transformation \'write\' buffer has to be forced downward, i.e.
+    towards the base channel. The result returned by the subcommand is
+    taken as the binary data to write to the transformation below the
+    current transformation. This can be the base channel as well.</p>
+<pre><code>In other words, when this subcommand is called the transformation
+cannot defer the actual transformation operation anymore and has to
+transform all data waiting in its internal write buffers and return
+the result of that action.
+</code></pre>
+<p><em>cmdPrefix </em><strong>write </strong><em>handle buffer</em></p>
+<p>:   This subcommand, which must be present if the transformation is to
+    work with writable channels, is called whenever the user, or a
+    transformation above this transformation, writes data downward. The
+    <em>buffer</em> contains the binary data which has been written to us. It
+    is the responsibility of this subcommand to actually transform the
+    data.</p>
+<pre><code>The result returned by the subcommand is taken as the binary data to
+write to the transformation below this transformation. This can be
+the base channel as well. Note that the result is allowed to be
+empty, or less than the data we got; the transformation is not
+required to transform everything which was written to it right now.
+It is allowed to store this data in internal buffers and to defer
+the actual transformation until it has more data.
+</code></pre>
+<h1 id="see-also">SEE ALSO</h1>
+<p>chan(n), refchan(n)</p>
+<h1 id="keywords">KEYWORDS</h1>
+<p>API, channel, ensemble, prefix, transformation</p>
+              
+            </div>
+          </div><footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+    
+  </span>
+</div>
+    <script>var base_url = '..';</script>
+    <script src="../js/theme_extra.js" defer></script>
+    <script src="../js/theme.js" defer></script>
+      <script src="../search/main.js" defer></script>
+    <script defer>
+        window.onload = function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        };
+    </script>
+
+</body>
+</html>

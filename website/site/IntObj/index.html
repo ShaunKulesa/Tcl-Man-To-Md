@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><link rel="canonical" href="https://www.tcl.tk/man/tcl8.6.13/TclCmd/contents.html/IntObj/" />
+      <link rel="shortcut icon" href="../img/favicon.ico" />
+    <title>NAME - Tcl/Tk</title>
+    <link rel="stylesheet" href="../css/theme.css" />
+    <link rel="stylesheet" href="../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "NAME";
+        var mkdocs_page_input_path = "IntObj.md";
+        var mkdocs_page_url = "/man/tcl8.6.13/TclCmd/contents.html/IntObj/";
+      </script>
+    
+    <script src="../js/jquery-3.6.0.min.js" defer></script>
+    <!--[if lt IE 9]>
+      <script src="../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
+      <script>hljs.initHighlightingOnLoad();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href=".." class="icon icon-home"> Tcl/Tk
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="..">Home</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="" href="../command.md">Commands</a>
+                </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="..">Tcl/Tk</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href=".." class="icon icon-home" aria-label="Docs"></a> &raquo;</li>
+      <li>NAME</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="name">NAME</h1>
+<p>Tcl_NewIntObj, Tcl_NewLongObj, Tcl_NewWideIntObj, Tcl_SetIntObj,
+Tcl_SetLongObj, Tcl_SetWideIntObj, Tcl_GetIntFromObj,
+Tcl_GetIntForIndex, Tcl_GetLongFromObj, Tcl_GetWideIntFromObj,
+Tcl_GetWideUIntFromObj, Tcl_NewBignumObj, Tcl_SetBignumObj,
+Tcl_GetBignumFromObj, Tcl_TakeBignumFromObj - manipulate Tcl values as
+integers</p>
+<h1 id="synopsis">SYNOPSIS</h1>
+<pre><code>#include &lt;tcl.h&gt;
+
+Tcl_Obj *
+Tcl_NewIntObj(intValue)
+
+Tcl_Obj *
+Tcl_NewLongObj(longValue)
+
+Tcl_Obj *
+Tcl_NewWideIntObj(wideValue)
+
+Tcl_SetIntObj(objPtr, intValue)
+
+Tcl_SetLongObj(objPtr, longValue)
+
+Tcl_SetWideIntObj(objPtr, wideValue)
+
+int
+Tcl_GetIntFromObj(interp, objPtr, intPtr)
+
+int
+Tcl_GetIntForIndex(interp, objPtr, endValue, indexPtr)
+
+int
+Tcl_GetLongFromObj(interp, objPtr, longPtr)
+
+int
+Tcl_GetWideIntFromObj(interp, objPtr, widePtr)
+
+int
+Tcl_GetWideUIntFromObj(interp, objPtr, uwidePtr)
+
+int
+Tcl_GetSizeIntFromObj(interp, objPtr, sizePtr)
+
+
+#include &lt;tclTomMath.h&gt;
+
+Tcl_Obj *
+Tcl_NewBignumObj(bigValue)
+
+Tcl_SetBignumObj(objPtr, bigValue)
+
+int
+Tcl_GetBignumFromObj(interp, objPtr, bigValue)
+
+int
+Tcl_TakeBignumFromObj(interp, objPtr, bigValue)
+
+int
+Tcl_InitBignumFromDouble(interp, doubleValue, bigValue)
+</code></pre>
+<h1 id="arguments">ARGUMENTS</h1>
+<p><strong>Tcl_GetIntForIndex</strong> will return this when the input value is \"end\".</p>
+<p>Integer value used to initialize or set a Tcl value.</p>
+<p>Long integer value used to initialize or set a Tcl value.</p>
+<p>Wide integer value used to initialize or set a Tcl value.</p>
+<p>For <strong>Tcl_SetIntObj</strong>, <strong>Tcl_SetLongObj</strong>, <strong>Tcl_SetWideIntObj</strong>, and
+<strong>Tcl_SetBignumObj</strong>, this points to the value in which to store an
+integral value. For <strong>Tcl_GetIntFromObj</strong>, <strong>Tcl_GetLongFromObj</strong>,
+<strong>Tcl_GetWideIntFromObj</strong>, <strong>Tcl_GetBignumFromObj</strong>, and
+<strong>Tcl_TakeBignumFromObj</strong>, this refers to the value from which to
+retrieve an integral value.</p>
+<p>When non-NULL, an error message is left here when integral value
+retrieval fails.</p>
+<p>Points to place to store the integer value retrieved from <em>objPtr</em>.</p>
+<p>Points to place to store the long integer value retrieved from <em>objPtr</em>.</p>
+<p>Points to place to store the Tcl_Size value retrieved from <em>objPtr</em>.</p>
+<p>Points to place to store the wide integer value retrieved from <em>objPtr</em>.</p>
+<p>Points to place to store the unsigned wide integer value retrieved from
+<em>objPtr</em>.</p>
+<p>Points to place to store the <strong>Tcl_Size</strong> integer value retrieved from
+<em>objPtr</em>.</p>
+<p>Points to a multi-precision integer structure declared by the LibTomMath
+library.</p>
+<p>Double value from which the integer part is determined and used to
+initialize a multi-precision integer value.</p>
+<h1 id="description">DESCRIPTION</h1>
+<p>These procedures are used to create, modify, and read Tcl values that
+hold integral values.</p>
+<p>The different routines exist to accommodate different integral types in
+C with which values might be exchanged. The C integral types for which
+Tcl provides value exchange routines are <strong>int</strong>, <strong>long int</strong>,
+<strong>Tcl_WideInt</strong>, and <strong>mp_int</strong>. The <strong>int</strong> and <strong>long int</strong> types are
+provided by the C language standard. The <strong>Tcl_WideInt</strong> type is a
+typedef defined to be whatever signed integral type covers at least the
+64-bit integer range (-9223372036854775808 to 9223372036854775807).
+Depending on the platform and the C compiler, the actual type might be
+<strong>long long int</strong>, or something else. The <strong>mp_int</strong> type is a
+multiple-precision integer type defined by the LibTomMath
+multiple-precision integer library.</p>
+<p>The <strong>Tcl_NewIntObj</strong>, <strong>Tcl_NewLongObj</strong>, <strong>Tcl_NewWideIntObj</strong>, and
+<strong>Tcl_NewBignumObj</strong> routines each create and return a new Tcl value
+initialized to the integral value of the argument. The returned Tcl
+value is unshared.</p>
+<p>The <strong>Tcl_SetIntObj</strong>, <strong>Tcl_SetLongObj</strong>, <strong>Tcl_SetWideIntObj</strong>, and
+<strong>Tcl_SetBignumObj</strong> routines each set the value of an existing Tcl
+value pointed to by <em>objPtr</em> to the integral value provided by the other
+argument. The <em>objPtr</em> argument must point to an unshared Tcl value. Any
+attempt to set the value of a shared Tcl value violates Tcl\'s
+copy-on-write policy. Any existing string representation or internal
+representation in the unshared Tcl value will be freed as a consequence
+of setting the new value.</p>
+<p>The <strong>Tcl_GetIntForIndex</strong> routine attempts to retrieve an index value
+from the Tcl value <em>objPtr</em>. If the attempt succeeds, then <strong>TCL_OK</strong> is
+returned, and the value is written to the storage provided by the
+caller. The attempt might fail if <em>objPtr</em> does not hold an index value.
+If the attempt fails, then <strong>TCL_ERROR</strong> is returned, and if <em>interp</em> is
+non-NULL, an error message is left in <em>interp</em>. The <strong>Tcl_ObjType</strong> of
+<em>objPtr</em> may be changed to make subsequent calls to the same routine
+more efficient.</p>
+<p>The <strong>Tcl_GetIntFromObj</strong>, <strong>Tcl_GetLongFromObj</strong>,
+<strong>Tcl_GetWideIntFromObj</strong>, <strong>Tcl_GetSizeIntFromObj</strong>,
+<strong>Tcl_GetBignumFromObj</strong>, and <strong>Tcl_TakeBignumFromObj</strong> routines attempt
+to retrieve an integral value of the appropriate type from the Tcl value
+<em>objPtr</em>. If the attempt succeeds, then <strong>TCL_OK</strong> is returned, and the
+value is written to the storage provided by the caller. The attempt
+might fail if <em>objPtr</em> does not hold an integral value, or if the value
+exceeds the range of the target type. If the attempt fails, then
+<strong>TCL_ERROR</strong> is returned, and if <em>interp</em> is non-NULL, an error message
+is left in <em>interp</em>. The <strong>Tcl_ObjType</strong> of <em>objPtr</em> may be changed to
+make subsequent calls to the same routine more efficient. Unlike the
+other functions, <strong>Tcl_TakeBignumFromObj</strong> may set the content of the
+Tcl value <em>objPtr</em> to an empty string in the process of retrieving the
+multiple-precision integer value.</p>
+<p>The choice between <strong>Tcl_GetBignumFromObj</strong> and
+<strong>Tcl_TakeBignumFromObj</strong> is governed by how the caller will continue to
+use <em>objPtr</em>. If after the <strong>mp_int</strong> value is retrieved from <em>objPtr</em>,
+the caller will make no more use of <em>objPtr</em>, then using
+<strong>Tcl_TakeBignumFromObj</strong> permits Tcl to detect when an unshared
+<em>objPtr</em> permits the value to be moved instead of copied, which should
+be more efficient. If anything later in the caller requires <em>objPtr</em> to
+continue to hold the same value, then <strong>Tcl_GetBignumFromObj</strong> must be
+chosen.</p>
+<p>The <strong>Tcl_InitBignumFromDouble</strong> routine is a utility procedure that
+extracts the integer part of <em>doubleValue</em> and stores that integer value
+in the <strong>mp_int</strong> value <em>bigValue</em>.</p>
+<h1 id="reference-count-management">REFERENCE COUNT MANAGEMENT</h1>
+<p><strong>Tcl_NewIntObj</strong>, <strong>Tcl_NewLongObj</strong>, <strong>Tcl_NewWideIntObj</strong>, and
+<strong>Tcl_NewBignumObj</strong> always return a zero-reference object, much like
+<strong>Tcl_NewObj</strong>.</p>
+<p><strong>Tcl_SetIntObj</strong>, <strong>Tcl_SetLongObj</strong>, <strong>Tcl_SetWideIntObj</strong>, and
+<strong>Tcl_SetBignumObj</strong> do not modify the reference count of their <em>objPtr</em>
+arguments, but do require that the object be unshared.</p>
+<p><strong>Tcl_GetIntFromObj</strong>, <strong>Tcl_GetIntForIndex</strong>, <strong>Tcl_GetLongFromObj</strong>,
+<strong>Tcl_GetWideIntFromObj</strong>, <strong>Tcl_GetBignumFromObj</strong>, and
+<strong>Tcl_TakeBignumFromObj</strong> do not modify the reference count of their
+<em>objPtr</em> arguments; they only read. Note however that this function may
+set the interpreter result; if that is the only place that is holding a
+reference to the object, it will be deleted. Also note that if
+<strong>Tcl_TakeBignumFromObj</strong> is given an unshared value, the value of that
+object may be modified; it is intended to be used when the value is</p>
+<p>by the operation at this point.</p>
+<h1 id="see-also">SEE ALSO</h1>
+<p>Tcl_NewObj, Tcl_DecrRefCount, Tcl_IncrRefCount, Tcl_GetObjResult</p>
+<h1 id="keywords">KEYWORDS</h1>
+<p>integer, integer value, integer type, internal representation, value,
+value type, string representation</p>
+              
+            </div>
+          </div><footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+    
+  </span>
+</div>
+    <script>var base_url = '..';</script>
+    <script src="../js/theme_extra.js" defer></script>
+    <script src="../js/theme.js" defer></script>
+      <script src="../search/main.js" defer></script>
+    <script defer>
+        window.onload = function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        };
+    </script>
+
+</body>
+</html>

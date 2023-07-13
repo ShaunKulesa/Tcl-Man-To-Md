@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><link rel="canonical" href="https://www.tcl.tk/man/tcl8.6.13/TclCmd/contents.html/socket/" />
+      <link rel="shortcut icon" href="../img/favicon.ico" />
+    <title>NAME - Tcl/Tk</title>
+    <link rel="stylesheet" href="../css/theme.css" />
+    <link rel="stylesheet" href="../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "NAME";
+        var mkdocs_page_input_path = "socket.md";
+        var mkdocs_page_url = "/man/tcl8.6.13/TclCmd/contents.html/socket/";
+      </script>
+    
+    <script src="../js/jquery-3.6.0.min.js" defer></script>
+    <!--[if lt IE 9]>
+      <script src="../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
+      <script>hljs.initHighlightingOnLoad();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href=".." class="icon icon-home"> Tcl/Tk
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="..">Home</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="" href="../command.md">Commands</a>
+                </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="..">Tcl/Tk</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href=".." class="icon icon-home" aria-label="Docs"></a> &raquo;</li>
+      <li>NAME</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="name">NAME</h1>
+<p>socket - Open a TCP network connection</p>
+<h1 id="synopsis">SYNOPSIS</h1>
+<p><strong>socket </strong>?<em>options</em>? <em>host port</em></p>
+<p><strong>socket</strong> <strong>-server </strong><em>command</em> ?<em>options</em>? <em>port</em></p>
+<h1 id="description">DESCRIPTION</h1>
+<p>This command opens a network socket and returns a channel identifier
+that may be used in future invocations of commands like <strong>read</strong>,
+<strong>puts</strong> and <strong>flush</strong>. At present only the TCP network protocol is
+supported over IPv4 and IPv6; future releases may include support for
+additional protocols. The <strong>socket</strong> command may be used to open either
+the client or server side of a connection, depending on whether the
+<strong>-server</strong> switch is specified.</p>
+<p>Note that the default encoding for <em>all</em> sockets is the system encoding,
+as returned by <strong>encoding system</strong>. Most of the time, you will need to
+use <strong>chan configure</strong> to alter this to something else, such as <em>utf-8</em>
+(ideal for communicating with other Tcl processes) or <em>iso8859-1</em>
+(useful for many network protocols, especially the older ones).</p>
+<h1 id="client-sockets">CLIENT SOCKETS</h1>
+<p>If the <strong>-server</strong> option is not specified, then the client side of a
+connection is opened and the command returns a channel identifier that
+can be used for both reading and writing. <em>Port</em> and <em>host</em> specify a
+port to connect to; there must be a server accepting connections on this
+port. <em>Port</em> is an integer port number (or service name, where supported
+and understood by the host operating system) and <em>host</em> is either a
+domain-style name such as <strong>www.tcl.tk</strong> or a numerical IPv4 or IPv6
+address such as <strong>127.0.0.1</strong> or <strong>2001:DB8::1</strong>. Use <em>localhost</em> to
+refer to the host on which the command is invoked.</p>
+<p>The following options may also be present before <em>host</em> to specify
+additional information about the connection:</p>
+<p><strong>-myaddr</strong><em> addr</em></p>
+<p>:   <em>Addr</em> gives the domain-style name or numerical IP address of the
+    client-side network interface to use for the connection. This option
+    may be useful if the client machine has multiple network interfaces.
+    If the option is omitted then the client-side interface will be
+    chosen by the system software.</p>
+<p><strong>-myport</strong><em> port</em></p>
+<p>:   <em>Port</em> specifies an integer port number (or service name, where
+    supported and understood by the host operating system) to use for
+    the client\'s side of the connection. If this option is omitted, the
+    client\'s port number will be chosen at random by the system
+    software.</p>
+<p><strong>-async</strong></p>
+<p>:   This option will cause the client socket to be connected
+    asynchronously. This means that the socket will be created
+    immediately but may not yet be connected to the server, when the
+    call to <strong>socket</strong> returns.</p>
+<pre><code>When a **gets** or **flush** is done on the socket before the
+connection attempt succeeds or fails, if the socket is in blocking
+mode, the operation will wait until the connection is completed or
+fails. If the socket is in nonblocking mode and a **gets** or
+**flush** is done on the socket before the connection attempt
+succeeds or fails, the operation returns immediately and
+**fblocked** on the socket returns 1. Synchronous client sockets may
+be switched (after they have connected) to operating in asynchronous
+mode using:
+
+**chan configure ***chan ***-blocking 0**
+
+See the **chan configure** command for more details.
+
+The Tcl event loop should be running while an asynchronous
+connection is in progress, because it may have to do several
+connection attempts in the background. Running the event loop also
+allows you to set up a writable channel event on the socket to get
+notified when the asynchronous connection has succeeded or failed.
+See the **vwait** and the **chan** commands for more details on the
+event loop and channel events.
+
+The **chan configure** option **-connecting** may be used to check
+if the connect is still running. To verify a successful connect, the
+option **-error** may be checked when **-connecting** returned 0.
+
+Operation without the event queue requires at the moment calls to
+**chan configure** to advance the internal state machine.
+</code></pre>
+<h1 id="server-sockets">SERVER SOCKETS</h1>
+<p>If the <strong>-server</strong> option is specified then the new socket will be a
+server that listens on the given <em>port</em> (either an integer or a service
+name, where supported and understood by the host operating system; if
+<em>port</em> is zero, the operating system will allocate a free port to the
+server socket which may be discovered by using <strong>chan configure</strong> to
+read the <strong>-sockname</strong> option). If the host supports both, IPv4 and
+IPv6, the socket will listen on both address families. Tcl will
+automatically accept connections to the given port. For each connection
+Tcl will create a new channel that may be used to communicate with the
+client. Tcl then invokes <em>command</em> (properly a command prefix list, see
+the <strong>EXAMPLES</strong> below) with three additional arguments: the name of the
+new channel, the address, in network address notation, of the client\'s
+host, and the client\'s port number.</p>
+<p>The following additional option may also be specified before <em>port</em>:</p>
+<p><strong>-myaddr</strong><em> addr</em></p>
+<p>:   <em>Addr</em> gives the domain-style name or numerical IP address of the
+    server-side network interface to use for the connection. This option
+    may be useful if the server machine has multiple network interfaces.
+    If the option is omitted then the server socket is bound to the
+    wildcard address so that it can accept connections from any
+    interface. If <em>addr</em> is a domain name that resolves to multiple IP
+    addresses that are available on the local machine, the socket will
+    listen on all of them.</p>
+<p><strong>-reuseaddr</strong><em> boolean</em></p>
+<p>:   Tells the kernel whether to reuse the local address if there is no
+    socket actively listening on it. This is the default on Windows.</p>
+<p><strong>-reuseport</strong><em> boolean</em></p>
+<p>:   Tells the kernel whether to allow the binding of multiple sockets to
+    the same address and port.</p>
+<p>Server channels cannot be used for input or output; their sole use is to
+accept new client connections. The channels created for each incoming
+client connection are opened for input and output. Closing the server
+channel shuts down the server so that no new connections will be
+accepted; however, existing connections will be unaffected.</p>
+<p>Server sockets depend on the Tcl event mechanism to find out when new
+connections are opened. If the application does not enter the event
+loop, for example by invoking the <strong>vwait</strong> command or calling the C
+procedure <strong>Tcl_DoOneEvent</strong>, then no connections will be accepted.</p>
+<p>If <em>port</em> is specified as zero, the operating system will allocate an
+unused port for use as a server socket. The port number actually
+allocated may be retrieved from the created server socket using the
+<strong>chan configure</strong> command to retrieve the <strong>-sockname</strong> option as
+described below.</p>
+<h1 id="configuration-options">CONFIGURATION OPTIONS</h1>
+<p>The <strong>chan configure</strong> command can be used to query several readonly
+configuration options for socket channels or in some cases to set
+alternative properties on socket channels:</p>
+<p><strong>-error</strong></p>
+<p>:   This option gets the current error status of the given socket. This
+    is useful when you need to determine if an asynchronous connect
+    operation succeeded. If there was an error, the error message is
+    returned. If there was no error, an empty string is returned.</p>
+<pre><code>Note that the error status is reset by the read operation; this
+mimics the underlying getsockopt(SO_ERROR) call.
+</code></pre>
+<p><strong>-sockname</strong></p>
+<p>:   For client sockets (including the channels that get created when a
+    client connects to a server socket) this option returns a list of
+    three elements, the address, the host name and the port number for
+    the socket. If the host name cannot be computed, the second element
+    is identical to the address, the first element of the list.</p>
+<pre><code>For server sockets this option returns a list of a multiple of three
+elements each group of which have the same meaning as described
+above. The list contains more than one group when the server socket
+was created without **-myaddr** or with the argument to **-myaddr**
+being a domain name that resolves multiple IP addresses that are
+local to the invoking host.
+</code></pre>
+<p><strong>-peername</strong></p>
+<p>:   This option is not supported by server sockets. For client and
+    accepted sockets, this option returns a list of three elements;
+    these are the address, the host name and the port to which the peer
+    socket is connected or bound. If the host name cannot be computed,
+    the second element of the list is identical to the address, its
+    first element.</p>
+<p><strong>-connecting</strong></p>
+<p>:   This option is not supported by server sockets. For client sockets,
+    this option returns 1 if an asyncroneous connect is still in
+    progress, 0 otherwise.</p>
+<p><strong>-keepalive</strong></p>
+<p>:   This option sets or queries the TCP keepalive option on the socket
+    as 1 if keepalive is turned on, 0 otherwise.</p>
+<p><strong>-nodelay</strong></p>
+<p>:   This option sets or queries the TCP nodelay option on the socket as
+    1 if nodelay is turned on, 0 otherwise.</p>
+<h1 id="examples">EXAMPLES</h1>
+<p>Here is a very simple time server:</p>
+<p>proc Server {startTime channel clientaddr clientport} { puts
+\"Connection from \$clientaddr registered\" set now [clock seconds]
+puts \$channel [clock format \$now] puts \$channel \"[expr {\$now -
+\$startTime}] since start\" close \$channel }</p>
+<p><strong>socket -server</strong> [list Server [clock seconds]] 9900 vwait forever</p>
+<p>And here is the corresponding client to talk to the server and extract
+some information:</p>
+<p>set server localhost set sockChan [<strong>socket</strong> \$server 9900] gets
+\$sockChan line1 gets \$sockChan line2 close \$sockChan puts \"The time
+on \$server is \$line1\" puts \"That is [lindex \$line2 0]s since the
+server started\"</p>
+<h1 id="history">HISTORY</h1>
+<p>Support for IPv6 was added in Tcl 8.6.</p>
+<h1 id="see-also">SEE ALSO</h1>
+<p>chan(n), flush(n), open(n), read(n)</p>
+<h1 id="keywords">KEYWORDS</h1>
+<p>asynchronous I/O, bind, channel, connection, domain name, host, network
+address, socket, tcp</p>
+              
+            </div>
+          </div><footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+    
+  </span>
+</div>
+    <script>var base_url = '..';</script>
+    <script src="../js/theme_extra.js" defer></script>
+    <script src="../js/theme.js" defer></script>
+      <script src="../search/main.js" defer></script>
+    <script defer>
+        window.onload = function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        };
+    </script>
+
+</body>
+</html>

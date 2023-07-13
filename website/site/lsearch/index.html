@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><link rel="canonical" href="https://www.tcl.tk/man/tcl8.6.13/TclCmd/contents.html/lsearch/" />
+      <link rel="shortcut icon" href="../img/favicon.ico" />
+    <title>NAME - Tcl/Tk</title>
+    <link rel="stylesheet" href="../css/theme.css" />
+    <link rel="stylesheet" href="../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "NAME";
+        var mkdocs_page_input_path = "lsearch.md";
+        var mkdocs_page_url = "/man/tcl8.6.13/TclCmd/contents.html/lsearch/";
+      </script>
+    
+    <script src="../js/jquery-3.6.0.min.js" defer></script>
+    <!--[if lt IE 9]>
+      <script src="../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
+      <script>hljs.initHighlightingOnLoad();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href=".." class="icon icon-home"> Tcl/Tk
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="..">Home</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="" href="../command.md">Commands</a>
+                </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="..">Tcl/Tk</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href=".." class="icon icon-home" aria-label="Docs"></a> &raquo;</li>
+      <li>NAME</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="name">NAME</h1>
+<p>lsearch - See if a list contains a particular element</p>
+<h1 id="synopsis">SYNOPSIS</h1>
+<p><strong>lsearch </strong>?<em>options</em>? <em>list pattern</em></p>
+<h1 id="description">DESCRIPTION</h1>
+<p>This command searches the elements of <em>list</em> to see if one of them
+matches <em>pattern</em>. If so, the command returns the index of the first
+matching element (unless the options <strong>-all</strong> or <strong>-inline</strong> are
+specified.) If not, the command returns <strong>-1</strong> or (if options <strong>-all</strong>
+or <strong>-inline</strong> are specified) the empty string. The <em>option</em> arguments
+indicates how the elements of the list are to be matched against
+<em>pattern</em> and must have one of the values below:</p>
+<h2 id="matching-style-options">MATCHING STYLE OPTIONS</h2>
+<p>If all matching style options are omitted, the default matching style is
+<strong>-glob</strong>. If more than one matching style is specified, the last
+matching style given takes precedence.</p>
+<p><strong>-exact</strong></p>
+<p>:   <em>Pattern</em> is a literal string that is compared for exact equality
+    against each list element.</p>
+<p><strong>-glob</strong></p>
+<p>:   <em>Pattern</em> is a glob-style pattern which is matched against each list
+    element using the same rules as the <strong>string match</strong> command.</p>
+<p><strong>-regexp</strong></p>
+<p>:   <em>Pattern</em> is treated as a regular expression and matched against
+    each list element using the rules described in the <strong>re_syntax</strong>
+    reference page.</p>
+<p><strong>-sorted</strong></p>
+<p>:   The list elements are in sorted order. If this option is specified,
+    <strong>lsearch</strong> will use a more efficient searching algorithm to search
+    <em>list</em>. If no other options are specified, <em>list</em> is assumed to be
+    sorted in increasing order, and to contain ASCII strings. This
+    option is mutually exclusive with <strong>-glob</strong> and <strong>-regexp</strong>, and is
+    treated exactly like <strong>-exact</strong> when either <strong>-all</strong> or <strong>-not</strong> are
+    specified.</p>
+<h2 id="general-modifier-options">GENERAL MODIFIER OPTIONS</h2>
+<p>These options may be given with all matching styles.</p>
+<p><strong>-all</strong></p>
+<p>:   Changes the result to be the list of all matching indices (or all
+    matching values if <strong>-inline</strong> is specified as well.) If indices are
+    returned, the indices will be in ascending numeric order. If values
+    are returned, the order of the values will be the order of those
+    values within the input <em>list</em>.</p>
+<p><strong>-inline</strong></p>
+<p>:   The matching value is returned instead of its index (or an empty
+    string if no value matches.) If <strong>-all</strong> is also specified, then the
+    result of the command is the list of all values that matched.</p>
+<p><strong>-not</strong></p>
+<p>:   This negates the sense of the match, returning the index of the
+    first non-matching value in the list.</p>
+<p><strong>-start</strong> <em>index</em></p>
+<p>:   The list is searched starting at position <em>index</em>. The
+    interpretation of the <em>index</em> value is the same as for the command
+    <strong>string index</strong>, supporting simple index arithmetic and indices
+    relative to the end of the list.</p>
+<h2 id="contents-description-options">CONTENTS DESCRIPTION OPTIONS</h2>
+<p>These options describe how to interpret the items in the list being
+searched. They are only meaningful when used with the <strong>-exact</strong> and
+<strong>-sorted</strong> options. If more than one is specified, the last one takes
+precedence. The default is <strong>-ascii</strong>.</p>
+<p><strong>-ascii</strong></p>
+<p>:   The list elements are to be examined as Unicode strings (the name is
+    for backward-compatibility reasons.)</p>
+<p><strong>-dictionary</strong></p>
+<p>:   The list elements are to be compared using dictionary-style
+    comparisons (see <strong>lsort</strong> for a fuller description). Note that this
+    only makes a meaningful difference from the <strong>-ascii</strong> option when
+    the <strong>-sorted</strong> option is given, because values are only
+    dictionary-equal when exactly equal.</p>
+<p><strong>-integer</strong></p>
+<p>:   The list elements are to be compared as integers.</p>
+<p><strong>-nocase</strong></p>
+<p>:   Causes comparisons to be handled in a case-insensitive manner. Has
+    no effect if combined with the <strong>-dictionary</strong>, <strong>-integer</strong>, or
+    <strong>-real</strong> options.</p>
+<p><strong>-real</strong></p>
+<p>:   The list elements are to be compared as floating-point values.</p>
+<h2 id="sorted-list-options">SORTED LIST OPTIONS</h2>
+<p>These options (only meaningful with the <strong>-sorted</strong> option) specify how
+the list is sorted. If more than one is given, the last one takes
+precedence. The default option is <strong>-increasing</strong>.</p>
+<p><strong>-decreasing</strong></p>
+<p>:   The list elements are sorted in decreasing order. This option is
+    only meaningful when used with <strong>-sorted</strong>.</p>
+<p><strong>-increasing</strong></p>
+<p>:   The list elements are sorted in increasing order. This option is
+    only meaningful when used with <strong>-sorted</strong>.</p>
+<p><strong>-bisect</strong></p>
+<p>:   Inexact search when the list elements are in sorted order. For an
+    increasing list the last index where the element is less than or
+    equal to the pattern is returned. For a decreasing list the last
+    index where the element is greater than or equal to the pattern is
+    returned. If the pattern is before the first element or the list is
+    empty, -1 is returned. This option implies <strong>-sorted</strong> and cannot be
+    used with either <strong>-all</strong> or <strong>-not</strong>.</p>
+<h2 id="nested-list-options">NESTED LIST OPTIONS</h2>
+<p>These options are used to search lists of lists. They may be used with
+any other options.</p>
+<p><strong>-stride </strong><em>strideLength</em></p>
+<p>:   If this option is specified, the list is treated as consisting of
+    groups of <em>strideLength</em> elements and the groups are searched by
+    either their first element or, if the <strong>-index</strong> option is used, by
+    the element within each group given by the first index passed to
+    <strong>-index</strong> (which is then ignored by <strong>-index</strong>). The resulting
+    index always points to the first element in a group.</p>
+<p>The list length must be an integer multiple of <em>strideLength</em>, which in
+turn must be at least 1. A <em>strideLength</em> of 1 is the default and
+indicates no grouping.</p>
+<p><strong>-index</strong> <em>indexList</em></p>
+<p>:   This option is designed for use when searching within nested lists.
+    The <em>indexList</em> argument gives a path of indices (much as might be
+    used with the <strong>lindex</strong> or <strong>lset</strong> commands) within each element
+    to allow the location of the term being matched against.</p>
+<p><strong>-subindices</strong></p>
+<p>:   If this option is given, the index result from this command (or
+    every index result when <strong>-all</strong> is also specified) will be a
+    complete path (suitable for use with <strong>lindex</strong> or <strong>lset</strong>) within
+    the overall list to the term found. This option has no effect unless
+    the <strong>-index</strong> is also specified, and is just a convenience
+    short-cut.</p>
+<h1 id="examples">EXAMPLES</h1>
+<p>Basic searching:</p>
+<p><strong>lsearch</strong> {a b c d e} c <em>→ 2</em> <strong>lsearch</strong> -all {a b c a b c} c <em>→ 2 5</em></p>
+<p>Using <strong>lsearch</strong> to filter lists:</p>
+<p><strong>lsearch</strong> -inline {a20 b35 c47} b* <em>→ b35</em> <strong>lsearch</strong> -inline -not
+{a20 b35 c47} b* <em>→ a20</em> <strong>lsearch</strong> -all -inline -not {a20 b35 c47}
+b* <em>→ a20 c47</em> <strong>lsearch</strong> -all -not {a20 b35 c47} b* <em>→ 0 2</em></p>
+<p>This can even do a</p>
+<p>removal operation:</p>
+<p><strong>lsearch</strong> -all -inline -not -exact {a b c a d e a f g a} a <em>→ b c d e
+f g</em></p>
+<p>Searching may start part-way through the list:</p>
+<p><strong>lsearch</strong> -start 3 {a b c a b c} c <em>→ 5</em></p>
+<p>It is also possible to search inside elements:</p>
+<p><strong>lsearch</strong> -index 1 -all -inline {{a abc} {b bcd} {c cde}} *bc* <em>→ {a
+abc} {b bcd}</em></p>
+<p>The same thing for a flattened list:</p>
+<p><strong>lsearch</strong> -stride 2 -index 1 -all -inline {a abc b bcd c cde} *bc*
+<em>→ {a abc b bcd}</em></p>
+<h1 id="see-also">SEE ALSO</h1>
+<p>foreach(n), list(n), lappend(n), lassign(n), ledit(n), lindex(n),
+linsert(n), llength(n), lmap(n), lpop(n), lrange(n), lremove(n),
+lrepeat(n), lreplace(n), lreverse(n), lseq(n), lset(n), lsort(n),
+string(n)</p>
+<h1 id="keywords">KEYWORDS</h1>
+<p>binary search, linear search, list, match, pattern, regular expression,
+search, string</p>
+              
+            </div>
+          </div><footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+    
+  </span>
+</div>
+    <script>var base_url = '..';</script>
+    <script src="../js/theme_extra.js" defer></script>
+    <script src="../js/theme.js" defer></script>
+      <script src="../search/main.js" defer></script>
+    <script defer>
+        window.onload = function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        };
+    </script>
+
+</body>
+</html>

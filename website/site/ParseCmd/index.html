@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><link rel="canonical" href="https://www.tcl.tk/man/tcl8.6.13/TclCmd/contents.html/ParseCmd/" />
+      <link rel="shortcut icon" href="../img/favicon.ico" />
+    <title>NAME - Tcl/Tk</title>
+    <link rel="stylesheet" href="../css/theme.css" />
+    <link rel="stylesheet" href="../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "NAME";
+        var mkdocs_page_input_path = "ParseCmd.md";
+        var mkdocs_page_url = "/man/tcl8.6.13/TclCmd/contents.html/ParseCmd/";
+      </script>
+    
+    <script src="../js/jquery-3.6.0.min.js" defer></script>
+    <!--[if lt IE 9]>
+      <script src="../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
+      <script>hljs.initHighlightingOnLoad();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href=".." class="icon icon-home"> Tcl/Tk
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="..">Home</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="" href="../command.md">Commands</a>
+                </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="..">Tcl/Tk</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href=".." class="icon icon-home" aria-label="Docs"></a> &raquo;</li>
+      <li>NAME</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="name">NAME</h1>
+<p>Tcl_ParseCommand, Tcl_ParseExpr, Tcl_ParseBraces, Tcl_ParseQuotedString,
+Tcl_ParseVarName, Tcl_ParseVar, Tcl_FreeParse, Tcl_EvalTokensStandard -
+parse Tcl scripts and expressions</p>
+<h1 id="synopsis">SYNOPSIS</h1>
+<pre><code>#include &lt;tcl.h&gt;
+
+int
+Tcl_ParseCommand(interp, start, numBytes, nested, parsePtr)
+
+int
+Tcl_ParseExpr(interp, start, numBytes, parsePtr)
+
+int
+Tcl_ParseBraces(interp, start, numBytes, parsePtr, append, termPtr)
+
+int
+Tcl_ParseQuotedString(interp, start, numBytes, parsePtr, append, termPtr)
+
+int
+Tcl_ParseVarName(interp, start, numBytes, parsePtr, append)
+
+const char *
+Tcl_ParseVar(interp, start, termPtr)
+
+Tcl_FreeParse(usedParsePtr)
+
+int
+Tcl_EvalTokensStandard(interp, tokenPtr, numTokens)
+</code></pre>
+<h1 id="arguments">ARGUMENTS</h1>
+<p>For procedures other than <strong>Tcl_FreeParse</strong> and
+<strong>Tcl_EvalTokensStandard</strong>, used only for error reporting; if NULL, then
+no error messages are left after errors. For <strong>Tcl_EvalTokensStandard</strong>,
+determines the context for evaluating the script and also is used for
+error reporting; must not be NULL.</p>
+<p>Pointer to first character in string to parse.</p>
+<p>Number of bytes in string to parse, not including any terminating null
+character. If less than 0 then the script consists of all characters
+following <em>start</em> up to the first null character.</p>
+<p>Non-zero means that the script is part of a command substitution so an
+unquoted close bracket should be treated as a command terminator. If
+zero, close brackets have no special meaning.</p>
+<p>Non-zero means that <em>*parsePtr</em> already contains valid tokens; the new
+tokens should be appended to those already present. Zero means that
+<em>*parsePtr</em> is uninitialized; any information in it is ignored. This
+argument is normally 0.</p>
+<p>Points to structure to fill in with information about the parsed
+command, expression, variable name, etc. Any previous information in
+this structure is ignored, unless <em>append</em> is non-zero in a call to
+<strong>Tcl_ParseBraces</strong>, <strong>Tcl_ParseQuotedString</strong>, or <strong>Tcl_ParseVarName</strong>.</p>
+<p>If not NULL, points to a location where <strong>Tcl_ParseBraces</strong>,
+<strong>Tcl_ParseQuotedString</strong>, and <strong>Tcl_ParseVar</strong> will store a pointer to
+the character just after the terminating character (the close-brace, the
+last character of the variable name, or the close-quote (respectively))
+if the parse was successful.</p>
+<p>Points to structure that was filled in by a previous call to
+<strong>Tcl_ParseCommand</strong>, <strong>Tcl_ParseExpr</strong>, <strong>Tcl_ParseVarName</strong>, etc.</p>
+<h1 id="description">DESCRIPTION</h1>
+<p>These procedures parse Tcl commands or portions of Tcl commands such as
+expressions or references to variables. Each procedure takes a pointer
+to a script (or portion thereof) and fills in the structure pointed to
+by <em>parsePtr</em> with a collection of tokens describing the information
+that was parsed. The procedures normally return <strong>TCL_OK</strong>. However, if
+an error occurs then they return <strong>TCL_ERROR</strong>, leave an error message
+in <em>interp</em>\'s result (if <em>interp</em> is not NULL), and leave nothing in
+<em>parsePtr</em>.</p>
+<p><strong>Tcl_ParseCommand</strong> is a procedure that parses Tcl scripts. Given a
+pointer to a script, it parses the first command from the script. If the
+command was parsed successfully, <strong>Tcl_ParseCommand</strong> returns <strong>TCL_OK</strong>
+and fills in the structure pointed to by <em>parsePtr</em> with information
+about the structure of the command (see below for details). If an error
+occurred in parsing the command then <strong>TCL_ERROR</strong> is returned, an error
+message is left in <em>interp</em>\'s result, and no information is left at
+<em>*parsePtr</em>.</p>
+<p><strong>Tcl_ParseExpr</strong> parses Tcl expressions. Given a pointer to a script
+containing an expression, <strong>Tcl_ParseExpr</strong> parses the expression. If
+the expression was parsed successfully, <strong>Tcl_ParseExpr</strong> returns
+<strong>TCL_OK</strong> and fills in the structure pointed to by <em>parsePtr</em> with
+information about the structure of the expression (see below for
+details). If an error occurred in parsing the command then <strong>TCL_ERROR</strong>
+is returned, an error message is left in <em>interp</em>\'s result, and no
+information is left at <em>*parsePtr</em>.</p>
+<p><strong>Tcl_ParseBraces</strong> parses a string or command argument enclosed in
+braces such as <strong>{hello}</strong> or <strong>{string \t with \t tabs}</strong> from the
+beginning of its argument <em>start</em>. The first character of <em>start</em> must
+be <strong>{</strong>. If the braced string was parsed successfully,
+<strong>Tcl_ParseBraces</strong> returns <strong>TCL_OK</strong>, fills in the structure pointed
+to by <em>parsePtr</em> with information about the structure of the string (see
+below for details), and stores a pointer to the character just after the
+terminating <strong>}</strong> in the location given by <em>*termPtr</em>. If an error
+occurs while parsing the string then <strong>TCL_ERROR</strong> is returned, an error
+message is left in <em>interp</em>\'s result, and no information is left at
+<em>*parsePtr</em> or <em>*termPtr</em>.</p>
+<p><strong>Tcl_ParseQuotedString</strong> parses a double-quoted string such as <strong>\"sum
+is [expr {\$a+\$b}]\"</strong> from the beginning of the argument <em>start</em>.
+The first character of <em>start</em> must be . If the double-quoted string was
+parsed successfully, <strong>Tcl_ParseQuotedString</strong> returns <strong>TCL_OK</strong>, fills
+in the structure pointed to by <em>parsePtr</em> with information about the
+structure of the string (see below for details), and stores a pointer to
+the character just after the terminating in the location given by
+<em>*termPtr</em>. If an error occurs while parsing the string then
+<strong>TCL_ERROR</strong> is returned, an error message is left in <em>interp</em>\'s
+result, and no information is left at <em>*parsePtr</em> or <em>*termPtr</em>.</p>
+<p><strong>Tcl_ParseVarName</strong> parses a Tcl variable reference such as <strong>\$abc</strong>
+or <strong>\$x([expr {\$index + 1}])</strong> from the beginning of its <em>start</em>
+argument. The first character of <em>start</em> must be <strong>\$</strong>. If a variable
+name was parsed successfully, <strong>Tcl_ParseVarName</strong> returns <strong>TCL_OK</strong>
+and fills in the structure pointed to by <em>parsePtr</em> with information
+about the structure of the variable name (see below for details). If an
+error occurs while parsing the command then <strong>TCL_ERROR</strong> is returned,
+an error message is left in <em>interp</em>\'s result (if <em>interp</em> is not
+NULL), and no information is left at <em>*parsePtr</em>.</p>
+<p><strong>Tcl_ParseVar</strong> parse a Tcl variable reference such as <strong>\$abc</strong> or
+<strong>\$x([expr {\$index + 1}])</strong> from the beginning of its <em>start</em>
+argument. The first character of <em>start</em> must be <strong>\$</strong>. If the variable
+name is parsed successfully, <strong>Tcl_ParseVar</strong> returns a pointer to the
+string value of the variable. If an error occurs while parsing, then
+NULL is returned and an error message is left in <em>interp</em>\'s result.</p>
+<p>The information left at <em>*parsePtr</em> by <strong>Tcl_ParseCommand</strong>,
+<strong>Tcl_ParseExpr</strong>, <strong>Tcl_ParseBraces</strong>, <strong>Tcl_ParseQuotedString</strong>, and
+<strong>Tcl_ParseVarName</strong> may include dynamically allocated memory. If these
+five parsing procedures return <strong>TCL_OK</strong> then the caller must invoke
+<strong>Tcl_FreeParse</strong> to release the storage at <em>*parsePtr</em>. These
+procedures ignore any existing information in <em>*parsePtr</em> (unless
+<em>append</em> is non-zero), so if repeated calls are being made to any of
+them then <strong>Tcl_FreeParse</strong> must be invoked once after each call.</p>
+<p><strong>Tcl_EvalTokensStandard</strong> evaluates a sequence of parse tokens from a
+Tcl_Parse structure. The tokens typically consist of all the tokens in a
+word or all the tokens that make up the index for a reference to an
+array variable. <strong>Tcl_EvalTokensStandard</strong> performs the substitutions
+requested by the tokens and concatenates the resulting values. The
+return value from <strong>Tcl_EvalTokensStandard</strong> is a Tcl completion code
+with one of the values <strong>TCL_OK</strong>, <strong>TCL_ERROR</strong>, <strong>TCL_RETURN</strong>,
+<strong>TCL_BREAK</strong>, or <strong>TCL_CONTINUE</strong>, or possibly some other integer value
+originating in an extension. In addition, a result value or error
+message is left in <em>interp</em>\'s result; it can be retrieved using
+<strong>Tcl_GetObjResult</strong>.</p>
+<h1 id="tcl_parse-structure">TCL_PARSE STRUCTURE</h1>
+<p><strong>Tcl_ParseCommand</strong>, <strong>Tcl_ParseExpr</strong>, <strong>Tcl_ParseBraces</strong>,
+<strong>Tcl_ParseQuotedString</strong>, and <strong>Tcl_ParseVarName</strong> return parse
+information in two data structures, Tcl_Parse and Tcl_Token:</p>
+<p>typedef struct Tcl_Parse { const char *<em>commentStart</em>; Tcl_Size
+<em>commentSize</em>; const char *<em>commandStart</em>; Tcl_Size <em>commandSize</em>;
+Tcl_Size <em>numWords</em>; Tcl_Token *<em>tokenPtr</em>; Tcl_Size <em>numTokens</em>; ...
+} <strong>Tcl_Parse</strong>;</p>
+<p>typedef struct Tcl_Token { int <em>type</em>; const char *<em>start</em>; Tcl_Size
+<em>size</em>; Tcl_Size <em>numComponents</em>; } <strong>Tcl_Token</strong>;</p>
+<p>The first five fields of a Tcl_Parse structure are filled in only by
+<strong>Tcl_ParseCommand</strong>. These fields are not used by the other parsing
+procedures.</p>
+<p><strong>Tcl_ParseCommand</strong> fills in a Tcl_Parse structure with information
+that describes one Tcl command and any comments that precede the
+command. If there are comments, the <em>commentStart</em> field points to the
+<strong>#</strong> character that begins the first comment and <em>commentSize</em>
+indicates the number of bytes in all of the comments preceding the
+command, including the newline character that terminates the last
+comment. If the command is not preceded by any comments, <em>commentSize</em>
+is 0. <strong>Tcl_ParseCommand</strong> also sets the <em>commandStart</em> field to point
+to the first character of the first word in the command (skipping any
+comments and leading space) and <em>commandSize</em> gives the total number of
+bytes in the command, including the character pointed to by
+<em>commandStart</em> up to and including the newline, close bracket, or
+semicolon character that terminates the command. The <em>numWords</em> field
+gives the total number of words in the command.</p>
+<p>All parsing procedures set the remaining fields, <em>tokenPtr</em> and
+<em>numTokens</em>. The <em>tokenPtr</em> field points to the first in an array of
+Tcl_Token structures that describe the components of the entity being
+parsed. The <em>numTokens</em> field gives the total number of tokens present
+in the array. Each token contains four fields. The <em>type</em> field selects
+one of several token types that are described below. The <em>start</em> field
+points to the first character in the token and the <em>size</em> field gives
+the total number of characters in the token. Some token types, such as
+<strong>TCL_TOKEN_WORD</strong> and <strong>TCL_TOKEN_VARIABLE</strong>, consist of several
+component tokens, which immediately follow the parent token; the
+<em>numComponents</em> field describes how many of these there are. The <em>type</em>
+field has one of the following values:</p>
+<p><strong>TCL_TOKEN_WORD</strong></p>
+<p>:   This token ordinarily describes one word of a command but it may
+    also describe a quoted or braced string in an expression. The token
+    describes a component of the script that is the result of
+    concatenating together a sequence of subcomponents, each described
+    by a separate subtoken. The token starts with the first non-blank
+    character of the component (which may be a double-quote or open
+    brace) and includes all characters in the component up to but not
+    including the space, semicolon, close bracket, close quote, or close
+    brace that terminates the component. The <em>numComponents</em> field
+    counts the total number of sub-tokens that make up the word,
+    including sub-tokens of <strong>TCL_TOKEN_VARIABLE</strong> and <strong>TCL_TOKEN_BS</strong>
+    tokens.</p>
+<p><strong>TCL_TOKEN_SIMPLE_WORD</strong></p>
+<p>:   This token has the same meaning as <strong>TCL_TOKEN_WORD</strong>, except that
+    the word is guaranteed to consist of a single <strong>TCL_TOKEN_TEXT</strong>
+    sub-token. The <em>numComponents</em> field is always 1.</p>
+<p><strong>TCL_TOKEN_EXPAND_WORD</strong></p>
+<p>:   This token has the same meaning as <strong>TCL_TOKEN_WORD</strong>, except that
+    the command parser notes this word began with the expansion prefix
+    <strong>{*}</strong>, indicating that after substitution, the list value of this
+    word should be expanded to form multiple arguments in command
+    evaluation. This token type can only be created by Tcl_ParseCommand.</p>
+<p><strong>TCL_TOKEN_TEXT</strong></p>
+<p>:   The token describes a range of literal text that is part of a word.
+    The <em>numComponents</em> field is always 0.</p>
+<p><strong>TCL_TOKEN_BS</strong></p>
+<p>:   The token describes a backslash sequence such as <strong>\n</strong> or
+    <strong>\0xA3</strong>. The <em>numComponents</em> field is always 0.</p>
+<p><strong>TCL_TOKEN_COMMAND</strong></p>
+<p>:   The token describes a command whose result must be substituted into
+    the word. The token includes the square brackets that surround the
+    command. The <em>numComponents</em> field is always 0 (the nested command
+    is not parsed; call <strong>Tcl_ParseCommand</strong> recursively if you want to
+    see its tokens).</p>
+<p><strong>TCL_TOKEN_VARIABLE</strong></p>
+<p>:   The token describes a variable substitution, including the <strong>\$</strong>,
+    variable name, and array index (if there is one) up through the
+    close parenthesis that terminates the index. This token is followed
+    by one or more additional tokens that describe the variable name and
+    array index. If <em>numComponents</em> is 1 then the variable is a scalar
+    and the next token is a <strong>TCL_TOKEN_TEXT</strong> token that gives the
+    variable name. If <em>numComponents</em> is greater than 1 then the
+    variable is an array: the first sub-token is a <strong>TCL_TOKEN_TEXT</strong>
+    token giving the array name and the remaining sub-tokens are
+    <strong>TCL_TOKEN_TEXT</strong>, <strong>TCL_TOKEN_BS</strong>, <strong>TCL_TOKEN_COMMAND</strong>, and
+    <strong>TCL_TOKEN_VARIABLE</strong> tokens that must be concatenated to produce
+    the array index. The <em>numComponents</em> field includes nested
+    sub-tokens that are part of <strong>TCL_TOKEN_VARIABLE</strong> tokens in the
+    array index.</p>
+<p><strong>TCL_TOKEN_SUB_EXPR</strong></p>
+<p>:   The token describes one subexpression of an expression (or an entire
+    expression). A subexpression may consist of a value such as an
+    integer literal, variable substitution, or parenthesized
+    subexpression; it may also consist of an operator and its operands.
+    The token starts with the first non-blank character of the
+    subexpression up to but not including the space, brace, close-paren,
+    or bracket that terminates the subexpression. This token is followed
+    by one or more additional tokens that describe the subexpression. If
+    the first sub-token after the <strong>TCL_TOKEN_SUB_EXPR</strong> token is a
+    <strong>TCL_TOKEN_OPERATOR</strong> token, the subexpression consists of an
+    operator and its token operands. If the operator has no operands,
+    the subexpression consists of just the <strong>TCL_TOKEN_OPERATOR</strong> token.
+    Each operand is described by a <strong>TCL_TOKEN_SUB_EXPR</strong> token.
+    Otherwise, the subexpression is a value described by one of the
+    token types <strong>TCL_TOKEN_WORD</strong>, <strong>TCL_TOKEN_TEXT</strong>,
+    <strong>TCL_TOKEN_BS</strong>, <strong>TCL_TOKEN_COMMAND</strong>, <strong>TCL_TOKEN_VARIABLE</strong>, and
+    <strong>TCL_TOKEN_SUB_EXPR</strong>. The <em>numComponents</em> field counts the total
+    number of sub-tokens that make up the subexpression; this includes
+    the sub-tokens for any nested <strong>TCL_TOKEN_SUB_EXPR</strong> tokens.</p>
+<p><strong>TCL_TOKEN_OPERATOR</strong></p>
+<p>:   The token describes one operator of an expression such as <strong>&amp;&amp;</strong> or
+    <strong>hypot</strong>. A <strong>TCL_TOKEN_OPERATOR</strong> token is always preceded by a
+    <strong>TCL_TOKEN_SUB_EXPR</strong> token that describes the operator and its
+    operands; the <strong>TCL_TOKEN_SUB_EXPR</strong> token\'s <em>numComponents</em> field
+    can be used to determine the number of operands. A binary operator
+    such as <strong>*</strong> is followed by two <strong>TCL_TOKEN_SUB_EXPR</strong> tokens that
+    describe its operands. A unary operator like <strong>-</strong> is followed by a
+    single <strong>TCL_TOKEN_SUB_EXPR</strong> token for its operand. If the operator
+    is a math function such as <strong>log10</strong>, the <strong>TCL_TOKEN_OPERATOR</strong>
+    token will give its name and the following <strong>TCL_TOKEN_SUB_EXPR</strong>
+    tokens will describe its operands; if there are no operands (as with
+    <strong>rand</strong>), no <strong>TCL_TOKEN_SUB_EXPR</strong> tokens follow. There is one
+    trinary operator, <strong>?</strong>, that appears in if-then-else subexpressions
+    such as <em>x</em><strong>?</strong><em>y</em><strong>:</strong><em>z</em>; in this case, the <strong>?</strong>
+    <strong>TCL_TOKEN_OPERATOR</strong> token is followed by three
+    <strong>TCL_TOKEN_SUB_EXPR</strong> tokens for the operands <em>x</em>, <em>y</em>, and <em>z</em>.
+    The <em>numComponents</em> field for a <strong>TCL_TOKEN_OPERATOR</strong> token is
+    always 0.</p>
+<p>After <strong>Tcl_ParseCommand</strong> returns, the first token pointed to by the
+<em>tokenPtr</em> field of the Tcl_Parse structure always has type
+<strong>TCL_TOKEN_WORD</strong> or <strong>TCL_TOKEN_SIMPLE_WORD</strong> or
+<strong>TCL_TOKEN_EXPAND_WORD</strong>. It is followed by the sub-tokens that must be
+concatenated to produce the value of that word. The next token is the
+<strong>TCL_TOKEN_WORD</strong> or <strong>TCL_TOKEN_SIMPLE_WORD</strong> of
+<strong>TCL_TOKEN_EXPAND_WORD</strong> token for the second word, followed by
+sub-tokens for that word, and so on until all <em>numWords</em> have been
+accounted for.</p>
+<p>After <strong>Tcl_ParseExpr</strong> returns, the first token pointed to by the
+<em>tokenPtr</em> field of the Tcl_Parse structure always has type
+<strong>TCL_TOKEN_SUB_EXPR</strong>. It is followed by the sub-tokens that must be
+evaluated to produce the value of the expression. Only the token
+information in the Tcl_Parse structure is modified: the <em>commentStart</em>,
+<em>commentSize</em>, <em>commandStart</em>, and <em>commandSize</em> fields are not modified
+by <strong>Tcl_ParseExpr</strong>.</p>
+<p>After <strong>Tcl_ParseBraces</strong> returns, the array of tokens pointed to by the
+<em>tokenPtr</em> field of the Tcl_Parse structure will contain a single
+<strong>TCL_TOKEN_TEXT</strong> token if the braced string does not contain any
+backslash-newlines. If the string does contain backslash-newlines, the
+array of tokens will contain one or more <strong>TCL_TOKEN_TEXT</strong> or
+<strong>TCL_TOKEN_BS</strong> sub-tokens that must be concatenated to produce the
+value of the string. If the braced string was just <strong>{}</strong> (that is, the
+string was empty), the single <strong>TCL_TOKEN_TEXT</strong> token will have a
+<em>size</em> field containing zero; this ensures that at least one token
+appears to describe the braced string. Only the token information in the
+Tcl_Parse structure is modified: the <em>commentStart</em>, <em>commentSize</em>,
+<em>commandStart</em>, and <em>commandSize</em> fields are not modified by
+<strong>Tcl_ParseBraces</strong>.</p>
+<p>After <strong>Tcl_ParseQuotedString</strong> returns, the array of tokens pointed to
+by the <em>tokenPtr</em> field of the Tcl_Parse structure depends on the
+contents of the quoted string. It will consist of one or more
+<strong>TCL_TOKEN_TEXT</strong>, <strong>TCL_TOKEN_BS</strong>, <strong>TCL_TOKEN_COMMAND</strong>, and
+<strong>TCL_TOKEN_VARIABLE</strong> sub-tokens. The array always contains at least
+one token; for example, if the argument <em>start</em> is empty, the array
+returned consists of a single <strong>TCL_TOKEN_TEXT</strong> token with a zero
+<em>size</em> field. Only the token information in the Tcl_Parse structure is
+modified: the <em>commentStart</em>, <em>commentSize</em>, <em>commandStart</em>, and
+<em>commandSize</em> fields are not modified.</p>
+<p>After <strong>Tcl_ParseVarName</strong> returns, the first token pointed to by the
+<em>tokenPtr</em> field of the Tcl_Parse structure always has type
+<strong>TCL_TOKEN_VARIABLE</strong>. It is followed by the sub-tokens that make up
+the variable name as described above. The total length of the variable
+name is contained in the <em>size</em> field of the first token. As in
+<strong>Tcl_ParseExpr</strong>, only the token information in the Tcl_Parse structure
+is modified by <strong>Tcl_ParseVarName</strong>: the <em>commentStart</em>, <em>commentSize</em>,
+<em>commandStart</em>, and <em>commandSize</em> fields are not modified.</p>
+<p>All of the character pointers in the Tcl_Parse and Tcl_Token structures
+refer to characters in the <em>start</em> argument passed to
+<strong>Tcl_ParseCommand</strong>, <strong>Tcl_ParseExpr</strong>, <strong>Tcl_ParseBraces</strong>,
+<strong>Tcl_ParseQuotedString</strong>, and <strong>Tcl_ParseVarName</strong>.</p>
+<p>There are additional fields in the Tcl_Parse structure after the
+<em>numTokens</em> field, but these are for the private use of
+<strong>Tcl_ParseCommand</strong>, <strong>Tcl_ParseExpr</strong>, <strong>Tcl_ParseBraces</strong>,
+<strong>Tcl_ParseQuotedString</strong>, and <strong>Tcl_ParseVarName</strong>; they should not be
+referenced by code outside of these procedures.</p>
+<h1 id="keywords">KEYWORDS</h1>
+<p>backslash substitution, braces, command, expression, parse, token,
+variable substitution</p>
+              
+            </div>
+          </div><footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+    
+  </span>
+</div>
+    <script>var base_url = '..';</script>
+    <script src="../js/theme_extra.js" defer></script>
+    <script src="../js/theme.js" defer></script>
+      <script src="../search/main.js" defer></script>
+    <script defer>
+        window.onload = function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        };
+    </script>
+
+</body>
+</html>

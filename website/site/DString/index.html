@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><link rel="canonical" href="https://www.tcl.tk/man/tcl8.6.13/TclCmd/contents.html/DString/" />
+      <link rel="shortcut icon" href="../img/favicon.ico" />
+    <title>NAME - Tcl/Tk</title>
+    <link rel="stylesheet" href="../css/theme.css" />
+    <link rel="stylesheet" href="../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "NAME";
+        var mkdocs_page_input_path = "DString.md";
+        var mkdocs_page_url = "/man/tcl8.6.13/TclCmd/contents.html/DString/";
+      </script>
+    
+    <script src="../js/jquery-3.6.0.min.js" defer></script>
+    <!--[if lt IE 9]>
+      <script src="../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
+      <script>hljs.initHighlightingOnLoad();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href=".." class="icon icon-home"> Tcl/Tk
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="..">Home</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="" href="../command.md">Commands</a>
+                </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="..">Tcl/Tk</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href=".." class="icon icon-home" aria-label="Docs"></a> &raquo;</li>
+      <li>NAME</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="name">NAME</h1>
+<p>Tcl_DStringInit, Tcl_DStringAppend, Tcl_DStringAppendElement,
+Tcl_DStringStartSublist, Tcl_DStringEndSublist, Tcl_DStringLength,
+Tcl_DStringValue, Tcl_DStringSetLength, Tcl_DStringFree,
+Tcl_DStringResult, Tcl_DStringGetResult - manipulate dynamic strings</p>
+<h1 id="synopsis">SYNOPSIS</h1>
+<pre><code>#include &lt;tcl.h&gt;
+
+Tcl_DStringInit(dsPtr)
+
+char *
+Tcl_DStringAppend(dsPtr, bytes, length)
+
+char *
+Tcl_DStringAppendElement(dsPtr, element)
+
+Tcl_DStringStartSublist(dsPtr)
+
+Tcl_DStringEndSublist(dsPtr)
+
+Tcl_Size
+Tcl_DStringLength(dsPtr)
+
+char *
+Tcl_DStringValue(dsPtr)
+
+Tcl_DStringSetLength(dsPtr, newLength)
+
+Tcl_DStringFree(dsPtr)
+
+Tcl_DStringResult(interp, dsPtr)
+
+Tcl_DStringGetResult(interp, dsPtr)
+
+Tcl_Obj *
+Tcl_DStringToObj(dsPtr)
+</code></pre>
+<h1 id="arguments">ARGUMENTS</h1>
+<p>Pointer to structure that is used to manage a dynamic string.</p>
+<p>Pointer to characters to append to dynamic string.</p>
+<p>Pointer to characters to append as list element to dynamic string.</p>
+<p>Number of bytes from <em>bytes</em> to add to dynamic string. If negative, add
+all characters up to null terminating character.</p>
+<p>New length for dynamic string, not including null terminating character.</p>
+<p>Interpreter whose result is to be set from or moved to the dynamic
+string.</p>
+<h1 id="description">DESCRIPTION</h1>
+<p>Dynamic strings provide a mechanism for building up arbitrarily long
+strings by gradually appending information. If the dynamic string is
+short then there will be no memory allocation overhead; as the string
+gets larger, additional space will be allocated as needed.</p>
+<p><strong>Tcl_DStringInit</strong> initializes a dynamic string to zero length. The
+Tcl_DString structure must have been allocated by the caller. No
+assumptions are made about the current state of the structure; anything
+already in it is discarded. If the structure has been used previously,
+<strong>Tcl_DStringFree</strong> should be called first to free up any memory
+allocated for the old string.</p>
+<p><strong>Tcl_DStringAppend</strong> adds new information to a dynamic string,
+allocating more memory for the string if needed. If <em>length</em> is less
+than zero then everything in <em>bytes</em> is appended to the dynamic string;
+otherwise <em>length</em> specifies the number of bytes to append.
+<strong>Tcl_DStringAppend</strong> returns a pointer to the characters of the new
+string. The string can also be retrieved from the <em>string</em> field of the
+Tcl_DString structure.</p>
+<p><strong>Tcl_DStringAppendElement</strong> is similar to <strong>Tcl_DStringAppend</strong> except
+that it does not take a <em>length</em> argument (it appends all of <em>element</em>)
+and it converts the string to a proper list element before appending.
+<strong>Tcl_DStringAppendElement</strong> adds a separator space before the new list
+element unless the new list element is the first in a list or sub-list
+(i.e. either the current string is empty, or it contains the single
+character</p>
+<p>or the last two characters of the current string are</p>
+<p><strong>Tcl_DStringAppendElement</strong> returns a pointer to the characters of the
+new string.</p>
+<p><strong>Tcl_DStringStartSublist</strong> and <strong>Tcl_DStringEndSublist</strong> can be used to
+create nested lists. To append a list element that is itself a sublist,
+first call <strong>Tcl_DStringStartSublist</strong>, then call
+<strong>Tcl_DStringAppendElement</strong> for each of the elements in the sublist,
+then call <strong>Tcl_DStringEndSublist</strong> to end the sublist.
+<strong>Tcl_DStringStartSublist</strong> appends a space character if needed,
+followed by an open brace; <strong>Tcl_DStringEndSublist</strong> appends a close
+brace. Lists can be nested to any depth.</p>
+<p><strong>Tcl_DStringLength</strong> is a macro that returns the current length of a
+dynamic string (not including the terminating null character).
+<strong>Tcl_DStringValue</strong> is a macro that returns a pointer to the current
+contents of a dynamic string.</p>
+<p><strong>Tcl_DStringSetLength</strong> changes the length of a dynamic string. If
+<em>newLength</em> is less than the string\'s current length, then the string
+is truncated. If <em>newLength</em> is greater than the string\'s current
+length, then the string will become longer and new space will be
+allocated for the string if needed. However, <strong>Tcl_DStringSetLength</strong>
+will not initialize the new space except to provide a terminating null
+character; it is up to the caller to fill in the new space.
+<strong>Tcl_DStringSetLength</strong> does not free up the string\'s storage space
+even if the string is truncated to zero length, so <strong>Tcl_DStringFree</strong>
+will still need to be called.</p>
+<p><strong>Tcl_DStringFree</strong> should be called when you are finished using the
+string. It frees up any memory that was allocated for the string and
+reinitializes the string\'s value to an empty string.</p>
+<p><strong>Tcl_DStringResult</strong> sets the result of <em>interp</em> to the value of the
+dynamic string given by <em>dsPtr</em>. It does this by moving a pointer from
+<em>dsPtr</em> to the interpreter\'s result. This saves the cost of allocating
+new memory and copying the string. <strong>Tcl_DStringResult</strong> also
+reinitializes the dynamic string to an empty string. Since the dynamic
+string is reinitialized, there is no need to further call
+<strong>Tcl_DStringFree</strong> on it and it can be reused without calling
+<strong>Tcl_DStringInit</strong>. The caller must ensure that the dynamic string
+stored in <em>dsPtr</em> is encoded in Tcl\'s internal UTF-8 format.</p>
+<p><strong>Tcl_DStringGetResult</strong> does the opposite of <strong>Tcl_DStringResult</strong>. It
+sets the value of <em>dsPtr</em> to the result of <em>interp</em> and it clears
+<em>interp</em>\'s result. If possible it does this by moving a pointer rather
+than by copying the string.</p>
+<p><strong>Tcl_DStringToObj</strong> returns a <strong>Tcl_Obj</strong> containing the value of the
+dynamic string given by <em>dsPtr</em>. It does this by moving a pointer from
+<em>dsPtr</em> to a newly allocated <strong>Tcl_Obj</strong> and reinitializing to dynamic
+string to an empty string. This saves the cost of allocating new memory
+and copying the string. Since the dynamic string is reinitialized, there
+is no need to further call <strong>Tcl_DStringFree</strong> on it and it can be
+reused without calling <strong>Tcl_DStringInit</strong>. The returned <strong>Tcl_Obj</strong> has
+a reference count of 0. The caller must ensure that the dynamic string
+stored in <em>dsPtr</em> is encoded in Tcl\'s internal UTF-8 format.</p>
+<h1 id="keywords">KEYWORDS</h1>
+<p>append, dynamic string, free, result</p>
+              
+            </div>
+          </div><footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+    
+  </span>
+</div>
+    <script>var base_url = '..';</script>
+    <script src="../js/theme_extra.js" defer></script>
+    <script src="../js/theme.js" defer></script>
+      <script src="../search/main.js" defer></script>
+    <script defer>
+        window.onload = function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        };
+    </script>
+
+</body>
+</html>

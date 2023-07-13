@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><link rel="canonical" href="https://www.tcl.tk/man/tcl8.6.13/TclCmd/contents.html/StringObj/" />
+      <link rel="shortcut icon" href="../img/favicon.ico" />
+    <title>NAME - Tcl/Tk</title>
+    <link rel="stylesheet" href="../css/theme.css" />
+    <link rel="stylesheet" href="../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "NAME";
+        var mkdocs_page_input_path = "StringObj.md";
+        var mkdocs_page_url = "/man/tcl8.6.13/TclCmd/contents.html/StringObj/";
+      </script>
+    
+    <script src="../js/jquery-3.6.0.min.js" defer></script>
+    <!--[if lt IE 9]>
+      <script src="../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
+      <script>hljs.initHighlightingOnLoad();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href=".." class="icon icon-home"> Tcl/Tk
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="..">Home</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="" href="../command.md">Commands</a>
+                </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="..">Tcl/Tk</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href=".." class="icon icon-home" aria-label="Docs"></a> &raquo;</li>
+      <li>NAME</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="name">NAME</h1>
+<p>Tcl_NewStringObj, Tcl_NewUnicodeObj, Tcl_SetStringObj,
+Tcl_SetUnicodeObj, Tcl_GetStringFromObj, Tcl_GetString,
+Tcl_GetUnicodeFromObj, Tcl_GetUnicode, Tcl_GetUniChar,
+Tcl_GetCharLength, Tcl_GetRange, Tcl_AppendToObj,
+Tcl_AppendUnicodeToObj, Tcl_AppendObjToObj, Tcl_AppendStringsToObj,
+Tcl_AppendLimitedToObj, Tcl_Format, Tcl_AppendFormatToObj,
+Tcl_ObjPrintf, Tcl_AppendPrintfToObj, Tcl_SetObjLength,
+Tcl_AttemptSetObjLength, Tcl_ConcatObj - manipulate Tcl values as
+strings</p>
+<h1 id="synopsis">SYNOPSIS</h1>
+<pre><code>#include &lt;tcl.h&gt;
+
+Tcl_Obj *
+Tcl_NewStringObj(bytes, length)
+
+Tcl_Obj *
+Tcl_NewUnicodeObj(unicode, numChars)
+
+void
+Tcl_SetStringObj(objPtr, bytes, length)
+
+void
+Tcl_SetUnicodeObj(objPtr, unicode, numChars)
+
+char *
+Tcl_GetStringFromObj(objPtr, lengthPtr)
+
+char *
+Tcl_GetString(objPtr)
+
+Tcl_UniChar *
+Tcl_GetUnicodeFromObj(objPtr, lengthPtr)
+
+Tcl_UniChar *
+Tcl_GetUnicode(objPtr)
+
+int
+Tcl_GetUniChar(objPtr, index)
+
+Tcl_Size
+Tcl_GetCharLength(objPtr)
+
+Tcl_Obj *
+Tcl_GetRange(objPtr, first, last)
+
+void
+Tcl_AppendToObj(objPtr, bytes, length)
+
+void
+Tcl_AppendUnicodeToObj(objPtr, unicode, numChars)
+
+void
+Tcl_AppendObjToObj(objPtr, appendObjPtr)
+
+void
+Tcl_AppendStringsToObj(objPtr, string, string, ... (char *) NULL)
+
+void
+Tcl_AppendLimitedToObj(objPtr, bytes, length, limit, ellipsis)
+
+Tcl_Obj *
+Tcl_Format(interp, format, objc, objv)
+
+int
+Tcl_AppendFormatToObj(interp, objPtr, format, objc, objv)
+
+Tcl_Obj *
+Tcl_ObjPrintf(format, ...)
+
+void
+Tcl_AppendPrintfToObj(objPtr, format, ...)
+
+void
+Tcl_SetObjLength(objPtr, newLength)
+
+int
+Tcl_AttemptSetObjLength(objPtr, newLength)
+
+Tcl_Obj *
+Tcl_ConcatObj(objc, objv)
+</code></pre>
+<h1 id="arguments">ARGUMENTS</h1>
+<p>Points to the first byte of an array of UTF-8-encoded bytes used to set
+or append to a string value. This byte array may contain embedded null
+characters unless <em>numChars</em> is negative. (Applications needing null
+bytes should represent them as the two-byte sequence <em>\300\200</em>, use
+<strong>Tcl_ExternalToUtf</strong> to convert, or <strong>Tcl_NewByteArrayObj</strong> if the
+string is a collection of uninterpreted bytes.)</p>
+<p>The number of bytes to copy from <em>bytes</em> when initializing, setting, or
+appending to a string value. If negative, all bytes up to the first null
+are used.</p>
+<p>Points to the first byte of an array of Unicode characters used to set
+or append to a string value. This byte array may contain embedded null
+characters unless <em>numChars</em> is negative.</p>
+<p>The number of Unicode characters to copy from <em>unicode</em> when
+initializing, setting, or appending to a string value. If negative, all
+characters up to the first null character are used.</p>
+<p>The index of the Unicode character to return.</p>
+<p>The index of the first Unicode character in the Unicode range to be
+returned as a new value. If negative, behave the same as if the value
+was 0.</p>
+<p>The index of the last Unicode character in the Unicode range to be
+returned as a new value. If negative, take all characters up to the last
+one available.</p>
+<p>A pointer to a value to read, or to an unshared value to modify.</p>
+<p>The value to append to <em>objPtr</em> in <strong>Tcl_AppendObjToObj</strong>.</p>
+<p>The location where <strong>Tcl_GetStringFromObj</strong> will store the length of a
+value\'s string representation. May be (int *)NULL when not used.</p>
+<p>Null-terminated string value to append to <em>objPtr</em>.</p>
+<p>Maximum number of bytes to be appended.</p>
+<p>Suffix to append when the limit leads to string truncation. If NULL is
+passed then the suffix</p>
+<p>is used.</p>
+<p>Format control string including % conversion specifiers.</p>
+<p>The number of elements to format or concatenate.</p>
+<p>The array of values to format or concatenate.</p>
+<p>New length for the string value of <em>objPtr</em>, not including the final
+null character.</p>
+<h1 id="description">DESCRIPTION</h1>
+<p>The procedures described in this manual entry allow Tcl values to be
+manipulated as string values. They use the internal representation of
+the value to store additional information to make the string
+manipulations more efficient. In particular, they make a series of
+append operations efficient by allocating extra storage space for the
+string so that it does not have to be copied for each append. Also,
+indexing and length computations are optimized because the Unicode
+string representation is calculated and cached as needed. When using the
+<strong>Tcl_Append*</strong> family of functions where the interpreter\'s result is
+the value being appended to, it is important to call Tcl_ResetResult
+first to ensure you are not unintentionally appending to existing data
+in the result value.</p>
+<p><strong>Tcl_NewStringObj</strong> and <strong>Tcl_SetStringObj</strong> create a new value or
+modify an existing value to hold a copy of the string given by <em>bytes</em>
+and <em>length</em>. <strong>Tcl_NewUnicodeObj</strong> and <strong>Tcl_SetUnicodeObj</strong> create a
+new value or modify an existing value to hold a copy of the Unicode
+string given by <em>unicode</em> and <em>numChars</em>. <strong>Tcl_NewStringObj</strong> and
+<strong>Tcl_NewUnicodeObj</strong> return a pointer to a newly created value with
+reference count zero. All four procedures set the value to hold a copy
+of the specified string. <strong>Tcl_SetStringObj</strong> and <strong>Tcl_SetUnicodeObj</strong>
+free any old string representation as well as any old internal
+representation of the value.</p>
+<p><strong>Tcl_GetStringFromObj</strong> and <strong>Tcl_GetString</strong> return a value\'s string
+representation. This is given by the returned byte pointer and (for
+<strong>Tcl_GetStringFromObj</strong>) length, which is stored in <em>lengthPtr</em> if it
+is non-NULL. If the value\'s UTF string representation is invalid (its
+byte pointer is NULL), the string representation is regenerated from the
+value\'s internal representation. The storage referenced by the returned
+byte pointer is owned by the value manager. It is passed back as a
+writable pointer so that extension author creating their own
+<strong>Tcl_ObjType</strong> will be able to modify the string representation within
+the <strong>Tcl_UpdateStringProc</strong> of their <strong>Tcl_ObjType</strong>. Except for that
+limited purpose, the pointer returned by <strong>Tcl_GetStringFromObj</strong> or
+<strong>Tcl_GetString</strong> should be treated as read-only. It is recommended that
+this pointer be assigned to a (const char *) variable. Even in the
+limited situations where writing to this pointer is acceptable, one
+should take care to respect the copy-on-write semantics required by
+<strong>Tcl_Obj</strong>\'s, with appropriate calls to <strong>Tcl_IsShared</strong> and
+<strong>Tcl_DuplicateObj</strong> prior to any in-place modification of the string
+representation. If <em>lengthPtr</em> points to an <strong>int</strong> variable, and the
+string has more than 2\^31 bytes, a panic will result. The procedure
+<strong>Tcl_GetString</strong> is used in the common case where the caller does not
+need the length of the string representation.</p>
+<p><strong>Tcl_GetUnicodeFromObj</strong> and <strong>Tcl_GetUnicode</strong> return a value\'s value
+as a Unicode string. This is given by the returned pointer and (for
+<strong>Tcl_GetUnicodeFromObj</strong>) length, which is stored in <em>lengthPtr</em> if it
+is non-NULL. The storage referenced by the returned byte pointer is
+owned by the value manager and should not be modified by the caller. The
+procedure <strong>Tcl_GetUnicode</strong> is used in the common case where the caller
+does not need the length of the unicode string representation. If
+<em>lengthPtr</em> points to an <strong>int</strong> variable, and the string has more than
+2\^31 unicode characters, a panic will result.</p>
+<p><strong>Tcl_GetUniChar</strong> returns the <em>index</em>\'th character in the value\'s
+Unicode representation. If the index is out of range or it references a
+low surrogate preceded by a high surrogate, it returns -1;</p>
+<p><strong>Tcl_GetRange</strong> returns a newly created value comprised of the
+characters between <em>first</em> and <em>last</em> (inclusive) in the value\'s
+Unicode representation. If the value\'s Unicode representation is
+invalid, the Unicode representation is regenerated from the value\'s
+string representation. If <em>first</em> is negative, then the returned string
+starts at the beginning of the value. If <em>last</em> negative, then the
+returned string ends at the end of the value.</p>
+<p><strong>Tcl_GetCharLength</strong> returns the number of characters (as opposed to
+bytes) in the string value.</p>
+<p><strong>Tcl_AppendToObj</strong> appends the data given by <em>bytes</em> and <em>length</em> to
+the string representation of the value specified by <em>objPtr</em>. If the
+value has an invalid string representation, then an attempt is made to
+convert <em>bytes</em> is to the Unicode format. If the conversion is
+successful, then the converted form of <em>bytes</em> is appended to the
+value\'s Unicode representation. Otherwise, the value\'s Unicode
+representation is invalidated and converted to the UTF format, and
+<em>bytes</em> is appended to the value\'s new string representation.</p>
+<p><strong>Tcl_AppendUnicodeToObj</strong> appends the Unicode string given by <em>unicode</em>
+and <em>numChars</em> to the value specified by <em>objPtr</em>. If the value has an
+invalid Unicode representation, then <em>unicode</em> is converted to the UTF
+format and appended to the value\'s string representation. Appends are
+optimized to handle repeated appends relatively efficiently (it
+over-allocates the string or Unicode space to avoid repeated
+reallocations and copies of value\'s string value).</p>
+<p><strong>Tcl_AppendObjToObj</strong> is similar to <strong>Tcl_AppendToObj</strong>, but it appends
+the string or Unicode value (whichever exists and is best suited to be
+appended to <em>objPtr</em>) of <em>appendObjPtr</em> to <em>objPtr</em>.</p>
+<p><strong>Tcl_AppendStringsToObj</strong> is similar to <strong>Tcl_AppendToObj</strong> except that
+it can be passed more than one value to append and each value must be a
+null-terminated string (i.e. none of the values may contain internal
+null characters). Any number of <em>string</em> arguments may be provided, but
+the last argument must be a NULL pointer to indicate the end of the
+list.</p>
+<p><strong>Tcl_AppendLimitedToObj</strong> is similar to <strong>Tcl_AppendToObj</strong> except that
+it imposes a limit on how many bytes are appended. This can be handy
+when the string to be appended might be very large, but the value being
+constructed should not be allowed to grow without bound. A common usage
+is when constructing an error message, where the end result should be
+kept short enough to be read. Bytes from <em>bytes</em> are appended to
+<em>objPtr</em>, but no more than <em>limit</em> bytes total are to be appended. If
+the limit prevents all <em>length</em> bytes that are available from being
+appended, then the appending is done so that the last bytes appended are
+from the string <em>ellipsis</em>. This allows for an indication of the
+truncation to be left in the string. When <em>length</em> is negative, all
+bytes up to the first zero byte are appended, subject to the limit. When
+<em>ellipsis</em> is NULL, the default string <strong>...</strong> is used. When <em>ellipsis</em>
+is non-NULL, it must point to a zero-byte-terminated string in Tcl\'s
+internal UTF encoding. The number of bytes appended can be less than the
+lesser of <em>length</em> and <em>limit</em> when appending fewer bytes is necessary
+to append only whole multi-byte characters.</p>
+<p><strong>Tcl_Format</strong> is the C-level interface to the engine of the <strong>format</strong>
+command. The actual command procedure for <strong>format</strong> is little more than</p>
+<p><strong>Tcl_Format</strong>(interp, <strong>Tcl_GetString</strong>(objv[1]), objc-2, objv+2);</p>
+<p>The <em>objc</em> Tcl_Obj values in <em>objv</em> are formatted into a string
+according to the conversion specification in <em>format</em> argument,
+following the documentation for the <strong>format</strong> command. The resulting
+formatted string is converted to a new Tcl_Obj with refcount of zero and
+returned. If some error happens during production of the formatted
+string, NULL is returned, and an error message is recorded in <em>interp</em>,
+if <em>interp</em> is non-NULL.</p>
+<p><strong>Tcl_AppendFormatToObj</strong> is an appending alternative form of
+<strong>Tcl_Format</strong> with functionality equivalent to:</p>
+<p>Tcl_Obj *newPtr = <strong>Tcl_Format</strong>(interp, format, objc, objv); if
+(newPtr == NULL) return TCL_ERROR; <strong>Tcl_AppendObjToObj</strong>(objPtr,
+newPtr); <strong>Tcl_DecrRefCount</strong>(newPtr); return TCL_OK;</p>
+<p>but with greater convenience and efficiency when the appending
+functionality is needed.</p>
+<p><strong>Tcl_ObjPrintf</strong> serves as a replacement for the common sequence</p>
+<p>char buf[SOME_SUITABLE_LENGTH]; sprintf(buf, format, ...);
+<strong>Tcl_NewStringObj</strong>(buf, -1);</p>
+<p>but with greater convenience and no need to determine
+<strong>SOME_SUITABLE_LENGTH</strong>. The formatting is done with the same core
+formatting engine used by <strong>Tcl_Format</strong>. This means the set of
+supported conversion specifiers is that of the <strong>format</strong> command and
+not that of the <strong>sprintf</strong> routine where the two sets differ. When a
+conversion specifier passed to <strong>Tcl_ObjPrintf</strong> includes a precision,
+the value is taken as a number of bytes, as <strong>sprintf</strong> does, and not as
+a number of characters, as <strong>format</strong> does. This is done on the
+assumption that C code is more likely to know how many bytes it is
+passing around than the number of encoded characters those bytes happen
+to represent. The variable number of arguments passed in should be of
+the types that would be suitable for passing to <strong>sprintf</strong>. Note in
+this example usage, <em>x</em> is of type <strong>int</strong>.</p>
+<p>int x = 5; Tcl_Obj *objPtr = <strong>Tcl_ObjPrintf</strong>(\"Value is %d\", x);</p>
+<p>If the value of <em>format</em> contains internal inconsistencies or invalid
+specifier formats, the formatted string result produced by
+<strong>Tcl_ObjPrintf</strong> will be an error message describing the error. It is
+impossible however to provide runtime protection against mismatches
+between the format and any subsequent arguments. Compile-time protection
+may be provided by some compilers.</p>
+<p><strong>Tcl_AppendPrintfToObj</strong> is an appending alternative form of
+<strong>Tcl_ObjPrintf</strong> with functionality equivalent to</p>
+<p>Tcl_Obj *newPtr = <strong>Tcl_ObjPrintf</strong>(format, ...);
+<strong>Tcl_AppendObjToObj</strong>(objPtr, newPtr); <strong>Tcl_DecrRefCount</strong>(newPtr);</p>
+<p>but with greater convenience and efficiency when the appending
+functionality is needed.</p>
+<p>The <strong>Tcl_SetObjLength</strong> procedure changes the length of the string
+value of its <em>objPtr</em> argument. If the <em>newLength</em> argument is greater
+than the space allocated for the value\'s string, then the string space
+is reallocated and the old value is copied to the new space; the bytes
+between the old length of the string and the new length may have
+arbitrary values. If the <em>newLength</em> argument is less than the current
+length of the value\'s string, with <em>objPtr->length</em> is reduced without
+reallocating the string space; the original allocated size for the
+string is recorded in the value, so that the string length can be
+enlarged in a subsequent call to <strong>Tcl_SetObjLength</strong> without
+reallocating storage. In all cases <strong>Tcl_SetObjLength</strong> leaves a null
+character at <em>objPtr->bytes[newLength]</em>.</p>
+<p><strong>Tcl_AttemptSetObjLength</strong> is identical in function to
+<strong>Tcl_SetObjLength</strong> except that if sufficient memory to satisfy the
+request cannot be allocated, it does not cause the Tcl interpreter to
+<strong>panic</strong>. Thus, if <em>newLength</em> is greater than the space allocated for
+the value\'s string, and there is not enough memory available to satisfy
+the request, <strong>Tcl_AttemptSetObjLength</strong> will take no action and return
+0 to indicate failure. If there is enough memory to satisfy the request,
+<strong>Tcl_AttemptSetObjLength</strong> behaves just like <strong>Tcl_SetObjLength</strong> and
+returns 1 to indicate success.</p>
+<p>The <strong>Tcl_ConcatObj</strong> function returns a new string value whose value is
+the space-separated concatenation of the string representations of all
+of the values in the <em>objv</em> array. <strong>Tcl_ConcatObj</strong> eliminates leading
+and trailing white space as it copies the string representations of the
+<em>objv</em> array to the result. If an element of the <em>objv</em> array consists
+of nothing but white space, then that value is ignored entirely. This
+white-space removal was added to make the output of the <strong>concat</strong>
+command cleaner-looking. <strong>Tcl_ConcatObj</strong> returns a pointer to a
+newly-created value whose ref count is zero.</p>
+<h1 id="reference-count-management">REFERENCE COUNT MANAGEMENT</h1>
+<p><strong>Tcl_NewStringObj</strong>, <strong>Tcl_NewUnicodeObj</strong>, <strong>Tcl_Format</strong>,
+<strong>Tcl_ObjPrintf</strong>, and <strong>Tcl_ConcatObj</strong> always return a zero-reference
+object, much like <strong>Tcl_NewObj</strong>.</p>
+<p><strong>Tcl_GetStringFromObj</strong>, <strong>Tcl_GetString</strong>, <strong>Tcl_GetUnicodeFromObj</strong>,
+<strong>Tcl_GetUnicode</strong>, <strong>Tcl_GetUniChar</strong>, <strong>Tcl_GetCharLength</strong>, and
+<strong>Tcl_GetRange</strong> all only work with an existing value; they do not
+manipulate its reference count in any way.</p>
+<p><strong>Tcl_SetStringObj</strong>, <strong>Tcl_SetUnicodeObj</strong>, <strong>Tcl_AppendToObj</strong>,
+<strong>Tcl_AppendUnicodeToObj</strong>, <strong>Tcl_AppendObjToObj</strong>,
+<strong>Tcl_AppendStringsToObj</strong>, <strong>Tcl_AppendStringsToObjVA</strong>,
+<strong>Tcl_AppendLimitedToObj</strong>, <strong>Tcl_AppendFormatToObj</strong>,
+<strong>Tcl_AppendPrintfToObj</strong>, <strong>Tcl_SetObjLength</strong>, and
+<strong>Tcl_AttemptSetObjLength</strong> and require their <em>objPtr</em> to be an unshared
+value (i.e, a reference count no more than 1) as they will modify it.</p>
+<p>Additional arguments to the above functions (the <em>appendObjPtr</em> argument
+to <strong>Tcl_AppendObjToObj</strong>, values in the <em>objv</em> argument to
+<strong>Tcl_Format</strong>, <strong>Tcl_AppendFormatToObj</strong>, and <strong>Tcl_ConcatObj</strong>) can
+have any reference count, but reference counts of zero are not
+recommended.</p>
+<p><strong>Tcl_Format</strong> and <strong>Tcl_AppendFormatToObj</strong> may modify the interpreter
+result, which involves changing the reference count of a value.</p>
+<h1 id="see-also">SEE ALSO</h1>
+<p>Tcl_NewObj(3), Tcl_IncrRefCount(3), Tcl_DecrRefCount(3), format(n),
+sprintf(3)</p>
+<h1 id="keywords">KEYWORDS</h1>
+<p>append, internal representation, value, value type, string value, string
+type, string representation, concat, concatenate, unicode</p>
+              
+            </div>
+          </div><footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+    
+  </span>
+</div>
+    <script>var base_url = '..';</script>
+    <script src="../js/theme_extra.js" defer></script>
+    <script src="../js/theme.js" defer></script>
+      <script src="../search/main.js" defer></script>
+    <script defer>
+        window.onload = function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        };
+    </script>
+
+</body>
+</html>

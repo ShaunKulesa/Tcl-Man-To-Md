@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><link rel="canonical" href="https://www.tcl.tk/man/tcl8.6.13/TclCmd/contents.html/UniCharIsAlpha/" />
+      <link rel="shortcut icon" href="../img/favicon.ico" />
+    <title>NAME - Tcl/Tk</title>
+    <link rel="stylesheet" href="../css/theme.css" />
+    <link rel="stylesheet" href="../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "NAME";
+        var mkdocs_page_input_path = "UniCharIsAlpha.md";
+        var mkdocs_page_url = "/man/tcl8.6.13/TclCmd/contents.html/UniCharIsAlpha/";
+      </script>
+    
+    <script src="../js/jquery-3.6.0.min.js" defer></script>
+    <!--[if lt IE 9]>
+      <script src="../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
+      <script>hljs.initHighlightingOnLoad();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href=".." class="icon icon-home"> Tcl/Tk
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="..">Home</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="" href="../command.md">Commands</a>
+                </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="..">Tcl/Tk</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href=".." class="icon icon-home" aria-label="Docs"></a> &raquo;</li>
+      <li>NAME</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="name">NAME</h1>
+<p>Tcl_UniCharIsAlnum, Tcl_UniCharIsAlpha, Tcl_UniCharIsControl,
+Tcl_UniCharIsDigit, Tcl_UniCharIsGraph, Tcl_UniCharIsLower,
+Tcl_UniCharIsPrint, Tcl_UniCharIsPunct, Tcl_UniCharIsSpace,
+Tcl_UniCharIsUpper, Tcl_UniCharIsUnicode, Tcl_UniCharIsWordChar -
+routines for classification of Tcl_UniChar characters</p>
+<h1 id="synopsis">SYNOPSIS</h1>
+<pre><code>#include &lt;tcl.h&gt;
+
+int
+Tcl_UniCharIsAlnum(ch)
+
+int
+Tcl_UniCharIsAlpha(ch)
+
+int
+Tcl_UniCharIsControl(ch)
+
+int
+Tcl_UniCharIsDigit(ch)
+
+int
+Tcl_UniCharIsGraph(ch)
+
+int
+Tcl_UniCharIsLower(ch)
+
+int
+Tcl_UniCharIsPrint(ch)
+
+int
+Tcl_UniCharIsPunct(ch)
+
+int
+Tcl_UniCharIsSpace(ch)
+
+int
+Tcl_UniCharIsUpper(ch)
+
+int
+Tcl_UniCharIsUnicode(ch)
+
+int
+Tcl_UniCharIsWordChar(ch)
+</code></pre>
+<h1 id="arguments">ARGUMENTS</h1>
+<p>The Unicode character to be examined.</p>
+<h1 id="description">DESCRIPTION</h1>
+<p>All of the routines described examine Unicode characters and return a
+boolean value. A non-zero return value means that the character does
+belong to the character class associated with the called routine. The
+rest of this document just describes the character classes associated
+with the various routines.</p>
+<h1 id="character-classes">CHARACTER CLASSES</h1>
+<p><strong>Tcl_UniCharIsAlnum</strong> tests if the character is an alphanumeric Unicode
+character.</p>
+<p><strong>Tcl_UniCharIsAlpha</strong> tests if the character is an alphabetic Unicode
+character.</p>
+<p><strong>Tcl_UniCharIsControl</strong> tests if the character is a Unicode control
+character.</p>
+<p><strong>Tcl_UniCharIsDigit</strong> tests if the character is a numeric Unicode
+character.</p>
+<p><strong>Tcl_UniCharIsGraph</strong> tests if the character is any Unicode print
+character except space.</p>
+<p><strong>Tcl_UniCharIsLower</strong> tests if the character is a lowercase Unicode
+character.</p>
+<p><strong>Tcl_UniCharIsPrint</strong> tests if the character is a Unicode print
+character.</p>
+<p><strong>Tcl_UniCharIsPunct</strong> tests if the character is a Unicode punctuation
+character.</p>
+<p><strong>Tcl_UniCharIsSpace</strong> tests if the character is a whitespace Unicode
+character.</p>
+<p><strong>Tcl_UniCharIsUpper</strong> tests if the character is an uppercase Unicode
+character.</p>
+<p><strong>Tcl_UniCharIsUnicode</strong> tests if the character is a Unicode character,
+not being a surrogate or noncharacter.</p>
+<p><strong>Tcl_UniCharIsWordChar</strong> tests if the character is alphanumeric or a
+connector punctuation mark.</p>
+<h1 id="keywords">KEYWORDS</h1>
+<p>unicode, classification</p>
+              
+            </div>
+          </div><footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+    
+  </span>
+</div>
+    <script>var base_url = '..';</script>
+    <script src="../js/theme_extra.js" defer></script>
+    <script src="../js/theme.js" defer></script>
+      <script src="../search/main.js" defer></script>
+    <script defer>
+        window.onload = function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        };
+    </script>
+
+</body>
+</html>

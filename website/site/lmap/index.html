@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><link rel="canonical" href="https://www.tcl.tk/man/tcl8.6.13/TclCmd/contents.html/lmap/" />
+      <link rel="shortcut icon" href="../img/favicon.ico" />
+    <title>NAME - Tcl/Tk</title>
+    <link rel="stylesheet" href="../css/theme.css" />
+    <link rel="stylesheet" href="../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "NAME";
+        var mkdocs_page_input_path = "lmap.md";
+        var mkdocs_page_url = "/man/tcl8.6.13/TclCmd/contents.html/lmap/";
+      </script>
+    
+    <script src="../js/jquery-3.6.0.min.js" defer></script>
+    <!--[if lt IE 9]>
+      <script src="../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
+      <script>hljs.initHighlightingOnLoad();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href=".." class="icon icon-home"> Tcl/Tk
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="..">Home</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="" href="../command.md">Commands</a>
+                </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="..">Tcl/Tk</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href=".." class="icon icon-home" aria-label="Docs"></a> &raquo;</li>
+      <li>NAME</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="name">NAME</h1>
+<p>lmap - Iterate over all elements in one or more lists and collect
+results</p>
+<h1 id="synopsis">SYNOPSIS</h1>
+<p><strong>lmap </strong><em>varname list body</em>\
+<strong>lmap </strong><em>varlist1 list1</em> ?<em>varlist2 list2 ...</em>? <em>body</em></p>
+<h1 id="description">DESCRIPTION</h1>
+<p>The <strong>lmap</strong> command implements a loop where the loop variable(s) take
+on values from one or more lists, and the loop returns a list of results
+collected from each iteration.</p>
+<p>In the simplest case there is one loop variable, <em>varname</em>, and one
+list, <em>list</em>, that is a list of values to assign to <em>varname</em>. The
+<em>body</em> argument is a Tcl script. For each element of <em>list</em> (in order
+from first to last), <strong>lmap</strong> assigns the contents of the element to
+<em>varname</em> as if the <strong>lindex</strong> command had been used to extract the
+element, then calls the Tcl interpreter to execute <em>body</em>. If execution
+of the body completes normally then the result of the body is appended
+to an accumulator list. <strong>lmap</strong> returns the accumulator list.</p>
+<p>In the general case there can be more than one value list (e.g., <em>list1</em>
+and <em>list2</em>), and each value list can be associated with a list of loop
+variables (e.g., <em>varlist1</em> and <em>varlist2</em>). During each iteration of
+the loop the variables of each <em>varlist</em> are assigned consecutive values
+from the corresponding <em>list</em>. Values in each <em>list</em> are used in order
+from first to last, and each value is used exactly once. The total
+number of loop iterations is large enough to use up all the values from
+all the value lists. If a value list does not contain enough elements
+for each of its loop variables in each iteration, empty values are used
+for the missing elements.</p>
+<p>The <strong>break</strong> and <strong>continue</strong> statements may be invoked inside <em>body</em>,
+with the same effect as in the <strong>for</strong> and <strong>foreach</strong> commands. In
+these cases the body does not complete normally and the result is not
+appended to the accumulator list.</p>
+<h1 id="examples">EXAMPLES</h1>
+<p>Zip lists together:</p>
+<p>set list1 {a b c d} set list2 {1 2 3 4} set zipped [<strong>lmap</strong> a \$list1
+b \$list2 {list \$a \$b}] # The value of zipped is \"{a 1} {b 2} {c 3}
+{d 4}\"</p>
+<p>Filter a list to remove odd values:</p>
+<p>set values {1 2 3 4 5 6 7 8} proc isEven {n} {expr {(\$n % 2) == 0}} set
+goodOnes [<strong>lmap</strong> x \$values {expr { [isEven \$x] ? \$x :
+[continue] }}] # The value of goodOnes is \"2 4 6 8\"</p>
+<p>Take a prefix from a list based on the contents of the list:</p>
+<p>set values {8 7 6 5 4 3 2 1} proc isGood {counter} {expr {\$n > 3}} set
+prefix [<strong>lmap</strong> x \$values {expr { [isGood \$x] ? \$x : [break]
+}}] # The value of prefix is \"8 7 6 5 4\"</p>
+<h1 id="see-also">SEE ALSO</h1>
+<p>break(n), continue(n), for(n), foreach(n), while(n), list(n),
+lappend(n), lassign(n), ledit(n), lindex(n), linsert(n), llength(n),
+lpop(n), lrange(n), lremove(n), lrepeat(n), lreplace(n), lreverse(n),
+lsearch(n), lseq(n), lset(n), lsort(n)</p>
+<h1 id="keywords">KEYWORDS</h1>
+<p>foreach, iteration, list, loop, map</p>
+              
+            </div>
+          </div><footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+    
+  </span>
+</div>
+    <script>var base_url = '..';</script>
+    <script src="../js/theme_extra.js" defer></script>
+    <script src="../js/theme.js" defer></script>
+      <script src="../search/main.js" defer></script>
+    <script defer>
+        window.onload = function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        };
+    </script>
+
+</body>
+</html>

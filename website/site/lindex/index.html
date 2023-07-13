@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><link rel="canonical" href="https://www.tcl.tk/man/tcl8.6.13/TclCmd/contents.html/lindex/" />
+      <link rel="shortcut icon" href="../img/favicon.ico" />
+    <title>NAME - Tcl/Tk</title>
+    <link rel="stylesheet" href="../css/theme.css" />
+    <link rel="stylesheet" href="../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "NAME";
+        var mkdocs_page_input_path = "lindex.md";
+        var mkdocs_page_url = "/man/tcl8.6.13/TclCmd/contents.html/lindex/";
+      </script>
+    
+    <script src="../js/jquery-3.6.0.min.js" defer></script>
+    <!--[if lt IE 9]>
+      <script src="../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
+      <script>hljs.initHighlightingOnLoad();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href=".." class="icon icon-home"> Tcl/Tk
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="..">Home</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="" href="../command.md">Commands</a>
+                </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="..">Tcl/Tk</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href=".." class="icon icon-home" aria-label="Docs"></a> &raquo;</li>
+      <li>NAME</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="name">NAME</h1>
+<p>lindex - Retrieve an element from a list</p>
+<h1 id="synopsis">SYNOPSIS</h1>
+<p><strong>lindex </strong><em>list</em> ?<em>index ...</em>?</p>
+<h1 id="description">DESCRIPTION</h1>
+<p>The <strong>lindex</strong> command accepts a parameter, <em>list</em>, which it treats as a
+Tcl list. It also accepts zero or more <em>indices</em> into the list. The
+indices may be presented either consecutively on the command line, or
+grouped in a Tcl list and presented as a single argument.</p>
+<p>If no indices are presented, the command takes the form:</p>
+<p><strong>lindex </strong><em>list</em></p>
+<p>or</p>
+<p><strong>lindex </strong><em>list</em> {}</p>
+<p>In this case, the return value of <strong>lindex</strong> is simply the value of the
+<em>list</em> parameter.</p>
+<p>When presented with a single index, the <strong>lindex</strong> command treats <em>list</em>
+as a Tcl list and returns the <em>index</em>\'th element from it (0 refers to
+the first element of the list). In extracting the element, <strong>lindex</strong>
+observes the same rules concerning braces and quotes and backslashes as
+the Tcl command interpreter; however, variable substitution and command
+substitution do not occur. If <em>index</em> is negative or greater than or
+equal to the number of elements in <em>value</em>, then an empty string is
+returned. The interpretation of each simple <em>index</em> value is the same as
+for the command <strong>string index</strong>, supporting simple index arithmetic and
+indices relative to the end of the list.</p>
+<p>If additional <em>index</em> arguments are supplied, then each argument is used
+in turn to select an element from the previous indexing operation,
+allowing the script to select elements from sublists. The command,</p>
+<p><strong>lindex</strong> \$a 1 2 3</p>
+<p>or</p>
+<p><strong>lindex</strong> \$a {1 2 3}</p>
+<p>is synonymous with</p>
+<p><strong>lindex</strong> [<strong>lindex</strong> [<strong>lindex</strong> \$a 1] 2] 3</p>
+<h1 id="examples">EXAMPLES</h1>
+<p>Lists can be indexed into from either end:</p>
+<p><strong>lindex</strong> {a b c} 0 <em>→ a</em> <strong>lindex</strong> {a b c} 2 <em>→ c</em> <strong>lindex</strong> {a b c}
+end <em>→ c</em> <strong>lindex</strong> {a b c} end-1 <em>→ b</em></p>
+<p>Lists or sequences of indices allow selection into lists of lists:</p>
+<p><strong>lindex</strong> {a b c} <em>→ a b c</em> <strong>lindex</strong> {a b c} {} <em>→ a b c</em> <strong>lindex</strong>
+{{a b c} {d e f} {g h i}} 2 1 <em>→ h</em> <strong>lindex</strong> {{a b c} {d e f} {g h i}}
+{2 1} <em>→ h</em> <strong>lindex</strong> {{{a b} {c d}} {{e f} {g h}}} 1 1 0 <em>→ g</em>
+<strong>lindex</strong> {{{a b} {c d}} {{e f} {g h}}} {1 1 0} <em>→ g</em></p>
+<p>List indices may also perform limited computation, adding or subtracting
+fixed amounts from other indices:</p>
+<p>set idx 1 <strong>lindex</strong> {a b c d e f} \$idx+2 <em>→ d</em> set idx 3 <strong>lindex</strong> {a
+b c d e f} \$idx+2 <em>→ f</em></p>
+<h1 id="see-also">SEE ALSO</h1>
+<p>list(n), lappend(n), lassign(n), ledit(n), linsert(n), llength(n),
+lmap(n), lpop(n), lrange(n), lremove(n), lrepeat(n), lreplace(n),
+lreverse(n), lsearch(n), lseq(n), lset(n), lsort(n), string(n)</p>
+<h1 id="keywords">KEYWORDS</h1>
+<p>element, index, list</p>
+              
+            </div>
+          </div><footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+    
+  </span>
+</div>
+    <script>var base_url = '..';</script>
+    <script src="../js/theme_extra.js" defer></script>
+    <script src="../js/theme.js" defer></script>
+      <script src="../search/main.js" defer></script>
+    <script defer>
+        window.onload = function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        };
+    </script>
+
+</body>
+</html>

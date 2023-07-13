@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><link rel="canonical" href="https://www.tcl.tk/man/tcl8.6.13/TclCmd/contents.html/registry/" />
+      <link rel="shortcut icon" href="../img/favicon.ico" />
+    <title>NAME - Tcl/Tk</title>
+    <link rel="stylesheet" href="../css/theme.css" />
+    <link rel="stylesheet" href="../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "NAME";
+        var mkdocs_page_input_path = "registry.md";
+        var mkdocs_page_url = "/man/tcl8.6.13/TclCmd/contents.html/registry/";
+      </script>
+    
+    <script src="../js/jquery-3.6.0.min.js" defer></script>
+    <!--[if lt IE 9]>
+      <script src="../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
+      <script>hljs.initHighlightingOnLoad();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href=".." class="icon icon-home"> Tcl/Tk
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="..">Home</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="" href="../command.md">Commands</a>
+                </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="..">Tcl/Tk</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href=".." class="icon icon-home" aria-label="Docs"></a> &raquo;</li>
+      <li>NAME</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="name">NAME</h1>
+<p>registry - Manipulate the Windows registry</p>
+<h1 id="synopsis">SYNOPSIS</h1>
+<p><strong>package require registry 1.3</strong></p>
+<p><strong>registry </strong>?<em>-mode</em>? <em>option</em> <em>keyName</em> ?<em>arg arg ...</em>?</p>
+<h1 id="description">DESCRIPTION</h1>
+<p>The <strong>registry</strong> package provides a general set of operations for
+manipulating the Windows registry. The package implements the
+<strong>registry</strong> Tcl command. This command is only supported on the Windows
+platform. Warning: this command should be used with caution as a
+corrupted registry can leave your system in an unusable state.</p>
+<p><em>KeyName</em> is the name of a registry key. Registry keys must be one of
+the following forms:</p>
+<blockquote>
+<p><strong>\\</strong><em>hostname</em><strong>\</strong><em>rootname</em><strong>\</strong><em>keypath</em></p>
+<p><em>rootname</em><strong>\</strong><em>keypath</em></p>
+<p><em>rootname</em></p>
+</blockquote>
+<p><em>Hostname</em> specifies the name of any valid Windows host that exports its
+registry. The <em>rootname</em> component must be one of
+<strong>HKEY_LOCAL_MACHINE</strong>, <strong>HKEY_USERS</strong>, <strong>HKEY_CLASSES_ROOT</strong>,
+<strong>HKEY_CURRENT_USER</strong>, <strong>HKEY_CURRENT_CONFIG</strong>,
+<strong>HKEY_PERFORMANCE_DATA</strong>, or <strong>HKEY_DYN_DATA</strong>. The <em>keypath</em> can be
+one or more registry key names separated by backslash (<strong>\</strong>)
+characters.</p>
+<p>The optional <em>-mode</em> argument indicates which registry to work with;
+when it is <strong>-32bit</strong> the 32-bit registry will be used, and when it is
+<strong>-64bit</strong> the 64-bit registry will be used. If this argument is
+omitted, the system\'s default registry will be the subject of the
+requested operation.</p>
+<p><em>Option</em> indicates what to do with the registry key name. Any unique
+abbreviation for <em>option</em> is acceptable. The valid options are:</p>
+<p><strong>registry broadcast </strong><em>keyName</em> ?<strong>-timeout </strong><em>milliseconds</em>?</p>
+<p>:   Sends a broadcast message to the system and running programs to
+    notify them of certain updates. This is necessary to propagate
+    changes to key registry keys like Environment. The timeout specifies
+    the amount of time, in milliseconds, to wait for applications to
+    respond to the broadcast message. It defaults to 3000. The following
+    example demonstrates how to add a path to the global Environment and
+    notify applications of the change without requiring a logoff/logon
+    step (assumes admin privileges):</p>
+<pre><code>set regPath \[join { HKEY_LOCAL_MACHINE SYSTEM CurrentControlSet
+Control {Session Manager} Environment } \"\\\\\"\] set curPath
+\[**registry get** \$regPath \"Path\"\] **registry set** \$regPath
+\"Path\" \"\$curPath;\$addPath\" **registry broadcast**
+\"Environment\"
+</code></pre>
+<p><strong>registry delete </strong><em>keyName</em> ?<em>valueName</em>?</p>
+<p>:   If the optional <em>valueName</em> argument is present, the specified value
+    under <em>keyName</em> will be deleted from the registry. If the optional
+    <em>valueName</em> is omitted, the specified key and any subkeys or values
+    beneath it in the registry hierarchy will be deleted. If the key
+    could not be deleted then an error is generated. If the key did not
+    exist, the command has no effect.</p>
+<p><strong>registry get </strong><em>keyName valueName</em></p>
+<p>:   Returns the data associated with the value <em>valueName</em> under the key
+    <em>keyName</em>. If either the key or the value does not exist, then an
+    error is generated. For more details on the format of the returned
+    data, see <strong>SUPPORTED TYPES</strong>, below.</p>
+<p><strong>registry keys </strong><em>keyName</em> ?<em>pattern</em>?</p>
+<p>:   If <em>pattern</em> is not specified, returns a list of names of all the
+    subkeys of <em>keyName</em>. If <em>pattern</em> is specified, only those names
+    matching <em>pattern</em> are returned. Matching is determined using the
+    same rules as for <strong>string match</strong>. If the specified <em>keyName</em> does
+    not exist, then an error is generated.</p>
+<p><strong>registry set </strong><em>keyName</em> ?<em>valueName data </em>?<em>type</em>??</p>
+<p>:   If <em>valueName</em> is not specified, creates the key <em>keyName</em> if it
+    does not already exist. If <em>valueName</em> is specified, creates the key
+    <em>keyName</em> and value <em>valueName</em> if necessary. The contents of
+    <em>valueName</em> are set to <em>data</em> with the type indicated by <em>type</em>. If
+    <em>type</em> is not specified, the type <strong>sz</strong> is assumed. For more
+    details on the data and type arguments, see <strong>SUPPORTED TYPES</strong>
+    below.</p>
+<p><strong>registry type </strong><em>keyName valueName</em></p>
+<p>:   Returns the type of the value <em>valueName</em> in the key <em>keyName</em>. For
+    more information on the possible types, see <strong>SUPPORTED TYPES</strong>,
+    below.</p>
+<p><strong>registry values </strong><em>keyName</em> ?<em>pattern</em>?</p>
+<p>:   If <em>pattern</em> is not specified, returns a list of names of all the
+    values of <em>keyName</em>. If <em>pattern</em> is specified, only those names
+    matching <em>pattern</em> are returned. Matching is determined using the
+    same rules as for <strong>string match</strong>.</p>
+<h1 id="supported-types">SUPPORTED TYPES</h1>
+<p>Each value under a key in the registry contains some data of a
+particular type in a type-specific representation. The <strong>registry</strong>
+command converts between this internal representation and one that can
+be manipulated by Tcl scripts. In most cases, the data is simply
+returned as a Tcl string. The type indicates the intended use for the
+data, but does not actually change the representation. For some types,
+the <strong>registry</strong> command returns the data in a different form to make it
+easier to manipulate. The following types are recognized by the registry
+command:</p>
+<p><strong>binary</strong></p>
+<p>:   The registry value contains arbitrary binary data. The data is
+    represented exactly in Tcl, including any embedded nulls.</p>
+<p><strong>none</strong></p>
+<p>:   The registry value contains arbitrary binary data with no defined
+    type. The data is represented exactly in Tcl, including any embedded
+    nulls.</p>
+<p><strong>sz</strong></p>
+<p>:   The registry value contains a null-terminated string. The data is
+    represented in Tcl as a string.</p>
+<p><strong>expand_sz</strong></p>
+<p>:   The registry value contains a null-terminated string that contains
+    unexpanded references to environment variables in the normal Windows
+    style (for example,</p>
+<p>The data is represented in Tcl as a string.</p>
+<p><strong>dword</strong></p>
+<p>:   The registry value contains a little-endian 32-bit number. The data
+    is represented in Tcl as a decimal string.</p>
+<p><strong>dword_big_endian</strong></p>
+<p>:   The registry value contains a big-endian 32-bit number. The data is
+    represented in Tcl as a decimal string.</p>
+<p><strong>link</strong></p>
+<p>:   The registry value contains a symbolic link. The data is represented
+    exactly in Tcl, including any embedded nulls.</p>
+<p><strong>multi_sz</strong></p>
+<p>:   The registry value contains an array of null-terminated strings. The
+    data is represented in Tcl as a list of strings.</p>
+<p><strong>resource_list</strong></p>
+<p>:   The registry value contains a device-driver resource list. The data
+    is represented exactly in Tcl, including any embedded nulls.</p>
+<p>In addition to the symbolically named types listed above, unknown types
+are identified using a 32-bit integer that corresponds to the type code
+returned by the system interfaces. In this case, the data is represented
+exactly in Tcl, including any embedded nulls.</p>
+<h1 id="portability-issues">PORTABILITY ISSUES</h1>
+<p>The registry command is only available on Windows.</p>
+<h1 id="example">EXAMPLE</h1>
+<p>Print out how double-clicking on a Tcl script file will invoke a Tcl
+interpreter:</p>
+<p>package require registry set ext .tcl</p>
+<p># Read the type name set type [<strong>registry get</strong>
+HKEY_CLASSES_ROOT\\\$ext {}] # Work out where to look for the
+command set path HKEY_CLASSES_ROOT\\\$type\\Shell\\Open\\command
+# Read the command! set command [<strong>registry get</strong> \$path {}]</p>
+<p>puts \"\$ext opens with \$command\"</p>
+<h1 id="keywords">KEYWORDS</h1>
+<p>registry</p>
+              
+            </div>
+          </div><footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+    
+  </span>
+</div>
+    <script>var base_url = '..';</script>
+    <script src="../js/theme_extra.js" defer></script>
+    <script src="../js/theme.js" defer></script>
+      <script src="../search/main.js" defer></script>
+    <script defer>
+        window.onload = function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        };
+    </script>
+
+</body>
+</html>

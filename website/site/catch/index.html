@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><link rel="canonical" href="https://www.tcl.tk/man/tcl8.6.13/TclCmd/contents.html/catch/" />
+      <link rel="shortcut icon" href="../img/favicon.ico" />
+    <title>NAME - Tcl/Tk</title>
+    <link rel="stylesheet" href="../css/theme.css" />
+    <link rel="stylesheet" href="../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "NAME";
+        var mkdocs_page_input_path = "catch.md";
+        var mkdocs_page_url = "/man/tcl8.6.13/TclCmd/contents.html/catch/";
+      </script>
+    
+    <script src="../js/jquery-3.6.0.min.js" defer></script>
+    <!--[if lt IE 9]>
+      <script src="../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
+      <script>hljs.initHighlightingOnLoad();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href=".." class="icon icon-home"> Tcl/Tk
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="..">Home</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="" href="../command.md">Commands</a>
+                </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="..">Tcl/Tk</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href=".." class="icon icon-home" aria-label="Docs"></a> &raquo;</li>
+      <li>NAME</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="name">NAME</h1>
+<p>catch - Evaluate script and trap exceptional returns</p>
+<h1 id="synopsis">SYNOPSIS</h1>
+<p><strong>catch</strong><em> script </em>?<em>resultVarName</em>? ?<em>optionsVarName</em>?</p>
+<h1 id="description">DESCRIPTION</h1>
+<p>The <strong>catch</strong> command may be used to prevent errors from aborting
+command interpretation. The <strong>catch</strong> command calls the Tcl interpreter
+recursively to execute <em>script</em>, and always returns without raising an
+error, regardless of any errors that might occur while executing
+<em>script</em>.</p>
+<p>If <em>script</em> raises an error, <strong>catch</strong> will return a non-zero integer
+value corresponding to the exceptional return code returned by
+evaluation of <em>script</em>. Tcl defines the normal return code from script
+evaluation to be zero (0), or <strong>TCL_OK</strong>. Tcl also defines four
+exceptional return codes: 1 (<strong>TCL_ERROR</strong>), 2 (<strong>TCL_RETURN</strong>), 3
+(<strong>TCL_BREAK</strong>), and 4 (<strong>TCL_CONTINUE</strong>). Errors during evaluation of a
+script are indicated by a return code of <strong>TCL_ERROR</strong>. The other
+exceptional return codes are returned by the <strong>return</strong>, <strong>break</strong>, and
+<strong>continue</strong> commands and in other special situations as documented. Tcl
+packages can define new commands that return other integer values as
+return codes as well, and scripts that make use of the <strong>return -code</strong>
+command can also have return codes other than the five defined by Tcl.</p>
+<p>If the <em>resultVarName</em> argument is given, then the variable it names is
+set to the result of the script evaluation. When the return code from
+the script is 1 (<strong>TCL_ERROR</strong>), the value stored in <em>resultVarName</em> is
+an error message. When the return code from the script is 0
+(<strong>TCL_OK</strong>), the value stored in <em>resultVarName</em> is the value returned
+from <em>script</em>.</p>
+<p>If the <em>optionsVarName</em> argument is given, then the variable it names is
+set to a dictionary of return options returned by evaluation of
+<em>script</em>. Tcl specifies two entries that are always defined in the
+dictionary: <strong>-code</strong> and <strong>-level</strong>. When the return code from
+evaluation of <em>script</em> is not <strong>TCL_RETURN</strong>, the value of the
+<strong>-level</strong> entry will be 0, and the value of the <strong>-code</strong> entry will be
+the same as the return code. Only when the return code is <strong>TCL_RETURN</strong>
+will the values of the <strong>-level</strong> and <strong>-code</strong> entries be something
+else, as further described in the documentation for the <strong>return</strong>
+command.</p>
+<p>When the return code from evaluation of <em>script</em> is <strong>TCL_ERROR</strong>, four
+additional entries are defined in the dictionary of return options
+stored in <em>optionsVarName</em>: <strong>-errorinfo</strong>, <strong>-errorcode</strong>,
+<strong>-errorline</strong>, and <strong>-errorstack</strong>. The value of the <strong>-errorinfo</strong>
+entry is a formatted stack trace containing more information about the
+context in which the error happened. The formatted stack trace is meant
+to be read by a person. The value of the <strong>-errorcode</strong> entry is
+additional information about the error stored as a list. The
+<strong>-errorcode</strong> value is meant to be further processed by programs, and
+may not be particularly readable by people. The value of the
+<strong>-errorline</strong> entry is an integer indicating which line of <em>script</em> was
+being evaluated when the error occurred. The value of the
+<strong>-errorstack</strong> entry is an even-sized list made of token-parameter
+pairs accumulated while unwinding the stack. The token may be</p>
+<p>in which case the parameter is a list made of the proc name and
+arguments at the corresponding level; or it may be</p>
+<p>in which case the parameter is the relative level (as in <strong>uplevel</strong>) of
+the previous <strong>CALL</strong>. The salient differences with respect to
+<strong>-errorinfo</strong> are that:</p>
+<p>[1]</p>
+<p>:   it is a machine-readable form that is amenable to processing with
+    [<strong>foreach</strong> {tok prm} ...],</p>
+<p>[2]</p>
+<p>:   it contains the true (substituted) values passed to the functions,
+    instead of the static text of the calling sites, and</p>
+<p>[3]</p>
+<p>:   it is coarser-grained, with only one element per stack frame (like
+    procs; no separate elements for <strong>foreach</strong> constructs for example).</p>
+<p>The values of the <strong>-errorinfo</strong> and <strong>-errorcode</strong> entries of the most
+recent error are also available as values of the global variables
+<strong>::errorInfo</strong> and <strong>::errorCode</strong> respectively. The value of the
+<strong>-errorstack</strong> entry surfaces as <strong>info errorstack</strong>.</p>
+<p>Tcl packages may provide commands that set other entries in the
+dictionary of return options, and the <strong>return</strong> command may be used by
+scripts to set return options in addition to those defined above.</p>
+<h1 id="examples">EXAMPLES</h1>
+<p>The <strong>catch</strong> command may be used in an <strong>if</strong> to branch based on the
+success of a script.</p>
+<p>if { [<strong>catch</strong> {open \$someFile w} fid] } { puts stderr \"Could not
+open \$someFile for writing\n\$fid\" exit 1 }</p>
+<p>There are more complex examples of <strong>catch</strong> usage in the documentation
+for the <strong>return</strong> command.</p>
+<h1 id="see-also">SEE ALSO</h1>
+<p>break(n), continue(n), dict(n), error(n), errorCode(n), errorInfo(n),
+info(n), return(n)</p>
+<h1 id="keywords">KEYWORDS</h1>
+<p>catch, error, exception</p>
+              
+            </div>
+          </div><footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+    
+  </span>
+</div>
+    <script>var base_url = '..';</script>
+    <script src="../js/theme_extra.js" defer></script>
+    <script src="../js/theme.js" defer></script>
+      <script src="../search/main.js" defer></script>
+    <script defer>
+        window.onload = function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        };
+    </script>
+
+</body>
+</html>

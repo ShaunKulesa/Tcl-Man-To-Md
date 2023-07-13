@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><link rel="canonical" href="https://www.tcl.tk/man/tcl8.6.13/TclCmd/contents.html/InitStubs/" />
+      <link rel="shortcut icon" href="../img/favicon.ico" />
+    <title>NAME - Tcl/Tk</title>
+    <link rel="stylesheet" href="../css/theme.css" />
+    <link rel="stylesheet" href="../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "NAME";
+        var mkdocs_page_input_path = "InitStubs.md";
+        var mkdocs_page_url = "/man/tcl8.6.13/TclCmd/contents.html/InitStubs/";
+      </script>
+    
+    <script src="../js/jquery-3.6.0.min.js" defer></script>
+    <!--[if lt IE 9]>
+      <script src="../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
+      <script>hljs.initHighlightingOnLoad();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href=".." class="icon icon-home"> Tcl/Tk
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="..">Home</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="" href="../command.md">Commands</a>
+                </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="..">Tcl/Tk</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href=".." class="icon icon-home" aria-label="Docs"></a> &raquo;</li>
+      <li>NAME</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="name">NAME</h1>
+<p>Tcl_InitStubs - initialize the Tcl stubs mechanism</p>
+<h1 id="synopsis">SYNOPSIS</h1>
+<pre><code>#include &lt;tcl.h&gt;
+
+const char *
+Tcl_InitStubs(interp, version, exact)
+</code></pre>
+<h1 id="arguments">ARGUMENTS</h1>
+<p>Tcl interpreter handle.</p>
+<p>A version string consisting of one or more decimal numbers separated by
+dots.</p>
+<p>1 means that only the particular version specified by <em>version</em> is
+acceptable. 0 means that versions newer than <em>version</em> are also
+acceptable as long as they have the same major version number as
+<em>version</em>. Other bits have no effect.</p>
+<h1 id="introduction">INTRODUCTION</h1>
+<p>The Tcl stubs mechanism defines a way to dynamically bind extensions to
+a particular Tcl implementation at run time. This provides two
+significant benefits to Tcl users:</p>
+<p>1)  Extensions that use the stubs mechanism can be loaded into multiple
+    versions of Tcl without being recompiled or relinked.</p>
+<p>2)  Extensions that use the stubs mechanism can be dynamically loaded
+    into statically-linked Tcl applications.</p>
+<p>The stubs mechanism accomplishes this by exporting function tables that
+define an interface to the Tcl API. The extension then accesses the Tcl
+API through offsets into the function table, so there are no direct
+references to any of the Tcl library\'s symbols. This redirection is
+transparent to the extension, so an extension writer can continue to use
+all public Tcl functions as documented.</p>
+<p>The stubs mechanism requires no changes to applications incorporating
+Tcl interpreters. Only developers creating C-based Tcl extensions need
+to take steps to use the stubs mechanism with their extensions.</p>
+<p>Enabling the stubs mechanism for an extension requires the following
+steps:</p>
+<p>1)  Call <strong>Tcl_InitStubs</strong> in the extension before calling any other Tcl
+    functions.</p>
+<p>2)  Define the <strong>USE_TCL_STUBS</strong> symbol. Typically, you would include
+    the <strong>-DUSE_TCL_STUBS</strong> flag when compiling the extension.</p>
+<p>3)  Link the extension with the Tcl stubs library instead of the
+    standard Tcl library. For example, to use the Tcl 9.0 ABI on Unix
+    platforms, the library name is <em>libtclstub9.0.a</em>; on Windows
+    platforms, the library name is <em>tclstub90.lib</em>.</p>
+<p>If the extension also requires the Tk API, it must also call
+<strong>Tk_InitStubs</strong> to initialize the Tk stubs interface and link with the
+Tk stubs libraries. See the <strong>Tk_InitStubs</strong> page for more information.</p>
+<h1 id="description">DESCRIPTION</h1>
+<p><strong>Tcl_InitStubs</strong> attempts to initialize the stub table pointers and
+ensure that the correct version of Tcl is loaded. In addition to an
+interpreter handle, it accepts as arguments a version number and a
+Boolean flag indicating whether the extension requires an exact version
+match or not. If <em>exact</em> is 0, then the extension is indicating that
+newer versions of Tcl are acceptable as long as they have the same major
+version number as <em>version</em>; non-zero means that only the specified
+<em>version</em> is acceptable. <strong>Tcl_InitStubs</strong> returns a string containing
+the actual version of Tcl satisfying the request, or NULL if the Tcl
+version is not acceptable, does not support stubs, or any other error
+condition occurred.</p>
+<h1 id="see-also">SEE ALSO</h1>
+<p>Tk_InitStubs</p>
+<h1 id="keywords">KEYWORDS</h1>
+<p>stubs</p>
+              
+            </div>
+          </div><footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+    
+  </span>
+</div>
+    <script>var base_url = '..';</script>
+    <script src="../js/theme_extra.js" defer></script>
+    <script src="../js/theme.js" defer></script>
+      <script src="../search/main.js" defer></script>
+    <script defer>
+        window.onload = function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        };
+    </script>
+
+</body>
+</html>
