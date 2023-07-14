@@ -1,7 +1,7 @@
 import glob
 
 def fix_code_block(source: str):
-    # The man macros .CS and .CE create 5 spaces whereas md uses 4 spaces for a code block
+    # The man macros .CS and .CE create 5 spaces and an arrow on each line whereas md uses 4 spaces for a code block
 
     """
     Output before:
