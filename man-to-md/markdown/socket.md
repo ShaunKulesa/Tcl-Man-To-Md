@@ -1,5 +1,3 @@
-\
-
 # NAME
 
 socket - Open a TCP network connection
@@ -9,8 +7,6 @@ socket - Open a TCP network connection
 **socket **?*options*? *host port*
 
 **socket** **-server ***command* ?*options*? *port*
-
-\
 
 # DESCRIPTION
 
@@ -224,3 +220,9 @@ chan(n), flush(n), open(n), read(n)
 
 asynchronous I/O, bind, channel, connection, domain name, host, network
 address, socket, tcp
+
+<!---
+Copyright (c) 1996 Sun Microsystems, Inc
+Copyright (c) 1998-1999 Scriptics Corporation
+-->
+

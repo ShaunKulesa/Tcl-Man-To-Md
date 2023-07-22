@@ -10,7 +10,6 @@
 .SH NAME
 Tcl_GetTime, Tcl_SetTimeProc, Tcl_QueryTimeProc \- get date and time
 .SH SYNOPSIS
-.nf
 \fB#include <tcl.h>\fR
 .sp
 \fBTcl_GetTime\fR(\fItimePtr\fR)
@@ -42,12 +41,12 @@ The \fBTcl_GetTime\fR function retrieves the current time as a
 \fITcl_Time\fR structure in memory the caller provides.  This
 structure has the following definition:
 .PP
-.nf
+.CS
 typedef struct Tcl_Time {
     long \fIsec\fR;
     long \fIusec\fR;
 } \fBTcl_Time\fR;
-.fi
+.CE
 .PP
 On return, the \fIsec\fR member of the structure is filled in with the
 number of seconds that have elapsed since the \fIepoch:\fR the epoch
@@ -80,14 +79,14 @@ any argument which is NULL is ignored and not set.
 .PP
 The signatures of the handler functions are as follows:
 .PP
-.nf
+.CS
 typedef void \fBTcl_GetTimeProc\fR(
         Tcl_Time *\fItimebuf\fR,
         ClientData \fIclientData\fR);
 typedef void \fBTcl_ScaleTimeProc\fR(
         Tcl_Time *\fItimebuf\fR,
         ClientData \fIclientData\fR);
-.fi
+.CE
 .PP
 The \fItimebuf\fR fields contain the time to manipulate, and the
 \fIclientData\fR fields contain a pointer supplied at the time the handler

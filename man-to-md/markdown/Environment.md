@@ -1,22 +1,17 @@
-\
-
 # NAME
 
 Tcl_PutEnv - procedures to manipulate the environment
 
 # SYNOPSIS
 
-    #include <tcl.h>
+**#include \<tcl.h\>**
 
-    int
-    Tcl_PutEnv(assignment)
+int **Tcl_PutEnv**(*assignment*)
 
 # ARGUMENTS
 
 Info about environment variable in the format The *assignment* argument
 is in the system encoding.
-
-\
 
 # DESCRIPTION
 
@@ -33,3 +28,8 @@ env(n)
 # KEYWORDS
 
 environment, variable
+
+<!---
+Copyright (c) 1997-1998 Sun Microsystems, Inc
+-->
+

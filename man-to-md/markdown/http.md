@@ -1,5 +1,3 @@
-\
-
 # NAME
 
 http - Client-side implementation of the HTTP/1.1 protocol
@@ -50,8 +48,6 @@ Namespace **http** exports the commands **config**, **formatQuery**,
 
 It does not export the commands **cleanup**, **code**, **data**,
 **error**, **meta**, **ncode**, **size**, or **status**.
-
-\
 
 # DESCRIPTION
 
@@ -865,3 +861,10 @@ safe(n), socket(n), safesock(n)
 # KEYWORDS
 
 internet, security policy, socket, www
+
+<!---
+Copyright (c) 1995-1997 Sun Microsystems, Inc
+Copyright (c) 1998-2000 Ajuba Solutions
+Copyright (c) 2004 ActiveState Corporation
+-->
+

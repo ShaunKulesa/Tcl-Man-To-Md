@@ -1,5 +1,3 @@
-\
-
 # NAME
 
 Tcl_GetAssocData, Tcl_SetAssocData, Tcl_DeleteAssocData - manage
@@ -8,14 +6,13 @@ interpreters
 
 # SYNOPSIS
 
-    #include <tcl.h>
+**#include \<tcl.h\>**
 
-    ClientData
-    Tcl_GetAssocData(interp, key, delProcPtr)
+ClientData **Tcl_GetAssocData**(*interp, key, delProcPtr*)
 
-    Tcl_SetAssocData(interp, key, delProc, clientData)
+**Tcl_SetAssocData**(*interp, key, delProc, clientData*)
 
-    Tcl_DeleteAssocData(interp, key)
+**Tcl_DeleteAssocData**(*interp, key*)
 
 # ARGUMENTS
 
@@ -31,8 +28,6 @@ procedure for association. Ignored if NULL.
 
 Arbitrary one-word value associated with the given key in this
 interpreter. This data is owned by the caller.
-
-\
 
 # DESCRIPTION
 
@@ -79,3 +74,8 @@ the given interpreter. Then it calls the deletion procedure.
 # KEYWORDS
 
 association, data, deletion procedure, interpreter, key
+
+<!---
+Copyright (c) 1995-1996 Sun Microsystems, Inc
+-->
+

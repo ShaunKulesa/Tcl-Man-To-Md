@@ -1,5 +1,3 @@
-\
-
 # NAME
 
 Tcl_GetReturnOptions, Tcl_SetReturnOptions, Tcl_AddErrorInfo,
@@ -10,35 +8,32 @@ record information about errors and other return options
 
 # SYNOPSIS
 
-    #include <tcl.h>
+**#include \<tcl.h\>**
 
-    Tcl_Obj *
-    Tcl_GetReturnOptions(interp, code)
+Tcl_Obj \* **Tcl_GetReturnOptions**(*interp, code*)
 
-    int
-    Tcl_SetReturnOptions(interp, options)
+int **Tcl_SetReturnOptions**(*interp, options*)
 
-    Tcl_AddErrorInfo(interp, message)
+**Tcl_AddErrorInfo**(*interp, message*)
 
-    Tcl_AppendObjToErrorInfo(interp, objPtr)
+**Tcl_AppendObjToErrorInfo**(*interp, objPtr*)
 
-    Tcl_AddObjErrorInfo(interp, message, length)
+**Tcl_AddObjErrorInfo**(*interp, message, length*)
 
-    Tcl_SetObjErrorCode(interp, errorObjPtr)
+**Tcl_SetObjErrorCode**(*interp, errorObjPtr*)
 
-    Tcl_SetErrorCode(interp, element, element, ... (char *) NULL)
+**Tcl_SetErrorCode**(*interp, element, element, \... ***(char \*)
+NULL**)
 
-    Tcl_SetErrorCodeVA(interp, argList)
+**Tcl_SetErrorCodeVA**(*interp, argList*)
 
-    Tcl_GetErrorLine(interp)
+**Tcl_GetErrorLine**(*interp*)
 
-    Tcl_SetErrorLine(interp, lineNum)
+**Tcl_SetErrorLine**(*interp, lineNum*)
 
-    const char *
-    Tcl_PosixError(interp)
+const char \* **Tcl_PosixError**(*interp*)
 
-    void
-    Tcl_LogCommandInfo(interp, script, command, commandLength)
+void **Tcl_LogCommandInfo**(*interp, script, command, commandLength*)
 
 # ARGUMENTS
 
@@ -77,8 +72,6 @@ command)
 Pointer to first character in command that generated the error
 
 Number of bytes in command; -1 means use all bytes up to first null byte
-
-\
 
 # DESCRIPTION
 
@@ -278,3 +271,9 @@ Tcl_ResetResult(3), Tcl_SetErrno(3), errorCode(n), errorInfo(n)
 # KEYWORDS
 
 error, value, value result, stack, trace, variable
+
+<!---
+Copyright (c) 1989-1993 The Regents of the University of California
+Copyright (c) 1994-1997 Sun Microsystems, Inc
+-->
+

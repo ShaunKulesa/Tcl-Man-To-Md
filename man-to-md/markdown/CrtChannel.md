@@ -1,5 +1,3 @@
-\
-
 # NAME
 
 Tcl_CreateChannel, Tcl_GetChannelInstanceData, Tcl_GetChannelType,
@@ -19,110 +17,78 @@ manipulating channels
 
 # SYNOPSIS
 
-    #include <tcl.h>
+**#include \<tcl.h\>**
 
-    Tcl_Channel
-    Tcl_CreateChannel(typePtr, channelName, instanceData, mask)
+Tcl_Channel **Tcl_CreateChannel**(*typePtr, channelName, instanceData,
+mask*)
 
-    ClientData
-    Tcl_GetChannelInstanceData(channel)
+ClientData **Tcl_GetChannelInstanceData**(*channel*)
 
-    const Tcl_ChannelType *
-    Tcl_GetChannelType(channel)
+const Tcl_ChannelType \* **Tcl_GetChannelType**(*channel*)
 
-    const char *
-    Tcl_GetChannelName(channel)
+const char \* **Tcl_GetChannelName**(*channel*)
 
-    int
-    Tcl_GetChannelHandle(channel, direction, handlePtr)
+int **Tcl_GetChannelHandle**(*channel, direction, handlePtr*)
 
-    Tcl_ThreadId
-    Tcl_GetChannelThread(channel)
+Tcl_ThreadId **Tcl_GetChannelThread**(*channel*)
 
-    int
-    Tcl_GetChannelMode(channel)
+int **Tcl_GetChannelMode**(*channel*)
 
-    int
-    Tcl_GetChannelBufferSize(channel)
+int **Tcl_GetChannelBufferSize**(*channel*)
 
-    Tcl_SetChannelBufferSize(channel, size)
+**Tcl_SetChannelBufferSize**(*channel, size*)
 
-    Tcl_NotifyChannel(channel, mask)
+**Tcl_NotifyChannel**(*channel, mask*)
 
-    int
-    Tcl_BadChannelOption(interp, optionName, optionList)
+int **Tcl_BadChannelOption**(*interp, optionName, optionList*)
 
-    int
-    Tcl_IsChannelShared(channel)
+int **Tcl_IsChannelShared**(*channel*)
 
-    int
-    Tcl_IsChannelRegistered(interp, channel)
+int **Tcl_IsChannelRegistered**(*interp, channel*)
 
-    int
-    Tcl_IsChannelExisting(channelName)
+int **Tcl_IsChannelExisting**(*channelName*)
 
-    void
-    Tcl_CutChannel(channel)
+void **Tcl_CutChannel**(*channel*)
 
-    void
-    Tcl_SpliceChannel(channel)
+void **Tcl_SpliceChannel**(*channel*)
 
-    void
-    Tcl_ClearChannelHandlers(channel)
+void **Tcl_ClearChannelHandlers**(*channel*)
 
-    int
-    Tcl_ChannelBuffered(channel)
+int **Tcl_ChannelBuffered**(*channel*)
 
-    const char *
-    Tcl_ChannelName(typePtr)
+const char \* **Tcl_ChannelName**(*typePtr*)
 
-    Tcl_ChannelTypeVersion
-    Tcl_ChannelVersion(typePtr)
+Tcl_ChannelTypeVersion **Tcl_ChannelVersion**(*typePtr*)
 
-    Tcl_DriverBlockModeProc *
-    Tcl_ChannelBlockModeProc(typePtr)
+Tcl_DriverBlockModeProc \* **Tcl_ChannelBlockModeProc**(*typePtr*)
 
-    Tcl_DriverCloseProc *
-    Tcl_ChannelCloseProc(typePtr)
+Tcl_DriverCloseProc \* **Tcl_ChannelCloseProc**(*typePtr*)
 
-    Tcl_DriverClose2Proc *
-    Tcl_ChannelClose2Proc(typePtr)
+Tcl_DriverClose2Proc \* **Tcl_ChannelClose2Proc**(*typePtr*)
 
-    Tcl_DriverInputProc *
-    Tcl_ChannelInputProc(typePtr)
+Tcl_DriverInputProc \* **Tcl_ChannelInputProc**(*typePtr*)
 
-    Tcl_DriverOutputProc *
-    Tcl_ChannelOutputProc(typePtr)
+Tcl_DriverOutputProc \* **Tcl_ChannelOutputProc**(*typePtr*)
 
-    Tcl_DriverSeekProc *
-    Tcl_ChannelSeekProc(typePtr)
+Tcl_DriverSeekProc \* **Tcl_ChannelSeekProc**(*typePtr*)
 
-    Tcl_DriverWideSeekProc *
-    Tcl_ChannelWideSeekProc(typePtr)
+Tcl_DriverWideSeekProc \* **Tcl_ChannelWideSeekProc**(*typePtr*)
 
-    Tcl_DriverThreadActionProc *
-    Tcl_ChannelThreadActionProc(typePtr)
+Tcl_DriverThreadActionProc \* **Tcl_ChannelThreadActionProc**(*typePtr*)
 
-    Tcl_DriverTruncateProc *
-    Tcl_ChannelTruncateProc(typePtr)
+Tcl_DriverTruncateProc \* **Tcl_ChannelTruncateProc**(*typePtr*)
 
-    Tcl_DriverSetOptionProc *
-    Tcl_ChannelSetOptionProc(typePtr)
+Tcl_DriverSetOptionProc \* **Tcl_ChannelSetOptionProc**(*typePtr*)
 
-    Tcl_DriverGetOptionProc *
-    Tcl_ChannelGetOptionProc(typePtr)
+Tcl_DriverGetOptionProc \* **Tcl_ChannelGetOptionProc**(*typePtr*)
 
-    Tcl_DriverWatchProc *
-    Tcl_ChannelWatchProc(typePtr)
+Tcl_DriverWatchProc \* **Tcl_ChannelWatchProc**(*typePtr*)
 
-    Tcl_DriverGetHandleProc *
-    Tcl_ChannelGetHandleProc(typePtr)
+Tcl_DriverGetHandleProc \* **Tcl_ChannelGetHandleProc**(*typePtr*)
 
-    Tcl_DriverFlushProc *
-    Tcl_ChannelFlushProc(typePtr)
+Tcl_DriverFlushProc \* **Tcl_ChannelFlushProc**(*typePtr*)
 
-    Tcl_DriverHandlerProc *
-    Tcl_ChannelHandlerProc(typePtr)
+Tcl_DriverHandlerProc \* **Tcl_ChannelHandlerProc**(*typePtr*)
 
 # ARGUMENTS
 
@@ -162,8 +128,6 @@ Name of the invalid option.
 Specific options list (space separated words, without to append to the
 standard generic options list. Can be NULL for generic options error
 message only.
-
-\
 
 # DESCRIPTION
 
@@ -889,3 +853,9 @@ Tcl_QueueEvent(3), Tcl_StackChannel(3), Tcl_GetStdChannel(3)
 
 blocking, channel driver, channel registration, channel type,
 nonblocking
+
+<!---
+Copyright (c) 1996-1997 Sun Microsystems, Inc
+Copyright (c) 1997-2000 Ajuba Solutions
+-->
+

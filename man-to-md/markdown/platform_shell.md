@@ -1,18 +1,13 @@
-\
-
 # NAME
 
 platform::shell - System identification support code and utilities
 
 # SYNOPSIS
 
-    package require platform::shell ?1.1.4?
+**package require platform::shell ?1.1.4?**
 
-    platform::shell::generic shell
-    platform::shell::identify shell
-    platform::shell::platform shell
-
-\
+**platform::shell::generic ***shell* **platform::shell::identify
+***shell* **platform::shell::platform ***shell*
 
 # DESCRIPTION
 
@@ -56,3 +51,8 @@ software.
 # KEYWORDS
 
 operating system, cpu architecture, platform, architecture
+
+<!---
+Copyright (c) 2006-2008 ActiveState Software In
+-->
+

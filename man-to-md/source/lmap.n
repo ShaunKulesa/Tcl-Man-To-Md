@@ -48,34 +48,34 @@ not appended to the accumulator list.
 .PP
 Zip lists together:
 .PP
-.nf
+.CS
 set list1 {a b c d}
 set list2 {1 2 3 4}
 set zipped [\fBlmap\fR a $list1 b $list2 {list $a $b}]
 # The value of zipped is "{a 1} {b 2} {c 3} {d 4}"
-.fi
+.CE
 .PP
 Filter a list to remove odd values:
 .PP
-.nf
+.CS
 set values {1 2 3 4 5 6 7 8}
 proc isEven {n} {expr {($n % 2) == 0}}
 set goodOnes [\fBlmap\fR x $values {expr {
     [isEven $x] ? $x : [continue]
 }}]
 # The value of goodOnes is "2 4 6 8"
-.fi
+.CE
 .PP
 Take a prefix from a list based on the contents of the list:
 .PP
-.nf
+.CS
 set values {8 7 6 5 4 3 2 1}
 proc isGood {counter} {expr {$n > 3}}
 set prefix [\fBlmap\fR x $values {expr {
     [isGood $x] ? $x : [break]
 }}]
 # The value of prefix is "8 7 6 5 4"
-.fi
+.CE
 .SH "SEE ALSO"
 break(n), continue(n), for(n), foreach(n), while(n)
 .SH KEYWORDS

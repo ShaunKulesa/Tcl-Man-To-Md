@@ -1,0 +1,469 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+      <script>
+	// Hack for scrolling window when linking to anchor tag with fixed nav header
+        var shiftWindow = function() { scrollBy(0, -75) };
+        window.addEventListener("hashchange", shiftWindow);
+        function load() { if (window.location.hash) shiftWindow(); }
+      </script>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        
+        <link rel="canonical" href="https://www.tcl.tk/man/TkLib/">
+        <link rel="shortcut icon" href="../img/favicon.ico">
+        <title>TkLib - Tcl/Tk</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <link href="../css/font-awesome.min.css" rel="stylesheet">
+    <link href="../css/base.css" rel="stylesheet">
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+    <script src="../js/base.js"></script> 
+    </head>
+
+    <body class="">
+
+      <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
+	<div class="container">
+	<a class="navbar-brand" href="..">Tcl/Tk</a>
+	<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExample04" aria-controls="navbarsExample04" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+	</button>
+
+	<div class="collapse navbar-collapse">
+
+          <ul class="navbar-nav flex-row ml-md-auto d-none d-md-flex">
+            <li class="nav-item">
+              <a class="nav-link" href="#" data-toggle="modal" data-target="#mkdocs_search_modal">
+		<i class="fa fa-search"></i> Search
+              </a>
+            </li>
+          </ul>
+	</div>
+	</div>
+      </nav><div id="content" class="container">
+        
+      <div class="row">
+        <div class="col-md-9" role="main">
+
+
+<nav aria-label="breadcrumb">
+  <ol class="breadcrumb">
+    
+    
+    <li class="breadcrumb-item">Home</li>
+    
+    
+    
+    <li class="breadcrumb-item">TkLib</li>
+    
+    
+    <li class="breadcrumb-item active" aria-current="page">TkLib</li>
+  </ol>
+</nav>
+
+
+<h1 id="tklib">TkLib</h1>
+<h2 id="commands">Commands</h2>
+<ul>
+<li><a href="3DBorder/">Tk_Alloc3DBorderFromObj</a></li>
+<li><a href="3DBorder/">Tk_Get3DBorder</a></li>
+<li><a href="3DBorder/">Tk_Get3DBorderFromObj</a></li>
+<li><a href="3DBorder/">Tk_Draw3DRectangle</a></li>
+<li><a href="3DBorder/">Tk_Fill3DRectangle</a></li>
+<li><a href="3DBorder/">Tk_Draw3DPolygon</a></li>
+<li><a href="3DBorder/">Tk_Fill3DPolygon</a></li>
+<li><a href="3DBorder/">Tk_3DVerticalBevel</a></li>
+<li><a href="3DBorder/">Tk_3DHorizontalBevel</a></li>
+<li><a href="3DBorder/">Tk_SetBackgroundFromBorder</a></li>
+<li><a href="3DBorder/">Tk_NameOf3DBorder</a></li>
+<li><a href="3DBorder/">Tk_3DBorderColor</a></li>
+<li><a href="3DBorder/">Tk_3DBorderGC</a></li>
+<li><a href="3DBorder/">Tk_Free3DBorderFromObj</a></li>
+<li><a href="3DBorder/">Tk_Free3DBorder</a></li>
+<li><a href="AddOption/">Tk_AddOption</a></li>
+<li><a href="BindTable/">Tk_CreateBindingTable</a></li>
+<li><a href="BindTable/">Tk_DeleteBindingTable</a></li>
+<li><a href="BindTable/">Tk_CreateBinding</a></li>
+<li><a href="BindTable/">Tk_DeleteBinding</a></li>
+<li><a href="BindTable/">Tk_GetBinding</a></li>
+<li><a href="BindTable/">Tk_GetAllBindings</a></li>
+<li><a href="BindTable/">Tk_DeleteAllBindings</a></li>
+<li><a href="BindTable/">Tk_BindEvent</a></li>
+<li><a href="CanvPsY/">Tk_CanvasPsY</a></li>
+<li><a href="CanvPsY/">Tk_CanvasPsBitmap</a></li>
+<li><a href="CanvPsY/">Tk_CanvasPsColor</a></li>
+<li><a href="CanvPsY/">Tk_CanvasPsFont</a></li>
+<li><a href="CanvPsY/">Tk_CanvasPsPath</a></li>
+<li><a href="CanvPsY/">Tk_CanvasPsStipple</a></li>
+<li><a href="CanvTkwin/">Tk_CanvasTkwin</a></li>
+<li><a href="CanvTkwin/">Tk_CanvasGetCoord</a></li>
+<li><a href="CanvTkwin/">Tk_CanvasDrawableCoords</a></li>
+<li><a href="CanvTkwin/">Tk_CanvasSetStippleOrigin</a></li>
+<li><a href="CanvTkwin/">Tk_CanvasWindowCoords</a></li>
+<li><a href="CanvTkwin/">Tk_CanvasEventuallyRedraw</a></li>
+<li><a href="CanvTkwin/">Tk_CanvasTagsOption</a></li>
+<li><a href="CanvTxtInfo/">Tk_CanvasTextInfo</a></li>
+<li><a href="Clipboard/">clipboard</a></li>
+<li><a href="ClrSelect/">Tk_ClearSelection</a></li>
+<li><a href="ConfigWidg/">Tk_ConfigureWidget</a></li>
+<li><a href="ConfigWidg/">Tk_ConfigureInfo</a></li>
+<li><a href="ConfigWidg/">Tk_ConfigureValue</a></li>
+<li><a href="ConfigWidg/">Tk_FreeOptions</a></li>
+<li><a href="ConfigWind/">Tk_ConfigureWindow</a></li>
+<li><a href="ConfigWind/">Tk_MoveWindow</a></li>
+<li><a href="ConfigWind/">Tk_ResizeWindow</a></li>
+<li><a href="ConfigWind/">Tk_MoveResizeWindow</a></li>
+<li><a href="ConfigWind/">Tk_SetWindowBorderWidth</a></li>
+<li><a href="ConfigWind/">Tk_ChangeWindowAttributes</a></li>
+<li><a href="ConfigWind/">Tk_SetWindowBackground</a></li>
+<li><a href="ConfigWind/">Tk_SetWindowBackgroundPixmap</a></li>
+<li><a href="ConfigWind/">Tk_SetWindowBorder</a></li>
+<li><a href="ConfigWind/">Tk_SetWindowBorderPixmap</a></li>
+<li><a href="ConfigWind/">Tk_SetWindowColormap</a></li>
+<li><a href="ConfigWind/">Tk_DefineCursor</a></li>
+<li><a href="ConfigWind/">Tk_UndefineCursor</a></li>
+<li><a href="CoordToWin/">Tk_CoordsToWindow</a></li>
+<li><a href="CrtCmHdlr/">Tk_CreateClientMessageHandler</a></li>
+<li><a href="CrtCmHdlr/">Tk_DeleteClientMessageHandler</a></li>
+<li><a href="CrtConsoleChan/">Tk_InitConsoleChannels</a></li>
+<li><a href="CrtErrHdlr/">Tk_CreateErrorHandler</a></li>
+<li><a href="CrtErrHdlr/">Tk_DeleteErrorHandler</a></li>
+<li><a href="CrtGenHdlr/">Tk_CreateGenericHandler</a></li>
+<li><a href="CrtGenHdlr/">Tk_DeleteGenericHandler</a></li>
+<li><a href="CrtImgType/">Tk_CreateImageType</a></li>
+<li><a href="CrtImgType/">Tk_GetImageMasterData</a></li>
+<li><a href="CrtImgType/">Tk_GetImageModelData</a></li>
+<li><a href="CrtImgType/">Tk_InitImageArgs</a></li>
+<li><a href="CrtItemType/">Tk_CreateItemType</a></li>
+<li><a href="CrtItemType/">Tk_GetItemTypes</a></li>
+<li><a href="CrtPhImgFmt/">Tk_CreatePhotoImageFormat</a></li>
+<li><a href="CrtSelHdlr/">Tk_CreateSelHandler</a></li>
+<li><a href="CrtSelHdlr/">Tk_DeleteSelHandler</a></li>
+<li><a href="CrtWindow/">Tk_CreateWindow</a></li>
+<li><a href="CrtWindow/">Tk_CreateWindowFromPath</a></li>
+<li><a href="CrtWindow/">Tk_DestroyWindow</a></li>
+<li><a href="CrtWindow/">Tk_MakeWindowExist</a></li>
+<li><a href="DeleteImg/">Tk_DeleteImage</a></li>
+<li><a href="DrawFocHlt/">Tk_DrawFocusHighlight</a></li>
+<li><a href="EventHndlr/">Tk_CreateEventHandler</a></li>
+<li><a href="EventHndlr/">Tk_DeleteEventHandler</a></li>
+<li><a href="FindPhoto/">Tk_FindPhoto</a></li>
+<li><a href="FindPhoto/">Tk_PhotoPutBlock</a></li>
+<li><a href="FindPhoto/">Tk_PhotoPutZoomedBlock</a></li>
+<li><a href="FindPhoto/">Tk_PhotoGetImage</a></li>
+<li><a href="FindPhoto/">Tk_PhotoBlank</a></li>
+<li><a href="FindPhoto/">Tk_PhotoExpand</a></li>
+<li><a href="FindPhoto/">Tk_PhotoGetSize</a></li>
+<li><a href="FindPhoto/">Tk_PhotoSetSize</a></li>
+<li><a href="FontId/">Tk_FontId</a></li>
+<li><a href="FontId/">Tk_GetFontMetrics</a></li>
+<li><a href="FontId/">Tk_PostscriptFontName</a></li>
+<li><a href="FreeXId/">Tk_FreeXId</a></li>
+<li><a href="GeomReq/">Tk_GeometryRequest</a></li>
+<li><a href="GeomReq/">Tk_SetMinimumRequestSize</a></li>
+<li><a href="GeomReq/">Tk_SetInternalBorder</a></li>
+<li><a href="GeomReq/">Tk_SetInternalBorderEx</a></li>
+<li><a href="GetAnchor/">Tk_GetAnchorFromObj</a></li>
+<li><a href="GetAnchor/">Tk_GetAnchor</a></li>
+<li><a href="GetAnchor/">Tk_NameOfAnchor</a></li>
+<li><a href="GetBitmap/">Tk_AllocBitmapFromObj</a></li>
+<li><a href="GetBitmap/">Tk_GetBitmap</a></li>
+<li><a href="GetBitmap/">Tk_GetBitmapFromObj</a></li>
+<li><a href="GetBitmap/">Tk_DefineBitmap</a></li>
+<li><a href="GetBitmap/">Tk_NameOfBitmap</a></li>
+<li><a href="GetBitmap/">Tk_SizeOfBitmap</a></li>
+<li><a href="GetBitmap/">Tk_FreeBitmapFromObj</a></li>
+<li><a href="GetBitmap/">Tk_FreeBitmap</a></li>
+<li><a href="GetCapStyl/">Tk_GetCapStyle</a></li>
+<li><a href="GetCapStyl/">Tk_NameOfCapStyle</a></li>
+<li><a href="GetClrmap/">Tk_GetColormap</a></li>
+<li><a href="GetClrmap/">Tk_PreserveColormap</a></li>
+<li><a href="GetClrmap/">Tk_FreeColormap</a></li>
+<li><a href="GetColor/">Tk_AllocColorFromObj</a></li>
+<li><a href="GetColor/">Tk_GetColor</a></li>
+<li><a href="GetColor/">Tk_GetColorFromObj</a></li>
+<li><a href="GetColor/">Tk_GetColorByValue</a></li>
+<li><a href="GetColor/">Tk_NameOfColor</a></li>
+<li><a href="GetColor/">Tk_FreeColorFromObj</a></li>
+<li><a href="GetColor/">Tk_FreeColor</a></li>
+<li><a href="GetCursor/">Tk_AllocCursorFromObj</a></li>
+<li><a href="GetCursor/">Tk_GetCursor</a></li>
+<li><a href="GetCursor/">Tk_GetCursorFromObj</a></li>
+<li><a href="GetCursor/">Tk_GetCursorFromData</a></li>
+<li><a href="GetCursor/">Tk_NameOfCursor</a></li>
+<li><a href="GetCursor/">Tk_FreeCursorFromObj</a></li>
+<li><a href="GetCursor/">Tk_FreeCursor</a></li>
+<li><a href="GetDash/">Tk_GetDash</a></li>
+<li><a href="GetFont/">Tk_AllocFontFromObj</a></li>
+<li><a href="GetFont/">Tk_GetFont</a></li>
+<li><a href="GetFont/">Tk_GetFontFromObj</a></li>
+<li><a href="GetFont/">Tk_NameOfFont</a></li>
+<li><a href="GetFont/">Tk_FreeFontFromObj</a></li>
+<li><a href="GetFont/">Tk_FreeFont</a></li>
+<li><a href="GetGC/">Tk_GetGC</a></li>
+<li><a href="GetGC/">Tk_FreeGC</a></li>
+<li><a href="GetHINSTANCE/">Tk_GetHINSTANCE</a></li>
+<li><a href="GetHWND/">Tk_GetHWND</a></li>
+<li><a href="GetHWND/">Tk_AttachHWND</a></li>
+<li><a href="GetImage/">Tk_GetImage</a></li>
+<li><a href="GetImage/">Tk_RedrawImage</a></li>
+<li><a href="GetImage/">Tk_SizeOfImage</a></li>
+<li><a href="GetImage/">Tk_FreeImage</a></li>
+<li><a href="GetJoinStl/">Tk_GetJoinStyle</a></li>
+<li><a href="GetJoinStl/">Tk_NameOfJoinStyle</a></li>
+<li><a href="GetJustify/">Tk_GetJustifyFromObj</a></li>
+<li><a href="GetJustify/">Tk_GetJustify</a></li>
+<li><a href="GetJustify/">Tk_NameOfJustify</a></li>
+<li><a href="GetOption/">Tk_GetOption</a></li>
+<li><a href="GetPixels/">Tk_GetPixelsFromObj</a></li>
+<li><a href="GetPixels/">Tk_GetPixels</a></li>
+<li><a href="GetPixels/">Tk_GetMMFromObj</a></li>
+<li><a href="GetPixels/">Tk_GetScreenMM</a></li>
+<li><a href="GetPixmap/">Tk_GetPixmap</a></li>
+<li><a href="GetPixmap/">Tk_FreePixmap</a></li>
+<li><a href="GetRelief/">Tk_GetReliefFromObj</a></li>
+<li><a href="GetRelief/">Tk_GetRelief</a></li>
+<li><a href="GetRelief/">Tk_NameOfRelief</a></li>
+<li><a href="GetRootCrd/">Tk_GetRootCoords</a></li>
+<li><a href="GetScroll/">Tk_GetScrollInfoObj</a></li>
+<li><a href="GetScroll/">Tk_GetScrollInfo</a></li>
+<li><a href="GetSelect/">Tk_GetSelection</a></li>
+<li><a href="GetUid/">Tk_GetUid</a></li>
+<li><a href="GetUid/">Tk_Uid</a></li>
+<li><a href="GetVisual/">Tk_GetVisual</a></li>
+<li><a href="GetVRoot/">Tk_GetVRootGeometry</a></li>
+<li><a href="Grab/">grab</a></li>
+<li><a href="HandleEvent/">Tk_HandleEvent</a></li>
+<li><a href="HWNDToWindow/">Tk_HWNDToWindow</a></li>
+<li><a href="IdToWindow/">Tk_IdToWindow</a></li>
+<li><a href="ImgChanged/">Tk_ImageChanged</a></li>
+<li><a href="Inactive/">Tk_GetUserInactiveTime</a></li>
+<li><a href="Inactive/">Tk_ResetUserInactiveTime</a></li>
+<li><a href="InternAtom/">Tk_InternAtom</a></li>
+<li><a href="InternAtom/">Tk_GetAtomName</a></li>
+<li><a href="MainLoop/">Tk_MainLoop</a></li>
+<li><a href="MaintGeom/">Tk_MaintainGeometry</a></li>
+<li><a href="MaintGeom/">Tk_UnmaintainGeometry</a></li>
+<li><a href="MainWin/">Tk_MainWindow</a></li>
+<li><a href="MainWin/">Tk_GetNumMainWindows</a></li>
+<li><a href="ManageGeom/">Tk_ManageGeometry</a></li>
+<li><a href="MapWindow/">Tk_MapWindow</a></li>
+<li><a href="MapWindow/">Tk_UnmapWindow</a></li>
+<li><a href="MeasureChar/">Tk_MeasureChars</a></li>
+<li><a href="MeasureChar/">Tk_TextWidth</a></li>
+<li><a href="MeasureChar/">Tk_DrawChars</a></li>
+<li><a href="MeasureChar/">Tk_UnderlineChars</a></li>
+<li><a href="MoveToplev/">Tk_MoveToplevelWindow</a></li>
+<li><a href="Name/">Tk_Name</a></li>
+<li><a href="Name/">Tk_PathName</a></li>
+<li><a href="Name/">Tk_NameToWindow</a></li>
+<li><a href="NameOfImg/">Tk_NameOfImage</a></li>
+<li><a href="OwnSelect/">Tk_OwnSelection</a></li>
+<li><a href="ParseArgv/">Tk_ParseArgv</a></li>
+<li><a href="QWinEvent/">Tk_CollapseMotionEvents</a></li>
+<li><a href="QWinEvent/">Tk_QueueWindowEvent</a></li>
+<li><a href="Restack/">Tk_RestackWindow</a></li>
+<li><a href="RestrictEv/">Tk_RestrictEvents</a></li>
+<li><a href="SetAppName/">Tk_SetAppName</a></li>
+<li><a href="SetCaret/">Tk_SetCaretPos</a></li>
+<li><a href="SetClass/">Tk_SetClass</a></li>
+<li><a href="SetClass/">Tk_Class</a></li>
+<li><a href="SetClassProcs/">Tk_SetClassProcs</a></li>
+<li><a href="SetGrid/">Tk_SetGrid</a></li>
+<li><a href="SetGrid/">Tk_UnsetGrid</a></li>
+<li><a href="SetOptions/">Tk_CreateOptionTable</a></li>
+<li><a href="SetOptions/">Tk_DeleteOptionTable</a></li>
+<li><a href="SetOptions/">Tk_InitOptions</a></li>
+<li><a href="SetOptions/">Tk_SetOptions</a></li>
+<li><a href="SetOptions/">Tk_FreeSavedOptions</a></li>
+<li><a href="SetOptions/">Tk_RestoreSavedOptions</a></li>
+<li><a href="SetOptions/">Tk_GetOptionValue</a></li>
+<li><a href="SetOptions/">Tk_GetOptionInfo</a></li>
+<li><a href="SetOptions/">Tk_FreeConfigOptions</a></li>
+<li><a href="SetOptions/">Tk_Offset</a></li>
+<li><a href="SetVisual/">Tk_SetWindowVisual</a></li>
+<li><a href="StrictMotif/">Tk_StrictMotif</a></li>
+<li><a href="TextLayout/">Tk_ComputeTextLayout</a></li>
+<li><a href="TextLayout/">Tk_FreeTextLayout</a></li>
+<li><a href="TextLayout/">Tk_DrawTextLayout</a></li>
+<li><a href="TextLayout/">Tk_UnderlineTextLayout</a></li>
+<li><a href="TextLayout/">Tk_PointToChar</a></li>
+<li><a href="TextLayout/">Tk_CharBbox</a></li>
+<li><a href="TextLayout/">Tk_DistanceToTextLayout</a></li>
+<li><a href="TextLayout/">Tk_IntersectTextLayout</a></li>
+<li><a href="TextLayout/">Tk_TextLayoutToPostscript</a></li>
+<li><a href="TkInitStubs/">Tk_InitStubs</a></li>
+<li><a href="Tk_Init/">Tk_Init</a></li>
+<li><a href="Tk_Init/">Tk_SafeInit</a></li>
+<li><a href="Tk_Main/">Tk_Main</a></li>
+<li><a href="ttk_Geometry/">Ttk_MakeBox</a></li>
+<li><a href="ttk_Geometry/">Ttk_PadBox</a></li>
+<li><a href="ttk_Geometry/">Ttk_ExpandBox</a></li>
+<li><a href="ttk_Geometry/">Ttk_PackBox</a></li>
+<li><a href="ttk_Geometry/">Ttk_StickBox</a></li>
+<li><a href="ttk_Geometry/">Ttk_PlaceBox</a></li>
+<li><a href="ttk_Geometry/">Ttk_BoxContains</a></li>
+<li><a href="ttk_Geometry/">Ttk_MakePadding</a></li>
+<li><a href="ttk_Geometry/">Ttk_UniformPadding</a></li>
+<li><a href="ttk_Geometry/">Ttk_AddPadding</a></li>
+<li><a href="ttk_Geometry/">Ttk_RelievePadding</a></li>
+<li><a href="ttk_Geometry/">Ttk_GetPaddingFromObj</a></li>
+<li><a href="ttk_Geometry/">Ttk_GetBorderFromObj</a></li>
+<li><a href="ttk_Geometry/">Ttk_GetStickyFromObj</a></li>
+<li><a href="ttk_Theme/">Ttk_CreateTheme</a></li>
+<li><a href="ttk_Theme/">Ttk_GetTheme</a></li>
+<li><a href="ttk_Theme/">Ttk_GetDefaultTheme</a></li>
+<li><a href="ttk_Theme/">Ttk_GetCurrentTheme</a></li>
+<li><a href="WindowId/">Tk_WindowId</a></li>
+<li><a href="WindowId/">Tk_Parent</a></li>
+<li><a href="WindowId/">Tk_Display</a></li>
+<li><a href="WindowId/">Tk_DisplayName</a></li>
+<li><a href="WindowId/">Tk_ScreenNumber</a></li>
+<li><a href="WindowId/">Tk_Screen</a></li>
+<li><a href="WindowId/">Tk_X</a></li>
+<li><a href="WindowId/">Tk_Y</a></li>
+<li><a href="WindowId/">Tk_Width</a></li>
+<li><a href="WindowId/">Tk_Height</a></li>
+<li><a href="WindowId/">Tk_Changes</a></li>
+<li><a href="WindowId/">Tk_Attributes</a></li>
+<li><a href="WindowId/">Tk_IsContainer</a></li>
+<li><a href="WindowId/">Tk_IsEmbedded</a></li>
+<li><a href="WindowId/">Tk_IsMapped</a></li>
+<li><a href="WindowId/">Tk_IsTopLevel</a></li>
+<li><a href="WindowId/">Tk_ReqWidth</a></li>
+<li><a href="WindowId/">Tk_ReqHeight</a></li>
+<li><a href="WindowId/">Tk_MinReqWidth</a></li>
+<li><a href="WindowId/">Tk_MinReqHeight</a></li>
+<li><a href="WindowId/">Tk_InternalBorderLeft</a></li>
+<li><a href="WindowId/">Tk_InternalBorderRight</a></li>
+<li><a href="WindowId/">Tk_InternalBorderTop</a></li>
+<li><a href="WindowId/">Tk_InternalBorderBottom</a></li>
+<li><a href="WindowId/">Tk_Visual</a></li>
+<li><a href="WindowId/">Tk_Depth</a></li>
+<li><a href="WindowId/">Tk_Colormap</a></li>
+<li><a href="WindowId/">Tk_Interp</a></li>
+</ul>
+
+<ul class="metadata page-metadata" data-bi-name="page info" lang="en-us" dir="ltr">
+  <li class="last-updated-holder displayDate loading">
+    <span class="last-updated-text">Last updated:</span>
+    <time role="presentation" datetime="2018-10-25T00:00:00.000Z" data-article-date-source="ms.date"></time>
+  </li>
+<!--
+  <li class="readingTime">
+    2 minutes to read
+  </li>
+-->
+  <li class="contributors-holder">
+    <span class="contributors-text">Contributors</span>
+    <ul class="contributors" data-bi-name="contributors"></ul>
+  </li>
+</ul>
+</div>
+        <div class="col-md-3"><div class="navbar-light navbar-expand-md hidden-print sticky-top sticky-offset" role="complementary">
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggler collapsed" data-toggle="collapse" data-target="#toc-collapse" title="Table of Contents">
+            <span class="fa fa-angle-down"></span>
+        </button>
+    </div>
+
+    <div id="toc-collapse" class="navbar-collapse collapse card">
+        <ul class="nav flex-column bs-sidenav">
+            <li class="nav-item main"><a class="nav-link" href="#tklib">TkLib</a></li>
+                <li class="nav-item">
+                    <a href="#commands" class="nav-link">Commands</a>
+                </li>
+        </ul>
+    </div>
+</div></div>
+      </div>
+      </div>
+
+      <footer class="col-md-12">
+	<hr>
+	<div class="container">
+	</div>
+      </footer>
+      <script>
+	var base_url = "..",
+            shortcuts = {"help": 191, "next": 78, "previous": 80, "search": 83};
+      </script>
+      <script src="../js/base.js" defer></script>
+      <script src="../search/main.js" defer></script>
+
+      <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="Search Modal" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Search</h4>
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            </div>
+            <div class="modal-body">
+                <p>
+                    From here you can search these documents. Enter
+                    your search terms below.
+                </p>
+                <form role="form">
+                    <div class="form-group">
+                        <input type="text" class="form-control" placeholder="Search..." id="mkdocs-search-query" title="Type search term here">
+                    </div>
+                </form>
+                <div id="mkdocs-search-results"></div>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div><div class="modal" id="mkdocs_keyboard_modal" tabindex="-1" role="dialog" aria-labelledby="Keyboard Shortcuts Modal" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <p class="h4 modal-title">Keyboard Shortcuts</p>
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            </div>
+            <div class="modal-body">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th style="width: 20%;">Keys</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="help shortcut"><kbd>?</kbd></td>
+                    <td>Open this help</td>
+                  </tr>
+                  <tr>
+                    <td class="next shortcut"><kbd>n</kbd></td>
+                    <td>Next page</td>
+                  </tr>
+                  <tr>
+                    <td class="prev shortcut"><kbd>p</kbd></td>
+                    <td>Previous page</td>
+                  </tr>
+                  <tr>
+                    <td class="search shortcut"><kbd>s</kbd></td>
+                    <td>Search</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>
+
+    </body>
+</html>

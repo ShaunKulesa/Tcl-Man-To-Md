@@ -11,7 +11,6 @@
 .SH NAME
 Tcl_CreateCloseHandler, Tcl_DeleteCloseHandler \- arrange for callbacks when channels are closed
 .SH SYNOPSIS
-.nf
 \fB#include <tcl.h>\fR
 .sp
 void
@@ -36,10 +35,10 @@ Arbitrary one-word value to pass to \fIproc\fR.
 \fBTcl_UnregisterChannel\fR, or using the Tcl \fBclose\fR command.
 \fIProc\fR should match the following prototype:
 .PP
-.nf
+.CS
 typedef void \fBTcl_CloseProc\fR(
         ClientData \fIclientData\fR);
-.fi
+.CE
 .PP
 The \fIclientData\fR is the same as the value provided in the call to
 \fBTcl_CreateCloseHandler\fR.

@@ -10,7 +10,6 @@
 .SH NAME
 Tcl_WrongNumArgs \- generate standard error message for wrong number of arguments
 .SH SYNOPSIS
-.nf
 \fB#include <tcl.h>\fR
 .sp
 \fBTcl_WrongNumArgs\fR(\fIinterp, objc, objv, message\fR)
@@ -43,15 +42,15 @@ elements of \fIobjv\fR plus \fImessage\fR.  For example, if
 then \fIinterp\fR's result value will be set to the following
 string:
 .PP
-.nf
+.CS
 wrong # args: should be "foo fileName count"
-.fi
+.CE
 .PP
 If \fIobjc\fR is 2, the result will be set to the following string:
 .PP
-.nf
+.CS
 wrong # args: should be "foo bar fileName count"
-.fi
+.CE
 .PP
 \fIObjc\fR is usually 1, but may be 2 or more for commands like
 \fBstring\fR and the Tk widget commands, which use the first argument
@@ -70,9 +69,9 @@ originally passed in.  Using the above example, let us assume that
 is now an \fIindexObject\fR because it was passed to
 \fBTcl_GetIndexFromObj\fR.  In this case the error message would be:
 .PP
-.nf
+.CS
 wrong # args: should be "foo barfly fileName count"
-.fi
+.CE
 .SH "SEE ALSO"
 Tcl_GetIndexFromObj(3)
 .SH KEYWORDS

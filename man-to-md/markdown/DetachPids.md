@@ -1,5 +1,3 @@
-\
-
 # NAME
 
 Tcl_DetachPids, Tcl_ReapDetachedProcs, Tcl_WaitPid - manage child
@@ -7,14 +5,13 @@ processes in background
 
 # SYNOPSIS
 
-    #include <tcl.h>
+**#include \<tcl.h\>**
 
-    Tcl_DetachPids(numPids, pidPtr)
+**Tcl_DetachPids**(*numPids, pidPtr*)
 
-    Tcl_ReapDetachedProcs()
+**Tcl_ReapDetachedProcs**()
 
-    Tcl_Pid
-    Tcl_WaitPid(pid, statusPtr, options)
+Tcl_Pid **Tcl_WaitPid**(*pid, statusPtr, options*)
 
 # ARGUMENTS
 
@@ -28,8 +25,6 @@ The result of waiting on a process (pipe). Either 0 or ECHILD.
 
 The options controlling the wait. WNOHANG specifies not to wait when
 checking the process.
-
-\
 
 # DESCRIPTION
 
@@ -69,3 +64,9 @@ operating system.
 # KEYWORDS
 
 background, child, detach, process, wait
+
+<!---
+Copyright (c) 1989-1993 The Regents of the University of California
+Copyright (c) 1994-1996 Sun Microsystems, Inc
+-->
+

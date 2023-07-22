@@ -11,13 +11,11 @@
 .SH NAME
 platform::shell \- System identification support code and utilities
 .SH SYNOPSIS
-.nf
 \fBpackage require platform::shell ?1.1.4?\fR
 .sp
 \fBplatform::shell::generic \fIshell\fR
 \fBplatform::shell::identify \fIshell\fR
 \fBplatform::shell::platform \fIshell\fR
-.fi
 .BE
 .SH DESCRIPTION
 .PP

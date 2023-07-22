@@ -1,14 +1,12 @@
-\
-
 # NAME
 
 Tcl_GetVersion - get the version of the library at runtime
 
 # SYNOPSIS
 
-    #include <tcl.h>
+**#include \<tcl.h\>**
 
-    Tcl_GetVersion(major, minor, patchLevel, type)
+**Tcl_GetVersion**(*major, minor, patchLevel, type*)
 
 # ARGUMENTS
 
@@ -21,8 +19,6 @@ The patch level of the Tcl library (or alpha or beta number).
 The type of release, also indicates the type of patch level. Can be one
 of **TCL_ALPHA_RELEASE**, **TCL_BETA_RELEASE**, or
 **TCL_FINAL_RELEASE**.
-
-\
 
 # DESCRIPTION
 
@@ -41,3 +37,8 @@ for the *patchLevel* argument.
 # KEYWORDS
 
 version, patchlevel, major, minor, alpha, beta, release
+
+<!---
+Copyright (c) 1999 Scriptics Corporatio
+-->
+

@@ -1,5 +1,3 @@
-\
-
 # NAME
 
 Tcl_CreateFileHandler, Tcl_DeleteFileHandler - associate procedure
@@ -7,11 +5,11 @@ callbacks with files or devices (Unix only)
 
 # SYNOPSIS
 
-    #include <tcl.h>
+**#include \<tcl.h\>**
 
-    Tcl_CreateFileHandler(fd, mask, proc, clientData)
+**Tcl_CreateFileHandler**(*fd, mask, proc, clientData*)
 
-    Tcl_DeleteFileHandler(fd)
+**Tcl_DeleteFileHandler**(*fd*)
 
 # ARGUMENTS
 
@@ -25,8 +23,6 @@ Procedure to invoke whenever the file or device indicated by *file*
 meets the conditions specified by *mask*.
 
 Arbitrary one-word value to pass to *proc*.
-
-\
 
 # DESCRIPTION
 
@@ -83,3 +79,9 @@ fileevent(n), Tcl_CreateTimerHandler(3), Tcl_DoWhenIdle(3)
 # KEYWORDS
 
 callback, file, handler
+
+<!---
+Copyright (c) 1990-1994 The Regents of the University of California
+Copyright (c) 1994-1997 Sun Microsystems, Inc
+-->
+

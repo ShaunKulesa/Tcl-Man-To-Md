@@ -21,7 +21,7 @@ elements\fR by repeating \fIcount\fR times the sequence of elements
 \fIelement\fR can be any Tcl value.  Note that \fBlrepeat 1 element ...\fR
 is identical to \fBlist element ...\fR.
 .SH EXAMPLES
-.nf
+.CS
 \fBlrepeat\fR 3 a
       \fI\(-> a a a\fR
 \fBlrepeat\fR 3 [\fBlrepeat\fR 3 0]
@@ -30,7 +30,7 @@ is identical to \fBlist element ...\fR.
       \fI\(-> a b c a b c a b c\fR
 \fBlrepeat\fR 3 [\fBlrepeat\fR 2 a] b c
       \fI\(-> {a a} b c {a a} b c {a a} b c\fR
-.fi
+.CE
 .SH "SEE ALSO"
 list(n), lappend(n), linsert(n), llength(n), lset(n)
 

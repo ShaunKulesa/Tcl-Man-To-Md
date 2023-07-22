@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+      <script>
+	// Hack for scrolling window when linking to anchor tag with fixed nav header
+        var shiftWindow = function() { scrollBy(0, -75) };
+        window.addEventListener("hashchange", shiftWindow);
+        function load() { if (window.location.hash) shiftWindow(); }
+      </script>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        
+        <link rel="canonical" href="https://www.tcl.tk/man/TclLib/Method/">
+        <link rel="shortcut icon" href="../../img/favicon.ico">
+        <title>Method - Tcl/Tk</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <link href="../../css/font-awesome.min.css" rel="stylesheet">
+    <link href="../../css/base.css" rel="stylesheet">
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+    <script src="../../js/base.js"></script> 
+    </head>
+
+    <body class="">
+
+      <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
+	<div class="container">
+	<a class="navbar-brand" href="../..">Tcl/Tk</a>
+	<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExample04" aria-controls="navbarsExample04" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+	</button>
+
+	<div class="collapse navbar-collapse">
+
+          <ul class="navbar-nav flex-row ml-md-auto d-none d-md-flex">
+            <li class="nav-item">
+              <a class="nav-link" href="#" data-toggle="modal" data-target="#mkdocs_search_modal">
+		<i class="fa fa-search"></i> Search
+              </a>
+            </li>
+          </ul>
+	</div>
+	</div>
+      </nav><div id="content" class="container">
+        
+      <div class="row">
+        <div class="col-md-9" role="main">
+
+
+<nav aria-label="breadcrumb">
+  <ol class="breadcrumb">
+    
+    <li class="breadcrumb-item active" aria-current="page">Method</li>
+  </ol>
+</nav>
+
+
+<p>\</p>
+<h1 id="name">NAME</h1>
+<p>Tcl_ClassSetConstructor, Tcl_ClassSetDestructor,
+Tcl_MethodDeclarerClass, Tcl_MethodDeclarerObject, Tcl_MethodIsPublic,
+Tcl_MethodIsType, Tcl_MethodName, Tcl_NewInstanceMethod, Tcl_NewMethod,
+Tcl_ObjectContextInvokeNext, Tcl_ObjectContextIsFiltering,
+Tcl_ObjectContextMethod, Tcl_ObjectContextObject,
+Tcl_ObjectContextSkippedArgs - manipulate methods and method-call
+contexts</p>
+<h1 id="synopsis">SYNOPSIS</h1>
+<p><strong>#include \&lt;tclOO.h></strong></p>
+<p>Tcl_Method <strong>Tcl_NewMethod</strong>(<em>interp, class, nameObj, isPublic,</em>
+methodTypePtr, clientData)</p>
+<p>Tcl_Method <strong>Tcl_NewInstanceMethod</strong>(<em>interp, object, nameObj,
+isPublic,</em> methodTypePtr, clientData)</p>
+<p><strong>Tcl_ClassSetConstructor</strong>(<em>interp, class, method</em>)</p>
+<p><strong>Tcl_ClassSetDestructor</strong>(<em>interp, class, method</em>)</p>
+<p>Tcl_Class <strong>Tcl_MethodDeclarerClass</strong>(<em>method</em>)</p>
+<p>Tcl_Object <strong>Tcl_MethodDeclarerObject</strong>(<em>method</em>)</p>
+<p>Tcl_Obj * <strong>Tcl_MethodName</strong>(<em>method</em>)</p>
+<p>int <strong>Tcl_MethodIsPublic</strong>(<em>method</em>)</p>
+<p>int <strong>Tcl_MethodIsType</strong>(<em>method, methodTypePtr, clientDataPtr</em>)</p>
+<p>int <strong>Tcl_ObjectContextInvokeNext</strong>(<em>interp, context, objc, objv, skip</em>)</p>
+<p>int <strong>Tcl_ObjectContextIsFiltering</strong>(<em>context</em>)</p>
+<p>Tcl_Method <strong>Tcl_ObjectContextMethod</strong>(<em>context</em>)</p>
+<p>Tcl_Object <strong>Tcl_ObjectContextObject</strong>(<em>context</em>)</p>
+<p>int <strong>Tcl_ObjectContextSkippedArgs</strong>(<em>context</em>)</p>
+<h1 id="arguments">ARGUMENTS</h1>
+<p>The interpreter holding the object or class to create or update a method
+in.</p>
+<p>The object to create the method in.</p>
+<p>The class to create the method in.</p>
+<p>The name of the method to create. Should not be NULL unless creating
+constructors or destructors.</p>
+<p>A flag saying what the visibility of the method is. The only supported
+public values of this flag are 0 for a non-exported method, and 1 for an
+exported method.</p>
+<p>A description of the type of the method to create, or the type of method
+to compare against.</p>
+<p>A piece of data that is passed to the implementation of the method
+without interpretation.</p>
+<p>A pointer to a variable in which to write the <em>clientData</em> value
+supplied when the method was created. If NULL, the <em>clientData</em> value
+will not be retrieved.</p>
+<p>A reference to a method to query.</p>
+<p>A reference to a method-call context. Note that client code <em>must not</em>
+retain a reference to a context.</p>
+<p>The number of arguments to pass to the method implementation.</p>
+<p>An array of arguments to pass to the method implementation.</p>
+<p>The number of arguments passed to the method implementation that do not
+represent \"real\" arguments.</p>
+<p>\</p>
+<h1 id="description">DESCRIPTION</h1>
+<p>A method is an operation carried out on an object that is associated
+with the object. Every method must be attached to either an object or a
+class; methods attached to a class are associated with all instances
+(direct and indirect) of that class.</p>
+<p>Given a method, the entity that declared it can be found using
+<strong>Tcl_MethodDeclarerClass</strong> which returns the class that the method is
+attached to (or NULL if the method is not attached to any class) and
+<strong>Tcl_MethodDeclarerObject</strong> which returns the object that the method is
+attached to (or NULL if the method is not attached to an object). The
+name of the method can be retrieved with <strong>Tcl_MethodName</strong> and whether
+the method is exported is retrieved with <strong>Tcl_MethodIsPublic</strong>. The
+type of the method can also be introspected upon to a limited degree;
+the function <strong>Tcl_MethodIsType</strong> returns whether a method is of a
+particular type, assigning the per-method <em>clientData</em> to the variable
+pointed to by <em>clientDataPtr</em> if (that is non-NULL) if the type is
+matched.</p>
+<h2 id="method-creation">METHOD CREATION</h2>
+<p>Methods are created by <strong>Tcl_NewMethod</strong> and <strong>Tcl_NewInstanceMethod</strong>,
+which create a method attached to a class or an object respectively. In
+both cases, the <em>nameObj</em> argument gives the name of the method to
+create, the <em>isPublic</em> argument states whether the method should be
+exported initially, the <em>methodTypePtr</em> argument describes the
+implementation of the method (see the <strong>METHOD TYPES</strong> section below)
+and the <em>clientData</em> argument gives some implementation-specific data
+that is passed on to the implementation of the method when it is called.</p>
+<p>When the <em>nameObj</em> argument to <strong>Tcl_NewMethod</strong> is NULL, an unnamed
+method is created, which is used for constructors and destructors.
+Constructors should be installed into their class using the
+<strong>Tcl_ClassSetConstructor</strong> function, and destructors (which must not
+require any arguments) should be installed into their class using the
+<strong>Tcl_ClassSetDestructor</strong> function. Unnamed methods should not be used
+for any other purpose, and named methods should not be used as either
+constructors or destructors. Also note that a NULL <em>methodTypePtr</em> is
+used to provide internal signaling, and should not be used in client
+code.</p>
+<h2 id="method-call-contexts">METHOD CALL CONTEXTS</h2>
+<p>When a method is called, a method-call context reference is passed in as
+one of the arguments to the implementation function. This context can be
+inspected to provide information about the caller, but should not be
+retained beyond the moment when the method call terminates.</p>
+<p>The method that is being called can be retrieved from the context by
+using <strong>Tcl_ObjectContextMethod</strong>, and the object that caused the method
+to be invoked can be retrieved with <strong>Tcl_ObjectContextObject</strong>. The
+number of arguments that are to be skipped (e.g. the object name and
+method name in a normal method call) is read with
+<strong>Tcl_ObjectContextSkippedArgs</strong>, and the context can also report
+whether it is working as a filter for another method through
+<strong>Tcl_ObjectContextIsFiltering</strong>.</p>
+<p>During the execution of a method, the method implementation may choose
+to invoke the stages of the method call chain that come after the
+current method implementation. This (the core of the <strong>next</strong> command)
+is done using <strong>Tcl_ObjectContextInvokeNext</strong>. Note that this function
+does not manipulate the call-frame stack, unlike the <strong>next</strong> command;
+if the method implementation has pushed one or more extra frames on the
+stack as part of its implementation, it is also responsible for
+temporarily popping those frames from the stack while the
+<strong>Tcl_ObjectContextInvokeNext</strong> function is executing. Note also that
+the method-call context is <em>never</em> deleted during the execution of this
+function.</p>
+<h1 id="method-types">METHOD TYPES</h1>
+<p>The types of methods are described by a pointer to a Tcl_MethodType
+structure, which is defined as:</p>
+<div class="language-text highlight"><pre><span></span><code>typedef struct {
+    int version;
+    const char *name;
+    Tcl_MethodCallProc *callProc;
+    Tcl_MethodDeleteProc *deleteProc;
+    Tcl_CloneProc *cloneProc;
+} Tcl_MethodType;
+</code></pre></div>
+<p>The <em>version</em> field allows for future expansion of the structure, and
+should always be declared equal to TCL_OO_METHOD_VERSION_CURRENT. The
+<em>name</em> field provides a human-readable name for the type, and is the
+value that is exposed via the <strong>info class methodtype</strong> and <strong>info
+object methodtype</strong> Tcl commands.</p>
+<p>The <em>callProc</em> field gives a function that is called when the method is
+invoked; it must never be NULL.</p>
+<p>The <em>deleteProc</em> field gives a function that is used to delete a
+particular method, and is called when the method is replaced or removed;
+if the field is NULL, it is assumed that the method\'s <em>clientData</em>
+needs no special action to delete.</p>
+<p>The <em>cloneProc</em> field is either a function that is used to copy a
+method\'s <em>clientData</em> (as part of <strong>Tcl_CopyObjectInstance</strong>) or NULL
+to indicate that the <em>clientData</em> can just be copied directly.</p>
+<h2 id="tcl_methodcallproc-function-signature">TCL_METHODCALLPROC FUNCTION SIGNATURE</h2>
+<p>Functions matching this signature are called when the method is invoked.</p>
+<div class="language-text highlight"><pre><span></span><code>typedef int Tcl_MethodCallProc(
+        ClientData clientData,
+        Tcl_Interp *interp,
+        Tcl_ObjectContext objectContext,
+        int objc,
+        Tcl_Obj *const *objv);
+</code></pre></div>
+<p>The <em>clientData</em> argument to a Tcl_MethodCallProc is the value that was
+given when the method was created, the <em>interp</em> is a place in which to
+execute scripts and access variables as well as being where to put the
+result of the method, and the <em>objc</em> and <em>objv</em> fields give the
+parameter objects to the method. The calling context of the method can
+be discovered through the <em>objectContext</em> argument, and the return value
+from a Tcl_MethodCallProc is any Tcl return code (e.g. TCL_OK,
+TCL_ERROR).</p>
+<h2 id="tcl_methoddeleteproc-function-signature">TCL_METHODDELETEPROC FUNCTION SIGNATURE</h2>
+<p>Functions matching this signature are used when a method is deleted,
+whether through a new method being created or because the object or
+class is deleted.</p>
+<div class="language-text highlight"><pre><span></span><code>typedef void Tcl_MethodDeleteProc(
+        ClientData clientData);
+</code></pre></div>
+<p>The <em>clientData</em> argument to a Tcl_MethodDeleteProc will be the same as
+the value passed to the <em>clientData</em> argument to <strong>Tcl_NewMethod</strong> or
+<strong>Tcl_NewInstanceMethod</strong> when the method was created.</p>
+<h2 id="tcl_cloneproc-function-signature">TCL_CLONEPROC FUNCTION SIGNATURE</h2>
+<p>Functions matching this signature are used to copy a method when the
+object or class is copied using <strong>Tcl_CopyObjectInstance</strong> (or
+<strong>oo::copy</strong>).</p>
+<div class="language-text highlight"><pre><span></span><code>typedef int Tcl_CloneProc(
+        Tcl_Interp *interp,
+        ClientData oldClientData,
+        ClientData *newClientDataPtr);
+</code></pre></div>
+<p>The <em>interp</em> argument gives a place to write an error message when the
+attempt to clone the object is to fail, in which case the clone
+procedure must also return TCL_ERROR; it should return TCL_OK otherwise.
+The <em>oldClientData</em> field to a Tcl_CloneProc gives the value from the
+method being copied from, and the <em>newClientDataPtr</em> field will point to
+a variable in which to write the value for the method being copied to.</p>
+<h1 id="see-also">SEE ALSO</h1>
+<p>Class(3), oo::class(n), oo::define(n), oo::object(n)</p>
+<h1 id="keywords">KEYWORDS</h1>
+<p>constructor, method, object</p>
+
+<ul class="metadata page-metadata" data-bi-name="page info" lang="en-us" dir="ltr">
+  <li class="last-updated-holder displayDate loading">
+    <span class="last-updated-text">Last updated:</span>
+    <time role="presentation" datetime="2018-10-25T00:00:00.000Z" data-article-date-source="ms.date"></time>
+  </li>
+<!--
+  <li class="readingTime">
+    2 minutes to read
+  </li>
+-->
+  <li class="contributors-holder">
+    <span class="contributors-text">Contributors</span>
+    <ul class="contributors" data-bi-name="contributors"></ul>
+  </li>
+</ul>
+</div>
+        <div class="col-md-3"><div class="navbar-light navbar-expand-md hidden-print sticky-top sticky-offset" role="complementary">
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggler collapsed" data-toggle="collapse" data-target="#toc-collapse" title="Table of Contents">
+            <span class="fa fa-angle-down"></span>
+        </button>
+    </div>
+
+    <div id="toc-collapse" class="navbar-collapse collapse card">
+        <ul class="nav flex-column bs-sidenav">
+            <li class="nav-item main"><a class="nav-link" href="#name">NAME</a></li>
+            <li class="nav-item main"><a class="nav-link" href="#synopsis">SYNOPSIS</a></li>
+            <li class="nav-item main"><a class="nav-link" href="#arguments">ARGUMENTS</a></li>
+            <li class="nav-item main"><a class="nav-link" href="#description">DESCRIPTION</a></li>
+                <li class="nav-item">
+                    <a href="#method-creation" class="nav-link">METHOD CREATION</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#method-call-contexts" class="nav-link">METHOD CALL CONTEXTS</a>
+                </li>
+            <li class="nav-item main"><a class="nav-link" href="#method-types">METHOD TYPES</a></li>
+                <li class="nav-item">
+                    <a href="#tcl_methodcallproc-function-signature" class="nav-link">TCL_METHODCALLPROC FUNCTION SIGNATURE</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#tcl_methoddeleteproc-function-signature" class="nav-link">TCL_METHODDELETEPROC FUNCTION SIGNATURE</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#tcl_cloneproc-function-signature" class="nav-link">TCL_CLONEPROC FUNCTION SIGNATURE</a>
+                </li>
+            <li class="nav-item main"><a class="nav-link" href="#see-also">SEE ALSO</a></li>
+            <li class="nav-item main"><a class="nav-link" href="#keywords">KEYWORDS</a></li>
+        </ul>
+    </div>
+</div></div>
+      </div>
+      </div>
+
+      <footer class="col-md-12">
+	<hr>
+	<div class="container">
+	</div>
+      </footer>
+      <script>
+	var base_url = "../..",
+            shortcuts = {"help": 191, "next": 78, "previous": 80, "search": 83};
+      </script>
+      <script src="../../js/base.js" defer></script>
+      <script src="../../search/main.js" defer></script>
+
+      <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="Search Modal" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Search</h4>
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            </div>
+            <div class="modal-body">
+                <p>
+                    From here you can search these documents. Enter
+                    your search terms below.
+                </p>
+                <form role="form">
+                    <div class="form-group">
+                        <input type="text" class="form-control" placeholder="Search..." id="mkdocs-search-query" title="Type search term here">
+                    </div>
+                </form>
+                <div id="mkdocs-search-results"></div>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div><div class="modal" id="mkdocs_keyboard_modal" tabindex="-1" role="dialog" aria-labelledby="Keyboard Shortcuts Modal" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <p class="h4 modal-title">Keyboard Shortcuts</p>
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            </div>
+            <div class="modal-body">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th style="width: 20%;">Keys</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="help shortcut"><kbd>?</kbd></td>
+                    <td>Open this help</td>
+                  </tr>
+                  <tr>
+                    <td class="next shortcut"><kbd>n</kbd></td>
+                    <td>Next page</td>
+                  </tr>
+                  <tr>
+                    <td class="prev shortcut"><kbd>p</kbd></td>
+                    <td>Previous page</td>
+                  </tr>
+                  <tr>
+                    <td class="search shortcut"><kbd>s</kbd></td>
+                    <td>Search</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>
+
+    </body>
+</html>

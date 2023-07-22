@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+      <script>
+	// Hack for scrolling window when linking to anchor tag with fixed nav header
+        var shiftWindow = function() { scrollBy(0, -75) };
+        window.addEventListener("hashchange", shiftWindow);
+        function load() { if (window.location.hash) shiftWindow(); }
+      </script>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        
+        <link rel="canonical" href="https://www.tcl.tk/man/TkCmd/frame/">
+        <link rel="shortcut icon" href="../../img/favicon.ico">
+        <title>Frame - Tcl/Tk</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <link href="../../css/font-awesome.min.css" rel="stylesheet">
+    <link href="../../css/base.css" rel="stylesheet">
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+    <script src="../../js/base.js"></script> 
+    </head>
+
+    <body class="">
+
+      <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
+	<div class="container">
+	<a class="navbar-brand" href="../..">Tcl/Tk</a>
+	<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExample04" aria-controls="navbarsExample04" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+	</button>
+
+	<div class="collapse navbar-collapse">
+
+          <ul class="navbar-nav flex-row ml-md-auto d-none d-md-flex">
+            <li class="nav-item">
+              <a class="nav-link" href="#" data-toggle="modal" data-target="#mkdocs_search_modal">
+		<i class="fa fa-search"></i> Search
+              </a>
+            </li>
+          </ul>
+	</div>
+	</div>
+      </nav><div id="content" class="container">
+        
+      <div class="row">
+        <div class="col-md-9" role="main">
+
+
+<nav aria-label="breadcrumb">
+  <ol class="breadcrumb">
+    
+    <li class="breadcrumb-item active" aria-current="page">Frame</li>
+  </ol>
+</nav>
+
+
+<p>\</p>
+<h1 id="name">NAME</h1>
+<p>frame - Create and manipulate \'frame\' simple container widgets</p>
+<h1 id="synopsis">SYNOPSIS</h1>
+<p><strong>frame</strong> <em>pathName</em> ?<em>options</em>?</p>
+<h1 id="standard-options">STANDARD OPTIONS</h1>
+<div class="language-text highlight"><pre><span></span><code>-borderwidth    -highlightcolor -pady
+-cursor -highlightthickness -relief
+-highlightbackground    -padx   -takefocus
+</code></pre></div>
+<p>See the manual entry for details on the standard options.</p>
+<h1 id="widget-specific-options">WIDGET-SPECIFIC OPTIONS</h1>
+<div class="language-text highlight"><pre><span></span><code>Command-Line Name:  -background
+Database Name:  background
+Database Class: Background
+</code></pre></div>
+<blockquote>
+<p>This option is the same as the standard <strong>-background</strong> option except
+that its value may also be specified as an empty string. In this case,
+the widget will display no background or border, and no colors will be
+consumed from its colormap for its background and border.</p>
+</blockquote>
+<div class="language-text highlight"><pre><span></span><code>Command-Line Name:  -class
+Database Name:  class
+Database Class: Class
+</code></pre></div>
+<blockquote>
+<p>Specifies a class for the window. This class will be used when
+querying the option database for the window\'s other options, and it
+will also be used later for other purposes such as bindings. The
+<strong>-class</strong> option may not be changed with the <strong>configure</strong> widget
+command.</p>
+</blockquote>
+<div class="language-text highlight"><pre><span></span><code>Command-Line Name:  -colormap
+Database Name:  colormap
+Database Class: Colormap
+</code></pre></div>
+<blockquote>
+<p>Specifies a colormap to use for the window. The value may be either
+<strong>new</strong>, in which case a new colormap is created for the window and
+its children, or the name of another window (which must be on the same
+screen and have the same visual as <em>pathName</em>), in which case the new
+window will use the colormap from the specified window. If the
+<strong>-colormap</strong> option is not specified, the new window uses the same
+colormap as its parent. This option may not be changed with the
+<strong>configure</strong> widget command.</p>
+</blockquote>
+<div class="language-text highlight"><pre><span></span><code>Command-Line Name:  -container
+Database Name:  container
+Database Class: Container
+</code></pre></div>
+<blockquote>
+<p>The value must be a boolean. If true, it means that this window will
+be used as a container in which some other application will be
+embedded (for example, a Tk toplevel can be embedded using the
+<strong>-use</strong> option). The window will support the appropriate window
+manager protocols for things like geometry requests. The window should
+not have any children of its own in this application. This option may
+not be changed with the <strong>configure</strong> widget command. Note that
+<strong>-borderwidth</strong>, <strong>-padx</strong> and <strong>-pady</strong> are ignored when configured
+as a container since a container has no border.</p>
+</blockquote>
+<div class="language-text highlight"><pre><span></span><code>Command-Line Name:  -height
+Database Name:  height
+Database Class: Height
+</code></pre></div>
+<blockquote>
+<p>Specifies the desired height for the window in any of the forms
+acceptable to <strong>Tk_GetPixels</strong>. If this option is less than or equal
+to zero then the window will not request any size at all. Note that
+this sets the total height of the frame, any <strong>-borderwidth</strong> or
+similar is not added. Normally <strong>-height</strong> should not be used if a
+propagating geometry manager, such as <strong>grid</strong> or <strong>pack</strong>, is used
+within the frame since the geometry manager will override the height
+of the frame.</p>
+</blockquote>
+<div class="language-text highlight"><pre><span></span><code>Command-Line Name:  -visual
+Database Name:  visual
+Database Class: Visual
+</code></pre></div>
+<blockquote>
+<p>Specifies visual information for the new window in any of the forms
+accepted by <strong>Tk_GetVisual</strong>. If this option is not specified, the new
+window will use the same visual as its parent. The <strong>-visual</strong> option
+may not be modified with the <strong>configure</strong> widget command.</p>
+</blockquote>
+<div class="language-text highlight"><pre><span></span><code>Command-Line Name:  -width
+Database Name:  width
+Database Class: Width
+</code></pre></div>
+<blockquote>
+<p>Specifies the desired width for the window in any of the forms
+acceptable to <strong>Tk_GetPixels</strong>. If this option is less than or equal
+to zero then the window will not request any size at all. Note that
+this sets the total width of the frame, any <strong>-borderwidth</strong> or
+similar is not added. Normally <strong>-width</strong> should not be used if a
+propagating geometry manager, such as <strong>grid</strong> or <strong>pack</strong>, is used
+within the frame since the geometry manager will override the width of
+the frame.</p>
+</blockquote>
+<p>\</p>
+<h1 id="description">DESCRIPTION</h1>
+<p>The <strong>frame</strong> command creates a new window (given by the <em>pathName</em>
+argument) and makes it into a frame widget. Additional options,
+described above, may be specified on the command line or in the option
+database to configure aspects of the frame such as its background color
+and relief. The <strong>frame</strong> command returns the path name of the new
+window.</p>
+<p>A frame is a simple widget. Its primary purpose is to act as a spacer or
+container for complex window layouts. The only features of a frame are
+its background color and an optional 3-D border to make the frame appear
+raised or sunken.</p>
+<h1 id="widget-command">WIDGET COMMAND</h1>
+<p>The <strong>frame</strong> command creates a new Tcl command whose name is the same
+as the path name of the frame\'s window. This command may be used to
+invoke various operations on the widget. It has the following general
+form:</p>
+<div class="language-text highlight"><pre><span></span><code>pathName option ?arg arg ...?
+</code></pre></div>
+<p><em>PathName</em> is the name of the command, which is the same as the frame
+widget\'s path name. <em>Option</em> and the <em>arg</em>s determine the exact
+behavior of the command. The following commands are possible for frame
+widgets:</p>
+<p><em>pathName </em><strong>cget</strong> <em>option</em></p>
+<p>:   Returns the current value of the configuration option given by
+    <em>option</em>. <em>Option</em> may have any of the values accepted by the
+    <strong>frame</strong> command.</p>
+<p><em>pathName </em><strong>configure</strong> ?<em>option</em>? ?<em>value option value ...</em>?</p>
+<p>:   Query or modify the configuration options of the widget. If no
+    <em>option</em> is specified, returns a list describing all of the
+    available options for <em>pathName</em> (see <strong>Tk_ConfigureInfo</strong> for
+    information on the format of this list). If <em>option</em> is specified
+    with no <em>value</em>, then the command returns a list describing the one
+    named option (this list will be identical to the corresponding
+    sublist of the value returned if no <em>option</em> is specified). If one
+    or more <em>option-value</em> pairs are specified, then the command
+    modifies the given widget option(s) to have the given value(s); in
+    this case the command returns an empty string. <em>Option</em> may have any
+    of the values accepted by the <strong>frame</strong> command.</p>
+<h1 id="bindings">BINDINGS</h1>
+<p>When a new frame is created, it has no default event bindings: frames
+are not intended to be interactive.</p>
+<h1 id="see-also">SEE ALSO</h1>
+<p>labelframe(n), toplevel(n), ttk::frame(n)</p>
+<h1 id="keywords">KEYWORDS</h1>
+<p>frame, widget</p>
+
+<ul class="metadata page-metadata" data-bi-name="page info" lang="en-us" dir="ltr">
+  <li class="last-updated-holder displayDate loading">
+    <span class="last-updated-text">Last updated:</span>
+    <time role="presentation" datetime="2018-10-25T00:00:00.000Z" data-article-date-source="ms.date"></time>
+  </li>
+<!--
+  <li class="readingTime">
+    2 minutes to read
+  </li>
+-->
+  <li class="contributors-holder">
+    <span class="contributors-text">Contributors</span>
+    <ul class="contributors" data-bi-name="contributors"></ul>
+  </li>
+</ul>
+</div>
+        <div class="col-md-3"><div class="navbar-light navbar-expand-md hidden-print sticky-top sticky-offset" role="complementary">
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggler collapsed" data-toggle="collapse" data-target="#toc-collapse" title="Table of Contents">
+            <span class="fa fa-angle-down"></span>
+        </button>
+    </div>
+
+    <div id="toc-collapse" class="navbar-collapse collapse card">
+        <ul class="nav flex-column bs-sidenav">
+            <li class="nav-item main"><a class="nav-link" href="#name">NAME</a></li>
+            <li class="nav-item main"><a class="nav-link" href="#synopsis">SYNOPSIS</a></li>
+            <li class="nav-item main"><a class="nav-link" href="#standard-options">STANDARD OPTIONS</a></li>
+            <li class="nav-item main"><a class="nav-link" href="#widget-specific-options">WIDGET-SPECIFIC OPTIONS</a></li>
+            <li class="nav-item main"><a class="nav-link" href="#description">DESCRIPTION</a></li>
+            <li class="nav-item main"><a class="nav-link" href="#widget-command">WIDGET COMMAND</a></li>
+            <li class="nav-item main"><a class="nav-link" href="#bindings">BINDINGS</a></li>
+            <li class="nav-item main"><a class="nav-link" href="#see-also">SEE ALSO</a></li>
+            <li class="nav-item main"><a class="nav-link" href="#keywords">KEYWORDS</a></li>
+        </ul>
+    </div>
+</div></div>
+      </div>
+      </div>
+
+      <footer class="col-md-12">
+	<hr>
+	<div class="container">
+	</div>
+      </footer>
+      <script>
+	var base_url = "../..",
+            shortcuts = {"help": 191, "next": 78, "previous": 80, "search": 83};
+      </script>
+      <script src="../../js/base.js" defer></script>
+      <script src="../../search/main.js" defer></script>
+
+      <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="Search Modal" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Search</h4>
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            </div>
+            <div class="modal-body">
+                <p>
+                    From here you can search these documents. Enter
+                    your search terms below.
+                </p>
+                <form role="form">
+                    <div class="form-group">
+                        <input type="text" class="form-control" placeholder="Search..." id="mkdocs-search-query" title="Type search term here">
+                    </div>
+                </form>
+                <div id="mkdocs-search-results"></div>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div><div class="modal" id="mkdocs_keyboard_modal" tabindex="-1" role="dialog" aria-labelledby="Keyboard Shortcuts Modal" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <p class="h4 modal-title">Keyboard Shortcuts</p>
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            </div>
+            <div class="modal-body">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th style="width: 20%;">Keys</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="help shortcut"><kbd>?</kbd></td>
+                    <td>Open this help</td>
+                  </tr>
+                  <tr>
+                    <td class="next shortcut"><kbd>n</kbd></td>
+                    <td>Next page</td>
+                  </tr>
+                  <tr>
+                    <td class="prev shortcut"><kbd>p</kbd></td>
+                    <td>Previous page</td>
+                  </tr>
+                  <tr>
+                    <td class="search shortcut"><kbd>s</kbd></td>
+                    <td>Search</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>
+
+    </body>
+</html>

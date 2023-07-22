@@ -1,5 +1,3 @@
-\
-
 # NAME
 
 Tcl_PkgRequire, Tcl_PkgRequireEx, Tcl_PkgRequireProc, Tcl_PkgPresent,
@@ -8,28 +6,23 @@ control
 
 # SYNOPSIS
 
-    #include <tcl.h>
+**#include \<tcl.h\>**
 
-    const char *
-    Tcl_PkgRequire(interp, name, version, exact)
+const char \* **Tcl_PkgRequire**(*interp, name, version, exact*)
 
-    const char *
-    Tcl_PkgRequireEx(interp, name, version, exact, clientDataPtr)
+const char \* **Tcl_PkgRequireEx**(*interp, name, version, exact,
+clientDataPtr*)
 
-    int
-    Tcl_PkgRequireProc(interp, name, objc, objv, clientDataPtr)
+int **Tcl_PkgRequireProc**(*interp, name, objc, objv, clientDataPtr*)
 
-    const char *
-    Tcl_PkgPresent(interp, name, version, exact)
+const char \* **Tcl_PkgPresent**(*interp, name, version, exact*)
 
-    const char *
-    Tcl_PkgPresentEx(interp, name, version, exact, clientDataPtr)
+const char \* **Tcl_PkgPresentEx**(*interp, name, version, exact,
+clientDataPtr*)
 
-    int
-    Tcl_PkgProvide(interp, name, version)
+int **Tcl_PkgProvide**(*interp, name, version*)
 
-    int
-    Tcl_PkgProvideEx(interp, name, version, clientData)
+int **Tcl_PkgProvideEx**(*interp, name, version, clientData*)
 
 # ARGUMENTS
 
@@ -55,8 +48,6 @@ same size as a void pointer.
 Number of requirements.
 
 Array of requirements.
-
-\
 
 # DESCRIPTION
 
@@ -96,3 +87,8 @@ package, present, provide, require, version
 # SEE ALSO
 
 package(n), Tcl_StaticPackage(3)
+
+<!---
+Copyright (c) 1996 Sun Microsystems, Inc
+-->
+

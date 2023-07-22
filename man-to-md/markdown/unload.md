@@ -1,5 +1,3 @@
-\
-
 # NAME
 
 unload - Unload machine code
@@ -9,8 +7,6 @@ unload - Unload machine code
 **unload **?*switches*? *fileName*\
 **unload **?*switches*? *fileName prefix*\
 **unload **?*switches*? *fileName prefix interp*
-
-\
 
 # DESCRIPTION
 
@@ -159,3 +155,8 @@ info sharedlibextension, load(n), safe(n)
 # KEYWORDS
 
 binary code, unloading, safe interpreter, shared library
+
+<!---
+Copyright (c) 2003 George Petasis <petasis@iit.demokritos.gr>
+-->
+

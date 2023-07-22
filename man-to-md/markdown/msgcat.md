@@ -1,5 +1,3 @@
-\
-
 # NAME
 
 msgcat - Tcl message catalog
@@ -40,8 +38,6 @@ msgcat - Tcl message catalog
 **::msgcat::mcpackageconfig subcommand** *option* ?*value*?
 
 **::msgcat::mcforgetpackage**
-
-\
 
 # DESCRIPTION
 
@@ -628,3 +624,8 @@ format(n), scan(n), namespace(n), package(n)
 
 internationalization, i18n, localization, l10n, message, text,
 translation
+
+<!---
+Copyright (c) 1998 Mark Harrison
+-->
+

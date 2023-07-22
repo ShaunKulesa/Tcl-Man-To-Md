@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+      <script>
+	// Hack for scrolling window when linking to anchor tag with fixed nav header
+        var shiftWindow = function() { scrollBy(0, -75) };
+        window.addEventListener("hashchange", shiftWindow);
+        function load() { if (window.location.hash) shiftWindow(); }
+      </script>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        
+        <link rel="canonical" href="https://www.tcl.tk/man/TclCmd/array/">
+        <link rel="shortcut icon" href="../../img/favicon.ico">
+        <title>Array - Tcl/Tk</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <link href="../../css/font-awesome.min.css" rel="stylesheet">
+    <link href="../../css/base.css" rel="stylesheet">
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+    <script src="../../js/base.js"></script> 
+    </head>
+
+    <body class="">
+
+      <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
+	<div class="container">
+	<a class="navbar-brand" href="../..">Tcl/Tk</a>
+	<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExample04" aria-controls="navbarsExample04" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+	</button>
+
+	<div class="collapse navbar-collapse">
+
+          <ul class="navbar-nav flex-row ml-md-auto d-none d-md-flex">
+            <li class="nav-item">
+              <a class="nav-link" href="#" data-toggle="modal" data-target="#mkdocs_search_modal">
+		<i class="fa fa-search"></i> Search
+              </a>
+            </li>
+          </ul>
+	</div>
+	</div>
+      </nav><div id="content" class="container">
+        
+      <div class="row">
+        <div class="col-md-9" role="main">
+
+
+<nav aria-label="breadcrumb">
+  <ol class="breadcrumb">
+    
+    <li class="breadcrumb-item active" aria-current="page">Array</li>
+  </ol>
+</nav>
+
+
+<p>\</p>
+<h1 id="name">NAME</h1>
+<p>array - Manipulate array variables</p>
+<h1 id="synopsis">SYNOPSIS</h1>
+<p><strong>array </strong><em>option arrayName</em> ?<em>arg arg ...</em>?</p>
+<p>\</p>
+<h1 id="description">DESCRIPTION</h1>
+<p>This command performs one of several operations on the variable given by
+<em>arrayName</em>. Unless otherwise specified for individual commands below,
+<em>arrayName</em> must be the name of an existing array variable. The <em>option</em>
+argument determines what action is carried out by the command. The legal
+<em>options</em> (which may be abbreviated) are:</p>
+<p><strong>array anymore </strong><em>arrayName searchId</em></p>
+<p>:   Returns 1 if there are any more elements left to be processed in an
+    array search, 0 if all elements have already been returned.
+    <em>SearchId</em> indicates which search on <em>arrayName</em> to check, and must
+    have been the return value from a previous invocation of <strong>array
+    startsearch</strong>. This option is particularly useful if an array has an
+    element with an empty name, since the return value from <strong>array
+    nextelement</strong> will not indicate whether the search has been
+    completed.</p>
+<p><strong>array donesearch </strong><em>arrayName searchId</em></p>
+<p>:   This command terminates an array search and destroys all the state
+    associated with that search. <em>SearchId</em> indicates which search on
+    <em>arrayName</em> to destroy, and must have been the return value from a
+    previous invocation of <strong>array startsearch</strong>. Returns an empty
+    string.</p>
+<p><strong>array exists </strong><em>arrayName</em></p>
+<p>:   Returns 1 if <em>arrayName</em> is an array variable, 0 if there is no
+    variable by that name or if it is a scalar variable.</p>
+<p><strong>array get </strong><em>arrayName</em> ?<em>pattern</em>?</p>
+<p>:   Returns a list containing pairs of elements. The first element in
+    each pair is the name of an element in <em>arrayName</em> and the second
+    element of each pair is the value of the array element. The order of
+    the pairs is undefined. If <em>pattern</em> is not specified, then all of
+    the elements of the array are included in the result. If <em>pattern</em>
+    is specified, then only those elements whose names match <em>pattern</em>
+    (using the matching rules of <strong>string match</strong>) are included. If
+    <em>arrayName</em> is not the name of an array variable, or if the array
+    contains no elements, then an empty list is returned. If traces on
+    the array modify the list of elements, the elements returned are
+    those that exist both before and after the call to <strong>array get</strong>.</p>
+<p><strong>array names </strong><em>arrayName</em> ?<em>mode</em>? ?<em>pattern</em>?</p>
+<p>:   Returns a list containing the names of all of the elements in the
+    array that match <em>pattern</em>. <em>Mode</em> may be one of <strong>-exact</strong>,
+    <strong>-glob</strong>, or <strong>-regexp</strong>. If specified, <em>mode</em> designates which
+    matching rules to use to match <em>pattern</em> against the names of the
+    elements in the array. If not specified, <em>mode</em> defaults to
+    <strong>-glob</strong>. See the documentation for <strong>string match</strong> for
+    information on glob style matching, and the documentation for
+    <strong>regexp</strong> for information on regexp matching. If <em>pattern</em> is
+    omitted then the command returns all of the element names in the
+    array. If there are no (matching) elements in the array, or if
+    <em>arrayName</em> is not the name of an array variable, then an empty
+    string is returned.</p>
+<p><strong>array nextelement </strong><em>arrayName searchId</em></p>
+<p>:   Returns the name of the next element in <em>arrayName</em>, or an empty
+    string if all elements of <em>arrayName</em> have already been returned in
+    this search. The <em>searchId</em> argument identifies the search, and must
+    have been the return value of an <strong>array startsearch</strong> command.
+    Warning: if elements are added to or deleted from the array, then
+    all searches are automatically terminated just as if <strong>array
+    donesearch</strong> had been invoked; this will cause <strong>array nextelement</strong>
+    operations to fail for those searches.</p>
+<p><strong>array set </strong><em>arrayName list</em></p>
+<p>:   Sets the values of one or more elements in <em>arrayName</em>. <em>list</em> must
+    have a form like that returned by <strong>array get</strong>, consisting of an
+    even number of elements. Each odd-numbered element in <em>list</em> is
+    treated as an element name within <em>arrayName</em>, and the following
+    element in <em>list</em> is used as a new value for that array element. If
+    the variable <em>arrayName</em> does not already exist and <em>list</em> is empty,
+    <em>arrayName</em> is created with an empty array value.</p>
+<p><strong>array size </strong><em>arrayName</em></p>
+<p>:   Returns a decimal string giving the number of elements in the array.
+    If <em>arrayName</em> is not the name of an array then 0 is returned.</p>
+<p><strong>array startsearch </strong><em>arrayName</em></p>
+<p>:   This command initializes an element-by-element search through the
+    array given by <em>arrayName</em>, such that invocations of the <strong>array
+    nextelement</strong> command will return the names of the individual
+    elements in the array. When the search has been completed, the
+    <strong>array donesearch</strong> command should be invoked. The return value is
+    a search identifier that must be used in <strong>array nextelement</strong> and
+    <strong>array donesearch</strong> commands; it allows multiple searches to be
+    underway simultaneously for the same array. It is currently more
+    efficient and easier to use either the <strong>array</strong> get or <strong>array
+    names</strong>, together with <strong>foreach</strong>, to iterate over all but very
+    large arrays. See the examples below for how to do this.</p>
+<p><strong>array statistics </strong><em>arrayName</em></p>
+<p>:   Returns statistics about the distribution of data within the
+    hashtable that represents the array. This information includes the
+    number of entries in the table, the number of buckets, and the
+    utilization of the buckets.</p>
+<p><strong>array unset </strong><em>arrayName</em> ?<em>pattern</em>?</p>
+<p>:   Unsets all of the elements in the array that match <em>pattern</em> (using
+    the matching rules of <strong>string match</strong>). If <em>arrayName</em> is not the
+    name of an array variable or there are no matching elements in the
+    array, no error will be raised. If <em>pattern</em> is omitted and
+    <em>arrayName</em> is an array variable, then the command unsets the entire
+    array. The command always returns an empty string.</p>
+<h1 id="examples">EXAMPLES</h1>
+<div class="language-text highlight"><pre><span></span><code>array set colorcount {
+    red   1
+    green 5
+    blue  4
+    white 9
+}
+
+foreach {color count} [array get colorcount] {
+    puts &quot;Color: $color Count: $count&quot;
+}
+  → Color: blue Count: 4
+    Color: white Count: 9
+    Color: green Count: 5
+    Color: red Count: 1
+
+foreach color [array names colorcount] {
+    puts &quot;Color: $color Count: $colorcount($color)&quot;
+}
+  → Color: blue Count: 4
+    Color: white Count: 9
+    Color: green Count: 5
+    Color: red Count: 1
+
+foreach color [lsort [array names colorcount]] {
+    puts &quot;Color: $color Count: $colorcount($color)&quot;
+}
+  → Color: blue Count: 4
+    Color: green Count: 5
+    Color: red Count: 1
+    Color: white Count: 9
+
+array statistics colorcount
+  → 4 entries in table, 4 buckets
+    number of buckets with 0 entries: 1
+    number of buckets with 1 entries: 2
+    number of buckets with 2 entries: 1
+    number of buckets with 3 entries: 0
+    number of buckets with 4 entries: 0
+    number of buckets with 5 entries: 0
+    number of buckets with 6 entries: 0
+    number of buckets with 7 entries: 0
+    number of buckets with 8 entries: 0
+    number of buckets with 9 entries: 0
+    number of buckets with 10 or more entries: 0
+    average search distance for entry: 1.2
+</code></pre></div>
+<h1 id="see-also">SEE ALSO</h1>
+<p>list(n), string(n), variable(n), trace(n), foreach(n)</p>
+<h1 id="keywords">KEYWORDS</h1>
+<p>array, element names, search</p>
+
+<ul class="metadata page-metadata" data-bi-name="page info" lang="en-us" dir="ltr">
+  <li class="last-updated-holder displayDate loading">
+    <span class="last-updated-text">Last updated:</span>
+    <time role="presentation" datetime="2018-10-25T00:00:00.000Z" data-article-date-source="ms.date"></time>
+  </li>
+<!--
+  <li class="readingTime">
+    2 minutes to read
+  </li>
+-->
+  <li class="contributors-holder">
+    <span class="contributors-text">Contributors</span>
+    <ul class="contributors" data-bi-name="contributors"></ul>
+  </li>
+</ul>
+</div>
+        <div class="col-md-3"><div class="navbar-light navbar-expand-md hidden-print sticky-top sticky-offset" role="complementary">
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggler collapsed" data-toggle="collapse" data-target="#toc-collapse" title="Table of Contents">
+            <span class="fa fa-angle-down"></span>
+        </button>
+    </div>
+
+    <div id="toc-collapse" class="navbar-collapse collapse card">
+        <ul class="nav flex-column bs-sidenav">
+            <li class="nav-item main"><a class="nav-link" href="#name">NAME</a></li>
+            <li class="nav-item main"><a class="nav-link" href="#synopsis">SYNOPSIS</a></li>
+            <li class="nav-item main"><a class="nav-link" href="#description">DESCRIPTION</a></li>
+            <li class="nav-item main"><a class="nav-link" href="#examples">EXAMPLES</a></li>
+            <li class="nav-item main"><a class="nav-link" href="#see-also">SEE ALSO</a></li>
+            <li class="nav-item main"><a class="nav-link" href="#keywords">KEYWORDS</a></li>
+        </ul>
+    </div>
+</div></div>
+      </div>
+      </div>
+
+      <footer class="col-md-12">
+	<hr>
+	<div class="container">
+	</div>
+      </footer>
+      <script>
+	var base_url = "../..",
+            shortcuts = {"help": 191, "next": 78, "previous": 80, "search": 83};
+      </script>
+      <script src="../../js/base.js" defer></script>
+      <script src="../../search/main.js" defer></script>
+
+      <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="Search Modal" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Search</h4>
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            </div>
+            <div class="modal-body">
+                <p>
+                    From here you can search these documents. Enter
+                    your search terms below.
+                </p>
+                <form role="form">
+                    <div class="form-group">
+                        <input type="text" class="form-control" placeholder="Search..." id="mkdocs-search-query" title="Type search term here">
+                    </div>
+                </form>
+                <div id="mkdocs-search-results"></div>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div><div class="modal" id="mkdocs_keyboard_modal" tabindex="-1" role="dialog" aria-labelledby="Keyboard Shortcuts Modal" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <p class="h4 modal-title">Keyboard Shortcuts</p>
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            </div>
+            <div class="modal-body">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th style="width: 20%;">Keys</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="help shortcut"><kbd>?</kbd></td>
+                    <td>Open this help</td>
+                  </tr>
+                  <tr>
+                    <td class="next shortcut"><kbd>n</kbd></td>
+                    <td>Next page</td>
+                  </tr>
+                  <tr>
+                    <td class="prev shortcut"><kbd>p</kbd></td>
+                    <td>Previous page</td>
+                  </tr>
+                  <tr>
+                    <td class="search shortcut"><kbd>s</kbd></td>
+                    <td>Search</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>
+
+    </body>
+</html>

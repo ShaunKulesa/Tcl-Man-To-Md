@@ -1,5 +1,3 @@
-\
-
 # NAME
 
 error - Generate an error
@@ -7,8 +5,6 @@ error - Generate an error
 # SYNOPSIS
 
 **error ***message* ?*info*? ?*code*?
-
-\
 
 # DESCRIPTION
 
@@ -62,3 +58,9 @@ catch(n), return(n)
 # KEYWORDS
 
 error, exception
+
+<!---
+Copyright (c) 1993 The Regents of the University of California
+Copyright (c) 1994-1996 Sun Microsystems, Inc
+-->
+

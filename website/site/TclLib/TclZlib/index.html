@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+      <script>
+	// Hack for scrolling window when linking to anchor tag with fixed nav header
+        var shiftWindow = function() { scrollBy(0, -75) };
+        window.addEventListener("hashchange", shiftWindow);
+        function load() { if (window.location.hash) shiftWindow(); }
+      </script>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        
+        <link rel="canonical" href="https://www.tcl.tk/man/TclLib/TclZlib/">
+        <link rel="shortcut icon" href="../../img/favicon.ico">
+        <title>TclZlib - Tcl/Tk</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <link href="../../css/font-awesome.min.css" rel="stylesheet">
+    <link href="../../css/base.css" rel="stylesheet">
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+    <script src="../../js/base.js"></script> 
+    </head>
+
+    <body class="">
+
+      <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
+	<div class="container">
+	<a class="navbar-brand" href="../..">Tcl/Tk</a>
+	<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExample04" aria-controls="navbarsExample04" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+	</button>
+
+	<div class="collapse navbar-collapse">
+
+          <ul class="navbar-nav flex-row ml-md-auto d-none d-md-flex">
+            <li class="nav-item">
+              <a class="nav-link" href="#" data-toggle="modal" data-target="#mkdocs_search_modal">
+		<i class="fa fa-search"></i> Search
+              </a>
+            </li>
+          </ul>
+	</div>
+	</div>
+      </nav><div id="content" class="container">
+        
+      <div class="row">
+        <div class="col-md-9" role="main">
+
+
+<nav aria-label="breadcrumb">
+  <ol class="breadcrumb">
+    
+    <li class="breadcrumb-item active" aria-current="page">TclZlib</li>
+  </ol>
+</nav>
+
+
+<p>\</p>
+<h1 id="name">NAME</h1>
+<p>Tcl_ZlibAdler32, Tcl_ZlibCRC32, Tcl_ZlibDeflate, Tcl_ZlibInflate,
+Tcl_ZlibStreamChecksum, Tcl_ZlibStreamClose, Tcl_ZlibStreamEof,
+Tcl_ZlibStreamGet, Tcl_ZlibStreamGetCommandName, Tcl_ZlibStreamInit,
+Tcl_ZlibStreamPut - compression and decompression functions</p>
+<h1 id="synopsis">SYNOPSIS</h1>
+<h1 id="include-tclh">include \&lt;tcl.h></h1>
+<p>int <strong>Tcl_ZlibDeflate</strong>(<em>interp, format, dataObj, level, dictObj</em>)</p>
+<p>int <strong>Tcl_ZlibInflate</strong>(<em>interp, format, dataObj, dictObj</em>)</p>
+<p>unsigned int <strong>Tcl_ZlibCRC32</strong>(<em>initValue, bytes, length</em>)</p>
+<p>unsigned int <strong>Tcl_ZlibAdler32</strong>(<em>initValue, bytes, length</em>)</p>
+<p>int <strong>Tcl_ZlibStreamInit</strong>(<em>interp, mode, format, level, dictObj,
+zshandlePtr</em>)</p>
+<p>Tcl_Obj * <strong>Tcl_ZlibStreamGetCommandName</strong>(<em>zshandle</em>)</p>
+<p>int <strong>Tcl_ZlibStreamEof</strong>(<em>zshandle</em>)</p>
+<p>int <strong>Tcl_ZlibStreamClose</strong>(<em>zshandle</em>)</p>
+<p>int <strong>Tcl_ZlibStreamReset</strong>(<em>zshandle</em>)</p>
+<p>int <strong>Tcl_ZlibStreamChecksum</strong>(<em>zshandle</em>)</p>
+<p>int <strong>Tcl_ZlibStreamPut</strong>(<em>zshandle, dataObj, flush</em>)</p>
+<p>int <strong>Tcl_ZlibStreamGet</strong>(<em>zshandle, dataObj, count</em>)</p>
+<p><strong>Tcl_ZlibStreamSetCompressionDictionary</strong>(<em>zshandle, compDict</em>)</p>
+<h1 id="arguments">ARGUMENTS</h1>
+<p>The interpreter to store resulting compressed or uncompressed data in.
+Also where any error messages are written. For <strong>Tcl_ZlibStreamInit</strong>,
+this can be NULL to create a stream that is not bound to a command.</p>
+<p>What format of compressed data to work with. Must be one of
+<strong>TCL_ZLIB_FORMAT_ZLIB</strong> for zlib-format data, <strong>TCL_ZLIB_FORMAT_GZIP</strong>
+for gzip-format data, or <strong>TCL_ZLIB_FORMAT_RAW</strong> for raw compressed
+data. In addition, for decompression only, <strong>TCL_ZLIB_FORMAT_AUTO</strong> may
+also be chosen which can automatically detect whether the compressed
+data was in zlib or gzip format.</p>
+<p>A byte-array value containing the data to be compressed or decompressed,
+or to which the data extracted from the stream is appended when passed
+to <strong>Tcl_ZlibStreamGet</strong>.</p>
+<p>What level of compression to use. Should be a number from 0 to 9 or one
+of the following: <strong>TCL_ZLIB_COMPRESS_NONE</strong> for no compression,
+<strong>TCL_ZLIB_COMPRESS_FAST</strong> for fast but inefficient compression,
+<strong>TCL_ZLIB_COMPRESS_BEST</strong> for slow but maximal compression, or
+<strong>TCL_ZLIB_COMPRESS_DEFAULT</strong> for the level recommended by the zlib
+library.</p>
+<p>A dictionary that contains, or which will be updated to contain, a
+description of the gzip header associated with the compressed data. Only
+useful when the <em>format</em> is <strong>TCL_ZLIB_FORMAT_GZIP</strong> or
+<strong>TCL_ZLIB_FORMAT_AUTO</strong>. If a NULL is passed, a default header will be
+used on compression and the header will be ignored (apart from integrity
+checks) on decompression. See the section <strong>GZIP OPTIONS DICTIONARY</strong>
+for details about the contents of this dictionary.</p>
+<p>The initial value for the checksum algorithm.</p>
+<p>An array of bytes to run the checksum algorithm over, or NULL to get the
+recommended initial value for the checksum algorithm.</p>
+<p>The number of bytes in the array.</p>
+<p>What mode to operate the stream in. Should be either
+<strong>TCL_ZLIB_STREAM_DEFLATE</strong> for a compressing stream or
+<strong>TCL_ZLIB_STREAM_INFLATE</strong> for a decompressing stream.</p>
+<p>A pointer to a variable in which to write the abstract token for the
+stream upon successful creation.</p>
+<p>The abstract token for the stream to operate on.</p>
+<p>Whether and how to flush the stream after writing the data to it. Must
+be one of: <strong>TCL_ZLIB_NO_FLUSH</strong> if no flushing is to be done,
+<strong>TCL_ZLIB_FLUSH</strong> if the currently compressed data must be made
+available for access using <strong>Tcl_ZlibStreamGet</strong>, <strong>TCL_ZLIB_FULLFLUSH</strong>
+if the stream must be put into a state where the decompressor can
+recover from on corruption, or <strong>TCL_ZLIB_FINALIZE</strong> to ensure that the
+stream is finished and that any trailer demanded by the format is
+written.</p>
+<p>The maximum number of bytes to get from the stream, or -1 to get all
+remaining bytes from the stream\'s buffers.</p>
+<p>A byte array value that is the compression dictionary to use with the
+stream. Note that this is <em>not a Tcl dictionary</em>, and it is recommended
+that this only ever be used with streams that were created with their
+<em>format</em> set to <strong>TCL_ZLIB_FORMAT_ZLIB</strong> because the other formats have
+no mechanism to indicate whether a compression dictionary was present
+other than to fail on decompression.</p>
+<p>\</p>
+<h1 id="description">DESCRIPTION</h1>
+<p>These functions form the interface from the Tcl library to the Zlib
+library by Jean-loup Gailly and Mark Adler.</p>
+<p><strong>Tcl_ZlibDeflate</strong> and <strong>Tcl_ZlibInflate</strong> respectively compress and
+decompress the data contained in the <em>dataObj</em> argument, according to
+the <em>format</em> and, for compression, <em>level</em> arguments. The dictionary in
+the <em>dictObj</em> parameter is used to convey additional header information
+about the compressed data when the compression format supports it;
+currently, the dictionary is only used when the <em>format</em> parameter is
+<strong>TCL_ZLIB_FORMAT_GZIP</strong> or <strong>TCL_ZLIB_FORMAT_AUTO</strong>. For details of the
+contents of the dictionary, see the <strong>GZIP OPTIONS DICTIONARY</strong> section
+below. Upon success, both functions leave the resulting compressed or
+decompressed data in a byte-array value that is the Tcl interpreter\'s
+result; the returned value is a standard Tcl result code.</p>
+<p><strong>Tcl_ZlibAdler32</strong> and <strong>Tcl_ZlibCRC32</strong> compute checksums on arrays of
+bytes, returning the computed checksum. Checksums are computed
+incrementally, allowing data to be processed one block at a time, but
+this requires the caller to maintain the current checksum and pass it in
+as the <em>initValue</em> parameter; the initial value to use for this can be
+obtained by using NULL for the <em>bytes</em> parameter instead of a pointer to
+the array of bytes to compute the checksum over. Thus, typical usage in
+the single data block case is like this:</p>
+<div class="language-text highlight"><pre><span></span><code>checksum = Tcl_ZlibCRC32(Tcl_ZlibCRC32(0,NULL,0), data, length);
+</code></pre></div>
+<p>Note that the Adler-32 algorithm is not a real checksum, but instead is
+a related type of hash that works best on longer data.</p>
+<h2 id="zlib-streams">ZLIB STREAMS</h2>
+<p><strong>Tcl_ZlibStreamInit</strong> creates a compressing or decompressing stream
+that is linked to a Tcl command, according to its arguments, and
+provides an abstract token for the stream and returns a normal Tcl
+result code; <strong>Tcl_ZlibStreamGetCommandName</strong> returns the name of that
+command given the stream token, or NULL if the stream has no command.
+Streams are not designed to be thread-safe; each stream should only ever
+be used from the thread that created it. When working with gzip streams,
+a dictionary (fields as given in the <strong>GZIP OPTIONS DICTIONARY</strong> section
+below) can be given via the <em>dictObj</em> parameter that on compression
+allows control over the generated headers, and on decompression allows
+discovery of the existing headers. Note that the dictionary will be
+written to on decompression once sufficient data has been read to have a
+complete header. This means that the dictionary must be an unshared
+value in that case; a blank value created with <strong>Tcl_NewObj</strong> is
+suggested.</p>
+<p>Once a stream has been constructed, <strong>Tcl_ZlibStreamPut</strong> is used to add
+data to the stream and <strong>Tcl_ZlibStreamGet</strong> is used to retrieve data
+from the stream after processing. Both return normal Tcl result codes
+and leave an error message in the result of the interpreter that the
+stream is registered with in the error case (if such a registration has
+been performed). With <strong>Tcl_ZlibStreamPut</strong>, the data buffer value
+passed to it should not be modified afterwards. With
+<strong>Tcl_ZlibStreamGet</strong>, the data buffer value passed to it will have the
+data bytes appended to it. Internally to the stream, data is kept
+compressed so as to minimize the cost of buffer space.</p>
+<p><strong>Tcl_ZlibStreamChecksum</strong> returns the checksum computed over the
+uncompressed data according to the format, and <strong>Tcl_ZlibStreamEof</strong>
+returns a boolean value indicating whether the end of the uncompressed
+data has been reached.</p>
+<p><strong>Tcl_ZlibStreamSetCompressionDictionary</strong> is used to control the
+compression dictionary used with the stream, a compression dictionary
+being an array of bytes (such as might be created with
+<strong>Tcl_NewByteArrayObj</strong>) that is used to initialize the compression
+engine rather than leaving it to create it on the fly from the data
+being compressed. Setting a compression dictionary allows for more
+efficient compression in the case where the start of the data is highly
+regular, but it does require both the compressor and the decompressor to
+agreee on the value to use. Compression dictionaries are only fully
+supported for zlib-format data; on compression, they must be set before
+any data is sent in with <strong>Tcl_ZlibStreamPut</strong>, and on decompression
+they should be set when <strong>Tcl_ZlibStreamGet</strong> produces an <strong>error</strong> with
+its <strong>-errorcode</strong> set to the <em>code</em> will be the Adler-32 checksum (see
+<strong>Tcl_ZlibAdler32</strong>) of the compression dictionary sought. (Note that
+this is only true for zlib-format streams; gzip streams ignore
+compression dictionaries as the format specification doesn\'t permit
+them, and raw streams just produce a data error if the compression
+dictionary is missing or incorrect.)</p>
+<p>If you wish to clear a stream and reuse it for a new compression or
+decompression action, <strong>Tcl_ZlibStreamReset</strong> will do this and return a
+normal Tcl result code to indicate whether it was successful; if the
+stream is registered with an interpreter, an error message will be left
+in the interpreter result when this function returns TCL_ERROR. Finally,
+<strong>Tcl_ZlibStreamClose</strong> will clean up the stream and delete the
+associated command: using <strong>Tcl_DeleteCommand</strong> on the stream\'s command
+is equivalent (when such a command exists).</p>
+<h1 id="gzip-options-dictionary">GZIP OPTIONS DICTIONARY</h1>
+<p>The <em>dictObj</em> parameter to <strong>Tcl_ZlibDeflate</strong>, <strong>Tcl_ZlibInflate</strong> and
+<strong>Tcl_ZlibStreamInit</strong> is used to pass a dictionary of options about
+that is used to describe the gzip header in the compressed data. When
+creating compressed data, the dictionary is read and when unpacking
+compressed data the dictionary is written (in which case the <em>dictObj</em>
+parameter must refer to an unshared dictionary value).</p>
+<p>The following fields in the dictionary value are understood. All other
+fields are ignored. No field is required when creating a gzip-format
+stream.</p>
+<p><strong>comment</strong></p>
+<p>:   This holds the comment field of the header, if present. If absent,
+    no comment was supplied (on decompression) or will be created (on
+    compression).</p>
+<p><strong>crc</strong></p>
+<p>:   A boolean value describing whether a CRC of the header is computed.
+    Note that the <strong>gzip</strong> program does <em>not</em> use or allow a CRC on the
+    header.</p>
+<p><strong>filename</strong></p>
+<p>:   The name of the file that held the uncompressed data. This should
+    not contain any directory separators, and should be sanitized before
+    use on decompression with <strong>file tail</strong>.</p>
+<p><strong>os</strong></p>
+<p>:   The operating system type code field from the header (if not the
+    value). See RFC 1952 for the meaning of these codes. On compression,
+    if this is absent then the field will be set to the value.</p>
+<p><strong>size</strong></p>
+<p>:   The size of the uncompressed data. This is ignored on compression;
+    the size of the data compressed depends on how much data is supplied
+    to the compression engine.</p>
+<p><strong>time</strong></p>
+<p>:   The time field from the header if non-zero, expected to be the time
+    that the file named by the <strong>filename</strong> field was modified. Suitable
+    for use with <strong>clock format</strong>. On creation, the right value to use
+    is that from <strong>clock seconds</strong> or <strong>file mtime</strong>.</p>
+<p><strong>type</strong></p>
+<p>:   The type of the uncompressed data (either <strong>binary</strong> or <strong>text</strong>) if
+    known.</p>
+<h1 id="portability-notes">PORTABILITY NOTES</h1>
+<p>These functions will fail gracefully if Tcl is not linked with the zlib
+library.</p>
+<h1 id="see-also">SEE ALSO</h1>
+<p>Tcl_NewByteArrayObj(3), zlib(n)</p>
+<h1 id="keywords">KEYWORDS</h1>
+<p>compress, decompress, deflate, gzip, inflate</p>
+
+<ul class="metadata page-metadata" data-bi-name="page info" lang="en-us" dir="ltr">
+  <li class="last-updated-holder displayDate loading">
+    <span class="last-updated-text">Last updated:</span>
+    <time role="presentation" datetime="2018-10-25T00:00:00.000Z" data-article-date-source="ms.date"></time>
+  </li>
+<!--
+  <li class="readingTime">
+    2 minutes to read
+  </li>
+-->
+  <li class="contributors-holder">
+    <span class="contributors-text">Contributors</span>
+    <ul class="contributors" data-bi-name="contributors"></ul>
+  </li>
+</ul>
+</div>
+        <div class="col-md-3"><div class="navbar-light navbar-expand-md hidden-print sticky-top sticky-offset" role="complementary">
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggler collapsed" data-toggle="collapse" data-target="#toc-collapse" title="Table of Contents">
+            <span class="fa fa-angle-down"></span>
+        </button>
+    </div>
+
+    <div id="toc-collapse" class="navbar-collapse collapse card">
+        <ul class="nav flex-column bs-sidenav">
+            <li class="nav-item main"><a class="nav-link" href="#name">NAME</a></li>
+            <li class="nav-item main"><a class="nav-link" href="#synopsis">SYNOPSIS</a></li>
+            <li class="nav-item main"><a class="nav-link" href="#include-tclh">include \&lt;tcl.h></a></li>
+            <li class="nav-item main"><a class="nav-link" href="#arguments">ARGUMENTS</a></li>
+            <li class="nav-item main"><a class="nav-link" href="#description">DESCRIPTION</a></li>
+                <li class="nav-item">
+                    <a href="#zlib-streams" class="nav-link">ZLIB STREAMS</a>
+                </li>
+            <li class="nav-item main"><a class="nav-link" href="#gzip-options-dictionary">GZIP OPTIONS DICTIONARY</a></li>
+            <li class="nav-item main"><a class="nav-link" href="#portability-notes">PORTABILITY NOTES</a></li>
+            <li class="nav-item main"><a class="nav-link" href="#see-also">SEE ALSO</a></li>
+            <li class="nav-item main"><a class="nav-link" href="#keywords">KEYWORDS</a></li>
+        </ul>
+    </div>
+</div></div>
+      </div>
+      </div>
+
+      <footer class="col-md-12">
+	<hr>
+	<div class="container">
+	</div>
+      </footer>
+      <script>
+	var base_url = "../..",
+            shortcuts = {"help": 191, "next": 78, "previous": 80, "search": 83};
+      </script>
+      <script src="../../js/base.js" defer></script>
+      <script src="../../search/main.js" defer></script>
+
+      <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="Search Modal" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Search</h4>
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            </div>
+            <div class="modal-body">
+                <p>
+                    From here you can search these documents. Enter
+                    your search terms below.
+                </p>
+                <form role="form">
+                    <div class="form-group">
+                        <input type="text" class="form-control" placeholder="Search..." id="mkdocs-search-query" title="Type search term here">
+                    </div>
+                </form>
+                <div id="mkdocs-search-results"></div>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div><div class="modal" id="mkdocs_keyboard_modal" tabindex="-1" role="dialog" aria-labelledby="Keyboard Shortcuts Modal" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <p class="h4 modal-title">Keyboard Shortcuts</p>
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            </div>
+            <div class="modal-body">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th style="width: 20%;">Keys</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="help shortcut"><kbd>?</kbd></td>
+                    <td>Open this help</td>
+                  </tr>
+                  <tr>
+                    <td class="next shortcut"><kbd>n</kbd></td>
+                    <td>Next page</td>
+                  </tr>
+                  <tr>
+                    <td class="prev shortcut"><kbd>p</kbd></td>
+                    <td>Previous page</td>
+                  </tr>
+                  <tr>
+                    <td class="search shortcut"><kbd>s</kbd></td>
+                    <td>Search</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>
+
+    </body>
+</html>

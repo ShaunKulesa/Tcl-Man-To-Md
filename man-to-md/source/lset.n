@@ -25,15 +25,15 @@ Finally, it accepts a new value for an element of \fIvarName\fR.
 .PP
 If no indices are presented, the command takes the form:
 .PP
-.nf
+.CS
 \fBlset\fR varName newValue
-.fi
+.CE
 .PP
 or
 .PP
-.nf
+.CS
 \fBlset\fR varName {} newValue
-.fi
+.CE
 .PP
 In this case, \fInewValue\fR replaces the old value of the variable
 \fIvarName\fR.
@@ -67,15 +67,15 @@ by the previous indexing operation,
 allowing the script to alter elements in sublists (or append elements
 to sublists).  The command,
 .PP
-.nf
+.CS
 \fBlset\fR a 1 2 newValue
-.fi
+.CE
 .PP
 or
 .PP
-.nf
+.CS
 \fBlset\fR a {1 2} newValue
-.fi
+.CE
 .PP
 replaces element 2 of sublist 1 with \fInewValue\fR.
 .PP
@@ -89,16 +89,16 @@ end).  If an index is outside the permitted range, an error is reported.
 .PP
 In each of these examples, the initial value of \fIx\fR is:
 .PP
-.nf
+.CS
 set x [list [list a b c] [list d e f] [list g h i]]
       \fI\(-> {a b c} {d e f} {g h i}\fR
-.fi
+.CE
 .PP
 The indicated return value also becomes the new value of \fIx\fR
 (except in the last case, which is an error which leaves the value of
 \fIx\fR unchanged.)
 .PP
-.nf
+.CS
 \fBlset\fR x {j k l}
       \fI\(-> j k l\fR
 \fBlset\fR x {} {j k l}
@@ -117,24 +117,24 @@ The indicated return value also becomes the new value of \fIx\fR
       \fI\(-> {a b c} {d e f} {g j i}\fR
 \fBlset\fR x {2 3} j
       \fI\(-> list index out of range\fR
-.fi
+.CE
 .PP
 In the following examples, the initial value of \fIx\fR is:
 .PP
-.nf
+.CS
 set x [list [list [list a b] [list c d]] \e
             [list [list e f] [list g h]]]
       \fI\(-> {{a b} {c d}} {{e f} {g h}}\fR
-.fi
+.CE
 .PP
 The indicated return value also becomes the new value of \fIx\fR.
 .PP
-.nf
+.CS
 \fBlset\fR x 1 1 0 j
       \fI\(-> {{a b} {c d}} {{e f} {j h}}\fR
 \fBlset\fR x {1 1 0} j
       \fI\(-> {{a b} {c d}} {{e f} {j h}}\fR
-.fi
+.CE
 .SH "SEE ALSO"
 list(n), lappend(n), lindex(n), linsert(n), llength(n), lsearch(n),
 lsort(n), lrange(n), lreplace(n),

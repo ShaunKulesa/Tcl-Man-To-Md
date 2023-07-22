@@ -1,20 +1,16 @@
-\
-
 # NAME
 
 Tcl_AllowExceptions - allow all exceptions in next script evaluation
 
 # SYNOPSIS
 
-    #include <tcl.h>
+**#include \<tcl.h\>**
 
-    Tcl_AllowExceptions(interp)
+**Tcl_AllowExceptions**(*interp*)
 
 # ARGUMENTS
 
 Interpreter in which script will be evaluated.
-
-\
 
 # DESCRIPTION
 
@@ -36,3 +32,9 @@ as **TCL_BREAK** or **TCL_CONTINUE** in a meaningful way.
 # KEYWORDS
 
 continue, break, exception, interpreter
+
+<!---
+Copyright (c) 1989-1993 The Regents of the University of California
+Copyright (c) 1994-1996 Sun Microsystems, Inc
+-->
+

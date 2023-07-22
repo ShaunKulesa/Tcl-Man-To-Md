@@ -11,11 +11,9 @@
 .SH NAME
 my \- invoke any method of current object
 .SH SYNOPSIS
-.nf
 package require TclOO
 
 \fBmy\fI methodName\fR ?\fIarg ...\fR?
-.fi
 .BE
 .SH DESCRIPTION
 .PP
@@ -33,7 +31,7 @@ Each object has its own \fBmy\fR command, contained in its instance namespace.
 This example shows basic use of \fBmy\fR to use the \fBvariables\fR method of
 the \fBoo::object\fR class, which is not publicly visible by default:
 .PP
-.nf
+.CS
 oo::class create c {
     method count {} {
         \fBmy\fR variable counter
@@ -44,7 +42,7 @@ c create o
 o count              \fI\(-> prints "1"\fR
 o count              \fI\(-> prints "2"\fR
 o count              \fI\(-> prints "3"\fR
-.fi
+.CE
 .SH "SEE ALSO"
 next(n), oo::object(n), self(n)
 .SH KEYWORDS

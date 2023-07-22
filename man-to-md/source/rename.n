@@ -30,7 +30,7 @@ The \fBrename\fR command can be used to wrap the standard Tcl commands
 with your own monitoring machinery.  For example, you might wish to
 count how often the \fBsource\fR command is called:
 .PP
-.nf
+.CS
 \fBrename\fR ::source ::theRealSource
 set sourceCount 0
 proc ::source args {
@@ -38,7 +38,7 @@ proc ::source args {
     puts "called source for the [incr sourceCount]'th time"
     uplevel 1 ::theRealSource $args
 }
-.fi
+.CE
 .SH "SEE ALSO"
 namespace(n), proc(n)
 .SH KEYWORDS

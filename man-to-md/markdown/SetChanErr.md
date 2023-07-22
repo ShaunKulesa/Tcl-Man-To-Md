@@ -1,5 +1,3 @@
-\
-
 # NAME
 
 Tcl_SetChannelError, Tcl_SetChannelErrorInterp, Tcl_GetChannelError,
@@ -8,19 +6,15 @@ channel drivers.
 
 # SYNOPSIS
 
-    #include <tcl.h>
+**#include \<tcl.h\>**
 
-    void
-    Tcl_SetChannelError(chan, msg)
+void **Tcl_SetChannelError**(*chan, msg*)
 
-    void
-    Tcl_SetChannelErrorInterp(interp, msg)
+void **Tcl_SetChannelErrorInterp**(*interp, msg*)
 
-    void
-    Tcl_GetChannelError(chan, msgPtr)
+void **Tcl_GetChannelError**(*chan, msgPtr*)
 
-    void
-    Tcl_GetChannelErrorInterp(interp, msgPtr)
+void **Tcl_GetChannelErrorInterp**(*interp, msgPtr*)
 
 # ARGUMENTS
 
@@ -34,8 +28,6 @@ information are optional.
 
 Reference to a place where the message stored in the accessed bypass
 area can be stored in.
-
-\
 
 # DESCRIPTION
 
@@ -162,3 +154,8 @@ Tcl_Close(3), Tcl_OpenFileChannel(3), Tcl_SetErrno(3)
 # KEYWORDS
 
 channel driver, error messages, channel type
+
+<!---
+Copyright (c) 2005 Andreas Kupries <andreas_kupries@users.sourceforge.net
+-->
+

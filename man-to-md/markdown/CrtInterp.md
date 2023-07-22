@@ -1,5 +1,3 @@
-\
-
 # NAME
 
 Tcl_CreateInterp, Tcl_DeleteInterp, Tcl_InterpActive,
@@ -7,24 +5,19 @@ Tcl_InterpDeleted - create and delete Tcl command interpreters
 
 # SYNOPSIS
 
-    #include <tcl.h>
+**#include \<tcl.h\>**
 
-    Tcl_Interp *
-    Tcl_CreateInterp()
+Tcl_Interp \* **Tcl_CreateInterp**()
 
-    Tcl_DeleteInterp(interp)
+**Tcl_DeleteInterp**(*interp*)
 
-    int
-    Tcl_InterpDeleted(interp)
+int **Tcl_InterpDeleted**(*interp*)
 
-    int
-    Tcl_InterpActive(interp)
+int **Tcl_InterpActive**(*interp*)
 
 # ARGUMENTS
 
 Token for interpreter to be destroyed or queried.
-
-\
 
 # DESCRIPTION
 
@@ -145,3 +138,9 @@ Tcl_Preserve(3), Tcl_Release(3)
 # KEYWORDS
 
 command, create, delete, interpreter
+
+<!---
+Copyright (c) 1989-1993 The Regents of the University of California
+Copyright (c) 1994-1996 Sun Microsystems, Inc
+-->
+

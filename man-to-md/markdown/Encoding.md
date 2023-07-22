@@ -1,5 +1,3 @@
-\
-
 # NAME
 
 encoding - Manipulate encodings
@@ -7,8 +5,6 @@ encoding - Manipulate encodings
 # SYNOPSIS
 
 **encoding ***option* ?*arg arg \...*?
-
-\
 
 # INTRODUCTION
 
@@ -88,3 +84,8 @@ Tcl_GetEncoding(3)
 # KEYWORDS
 
 encoding, unicode
+
+<!---
+Copyright (c) 1998 Scriptics Corporation
+-->
+

@@ -22,9 +22,9 @@ have \fIarg ...\fR passed as arguments if they are supplied, will be looked up
 in the current namespace context, not in the caller's. Apart from that
 difference in resolution, it is equivalent to:
 .PP
-.nf
+.CS
 return [uplevel 1 [list \fIcommand\fR ?\fIarg ...\fR?]]
-.fi
+.CE
 .PP
 This command may not be invoked from within an \fBuplevel\fR into a procedure
 or inside a \fBcatch\fR inside a procedure or lambda.
@@ -33,19 +33,19 @@ or inside a \fBcatch\fR inside a procedure or lambda.
 .PP
 Compute the factorial of a number.
 .PP
-.nf
+.CS
 proc factorial {n {accum 1}} {
     if {$n < 2} {
         return $accum
     }
     \fBtailcall\fR factorial [expr {$n - 1}] [expr {$accum * $n}]
 }
-.fi
+.CE
 .PP
 Print the elements of a list with alternating lines having different
 indentations.
 .PP
-.nf
+.CS
 proc printList {theList} {
     if {[llength $theList]} {
         puts "> [lindex $theList 0]"
@@ -58,7 +58,7 @@ proc printList2 {theList} {
         \fBtailcall\fR printList [lrange $theList 1 end]
     }
 }
-.fi
+.CE
 .SH "SEE ALSO"
 apply(n), proc(n), uplevel(n)
 .SH KEYWORDS

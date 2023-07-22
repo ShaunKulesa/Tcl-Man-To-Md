@@ -1,0 +1,686 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+      <script>
+	// Hack for scrolling window when linking to anchor tag with fixed nav header
+        var shiftWindow = function() { scrollBy(0, -75) };
+        window.addEventListener("hashchange", shiftWindow);
+        function load() { if (window.location.hash) shiftWindow(); }
+      </script>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        
+        <link rel="canonical" href="https://www.tcl.tk/man/TkCmd/listbox/">
+        <link rel="shortcut icon" href="../../img/favicon.ico">
+        <title>Listbox - Tcl/Tk</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <link href="../../css/font-awesome.min.css" rel="stylesheet">
+    <link href="../../css/base.css" rel="stylesheet">
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+    <script src="../../js/base.js"></script> 
+    </head>
+
+    <body class="">
+
+      <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
+	<div class="container">
+	<a class="navbar-brand" href="../..">Tcl/Tk</a>
+	<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExample04" aria-controls="navbarsExample04" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+	</button>
+
+	<div class="collapse navbar-collapse">
+
+          <ul class="navbar-nav flex-row ml-md-auto d-none d-md-flex">
+            <li class="nav-item">
+              <a class="nav-link" href="#" data-toggle="modal" data-target="#mkdocs_search_modal">
+		<i class="fa fa-search"></i> Search
+              </a>
+            </li>
+          </ul>
+	</div>
+	</div>
+      </nav><div id="content" class="container">
+        
+      <div class="row">
+        <div class="col-md-9" role="main">
+
+
+<nav aria-label="breadcrumb">
+  <ol class="breadcrumb">
+    
+    <li class="breadcrumb-item active" aria-current="page">Listbox</li>
+  </ol>
+</nav>
+
+
+<p>\</p>
+<h1 id="name">NAME</h1>
+<p>listbox - Create and manipulate \'listbox\' item list widgets</p>
+<h1 id="synopsis">SYNOPSIS</h1>
+<p><strong>listbox</strong> <em>pathName </em>?<em>options</em>?</p>
+<h1 id="standard-options">STANDARD OPTIONS</h1>
+<div class="language-text highlight"><pre><span></span><code>-background -borderwidth    -cursor
+-disabledforeground -exportselection    -font
+-foreground -highlightbackground    -highlightcolor
+-highlightthickness -justify    -relief
+-selectbackground   -selectborderwidth  -selectforeground
+-setgrid    -takefocus  -xscrollcommand
+-yscrollcommand
+</code></pre></div>
+<p>See the manual entry for details on the standard options.</p>
+<h1 id="widget-specific-options">WIDGET-SPECIFIC OPTIONS</h1>
+<div class="language-text highlight"><pre><span></span><code>Command-Line Name:  -activestyle
+Database Name:  activeStyle
+Database Class: ActiveStyle
+</code></pre></div>
+<blockquote>
+<p>Specifies the style in which to draw the active element. This must be
+one of <strong>dotbox</strong> (show a focus ring around the active element),
+<strong>none</strong> (no special indication of active element) or <strong>underline</strong>
+(underline the active element). The default is <strong>underline</strong> on
+Windows, and <strong>dotbox</strong> elsewhere.</p>
+</blockquote>
+<div class="language-text highlight"><pre><span></span><code>Command-Line Name:  -height
+Database Name:  height
+Database Class: Height
+</code></pre></div>
+<blockquote>
+<p>Specifies the desired height for the window, in lines. If zero or
+less, then the desired height for the window is made just large enough
+to hold all the elements in the listbox.</p>
+</blockquote>
+<div class="language-text highlight"><pre><span></span><code>Command-Line Name:  -listvariable
+Database Name:  listVariable
+Database Class: Variable
+</code></pre></div>
+<blockquote>
+<p>Specifies the name of a global variable. The value of the variable is
+a list to be displayed inside the widget; if the variable value
+changes then the widget will automatically update itself to reflect
+the new value. Attempts to assign a variable with an invalid list
+value to <strong>-listvariable</strong> will cause an error. Attempts to unset a
+variable in use as a <strong>-listvariable</strong> will fail but will not generate
+an error.</p>
+</blockquote>
+<div class="language-text highlight"><pre><span></span><code>Command-Line Name:  -selectmode
+Database Name:  selectMode
+Database Class: SelectMode
+</code></pre></div>
+<blockquote>
+<p>Specifies one of several styles for manipulating the selection. The
+value of the option may be arbitrary, but the default bindings expect
+it to be either <strong>single</strong>, <strong>browse</strong>, <strong>multiple</strong>, or <strong>extended</strong>;
+the default value is <strong>browse</strong>.</p>
+</blockquote>
+<div class="language-text highlight"><pre><span></span><code>Command-Line Name:  -state
+Database Name:  state
+Database Class: State
+</code></pre></div>
+<blockquote>
+<p>Specifies one of two states for the listbox: <strong>normal</strong> or
+<strong>disabled</strong>. If the listbox is disabled then items may not be
+inserted or deleted, items are drawn in the <strong>-disabledforeground</strong>
+color, and selection cannot be modified and is not shown (though
+selection information is retained).</p>
+</blockquote>
+<div class="language-text highlight"><pre><span></span><code>Command-Line Name:  -width
+Database Name:  width
+Database Class: Width
+</code></pre></div>
+<blockquote>
+<p>Specifies the desired width for the window in characters. If the font
+does not have a uniform width then the width of the character is used
+in translating from character units to screen units. If zero or less,
+then the desired width for the window is made just large enough to
+hold all the elements in the listbox.</p>
+</blockquote>
+<p>\</p>
+<h1 id="description">DESCRIPTION</h1>
+<p>The <strong>listbox</strong> command creates a new window (given by the <em>pathName</em>
+argument) and makes it into a listbox widget. Additional options,
+described above, may be specified on the command line or in the option
+database to configure aspects of the listbox such as its colors, font,
+text, and relief. The <strong>listbox</strong> command returns its <em>pathName</em>
+argument. At the time this command is invoked, there must not exist a
+window named <em>pathName</em>, but <em>pathName</em>\'s parent must exist.</p>
+<p>A listbox is a widget that displays a list of strings, one per line.
+When first created, a new listbox has no elements. Elements may be added
+or deleted using widget commands described below. In addition, one or
+more elements may be selected as described below. If a listbox is
+exporting its selection (see <strong>-exportselection</strong> option), then it will
+observe the standard X11 protocols for handling the selection. Listbox
+selections are available as type <strong>STRING</strong>; the value of the selection
+will be the text of the selected elements, with newlines separating the
+elements.</p>
+<p>It is not necessary for all the elements to be displayed in the listbox
+window at once; commands described below may be used to change the view
+in the window. Listboxes allow scrolling in both directions using the
+standard <strong>-xscrollcommand</strong> and <strong>-yscrollcommand</strong> options. They also
+support scanning, as described below.</p>
+<h1 id="indices">INDICES</h1>
+<p>Many of the widget commands for listboxes take one or more indices as
+arguments. An index specifies a particular element of the listbox, in
+any of the following ways:</p>
+<p><em>number</em></p>
+<p>:   Specifies the element as a numerical index, where 0 corresponds to
+    the first element in the listbox.</p>
+<p><strong>active</strong></p>
+<p>:   Indicates the element that has the location cursor. This element
+    will be displayed as specified by <strong>-activestyle</strong> when the listbox
+    has the keyboard focus, and it is specified with the <strong>activate</strong>
+    widget command.</p>
+<p><strong>anchor</strong></p>
+<p>:   Indicates the anchor point for the selection, which is set with the
+    <strong>selection anchor</strong> widget command.</p>
+<p><strong>end</strong></p>
+<p>:   Indicates the end of the listbox. For most commands this refers to
+    the last element in the listbox, but for a few commands such as
+    <strong>index</strong> and <strong>insert</strong> it refers to the element just after the
+    last one.</p>
+<p><strong>@</strong><em>x</em><strong>,</strong><em>y</em></p>
+<p>:   Indicates the element that covers the point in the listbox window
+    specified by <em>x</em> and <em>y</em> (in pixel coordinates). If no element
+    covers that point, then the closest element to that point is used.</p>
+<p>In the widget command descriptions below, arguments named <em>index</em>,
+<em>first</em>, and <em>last</em> always contain text indices in one of the above
+forms.</p>
+<h1 id="widget-command">WIDGET COMMAND</h1>
+<p>The <strong>listbox</strong> command creates a new Tcl command whose name is
+<em>pathName</em>. This command may be used to invoke various operations on the
+widget. It has the following general form:</p>
+<div class="language-text highlight"><pre><span></span><code>pathName option ?arg arg ...?
+</code></pre></div>
+<p><em>Option</em> and the <em>arg</em>s determine the exact behavior of the command. The
+following commands are possible for listbox widgets:</p>
+<p><em>pathName </em><strong>activate</strong> <em>index</em></p>
+<p>:   Sets the active element to the one indicated by <em>index</em>. If <em>index</em>
+    is outside the range of elements in the listbox then the closest
+    element is activated. The active element is drawn as specified by
+    <strong>-activestyle</strong> when the widget has the input focus, and its index
+    may be retrieved with the index <strong>active</strong>.</p>
+<p><em>pathName </em><strong>bbox</strong> <em>index</em></p>
+<p>:   Returns a list of four numbers describing the bounding box of the
+    text in the element given by <em>index</em>. The first two elements of the
+    list give the x and y coordinates of the upper-left corner of the
+    screen area covered by the text (specified in pixels relative to the
+    widget) and the last two elements give the width and height of the
+    area, in pixels. If no part of the element given by <em>index</em> is
+    visible on the screen, or if <em>index</em> refers to a non-existent
+    element, then the result is an empty string; if the element is
+    partially visible, the result gives the full area of the element,
+    including any parts that are not visible.</p>
+<p><em>pathName </em><strong>cget</strong> <em>option</em></p>
+<p>:   Returns the current value of the configuration option given by
+    <em>option</em>. <em>Option</em> may have any of the values accepted by the
+    <strong>listbox</strong> command.</p>
+<p><em>pathName </em><strong>configure</strong> ?<em>option</em>? ?<em>value option value ...</em>?</p>
+<p>:   Query or modify the configuration options of the widget. If no
+    <em>option</em> is specified, returns a list describing all of the
+    available options for <em>pathName</em> (see <strong>Tk_ConfigureInfo</strong> for
+    information on the format of this list). If <em>option</em> is specified
+    with no <em>value</em>, then the command returns a list describing the one
+    named option (this list will be identical to the corresponding
+    sublist of the value returned if no <em>option</em> is specified). If one
+    or more <em>option-value</em> pairs are specified, then the command
+    modifies the given widget option(s) to have the given value(s); in
+    this case the command returns an empty string. <em>Option</em> may have any
+    of the values accepted by the <strong>listbox</strong> command.</p>
+<p><em>pathName </em><strong>curselection</strong></p>
+<p>:   Returns a list containing the numerical indices of all of the
+    elements in the listbox that are currently selected. If there are no
+    elements selected in the listbox then an empty string is returned.</p>
+<p><em>pathName </em><strong>delete </strong><em>first </em>?<em>last</em>?</p>
+<p>:   Deletes one or more elements of the listbox. <em>First</em> and <em>last</em> are
+    indices specifying the first and last elements in the range to
+    delete. If <em>last</em> is not specified it defaults to <em>first</em>, i.e. a
+    single element is deleted.</p>
+<p><em>pathName </em><strong>get </strong><em>first</em> ?<em>last</em>?</p>
+<p>:   If <em>last</em> is omitted, returns the contents of the listbox element
+    indicated by <em>first</em>, or an empty string if <em>first</em> refers to a
+    non-existent element. If <em>last</em> is specified, the command returns a
+    list whose elements are all of the listbox elements between <em>first</em>
+    and <em>last</em>, inclusive. Both <em>first</em> and <em>last</em> may have any of the
+    standard forms for indices.</p>
+<p><em>pathName </em><strong>index </strong><em>index</em></p>
+<p>:   Returns the integer index value that corresponds to <em>index</em>. If
+    <em>index</em> is <strong>end</strong> the return value is a count of the number of
+    elements in the listbox (not the index of the last element).</p>
+<p><em>pathName </em><strong>insert </strong><em>index </em>?<em>element element ...</em>?</p>
+<p>:   Inserts zero or more new elements in the list just before the
+    element given by <em>index</em>. If <em>index</em> is specified as <strong>end</strong> then
+    the new elements are added to the end of the list. Returns an empty
+    string.</p>
+<p><em>pathName </em><strong>itemcget </strong><em>index option</em></p>
+<p>:   Returns the current value of the item configuration option given by
+    <em>option</em>. <em>Option</em> may have any of the values accepted by the
+    <strong>itemconfigure</strong> command.</p>
+<p><em>pathName </em><strong>itemconfigure </strong><em>index</em> ?<em>option</em>? ?<em>value</em>? ?<em>option value ...</em>?</p>
+<p>:   Query or modify the configuration options of an item in the listbox.
+    If no <em>option</em> is specified, returns a list describing all of the
+    available options for the item (see <strong>Tk_ConfigureInfo</strong> for
+    information on the format of this list). If <em>option</em> is specified
+    with no <em>value</em>, then the command returns a list describing the one
+    named option (this list will be identical to the corresponding
+    sublist of the value returned if no <em>option</em> is specified). If one
+    or more <em>option-value</em> pairs are specified, then the command
+    modifies the given widget option(s) to have the given value(s); in
+    this case the command returns an empty string. The following options
+    are currently supported for items:</p>
+<div class="language-text highlight"><pre><span></span><code>**-background ***color*
+
+:   *Color* specifies the background color to use when displaying
+    the item. It may have any of the forms accepted by
+    **Tk_GetColor**.
+
+**-foreground ***color*
+
+:   *Color* specifies the foreground color to use when displaying
+    the item. It may have any of the forms accepted by
+    **Tk_GetColor**.
+
+**-selectbackground ***color*
+
+:   *color* specifies the background color to use when displaying
+    the item while it is selected. It may have any of the forms
+    accepted by **Tk_GetColor**.
+
+**-selectforeground ***color*
+
+:   *color* specifies the foreground color to use when displaying
+    the item while it is selected. It may have any of the forms
+    accepted by **Tk_GetColor**.
+</code></pre></div>
+<p><em>pathName </em><strong>nearest </strong><em>y</em></p>
+<p>:   Given a y-coordinate within the listbox window, this command returns
+    the index of the (visible) listbox element nearest to that
+    y-coordinate.</p>
+<p><em>pathName </em><strong>scan</strong> <em>option args</em></p>
+<p>:   This command is used to implement scanning on listboxes. It has two
+    forms, depending on <em>option</em>:</p>
+<div class="language-text highlight"><pre><span></span><code>*pathName ***scan mark ***x y*
+
+:   Records *x* and *y* and the current view in the listbox window;
+    used in conjunction with later **scan dragto** commands.
+    Typically this command is associated with a mouse button press
+    in the widget. It returns an empty string.
+
+*pathName ***scan dragto ***x y*.
+
+:   This command computes the difference between its *x* and *y*
+    arguments and the *x* and *y* arguments to the last **scan
+    mark** command for the widget. It then adjusts the view by 10
+    times the difference in coordinates. This command is typically
+    associated with mouse motion events in the widget, to produce
+    the effect of dragging the list at high speed through the
+    window. The return value is an empty string.
+</code></pre></div>
+<p><em>pathName </em><strong>see </strong><em>index</em></p>
+<p>:   Adjust the view in the listbox so that the element given by <em>index</em>
+    is visible. If the element is already visible then the command has
+    no effect; if the element is near one edge of the window then the
+    listbox scrolls to bring the element into view at the edge;
+    otherwise the listbox scrolls to center the element.</p>
+<p><em>pathName </em><strong>selection </strong><em>option arg</em></p>
+<p>:   This command is used to adjust the selection within a listbox. It
+    has several forms, depending on <em>option</em>:</p>
+<div class="language-text highlight"><pre><span></span><code>*pathName ***selection anchor ***index*
+
+:   Sets the selection anchor to the element given by *index*. If
+    *index* refers to a non-existent element, then the closest
+    element is used. The selection anchor is the end of the
+    selection that is fixed while dragging out a selection with the
+    mouse. The index **anchor** may be used to refer to the anchor
+    element.
+
+*pathName ***selection clear ***first *?*last*?
+
+:   If any of the elements between *first* and *last* (inclusive)
+    are selected, they are deselected. The selection state is not
+    changed for elements outside this range.
+
+*pathName ***selection includes ***index*
+
+:   Returns 1 if the element indicated by *index* is currently
+    selected, 0 if it is not.
+
+*pathName ***selection set ***first *?*last*?
+
+:   Selects all of the elements in the range between *first* and
+    *last*, inclusive, without affecting the selection state of
+    elements outside that range.
+</code></pre></div>
+<p><em>pathName </em><strong>size</strong></p>
+<p>:   Returns a decimal string indicating the total number of elements in
+    the listbox.</p>
+<p><em>pathName </em><strong>xview </strong>?<em>args</em></p>
+<p>:   This command is used to query and change the horizontal position of
+    the information in the widget\'s window. It can take any of the
+    following forms:</p>
+<div class="language-text highlight"><pre><span></span><code>*pathName ***xview**
+
+:   Returns a list containing two elements. Each element is a real
+    fraction between 0 and 1; together they describe the horizontal
+    span that is visible in the window. For example, if the first
+    element is .2 and the second element is .6, 20% of the
+    listbox\&#39;s text is off-screen to the left, the middle 40% is
+    visible in the window, and 40% of the text is off-screen to the
+    right. These are the same values passed to scrollbars via the
+    **-xscrollcommand** option.
+
+*pathName ***xview ***index*
+
+:   Adjusts the view in the window so that the character position
+    given by *index* is displayed at the left edge of the window.
+    Character positions are defined by the width of the character
+    **0**.
+
+*pathName ***xview moveto*** fraction*
+
+:   Adjusts the view in the window so that *fraction* of the total
+    width of the listbox text is off-screen to the left. *fraction*
+    must be a fraction between 0 and 1.
+
+*pathName ***xview scroll ***number what*
+
+:   This command shifts the view in the window left or right
+    according to *number* and *what*. *Number* must be an integer.
+    *What* must be either **units** or **pages** or an abbreviation
+    of one of these. If *what* is **units**, the view adjusts left
+    or right by *number* character units (the width of the **0**
+    character) on the display; if it is **pages** then the view
+    adjusts by *number* screenfuls. If *number* is negative then
+    characters farther to the left become visible; if it is positive
+    then characters farther to the right become visible.
+</code></pre></div>
+<p><em>pathName </em><strong>yview </strong>?<em>args</em>?</p>
+<p>:   This command is used to query and change the vertical position of
+    the text in the widget\'s window. It can take any of the following
+    forms:</p>
+<div class="language-text highlight"><pre><span></span><code>*pathName ***yview**
+
+:   Returns a list containing two elements, both of which are real
+    fractions between 0 and 1. The first element gives the position
+    of the listbox element at the top of the window, relative to the
+    listbox as a whole (0.5 means it is halfway through the listbox,
+    for example). The second element gives the position of the
+    listbox element just after the last one in the window, relative
+    to the listbox as a whole. These are the same values passed to
+    scrollbars via the **-yscrollcommand** option.
+
+*pathName ***yview ***index*
+
+:   Adjusts the view in the window so that the element given by
+    *index* is displayed at the top of the window.
+
+*pathName ***yview moveto*** fraction*
+
+:   Adjusts the view in the window so that the element given by
+    *fraction* appears at the top of the window. *Fraction* is a
+    fraction between 0 and 1; 0 indicates the first element in the
+    listbox, 0.33 indicates the element one-third the way through
+    the listbox, and so on.
+
+*pathName ***yview scroll ***number what*
+
+:   This command adjusts the view in the window up or down according
+    to *number* and *what*. *Number* must be an integer. *What* must
+    be either **units** or **pages**. If *what* is **units**, the
+    view adjusts up or down by *number* lines; if it is **pages**
+    then the view adjusts by *number* screenfuls. If *number* is
+    negative then earlier elements become visible; if it is positive
+    then later elements become visible.
+</code></pre></div>
+<h1 id="default-bindings">DEFAULT BINDINGS</h1>
+<p>Tk automatically creates class bindings for listboxes that give them
+Motif-like behavior. Much of the behavior of a listbox is determined by
+its <strong>-selectmode</strong> option, which selects one of four ways of dealing
+with the selection.</p>
+<p>If the selection mode is <strong>single</strong> or <strong>browse</strong>, at most one element
+can be selected in the listbox at once. In both modes, clicking button 1
+on an element selects it and deselects any other selected item. In
+<strong>browse</strong> mode it is also possible to drag the selection with button 1.
+On button 1, the listbox will also take focus if it has a <strong>normal</strong>
+state.</p>
+<p>If the selection mode is <strong>multiple</strong> or <strong>extended</strong>, any number of
+elements may be selected at once, including discontiguous ranges. In
+<strong>multiple</strong> mode, clicking button 1 on an element toggles its selection
+state without affecting any other elements. In <strong>extended</strong> mode,
+pressing button 1 on an element selects it, deselects everything else,
+and sets the anchor to the element under the mouse; dragging the mouse
+with button 1 down extends the selection to include all the elements
+between the anchor and the element under the mouse, inclusive.</p>
+<p>Most people will probably want to use <strong>browse</strong> mode for single
+selections and <strong>extended</strong> mode for multiple selections; the other
+modes appear to be useful only in special situations.</p>
+<p>Any time the set of selected item(s) in the listbox is updated by the
+user through the keyboard or mouse, the virtual event
+<strong>\&lt;\&lt;ListboxSelect>></strong> will be generated. This virtual event will not
+be generated when adjusting the selection with the <em>pathName</em>
+<strong>selection</strong> command. It is easiest to bind to this event to be made
+aware of any user changes to listbox selection.</p>
+<p>In addition to the above behavior, the following additional behavior is
+defined by the default bindings:</p>
+<p>[1]</p>
+<p>:   In <strong>extended</strong> mode, the selected range can be adjusted by pressing
+    button 1 with the Shift key down: this modifies the selection to
+    consist of the elements between the anchor and the element under the
+    mouse, inclusive. The un-anchored end of this new selection can also
+    be dragged with the button down.</p>
+<p>[2]</p>
+<p>:   In <strong>extended</strong> mode, pressing button 1 with the Control key down
+    starts a toggle operation: the anchor is set to the element under
+    the mouse, and its selection state is reversed. The selection state
+    of other elements is not changed. If the mouse is dragged with
+    button 1 down, then the selection state of all elements between the
+    anchor and the element under the mouse is set to match that of the
+    anchor element; the selection state of all other elements remains
+    what it was before the toggle operation began.</p>
+<p>[3]</p>
+<p>:   If the mouse leaves the listbox window with button 1 down, the
+    window scrolls away from the mouse, making information visible that
+    used to be off-screen on the side of the mouse. The scrolling
+    continues until the mouse re-enters the window, the button is
+    released, or the end of the listbox is reached.</p>
+<p>[4]</p>
+<p>:   Mouse button 2 may be used for scanning. If it is pressed and
+    dragged over the listbox, the contents of the listbox drag at high
+    speed in the direction the mouse moves.</p>
+<p>[5]</p>
+<p>:   If the Up or Down key is pressed, the location cursor (active
+    element) moves up or down one element. If the selection mode is
+    <strong>browse</strong> or <strong>extended</strong> then the new active element is also
+    selected and all other elements are deselected. In <strong>extended</strong> mode
+    the new active element becomes the selection anchor.</p>
+<p>[6]</p>
+<p>:   In <strong>extended</strong> mode, Shift-Up and Shift-Down move the location
+    cursor (active element) up or down one element and also extend the
+    selection to that element in a fashion similar to dragging with
+    mouse button 1.</p>
+<p>[7]</p>
+<p>:   The Left and Right keys scroll the listbox view left and right by
+    the width of the character <strong>0</strong>. Control-Left and Control-Right
+    scroll the listbox view left and right by the width of the window.
+    Control-Prior and Control-Next also scroll left and right by the
+    width of the window.</p>
+<p>[8]</p>
+<p>:   The Prior and Next keys scroll the listbox view up and down by one
+    page (the height of the window).</p>
+<p>[9]</p>
+<p>:   The Home and End keys scroll the listbox horizontally to the left
+    and right edges, respectively.</p>
+<p>[10]</p>
+<p>:   Control-Home sets the location cursor to the first element in the
+    listbox, selects that element, and deselects everything else in the
+    listbox.</p>
+<p>[11]</p>
+<p>:   Control-End sets the location cursor to the last element in the
+    listbox, selects that element, and deselects everything else in the
+    listbox.</p>
+<p>[12]</p>
+<p>:   In <strong>extended</strong> mode, Control-Shift-Home extends the selection to
+    the first element in the listbox and Control-Shift-End extends the
+    selection to the last element.</p>
+<p>[13]</p>
+<p>:   In <strong>multiple</strong> mode, Control-Shift-Home moves the location cursor
+    to the first element in the listbox and Control-Shift-End moves the
+    location cursor to the last element.</p>
+<p>[14]</p>
+<p>:   The space and Select keys make a selection at the location cursor
+    (active element) just as if mouse button 1 had been pressed over
+    this element.</p>
+<p>[15]</p>
+<p>:   In <strong>extended</strong> mode, Control-Shift-space and Shift-Select extend
+    the selection to the active element just as if button 1 had been
+    pressed with the Shift key down.</p>
+<p>[16]</p>
+<p>:   In <strong>extended</strong> mode, the Escape key cancels the most recent
+    selection and restores all the elements in the selected range to
+    their previous selection state.</p>
+<p>[17]</p>
+<p>:   Control-slash selects everything in the widget, except in <strong>single</strong>
+    and <strong>browse</strong> modes, in which case it selects the active element
+    and deselects everything else.</p>
+<p>[18]</p>
+<p>:   Control-backslash deselects everything in the widget, except in
+    <strong>browse</strong> mode where it has no effect.</p>
+<p>[19]</p>
+<p>:   The F16 key (labelled Copy on many Sun workstations) or Meta-w
+    copies the selection in the widget to the clipboard, if there is a
+    selection.</p>
+<p>The behavior of listboxes can be changed by defining new bindings for
+individual widgets or by redefining the class bindings.</p>
+<h1 id="see-also">SEE ALSO</h1>
+<p>ttk::treeview(n)</p>
+<h1 id="keywords">KEYWORDS</h1>
+<p>listbox, widget</p>
+
+<ul class="metadata page-metadata" data-bi-name="page info" lang="en-us" dir="ltr">
+  <li class="last-updated-holder displayDate loading">
+    <span class="last-updated-text">Last updated:</span>
+    <time role="presentation" datetime="2018-10-25T00:00:00.000Z" data-article-date-source="ms.date"></time>
+  </li>
+<!--
+  <li class="readingTime">
+    2 minutes to read
+  </li>
+-->
+  <li class="contributors-holder">
+    <span class="contributors-text">Contributors</span>
+    <ul class="contributors" data-bi-name="contributors"></ul>
+  </li>
+</ul>
+</div>
+        <div class="col-md-3"><div class="navbar-light navbar-expand-md hidden-print sticky-top sticky-offset" role="complementary">
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggler collapsed" data-toggle="collapse" data-target="#toc-collapse" title="Table of Contents">
+            <span class="fa fa-angle-down"></span>
+        </button>
+    </div>
+
+    <div id="toc-collapse" class="navbar-collapse collapse card">
+        <ul class="nav flex-column bs-sidenav">
+            <li class="nav-item main"><a class="nav-link" href="#name">NAME</a></li>
+            <li class="nav-item main"><a class="nav-link" href="#synopsis">SYNOPSIS</a></li>
+            <li class="nav-item main"><a class="nav-link" href="#standard-options">STANDARD OPTIONS</a></li>
+            <li class="nav-item main"><a class="nav-link" href="#widget-specific-options">WIDGET-SPECIFIC OPTIONS</a></li>
+            <li class="nav-item main"><a class="nav-link" href="#description">DESCRIPTION</a></li>
+            <li class="nav-item main"><a class="nav-link" href="#indices">INDICES</a></li>
+            <li class="nav-item main"><a class="nav-link" href="#widget-command">WIDGET COMMAND</a></li>
+            <li class="nav-item main"><a class="nav-link" href="#default-bindings">DEFAULT BINDINGS</a></li>
+            <li class="nav-item main"><a class="nav-link" href="#see-also">SEE ALSO</a></li>
+            <li class="nav-item main"><a class="nav-link" href="#keywords">KEYWORDS</a></li>
+        </ul>
+    </div>
+</div></div>
+      </div>
+      </div>
+
+      <footer class="col-md-12">
+	<hr>
+	<div class="container">
+	</div>
+      </footer>
+      <script>
+	var base_url = "../..",
+            shortcuts = {"help": 191, "next": 78, "previous": 80, "search": 83};
+      </script>
+      <script src="../../js/base.js" defer></script>
+      <script src="../../search/main.js" defer></script>
+
+      <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="Search Modal" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Search</h4>
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            </div>
+            <div class="modal-body">
+                <p>
+                    From here you can search these documents. Enter
+                    your search terms below.
+                </p>
+                <form role="form">
+                    <div class="form-group">
+                        <input type="text" class="form-control" placeholder="Search..." id="mkdocs-search-query" title="Type search term here">
+                    </div>
+                </form>
+                <div id="mkdocs-search-results"></div>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div><div class="modal" id="mkdocs_keyboard_modal" tabindex="-1" role="dialog" aria-labelledby="Keyboard Shortcuts Modal" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <p class="h4 modal-title">Keyboard Shortcuts</p>
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            </div>
+            <div class="modal-body">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th style="width: 20%;">Keys</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="help shortcut"><kbd>?</kbd></td>
+                    <td>Open this help</td>
+                  </tr>
+                  <tr>
+                    <td class="next shortcut"><kbd>n</kbd></td>
+                    <td>Next page</td>
+                  </tr>
+                  <tr>
+                    <td class="prev shortcut"><kbd>p</kbd></td>
+                    <td>Previous page</td>
+                  </tr>
+                  <tr>
+                    <td class="search shortcut"><kbd>s</kbd></td>
+                    <td>Search</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>
+
+    </body>
+</html>

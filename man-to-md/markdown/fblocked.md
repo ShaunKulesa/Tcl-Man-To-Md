@@ -28,32 +28,21 @@ servers, as it allows you to write your code in a line-by-line style
 without preventing the servicing of other connections. This can be seen
 in this simple echo-service:
 
-    # This is called whenever a new client connects to the server
-    proc connect {chan host port} {
-        set clientName [format <%s:%d> $host $port]
-        puts "connection from $clientName"
-        fconfigure $chan -blocking 0 -buffering line
-        fileevent $chan readable [list echoLine $chan $clientName]
-    }
+\# This is called whenever a new client connects to the server proc
+connect {chan host port} { set clientName \[format \<%s:%d\> \$host
+\$port\] puts \"connection from \$clientName\" fconfigure \$chan
+-blocking 0 -buffering line fileevent \$chan readable \[list echoLine
+\$chan \$clientName\] }
 
-    # This is called whenever either at least one byte of input
-    # data is available, or the channel was closed by the client.
-    proc echoLine {chan clientName} {
-        gets $chan line
-        if {[eof $chan]} {
-            puts "finishing connection from $clientName"
-            close $chan
-        } elseif {![fblocked $chan]} {
-            # Didn't block waiting for end-of-line
-            puts "$clientName - $line"
-            puts $chan $line
-        }
-    }
+\# This is called whenever either at least one byte of input \# data is
+available, or the channel was closed by the client. proc echoLine {chan
+clientName} { gets \$chan line if {\[eof \$chan\]} { puts \"finishing
+connection from \$clientName\" close \$chan } elseif {\![**fblocked**
+\$chan\]} { \# Didn\'t block waiting for end-of-line puts
+\"\$clientName - \$line\" puts \$chan \$line } }
 
-    # Create the server socket and enter the event-loop to wait
-    # for incoming connections...
-    socket -server connect 12345
-    vwait forever
+\# Create the server socket and enter the event-loop to wait \# for
+incoming connections\... socket -server connect 12345 vwait forever
 
 # SEE ALSO
 
@@ -62,3 +51,8 @@ gets(n), open(n), read(n), socket(n), Tcl_StandardChannels(3)
 # KEYWORDS
 
 blocking, nonblocking
+
+<!---
+Copyright (c) 1996 Sun Microsystems, Inc
+-->
+

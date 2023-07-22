@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+      <script>
+	// Hack for scrolling window when linking to anchor tag with fixed nav header
+        var shiftWindow = function() { scrollBy(0, -75) };
+        window.addEventListener("hashchange", shiftWindow);
+        function load() { if (window.location.hash) shiftWindow(); }
+      </script>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        
+        <link rel="canonical" href="https://www.tcl.tk/man/TclLib/NRE/">
+        <link rel="shortcut icon" href="../../img/favicon.ico">
+        <title>NRE - Tcl/Tk</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <link href="../../css/font-awesome.min.css" rel="stylesheet">
+    <link href="../../css/base.css" rel="stylesheet">
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+    <script src="../../js/base.js"></script> 
+    </head>
+
+    <body class="">
+
+      <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
+	<div class="container">
+	<a class="navbar-brand" href="../..">Tcl/Tk</a>
+	<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExample04" aria-controls="navbarsExample04" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+	</button>
+
+	<div class="collapse navbar-collapse">
+
+          <ul class="navbar-nav flex-row ml-md-auto d-none d-md-flex">
+            <li class="nav-item">
+              <a class="nav-link" href="#" data-toggle="modal" data-target="#mkdocs_search_modal">
+		<i class="fa fa-search"></i> Search
+              </a>
+            </li>
+          </ul>
+	</div>
+	</div>
+      </nav><div id="content" class="container">
+        
+      <div class="row">
+        <div class="col-md-9" role="main">
+
+
+<nav aria-label="breadcrumb">
+  <ol class="breadcrumb">
+    
+    <li class="breadcrumb-item active" aria-current="page">NRE</li>
+  </ol>
+</nav>
+
+
+<p>\</p>
+<h1 id="name">NAME</h1>
+<p>Tcl_NRCreateCommand, Tcl_NRCallObjProc, Tcl_NREvalObj, Tcl_NREvalObjv,
+Tcl_NRCmdSwap, Tcl_NRExprObj, Tcl_NRAddCallback - Non-Recursive
+(stackless) evaluation of Tcl scripts.</p>
+<h1 id="synopsis">SYNOPSIS</h1>
+<p><strong>#include \&lt;tcl.h></strong></p>
+<p>Tcl_Command <strong>Tcl_NRCreateCommand</strong>(<em>interp, cmdName, proc, nreProc,
+clientData,</em> deleteProc)</p>
+<p>int <strong>Tcl_NRCallObjProc</strong>(<em>interp, nreProc, clientData, objc, objv</em>)</p>
+<p>int <strong>Tcl_NREvalObj</strong>(<em>interp, objPtr, flags</em>)</p>
+<p>int <strong>Tcl_NREvalObjv</strong>(<em>interp, objc, objv, flags</em>)</p>
+<p>int <strong>Tcl_NRCmdSwap</strong>(<em>interp, cmd, objc, objv, flags</em>)</p>
+<p>int <strong>Tcl_NRExprObj</strong>(<em>interp, objPtr, resultPtr</em>)</p>
+<p>void <strong>Tcl_NRAddCallback</strong>(<em>interp, postProcPtr, data0, data1, data2,
+data3</em>)</p>
+<h1 id="arguments">ARGUMENTS</h1>
+<p>The relevant Interpreter.</p>
+<p>Name of the command to create.</p>
+<p>Called in order to evaluate a command. Is often just a small wrapper
+that uses <strong>Tcl_NRCallObjProc</strong> to call <em>nreProc</em> using a new
+trampoline. Behaves in the same way as the <em>proc</em> argument to
+<strong>Tcl_CreateObjCommand</strong>(3) (<em>q.v.</em>).</p>
+<p>Called instead of <em>proc</em> when a trampoline is already in use.</p>
+<p>Arbitrary one-word value passed to <em>proc</em>, <em>nreProc</em>, <em>deleteProc</em> and
+<em>objProc</em>.</p>
+<p>Called before <em>cmdName</em> is deleted from the interpreter, allowing for
+command-specific cleanup. May be NULL.</p>
+<p>Number of items in <em>objv</em>.</p>
+<p>Words in the command.</p>
+<p>A script or expression to evaluate.</p>
+<p>As described for <em>Tcl_EvalObjv</em>.</p>
+<p>Token to use instead of one derived from the first word of <em>objv</em> in
+order to evaluate a command.</p>
+<p>Pointer to an unshared Tcl_Obj where the result of the evaluation is
+stored if the return code is TCL_OK.</p>
+<p>A function to push.</p>
+<p><em>data0</em> through <em>data3</em> are four one-word values that will be passed to
+the function designated by <em>postProcPtr</em> when it is invoked.</p>
+<p>\</p>
+<h1 id="description">DESCRIPTION</h1>
+<p>These functions provide an interface to the function stack that an
+interpreter iterates through to evaluate commands. The routine behind a
+command is implemented by an initial function and any additional
+functions that the routine pushes onto the stack as it progresses. The
+interpreter itself pushes functions onto the stack to react to the end
+of a routine and to exercise other forms of control such as switching
+between in-progress stacks and the evaluation of other scripts at
+additional levels without adding frames to the C stack. To execute a
+routine, the initial function for the routine is called and then a small
+bit of code called a <em>trampoline</em> iteratively takes functions off the
+stack and calls them, using the value of the last call as the value of
+the routine.</p>
+<p><strong>Tcl_NRCallObjProc</strong> calls <em>nreProc</em> using a new trampoline.</p>
+<p><strong>Tcl_NRCreateCommand</strong>, an alternative to <strong>Tcl_CreateObjCommand</strong>,
+resolves <em>cmdName</em>, which may contain namespace qualifiers, relative to
+the current namespace, creates a command by that name, and returns a
+token for the command which may be used in subsequent calls to
+<strong>Tcl_GetCommandName</strong>. Except for a few cases noted below any existing
+command by the same name is first deleted. If <em>interp</em> is in the process
+of being deleted <strong>Tcl_NRCreateCommand</strong> does not create any command,
+does not delete any command, and returns NULL.</p>
+<p><strong>Tcl_NREvalObj</strong> pushes a function that is like <strong>Tcl_EvalObjEx</strong> but
+consumes no space on the C stack.</p>
+<p><strong>Tcl_NREvalObjv</strong> pushes a function that is like <strong>Tcl_EvalObjv</strong> but
+consumes no space on the C stack.</p>
+<p><strong>Tcl_NRCmdSwap</strong> is like <strong>Tcl_NREvalObjv</strong>, but uses <em>cmd</em>, a token
+previously returned by <strong>Tcl_CreateObjCommand</strong> or
+<strong>Tcl_GetCommandFromObj</strong>, instead of resolving the first word of
+<em>objv</em>.</p>
+<p><strong>Tcl_NRExprObj</strong> pushes a function that evaluates <em>objPtr</em> as an
+expression in the same manner as <strong>Tcl_ExprObj</strong> but without consuming
+space on the C stack.</p>
+<p>All of the functions return <strong>TCL_OK</strong> if the evaluation of the script,
+command, or expression has been scheduled successfully. Otherwise (for
+example if the command name cannot be resolved), they return
+<strong>TCL_ERROR</strong> and store a message as the interpreter\'s result.</p>
+<p><strong>Tcl_NRAddCallback</strong> pushes <em>postProcPtr</em>. The signature for
+<strong>Tcl_NRPostProc</strong> is:</p>
+<div class="language-text highlight"><pre><span></span><code>typedef int
+Tcl_NRPostProc(
+        ClientData data[],
+        Tcl_Interp *interp,
+        int result);
+</code></pre></div>
+<p><em>data</em> is a pointer to an array containing <em>data0</em> through <em>data3</em>.
+<em>result</em> is the value returned by the previous function implementing
+part the routine.</p>
+<h1 id="example">EXAMPLE</h1>
+<p>The following command uses <strong>Tcl_EvalObjEx</strong>, which consumes space on
+the C stack, to evalute a script:</p>
+<div class="language-text highlight"><pre><span></span><code>int
+TheCmdOldObjProc(
+    ClientData clientData,
+    Tcl_Interp *interp,
+    int objc,
+    Tcl_Obj *const objv[])
+{
+    int result;
+    Tcl_Obj *objPtr;
+
+    ... preparation ...
+
+    result = Tcl_EvalObjEx(interp, objPtr, 0);
+
+    ... postprocessing ...
+
+    return result;
+}
+Tcl_CreateObjCommand(interp, &quot;theCommand&quot;,
+        TheCmdOldObjProc, clientData, TheCmdDeleteProc);
+</code></pre></div>
+<p>To avoid consuming space on the C stack, <em>TheCmdOldObjProc</em> is renamed
+to <em>TheCmdNRObjProc</em> and the postprocessing step is split into a
+separate function, <em>TheCmdPostProc</em>, which is pushed onto the function
+stack. <em>Tcl_EvalObjEx</em> is replaced with <em>Tcl_NREvalObj</em>, which uses a
+trampoline instead of consuming space on the C stack. A new version of
+<em>TheCmdOldObjProc</em> is just a a wrapper that uses <strong>Tcl_NRCallObjProc</strong>
+to call <em>TheCmdNRObjProc</em>:</p>
+<div class="language-text highlight"><pre><span></span><code>int
+TheCmdOldObjProc(
+    ClientData clientData,
+    Tcl_Interp *interp,
+    int objc,
+    Tcl_Obj *const objv[])
+{
+    return Tcl_NRCallObjProc(interp, TheCmdNRObjProc,
+            clientData, objc, objv);
+}
+
+int
+TheCmdNRObjProc
+    ClientData clientData,
+    Tcl_Interp *interp,
+    int objc,
+    Tcl_Obj *const objv[])
+{
+    Tcl_Obj *objPtr;
+
+    ... preparation ...
+
+    Tcl_NRAddCallback(interp, TheCmdPostProc,
+            data0, data1, data2, data3);
+    /* data0 .. data3 are up to four one-word items to
+     * pass to the postprocessing procedure */
+
+    return Tcl_NREvalObj(interp, objPtr, 0);
+}
+
+int
+TheCmdNRPostProc(
+    ClientData data[],
+    Tcl_Interp *interp,
+    int result)
+{
+    /* data[0] .. data[3] are the four words of data
+     * passed to Tcl_NRAddCallback */
+
+    ... postprocessing ...
+
+    return result;
+}
+</code></pre></div>
+<p>Any function comprising a routine can push other functions, making it
+possible implement looping and sequencing constructs using the function
+stack.</p>
+<h1 id="see-also">SEE ALSO</h1>
+<p>Tcl_CreateCommand(3), Tcl_CreateObjCommand(3), Tcl_EvalObjEx(3),
+Tcl_GetCommandFromObj(3), Tcl_ExprObj(3)</p>
+<h1 id="keywords">KEYWORDS</h1>
+<p>stackless, nonrecursive, execute, command, global, value, result, script</p>
+<h1 id="copyright">COPYRIGHT</h1>
+<p>Copyright © 2008 Kevin B. Kenny. Copyright © 2018 Nathan Coulter.</p>
+
+<ul class="metadata page-metadata" data-bi-name="page info" lang="en-us" dir="ltr">
+  <li class="last-updated-holder displayDate loading">
+    <span class="last-updated-text">Last updated:</span>
+    <time role="presentation" datetime="2018-10-25T00:00:00.000Z" data-article-date-source="ms.date"></time>
+  </li>
+<!--
+  <li class="readingTime">
+    2 minutes to read
+  </li>
+-->
+  <li class="contributors-holder">
+    <span class="contributors-text">Contributors</span>
+    <ul class="contributors" data-bi-name="contributors"></ul>
+  </li>
+</ul>
+</div>
+        <div class="col-md-3"><div class="navbar-light navbar-expand-md hidden-print sticky-top sticky-offset" role="complementary">
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggler collapsed" data-toggle="collapse" data-target="#toc-collapse" title="Table of Contents">
+            <span class="fa fa-angle-down"></span>
+        </button>
+    </div>
+
+    <div id="toc-collapse" class="navbar-collapse collapse card">
+        <ul class="nav flex-column bs-sidenav">
+            <li class="nav-item main"><a class="nav-link" href="#name">NAME</a></li>
+            <li class="nav-item main"><a class="nav-link" href="#synopsis">SYNOPSIS</a></li>
+            <li class="nav-item main"><a class="nav-link" href="#arguments">ARGUMENTS</a></li>
+            <li class="nav-item main"><a class="nav-link" href="#description">DESCRIPTION</a></li>
+            <li class="nav-item main"><a class="nav-link" href="#example">EXAMPLE</a></li>
+            <li class="nav-item main"><a class="nav-link" href="#see-also">SEE ALSO</a></li>
+            <li class="nav-item main"><a class="nav-link" href="#keywords">KEYWORDS</a></li>
+            <li class="nav-item main"><a class="nav-link" href="#copyright">COPYRIGHT</a></li>
+        </ul>
+    </div>
+</div></div>
+      </div>
+      </div>
+
+      <footer class="col-md-12">
+	<hr>
+	<div class="container">
+	</div>
+      </footer>
+      <script>
+	var base_url = "../..",
+            shortcuts = {"help": 191, "next": 78, "previous": 80, "search": 83};
+      </script>
+      <script src="../../js/base.js" defer></script>
+      <script src="../../search/main.js" defer></script>
+
+      <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="Search Modal" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Search</h4>
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            </div>
+            <div class="modal-body">
+                <p>
+                    From here you can search these documents. Enter
+                    your search terms below.
+                </p>
+                <form role="form">
+                    <div class="form-group">
+                        <input type="text" class="form-control" placeholder="Search..." id="mkdocs-search-query" title="Type search term here">
+                    </div>
+                </form>
+                <div id="mkdocs-search-results"></div>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div><div class="modal" id="mkdocs_keyboard_modal" tabindex="-1" role="dialog" aria-labelledby="Keyboard Shortcuts Modal" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <p class="h4 modal-title">Keyboard Shortcuts</p>
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            </div>
+            <div class="modal-body">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th style="width: 20%;">Keys</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="help shortcut"><kbd>?</kbd></td>
+                    <td>Open this help</td>
+                  </tr>
+                  <tr>
+                    <td class="next shortcut"><kbd>n</kbd></td>
+                    <td>Next page</td>
+                  </tr>
+                  <tr>
+                    <td class="prev shortcut"><kbd>p</kbd></td>
+                    <td>Previous page</td>
+                  </tr>
+                  <tr>
+                    <td class="search shortcut"><kbd>s</kbd></td>
+                    <td>Search</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>
+
+    </body>
+</html>

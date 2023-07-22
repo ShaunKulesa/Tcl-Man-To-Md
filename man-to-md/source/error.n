@@ -38,21 +38,21 @@ if a caught error cannot be handled successfully, \fIinfo\fR can be used
 to return a stack trace reflecting the original point of occurrence
 of the error:
 .PP
-.nf
+.CS
 catch {...} errMsg
 set savedInfo $::errorInfo
 \&...
 \fBerror\fR $errMsg $savedInfo
-.fi
+.CE
 .PP
 When working with Tcl 8.5 or later, the following code
 should be used instead:
 .PP
-.nf
+.CS
 catch {...} errMsg options
 \&...
 return -options $options $errMsg
-.fi
+.CE
 .PP
 If the \fIcode\fR argument is present, then its value is stored
 in the \fB\-errorcode\fR return option.  The \fB\-errorcode\fR
@@ -64,11 +64,11 @@ for this option's value.
 .PP
 Generate an error if a basic mathematical operation fails:
 .PP
-.nf
+.CS
 if {1+2 != 3} {
     \fBerror\fR "something is very wrong with addition"
 }
-.fi
+.CE
 .SH "SEE ALSO"
 catch(n), return(n)
 .SH KEYWORDS

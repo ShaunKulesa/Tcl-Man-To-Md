@@ -1,18 +1,13 @@
-\
-
 # NAME
 
 platform - System identification support code and utilities
 
 # SYNOPSIS
 
-    package require platform ?1.0.10?
+**package require platform ?1.0.10?**
 
-    platform::generic
-    platform::identify
-    platform::patterns identifier
-
-\
+**platform::generic** **platform::identify** **platform::patterns
+***identifier*
 
 # DESCRIPTION
 
@@ -78,3 +73,8 @@ versions of an operating system. For example:
 # KEYWORDS
 
 operating system, cpu architecture, platform, architecture
+
+<!---
+Copyright (c) 2006 ActiveState Software In
+-->
+

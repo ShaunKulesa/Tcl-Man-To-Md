@@ -43,12 +43,12 @@ procedure calling and also makes it easier to build new control constructs
 as Tcl procedures.
 For example, consider the following procedure:
 .PP
-.nf
+.CS
 proc \fIadd2\fR name {
     \fBupvar\fR $name x
     set x [expr {$x + 2}]
 }
-.fi
+.CE
 .PP
 If \fIadd2\fR is invoked with an argument giving the name of a variable,
 it adds two to the value of that variable.
@@ -85,7 +85,7 @@ will be
 rather than
 .QW "\fIoriginalVar\fR" :
 .PP
-.nf
+.CS
 proc \fItraceproc\fR { name index op } {
     puts $name
 }
@@ -96,7 +96,7 @@ proc \fIsetByUpvar\fR { name value } {
 set originalVar 1
 trace variable originalVar w \fItraceproc\fR
 \fIsetByUpvar\fR originalVar 2
-.fi
+.CE
 .PP
 If \fIotherVar\fR refers to an element of an array, then variable
 traces set for the entire array will not be invoked when \fImyVar\fR
@@ -107,12 +107,12 @@ made to \fImyVar\fR will not be passed to subprocesses correctly.
 A \fBdecr\fR command that works like \fBincr\fR except it subtracts
 the value from the variable instead of adding it:
 .PP
-.nf
+.CS
 proc decr {varName {decrement 1}} {
     \fBupvar\fR 1 $varName var
     incr var [expr {-$decrement}]
 }
-.fi
+.CE
 .SH "SEE ALSO"
 global(n), namespace(n), uplevel(n), variable(n)
 .SH KEYWORDS

@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+      <script>
+	// Hack for scrolling window when linking to anchor tag with fixed nav header
+        var shiftWindow = function() { scrollBy(0, -75) };
+        window.addEventListener("hashchange", shiftWindow);
+        function load() { if (window.location.hash) shiftWindow(); }
+      </script>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        
+        <link rel="canonical" href="https://www.tcl.tk/man/TkCmd/ttk_notebook/">
+        <link rel="shortcut icon" href="../../img/favicon.ico">
+        <title>Ttk notebook - Tcl/Tk</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <link href="../../css/font-awesome.min.css" rel="stylesheet">
+    <link href="../../css/base.css" rel="stylesheet">
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+    <script src="../../js/base.js"></script> 
+    </head>
+
+    <body class="">
+
+      <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
+	<div class="container">
+	<a class="navbar-brand" href="../..">Tcl/Tk</a>
+	<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExample04" aria-controls="navbarsExample04" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+	</button>
+
+	<div class="collapse navbar-collapse">
+
+          <ul class="navbar-nav flex-row ml-md-auto d-none d-md-flex">
+            <li class="nav-item">
+              <a class="nav-link" href="#" data-toggle="modal" data-target="#mkdocs_search_modal">
+		<i class="fa fa-search"></i> Search
+              </a>
+            </li>
+          </ul>
+	</div>
+	</div>
+      </nav><div id="content" class="container">
+        
+      <div class="row">
+        <div class="col-md-9" role="main">
+
+
+<nav aria-label="breadcrumb">
+  <ol class="breadcrumb">
+    
+    <li class="breadcrumb-item active" aria-current="page">Ttk notebook</li>
+  </ol>
+</nav>
+
+
+<p>\</p>
+<h1 id="name">NAME</h1>
+<p>ttk::notebook - Multi-paned container widget</p>
+<h1 id="synopsis">SYNOPSIS</h1>
+<p><strong>ttk::notebook</strong> <em>pathname </em>?<em>options...</em>?\
+<em>pathname </em><strong>add</strong> <em>window</em> ?<em>options...</em>? <em>pathname </em><strong>insert</strong>
+<em>index</em> <em>window</em> ?<em>options...</em>?</p>
+<p>\</p>
+<h1 id="description">DESCRIPTION</h1>
+<p>A <strong>ttk::notebook</strong> widget manages a collection of windows and displays
+a single one at a time. Each content window is associated with a <em>tab</em>,
+which the user may select to change the currently-displayed window.</p>
+<h1 id="standard-options">STANDARD OPTIONS</h1>
+<div class="language-text highlight"><pre><span></span><code>-class  -cursor -takefocus
+-style
+</code></pre></div>
+<p>See the manual entry for details on the standard options.</p>
+<h1 id="widget-specific-options">WIDGET-SPECIFIC OPTIONS</h1>
+<div class="language-text highlight"><pre><span></span><code>Command-Line Name:  -height
+Database Name:  height
+Database Class: Height
+</code></pre></div>
+<blockquote>
+<p>If present and greater than zero, specifies the desired height of the
+pane area (not including internal padding or tabs). Otherwise, the
+maximum height of all panes is used.</p>
+</blockquote>
+<div class="language-text highlight"><pre><span></span><code>Command-Line Name:  -padding
+Database Name:  padding
+Database Class: Padding
+</code></pre></div>
+<blockquote>
+<p>Specifies the amount of extra space to add around the outside of the
+notebook. The padding is a list of up to four length specifications
+<em>left top right bottom</em>. If fewer than four elements are specified,
+<em>bottom</em> defaults to <em>top</em>, <em>right</em> defaults to <em>left</em>, and <em>top</em>
+defaults to <em>left</em>. In other words, a list of three numbers specify
+the left, vertical, and right padding; a list of two numbers specify
+the horizontal and the vertical padding; a single number specifies the
+same padding all the way around the widget.</p>
+</blockquote>
+<div class="language-text highlight"><pre><span></span><code>Command-Line Name:  -width
+Database Name:  width
+Database Class: Width
+</code></pre></div>
+<blockquote>
+<p>If present and greater than zero, specifies the desired width of the
+pane area (not including internal padding). Otherwise, the maximum
+width of all panes is used.</p>
+</blockquote>
+<h1 id="tab-options">TAB OPTIONS</h1>
+<p>The following options may be specified for individual notebook panes:</p>
+<div class="language-text highlight"><pre><span></span><code>Command-Line Name:  -state
+Database Name:  state
+Database Class: State
+</code></pre></div>
+<blockquote>
+<p>Either <strong>normal</strong>, <strong>disabled</strong> or <strong>hidden</strong>. If <strong>disabled</strong>, then
+the tab is not selectable. If <strong>hidden</strong>, then the tab is not shown.</p>
+</blockquote>
+<div class="language-text highlight"><pre><span></span><code>Command-Line Name:  -sticky
+Database Name:  sticky
+Database Class: Sticky
+</code></pre></div>
+<blockquote>
+<p>Specifies how the content window is positioned within the pane area.
+Value is a string containing zero or more of the characters <strong>n, s,
+e,</strong> or <strong>w</strong>. Each letter refers to a side (north, south, east, or
+west) that the content window will to, as per the <strong>grid</strong> geometry
+manager.</p>
+</blockquote>
+<div class="language-text highlight"><pre><span></span><code>Command-Line Name:  -padding
+Database Name:  padding
+Database Class: Padding
+</code></pre></div>
+<blockquote>
+<p>Specifies the amount of extra space to add between the notebook and
+this pane. Syntax is the same as for the widget <strong>-padding</strong> option.</p>
+</blockquote>
+<div class="language-text highlight"><pre><span></span><code>Command-Line Name:  -text
+Database Name:  text
+Database Class: Text
+</code></pre></div>
+<blockquote>
+<p>Specifies a string to be displayed in the tab.</p>
+</blockquote>
+<div class="language-text highlight"><pre><span></span><code>Command-Line Name:  -image
+Database Name:  image
+Database Class: Image
+</code></pre></div>
+<blockquote>
+<p>Specifies an image to display in the tab. See <em>ttk_widget(n)</em> for
+details.</p>
+</blockquote>
+<div class="language-text highlight"><pre><span></span><code>Command-Line Name:  -compound
+Database Name:  compound
+Database Class: Compound
+</code></pre></div>
+<blockquote>
+<p>Specifies how to display the image relative to the text, in the case
+both <strong>-text</strong> and <strong>-image</strong> are present. See <em>label(n)</em> for legal
+values.</p>
+</blockquote>
+<div class="language-text highlight"><pre><span></span><code>Command-Line Name:  -underline
+Database Name:  underline
+Database Class: Underline
+</code></pre></div>
+<blockquote>
+<p>Specifies the integer index (0-based) of a character to underline in
+the text string. The underlined character is used for mnemonic
+activation if <strong>ttk::notebook::enableTraversal</strong> is called.</p>
+</blockquote>
+<h1 id="tab-identifiers">TAB IDENTIFIERS</h1>
+<p>The <em>tabid</em> argument to the following commands may take any of the
+following forms:</p>
+<ul>
+<li>
+<p>An integer between zero and the number of tabs;</p>
+</li>
+<li>
+<p>The name of a content window;</p>
+</li>
+<li>
+<p>A positional specification of the form which identifies the tab</p>
+</li>
+<li>
+<p>The literal string which identifies the currently-selected tab; or:</p>
+</li>
+<li>
+<p>The literal string which returns the number of tabs (only valid for</p>
+</li>
+</ul>
+<h1 id="widget-command">WIDGET COMMAND</h1>
+<p><em>pathname </em><strong>add </strong><em>window</em> ?<em>options...</em>?</p>
+<p>:   Adds a new tab to the notebook. See <strong>TAB OPTIONS</strong> for the list of
+    available <em>options</em>. If <em>window</em> is currently managed by the
+    notebook but hidden, it is restored to its previous position.</p>
+<p><em>pathname </em><strong>configure</strong> ?<em>options</em>?</p>
+<p>:   See <em>ttk::widget(n)</em>.</p>
+<p><em>pathname </em><strong>cget </strong><em>option</em></p>
+<p>:   See <em>ttk::widget(n)</em>.</p>
+<p><em>pathname </em><strong>forget </strong><em>tabid</em></p>
+<p>:   Removes the tab specified by <em>tabid</em>, unmaps and unmanages the
+    associated window.</p>
+<p><em>pathname </em><strong>hide </strong><em>tabid</em></p>
+<p>:   Hides the tab specified by <em>tabid</em>. The tab will not be displayed,
+    but the associated window remains managed by the notebook and its
+    configuration remembered. Hidden tabs may be restored with the
+    <strong>add</strong> command.</p>
+<p><em>pathname </em><strong>identify</strong><em> component x y</em></p>
+<p>:   Returns the name of the element under the point given by <em>x</em> and
+    <em>y</em>, or the empty string if no component is present at that
+    location. The following subcommands are supported:</p>
+<div class="language-text highlight"><pre><span></span><code>*pathname ***identify element** *x y*
+
+:   Returns the name of the element at the specified location.
+
+*pathname ***identify tab** *x y*
+
+:   Returns the index of the tab at the specified location.
+</code></pre></div>
+<p><em>pathname </em><strong>index </strong><em>tabid</em></p>
+<p>:   Returns the numeric index of the tab specified by <em>tabid</em>, or the
+    total number of tabs if <em>tabid</em> is the string</p>
+<p><em>pathname </em><strong>insert </strong><em>pos subwindow options...</em></p>
+<p>:   Inserts a pane at the specified position. <em>pos</em> is either the string
+    <strong>end</strong>, an integer index, or the name of a managed subwindow. If
+    <em>subwindow</em> is already managed by the notebook, moves it to the
+    specified position. See <strong>TAB OPTIONS</strong> for the list of available
+    options.</p>
+<p><em>pathname </em><strong>instate </strong><em>statespec </em>?<em>script...</em>?</p>
+<p>:   See <em>ttk::widget(n)</em>.</p>
+<p><em>pathname </em><strong>select</strong> ?<em>tabid</em>?</p>
+<p>:   Selects the specified tab. The associated content window will be
+    displayed, and the previously-selected window (if different) is
+    unmapped. If <em>tabid</em> is omitted, returns the widget name of the
+    currently selected pane.</p>
+<p><em>pathname </em><strong>state</strong> ?<em>statespec</em>?</p>
+<p>:   See <em>ttk::widget(n)</em>.</p>
+<p><em>pathname </em><strong>tab </strong><em>tabid</em> ?<em>-option </em>?<em>value ...</em></p>
+<p>:   Query or modify the options of the specific tab. If no <em>-option</em> is
+    specified, returns a dictionary of the tab option values. If one
+    <em>-option</em> is specified, returns the value of that <em>option</em>.
+    Otherwise, sets the <em>-option</em>s to the corresponding <em>value</em>s. See
+    <strong>TAB OPTIONS</strong> for the available options.</p>
+<p><em>pathname </em><strong>tabs</strong></p>
+<p>:   Returns the list of windows managed by the notebook, in the index
+    order of their associated tabs.</p>
+<h1 id="keyboard-traversal">KEYBOARD TRAVERSAL</h1>
+<p>To enable keyboard traversal for a toplevel window containing a notebook
+widget <em>\$nb</em>, call:</p>
+<div class="language-text highlight"><pre><span></span><code>ttk::notebook::enableTraversal $nb
+</code></pre></div>
+<p>This will extend the bindings for the toplevel window containing the
+notebook as follows:</p>
+<ul>
+<li>
+<p><strong>Control-Tab</strong> selects the tab following the currently selected
+    one.</p>
+</li>
+<li>
+<p><strong>Control-Shift-Tab</strong> selects the tab preceding the currently
+    selected one.</p>
+</li>
+<li>
+<p><strong>Alt-</strong><em>K</em>, where <em>K</em> is the mnemonic (underlined) character of any
+    tab, will select that tab.</p>
+</li>
+</ul>
+<p>Multiple notebooks in a single toplevel may be enabled for traversal,
+including nested notebooks. However, notebook traversal only works
+properly if all panes are direct children of the notebook.</p>
+<h1 id="virtual-events">VIRTUAL EVENTS</h1>
+<p>The notebook widget generates a <strong>\&lt;\&lt;NotebookTabChanged>></strong> virtual
+event after a new tab is selected.</p>
+<h1 id="example">EXAMPLE</h1>
+<div class="language-text highlight"><pre><span></span><code>pack [ttk::notebook .nb]
+.nb add [frame .nb.f1] -text &quot;First tab&quot;
+.nb add [frame .nb.f2] -text &quot;Second tab&quot;
+.nb select .nb.f2
+ttk::notebook::enableTraversal .nb
+</code></pre></div>
+<h1 id="styling-options">STYLING OPTIONS</h1>
+<p>The class name for a <strong>ttk::notebook</strong> is <strong>TNotebook</strong>. The tab has a
+class name of <strong>TNotebook.Tab</strong></p>
+<p>Dynamic states: <strong>active</strong>, <strong>disabled</strong>, <strong>selected</strong>.</p>
+<p><strong>TNotebook</strong> styling options configurable with <strong>ttk::style</strong> are:</p>
+<p><strong>-background</strong> <em>color</em>\
+<strong>-bordercolor</strong> <em>color</em>\
+<strong>-darkcolor</strong> <em>color</em>\
+<strong>-foreground</strong> <em>color</em>\
+<strong>-lightcolor</strong> <em>color</em>\
+<strong>-padding</strong> <em>padding</em>\
+<strong>-tabmargins</strong> <em>padding</em>\
+<strong>-tabposition</strong> <em>side</em>\</p>
+<p><strong>TNotebook.Tab</strong> styling options configurable with <strong>ttk::style</strong> are:</p>
+<p><strong>-background</strong> <em>color</em>\
+<strong>-bordercolor</strong> <em>color</em>\
+<strong>-compound</strong> <em>compound</em>\
+<strong>-expand</strong> <em>padding</em></p>
+<blockquote>
+<p>Defines how much the tab grows in size. Usually used with the
+<strong>selected</strong> dynamic state. <strong>-tabmargins</strong> should be set
+appropriately so that there is room for the tab growth.</p>
+</blockquote>
+<p><strong>-font</strong> <em>font</em>\
+<strong>-foreground</strong> <em>color</em>\
+<strong>-padding</strong> <em>padding</em></p>
+<p>Some options are only available for specific themes.</p>
+<p>See the <strong>ttk::style</strong> manual page for information on how to configure
+ttk styles.</p>
+<h1 id="see-also">SEE ALSO</h1>
+<p>ttk::widget(n), grid(n)</p>
+<h1 id="keywords">KEYWORDS</h1>
+<p>pane, tab</p>
+
+<ul class="metadata page-metadata" data-bi-name="page info" lang="en-us" dir="ltr">
+  <li class="last-updated-holder displayDate loading">
+    <span class="last-updated-text">Last updated:</span>
+    <time role="presentation" datetime="2018-10-25T00:00:00.000Z" data-article-date-source="ms.date"></time>
+  </li>
+<!--
+  <li class="readingTime">
+    2 minutes to read
+  </li>
+-->
+  <li class="contributors-holder">
+    <span class="contributors-text">Contributors</span>
+    <ul class="contributors" data-bi-name="contributors"></ul>
+  </li>
+</ul>
+</div>
+        <div class="col-md-3"><div class="navbar-light navbar-expand-md hidden-print sticky-top sticky-offset" role="complementary">
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggler collapsed" data-toggle="collapse" data-target="#toc-collapse" title="Table of Contents">
+            <span class="fa fa-angle-down"></span>
+        </button>
+    </div>
+
+    <div id="toc-collapse" class="navbar-collapse collapse card">
+        <ul class="nav flex-column bs-sidenav">
+            <li class="nav-item main"><a class="nav-link" href="#name">NAME</a></li>
+            <li class="nav-item main"><a class="nav-link" href="#synopsis">SYNOPSIS</a></li>
+            <li class="nav-item main"><a class="nav-link" href="#description">DESCRIPTION</a></li>
+            <li class="nav-item main"><a class="nav-link" href="#standard-options">STANDARD OPTIONS</a></li>
+            <li class="nav-item main"><a class="nav-link" href="#widget-specific-options">WIDGET-SPECIFIC OPTIONS</a></li>
+            <li class="nav-item main"><a class="nav-link" href="#tab-options">TAB OPTIONS</a></li>
+            <li class="nav-item main"><a class="nav-link" href="#tab-identifiers">TAB IDENTIFIERS</a></li>
+            <li class="nav-item main"><a class="nav-link" href="#widget-command">WIDGET COMMAND</a></li>
+            <li class="nav-item main"><a class="nav-link" href="#keyboard-traversal">KEYBOARD TRAVERSAL</a></li>
+            <li class="nav-item main"><a class="nav-link" href="#virtual-events">VIRTUAL EVENTS</a></li>
+            <li class="nav-item main"><a class="nav-link" href="#example">EXAMPLE</a></li>
+            <li class="nav-item main"><a class="nav-link" href="#styling-options">STYLING OPTIONS</a></li>
+            <li class="nav-item main"><a class="nav-link" href="#see-also">SEE ALSO</a></li>
+            <li class="nav-item main"><a class="nav-link" href="#keywords">KEYWORDS</a></li>
+        </ul>
+    </div>
+</div></div>
+      </div>
+      </div>
+
+      <footer class="col-md-12">
+	<hr>
+	<div class="container">
+	</div>
+      </footer>
+      <script>
+	var base_url = "../..",
+            shortcuts = {"help": 191, "next": 78, "previous": 80, "search": 83};
+      </script>
+      <script src="../../js/base.js" defer></script>
+      <script src="../../search/main.js" defer></script>
+
+      <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="Search Modal" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Search</h4>
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            </div>
+            <div class="modal-body">
+                <p>
+                    From here you can search these documents. Enter
+                    your search terms below.
+                </p>
+                <form role="form">
+                    <div class="form-group">
+                        <input type="text" class="form-control" placeholder="Search..." id="mkdocs-search-query" title="Type search term here">
+                    </div>
+                </form>
+                <div id="mkdocs-search-results"></div>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div><div class="modal" id="mkdocs_keyboard_modal" tabindex="-1" role="dialog" aria-labelledby="Keyboard Shortcuts Modal" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <p class="h4 modal-title">Keyboard Shortcuts</p>
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            </div>
+            <div class="modal-body">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th style="width: 20%;">Keys</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="help shortcut"><kbd>?</kbd></td>
+                    <td>Open this help</td>
+                  </tr>
+                  <tr>
+                    <td class="next shortcut"><kbd>n</kbd></td>
+                    <td>Next page</td>
+                  </tr>
+                  <tr>
+                    <td class="prev shortcut"><kbd>p</kbd></td>
+                    <td>Previous page</td>
+                  </tr>
+                  <tr>
+                    <td class="search shortcut"><kbd>s</kbd></td>
+                    <td>Search</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>
+
+    </body>
+</html>

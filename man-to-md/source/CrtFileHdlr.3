@@ -11,7 +11,6 @@
 .SH NAME
 Tcl_CreateFileHandler, Tcl_DeleteFileHandler \- associate procedure callbacks with files or devices (Unix only)
 .SH SYNOPSIS
-.nf
 \fB#include <tcl.h>\fR
 .sp
 \fBTcl_CreateFileHandler\fR(\fIfd, mask, proc, clientData\fR)
@@ -49,11 +48,11 @@ as \fBvwait\fR.
 \fIProc\fR should have arguments and result that match the
 type \fBTcl_FileProc\fR:
 .PP
-.nf
+.CS
 typedef void \fBTcl_FileProc\fR(
         ClientData \fIclientData\fR,
         int \fImask\fR);
-.fi
+.CE
 .PP
 The \fIclientData\fR parameter to \fIproc\fR is a copy
 of the \fIclientData\fR

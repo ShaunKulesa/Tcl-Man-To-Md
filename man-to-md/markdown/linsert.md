@@ -1,5 +1,3 @@
-\
-
 # NAME
 
 linsert - Insert elements into a list
@@ -7,8 +5,6 @@ linsert - Insert elements into a list
 # SYNOPSIS
 
 **linsert ***list index *?*element element \...*?
-
-\
 
 # DESCRIPTION
 
@@ -47,3 +43,10 @@ lsort(n), lrange(n), lreplace(n), string(n)
 # KEYWORDS
 
 element, insert, list
+
+<!---
+Copyright (c) 1993 The Regents of the University of California
+Copyright (c) 1994-1996 Sun Microsystems, Inc
+Copyright (c) 2001 Kevin B. Kenny <kennykb@acm.org>.  All rights reserved
+-->
+

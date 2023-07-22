@@ -1,5 +1,3 @@
-\
-
 # NAME
 
 fcopy - Copy data from one channel to another
@@ -8,8 +6,6 @@ fcopy - Copy data from one channel to another
 
 **fcopy ***inchan* *outchan* ?**-size ***size*? ?**-command
 ***callback*?
-
-\
 
 # DESCRIPTION
 
@@ -153,3 +149,9 @@ eof(n), fblocked(n), fconfigure(n), file(n)
 
 blocking, channel, end of line, end of file, nonblocking, read,
 translation
+
+<!---
+Copyright (c) 1993 The Regents of the University of California
+Copyright (c) 1994-1997 Sun Microsystems, Inc
+-->
+

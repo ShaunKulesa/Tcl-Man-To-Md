@@ -1,5 +1,3 @@
-\
-
 # NAME
 
 Tcl_WrongNumArgs - generate standard error message for wrong number of
@@ -7,9 +5,9 @@ arguments
 
 # SYNOPSIS
 
-    #include <tcl.h>
+**#include \<tcl.h\>**
 
-    Tcl_WrongNumArgs(interp, objc, objv, message)
+**Tcl_WrongNumArgs**(*interp, objc, objv, message*)
 
 # ARGUMENTS
 
@@ -23,8 +21,6 @@ Arguments to command that had the wrong number of arguments.
 Additional error information to print after leading arguments from
 *objv*. This typically gives the acceptable syntax of the command. This
 argument may be NULL.
-
-\
 
 # DESCRIPTION
 
@@ -67,3 +63,8 @@ Tcl_GetIndexFromObj(3)
 # KEYWORDS
 
 command, error message, wrong number of arguments
+
+<!---
+Copyright (c) 1994-1997 Sun Microsystems, Inc
+-->
+

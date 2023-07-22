@@ -121,13 +121,13 @@ that \fBEOF\fR has been reached on the channel. To signal that the
 channel is out of data right now, but has not yet reached \fBEOF\fR,
 it is necessary to throw the error "EAGAIN", i.e. to either
 .PP
-.nf
+.CS
 return -code error EAGAIN
-.fi
+.CE
 or
-.nf
+.CS
 error EAGAIN
-.fi
+.CE
 .PP
 For extensibility any error whose value is a negative integer number
 will cause the higher layers to set the C-level variable "\fBerrno\fR"
@@ -137,13 +137,13 @@ their meanings is operating system dependent.
 .PP
 For example, while on Linux both
 .PP
-.nf
+.CS
 return -code error -11
-.fi
+.CE
 and
-.nf
+.CS
 error -11
-.fi
+.CE
 .PP
 are equivalent to the examples above, using the more readable string "EAGAIN",
 this is not true for BSD, where the equivalent number is -35.
@@ -178,13 +178,13 @@ forbidden and will cause the Tcl core to throw an error.
 To signal that the channel is not able to accept data for writing
 right now, it is necessary to throw the error "EAGAIN", i.e. to either
 .PP
-.nf
+.CS
 return -code error EAGAIN
-.fi
+.CE
 or
-.nf
+.CS
 error EAGAIN
-.fi
+.CE
 .PP
 For extensibility any error whose value is a negative integer number
 will cause the higher layers to set the C-level variable "\fBerrno\fR"
@@ -194,13 +194,13 @@ their meanings is operating system dependent.
 .PP
 For example, while on Linux both
 .PP
-.nf
+.CS
 return -code error -11
-.fi
+.CE
 and
-.nf
+.CS
 error -11
-.fi
+.CE
 .PP
 are equivalent to the examples above, using the more readable string "EAGAIN",
 this is not true for BSD, where the equivalent number is -35.
@@ -343,7 +343,7 @@ be used at some time in the future.
 .PP
 This demonstrates how to make a channel that reads from a string.
 .PP
-.nf
+.CS
 oo::class create stringchan {
     variable data pos
     constructor {string {encoding {}}} {
@@ -401,7 +401,7 @@ puts [gets $ch];   # Prints the whole string
 
 seek $ch -5 end;
 puts [read $ch];   # Prints just the last word
-.fi
+.CE
 .SH "SEE ALSO"
 chan(n), transchan(n)
 .SH KEYWORDS

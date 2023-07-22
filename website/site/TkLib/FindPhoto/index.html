@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+      <script>
+	// Hack for scrolling window when linking to anchor tag with fixed nav header
+        var shiftWindow = function() { scrollBy(0, -75) };
+        window.addEventListener("hashchange", shiftWindow);
+        function load() { if (window.location.hash) shiftWindow(); }
+      </script>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        
+        <link rel="canonical" href="https://www.tcl.tk/man/TkLib/FindPhoto/">
+        <link rel="shortcut icon" href="../../img/favicon.ico">
+        <title>FindPhoto - Tcl/Tk</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <link href="../../css/font-awesome.min.css" rel="stylesheet">
+    <link href="../../css/base.css" rel="stylesheet">
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+    <script src="../../js/base.js"></script> 
+    </head>
+
+    <body class="">
+
+      <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
+	<div class="container">
+	<a class="navbar-brand" href="../..">Tcl/Tk</a>
+	<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExample04" aria-controls="navbarsExample04" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+	</button>
+
+	<div class="collapse navbar-collapse">
+
+          <ul class="navbar-nav flex-row ml-md-auto d-none d-md-flex">
+            <li class="nav-item">
+              <a class="nav-link" href="#" data-toggle="modal" data-target="#mkdocs_search_modal">
+		<i class="fa fa-search"></i> Search
+              </a>
+            </li>
+          </ul>
+	</div>
+	</div>
+      </nav><div id="content" class="container">
+        
+      <div class="row">
+        <div class="col-md-9" role="main">
+
+
+<nav aria-label="breadcrumb">
+  <ol class="breadcrumb">
+    
+    <li class="breadcrumb-item active" aria-current="page">FindPhoto</li>
+  </ol>
+</nav>
+
+
+<p>\</p>
+<h1 id="name">NAME</h1>
+<p>Tk_FindPhoto, Tk_PhotoPutBlock, Tk_PhotoPutZoomedBlock,
+Tk_PhotoGetImage, Tk_PhotoBlank, Tk_PhotoExpand, Tk_PhotoGetSize,
+Tk_PhotoSetSize - manipulate the image data stored in a photo image.</p>
+<h1 id="synopsis">SYNOPSIS</h1>
+<p><strong>#include \&lt;tk.h></strong></p>
+<p>Tk_PhotoHandle <strong>Tk_FindPhoto</strong>(<em>interp, imageName</em>)</p>
+<p>int <strong>Tk_PhotoPutBlock</strong>(<em>interp, handle, blockPtr, x, y, width,
+height,compRule</em>)</p>
+<p>int <strong>Tk_PhotoPutZoomedBlock</strong>(<em>interp, handle, blockPtr, x, y, width,
+height,zoomX, zoomY, subsampleX, subsampleY, compRule</em>)</p>
+<p>int <strong>Tk_PhotoGetImage</strong>(<em>handle, blockPtr</em>)</p>
+<p>void <strong>Tk_PhotoBlank</strong>(<em>handle</em>)</p>
+<p>int <strong>Tk_PhotoExpand</strong>(<em>interp, handle, width, height</em>)</p>
+<p>void <strong>Tk_PhotoGetSize</strong>(<em>handle, widthPtr, heightPtr</em>)</p>
+<p>int <strong>Tk_PhotoSetSize</strong>(<em>interp. handle, width, height</em>)</p>
+<h1 id="arguments">ARGUMENTS</h1>
+<p>Interpreter in which image was created and in which error reporting is
+to be done.</p>
+<p>Name of the photo image.</p>
+<p>Opaque handle identifying the photo image to be affected.</p>
+<p>Specifies the address and storage layout of image data.</p>
+<p>Specifies the X coordinate where the top-left corner of the block is to
+be placed within the image.</p>
+<p>Specifies the Y coordinate where the top-left corner of the block is to
+be placed within the image.</p>
+<p>Specifies the width of the image area to be affected (for
+<strong>Tk_PhotoPutBlock</strong>) or the desired image width (for <strong>Tk_PhotoExpand</strong>
+and <strong>Tk_PhotoSetSize</strong>).</p>
+<p>Specifies the compositing rule used when combining transparent pixels in
+a block of data with a photo image. Must be one of
+<strong>TK_PHOTO_COMPOSITE_OVERLAY</strong> (which puts the block of data over the
+top of the existing photo image, with the previous contents showing
+through in the transparent bits) or <strong>TK_PHOTO_COMPOSITE_SET</strong> (which
+discards the existing photo image contents in the rectangle covered by
+the data block.)</p>
+<p>Specifies the height of the image area to be affected (for
+<strong>Tk_PhotoPutBlock</strong>) or the desired image height (for
+<strong>Tk_PhotoExpand</strong> and <strong>Tk_PhotoSetSize</strong>).</p>
+<p>Pointer to location in which to store the image width.</p>
+<p>Pointer to location in which to store the image height.</p>
+<p>Specifies the subsampling factor in the X direction for input image
+data.</p>
+<p>Specifies the subsampling factor in the Y direction for input image
+data.</p>
+<p>Specifies the zoom factor to be applied in the X direction to pixels
+being written to the photo image.</p>
+<p>Specifies the zoom factor to be applied in the Y direction to pixels
+being written to the photo image.</p>
+<p>\</p>
+<h1 id="description">DESCRIPTION</h1>
+<p><strong>Tk_FindPhoto</strong> returns an opaque handle that is used to identify a
+particular photo image to the other procedures. The parameter is the
+name of the image, that is, the name specified to the <strong>image create</strong>
+photo command, or assigned by that command if no name was specified. If
+<em>imageName</em> does not exist or is not a photo image, <strong>Tk_FindPhoto</strong>
+returns NULL.</p>
+<p><strong>Tk_PhotoPutBlock</strong> is used to supply blocks of image data to be
+displayed. The call affects an area of the image of size <em>width</em> x
+<em>height</em> pixels, with its top-left corner at coordinates (<em>x</em>,<em>y</em>). All
+of <em>width</em>, <em>height</em>, <em>x</em>, and <em>y</em> must be non-negative. If part of this
+area lies outside the current bounds of the image, the image will be
+expanded to include the area, unless the user has specified an explicit
+image size with the <strong>-width</strong> and/or <strong>-height</strong> widget configuration
+options (see photo(n)); in that case the area is silently clipped to the
+image boundaries.</p>
+<p>The <em>block</em> parameter is a pointer to a <strong>Tk_PhotoImageBlock</strong>
+structure, defined as follows:</p>
+<div class="language-text highlight"><pre><span></span><code>typedef struct {
+    unsigned char *pixelPtr;
+    int width;
+    int height;
+    int pitch;
+    int pixelSize;
+    int offset[4];
+} Tk_PhotoImageBlock;
+</code></pre></div>
+<p>The <em>pixelPtr</em> field points to the first pixel, that is, the top-left
+pixel in the block. The <em>width</em> and <em>height</em> fields specify the
+dimensions of the block of pixels. The <em>pixelSize</em> field specifies the
+address difference between two horizontally adjacent pixels. It should
+be 4 for RGB and 2 for grayscale image data. Other values are possible,
+if the offsets in the <em>offset</em> array are adjusted accordingly (e.g. for
+red, green and blue data stored in different planes). Using such a
+layout is strongly discouraged, though. Due to a bug, it might not work
+correctly if an alpha channel is provided. (see the <strong>BUGS</strong> section
+below). The <em>pitch</em> field specifies the address difference between two
+vertically adjacent pixels. The <em>offset</em> array contains the offsets from
+the address of a pixel to the addresses of the bytes containing the red,
+green, blue and alpha (transparency) components. If the offsets for red,
+green and blue are equal, the image is interpreted as grayscale. If they
+differ, RGB data is assumed. Normally the offsets will be 0, 1, 2, 3 for
+RGB data and 0, 0, 0, 1 for grayscale. It is possible to provide image
+data without an alpha channel by setting the offset for alpha to a
+negative value and adjusting the <em>pixelSize</em> field accordingly. This use
+is discouraged, though (see the <strong>BUGS</strong> section below).</p>
+<p>The <em>compRule</em> parameter to <strong>Tk_PhotoPutBlock</strong> specifies a compositing
+rule that says what to do with transparent pixels. The value
+<strong>TK_PHOTO_COMPOSITE_OVERLAY</strong> says that the previous contents of the
+photo image should show through, and the value
+<strong>TK_PHOTO_COMPOSITE_SET</strong> says that the previous contents of the photo
+image should be completely ignored, and the values from the block be
+copied directly across. The behavior in Tk8.3 and earlier was equivalent
+to having <strong>TK_PHOTO_COMPOSITE_OVERLAY</strong> as a compositing rule.</p>
+<p>The value given for the <em>width</em> and <em>height</em> parameters to
+<strong>Tk_PhotoPutBlock</strong> do not have to correspond to the values specified
+in <em>block</em>. If they are smaller, <strong>Tk_PhotoPutBlock</strong> extracts a
+sub-block from the image data supplied. If they are larger, the data
+given are replicated (in a tiled fashion) to fill the specified area.
+These rules operate independently in the horizontal and vertical
+directions.</p>
+<p><strong>Tk_PhotoPutBlock</strong> normally returns <strong>TCL_OK</strong>, though if it cannot
+allocate sufficient memory to hold the resulting image, <strong>TCL_ERROR</strong> is
+returned instead and, if the <em>interp</em> argument is non-NULL, an error
+message is placed in the interpreter\'s result.</p>
+<p><strong>Tk_PhotoPutZoomedBlock</strong> works like <strong>Tk_PhotoPutBlock</strong> except that
+the image can be reduced or enlarged for display. The <em>subsampleX</em> and
+<em>subsampleY</em> parameters allow the size of the image to be reduced by
+subsampling. <strong>Tk_PhotoPutZoomedBlock</strong> will use only pixels from the
+input image whose X coordinates are multiples of <em>subsampleX</em>, and whose
+Y coordinates are multiples of <em>subsampleY</em>. For example, an image of
+512x512 pixels can be reduced to 256x256 by setting <em>subsampleX</em> and
+<em>subsampleY</em> to 2.</p>
+<p>The <em>zoomX</em> and <em>zoomY</em> parameters allow the image to be enlarged by
+pixel replication. Each pixel of the (possibly subsampled) input image
+will be written to a block <em>zoomX</em> pixels wide and <em>zoomY</em> pixels high
+of the displayed image. Subsampling and zooming can be used together for
+special effects.</p>
+<p><strong>Tk_PhotoGetImage</strong> can be used to retrieve image data from a photo
+image. <strong>Tk_PhotoGetImage</strong> fills in the structure pointed to by the
+<em>blockPtr</em> parameter with values that describe the address and layout of
+the image data that the photo image has stored internally. The values
+are valid until the image is destroyed or its size is changed.</p>
+<p>It is possible to modify an image by writing directly to the data the
+<em>pixelPtr</em> field points to. The size of the image cannot be changed this
+way, though. Also, changes made by writing directly to <em>pixelPtr</em> will
+not be immediately visible, but only after a call to <strong>Tk_ImageChanged</strong>
+or after an event that causes the interested widgets to redraw
+themselves. For these reasons usually it is preferable to make changes
+to a copy of the image data and write it back with <strong>Tk_PhotoPutBlock</strong>
+or <strong>Tk_PhotoPutZoomedBlock</strong>.</p>
+<p><strong>Tk_PhotoGetImage</strong> returns 1 for compatibility with the corresponding
+procedure in the old photo widget.</p>
+<p><strong>Tk_PhotoBlank</strong> blanks the entire area of the photo image. Blank areas
+of a photo image are transparent.</p>
+<p><strong>Tk_PhotoExpand</strong> requests that the widget\'s image be expanded to be
+at least <em>width</em> x <em>height</em> pixels in size. The width and/or height are
+unchanged if the user has specified an explicit image width or height
+with the <strong>-width</strong> and/or <strong>-height</strong> configuration options,
+respectively. If the image data are being supplied in many small blocks,
+it is more efficient to use <strong>Tk_PhotoExpand</strong> or <strong>Tk_PhotoSetSize</strong> at
+the beginning rather than allowing the image to expand in many small
+increments as image blocks are supplied.</p>
+<p><strong>Tk_PhotoExpand</strong> normally returns <strong>TCL_OK</strong>, though if it cannot
+allocate sufficient memory to hold the resulting image, <strong>TCL_ERROR</strong> is
+returned instead and, if the <em>interp</em> argument is non-NULL, an error
+message is placed in the interpreter\'s result.</p>
+<p><strong>Tk_PhotoSetSize</strong> specifies the size of the image, as if the user had
+specified the given <em>width</em> and <em>height</em> values to the <strong>-width</strong> and
+<strong>-height</strong> configuration options. A value of zero for <em>width</em> or
+<em>height</em> does not change the image\'s width or height, but allows the
+width or height to be changed by subsequent calls to
+<strong>Tk_PhotoPutBlock</strong>, <strong>Tk_PhotoPutZoomedBlock</strong> or <strong>Tk_PhotoExpand</strong>.</p>
+<p><strong>Tk_PhotoSetSize</strong> normally returns <strong>TCL_OK</strong>, though if it cannot
+allocate sufficient memory to hold the resulting image, <strong>TCL_ERROR</strong> is
+returned instead and, if the <em>interp</em> argument is non-NULL, an error
+message is placed in the interpreter\'s result.</p>
+<p><strong>Tk_PhotoGetSize</strong> returns the dimensions of the image in *<em>widthPtr</em>
+and *<em>heightPtr</em>.</p>
+<h1 id="portability">PORTABILITY</h1>
+<p>In Tk 8.3 and earlier, <strong>Tk_PhotoPutBlock</strong> and
+<strong>Tk_PhotoPutZoomedBlock</strong> had different signatures. If you want to
+compile code that uses the old interface against 8.4 without updating
+your code, compile it with the flag -DUSE_COMPOSITELESS_PHOTO_PUT_BLOCK.
+Code linked using Stubs against older versions of Tk will continue to
+work.</p>
+<p>In Tk 8.4, <strong>Tk_PhotoPutBlock</strong>, <strong>Tk_PhotoPutZoomedBlock</strong>,
+<strong>Tk_PhotoExpand</strong> and <strong>Tk_PhotoSetSize</strong> did not take an <em>interp</em>
+argument or return any result code. If insufficient memory was available
+for an image, Tk would panic. This behaviour is still supported if you
+compile your extension with the additional flag
+-DUSE_PANIC_ON_PHOTO_ALLOC_FAILURE. Code linked using Stubs against
+older versions of Tk will continue to work.</p>
+<h1 id="bugs">BUGS</h1>
+<p>The <strong>Tk_PhotoImageBlock</strong> structure used to provide image data to
+<strong>Tk_PhotoPutBlock</strong> promises great flexibility in the layout of the
+data (e.g. separate planes for the red, green, blue and alpha channels).
+Unfortunately, the implementation fails to hold this promise. The
+problem is that the <em>pixelSize</em> field is (incorrectly) used to determine
+whether the image has an alpha channel. Currently, if the offset for the
+alpha channel is greater or equal than <em>pixelSize</em>, <strong>tk_PhotoPutblock</strong>
+assumes no alpha data is present and makes the image fully opaque. This
+means that for layouts where the channels are separate (or any other
+exotic layout where <em>pixelSize</em> has to be smaller than the alpha
+offset), the alpha channel will not be read correctly. In order to be on
+the safe side if this issue will be corrected in a future release, it is
+strongly recommended you always provide alpha data - even if the image
+has no transparency - and only use the \"standard\" layout with a
+<em>pixelSize</em> of 2 for grayscale and 4 for RGB data with <em>offset</em>s of 0,
+0, 0, 1 or 0, 1, 2, 3 respectively.</p>
+<h1 id="credits">CREDITS</h1>
+<p>The code for the photo image type was developed by Paul Mackerras, based
+on his earlier photo widget code.</p>
+<h1 id="keywords">KEYWORDS</h1>
+<p>photo, image</p>
+
+<ul class="metadata page-metadata" data-bi-name="page info" lang="en-us" dir="ltr">
+  <li class="last-updated-holder displayDate loading">
+    <span class="last-updated-text">Last updated:</span>
+    <time role="presentation" datetime="2018-10-25T00:00:00.000Z" data-article-date-source="ms.date"></time>
+  </li>
+<!--
+  <li class="readingTime">
+    2 minutes to read
+  </li>
+-->
+  <li class="contributors-holder">
+    <span class="contributors-text">Contributors</span>
+    <ul class="contributors" data-bi-name="contributors"></ul>
+  </li>
+</ul>
+</div>
+        <div class="col-md-3"><div class="navbar-light navbar-expand-md hidden-print sticky-top sticky-offset" role="complementary">
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggler collapsed" data-toggle="collapse" data-target="#toc-collapse" title="Table of Contents">
+            <span class="fa fa-angle-down"></span>
+        </button>
+    </div>
+
+    <div id="toc-collapse" class="navbar-collapse collapse card">
+        <ul class="nav flex-column bs-sidenav">
+            <li class="nav-item main"><a class="nav-link" href="#name">NAME</a></li>
+            <li class="nav-item main"><a class="nav-link" href="#synopsis">SYNOPSIS</a></li>
+            <li class="nav-item main"><a class="nav-link" href="#arguments">ARGUMENTS</a></li>
+            <li class="nav-item main"><a class="nav-link" href="#description">DESCRIPTION</a></li>
+            <li class="nav-item main"><a class="nav-link" href="#portability">PORTABILITY</a></li>
+            <li class="nav-item main"><a class="nav-link" href="#bugs">BUGS</a></li>
+            <li class="nav-item main"><a class="nav-link" href="#credits">CREDITS</a></li>
+            <li class="nav-item main"><a class="nav-link" href="#keywords">KEYWORDS</a></li>
+        </ul>
+    </div>
+</div></div>
+      </div>
+      </div>
+
+      <footer class="col-md-12">
+	<hr>
+	<div class="container">
+	</div>
+      </footer>
+      <script>
+	var base_url = "../..",
+            shortcuts = {"help": 191, "next": 78, "previous": 80, "search": 83};
+      </script>
+      <script src="../../js/base.js" defer></script>
+      <script src="../../search/main.js" defer></script>
+
+      <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="Search Modal" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Search</h4>
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            </div>
+            <div class="modal-body">
+                <p>
+                    From here you can search these documents. Enter
+                    your search terms below.
+                </p>
+                <form role="form">
+                    <div class="form-group">
+                        <input type="text" class="form-control" placeholder="Search..." id="mkdocs-search-query" title="Type search term here">
+                    </div>
+                </form>
+                <div id="mkdocs-search-results"></div>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div><div class="modal" id="mkdocs_keyboard_modal" tabindex="-1" role="dialog" aria-labelledby="Keyboard Shortcuts Modal" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <p class="h4 modal-title">Keyboard Shortcuts</p>
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            </div>
+            <div class="modal-body">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th style="width: 20%;">Keys</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="help shortcut"><kbd>?</kbd></td>
+                    <td>Open this help</td>
+                  </tr>
+                  <tr>
+                    <td class="next shortcut"><kbd>n</kbd></td>
+                    <td>Next page</td>
+                  </tr>
+                  <tr>
+                    <td class="prev shortcut"><kbd>p</kbd></td>
+                    <td>Previous page</td>
+                  </tr>
+                  <tr>
+                    <td class="search shortcut"><kbd>s</kbd></td>
+                    <td>Search</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>
+
+    </body>
+</html>

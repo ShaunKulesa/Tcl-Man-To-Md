@@ -11,7 +11,6 @@
 .SH NAME
 Tcl_AppInit \- perform application-specific initialization
 .SH SYNOPSIS
-.nf
 \fB#include <tcl.h>\fR
 .sp
 int
@@ -61,9 +60,9 @@ for the interpreter's result;  otherwise the result is ignored.
 In addition to \fBTcl_AppInit\fR, your application should also contain
 a procedure \fBmain\fR that calls \fBTcl_Main\fR as follows:
 .PP
-.nf
+.CS
 Tcl_Main(argc, argv, Tcl_AppInit);
-.fi
+.CE
 .PP
 The third argument to \fBTcl_Main\fR gives the address of the
 application-specific initialization procedure to invoke.

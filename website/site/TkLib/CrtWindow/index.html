@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+      <script>
+	// Hack for scrolling window when linking to anchor tag with fixed nav header
+        var shiftWindow = function() { scrollBy(0, -75) };
+        window.addEventListener("hashchange", shiftWindow);
+        function load() { if (window.location.hash) shiftWindow(); }
+      </script>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        
+        <link rel="canonical" href="https://www.tcl.tk/man/TkLib/CrtWindow/">
+        <link rel="shortcut icon" href="../../img/favicon.ico">
+        <title>CrtWindow - Tcl/Tk</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <link href="../../css/font-awesome.min.css" rel="stylesheet">
+    <link href="../../css/base.css" rel="stylesheet">
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+    <script src="../../js/base.js"></script> 
+    </head>
+
+    <body class="">
+
+      <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
+	<div class="container">
+	<a class="navbar-brand" href="../..">Tcl/Tk</a>
+	<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExample04" aria-controls="navbarsExample04" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+	</button>
+
+	<div class="collapse navbar-collapse">
+
+          <ul class="navbar-nav flex-row ml-md-auto d-none d-md-flex">
+            <li class="nav-item">
+              <a class="nav-link" href="#" data-toggle="modal" data-target="#mkdocs_search_modal">
+		<i class="fa fa-search"></i> Search
+              </a>
+            </li>
+          </ul>
+	</div>
+	</div>
+      </nav><div id="content" class="container">
+        
+      <div class="row">
+        <div class="col-md-9" role="main">
+
+
+<nav aria-label="breadcrumb">
+  <ol class="breadcrumb">
+    
+    <li class="breadcrumb-item active" aria-current="page">CrtWindow</li>
+  </ol>
+</nav>
+
+
+<p>\</p>
+<h1 id="name">NAME</h1>
+<p>Tk_CreateWindow, Tk_CreateWindowFromPath, Tk_DestroyWindow,
+Tk_MakeWindowExist - create or delete window</p>
+<h1 id="synopsis">SYNOPSIS</h1>
+<p><strong>#include \&lt;tk.h></strong></p>
+<p>Tk_Window <strong>Tk_CreateWindow</strong>(<em>interp, parent, name, topLevScreen</em>)</p>
+<p>Tk_Window <strong>Tk_CreateAnonymousWindow</strong>(<em>interp, parent, topLevScreen</em>)</p>
+<p>Tk_Window <strong>Tk_CreateWindowFromPath</strong>(<em>interp, tkwin, pathName,
+topLevScreen</em>)</p>
+<p><strong>Tk_DestroyWindow</strong>(<em>tkwin</em>)</p>
+<p><strong>Tk_MakeWindowExist</strong>(<em>tkwin</em>)</p>
+<h1 id="arguments">ARGUMENTS</h1>
+<p>Tcl interpreter to use for error reporting. If no error occurs, then
+<em>*interp</em> is not modified.</p>
+<p>Token for the window that is to serve as the logical parent of the new
+window.</p>
+<p>Name to use for this window. Must be unique among all children of the
+same <em>parent</em>.</p>
+<p>Has same format as <em>screenName</em>. If NULL, then new window is created as
+an internal window. If non-NULL, new window is created as a top-level
+window on screen <em>topLevScreen</em>. If <em>topLevScreen</em> is an empty string
+then new window is created as top-level window of <em>parent</em>\'s screen.</p>
+<p>Token for window.</p>
+<p>Name of new window, specified as path name within application (e.g.
+<strong>.a.b.c</strong>).</p>
+<p>\</p>
+<h1 id="description">DESCRIPTION</h1>
+<p>The procedures <strong>Tk_CreateWindow</strong>, <strong>Tk_CreateAnonymousWindow</strong>, and
+<strong>Tk_CreateWindowFromPath</strong> are used to create new windows for use in
+Tk-based applications. Each of the procedures returns a token that can
+be used to manipulate the window in other calls to the Tk library. If
+the window could not be created successfully, then NULL is returned and
+the result of interpreter <em>interp</em> is modified to hold an error message.</p>
+<p>Tk supports two different kinds of windows: internal windows and
+top-level windows. An internal window is an interior window of a Tk
+application, such as a scrollbar or menu bar or button. A top-level
+window is one that is created as a child of a screen\'s root window,
+rather than as an interior window, but which is logically part of some
+existing main window. Examples of top-level windows are pop-up menus and
+dialog boxes.</p>
+<p>New windows may be created by calling <strong>Tk_CreateWindow</strong>. If the
+<em>topLevScreen</em> argument is NULL, then the new window will be an internal
+window. If <em>topLevScreen</em> is non-NULL, then the new window will be a
+top-level window: <em>topLevScreen</em> indicates the name of a screen and the
+new window will be created as a child of the root window of
+<em>topLevScreen</em>. In either case Tk will consider the new window to be the
+logical child of <em>parent</em>: the new window\'s path name will reflect this
+fact, options may be specified for the new window under this assumption,
+and so on. The only difference is that new X window for a top-level
+window will not be a child of <em>parent</em>\'s X window. For example, a
+pull-down menu\'s <em>parent</em> would be the button-like window used to
+invoke it, which would in turn be a child of the menu bar window. A
+dialog box might have the application\'s main window as its parent.</p>
+<p><strong>Tk_CreateAnonymousWindow</strong> differs from <strong>Tk_CreateWindow</strong> in that it
+creates an unnamed window. This window will be manipulatable only using
+C interfaces, and will not be visible to Tcl scripts. Both interior
+windows and top-level windows may be created with
+<strong>Tk_CreateAnonymousWindow</strong>.</p>
+<p><strong>Tk_CreateWindowFromPath</strong> offers an alternate way of specifying new
+windows. In <strong>Tk_CreateWindowFromPath</strong> the new window is specified with
+a token for any window in the target application (<em>tkwin</em>), plus a path
+name for the new window. It produces the same effect as
+<strong>Tk_CreateWindow</strong> and allows both top-level and internal windows to be
+created, depending on the value of <em>topLevScreen</em>. In calls to
+<strong>Tk_CreateWindowFromPath</strong>, as in calls to <strong>Tk_CreateWindow</strong>, the
+parent of the new window must exist at the time of the call, but the new
+window must not already exist.</p>
+<p>The window creation procedures do not actually issue the command to X to
+create a window. Instead, they create a local data structure associated
+with the window and defer the creation of the X window. The window will
+actually be created by the first call to <strong>Tk_MapWindow</strong>. Deferred
+window creation allows various aspects of the window (such as its size,
+background color, etc.) to be modified after its creation without
+incurring any overhead in the X server. When the window is finally
+mapped all of the window attributes can be set while creating the
+window.</p>
+<p>The value returned by a window-creation procedure is not the X token for
+the window (it cannot be, since X has not been asked to create the
+window yet). Instead, it is a token for Tk\'s local data structure for
+the window. Most of the Tk library procedures take Tk_Window tokens,
+rather than X identifiers. The actual X window identifier can be
+retrieved from the local data structure using the <strong>Tk_WindowId</strong> macro;
+see the manual entry for <strong>Tk_WindowId</strong> for details.</p>
+<p><strong>Tk_DestroyWindow</strong> deletes a window and all the data structures
+associated with it, including any event handlers created with
+<strong>Tk_CreateEventHandler</strong>. In addition, <strong>Tk_DestroyWindow</strong> will delete
+any children of <em>tkwin</em> recursively (where children are defined in the
+Tk sense, consisting of all windows that were created with the given
+window as <em>parent</em>). If <em>tkwin</em> is an internal window, then event
+handlers interested in destroy events are invoked immediately. If
+<em>tkwin</em> is a top-level or main window, then the event handlers will be
+invoked later, after X has seen the request and returned an event for
+it.</p>
+<p>If a window has been created but has not been mapped, so no X window
+exists, it is possible to force the creation of the X window by calling
+<strong>Tk_MakeWindowExist</strong>. This procedure issues the X commands to
+instantiate the window given by <em>tkwin</em>.</p>
+<h1 id="keywords">KEYWORDS</h1>
+<p>create, deferred creation, destroy, display, internal window, screen,
+top-level window, window</p>
+
+<ul class="metadata page-metadata" data-bi-name="page info" lang="en-us" dir="ltr">
+  <li class="last-updated-holder displayDate loading">
+    <span class="last-updated-text">Last updated:</span>
+    <time role="presentation" datetime="2018-10-25T00:00:00.000Z" data-article-date-source="ms.date"></time>
+  </li>
+<!--
+  <li class="readingTime">
+    2 minutes to read
+  </li>
+-->
+  <li class="contributors-holder">
+    <span class="contributors-text">Contributors</span>
+    <ul class="contributors" data-bi-name="contributors"></ul>
+  </li>
+</ul>
+</div>
+        <div class="col-md-3"><div class="navbar-light navbar-expand-md hidden-print sticky-top sticky-offset" role="complementary">
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggler collapsed" data-toggle="collapse" data-target="#toc-collapse" title="Table of Contents">
+            <span class="fa fa-angle-down"></span>
+        </button>
+    </div>
+
+    <div id="toc-collapse" class="navbar-collapse collapse card">
+        <ul class="nav flex-column bs-sidenav">
+            <li class="nav-item main"><a class="nav-link" href="#name">NAME</a></li>
+            <li class="nav-item main"><a class="nav-link" href="#synopsis">SYNOPSIS</a></li>
+            <li class="nav-item main"><a class="nav-link" href="#arguments">ARGUMENTS</a></li>
+            <li class="nav-item main"><a class="nav-link" href="#description">DESCRIPTION</a></li>
+            <li class="nav-item main"><a class="nav-link" href="#keywords">KEYWORDS</a></li>
+        </ul>
+    </div>
+</div></div>
+      </div>
+      </div>
+
+      <footer class="col-md-12">
+	<hr>
+	<div class="container">
+	</div>
+      </footer>
+      <script>
+	var base_url = "../..",
+            shortcuts = {"help": 191, "next": 78, "previous": 80, "search": 83};
+      </script>
+      <script src="../../js/base.js" defer></script>
+      <script src="../../search/main.js" defer></script>
+
+      <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="Search Modal" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Search</h4>
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            </div>
+            <div class="modal-body">
+                <p>
+                    From here you can search these documents. Enter
+                    your search terms below.
+                </p>
+                <form role="form">
+                    <div class="form-group">
+                        <input type="text" class="form-control" placeholder="Search..." id="mkdocs-search-query" title="Type search term here">
+                    </div>
+                </form>
+                <div id="mkdocs-search-results"></div>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div><div class="modal" id="mkdocs_keyboard_modal" tabindex="-1" role="dialog" aria-labelledby="Keyboard Shortcuts Modal" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <p class="h4 modal-title">Keyboard Shortcuts</p>
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            </div>
+            <div class="modal-body">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th style="width: 20%;">Keys</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="help shortcut"><kbd>?</kbd></td>
+                    <td>Open this help</td>
+                  </tr>
+                  <tr>
+                    <td class="next shortcut"><kbd>n</kbd></td>
+                    <td>Next page</td>
+                  </tr>
+                  <tr>
+                    <td class="prev shortcut"><kbd>p</kbd></td>
+                    <td>Previous page</td>
+                  </tr>
+                  <tr>
+                    <td class="search shortcut"><kbd>s</kbd></td>
+                    <td>Search</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>
+
+    </body>
+</html>

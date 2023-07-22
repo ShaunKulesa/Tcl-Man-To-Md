@@ -1,5 +1,3 @@
-\
-
 # NAME
 
 break - Abort looping command
@@ -7,8 +5,6 @@ break - Abort looping command
 # SYNOPSIS
 
 **break**
-
-\
 
 # DESCRIPTION
 
@@ -39,3 +35,9 @@ catch(n), continue(n), for(n), foreach(n), return(n), while(n)
 # KEYWORDS
 
 abort, break, loop
+
+<!---
+Copyright (c) 1993-1994 The Regents of the University of California
+Copyright (c) 1994-1996 Sun Microsystems, Inc
+-->
+

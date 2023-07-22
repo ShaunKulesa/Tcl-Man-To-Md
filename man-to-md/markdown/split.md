@@ -1,5 +1,3 @@
-\
-
 # NAME
 
 split - Split a string into a proper Tcl list
@@ -7,8 +5,6 @@ split - Split a string into a proper Tcl list
 # SYNOPSIS
 
 **split ***string *?*splitChars*?
-
-\
 
 # DESCRIPTION
 
@@ -78,3 +74,9 @@ join(n), list(n), string(n)
 # KEYWORDS
 
 list, split, string
+
+<!---
+Copyright (c) 1993 The Regents of the University of California
+Copyright (c) 1994-1996 Sun Microsystems, Inc
+-->
+

@@ -1,5 +1,3 @@
-\
-
 # NAME
 
 Tcl_Alloc, Tcl_Free, Tcl_Realloc, Tcl_AttemptAlloc, Tcl_AttemptRealloc,
@@ -8,40 +6,29 @@ attemptckrealloc - allocate or free heap memory
 
 # SYNOPSIS
 
-    #include <tcl.h>
+**#include \<tcl.h\>**
 
-    char *
-    Tcl_Alloc(size)
+char \* **Tcl_Alloc**(*size*)
 
-    void
-    Tcl_Free(ptr)
+void **Tcl_Free**(*ptr*)
 
-    char *
-    Tcl_Realloc(ptr, size)
+char \* **Tcl_Realloc**(*ptr, size*)
 
-    char *
-    Tcl_AttemptAlloc(size)
+char \* **Tcl_AttemptAlloc**(*size*)
 
-    char *
-    Tcl_AttemptRealloc(ptr, size)
+char \* **Tcl_AttemptRealloc**(*ptr, size*)
 
-    void
-    Tcl_GetMemoryInfo(dsPtr)
+void **Tcl_GetMemoryInfo**(*dsPtr*)
 
-    char *
-    ckalloc(size)
+char \* **ckalloc**(*size*)
 
-    void
-    ckfree(ptr)
+void **ckfree**(*ptr*)
 
-    char *
-    ckrealloc(ptr, size)
+char \* **ckrealloc**(*ptr, size*)
 
-    char *
-    attemptckalloc(size)
+char \* **attemptckalloc**(*size*)
 
-    char *
-    attemptckrealloc(ptr, size)
+char \* **attemptckrealloc**(*ptr, size*)
 
 # ARGUMENTS
 
@@ -50,8 +37,6 @@ Size in bytes of the memory block to allocate.
 Pointer to memory block to free or realloc.
 
 Initialized DString pointer.
-
-\
 
 # DESCRIPTION
 
@@ -98,3 +83,8 @@ threaded memory allocator.
 # KEYWORDS
 
 alloc, allocation, free, malloc, memory, realloc, TCL_MEM_DEBUG
+
+<!---
+Copyright (c) 1995-1996 Sun Microsystems, Inc
+-->
+

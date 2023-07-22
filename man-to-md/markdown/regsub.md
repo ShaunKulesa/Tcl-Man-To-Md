@@ -1,5 +1,3 @@
-\
-
 # NAME
 
 regsub - Perform substitutions based on regular expression pattern
@@ -8,8 +6,6 @@ matching
 # SYNOPSIS
 
 **regsub **?*switches*? *exp string subSpec *?*varName*?
-
-\
 
 # DESCRIPTION
 
@@ -134,3 +130,10 @@ regexp(n), re_syntax(n), subst(n), string(n)
 # KEYWORDS
 
 match, pattern, quoting, regular expression, substitution
+
+<!---
+Copyright (c) 1993 The Regents of the University of California
+Copyright (c) 1994-1996 Sun Microsystems, Inc
+Copyright (c) 2000 Scriptics Corporation
+-->
+

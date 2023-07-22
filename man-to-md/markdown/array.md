@@ -1,5 +1,3 @@
-\
-
 # NAME
 
 array - Manipulate array variables
@@ -7,8 +5,6 @@ array - Manipulate array variables
 # SYNOPSIS
 
 **array ***option arrayName* ?*arg arg \...*?
-
-\
 
 # DESCRIPTION
 
@@ -182,3 +178,9 @@ list(n), string(n), variable(n), trace(n), foreach(n)
 # KEYWORDS
 
 array, element names, search
+
+<!---
+Copyright (c) 1993-1994 The Regents of the University of California
+Copyright (c) 1994-1996 Sun Microsystems, Inc
+-->
+

@@ -1,5 +1,3 @@
-\
-
 # NAME
 
 Tcl_FSRegister, Tcl_FSUnregister, Tcl_FSData, Tcl_FSMountsChanged,
@@ -25,177 +23,123 @@ any filesystem
 
 # SYNOPSIS
 
-    #include <tcl.h>
+**#include \<tcl.h\>**
 
-    int
-    Tcl_FSRegister(clientData, fsPtr)
+int **Tcl_FSRegister**(*clientData, fsPtr*)
 
-    int
-    Tcl_FSUnregister(fsPtr)
+int **Tcl_FSUnregister**(*fsPtr*)
 
-    ClientData
-    Tcl_FSData(fsPtr)
+ClientData **Tcl_FSData**(*fsPtr*)
 
-    void
-    Tcl_FSMountsChanged(fsPtr)
+void **Tcl_FSMountsChanged**(*fsPtr*)
 
-    const Tcl_Filesystem *
-    Tcl_FSGetFileSystemForPath(pathPtr)
+const Tcl_Filesystem \* **Tcl_FSGetFileSystemForPath**(*pathPtr*)
 
-    Tcl_PathType
-    Tcl_FSGetPathType(pathPtr)
+Tcl_PathType **Tcl_FSGetPathType**(*pathPtr*)
 
-    int
-    Tcl_FSCopyFile(srcPathPtr, destPathPtr)
+int **Tcl_FSCopyFile**(*srcPathPtr, destPathPtr*)
 
-    int
-    Tcl_FSCopyDirectory(srcPathPtr, destPathPtr, errorPtr)
+int **Tcl_FSCopyDirectory**(*srcPathPtr, destPathPtr, errorPtr*)
 
-    int
-    Tcl_FSCreateDirectory(pathPtr)
+int **Tcl_FSCreateDirectory**(*pathPtr*)
 
-    int
-    Tcl_FSDeleteFile(pathPtr)
+int **Tcl_FSDeleteFile**(*pathPtr*)
 
-    int
-    Tcl_FSRemoveDirectory(pathPtr, int recursive, errorPtr)
+int **Tcl_FSRemoveDirectory**(*pathPtr, int recursive, errorPtr*)
 
-    int
-    Tcl_FSRenameFile(srcPathPtr, destPathPtr)
+int **Tcl_FSRenameFile**(*srcPathPtr, destPathPtr*)
 
-    Tcl_Obj *
-    Tcl_FSListVolumes(void)
+Tcl_Obj \* **Tcl_FSListVolumes**(*void*)
 
-    int
-    Tcl_FSEvalFileEx(interp, pathPtr, encodingName)
+int **Tcl_FSEvalFileEx**(*interp, pathPtr, encodingName*)
 
-    int
-    Tcl_FSEvalFile(interp, pathPtr)
+int **Tcl_FSEvalFile**(*interp, pathPtr*)
 
-    int
-    Tcl_FSLoadFile(interp, pathPtr, sym1, sym2, proc1Ptr, proc2Ptr,
-                   loadHandlePtr, unloadProcPtr)
+int **Tcl_FSLoadFile**(*interp, pathPtr, sym1, sym2, proc1Ptr,
+proc2Ptr,* loadHandlePtr, unloadProcPtr)
 
-    int
-    Tcl_FSUnloadFile(interp, loadHandle)
+int **Tcl_FSUnloadFile**(*interp, loadHandle*)
 
+int **Tcl_FSMatchInDirectory**(*interp, resultPtr, pathPtr, pattern,
+types*)
 
-    int
-    Tcl_FSMatchInDirectory(interp, resultPtr, pathPtr, pattern, types)
+Tcl_Obj \* **Tcl_FSLink**(*linkNamePtr, toPtr, linkAction*)
 
-    Tcl_Obj *
-    Tcl_FSLink(linkNamePtr, toPtr, linkAction)
+int **Tcl_FSLstat**(*pathPtr, statPtr*)
 
-    int
-    Tcl_FSLstat(pathPtr, statPtr)
+int **Tcl_FSUtime**(*pathPtr, tval*)
 
-    int
-    Tcl_FSUtime(pathPtr, tval)
+int **Tcl_FSFileAttrsGet**(*interp, int index, pathPtr, objPtrRef*)
 
-    int
-    Tcl_FSFileAttrsGet(interp, int index, pathPtr, objPtrRef)
+int **Tcl_FSFileAttrsSet**(*interp, int index, pathPtr, Tcl_Obj
+\*objPtr*)
 
-    int
-    Tcl_FSFileAttrsSet(interp, int index, pathPtr, Tcl_Obj *objPtr)
+const char \*const \* **Tcl_FSFileAttrStrings**(*pathPtr, objPtrRef*)
 
-    const char *const *
-    Tcl_FSFileAttrStrings(pathPtr, objPtrRef)
+int **Tcl_FSStat**(*pathPtr, statPtr*)
 
-    int
-    Tcl_FSStat(pathPtr, statPtr)
+int **Tcl_FSAccess**(*pathPtr, mode*)
 
-    int
-    Tcl_FSAccess(pathPtr, mode)
+Tcl_Channel **Tcl_FSOpenFileChannel**(*interp, pathPtr, modeString,
+permissions*)
 
-    Tcl_Channel
-    Tcl_FSOpenFileChannel(interp, pathPtr, modeString, permissions)
+Tcl_Obj \* **Tcl_FSGetCwd**(*interp*)
 
-    Tcl_Obj *
-    Tcl_FSGetCwd(interp)
+int **Tcl_FSChdir**(*pathPtr*)
 
-    int
-    Tcl_FSChdir(pathPtr)
+Tcl_Obj \* **Tcl_FSPathSeparator**(*pathPtr*)
 
-    Tcl_Obj *
-    Tcl_FSPathSeparator(pathPtr)
+Tcl_Obj \* **Tcl_FSJoinPath**(*listObj, elements*)
 
-    Tcl_Obj *
-    Tcl_FSJoinPath(listObj, elements)
+Tcl_Obj \* **Tcl_FSSplitPath**(*pathPtr, lenPtr*)
 
-    Tcl_Obj *
-    Tcl_FSSplitPath(pathPtr, lenPtr)
+int **Tcl_FSEqualPaths**(*firstPtr, secondPtr*)
 
-    int
-    Tcl_FSEqualPaths(firstPtr, secondPtr)
+Tcl_Obj \* **Tcl_FSGetNormalizedPath**(*interp, pathPtr*)
 
-    Tcl_Obj *
-    Tcl_FSGetNormalizedPath(interp, pathPtr)
+Tcl_Obj \* **Tcl_FSJoinToPath**(*basePtr, objc, objv*)
 
-    Tcl_Obj *
-    Tcl_FSJoinToPath(basePtr, objc, objv)
+int **Tcl_FSConvertToPathType**(*interp, pathPtr*)
 
-    int
-    Tcl_FSConvertToPathType(interp, pathPtr)
+ClientData **Tcl_FSGetInternalRep**(*pathPtr, fsPtr*)
 
-    ClientData
-    Tcl_FSGetInternalRep(pathPtr, fsPtr)
+Tcl_Obj \* **Tcl_FSGetTranslatedPath**(*interp, pathPtr*)
 
-    Tcl_Obj *
-    Tcl_FSGetTranslatedPath(interp, pathPtr)
+const char \* **Tcl_FSGetTranslatedStringPath**(*interp, pathPtr*)
 
-    const char *
-    Tcl_FSGetTranslatedStringPath(interp, pathPtr)
+Tcl_Obj \* **Tcl_FSNewNativePath**(*fsPtr, clientData*)
 
-    Tcl_Obj *
-    Tcl_FSNewNativePath(fsPtr, clientData)
+const void \* **Tcl_FSGetNativePath**(*pathPtr*)
 
-    const void *
-    Tcl_FSGetNativePath(pathPtr)
+Tcl_Obj \* **Tcl_FSFileSystemInfo**(*pathPtr*)
 
-    Tcl_Obj *
-    Tcl_FSFileSystemInfo(pathPtr)
+Tcl_StatBuf \* **Tcl_AllocStatBuf**()
 
-    Tcl_StatBuf *
-    Tcl_AllocStatBuf()
+Tcl_WideInt **Tcl_GetAccessTimeFromStat**(*statPtr*)
 
-    Tcl_WideInt
-    Tcl_GetAccessTimeFromStat(statPtr)
+unsigned **Tcl_GetBlockSizeFromStat**(*statPtr*)
 
-    unsigned
-    Tcl_GetBlockSizeFromStat(statPtr)
+Tcl_WideUInt **Tcl_GetBlocksFromStat**(*statPtr*)
 
-    Tcl_WideUInt
-    Tcl_GetBlocksFromStat(statPtr)
+Tcl_WideInt **Tcl_GetChangeTimeFromStat**(*statPtr*)
 
-    Tcl_WideInt
-    Tcl_GetChangeTimeFromStat(statPtr)
+int **Tcl_GetDeviceTypeFromStat**(*statPtr*)
 
-    int
-    Tcl_GetDeviceTypeFromStat(statPtr)
+unsigned **Tcl_GetFSDeviceFromStat**(*statPtr*)
 
-    unsigned
-    Tcl_GetFSDeviceFromStat(statPtr)
+unsigned **Tcl_GetFSInodeFromStat**(*statPtr*)
 
-    unsigned
-    Tcl_GetFSInodeFromStat(statPtr)
+int **Tcl_GetGroupIdFromStat**(*statPtr*)
 
-    int
-    Tcl_GetGroupIdFromStat(statPtr)
+int **Tcl_GetLinkCountFromStat**(*statPtr*)
 
-    int
-    Tcl_GetLinkCountFromStat(statPtr)
+unsigned **Tcl_GetModeFromStat**(*statPtr*)
 
-    unsigned
-    Tcl_GetModeFromStat(statPtr)
+Tcl_WideInt **Tcl_GetModificationTimeFromStat**(*statPtr*)
 
-    Tcl_WideInt
-    Tcl_GetModificationTimeFromStat(statPtr)
+Tcl_WideUInt **Tcl_GetSizeFromStat**(*statPtr*)
 
-    Tcl_WideUInt
-    Tcl_GetSizeFromStat(statPtr)
-
-    int
-    Tcl_GetUserIdFromStat(statPtr)
+int **Tcl_GetUserIdFromStat**(*statPtr*)
 
 # ARGUMENTS
 
@@ -296,8 +240,6 @@ created (will be ignored if *toPtr* is NULL). Valid bits to set are
 **TCL_CREATE_SYMBOLIC_LINK** and **TCL_CREATE_HARD_LINK**. When both
 flags are set and the underlying filesystem can do either, symbolic
 links are preferred.
-
-\
 
 # DESCRIPTION
 
@@ -1520,3 +1462,9 @@ unload(n)
 # KEYWORDS
 
 stat, access, filesystem, vfs, virtual filesystem
+
+<!---
+Copyright (c) 2001 Vincent Darle
+Copyright (c) 2008-2010 Donal K. Fellow
+-->
+

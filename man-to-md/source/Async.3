@@ -11,7 +11,6 @@
 .SH NAME
 Tcl_AsyncCreate, Tcl_AsyncMark, Tcl_AsyncInvoke, Tcl_AsyncDelete, Tcl_AsyncReady \- handle asynchronous events
 .SH SYNOPSIS
-.nf
 \fB#include <tcl.h>\fR
 .sp
 Tcl_AsyncHandler
@@ -82,12 +81,12 @@ the actions associated with the asynchronous event.
 \fIProc\fR should have arguments and result that match the
 type \fBTcl_AsyncProc\fR:
 .PP
-.nf
+.CS
 typedef int \fBTcl_AsyncProc\fR(
         ClientData \fIclientData\fR,
         Tcl_Interp *\fIinterp\fR,
         int \fIcode\fR);
-.fi
+.CE
 .PP
 The \fIclientData\fR will be the same as the \fIclientData\fR
 argument passed to \fBTcl_AsyncCreate\fR when the handler was

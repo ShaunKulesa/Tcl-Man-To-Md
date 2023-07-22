@@ -1,5 +1,3 @@
-\
-
 # NAME
 
 llength - Count the number of elements in a list
@@ -7,8 +5,6 @@ llength - Count the number of elements in a list
 # SYNOPSIS
 
 **llength ***list*
-
-\
 
 # DESCRIPTION
 
@@ -47,3 +43,10 @@ lsort(n), lrange(n), lreplace(n)
 # KEYWORDS
 
 element, list, length
+
+<!---
+Copyright (c) 1993 The Regents of the University of California
+Copyright (c) 1994-1996 Sun Microsystems, Inc
+Copyright (c) 2001 Kevin B. Kenny <kennykb@acm.org>.  All rights reserved
+-->
+

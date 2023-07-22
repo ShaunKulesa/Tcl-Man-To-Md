@@ -1,5 +1,3 @@
-\
-
 # NAME
 
 pwd - Return the absolute path of the current working directory
@@ -7,8 +5,6 @@ pwd - Return the absolute path of the current working directory
 # SYNOPSIS
 
 **pwd**
-
-\
 
 # DESCRIPTION
 
@@ -36,3 +32,9 @@ file(n), cd(n), glob(n), filename(n)
 # KEYWORDS
 
 working directory
+
+<!---
+Copyright (c) 1993 The Regents of the University of California
+Copyright (c) 1994-1996 Sun Microsystems, Inc
+-->
+

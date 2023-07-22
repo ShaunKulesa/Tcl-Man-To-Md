@@ -1,21 +1,16 @@
-\
-
 # NAME
 
 Tcl_CommandComplete - Check for unmatched braces in a Tcl command
 
 # SYNOPSIS
 
-    #include <tcl.h>
+**#include \<tcl.h\>**
 
-    int
-    Tcl_CommandComplete(cmd)
+int **Tcl_CommandComplete**(*cmd*)
 
 # ARGUMENTS
 
 Command string to test for completeness.
-
-\
 
 # DESCRIPTION
 
@@ -28,3 +23,9 @@ the command string is complete then it returns 1; otherwise it returns
 # KEYWORDS
 
 complete command, partial command
+
+<!---
+Copyright (c) 1989-1993 The Regents of the University of California
+Copyright (c) 1994-1996 Sun Microsystems, Inc
+-->
+

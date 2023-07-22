@@ -9,7 +9,6 @@
 .SH NAME
 Tcl_Panic, Tcl_PanicVA, Tcl_SetPanicProc \- report fatal error and abort
 .SH SYNOPSIS
-.nf
 \fB#include <tcl.h>\fR
 .sp
 void
@@ -58,11 +57,11 @@ system dialog box is used to display the panic message.
 \fBTcl_Panic\fR.  The \fIpanicProc\fR argument should match the
 type \fBTcl_PanicProc\fR:
 .PP
-.nf
+.CS
 typedef void \fBTcl_PanicProc\fR(
         const char *\fBformat\fR,
         \fBarg\fR, \fBarg\fR,...);
-.fi
+.CE
 .PP
 After \fBTcl_SetPanicProc\fR returns, any future calls to
 \fBTcl_Panic\fR will call \fIpanicProc\fR, passing along the

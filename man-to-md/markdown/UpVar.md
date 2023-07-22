@@ -1,5 +1,3 @@
-\
-
 # NAME
 
 upvar - Create link to variable in a different stack frame
@@ -7,8 +5,6 @@ upvar - Create link to variable in a different stack frame
 # SYNOPSIS
 
 **upvar **?*level*? *otherVar myVar *?*otherVar myVar *\...?
-
-\
 
 # DESCRIPTION
 
@@ -101,3 +97,9 @@ global(n), namespace(n), uplevel(n), variable(n)
 # KEYWORDS
 
 context, frame, global, level, namespace, procedure, upvar, variable
+
+<!---
+Copyright (c) 1993 The Regents of the University of California
+Copyright (c) 1994-1997 Sun Microsystems, Inc
+-->
+

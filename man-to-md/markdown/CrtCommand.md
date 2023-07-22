@@ -1,15 +1,13 @@
-\
-
 # NAME
 
 Tcl_CreateCommand - implement new commands in C
 
 # SYNOPSIS
 
-    #include <tcl.h>
+**#include \<tcl.h\>**
 
-    Tcl_Command
-    Tcl_CreateCommand(interp, cmdName, proc, clientData, deleteProc)
+Tcl_Command **Tcl_CreateCommand**(*interp, cmdName, proc, clientData,
+deleteProc*)
 
 # ARGUMENTS
 
@@ -25,8 +23,6 @@ Arbitrary one-word value to pass to *proc* and *deleteProc*.
 Procedure to call before *cmdName* is deleted from the interpreter;
 allows for command-specific cleanup. If NULL, then no procedure is
 called before the command is deleted.
-
-\
 
 # DESCRIPTION
 
@@ -126,3 +122,9 @@ Tcl_SetCommandInfo, Tcl_GetCommandName, Tcl_SetObjResult
 # KEYWORDS
 
 bind, command, create, delete, interpreter, namespace
+
+<!---
+Copyright (c) 1989-1993 The Regents of the University of California
+Copyright (c) 1994-1997 Sun Microsystems, Inc
+-->
+

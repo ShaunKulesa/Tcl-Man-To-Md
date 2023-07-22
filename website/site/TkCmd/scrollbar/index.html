@@ -1,0 +1,491 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+      <script>
+	// Hack for scrolling window when linking to anchor tag with fixed nav header
+        var shiftWindow = function() { scrollBy(0, -75) };
+        window.addEventListener("hashchange", shiftWindow);
+        function load() { if (window.location.hash) shiftWindow(); }
+      </script>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        
+        <link rel="canonical" href="https://www.tcl.tk/man/TkCmd/scrollbar/">
+        <link rel="shortcut icon" href="../../img/favicon.ico">
+        <title>Scrollbar - Tcl/Tk</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <link href="../../css/font-awesome.min.css" rel="stylesheet">
+    <link href="../../css/base.css" rel="stylesheet">
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+    <script src="../../js/base.js"></script> 
+    </head>
+
+    <body class="">
+
+      <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
+	<div class="container">
+	<a class="navbar-brand" href="../..">Tcl/Tk</a>
+	<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExample04" aria-controls="navbarsExample04" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+	</button>
+
+	<div class="collapse navbar-collapse">
+
+          <ul class="navbar-nav flex-row ml-md-auto d-none d-md-flex">
+            <li class="nav-item">
+              <a class="nav-link" href="#" data-toggle="modal" data-target="#mkdocs_search_modal">
+		<i class="fa fa-search"></i> Search
+              </a>
+            </li>
+          </ul>
+	</div>
+	</div>
+      </nav><div id="content" class="container">
+        
+      <div class="row">
+        <div class="col-md-9" role="main">
+
+
+<nav aria-label="breadcrumb">
+  <ol class="breadcrumb">
+    
+    <li class="breadcrumb-item active" aria-current="page">Scrollbar</li>
+  </ol>
+</nav>
+
+
+<p>\</p>
+<h1 id="name">NAME</h1>
+<p>scrollbar - Create and manipulate \'scrollbar\' scrolling control and
+indicator widgets</p>
+<h1 id="synopsis">SYNOPSIS</h1>
+<p><strong>scrollbar</strong> <em>pathName </em>?<em>options</em>?</p>
+<h1 id="standard-options">STANDARD OPTIONS</h1>
+<div class="language-text highlight"><pre><span></span><code>-activebackground   -highlightcolor -repeatdelay
+-background -highlightthickness -repeatinterval
+-borderwidth    -jump   -takefocus
+-cursor -orient -troughcolor
+-highlightbackground    -relief
+</code></pre></div>
+<p>See the manual entry for details on the standard options.</p>
+<h1 id="widget-specific-options">WIDGET-SPECIFIC OPTIONS</h1>
+<div class="language-text highlight"><pre><span></span><code>Command-Line Name:  -activerelief
+Database Name:  activeRelief
+Database Class: ActiveRelief
+</code></pre></div>
+<blockquote>
+<p>Specifies the relief to use when displaying the element that is
+active, if any. Elements other than the active element are always
+displayed with a raised relief.</p>
+</blockquote>
+<div class="language-text highlight"><pre><span></span><code>Command-Line Name:  -command
+Database Name:  command
+Database Class: Command
+</code></pre></div>
+<blockquote>
+<p>Specifies the prefix of a Tcl command to invoke to change the view in
+the widget associated with the scrollbar. When a user requests a view
+change by manipulating the scrollbar, a Tcl command is invoked. The
+actual command consists of this option followed by additional
+information as described later. This option almost always has a value
+such as <strong>.t xview</strong> or <strong>.t yview</strong>, consisting of the name of a
+widget and either <strong>xview</strong> (if the scrollbar is for horizontal
+scrolling) or <strong>yview</strong> (for vertical scrolling). All scrollable
+widgets have <strong>xview</strong> and <strong>yview</strong> commands that take exactly the
+additional arguments appended by the scrollbar as described in
+<strong>SCROLLING COMMANDS</strong> below.</p>
+</blockquote>
+<div class="language-text highlight"><pre><span></span><code>Command-Line Name:  -elementborderwidth
+Database Name:  elementBorderWidth
+Database Class: BorderWidth
+</code></pre></div>
+<blockquote>
+<p>Specifies the width of borders drawn around the internal elements of
+the scrollbar (the two arrows and the slider). The value may have any
+of the forms acceptable to <strong>Tk_GetPixels</strong>. If this value is less
+than zero, the value of the <strong>-borderwidth</strong> option is used in its
+place.</p>
+</blockquote>
+<div class="language-text highlight"><pre><span></span><code>Command-Line Name:  -width
+Database Name:  width
+Database Class: Width
+</code></pre></div>
+<blockquote>
+<p>Specifies the desired narrow dimension of the scrollbar window, not
+including 3-D border, if any. For vertical scrollbars this will be the
+width and for horizontal scrollbars this will be the height. The value
+may have any of the forms acceptable to <strong>Tk_GetPixels</strong>.</p>
+</blockquote>
+<p>\</p>
+<h1 id="description">DESCRIPTION</h1>
+<p>The <strong>scrollbar</strong> command creates a new window (given by the <em>pathName</em>
+argument) and makes it into a scrollbar widget. Additional options,
+described above, may be specified on the command line or in the option
+database to configure aspects of the scrollbar such as its colors,
+orientation, and relief. The <strong>scrollbar</strong> command returns its
+<em>pathName</em> argument. At the time this command is invoked, there must not
+exist a window named <em>pathName</em>, but <em>pathName</em>\'s parent must exist.</p>
+<p>A scrollbar is a widget that displays two arrows, one at each end of the
+scrollbar, and a <em>slider</em> in the middle portion of the scrollbar. It
+provides information about what is visible in an <em>associated window</em>
+that displays a document of some sort (such as a file being edited or a
+drawing). The position and size of the slider indicate which portion of
+the document is visible in the associated window. For example, if the
+slider in a vertical scrollbar covers the top third of the area between
+the two arrows, it means that the associated window displays the top
+third of its document.</p>
+<p>Scrollbars can be used to adjust the view in the associated window by
+clicking or dragging with the mouse. See the <strong>BINDINGS</strong> section below
+for details.</p>
+<h1 id="elements">ELEMENTS</h1>
+<p>A scrollbar displays five elements, which are referred to in the widget
+commands for the scrollbar:</p>
+<p><strong>arrow1</strong></p>
+<p>:   The top or left arrow in the scrollbar.</p>
+<p><strong>trough1</strong></p>
+<p>:   The region between the slider and <strong>arrow1</strong>.</p>
+<p><strong>slider</strong></p>
+<p>:   The rectangle that indicates what is visible in the associated
+    widget.</p>
+<p><strong>trough2</strong></p>
+<p>:   The region between the slider and <strong>arrow2</strong>.</p>
+<p><strong>arrow2</strong></p>
+<p>:   The bottom or right arrow in the scrollbar.</p>
+<h1 id="widget-command">WIDGET COMMAND</h1>
+<p>The <strong>scrollbar</strong> command creates a new Tcl command whose name is
+<em>pathName</em>. This command may be used to invoke various operations on the
+widget. It has the following general form:</p>
+<div class="language-text highlight"><pre><span></span><code>pathName option ?arg arg ...?
+</code></pre></div>
+<p><em>Option</em> and the <em>arg</em>s determine the exact behavior of the command. The
+following commands are possible for scrollbar widgets:</p>
+<p><em>pathName </em><strong>activate </strong>?<em>element</em>?</p>
+<p>:   Marks the element indicated by <em>element</em> as active, which causes it
+    to be displayed as specified by the <strong>-activebackground</strong> and
+    <strong>-activerelief</strong> options. The only element values understood by
+    this command are <strong>arrow1</strong>, <strong>slider</strong>, or <strong>arrow2</strong>. If any other
+    value is specified then no element of the scrollbar will be active.
+    If <em>element</em> is not specified, the command returns the name of the
+    element that is currently active, or an empty string if no element
+    is active.</p>
+<p><em>pathName </em><strong>cget </strong><em>option</em></p>
+<p>:   Returns the current value of the configuration option given by
+    <em>option</em>. <em>Option</em> may have any of the values accepted by the
+    <strong>scrollbar</strong> command.</p>
+<p><em>pathName </em><strong>configure</strong> ?<em>option</em>? ?<em>value option value ...</em>?</p>
+<p>:   Query or modify the configuration options of the widget. If no
+    <em>option</em> is specified, returns a list describing all of the
+    available options for <em>pathName</em> (see <strong>Tk_ConfigureInfo</strong> for
+    information on the format of this list). If <em>option</em> is specified
+    with no <em>value</em>, then the command returns a list describing the one
+    named option (this list will be identical to the corresponding
+    sublist of the value returned if no <em>option</em> is specified). If one
+    or more <em>option-value</em> pairs are specified, then the command
+    modifies the given widget option(s) to have the given value(s); in
+    this case the command returns an empty string. <em>Option</em> may have any
+    of the values accepted by the <strong>scrollbar</strong> command.</p>
+<p><em>pathName </em><strong>delta </strong><em>deltaX deltaY</em></p>
+<p>:   Returns a real number indicating the fractional change in the
+    scrollbar setting that corresponds to a given change in slider
+    position. For example, if the scrollbar is horizontal, the result
+    indicates how much the scrollbar setting must change to move the
+    slider <em>deltaX</em> pixels to the right (<em>deltaY</em> is ignored in this
+    case). If the scrollbar is vertical, the result indicates how much
+    the scrollbar setting must change to move the slider <em>deltaY</em> pixels
+    down. The arguments and the result may be zero or negative.</p>
+<p><em>pathName </em><strong>fraction </strong><em>x y</em></p>
+<p>:   Returns a real number between 0 and 1 indicating where the point
+    given by <em>x</em> and <em>y</em> lies in the trough area of the scrollbar. The
+    value 0 corresponds to the top or left of the trough, the value 1
+    corresponds to the bottom or right, 0.5 corresponds to the middle,
+    and so on. <em>X</em> and <em>y</em> must be pixel coordinates relative to the
+    scrollbar widget. If <em>x</em> and <em>y</em> refer to a point outside the
+    trough, the closest point in the trough is used.</p>
+<p><em>pathName </em><strong>get</strong></p>
+<p>:   Returns the scrollbar settings in the form of a list whose elements
+    are the arguments to the most recent <strong>set</strong> widget command.</p>
+<p><em>pathName </em><strong>identify </strong><em>x y</em></p>
+<p>:   Returns the name of the element under the point given by <em>x</em> and <em>y</em>
+    (such as <strong>arrow1</strong>), or an empty string if the point does not lie
+    in any element of the scrollbar. <em>X</em> and <em>y</em> must be pixel
+    coordinates relative to the scrollbar widget.</p>
+<p><em>pathName </em><strong>set </strong><em>first last</em></p>
+<p>:   This command is invoked by the scrollbar\'s associated widget to
+    tell the scrollbar about the current view in the widget. The command
+    takes two arguments, each of which is a real fraction between 0
+    and 1. The fractions describe the range of the document that is
+    visible in the associated widget. For example, if <em>first</em> is 0.2 and
+    <em>last</em> is 0.4, it means that the first part of the document visible
+    in the window is 20% of the way through the document, and the last
+    visible part is 40% of the way through.</p>
+<h1 id="scrolling-commands">SCROLLING COMMANDS</h1>
+<p>When the user interacts with the scrollbar, for example by dragging the
+slider, the scrollbar notifies the associated widget that it must change
+its view. The scrollbar makes the notification by evaluating a Tcl
+command generated from the scrollbar\'s <strong>-command</strong> option. The command
+may take any of the following forms. In each case, <em>prefix</em> is the
+contents of the <strong>-command</strong> option, which usually has a form like</p>
+<p><em>prefix </em><strong>moveto </strong><em>fraction</em></p>
+<p>:   <em>Fraction</em> is a real number between 0 and 1. The widget should
+    adjust its view so that the point given by <em>fraction</em> appears at the
+    beginning of the widget. If <em>fraction</em> is 0 it refers to the
+    beginning of the document. 1.0 refers to the end of the document,
+    0.333 refers to a point one-third of the way through the document,
+    and so on.</p>
+<p><em>prefix </em><strong>scroll </strong><em>number </em><strong>units</strong></p>
+<p>:   The widget should adjust its view by <em>number</em> units. The units are
+    defined in whatever way makes sense for the widget, such as
+    characters or lines in a text widget. <em>Number</em> is either 1, which
+    means one unit should scroll off the top or left of the window, or
+    -1, which means that one unit should scroll off the bottom or right
+    of the window.</p>
+<p><em>prefix </em><strong>scroll </strong><em>number </em><strong>pages</strong></p>
+<p>:   The widget should adjust its view by <em>number</em> pages. It is up to the
+    widget to define the meaning of a page; typically it is slightly
+    less than what fits in the window, so that there is a slight overlap
+    between the old and new views. <em>Number</em> is either 1, which means the
+    next page should become visible, or -1, which means that the
+    previous page should become visible.</p>
+<h1 id="old-command-syntax">OLD COMMAND SYNTAX</h1>
+<p>In versions of Tk before 4.0, the <strong>set</strong> and <strong>get</strong> widget commands
+used a different form. This form is still supported for backward
+compatibility, but it is deprecated. In the old command syntax, the
+<strong>set</strong> widget command has the following form:</p>
+<p><em>pathName </em><strong>set </strong><em>totalUnits windowUnits firstUnit lastUnit</em></p>
+<p>:   In this form the arguments are all integers. <em>TotalUnits</em> gives the
+    total size of the object being displayed in the associated widget.
+    The meaning of one unit depends on the associated widget; for
+    example, in a text editor widget units might correspond to lines of
+    text. <em>WindowUnits</em> indicates the total number of units that can fit
+    in the associated window at one time. <em>FirstUnit</em> and <em>lastUnit</em>
+    give the indices of the first and last units currently visible in
+    the associated window (zero corresponds to the first unit of the
+    object).</p>
+<p>Under the old syntax the <strong>get</strong> widget command returns a list of four
+integers, consisting of the <em>totalUnits</em>, <em>windowUnits</em>, <em>firstUnit</em>,
+and <em>lastUnit</em> values from the last <strong>set</strong> widget command.</p>
+<p>The commands generated by scrollbars also have a different form when the
+old syntax is being used:</p>
+<p><em>prefix</em> <em>unit</em></p>
+<p>:   <em>Unit</em> is an integer that indicates what should appear at the top or
+    left of the associated widget\'s window. It has the same meaning as
+    the <em>firstUnit</em> and <em>lastUnit</em> arguments to the <strong>set</strong> widget
+    command.</p>
+<p>The most recent <strong>set</strong> widget command determines whether or not to use
+the old syntax. If it is given two real arguments then the new syntax
+will be used in the future, and if it is given four integer arguments
+then the old syntax will be used.</p>
+<h1 id="bindings">BINDINGS</h1>
+<p>Tk automatically creates class bindings for scrollbars that give them
+the following default behavior. If the behavior is different for
+vertical and horizontal scrollbars, the horizontal behavior is described
+in parentheses.</p>
+<p>[1]</p>
+<p>:   Pressing button 1 over <strong>arrow1</strong> causes the view in the associated
+    widget to shift up (left) by one unit so that the document appears
+    to move down (right) one unit. If the button is held down, the
+    action auto-repeats.</p>
+<p>[2]</p>
+<p>:   Pressing button 1 over <strong>trough1</strong> causes the view in the associated
+    widget to shift up (left) by one screenful so that the document
+    appears to move down (right) one screenful. If the button is held
+    down, the action auto-repeats.</p>
+<p>[3]</p>
+<p>:   Pressing button 1 over the slider and dragging causes the view to
+    drag with the slider. If the <strong>jump</strong> option is true, then the view
+    does not drag along with the slider; it changes only when the mouse
+    button is released.</p>
+<p>[4]</p>
+<p>:   Pressing button 1 over <strong>trough2</strong> causes the view in the associated
+    widget to shift down (right) by one screenful so that the document
+    appears to move up (left) one screenful. If the button is held down,
+    the action auto-repeats.</p>
+<p>[5]</p>
+<p>:   Pressing button 1 over <strong>arrow2</strong> causes the view in the associated
+    widget to shift down (right) by one unit so that the document
+    appears to move up (left) one unit. If the button is held down, the
+    action auto-repeats.</p>
+<p>[6]</p>
+<p>:   If button 2 is pressed over the trough or the slider, it sets the
+    view to correspond to the mouse position; dragging the mouse with
+    button 2 down causes the view to drag with the mouse. If button 2 is
+    pressed over one of the arrows, it causes the same behavior as
+    pressing button 1.</p>
+<p>[7]</p>
+<p>:   If button 1 is pressed with the Control key down, then if the mouse
+    is over <strong>arrow1</strong> or <strong>trough1</strong> the view changes to the very top
+    (left) of the document; if the mouse is over <strong>arrow2</strong> or
+    <strong>trough2</strong> the view changes to the very bottom (right) of the
+    document; if the mouse is anywhere else then the button press has no
+    effect.</p>
+<p>[8]</p>
+<p>:   In vertical scrollbars the Up and Down keys have the same behavior
+    as mouse clicks over <strong>arrow1</strong> and <strong>arrow2</strong>, respectively. In
+    horizontal scrollbars these keys have no effect.</p>
+<p>[9]</p>
+<p>:   In vertical scrollbars Control-Up and Control-Down have the same
+    behavior as mouse clicks over <strong>trough1</strong> and <strong>trough2</strong>,
+    respectively. In horizontal scrollbars these keys have no effect.</p>
+<p>[10]</p>
+<p>:   In horizontal scrollbars the Up and Down keys have the same behavior
+    as mouse clicks over <strong>arrow1</strong> and <strong>arrow2</strong>, respectively. In
+    vertical scrollbars these keys have no effect.</p>
+<p>[11]</p>
+<p>:   In horizontal scrollbars Control-Up and Control-Down have the same
+    behavior as mouse clicks over <strong>trough1</strong> and <strong>trough2</strong>,
+    respectively. In vertical scrollbars these keys have no effect.</p>
+<p>[12]</p>
+<p>:   The Prior and Next keys have the same behavior as mouse clicks over
+    <strong>trough1</strong> and <strong>trough2</strong>, respectively.</p>
+<p>[13]</p>
+<p>:   The Home key adjusts the view to the top (left edge) of the
+    document.</p>
+<p>[14]</p>
+<p>:   The End key adjusts the view to the bottom (right edge) of the
+    document.</p>
+<h1 id="example">EXAMPLE</h1>
+<p>Create a window with a scrollable <strong>text</strong> widget:</p>
+<div class="language-text highlight"><pre><span></span><code>toplevel .tl
+text .tl.t -yscrollcommand {.tl.s set}
+scrollbar .tl.s -command {.tl.t yview}
+grid .tl.t .tl.s -sticky nsew
+grid columnconfigure .tl 0 -weight 1
+grid rowconfigure .tl 0 -weight 1
+</code></pre></div>
+<h1 id="see-also">SEE ALSO</h1>
+<p>ttk:scrollbar(n)</p>
+<h1 id="keywords">KEYWORDS</h1>
+<p>scrollbar, widget</p>
+
+<ul class="metadata page-metadata" data-bi-name="page info" lang="en-us" dir="ltr">
+  <li class="last-updated-holder displayDate loading">
+    <span class="last-updated-text">Last updated:</span>
+    <time role="presentation" datetime="2018-10-25T00:00:00.000Z" data-article-date-source="ms.date"></time>
+  </li>
+<!--
+  <li class="readingTime">
+    2 minutes to read
+  </li>
+-->
+  <li class="contributors-holder">
+    <span class="contributors-text">Contributors</span>
+    <ul class="contributors" data-bi-name="contributors"></ul>
+  </li>
+</ul>
+</div>
+        <div class="col-md-3"><div class="navbar-light navbar-expand-md hidden-print sticky-top sticky-offset" role="complementary">
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggler collapsed" data-toggle="collapse" data-target="#toc-collapse" title="Table of Contents">
+            <span class="fa fa-angle-down"></span>
+        </button>
+    </div>
+
+    <div id="toc-collapse" class="navbar-collapse collapse card">
+        <ul class="nav flex-column bs-sidenav">
+            <li class="nav-item main"><a class="nav-link" href="#name">NAME</a></li>
+            <li class="nav-item main"><a class="nav-link" href="#synopsis">SYNOPSIS</a></li>
+            <li class="nav-item main"><a class="nav-link" href="#standard-options">STANDARD OPTIONS</a></li>
+            <li class="nav-item main"><a class="nav-link" href="#widget-specific-options">WIDGET-SPECIFIC OPTIONS</a></li>
+            <li class="nav-item main"><a class="nav-link" href="#description">DESCRIPTION</a></li>
+            <li class="nav-item main"><a class="nav-link" href="#elements">ELEMENTS</a></li>
+            <li class="nav-item main"><a class="nav-link" href="#widget-command">WIDGET COMMAND</a></li>
+            <li class="nav-item main"><a class="nav-link" href="#scrolling-commands">SCROLLING COMMANDS</a></li>
+            <li class="nav-item main"><a class="nav-link" href="#old-command-syntax">OLD COMMAND SYNTAX</a></li>
+            <li class="nav-item main"><a class="nav-link" href="#bindings">BINDINGS</a></li>
+            <li class="nav-item main"><a class="nav-link" href="#example">EXAMPLE</a></li>
+            <li class="nav-item main"><a class="nav-link" href="#see-also">SEE ALSO</a></li>
+            <li class="nav-item main"><a class="nav-link" href="#keywords">KEYWORDS</a></li>
+        </ul>
+    </div>
+</div></div>
+      </div>
+      </div>
+
+      <footer class="col-md-12">
+	<hr>
+	<div class="container">
+	</div>
+      </footer>
+      <script>
+	var base_url = "../..",
+            shortcuts = {"help": 191, "next": 78, "previous": 80, "search": 83};
+      </script>
+      <script src="../../js/base.js" defer></script>
+      <script src="../../search/main.js" defer></script>
+
+      <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="Search Modal" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Search</h4>
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            </div>
+            <div class="modal-body">
+                <p>
+                    From here you can search these documents. Enter
+                    your search terms below.
+                </p>
+                <form role="form">
+                    <div class="form-group">
+                        <input type="text" class="form-control" placeholder="Search..." id="mkdocs-search-query" title="Type search term here">
+                    </div>
+                </form>
+                <div id="mkdocs-search-results"></div>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div><div class="modal" id="mkdocs_keyboard_modal" tabindex="-1" role="dialog" aria-labelledby="Keyboard Shortcuts Modal" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <p class="h4 modal-title">Keyboard Shortcuts</p>
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            </div>
+            <div class="modal-body">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th style="width: 20%;">Keys</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="help shortcut"><kbd>?</kbd></td>
+                    <td>Open this help</td>
+                  </tr>
+                  <tr>
+                    <td class="next shortcut"><kbd>n</kbd></td>
+                    <td>Next page</td>
+                  </tr>
+                  <tr>
+                    <td class="prev shortcut"><kbd>p</kbd></td>
+                    <td>Previous page</td>
+                  </tr>
+                  <tr>
+                    <td class="search shortcut"><kbd>s</kbd></td>
+                    <td>Search</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>
+
+    </body>
+</html>

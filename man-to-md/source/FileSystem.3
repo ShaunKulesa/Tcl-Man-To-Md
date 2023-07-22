@@ -11,7 +11,6 @@
 .SH NAME
 Tcl_FSRegister, Tcl_FSUnregister, Tcl_FSData, Tcl_FSMountsChanged, Tcl_FSGetFileSystemForPath, Tcl_FSGetPathType, Tcl_FSCopyFile, Tcl_FSCopyDirectory, Tcl_FSCreateDirectory, Tcl_FSDeleteFile, Tcl_FSRemoveDirectory, Tcl_FSRenameFile, Tcl_FSListVolumes, Tcl_FSEvalFile, Tcl_FSEvalFileEx, Tcl_FSLoadFile, Tcl_FSUnloadFile, Tcl_FSMatchInDirectory, Tcl_FSLink, Tcl_FSLstat, Tcl_FSUtime, Tcl_FSFileAttrsGet, Tcl_FSFileAttrsSet, Tcl_FSFileAttrStrings, Tcl_FSStat, Tcl_FSAccess, Tcl_FSOpenFileChannel, Tcl_FSGetCwd, Tcl_FSChdir, Tcl_FSPathSeparator, Tcl_FSJoinPath, Tcl_FSSplitPath, Tcl_FSEqualPaths, Tcl_FSGetNormalizedPath, Tcl_FSJoinToPath, Tcl_FSConvertToPathType, Tcl_FSGetInternalRep, Tcl_FSGetTranslatedPath, Tcl_FSGetTranslatedStringPath, Tcl_FSNewNativePath, Tcl_FSGetNativePath, Tcl_FSFileSystemInfo, Tcl_GetAccessTimeFromStat, Tcl_GetBlockSizeFromStat, Tcl_GetBlocksFromStat, Tcl_GetChangeTimeFromStat, Tcl_GetDeviceTypeFromStat, Tcl_GetFSDeviceFromStat, Tcl_GetFSInodeFromStat, Tcl_GetGroupIdFromStat, Tcl_GetLinkCountFromStat, Tcl_GetModeFromStat, Tcl_GetModificationTimeFromStat, Tcl_GetSizeFromStat, Tcl_GetUserIdFromStat, Tcl_AllocStatBuf \- procedures to interact with any filesystem
 .SH SYNOPSIS
-.nf
 \fB#include <tcl.h>\fR
 .sp
 int
@@ -346,11 +345,11 @@ manipulation required to ensure that the path is fully normalized and
 absolute for filesystem determination. The practical lesson to learn
 from this is that
 .PP
-.nf
+.CS
 Tcl_Obj *path = Tcl_NewStringObj(...);
 Tcl_FS\fIWhatever\fR(path);
 Tcl_DecrRefCount(path);
-.fi
+.CE
 .PP
 is wrong, and may cause memory errors. The \fIpath\fR must have its
 reference count incremented before passing it in, or
@@ -853,7 +852,7 @@ longer be correct.
 .PP
 The \fBTcl_Filesystem\fR structure contains the following fields:
 .PP
-.nf
+.CS
 typedef struct Tcl_Filesystem {
     const char *\fItypeName\fR;
     int \fIstructureLength\fR;
@@ -887,7 +886,7 @@ typedef struct Tcl_Filesystem {
     Tcl_FSGetCwdProc *\fIgetCwdProc\fR;
     Tcl_FSChdirProc *\fIchdirProc\fR;
 } \fBTcl_Filesystem\fR;
-.fi
+.CE
 .PP
 Except for the first three fields in this structure which contain
 simple data elements, all entries contain addresses of functions called
@@ -924,7 +923,7 @@ Here is the filesystem lookup table used by the
 .QW vfs
 extension which allows filesystem actions to be implemented in Tcl.
 .PP
-.nf
+.CS
 static Tcl_Filesystem vfsFilesystem = {
     "tclvfs",
     sizeof(Tcl_Filesystem),
@@ -974,7 +973,7 @@ static Tcl_Filesystem vfsFilesystem = {
     NULL,
     NULL
 };
-.fi
+.CE
 .SH "FILESYSTEM INFRASTRUCTURE"
 .PP
 These fields contain basic information about the filesystem structure
@@ -1015,11 +1014,11 @@ cache the fact that this path belongs to this filesystem. Such caches
 are invalidated when filesystem structures are added or removed from
 Tcl's internal list of known filesystems.
 .PP
-.nf
+.CS
 typedef int \fBTcl_FSPathInFilesystemProc\fR(
         Tcl_Obj *\fIpathPtr\fR,
         ClientData *\fIclientDataPtr\fR);
-.fi
+.CE
 .SS DUPINTERNALREPPROC
 .PP
 This function makes a copy of a path's internal representation, and is
@@ -1027,19 +1026,19 @@ called when Tcl needs to duplicate a path value. If NULL, Tcl will
 simply not copy the internal representation, which may then need to be
 regenerated later.
 .PP
-.nf
+.CS
 typedef ClientData \fBTcl_FSDupInternalRepProc\fR(
         ClientData \fIclientData\fR);
-.fi
+.CE
 .SS FREEINTERNALREPPROC
 Free the internal representation. This must be implemented if internal
 representations need freeing (i.e.\ if some memory is allocated when an
 internal representation is generated), but may otherwise be NULL.
 .PP
-.nf
+.CS
 typedef void \fBTcl_FSFreeInternalRepProc\fR(
         ClientData \fIclientData\fR);
-.fi
+.CE
 .SS INTERNALTONORMALIZEDPROC
 .PP
 Function to convert internal representation to a normalized path. Only
@@ -1047,10 +1046,10 @@ required if the filesystem creates pure path values with no string/path
 representation. The return value is a Tcl value whose string
 representation is the normalized path.
 .PP
-.nf
+.CS
 typedef Tcl_Obj *\fBTcl_FSInternalToNormalizedProc\fR(
         ClientData \fIclientData\fR);
-.fi
+.CE
 .SS CREATEINTERNALREPPROC
 .PP
 Function to take a path value, and calculate an internal
@@ -1059,10 +1058,10 @@ value. May be NULL if paths have no internal representation, or if
 the \fITcl_FSPathInFilesystemProc\fR for this filesystem always
 immediately creates an internal representation for paths it accepts.
 .PP
-.nf
+.CS
 typedef ClientData \fBTcl_FSCreateInternalRepProc\fR(
         Tcl_Obj *\fIpathPtr\fR);
-.fi
+.CE
 .SS NORMALIZEPATHPROC
 .PP
 Function to normalize a path. Should be implemented for all
@@ -1091,12 +1090,12 @@ point to any other arbitrary position in the path. In the last of
 the three valid cases, the implementation can assume that the path
 up to and including the file separator is known and normalized.
 .PP
-.nf
+.CS
 typedef int \fBTcl_FSNormalizePathProc\fR(
         Tcl_Interp *\fIinterp\fR,
         Tcl_Obj *\fIpathPtr\fR,
         int \fInextCheckpoint\fR);
-.fi
+.CE
 .SH "FILESYSTEM OPERATIONS"
 .PP
 The fields in this section of the structure contain addresses of
@@ -1126,10 +1125,10 @@ The Tcl_Obj result is owned by the filesystem and so Tcl will
 increment the reference count of that value if it wishes to retain a reference
 to it.
 .PP
-.nf
+.CS
 typedef Tcl_Obj *\fBTcl_FSFilesystemPathTypeProc\fR(
         Tcl_Obj *\fIpathPtr\fR);
-.fi
+.CE
 .SS FILESYSTEMSEPARATORPROC
 .PP
 Function to return the separator character(s) for this filesystem.
@@ -1140,10 +1139,10 @@ Amongst other
 uses, it is returned by the \fBfile separator\fR command. The
 return value should be a value with reference count of zero.
 .PP
-.nf
+.CS
 typedef Tcl_Obj *\fBTcl_FSFilesystemSeparatorProc\fR(
         Tcl_Obj *\fIpathPtr\fR);
-.fi
+.CE
 .SS STATPROC
 .PP
 Function to process a \fBTcl_FSStat\fR call. Must be implemented for any
@@ -1151,11 +1150,11 @@ reasonable filesystem, since many Tcl level commands depend crucially
 upon it (e.g.\ \fBfile atime\fR, \fBfile isdirectory\fR, \fBfile size\fR,
 \fBglob\fR).
 .PP
-.nf
+.CS
 typedef int \fBTcl_FSStatProc\fR(
         Tcl_Obj *\fIpathPtr\fR,
         Tcl_StatBuf *\fIstatPtr\fR);
-.fi
+.CE
 .PP
 The \fBTcl_FSStatProc\fR fills the stat structure \fIstatPtr\fR with
 information about the specified file. You do not need any access
@@ -1176,11 +1175,11 @@ Function to process a \fBTcl_FSAccess\fR call. Must be implemented for
 any reasonable filesystem, since many Tcl level commands depend crucially
 upon it (e.g.\ \fBfile exists\fR, \fBfile readable\fR).
 .PP
-.nf
+.CS
 typedef int \fBTcl_FSAccessProc\fR(
         Tcl_Obj *\fIpathPtr\fR,
         int \fImode\fR);
-.fi
+.CE
 .PP
 The \fBTcl_FSAccessProc\fR checks whether the process would be allowed
 to read, write or test for existence of the file (or other filesystem
@@ -1198,13 +1197,13 @@ implemented for any reasonable filesystem, since any operations
 which require open or accessing a file's contents will use it
 (e.g.\ \fBopen\fR, \fBencoding\fR, and many Tk commands).
 .PP
-.nf
+.CS
 typedef Tcl_Channel \fBTcl_FSOpenFileChannelProc\fR(
         Tcl_Interp *\fIinterp\fR,
         Tcl_Obj *\fIpathPtr\fR,
         int \fImode\fR,
         int \fIpermissions\fR);
-.fi
+.CE
 .PP
 The \fBTcl_FSOpenFileChannelProc\fR opens a file specified by
 \fIpathPtr\fR and returns a channel handle that can be used to perform
@@ -1232,14 +1231,14 @@ implemented, then glob and recursive copy functionality will be lacking
 in the filesystem (and this may impact commands like \fBencoding names\fR
 which use glob functionality internally).
 .PP
-.nf
+.CS
 typedef int \fBTcl_FSMatchInDirectoryProc\fR(
         Tcl_Interp *\fIinterp\fR,
         Tcl_Obj *\fIresultPtr\fR,
         Tcl_Obj *\fIpathPtr\fR,
         const char *\fIpattern\fR,
         Tcl_GlobTypeData *\fItypes\fR);
-.fi
+.CE
 .PP
 The function should return all files or directories (or other filesystem
 objects) which match the given pattern and accord with the \fItypes\fR
@@ -1268,7 +1267,7 @@ problems which may occur during the matching process.
 The \fBTcl_GlobTypeData\fR structure passed in the \fItypes\fR
 parameter contains the following fields:
 .PP
-.nf
+.CS
 typedef struct Tcl_GlobTypeData {
     /* Corresponds to bcdpfls as in 'find -t' */
     int \fItype\fR;
@@ -1279,7 +1278,7 @@ typedef struct Tcl_GlobTypeData {
     /* Acceptable mac creator */
     Tcl_Obj *\fImacCreator\fR;
 } \fBTcl_GlobTypeData\fR;
-.fi
+.CE
 .PP
 There are two specific cases which it is important to handle correctly,
 both when \fItypes\fR is non-NULL. The two cases are when \fItypes->types
@@ -1299,11 +1298,11 @@ Function to process a \fBTcl_FSUtime\fR call. Required to allow setting
 (not reading) of times with \fBfile mtime\fR, \fBfile atime\fR and the
 open-r/open-w/fcopy implementation of \fBfile copy\fR.
 .PP
-.nf
+.CS
 typedef int \fBTcl_FSUtimeProc\fR(
         Tcl_Obj *\fIpathPtr\fR,
         struct utimbuf *\fItval\fR);
-.fi
+.CE
 .PP
 The access and modification times of the file specified by \fIpathPtr\fR
 should be changed to the values given in the \fItval\fR structure.
@@ -1315,12 +1314,12 @@ with the system \fButime\fR.
 Function to process a \fBTcl_FSLink\fR call. Should be implemented
 only if the filesystem supports links, and may otherwise be NULL.
 .PP
-.nf
+.CS
 typedef Tcl_Obj *\fBTcl_FSLinkProc\fR(
         Tcl_Obj *\fIlinkNamePtr\fR,
         Tcl_Obj *\fItoPtr\fR,
         int \fIlinkAction\fR);
-.fi
+.CE
 .PP
 If \fItoPtr\fR is NULL, the function is being asked to read the
 contents of a link. The result is a Tcl_Obj specifying the contents of
@@ -1340,9 +1339,9 @@ Function to list any filesystem volumes added by this filesystem.
 Should be implemented only if the filesystem adds volumes at the head
 of the filesystem, so that they can be returned by \fBfile volumes\fR.
 .PP
-.nf
+.CS
 typedef Tcl_Obj *\fBTcl_FSListVolumesProc\fR(void);
-.fi
+.CE
 .PP
 The result should be a list of volumes added by this filesystem, or
 NULL (or an empty list) if no volumes are provided. The result value
@@ -1368,11 +1367,11 @@ information to be attached to files in the filesystem. If it is
 not implemented, there is no need to implement the \fBget\fR and \fBset\fR
 methods.
 .PP
-.nf
+.CS
 typedef const char *const *\fBTcl_FSFileAttrStringsProc\fR(
         Tcl_Obj *\fIpathPtr\fR,
         Tcl_Obj **\fIobjPtrRef\fR);
-.fi
+.CE
 .PP
 The called function may either return an array of strings, or may
 instead return NULL and place a Tcl list into the given \fIobjPtrRef\fR. Tcl
@@ -1387,13 +1386,13 @@ of at least one.
 Function to process a \fBTcl_FSFileAttrsGet\fR call, used by \fBfile
 attributes\fR.
 .PP
-.nf
+.CS
 typedef int \fBTcl_FSFileAttrsGetProc\fR(
         Tcl_Interp *\fIinterp\fR,
         int \fIindex\fR,
         Tcl_Obj *\fIpathPtr\fR,
         Tcl_Obj **\fIobjPtrRef\fR);
-.fi
+.CE
 .PP
 Returns a standard Tcl return code. The attribute value retrieved,
 which corresponds to the \fIindex\fR'th element in the list returned by
@@ -1407,13 +1406,13 @@ Function to process a \fBTcl_FSFileAttrsSet\fR call, used by \fBfile
 attributes\fR. If the filesystem is read-only, there is no need
 to implement this.
 .PP
-.nf
+.CS
 typedef int \fBTcl_FSFileAttrsSetProc\fR(
         Tcl_Interp *\fIinterp\fR,
         int \fIindex\fR,
         Tcl_Obj *\fIpathPtr\fR,
         Tcl_Obj *\fIobjPtr\fR);
-.fi
+.CE
 .PP
 The attribute value of the \fIindex\fR'th element in the list returned by
 the Tcl_FSFileAttrStringsProc should be set to the \fIobjPtr\fR given.
@@ -1422,10 +1421,10 @@ the Tcl_FSFileAttrStringsProc should be set to the \fIobjPtr\fR given.
 Function to process a \fBTcl_FSCreateDirectory\fR call. Should be
 implemented unless the FS is read-only.
 .PP
-.nf
+.CS
 typedef int \fBTcl_FSCreateDirectoryProc\fR(
         Tcl_Obj *\fIpathPtr\fR);
-.fi
+.CE
 .PP
 The return value is a standard Tcl result indicating whether an error
 occurred in the process. If successful, a new directory should have
@@ -1436,12 +1435,12 @@ been added to the filesystem in the location specified by
 Function to process a \fBTcl_FSRemoveDirectory\fR call. Should be
 implemented unless the FS is read-only.
 .PP
-.nf
+.CS
 typedef int \fBTcl_FSRemoveDirectoryProc\fR(
         Tcl_Obj *\fIpathPtr\fR,
         int \fIrecursive\fR,
         Tcl_Obj **\fIerrorPtr\fR);
-.fi
+.CE
 .PP
 The return value is a standard Tcl result indicating whether an error
 occurred in the process. If successful, the directory specified by
@@ -1458,10 +1457,10 @@ error should be placed in \fIerrorPtr\fR.
 Function to process a \fBTcl_FSDeleteFile\fR call. Should be implemented
 unless the FS is read-only.
 .PP
-.nf
+.CS
 typedef int \fBTcl_FSDeleteFileProc\fR(
         Tcl_Obj *\fIpathPtr\fR);
-.fi
+.CE
 .PP
 The return value is a standard Tcl result indicating whether an error
 occurred in the process. If successful, the file specified by
@@ -1481,11 +1480,11 @@ will attempt to use the \fIstatProc\fR defined above instead. Therefore
 it need only be implemented if a filesystem can differentiate between
 \fBstat\fR and \fBlstat\fR calls.
 .PP
-.nf
+.CS
 typedef int \fBTcl_FSLstatProc\fR(
         Tcl_Obj *\fIpathPtr\fR,
         Tcl_StatBuf *\fIstatPtr\fR);
-.fi
+.CE
 .PP
 The behavior of this function is very similar to that of the
 \fBTcl_FSStatProc\fR defined above, except that if it is applied
@@ -1499,11 +1498,11 @@ copying mechanism.
 Therefore it need only be implemented if the filesystem can perform
 that action more efficiently.
 .PP
-.nf
+.CS
 typedef int \fBTcl_FSCopyFileProc\fR(
         Tcl_Obj *\fIsrcPathPtr\fR,
         Tcl_Obj *\fIdestPathPtr\fR);
-.fi
+.CE
 .PP
 The return value is a standard Tcl result indicating whether an error
 occurred in the copying process. Note that, \fIdestPathPtr\fR is the
@@ -1524,11 +1523,11 @@ Tcl will fall back on a copy and delete mechanism. Therefore it need
 only be implemented if the filesystem can perform that action more
 efficiently.
 .PP
-.nf
+.CS
 typedef int \fBTcl_FSRenameFileProc\fR(
         Tcl_Obj *\fIsrcPathPtr\fR,
         Tcl_Obj *\fIdestPathPtr\fR);
-.fi
+.CE
 .PP
 The return value is a standard Tcl result indicating whether an error
 occurred in the renaming process. If the
@@ -1542,12 +1541,12 @@ implemented, Tcl will fall back on a recursive \fBfile mkdir\fR, \fBfile copy\fR
 mechanism. Therefore it need only be implemented if the filesystem can
 perform that action more efficiently.
 .PP
-.nf
+.CS
 typedef int \fBTcl_FSCopyDirectoryProc\fR(
         Tcl_Obj *\fIsrcPathPtr\fR,
         Tcl_Obj *\fIdestPathPtr\fR,
         Tcl_Obj **\fIerrorPtr\fR);
-.fi
+.CE
 .PP
 The return value is a standard Tcl result indicating whether an error
 occurred in the copying process. If an error does occur, the name of
@@ -1569,13 +1568,13 @@ filesystem can load code directly, or it can be implemented simply to
 return \fBTCL_ERROR\fR to disable load functionality in this filesystem
 entirely.
 .PP
-.nf
+.CS
 typedef int \fBTcl_FSLoadFileProc\fR(
         Tcl_Interp *\fIinterp\fR,
         Tcl_Obj *\fIpathPtr\fR,
         Tcl_LoadHandle *\fIhandlePtr\fR,
         Tcl_FSUnloadFileProc *\fIunloadProcPtr\fR);
-.fi
+.CE
 .PP
 Returns a standard Tcl completion code. If an error occurs, an error
 message is left in the \fIinterp\fR's result. The function dynamically loads a
@@ -1597,20 +1596,20 @@ Function to unload a previously successfully loaded file. If load was
 implemented, then this should also be implemented, if there is any
 cleanup action required.
 .PP
-.nf
+.CS
 typedef void \fBTcl_FSUnloadFileProc\fR(
         Tcl_LoadHandle \fIloadHandle\fR);
-.fi
+.CE
 .SS GETCWDPROC
 .PP
 Function to process a \fBTcl_FSGetCwd\fR call. Most filesystems need not
 implement this. It will usually only be called once, if \fBgetcwd\fR is
 called before \fBchdir\fR. May be NULL.
 .PP
-.nf
+.CS
 typedef Tcl_Obj *\fBTcl_FSGetCwdProc\fR(
         Tcl_Interp *\fIinterp\fR);
-.fi
+.CE
 .PP
 If the filesystem supports a native notion of a current working
 directory (which might perhaps change independent of Tcl), this
@@ -1630,10 +1629,10 @@ result, since that will be automatically remembered for use by
 Real filesystems should carry out the correct action (i.e.\ call the
 correct system \fBchdir\fR API).
 .PP
-.nf
+.CS
 typedef int \fBTcl_FSChdirProc\fR(
         Tcl_Obj *\fIpathPtr\fR);
-.fi
+.CE
 .PP
 The \fBTcl_FSChdirProc\fR changes the applications current working
 directory to the value specified in \fIpathPtr\fR. The function returns

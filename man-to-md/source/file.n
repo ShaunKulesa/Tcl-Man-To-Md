@@ -140,24 +140,24 @@ If \fIname\fR refers to a root directory, then the root directory is
 returned.  For example,
 .RS
 .PP
-.nf
+.CS
 \fBfile dirname\fR c:/
-.fi
+.CE
 .PP
 returns \fBc:/\fR.
 .PP
 Note that tilde substitution will only be
 performed if it is necessary to complete the command. For example,
 .PP
-.nf
+.CS
 \fBfile dirname\fR ~/src/foo.c
-.fi
+.CE
 .PP
 returns \fB~/src\fR, whereas
 .PP
-.nf
+.CS
 \fBfile dirname\fR ~
-.fi
+.CE
 .PP
 returns \fB/home\fR (or something similar).
 .RE
@@ -197,9 +197,9 @@ Otherwise, any earlier arguments will be discarded, and joining will
 proceed from the current argument.  For example,
 .RS
 .PP
-.nf
+.CS
 \fBfile join\fR a b /foo bar
-.fi
+.CE
 .PP
 returns \fB/foo/bar\fR.
 .PP
@@ -382,9 +382,9 @@ unless they are needed to ensure that an element is unambiguously relative.
 For example, under Unix
 .RS
 .PP
-.nf
+.CS
 \fBfile split\fR /foo/~bar/baz
-.fi
+.CE
 .PP
 returns
 .QW \fB/\0\0foo\0\0./~bar\0\0baz\fR
@@ -496,7 +496,7 @@ This procedure shows how to search for C files in a given directory
 that have a correspondingly-named object file in the current
 directory:
 .PP
-.nf
+.CS
 proc findMatchingCFiles {dir} {
     set files {}
     switch $::tcl_platform(platform) {
@@ -515,12 +515,12 @@ proc findMatchingCFiles {dir} {
     }
     return $files
 }
-.fi
+.CE
 .PP
 Rename a file and leave a symbolic link pointing from the old location
 to the new place:
 .PP
-.nf
+.CS
 set oldName foobar.txt
 set newName foo/bar.txt
 # Make sure that where we're going to move to exists...
@@ -529,7 +529,7 @@ if {![\fBfile isdirectory\fR [\fBfile dirname\fR $newName]]} {
 }
 \fBfile rename\fR $oldName $newName
 \fBfile link\fR \-symbolic $oldName $newName
-.fi
+.CE
 .PP
 On Windows, a file can be
 .QW started
@@ -537,9 +537,9 @@ easily enough (equivalent to double-clicking on it in the Explorer
 interface) but the name passed to the operating system must be in
 native format:
 .PP
-.nf
+.CS
 exec {*}[auto_execok start] {} [\fBfile nativename\fR ~/example.txt]
-.fi
+.CE
 .SH "SEE ALSO"
 filename(n), open(n), close(n), eof(n), gets(n), tell(n), seek(n),
 fblocked(n), flush(n)

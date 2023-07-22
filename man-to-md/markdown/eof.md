@@ -1,5 +1,3 @@
-\
-
 # NAME
 
 eof - Check for end of file condition on channel
@@ -7,8 +5,6 @@ eof - Check for end of file condition on channel
 # SYNOPSIS
 
 **eof ***channelId*
-
-\
 
 # DESCRIPTION
 
@@ -55,3 +51,9 @@ file(n), open(n), close(n), fblocked(n), Tcl_StandardChannels(3)
 # KEYWORDS
 
 channel, end of file
+
+<!---
+Copyright (c) 1993 The Regents of the University of California
+Copyright (c) 1994-1996 Sun Microsystems, Inc
+-->
+

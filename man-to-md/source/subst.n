@@ -63,10 +63,10 @@ When it performs its substitutions, \fIsubst\fR does not give any
 special treatment to double quotes or curly braces (except within
 command substitutions) so the script
 .PP
-.nf
+.CS
 set a 44
 \fBsubst\fR {xyz {$a}}
-.fi
+.CE
 .PP
 returns
 .QW "\fBxyz {44}\fR" ,
@@ -74,10 +74,10 @@ not
 .QW "\fBxyz {$a}\fR"
 and the script
 .PP
-.nf
+.CS
 set a "p\e} q \e{r"
 \fBsubst\fR {xyz {$a}}
-.fi
+.CE
 .PP
 returns
 .QW "\fBxyz {p} q {r}\fR" ,
@@ -87,10 +87,10 @@ not
 When command substitution is performed, it includes any variable
 substitution necessary to evaluate the script.
 .PP
-.nf
+.CS
 set a 44
 \fBsubst\fR -novariables {$a [format $a]}
-.fi
+.CE
 .PP
 returns
 .QW "\fB$a 44\fR" ,
@@ -100,11 +100,11 @@ Similarly, when
 variable substitution is performed, it includes any command
 substitution necessary to retrieve the value of the variable.
 .PP
-.nf
+.CS
 proc b {} {return c}
 array set a {c c [b] tricky}
 \fBsubst\fR -nocommands {[b] $a([b])}
-.fi
+.CE
 .PP
 returns
 .QW "\fB[b] c\fR" ,
@@ -116,9 +116,9 @@ prevent substitution of the rest of the command substitution and the
 rest of \fIstring\fR respectively, giving script authors more options
 when processing text using \fIsubst\fR.  For example, the script
 .PP
-.nf
+.CS
 \fBsubst\fR {abc,[break],def}
-.fi
+.CE
 .PP
 returns
 .QW \fBabc,\fR ,
@@ -126,9 +126,9 @@ not
 .QW \fBabc,,def\fR
 and the script
 .PP
-.nf
+.CS
 \fBsubst\fR {abc,[continue;expr {1+2}],def}
-.fi
+.CE
 .PP
 returns
 .QW \fBabc,,def\fR ,
@@ -137,9 +137,9 @@ not
 .PP
 Other exceptional return codes substitute the returned value
 .PP
-.nf
+.CS
 \fBsubst\fR {abc,[return foo;expr {1+2}],def}
-.fi
+.CE
 .PP
 returns
 .QW \fBabc,foo,def\fR ,
@@ -147,9 +147,9 @@ not
 .QW \fBabc,3,def\fR
 and
 .PP
-.nf
+.CS
 \fBsubst\fR {abc,[return -code 10 foo;expr {1+2}],def}
-.fi
+.CE
 .PP
 also returns
 .QW \fBabc,foo,def\fR ,

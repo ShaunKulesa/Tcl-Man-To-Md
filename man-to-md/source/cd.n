@@ -27,16 +27,16 @@ and (in a threaded environment) all threads.
 .PP
 Change to the home directory of the user \fBfred\fR:
 .PP
-.nf
+.CS
 \fBcd\fR ~fred
-.fi
+.CE
 .PP
 Change to the directory \fBlib\fR that is a sibling directory of the
 current one:
 .PP
-.nf
+.CS
 \fBcd\fR ../lib
-.fi
+.CE
 .SH "SEE ALSO"
 filename(n), glob(n), pwd(n)
 .SH KEYWORDS

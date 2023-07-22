@@ -1,5 +1,3 @@
-\
-
 # NAME
 
 chan - Read, write and manipulate channels
@@ -7,8 +5,6 @@ chan - Read, write and manipulate channels
 # SYNOPSIS
 
 **chan ***option* ?*arg arg \...*?
-
-\
 
 # DESCRIPTION
 
@@ -823,3 +819,8 @@ socket(n), tell(n), refchan(n), transchan(n)
 # KEYWORDS
 
 channel, input, output, events, offset
+
+<!---
+Copyright (c) 2005-2006 Donal K. Fellow
+-->
+

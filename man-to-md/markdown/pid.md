@@ -1,5 +1,3 @@
-\
-
 # NAME
 
 pid - Retrieve process identifiers
@@ -7,8 +5,6 @@ pid - Retrieve process identifiers
 # SYNOPSIS
 
 **pid **?*fileId*?
-
-\
 
 # DESCRIPTION
 
@@ -41,3 +37,9 @@ exec(n), open(n)
 # KEYWORDS
 
 file, pipeline, process identifier
+
+<!---
+Copyright (c) 1993 The Regents of the University of California
+Copyright (c) 1994-1996 Sun Microsystems, Inc
+-->
+

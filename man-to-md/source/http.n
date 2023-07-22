@@ -238,12 +238,12 @@ described in the \fBSTATE ARRAY\fR section.  Here is a template for the
 callback:
 .RS
 .PP
-.nf
+.CS
 proc httpCallback {token} {
     upvar #0 $token state
     # Access state as a Tcl array
 }
-.fi
+.CE
 .PP
 The \fB::http::geturl\fR command runs the \fB\-command\fR callback inside
 a \fBcatch\fR command.  Therefore an error in the callback command does
@@ -262,7 +262,7 @@ to return the number of bytes read from the socket.  Here is a
 template for the callback:
 .RS
 .PP
-.nf
+.CS
 proc httpHandlerCallback {socket token} {
     upvar #0 $token state
     # Access socket, and state as a Tcl array
@@ -273,7 +273,7 @@ proc httpHandlerCallback {socket token} {
     ...
     return $nbytes
 }
-.fi
+.CE
 .PP
 The \fBhttp::geturl\fR code for the \fB\-handler\fR option is not compatible
 with either compression or chunked transfer-encoding.  If \fB\-handler\fR is
@@ -304,9 +304,9 @@ header cannot be corrupted.  For example, if \fIkeyvaluelist\fR is
 HTTP request:
 .RS
 .PP
-.nf
+.CS
 Pragma: no-cache
-.fi
+.CE
 .RE
 .TP
 \fB\-keepalive\fR \fIboolean\fR
@@ -344,11 +344,11 @@ case zero is passed to the callback.  Here is a template for the
 progress callback:
 .RS
 .PP
-.nf
+.CS
 proc httpProgress {token total current} {
     upvar #0 $token state
 }
-.fi
+.CE
 .RE
 .TP
 \fB\-protocol\fR \fIversion\fR
@@ -513,14 +513,14 @@ such as HTTPS, by registering a prefix, the default port, and the
 command to execute to create the Tcl \fBchannel\fR. E.g.:
 .RS
 .PP
-.nf
+.CS
 package require http
 package require tls
 
 ::http::register https 443 ::tls::socket
 
 set token [::http::geturl https://my.secure.site/]
-.fi
+.CE
 .RE
 .TP
 \fB::http::registerError\fR \fIport\fR ?\fImessage\fR?
@@ -628,9 +628,9 @@ The \fB::http::geturl\fR procedure returns a \fItoken\fR that can be used to
 get to the state of the HTTP transaction in the form of a Tcl array.
 Use this construct to create an easy-to-use array variable:
 .PP
-.nf
+.CS
 upvar #0 $token state
-.fi
+.CE
 .PP
 Once the data associated with the URL is no longer needed, the state
 array should be unset to free up storage.
@@ -680,9 +680,9 @@ The HTTP status reply from the server.  This value
 is returned by the \fB::http::code\fR command.  The format of this value is:
 .RS
 .PP
-.nf
+.CS
 \fIHTTP/1.1 code string\fR
-.fi
+.CE
 .PP
 The \fIcode\fR is a three-digit number defined in the HTTP standard.
 A code of 200 is OK.  Codes beginning with 4 or 5 indicate errors.
@@ -699,9 +699,9 @@ values of the meta-data.  This is in a format useful for initializing
 an array that just contains the meta-data:
 .RS
 .PP
-.nf
+.CS
 array set meta $state(meta)
-.fi
+.CE
 .PP
 Some of the meta-data keys are listed below, but the HTTP standard defines
 more, and servers are free to add their own.
@@ -885,7 +885,7 @@ See https://w3c.github.io/webappsec-upgrade-insecure-requests/
 This example creates a procedure to copy a URL to a file while printing a
 progress meter, and prints the meta-data associated with the URL.
 .PP
-.nf
+.CS
 proc httpcopy { url file {chunk 4096} } {
     set out [open $file w]
     set token [\fB::http::geturl\fR $url -channel $out \e
@@ -918,7 +918,7 @@ proc httpCopyProgress {args} {
     puts \-nonewline stderr .
     flush stderr
 }
-.fi
+.CE
 .SH "SEE ALSO"
 safe(n), socket(n), safesock(n)
 .SH KEYWORDS

@@ -1,5 +1,3 @@
-\
-
 # NAME
 
 Tcl_OpenTcpClient, Tcl_MakeTcpClientChannel, Tcl_OpenTcpServer -
@@ -7,16 +5,15 @@ procedures to open channels using TCP sockets
 
 # SYNOPSIS
 
-    #include <tcl.h> 
+**#include \<tcl.h\> **
 
-    Tcl_Channel
-    Tcl_OpenTcpClient(interp, port, host, myaddr, myport, async)
+Tcl_Channel **Tcl_OpenTcpClient**(*interp, port, host, myaddr, myport,
+async*)
 
-    Tcl_Channel
-    Tcl_MakeTcpClientChannel(sock)
+Tcl_Channel **Tcl_MakeTcpClientChannel**(*sock*)
 
-    Tcl_Channel
-    Tcl_OpenTcpServer(interp, port, myaddr, proc, clientData)
+Tcl_Channel **Tcl_OpenTcpServer**(*interp, port, myaddr, proc,
+clientData*)
 
 # ARGUMENTS
 
@@ -43,8 +40,6 @@ Pointer to a procedure to invoke each time a new connection is accepted
 via the socket.
 
 Arbitrary one-word value to pass to *proc*.
-
-\
 
 # DESCRIPTION
 
@@ -163,3 +158,8 @@ Tcl_OpenFileChannel(3), Tcl_RegisterChannel(3), vwait(n)
 # KEYWORDS
 
 channel, client, server, socket, TCP
+
+<!---
+Copyright (c) 1996-7 Sun Microsystems, Inc
+-->
+

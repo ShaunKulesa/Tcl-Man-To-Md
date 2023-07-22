@@ -1,18 +1,14 @@
-\
-
 # NAME
 
 Tcl_Access, Tcl_Stat - check file permissions and other attributes
 
 # SYNOPSIS
 
-    #include <tcl.h>
+**#include \<tcl.h\>**
 
-    int
-    Tcl_Access(path, mode)
+int **Tcl_Access**(*path*, *mode*)
 
-    int
-    Tcl_Stat(path, statPtr)
+int **Tcl_Stat**(*path*, *statPtr*)
 
 # ARGUMENTS
 
@@ -24,8 +20,6 @@ file exists and has read, write and execute permissions, respectively.
 **F_OK** just requests a check for the existence of the file.
 
 The structure that contains the result.
-
-\
 
 # DESCRIPTION
 
@@ -72,3 +66,8 @@ stat, access
 # SEE ALSO
 
 Tcl_FSAccess(3), Tcl_FSStat(3)
+
+<!---
+Copyright (c) 1998-1999 Scriptics Corporatio
+-->
+

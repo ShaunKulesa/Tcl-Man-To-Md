@@ -1,16 +1,12 @@
-\
-
 # NAME
 
 self - method call internal introspection
 
 # SYNOPSIS
 
-    package require TclOO
+package require TclOO
 
-    self ?subcommand?
-
-\
+**self** ?*subcommand*?
 
 # DESCRIPTION
 
@@ -145,3 +141,8 @@ info(n), next(n)
 # KEYWORDS
 
 call, introspection, object
+
+<!---
+Copyright (c) 2007 Donal K. Fellow
+-->
+

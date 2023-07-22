@@ -1,17 +1,12 @@
-\
-
 # NAME
 
 tm - Facilities for locating and loading of Tcl Modules
 
 # SYNOPSIS
 
-    ::tcl::tm::path add ?path...?
-    ::tcl::tm::path remove ?path...?
-    ::tcl::tm::path list
-    ::tcl::tm::roots ?path...?
-
-\
+**::tcl::tm::path add **?*path*\...? **::tcl::tm::path remove
+**?*path*\...? **::tcl::tm::path list** **::tcl::tm::roots
+**?*path*\...?
 
 # DESCRIPTION
 
@@ -254,3 +249,8 @@ https://tip.tcl-lang.org/189.html), Tcl Improvement Proposal #190
 # KEYWORDS
 
 modules, package
+
+<!---
+Copyright (c) 2004-2010 Andreas Kupries <andreas_kupries@users.sourceforge.net
+-->
+

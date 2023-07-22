@@ -1,5 +1,3 @@
-\
-
 # NAME
 
 open - Open a file-based or command pipeline channel
@@ -9,8 +7,6 @@ open - Open a file-based or command pipeline channel
 **open ***fileName*\
 **open ***fileName access*\
 **open ***fileName access permissions*
-
-\
 
 # DESCRIPTION
 
@@ -451,3 +447,9 @@ puts(n), exec(n), pid(n), fopen(3)
 
 access mode, append, create, file, non-blocking, open, permissions,
 pipeline, process, serial
+
+<!---
+Copyright (c) 1993 The Regents of the University of California
+Copyright (c) 1994-1996 Sun Microsystems, Inc
+-->
+

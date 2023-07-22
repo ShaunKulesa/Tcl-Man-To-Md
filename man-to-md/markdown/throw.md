@@ -1,5 +1,3 @@
-\
-
 # NAME
 
 throw - Generate a machine-readable error
@@ -7,8 +5,6 @@ throw - Generate a machine-readable error
 # SYNOPSIS
 
 **throw*** type message*
-
-\
 
 # DESCRIPTION
 
@@ -44,3 +40,8 @@ catch(n), error(n), errorCode(n), errorInfo(n), return(n), try(n)
 # KEYWORDS
 
 error, exception
+
+<!---
+Copyright (c) 2008 Donal K. Fellow
+-->
+

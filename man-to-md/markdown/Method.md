@@ -1,5 +1,3 @@
-\
-
 # NAME
 
 Tcl_ClassSetConstructor, Tcl_ClassSetDestructor,
@@ -12,49 +10,37 @@ contexts
 
 # SYNOPSIS
 
-    #include <tclOO.h>
+**#include \<tclOO.h\>**
 
-    Tcl_Method
-    Tcl_NewMethod(interp, class, nameObj, isPublic,
-                  methodTypePtr, clientData)
+Tcl_Method **Tcl_NewMethod**(*interp, class, nameObj, isPublic,*
+methodTypePtr, clientData)
 
-    Tcl_Method
-    Tcl_NewInstanceMethod(interp, object, nameObj, isPublic,
-                          methodTypePtr, clientData)
+Tcl_Method **Tcl_NewInstanceMethod**(*interp, object, nameObj,
+isPublic,* methodTypePtr, clientData)
 
-    Tcl_ClassSetConstructor(interp, class, method)
+**Tcl_ClassSetConstructor**(*interp, class, method*)
 
-    Tcl_ClassSetDestructor(interp, class, method)
+**Tcl_ClassSetDestructor**(*interp, class, method*)
 
-    Tcl_Class
-    Tcl_MethodDeclarerClass(method)
+Tcl_Class **Tcl_MethodDeclarerClass**(*method*)
 
-    Tcl_Object
-    Tcl_MethodDeclarerObject(method)
+Tcl_Object **Tcl_MethodDeclarerObject**(*method*)
 
-    Tcl_Obj *
-    Tcl_MethodName(method)
+Tcl_Obj \* **Tcl_MethodName**(*method*)
 
-    int
-    Tcl_MethodIsPublic(method)
+int **Tcl_MethodIsPublic**(*method*)
 
-    int
-    Tcl_MethodIsType(method, methodTypePtr, clientDataPtr)
+int **Tcl_MethodIsType**(*method, methodTypePtr, clientDataPtr*)
 
-    int
-    Tcl_ObjectContextInvokeNext(interp, context, objc, objv, skip)
+int **Tcl_ObjectContextInvokeNext**(*interp, context, objc, objv, skip*)
 
-    int
-    Tcl_ObjectContextIsFiltering(context)
+int **Tcl_ObjectContextIsFiltering**(*context*)
 
-    Tcl_Method
-    Tcl_ObjectContextMethod(context)
+Tcl_Method **Tcl_ObjectContextMethod**(*context*)
 
-    Tcl_Object
-    Tcl_ObjectContextObject(context)
+Tcl_Object **Tcl_ObjectContextObject**(*context*)
 
-    int
-    Tcl_ObjectContextSkippedArgs(context)
+int **Tcl_ObjectContextSkippedArgs**(*context*)
 
 # ARGUMENTS
 
@@ -93,8 +79,6 @@ An array of arguments to pass to the method implementation.
 
 The number of arguments passed to the method implementation that do not
 represent \"real\" arguments.
-
-\
 
 # DESCRIPTION
 
@@ -255,3 +239,8 @@ Class(3), oo::class(n), oo::define(n), oo::object(n)
 # KEYWORDS
 
 constructor, method, object
+
+<!---
+Copyright (c) 2007 Donal K. Fellow
+-->
+

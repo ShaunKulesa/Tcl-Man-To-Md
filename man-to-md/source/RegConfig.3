@@ -11,7 +11,6 @@
 .SH NAME
 Tcl_RegisterConfig \- procedures to register embedded configuration information
 .SH SYNOPSIS
-.nf
 \fB#include <tcl.h>\fR
 .sp
 void
@@ -99,12 +98,12 @@ Returns the configuration value associated with the specified
 .PP
 The \fBTcl_Config\fR structure contains the following fields:
 .PP
-.nf
+.CS
 typedef struct Tcl_Config {
     const char *\fIkey\fR;
     const char *\fIvalue\fR;
 } \fBTcl_Config\fR;
-.fi
+.CE
 .\" No cross references yet.
 .\" .SH "SEE ALSO"
 .SH KEYWORDS

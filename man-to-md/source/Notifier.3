@@ -11,7 +11,6 @@
 .SH NAME
 Tcl_CreateEventSource, Tcl_DeleteEventSource, Tcl_SetMaxBlockTime, Tcl_QueueEvent, Tcl_ThreadQueueEvent, Tcl_ThreadAlert, Tcl_GetCurrentThread, Tcl_DeleteEvents, Tcl_InitNotifier, Tcl_FinalizeNotifier, Tcl_WaitForEvent, Tcl_AlertNotifier, Tcl_SetTimer, Tcl_ServiceAll, Tcl_ServiceEvent, Tcl_GetServiceMode, Tcl_SetServiceMode, Tcl_ServiceModeHook, Tcl_SetNotifier \- the event queue and notifier interfaces
 .SH SYNOPSIS
-.nf
 \fB#include <tcl.h>\fR
 .sp
 void
@@ -228,11 +227,11 @@ Its arguments specify the setup procedure and check procedure for
 the event source.
 \fISetupProc\fR should match the following prototype:
 .PP
-.nf
+.CS
 typedef void \fBTcl_EventSetupProc\fR(
         ClientData \fIclientData\fR,
         int \fIflags\fR);
-.fi
+.CE
 .PP
 The \fIclientData\fR argument will be the same as the \fIclientData\fR
 argument to \fBTcl_CreateEventSource\fR;  it is typically used to
@@ -269,12 +268,12 @@ The \fItimePtr\fR argument to \fBTcl_WaitForEvent\fR points to
 a structure that describes a time interval in seconds and
 microseconds:
 .PP
-.nf
+.CS
 typedef struct Tcl_Time {
     long \fIsec\fR;
     long \fIusec\fR;
 } \fBTcl_Time\fR;
-.fi
+.CE
 .PP
 The \fIusec\fR field should be less than 1000000.
 .PP
@@ -306,11 +305,11 @@ procedure, indicated by the \fIcheckProc\fR argument to
 \fBTcl_CreateEventSource\fR.  \fICheckProc\fR must match the
 following prototype:
 .PP
-.nf
+.CS
 typedef void \fBTcl_EventCheckProc\fR(
         ClientData \fIclientData\fR,
         int \fIflags\fR);
-.fi
+.CE
 .PP
 The arguments to this procedure are the same as those for \fIsetupProc\fR.
 \fBCheckProc\fR is invoked by \fBTcl_DoOneEvent\fR after it has waited
@@ -331,12 +330,12 @@ must be a structure of type \fBTcl_Event\fR, and the address of this
 structure is used when communicating between the event source and the
 rest of the notifier.  A \fBTcl_Event\fR has the following definition:
 .PP
-.nf
+.CS
 typedef struct {
     Tcl_EventProc *\fIproc\fR;
     struct Tcl_Event *\fInextPtr\fR;
 } \fBTcl_Event\fR;
-.fi
+.CE
 .PP
 The event source must fill in the \fIproc\fR field of
 the event before calling \fBTcl_QueueEvent\fR.
@@ -366,11 +365,11 @@ above) \fBTcl_ServiceEvent\fR will invoke the \fIproc\fR specified
 in the first queued \fBTcl_Event\fR structure.
 \fIProc\fR must match the following prototype:
 .PP
-.nf
+.CS
 typedef int \fBTcl_EventProc\fR(
         Tcl_Event *\fIevPtr\fR,
         int \fIflags\fR);
-.fi
+.CE
 .PP
 The first argument to \fIproc\fR is a pointer to the event, which will
 be the same as the first argument to the \fBTcl_QueueEvent\fR call that
@@ -425,11 +424,11 @@ for each event in the queue, deleting those for with the procedure
 returns 1.  Events for which the procedure returns 0 are left in the
 queue.  \fIProc\fR should match the following prototype:
 .PP
-.nf
+.CS
 typedef int \fBTcl_EventDeleteProc\fR(
         Tcl_Event *\fIevPtr\fR,
         ClientData \fIclientData\fR);
-.fi
+.CE
 .PP
 The \fIclientData\fR argument will be the same as the \fIclientData\fR
 argument to \fBTcl_DeleteEvents\fR; it is typically used to point to
@@ -548,7 +547,7 @@ To do this, the extension makes a call to \fBTcl_SetNotifier\fR
 passing a pointer to a \fBTcl_NotifierProcs\fR data structure.  The
 structure has the following layout:
 .PP
-.nf
+.CS
 typedef struct Tcl_NotifierProcs {
     Tcl_SetTimerProc *\fIsetTimerProc\fR;
     Tcl_WaitForEventProc *\fIwaitForEventProc\fR;
@@ -559,7 +558,7 @@ typedef struct Tcl_NotifierProcs {
     Tcl_AlertNotifierProc *\fIalertNotifierProc\fR;
     Tcl_ServiceModeHookProc *\fIserviceModeHookProc\fR;
 } \fBTcl_NotifierProcs\fR;
-.fi
+.CE
 .PP
 Following the call to \fBTcl_SetNotifier\fR, the pointers given in
 the \fBTcl_NotifierProcs\fR structure replace whatever notifier had

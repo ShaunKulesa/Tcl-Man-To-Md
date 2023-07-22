@@ -1,5 +1,3 @@
-\
-
 # NAME
 
 vwait - Process events until a variable is written
@@ -7,8 +5,6 @@ vwait - Process events until a variable is written
 # SYNOPSIS
 
 **vwait** *varName*
-
-\
 
 # DESCRIPTION
 
@@ -224,3 +220,8 @@ global(n), update(n)
 # KEYWORDS
 
 asynchronous I/O, event, variable, wait
+
+<!---
+Copyright (c) 1995-1996 Sun Microsystems, Inc
+-->
+

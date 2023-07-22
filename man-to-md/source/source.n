@@ -53,18 +53,18 @@ is omitted, the system encoding is assumed.
 Run the script in the file \fBfoo.tcl\fR and then the script in the
 file \fBbar.tcl\fR:
 .PP
-.nf
+.CS
 \fBsource\fR foo.tcl
 \fBsource\fR bar.tcl
-.fi
+.CE
 .PP
 Alternatively:
 .PP
-.nf
+.CS
 foreach scriptFile {foo.tcl bar.tcl} {
     \fBsource\fR $scriptFile
 }
-.fi
+.CE
 .SH "SEE ALSO"
 file(n), cd(n), encoding(n), info(n)
 .SH KEYWORDS

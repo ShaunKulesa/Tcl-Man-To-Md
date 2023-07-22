@@ -1,5 +1,3 @@
-\
-
 # NAME
 
 Tcl_DStringInit, Tcl_DStringAppend, Tcl_DStringAppendElement,
@@ -10,35 +8,31 @@ dynamic strings
 
 # SYNOPSIS
 
-    #include <tcl.h>
+**#include \<tcl.h\>**
 
-    Tcl_DStringInit(dsPtr)
+**Tcl_DStringInit**(*dsPtr*)
 
-    char *
-    Tcl_DStringAppend(dsPtr, bytes, length)
+char \* **Tcl_DStringAppend**(*dsPtr, bytes, length*)
 
-    char *
-    Tcl_DStringAppendElement(dsPtr, element)
+char \* **Tcl_DStringAppendElement**(*dsPtr, element*)
 
-    Tcl_DStringStartSublist(dsPtr)
+**Tcl_DStringStartSublist**(*dsPtr*)
 
-    Tcl_DStringEndSublist(dsPtr)
+**Tcl_DStringEndSublist**(*dsPtr*)
 
-    int
-    Tcl_DStringLength(dsPtr)
+int **Tcl_DStringLength**(*dsPtr*)
 
-    char *
-    Tcl_DStringValue(dsPtr)
+char \* **Tcl_DStringValue**(*dsPtr*)
 
-    Tcl_DStringSetLength(dsPtr, newLength)
+**Tcl_DStringSetLength**(*dsPtr, newLength*)
 
-    Tcl_DStringTrunc(dsPtr, newLength)
+**Tcl_DStringTrunc**(*dsPtr, newLength*)
 
-    Tcl_DStringFree(dsPtr)
+**Tcl_DStringFree**(*dsPtr*)
 
-    Tcl_DStringResult(interp, dsPtr)
+**Tcl_DStringResult**(*interp, dsPtr*)
 
-    Tcl_DStringGetResult(interp, dsPtr)
+**Tcl_DStringGetResult**(*interp, dsPtr*)
 
 # ARGUMENTS
 
@@ -55,8 +49,6 @@ New length for dynamic string, not including null terminating character.
 
 Interpreter whose result is to be set from or moved to the dynamic
 string.
-
-\
 
 # DESCRIPTION
 
@@ -137,3 +129,9 @@ than by copying the string.
 # KEYWORDS
 
 append, dynamic string, free, result
+
+<!---
+Copyright (c) 1993 The Regents of the University of California
+Copyright (c) 1994-1996 Sun Microsystems, Inc
+-->
+

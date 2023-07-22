@@ -89,36 +89,36 @@ and their product. It also returns the string
 .QW OK
 to the caller as an explicit result.
 .PP
-.nf
+.CS
 \fBproc\fR printSumProduct {x y} {
     set sum [expr {$x + $y}]
     set prod [expr {$x * $y}]
     puts "sum is $sum, product is $prod"
     return "OK"
 }
-.fi
+.CE
 .PP
 This is a procedure that accepts arbitrarily many arguments and prints
 them out, one by one.
 .PP
-.nf
+.CS
 \fBproc\fR printArguments args {
     foreach arg $args {
         puts $arg
     }
 }
-.fi
+.CE
 .PP
 This procedure is a bit like the \fBincr\fR command, except it
 multiplies the contents of the named variable by the value, which
 defaults to \fB2\fR:
 .PP
-.nf
+.CS
 \fBproc\fR mult {varName {multiplier 2}} {
     upvar 1 $varName var
     set var [expr {$var * $multiplier}]
 }
-.fi
+.CE
 .SH "SEE ALSO"
 info(n), unknown(n)
 .SH KEYWORDS

@@ -1,10 +1,6 @@
-\
-
 # NAME
 
 TCL_MEM_DEBUG - Compile-time flag to enable Tcl memory debugging
-
-\
 
 # DESCRIPTION
 
@@ -75,3 +71,9 @@ ckalloc, memory, Tcl_ValidateAllMemory, Tcl_DumpActiveMemory
 # KEYWORDS
 
 memory, debug
+
+<!---
+Copyright (c) 1992-1999 Karl Lehenbauer & Mark Diekhans
+Copyright (c) 2000 Scriptics Corporation
+-->
+

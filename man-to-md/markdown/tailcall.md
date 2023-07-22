@@ -1,5 +1,3 @@
-\
-
 # NAME
 
 tailcall - Replace the current procedure with another command
@@ -7,8 +5,6 @@ tailcall - Replace the current procedure with another command
 # SYNOPSIS
 
 **tailcall ***command* ?*arg \...*?
-
-\
 
 # DESCRIPTION
 
@@ -57,3 +53,9 @@ apply(n), proc(n), uplevel(n)
 # KEYWORDS
 
 call, recursion, tail recursion
+
+<!---
+Copyright (c) 1993 The Regents of the University of California
+Copyright (c) 1994-1996 Sun Microsystems, Inc
+-->
+

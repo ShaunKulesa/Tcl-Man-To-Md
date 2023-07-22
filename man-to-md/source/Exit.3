@@ -10,7 +10,6 @@
 .SH NAME
 Tcl_Exit, Tcl_Finalize, Tcl_CreateExitHandler, Tcl_DeleteExitHandler, Tcl_ExitThread, Tcl_FinalizeThread, Tcl_CreateThreadExitHandler, Tcl_DeleteThreadExitHandler, Tcl_SetExitProc \- end the application or thread (and invoke exit handlers)
 .SH SYNOPSIS
-.nf
 \fB#include <tcl.h>\fR
 .sp
 \fBTcl_Exit\fR(\fIstatus\fR)
@@ -91,10 +90,10 @@ This provides a hook for cleanup operations such as flushing buffers
 and freeing global memory.
 \fIProc\fR should match the type \fBTcl_ExitProc\fR:
 .PP
-.nf
+.CS
 typedef void \fBTcl_ExitProc\fR(
         ClientData \fIclientData\fR);
-.fi
+.CE
 .PP
 The \fIclientData\fR parameter to \fIproc\fR is a
 copy of the \fIclientData\fR argument given to

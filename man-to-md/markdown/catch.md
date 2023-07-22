@@ -1,5 +1,3 @@
-\
-
 # NAME
 
 catch - Evaluate script and trap exceptional returns
@@ -7,8 +5,6 @@ catch - Evaluate script and trap exceptional returns
 # SYNOPSIS
 
 **catch*** script *?*resultVarName*? ?*optionsVarName*?
-
-\
 
 # DESCRIPTION
 
@@ -119,3 +115,9 @@ info(n), return(n)
 # KEYWORDS
 
 catch, error, exception
+
+<!---
+Copyright (c) 1993-1994 The Regents of the University of California
+Copyright (c) 1994-1996 Sun Microsystems, Inc
+-->
+

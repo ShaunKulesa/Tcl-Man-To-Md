@@ -1,5 +1,3 @@
-\
-
 # NAME
 
 apply - Apply an anonymous function
@@ -7,8 +5,6 @@ apply - Apply an anonymous function
 # SYNOPSIS
 
 **apply ***func* ?*arg1 arg2 \...*?
-
-\
 
 # DESCRIPTION
 
@@ -92,3 +88,9 @@ proc(n), uplevel(n)
 # KEYWORDS
 
 anonymous function, argument, lambda, procedure,
+
+<!---
+Copyright (c) 2006 Miguel Sofe
+Copyright (c) 2006 Donal K. Fellow
+-->
+

@@ -54,9 +54,9 @@ line, but the script file can always \fBsource\fR it if desired.
 .PP
 If you create a Tcl script in a file whose first line is
 .PP
-.nf
+.CS
 \fB#!/usr/local/bin/tclsh\fR
-.fi
+.CE
 .PP
 then you can invoke the script file directly from your shell if
 you mark the file as executable.
@@ -70,11 +70,11 @@ executable can be accessed with a short file name.
 An even better approach is to start your script files with the
 following three lines:
 .PP
-.nf
+.CS
 \fB#!/bin/sh
 # the next line restarts using tclsh \e
 exec tclsh "$0" ${1+"$@"}\fR
-.fi
+.CE
 .PP
 This approach has three advantages over the approach in the previous
 paragraph.  First, the location of the \fBtclsh\fR binary does not have

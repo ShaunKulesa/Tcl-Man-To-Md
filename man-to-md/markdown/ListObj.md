@@ -1,5 +1,3 @@
-\
-
 # NAME
 
 Tcl_ListObjAppendList, Tcl_ListObjAppendElement, Tcl_NewListObj,
@@ -8,30 +6,23 @@ Tcl_ListObjIndex, Tcl_ListObjReplace - manipulate Tcl values as lists
 
 # SYNOPSIS
 
-    #include <tcl.h>
+**#include \<tcl.h\>**
 
-    int
-    Tcl_ListObjAppendList(interp, listPtr, elemListPtr)
+int **Tcl_ListObjAppendList**(*interp, listPtr, elemListPtr*)
 
-    int
-    Tcl_ListObjAppendElement(interp, listPtr, objPtr)
+int **Tcl_ListObjAppendElement**(*interp, listPtr, objPtr*)
 
-    Tcl_Obj *
-    Tcl_NewListObj(objc, objv)
+Tcl_Obj \* **Tcl_NewListObj**(*objc, objv*)
 
-    Tcl_SetListObj(objPtr, objc, objv)
+**Tcl_SetListObj**(*objPtr, objc, objv*)
 
-    int
-    Tcl_ListObjGetElements(interp, listPtr, objcPtr, objvPtr)
+int **Tcl_ListObjGetElements**(*interp, listPtr, objcPtr, objvPtr*)
 
-    int
-    Tcl_ListObjLength(interp, listPtr, lengthPtr)
+int **Tcl_ListObjLength**(*interp, listPtr, lengthPtr*)
 
-    int
-    Tcl_ListObjIndex(interp, listPtr, index, objPtrPtr)
+int **Tcl_ListObjIndex**(*interp, listPtr, index, objPtrPtr*)
 
-    int
-    Tcl_ListObjReplace(interp, listPtr, first, count, objc, objv)
+int **Tcl_ListObjReplace**(*interp, listPtr, first, count, objc, objv*)
 
 # ARGUMENTS
 
@@ -82,8 +73,6 @@ Index of the starting list element that **Tcl_ListObjReplace** is to
 replace. The list\'s first element has index 0.
 
 The number of elements that **Tcl_ListObjReplace** is to replace.
-
-\
 
 # DESCRIPTION
 
@@ -211,3 +200,8 @@ Tcl_GetObjResult(3)
 
 append, index, insert, internal representation, length, list, list
 value, list type, value, value type, replace, string representation
+
+<!---
+Copyright (c) 1996-1997 Sun Microsystems, Inc
+-->
+

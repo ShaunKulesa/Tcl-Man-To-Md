@@ -1,5 +1,3 @@
-\
-
 # NAME
 
 pkg::create - Construct an appropriate \'package ifneeded\' command for
@@ -9,8 +7,6 @@ a given package specification
 
 **::pkg::create** **-name ***packageName ***-version ***packageVersion*
 ?**-load ***filespec*? \... ?**-source ***filespec*? \...
-
-\
 
 # DESCRIPTION
 
@@ -56,3 +52,8 @@ package(n)
 # KEYWORDS
 
 auto-load, index, package, version
+
+<!---
+Copyright (c) 1998-2000 Scriptics Corporation
+-->
+

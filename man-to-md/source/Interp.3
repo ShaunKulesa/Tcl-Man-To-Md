@@ -11,7 +11,6 @@
 .SH NAME
 Tcl_Interp \- client-visible fields of interpreter structures
 .SH SYNOPSIS
-.nf
 \fB#include <tcl.h>\fR
 .sp
 typedef struct {
@@ -36,13 +35,13 @@ public routines \fBTcl_SetResult\fR, \fBTcl_GetResult\fR,
 For legacy programs and extensions no longer being maintained, compiles
 against the Tcl 8.6 header files are only possible with the compiler
 directives
-.nf
+.CS
 #define USE_INTERP_RESULT
-.fi
+.CE
 and/or
-.nf
+.CS
 #define USE_INTERP_ERRORLINE
-.fi
+.CE
 depending on which fields of the \fBTcl_Interp\fR struct are accessed.
 These directives may be embedded in code or supplied via compiler options.
 .PP

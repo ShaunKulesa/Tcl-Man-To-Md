@@ -1,5 +1,3 @@
-\
-
 # NAME
 
 interp - Create and manipulate Tcl interpreters
@@ -7,8 +5,6 @@ interp - Create and manipulate Tcl interpreters
 # SYNOPSIS
 
 **interp ***subcommand *?*arg arg \...*?
-
-\
 
 # DESCRIPTION
 
@@ -875,3 +871,10 @@ Tcl_BackgroundException(3)
 # KEYWORDS
 
 alias, parent interpreter, safe interpreter, child interpreter
+
+<!---
+Copyright (c) 1995-1996 Sun Microsystems, Inc
+Copyright (c) 2004 Donal K. Fellow
+Copyright (c) 2006-2008 Joe Mistachkin
+-->
+

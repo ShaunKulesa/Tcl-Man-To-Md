@@ -75,9 +75,9 @@ address returned, the amount of memory allocated, and the C filename
 and line number of the code performing the allocation.  For example:
 .RS
 .PP
-.nf
+.CS
 ckalloc 40e478 98 tclProc.c 1406
-.fi
+.CE
 .PP
 Calls to \fBckfree\fR are traced in the same manner.
 .RE

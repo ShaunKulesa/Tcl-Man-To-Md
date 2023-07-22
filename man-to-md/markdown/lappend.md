@@ -1,5 +1,3 @@
-\
-
 # NAME
 
 lappend - Append list elements onto a variable
@@ -7,8 +5,6 @@ lappend - Append list elements onto a variable
 # SYNOPSIS
 
 **lappend ***varName *?*value value value \...*?
-
-\
 
 # DESCRIPTION
 
@@ -39,3 +35,10 @@ list(n), lindex(n), linsert(n), llength(n), lset(n), lsort(n), lrange(n)
 # KEYWORDS
 
 append, element, list, variable
+
+<!---
+Copyright (c) 1993 The Regents of the University of California
+Copyright (c) 1994-1996 Sun Microsystems, Inc
+Copyright (c) 2001 Kevin B. Kenny <kennykb@acm.org>.  All rights reserved
+-->
+

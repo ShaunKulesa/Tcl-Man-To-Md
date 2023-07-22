@@ -1,0 +1,591 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+      <script>
+	// Hack for scrolling window when linking to anchor tag with fixed nav header
+        var shiftWindow = function() { scrollBy(0, -75) };
+        window.addEventListener("hashchange", shiftWindow);
+        function load() { if (window.location.hash) shiftWindow(); }
+      </script>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        
+        <link rel="canonical" href="https://www.tcl.tk/man/TclCmd/file/">
+        <link rel="shortcut icon" href="../../img/favicon.ico">
+        <title>File - Tcl/Tk</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <link href="../../css/font-awesome.min.css" rel="stylesheet">
+    <link href="../../css/base.css" rel="stylesheet">
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+    <script src="../../js/base.js"></script> 
+    </head>
+
+    <body class="">
+
+      <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
+	<div class="container">
+	<a class="navbar-brand" href="../..">Tcl/Tk</a>
+	<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExample04" aria-controls="navbarsExample04" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+	</button>
+
+	<div class="collapse navbar-collapse">
+
+          <ul class="navbar-nav flex-row ml-md-auto d-none d-md-flex">
+            <li class="nav-item">
+              <a class="nav-link" href="#" data-toggle="modal" data-target="#mkdocs_search_modal">
+		<i class="fa fa-search"></i> Search
+              </a>
+            </li>
+          </ul>
+	</div>
+	</div>
+      </nav><div id="content" class="container">
+        
+      <div class="row">
+        <div class="col-md-9" role="main">
+
+
+<nav aria-label="breadcrumb">
+  <ol class="breadcrumb">
+    
+    <li class="breadcrumb-item active" aria-current="page">File</li>
+  </ol>
+</nav>
+
+
+<p>\</p>
+<h1 id="name">NAME</h1>
+<p>file - Manipulate file names and attributes</p>
+<h1 id="synopsis">SYNOPSIS</h1>
+<p><strong>file </strong><em>option</em> <em>name</em> ?<em>arg arg ...</em>?</p>
+<p>\</p>
+<h1 id="description">DESCRIPTION</h1>
+<p>This command provides several operations on a file\'s name or
+attributes. <em>Name</em> is the name of a file; if it starts with a tilde,
+then tilde substitution is done before executing the command (see the
+manual entry for <strong>filename</strong> for details). <em>Option</em> indicates what to
+do with the file name. Any unique abbreviation for <em>option</em> is
+acceptable. The valid options are:</p>
+<p><strong>file atime </strong><em>name</em> ?<em>time</em>?</p>
+<p>:   Returns a decimal string giving the time at which file <em>name</em> was
+    last accessed. If <em>time</em> is specified, it is an access time to set
+    for the file. The time is measured in the standard POSIX fashion as
+    seconds from a fixed starting time (often January 1, 1970). If the
+    file does not exist or its access time cannot be queried or set then
+    an error is generated. On Windows, FAT file systems do not support
+    access time.</p>
+<p><strong>file attributes </strong><em>name</em></p>
+<p>:   </p>
+<p><strong>file attributes </strong><em>name</em> ?<em>option</em>?</p>
+<p>:   </p>
+<p><strong>file attributes </strong><em>name</em> ?<em>option value option value...</em>?</p>
+<p>:   This subcommand returns or sets platform-specific values associated
+    with a file. The first form returns a list of the platform-specific
+    options and their values. The second form returns the value for the
+    given option. The third form sets one or more of the values. The
+    values are as follows:</p>
+<div class="language-text highlight"><pre><span></span><code>On Unix, **-group** gets or sets the group name for the file. A
+group id can be given to the command, but it returns a group name.
+**-owner** gets or sets the user name of the owner of the file. The
+command returns the owner name, but the numerical id can be passed
+when setting the owner. **-permissions** retrieves or sets a file\&#39;s
+access permissions, using octal notation by default. This option
+also provides limited support for setting permissions using the
+symbolic notation accepted by the **chmod** command, following the
+form \[**ugo**\]?\[\[**+-=**\]\[**rwxst**\]**,**\[\...\]\]. Multiple
+permission specifications may be given, separated by commas. E.g.,
+**u+s,go-rw** would set the setuid bit for a file\&#39;s owner as well
+as remove read and write permission for the file\&#39;s group and other
+users. An **ls**-style string of the form **rwxrwxrwx** is also
+accepted but must always be 9 characters long. E.g., **rwxr-xr-t**
+is equivalent to **01755**. On versions of Unix supporting file
+flags, **-readonly** returns the value of, or sets, or clears the
+readonly attribute of a file, i.e., the user immutable flag
+(**uchg**) to the **chflags** command.
+
+On Windows, **-archive** gives the value or sets or clears the
+archive attribute of the file. **-hidden** gives the value or sets
+or clears the hidden attribute of the file. **-longname** will
+expand each path element to its long version. This attribute cannot
+be set. **-readonly** gives the value or sets or clears the readonly
+attribute of the file. **-shortname** gives a string where every
+path element is replaced with its short (8.3) version of the name.
+This attribute cannot be set. **-system** gives or sets or clears
+the value of the system attribute of the file.
+
+On Mac OS X and Darwin, **-creator** gives or sets the Finder
+creator type of the file. **-hidden** gives or sets or clears the
+hidden attribute of the file. **-readonly** gives or sets or clears
+the readonly attribute of the file. **-rsrclength** gives the length
+of the resource fork of the file, this attribute can only be set to
+the value 0, which results in the resource fork being stripped off
+the file.
+</code></pre></div>
+<p><strong>file channels</strong> ?<em>pattern</em>?</p>
+<p>:   If <em>pattern</em> is not specified, returns a list of names of all
+    registered open channels in this interpreter. If <em>pattern</em> is
+    specified, only those names matching <em>pattern</em> are returned.
+    Matching is determined using the same rules as for <strong>string match</strong>.</p>
+<p><strong>file copy </strong>?<strong>-force</strong>? ?<strong>- -</strong>? <em>source</em> <em>target</em></p>
+<p>:   </p>
+<p><strong>file copy </strong>?<strong>-force</strong>? ?<strong>- -</strong>? <em>source</em> ?<em>source</em> ...? <em>targetDir</em></p>
+<p>:   The first form makes a copy of the file or directory <em>source</em> under
+    the pathname <em>target</em>. If <em>target</em> is an existing directory, then
+    the second form is used. The second form makes a copy inside
+    <em>targetDir</em> of each <em>source</em> file listed. If a directory is
+    specified as a <em>source</em>, then the contents of the directory will be
+    recursively copied into <em>targetDir</em>. Existing files will not be
+    overwritten unless the <strong>-force</strong> option is specified (when Tcl will
+    also attempt to adjust permissions on the destination file or
+    directory if that is necessary to allow the copy to proceed). When
+    copying within a single filesystem, <em>file copy</em> will copy soft links
+    (i.e. the links themselves are copied, not the things they point
+    to). Trying to overwrite a non-empty directory, overwrite a
+    directory with a file, or overwrite a file with a directory will all
+    result in errors even if <strong>-force</strong> was specified. Arguments are
+    processed in the order specified, halting at the first error, if
+    any. A <strong>- -</strong> marks the end of switches; the argument following the
+    <strong>- -</strong> will be treated as a <em>source</em> even if it starts with a
+    <strong>-</strong>.</p>
+<p><strong>file delete </strong>?<strong>-force</strong>? ?<strong>- -</strong>? ?<em>pathname</em> ... ?</p>
+<p>:   Removes the file or directory specified by each <em>pathname</em> argument.
+    Non-empty directories will be removed only if the <strong>-force</strong> option
+    is specified. When operating on symbolic links, the links themselves
+    will be deleted, not the objects they point to. Trying to delete a
+    non-existent file is not considered an error. Trying to delete a
+    read-only file will cause the file to be deleted, even if the
+    <strong>-force</strong> flags is not specified. If the <strong>-force</strong> option is
+    specified on a directory, Tcl will attempt both to change
+    permissions and move the current directory out of the given path if
+    that is necessary to allow the deletion to proceed. Arguments are
+    processed in the order specified, halting at the first error, if
+    any. A <strong>- -</strong> marks the end of switches; the argument following the
+    <strong>- -</strong> will be treated as a <em>pathname</em> even if it starts with a
+    <strong>-</strong>.</p>
+<p><strong>file dirname </strong><em>name</em></p>
+<p>:   Returns a name comprised of all of the path components in <em>name</em>
+    excluding the last element. If <em>name</em> is a relative file name and
+    only contains one path element, then returns If <em>name</em> refers to a
+    root directory, then the root directory is returned. For example,</p>
+<div class="language-text highlight"><pre><span></span><code>    file dirname c:/
+
+returns **c:/**.
+
+Note that tilde substitution will only be performed if it is
+necessary to complete the command. For example,
+
+    file dirname ~/src/foo.c
+
+returns **\~/src**, whereas
+
+    file dirname ~
+
+returns **/home** (or something similar).
+</code></pre></div>
+<p><strong>file executable </strong><em>name</em></p>
+<p>:   Returns <strong>1</strong> if file <em>name</em> is executable by the current user,
+    <strong>0</strong> otherwise. On Windows, which does not have an executable
+    attribute, the command treats all directories and any files with
+    extensions <strong>exe</strong>, <strong>com</strong>, <strong>cmd</strong> or <strong>bat</strong> as executable.</p>
+<p><strong>file exists </strong><em>name</em></p>
+<p>:   Returns <strong>1</strong> if file <em>name</em> exists and the current user has search
+    privileges for the directories leading to it, <strong>0</strong> otherwise.</p>
+<p><strong>file extension </strong><em>name</em></p>
+<p>:   Returns all of the characters in <em>name</em> after and including the last
+    dot in the last element of <em>name</em>. If there is no dot in the last
+    element of <em>name</em> then returns the empty string.</p>
+<p><strong>file isdirectory </strong><em>name</em></p>
+<p>:   Returns <strong>1</strong> if file <em>name</em> is a directory, <strong>0</strong> otherwise.</p>
+<p><strong>file isfile </strong><em>name</em></p>
+<p>:   Returns <strong>1</strong> if file <em>name</em> is a regular file, <strong>0</strong> otherwise.</p>
+<p><strong>file join </strong><em>name</em> ?<em>name ...</em>?</p>
+<p>:   Takes one or more file names and combines them, using the correct
+    path separator for the current platform. If a particular <em>name</em> is
+    relative, then it will be joined to the previous file name argument.
+    Otherwise, any earlier arguments will be discarded, and joining will
+    proceed from the current argument. For example,</p>
+<div class="language-text highlight"><pre><span></span><code>    file join a b /foo bar
+
+returns **/foo/bar**.
+
+Note that any of the names can contain separators, and that the
+result is always canonical for the current platform: **/** for Unix
+and Windows.
+</code></pre></div>
+<p><strong>file link</strong> ?<em>-linktype</em>? <em>linkName</em> ?<em>target</em>?</p>
+<p>:   If only one argument is given, that argument is assumed to be
+    <em>linkName</em>, and this command returns the value of the link given by
+    <em>linkName</em> (i.e. the name of the file it points to). If <em>linkName</em>
+    is not a link or its value cannot be read (as, for example, seems to
+    be the case with hard links, which look just like ordinary files),
+    then an error is returned.</p>
+<div class="language-text highlight"><pre><span></span><code>If 2 arguments are given, then these are assumed to be *linkName*
+and *target*. If *linkName* already exists, or if *target* does not
+exist, an error will be returned. Otherwise, Tcl creates a new link
+called *linkName* which points to the existing filesystem object at
+*target* (which is also the returned value), where the type of the
+link is platform-specific (on Unix a symbolic link will be the
+default). This is useful for the case where the user wishes to
+create a link in a cross-platform way, and does not care what type
+of link is created.
+
+If the user wishes to make a link of a specific type only, (and
+signal an error if for some reason that is not possible), then the
+optional *-linktype* argument should be given. Accepted values for
+*-linktype* are and
+
+On Unix, symbolic links can be made to relative paths, and those
+paths must be relative to the actual *linkName*\&#39;s location (not to
+the cwd), but on all other platforms where relative links are not
+supported, target paths will always be converted to absolute,
+normalized form before the link is created (and therefore relative
+paths are interpreted as relative to the cwd). Furthermore, paths
+are always expanded to absolute form. When creating links on
+filesystems that either do not support any links, or do not support
+the specific type requested, an error message will be returned. Most
+Unix platforms support both symbolic and hard links (the latter for
+files only). Windows supports symbolic directory links and hard file
+links on NTFS drives.
+</code></pre></div>
+<p><strong>file lstat </strong><em>name varName</em></p>
+<p>:   Same as <strong>stat</strong> option (see below) except uses the <em>lstat</em> kernel
+    call instead of <em>stat</em>. This means that if <em>name</em> refers to a
+    symbolic link the information returned in <em>varName</em> is for the link
+    rather than the file it refers to. On systems that do not support
+    symbolic links this option behaves exactly the same as the <strong>stat</strong>
+    option.</p>
+<p><strong>file mkdir</strong> ?<em>dir</em> ...?</p>
+<p>:   Creates each directory specified. For each pathname <em>dir</em> specified,
+    this command will create all non-existing parent directories as well
+    as <em>dir</em> itself. If an existing directory is specified, then no
+    action is taken and no error is returned. Trying to overwrite an
+    existing file with a directory will result in an error. Arguments
+    are processed in the order specified, halting at the first error, if
+    any.</p>
+<p><strong>file mtime </strong><em>name</em> ?<em>time</em>?</p>
+<p>:   Returns a decimal string giving the time at which file <em>name</em> was
+    last modified. If <em>time</em> is specified, it is a modification time to
+    set for the file (equivalent to Unix <strong>touch</strong>). The time is
+    measured in the standard POSIX fashion as seconds from a fixed
+    starting time (often January 1, 1970). If the file does not exist or
+    its modified time cannot be queried or set then an error is
+    generated.</p>
+<p><strong>file nativename </strong><em>name</em></p>
+<p>:   Returns the platform-specific name of the file. This is useful if
+    the filename is needed to pass to a platform-specific call, such as
+    to a subprocess via <strong>exec</strong> under Windows (see <strong>EXAMPLES</strong> below).</p>
+<p><strong>file normalize </strong><em>name</em></p>
+<p>:   Returns a unique normalized path representation for the file-system
+    object (file, directory, link, etc), whose string value can be used
+    as a unique identifier for it. A normalized path is an absolute path
+    which has all and removed. Also it is one which is in the format for
+    the native platform. On Unix, this means the segments leading up to
+    the path must be free of symbolic links/aliases (but the very last
+    path component may be a symbolic link), and on Windows it also means
+    we want the long form with that form\'s case-dependence (which gives
+    us a unique, case-dependent path). The one exception concerning the
+    last link in the path is necessary, because Tcl or the user may wish
+    to operate on the actual symbolic link itself (for example <strong>file
+    delete</strong>, <strong>file rename</strong>, <strong>file copy</strong> are defined to operate on
+    symbolic links, not on the things that they point to).</p>
+<p><strong>file owned </strong><em>name</em></p>
+<p>:   Returns <strong>1</strong> if file <em>name</em> is owned by the current user, <strong>0</strong>
+    otherwise.</p>
+<p><strong>file pathtype </strong><em>name</em></p>
+<p>:   Returns one of <strong>absolute</strong>, <strong>relative</strong>, <strong>volumerelative</strong>. If
+    <em>name</em> refers to a specific file on a specific volume, the path type
+    will be <strong>absolute</strong>. If <em>name</em> refers to a file relative to the
+    current working directory, then the path type will be <strong>relative</strong>.
+    If <em>name</em> refers to a file relative to the current working directory
+    on a specified volume, or to a specific file on the current working
+    volume, then the path type is <strong>volumerelative</strong>.</p>
+<p><strong>file readable </strong><em>name</em></p>
+<p>:   Returns <strong>1</strong> if file <em>name</em> is readable by the current user, <strong>0</strong>
+    otherwise.</p>
+<p><strong>file readlink </strong><em>name</em></p>
+<p>:   Returns the value of the symbolic link given by <em>name</em> (i.e. the
+    name of the file it points to). If <em>name</em> is not a symbolic link or
+    its value cannot be read, then an error is returned. On systems that
+    do not support symbolic links this option is undefined.</p>
+<p><strong>file rename </strong>?<strong>-force</strong>? ?<strong>- -</strong>? <em>source</em> <em>target</em></p>
+<p>:   </p>
+<p><strong>file rename </strong>?<strong>-force</strong>? ?<strong>- -</strong>? <em>source</em> ?<em>source</em> ...? <em>targetDir</em></p>
+<p>:   The first form takes the file or directory specified by pathname
+    <em>source</em> and renames it to <em>target</em>, moving the file if the pathname
+    <em>target</em> specifies a name in a different directory. If <em>target</em> is
+    an existing directory, then the second form is used. The second form
+    moves each <em>source</em> file or directory into the directory
+    <em>targetDir</em>. Existing files will not be overwritten unless the
+    <strong>-force</strong> option is specified. When operating inside a single
+    filesystem, Tcl will rename symbolic links rather than the things
+    that they point to. Trying to overwrite a non-empty directory,
+    overwrite a directory with a file, or a file with a directory will
+    all result in errors. Arguments are processed in the order
+    specified, halting at the first error, if any. A <strong>- -</strong> marks the
+    end of switches; the argument following the <strong>- -</strong> will be treated
+    as a <em>source</em> even if it starts with a <strong>-</strong>.</p>
+<p><strong>file rootname </strong><em>name</em></p>
+<p>:   Returns all of the characters in <em>name</em> up to but not including the
+    last character in the last component of name. If the last component
+    of <em>name</em> does not contain a dot, then returns <em>name</em>.</p>
+<p><strong>file separator</strong> ?<em>name</em>?</p>
+<p>:   If no argument is given, returns the character which is used to
+    separate path segments for native files on this platform. If a path
+    is given, the filesystem responsible for that path is asked to
+    return its separator character. If no file system accepts <em>name</em>, an
+    error is generated.</p>
+<p><strong>file size </strong><em>name</em></p>
+<p>:   Returns a decimal string giving the size of file <em>name</em> in bytes. If
+    the file does not exist or its size cannot be queried then an error
+    is generated.</p>
+<p><strong>file split </strong><em>name</em></p>
+<p>:   Returns a list whose elements are the path components in <em>name</em>. The
+    first element of the list will have the same path type as <em>name</em>.
+    All other elements will be relative. Path separators will be
+    discarded unless they are needed to ensure that an element is
+    unambiguously relative. For example, under Unix</p>
+<div class="language-text highlight"><pre><span></span><code>    file split /foo/~bar/baz
+
+returns to ensure that later commands that use the third component
+do not attempt to perform tilde substitution.
+</code></pre></div>
+<p><strong>file stat </strong><em>name varName</em></p>
+<p>:   Invokes the <strong>stat</strong> kernel call on <em>name</em>, and uses the variable
+    given by <em>varName</em> to hold information returned from the kernel
+    call. <em>VarName</em> is treated as an array variable, and the following
+    elements of that variable are set: <strong>atime</strong>, <strong>ctime</strong>, <strong>dev</strong>,
+    <strong>gid</strong>, <strong>ino</strong>, <strong>mode</strong>, <strong>mtime</strong>, <strong>nlink</strong>, <strong>size</strong>,
+    <strong>type</strong>, <strong>uid</strong>. Each element except <strong>type</strong> is a decimal string
+    with the value of the corresponding field from the <strong>stat</strong> return
+    structure; see the manual entry for <strong>stat</strong> for details on the
+    meanings of the values. The <strong>type</strong> element gives the type of the
+    file in the same form returned by the command <strong>file type</strong>. This
+    command returns an empty string.</p>
+<p><strong>file system </strong><em>name</em></p>
+<p>:   Returns a list of one or two elements, the first of which is the
+    name of the filesystem to use for the file, and the second, if
+    given, an arbitrary string representing the filesystem-specific
+    nature or type of the location within that filesystem. If a
+    filesystem only supports one type of file, the second element may
+    not be supplied. For example the native files have a first element
+    and a second element which when given is a platform-specific type
+    name for the file\'s system (e.g. on Windows). A generic virtual
+    file system might return the list to represent a file on a remote
+    ftp site mounted as a virtual filesystem through an extension called
+    If the file does not belong to any filesystem, an error is
+    generated.</p>
+<p><strong>file tail </strong><em>name</em></p>
+<p>:   Returns all of the characters in the last filesystem component of
+    <em>name</em>. Any trailing directory separator in <em>name</em> is ignored. If
+    <em>name</em> contains no separators then returns <em>name</em>. So, <strong>file tail
+    a/b</strong>, <strong>file tail a/b/</strong> and <strong>file tail b</strong> all return <strong>b</strong>.</p>
+<p><strong>file tempfile</strong> ?<em>nameVar</em>? ?<em>template</em>?</p>
+<p>:   </p>
+<p>Creates a temporary file and returns a read-write channel opened on that
+file. If the <em>nameVar</em> is given, it specifies a variable that the name
+of the temporary file will be written into; if absent, Tcl will attempt
+to arrange for the temporary file to be deleted once it is no longer
+required. If the <em>template</em> is present, it specifies parts of the
+template of the filename to use when creating it (such as the directory,
+base-name or extension) though some platforms may ignore some or all of
+these parts and use a built-in default instead.</p>
+<blockquote>
+<p>Note that temporary files are <em>only</em> ever created on the native
+filesystem. As such, they can be relied upon to be used with
+operating-system native APIs and external programs that require a
+filename.</p>
+</blockquote>
+<p><strong>file type </strong><em>name</em></p>
+<p>:   Returns a string giving the type of file <em>name</em>, which will be one
+    of <strong>file</strong>, <strong>directory</strong>, <strong>characterSpecial</strong>, <strong>blockSpecial</strong>,
+    <strong>fifo</strong>, <strong>link</strong>, or <strong>socket</strong>.</p>
+<p><strong>file volumes</strong></p>
+<p>:   Returns the absolute paths to the volumes mounted on the system, as
+    a proper Tcl list. Without any virtual filesystems mounted as root
+    volumes, on UNIX, the command will always return since all
+    filesystems are locally mounted. On Windows, it will return a list
+    of the available local drives (e.g. If any virtual filesystem has
+    mounted additional volumes, they will be in the returned list.</p>
+<p><strong>file writable </strong><em>name</em></p>
+<p>:   Returns <strong>1</strong> if file <em>name</em> is writable by the current user, <strong>0</strong>
+    otherwise.</p>
+<h1 id="portability-issues">PORTABILITY ISSUES</h1>
+<p><strong>Unix</strong>       </p>
+<p>:   These commands always operate using the real user and group
+    identifiers, not the effective ones.</p>
+<p><strong>Windows</strong>    </p>
+<p>:   The <strong>file owned</strong> subcommand uses the user identifier (SID) of the
+    process token, not the thread token which may be impersonating some
+    other user.</p>
+<h1 id="examples">EXAMPLES</h1>
+<p>This procedure shows how to search for C files in a given directory that
+have a correspondingly-named object file in the current directory:</p>
+<div class="language-text highlight"><pre><span></span><code>proc findMatchingCFiles {dir} {
+    set files {}
+    switch $::tcl_platform(platform) {
+        windows {
+            set ext .obj
+        }
+        unix {
+           set ext .o
+        }
+    }
+    foreach file [glob -nocomplain -directory $dir *.c] {
+        set objectFile [file tail [file rootname $file]]$ext
+        if {[file exists $objectFile]} {
+            lappend files $file
+        }
+    }
+    return $files
+}
+</code></pre></div>
+<p>Rename a file and leave a symbolic link pointing from the old location
+to the new place:</p>
+<div class="language-text highlight"><pre><span></span><code>set oldName foobar.txt
+set newName foo/bar.txt
+# Make sure that where we&#39;re going to move to exists...
+if {![file isdirectory [file dirname $newName]]} {
+    file mkdir [file dirname $newName]
+}
+file rename $oldName $newName
+file link -symbolic $oldName $newName
+</code></pre></div>
+<p>On Windows, a file can be easily enough (equivalent to double-clicking
+on it in the Explorer interface) but the name passed to the operating
+system must be in native format:</p>
+<div class="language-text highlight"><pre><span></span><code>exec {*}[auto_execok start] {} [file nativename ~/example.txt]
+</code></pre></div>
+<h1 id="see-also">SEE ALSO</h1>
+<p>filename(n), open(n), close(n), eof(n), gets(n), tell(n), seek(n),
+fblocked(n), flush(n)</p>
+<h1 id="keywords">KEYWORDS</h1>
+<p>attributes, copy files, delete files, directory, file, move files, name,
+rename files, stat, user</p>
+
+<ul class="metadata page-metadata" data-bi-name="page info" lang="en-us" dir="ltr">
+  <li class="last-updated-holder displayDate loading">
+    <span class="last-updated-text">Last updated:</span>
+    <time role="presentation" datetime="2018-10-25T00:00:00.000Z" data-article-date-source="ms.date"></time>
+  </li>
+<!--
+  <li class="readingTime">
+    2 minutes to read
+  </li>
+-->
+  <li class="contributors-holder">
+    <span class="contributors-text">Contributors</span>
+    <ul class="contributors" data-bi-name="contributors"></ul>
+  </li>
+</ul>
+</div>
+        <div class="col-md-3"><div class="navbar-light navbar-expand-md hidden-print sticky-top sticky-offset" role="complementary">
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggler collapsed" data-toggle="collapse" data-target="#toc-collapse" title="Table of Contents">
+            <span class="fa fa-angle-down"></span>
+        </button>
+    </div>
+
+    <div id="toc-collapse" class="navbar-collapse collapse card">
+        <ul class="nav flex-column bs-sidenav">
+            <li class="nav-item main"><a class="nav-link" href="#name">NAME</a></li>
+            <li class="nav-item main"><a class="nav-link" href="#synopsis">SYNOPSIS</a></li>
+            <li class="nav-item main"><a class="nav-link" href="#description">DESCRIPTION</a></li>
+            <li class="nav-item main"><a class="nav-link" href="#portability-issues">PORTABILITY ISSUES</a></li>
+            <li class="nav-item main"><a class="nav-link" href="#examples">EXAMPLES</a></li>
+            <li class="nav-item main"><a class="nav-link" href="#see-also">SEE ALSO</a></li>
+            <li class="nav-item main"><a class="nav-link" href="#keywords">KEYWORDS</a></li>
+        </ul>
+    </div>
+</div></div>
+      </div>
+      </div>
+
+      <footer class="col-md-12">
+	<hr>
+	<div class="container">
+	</div>
+      </footer>
+      <script>
+	var base_url = "../..",
+            shortcuts = {"help": 191, "next": 78, "previous": 80, "search": 83};
+      </script>
+      <script src="../../js/base.js" defer></script>
+      <script src="../../search/main.js" defer></script>
+
+      <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="Search Modal" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Search</h4>
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            </div>
+            <div class="modal-body">
+                <p>
+                    From here you can search these documents. Enter
+                    your search terms below.
+                </p>
+                <form role="form">
+                    <div class="form-group">
+                        <input type="text" class="form-control" placeholder="Search..." id="mkdocs-search-query" title="Type search term here">
+                    </div>
+                </form>
+                <div id="mkdocs-search-results"></div>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div><div class="modal" id="mkdocs_keyboard_modal" tabindex="-1" role="dialog" aria-labelledby="Keyboard Shortcuts Modal" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <p class="h4 modal-title">Keyboard Shortcuts</p>
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            </div>
+            <div class="modal-body">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th style="width: 20%;">Keys</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="help shortcut"><kbd>?</kbd></td>
+                    <td>Open this help</td>
+                  </tr>
+                  <tr>
+                    <td class="next shortcut"><kbd>n</kbd></td>
+                    <td>Next page</td>
+                  </tr>
+                  <tr>
+                    <td class="prev shortcut"><kbd>p</kbd></td>
+                    <td>Previous page</td>
+                  </tr>
+                  <tr>
+                    <td class="search shortcut"><kbd>s</kbd></td>
+                    <td>Search</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>
+
+    </body>
+</html>

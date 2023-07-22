@@ -1,5 +1,3 @@
-\
-
 # NAME
 
 clock - Obtain and manipulate dates and times
@@ -21,8 +19,6 @@ package require **Tcl 8.5**
 **clock scan** *inputString* ?*-option value*\...?
 
 **clock seconds**
-
-\
 
 # DESCRIPTION
 
@@ -1004,3 +1000,8 @@ clock, date, time
 
 Copyright © 2004 Kevin B. Kenny \<kennykb@acm.org\>. All rights
 reserved.
+
+<!---
+Copyright (c) 2004 Kevin B. Kenny <kennykb@acm.org>. All rights reserved
+-->
+

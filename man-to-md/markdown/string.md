@@ -1,5 +1,3 @@
-\
-
 # NAME
 
 string - Manipulate strings
@@ -7,8 +5,6 @@ string - Manipulate strings
 # SYNOPSIS
 
 **string ***option arg *?*arg \...?*
-
-\
 
 # DESCRIPTION
 
@@ -483,3 +479,7 @@ expr(n), list(n)
 
 case conversion, compare, index, match, pattern, string, word, equal,
 ctype, character, reverse
+
+<!---
+-->
+

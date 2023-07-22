@@ -1,5 +1,3 @@
-\
-
 # NAME
 
 Tcl_CreateEventSource, Tcl_DeleteEventSource, Tcl_SetMaxBlockTime,
@@ -12,64 +10,45 @@ queue and notifier interfaces
 
 # SYNOPSIS
 
-    #include <tcl.h>
+**#include \<tcl.h\>**
 
-    void
-    Tcl_CreateEventSource(setupProc, checkProc, clientData)
+void **Tcl_CreateEventSource**(*setupProc, checkProc, clientData*)
 
-    void
-    Tcl_DeleteEventSource(setupProc, checkProc, clientData)
+void **Tcl_DeleteEventSource**(*setupProc, checkProc, clientData*)
 
-    void
-    Tcl_SetMaxBlockTime(timePtr)
+void **Tcl_SetMaxBlockTime**(*timePtr*)
 
-    void
-    Tcl_QueueEvent(evPtr, position)
+void **Tcl_QueueEvent**(*evPtr, position*)
 
-    void
-    Tcl_ThreadQueueEvent(threadId, evPtr, position)
+void **Tcl_ThreadQueueEvent**(*threadId, evPtr, position*)
 
-    void
-    Tcl_ThreadAlert(threadId)
+void **Tcl_ThreadAlert**(*threadId*)
 
-    Tcl_ThreadId
-    Tcl_GetCurrentThread()
+Tcl_ThreadId **Tcl_GetCurrentThread**()
 
-    void
-    Tcl_DeleteEvents(deleteProc, clientData)
+void **Tcl_DeleteEvents**(*deleteProc, clientData*)
 
-    ClientData
-    Tcl_InitNotifier()
+ClientData **Tcl_InitNotifier**()
 
-    void
-    Tcl_FinalizeNotifier(clientData)
+void **Tcl_FinalizeNotifier**(*clientData*)
 
-    int
-    Tcl_WaitForEvent(timePtr)
+int **Tcl_WaitForEvent**(*timePtr*)
 
-    void
-    Tcl_AlertNotifier(clientData)
+void **Tcl_AlertNotifier**(*clientData*)
 
-    void
-    Tcl_SetTimer(timePtr)
+void **Tcl_SetTimer**(*timePtr*)
 
-    int
-    Tcl_ServiceAll()
+int **Tcl_ServiceAll**()
 
-    int
-    Tcl_ServiceEvent(flags)
+int **Tcl_ServiceEvent**(*flags*)
 
-    int
-    Tcl_GetServiceMode()
+int **Tcl_GetServiceMode**()
 
-    int
-    Tcl_SetServiceMode(mode)
+int **Tcl_SetServiceMode**(*mode*)
 
-    void
-    Tcl_ServiceModeHook(mode)
+void **Tcl_ServiceModeHook**(*mode*)
 
-    void
-    Tcl_SetNotifier(notifierProcPtr)
+void **Tcl_SetNotifier**(*notifierProcPtr*)
 
 # ARGUMENTS
 
@@ -105,8 +84,6 @@ be one of **TCL_SERVICE_NONE** or **TCL_SERVICE_ALL**.
 Structure of function pointers describing notifier procedures that are
 to replace the ones installed in the executable. See **REPLACING THE
 NOTIFIER** for details.
-
-\
 
 # INTRODUCTION
 
@@ -621,3 +598,9 @@ Tcl_DoOneEvent(3), Thread(3)
 
 event, notifier, event queue, event sources, file events, timer, idle,
 service mode, threads
+
+<!---
+Copyright (c) 1998-1999 Scriptics Corporatio
+Copyright (c) 1995-1997 Sun Microsystems, Inc
+-->
+

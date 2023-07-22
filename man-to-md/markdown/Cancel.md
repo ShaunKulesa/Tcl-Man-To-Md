@@ -1,17 +1,13 @@
-\
-
 # NAME
 
 Tcl_CancelEval, Tcl_Canceled - cancel Tcl scripts
 
 # SYNOPSIS
 
-    #include <tcl.h>
-    int
-    Tcl_CancelEval(interp, resultObjPtr, clientData, flags)
+**#include \<tcl.h\>** int **Tcl_CancelEval**(*interp, resultObjPtr,
+clientData, flags*)
 
-    int
-    Tcl_Canceled(interp, flags)
+int **Tcl_Canceled**(*interp, flags*)
 
 # ARGUMENTS
 
@@ -27,8 +23,6 @@ For **Tcl_Canceled**, only **TCL_LEAVE_ERR_MSG** and
 **TCL_CANCEL_UNWIND** are currently supported.
 
 Currently reserved for future use. It should be set to NULL.
-
-\
 
 # DESCRIPTION
 
@@ -73,3 +67,8 @@ interp(n), Tcl_Eval(3), TIP 285
 # KEYWORDS
 
 cancel, unwind
+
+<!---
+Copyright (c) 2006-2008 Joe Mistachkin
+-->
+

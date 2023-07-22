@@ -1,14 +1,12 @@
-\
-
 # NAME
 
 Tcl_PrintDouble - Convert floating value to string
 
 # SYNOPSIS
 
-    #include <tcl.h>
+**#include \<tcl.h\>**
 
-    Tcl_PrintDouble(interp, value, dst)
+**Tcl_PrintDouble**(*interp, value, dst*)
 
 # ARGUMENTS
 
@@ -21,8 +19,6 @@ Floating-point value to be converted.
 
 Where to store the string representing *value*. Must have at least
 **TCL_DOUBLE_SPACE** characters of storage.
-
-\
 
 # DESCRIPTION
 
@@ -43,3 +39,9 @@ to even apply to the conversion.
 # KEYWORDS
 
 conversion, double-precision, floating-point, string
+
+<!---
+Copyright (c) 1989-1993 The Regents of the University of California
+Copyright (c) 1994-1997 Sun Microsystems, Inc
+-->
+

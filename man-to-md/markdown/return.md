@@ -1,5 +1,3 @@
-\
-
 # NAME
 
 return - Return from a procedure, or set return code of a script
@@ -11,8 +9,6 @@ return - Return from a procedure, or set return code of a script
 **return **?**-code ***code*? ?*result*?
 
 **return **?*option value *\...? ?*result*?
-
-\
 
 # DESCRIPTION
 
@@ -302,3 +298,9 @@ errorInfo(n), proc(n), source(n), throw(n), try(n)
 # KEYWORDS
 
 break, catch, continue, error, exception, procedure, result, return
+
+<!---
+Copyright (c) 1993 The Regents of the University of California
+Copyright (c) 1994-1996 Sun Microsystems, Inc
+-->
+

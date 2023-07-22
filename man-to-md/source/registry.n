@@ -67,7 +67,7 @@ to the global Environment and notify applications of the change without
 requiring a logoff/logon step (assumes admin privileges):
 .RS
 .PP
-.nf
+.CS
 set regPath [join {
     HKEY_LOCAL_MACHINE
     SYSTEM
@@ -79,7 +79,7 @@ set regPath [join {
 set curPath [\fBregistry get\fR $regPath "Path"]
 \fBregistry set\fR $regPath "Path" "$curPath;$addPath"
 \fBregistry broadcast\fR "Environment"
-.fi
+.CE
 .RE
 .TP
 \fBregistry delete \fIkeyName\fR ?\fIvalueName\fR?
@@ -198,7 +198,7 @@ The registry command is only available on Windows.
 Print out how double-clicking on a Tcl script file will invoke a Tcl
 interpreter:
 .PP
-.nf
+.CS
 package require registry
 set ext .tcl
 
@@ -210,7 +210,7 @@ set path HKEY_CLASSES_ROOT\e\e$type\e\eShell\e\eOpen\e\ecommand
 set command [\fBregistry get\fR $path {}]
 
 puts "$ext opens with $command"
-.fi
+.CE
 .SH KEYWORDS
 registry
 '\" Local Variables:

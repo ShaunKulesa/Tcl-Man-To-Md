@@ -1,5 +1,3 @@
-\
-
 # NAME
 
 Tcl_NewBooleanObj, Tcl_SetBooleanObj, Tcl_GetBooleanFromObj -
@@ -7,15 +5,13 @@ store/retrieve boolean value in a Tcl_Obj
 
 # SYNOPSIS
 
-    #include <tcl.h>
+**#include \<tcl.h\>**
 
-    Tcl_Obj *
-    Tcl_NewBooleanObj(intValue)
+Tcl_Obj \* **Tcl_NewBooleanObj**(*intValue*)
 
-    Tcl_SetBooleanObj(objPtr, intValue)
+**Tcl_SetBooleanObj**(*objPtr, intValue*)
 
-    int
-    Tcl_GetBooleanFromObj(interp, objPtr, intPtr)
+int **Tcl_GetBooleanFromObj**(*interp, objPtr, intPtr*)
 
 # ARGUMENTS
 
@@ -29,8 +25,6 @@ interpreter\'s result value unless *interp* is NULL.
 
 Points to place where **Tcl_GetBooleanFromObj** stores the boolean value
 (0 or 1) obtained from *objPtr*.
-
-\
 
 # DESCRIPTION
 
@@ -80,3 +74,8 @@ Tcl_NewObj, Tcl_IsShared, Tcl_GetBoolean
 # KEYWORDS
 
 boolean, value
+
+<!---
+Copyright (c) 1996-1997 Sun Microsystems, Inc
+-->
+

@@ -1,10 +1,6 @@
-\
-
 # NAME
 
 re_syntax - Syntax of Tcl regular expressions
-
-\
 
 # DESCRIPTION
 
@@ -758,3 +754,9 @@ RegExp(3), regexp(n), regsub(n), lsearch(n), switch(n), text(n)
 # KEYWORDS
 
 match, regular expression, string
+
+<!---
+Copyright (c) 1998 Sun Microsystems, Inc
+Copyright (c) 1999 Scriptics Corporatio
+-->
+

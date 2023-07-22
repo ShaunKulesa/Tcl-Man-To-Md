@@ -1,5 +1,3 @@
-\
-
 # NAME
 
 proc - Create a Tcl procedure
@@ -7,8 +5,6 @@ proc - Create a Tcl procedure
 # SYNOPSIS
 
 **proc ***name args body*
-
-\
 
 # DESCRIPTION
 
@@ -106,3 +102,9 @@ info(n), unknown(n)
 # KEYWORDS
 
 argument, procedure
+
+<!---
+Copyright (c) 1993 The Regents of the University of California
+Copyright (c) 1994-1996 Sun Microsystems, Inc
+-->
+

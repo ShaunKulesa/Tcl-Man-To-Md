@@ -1,5 +1,3 @@
-\
-
 # NAME
 
 Tcl_UniCharIsAlnum, Tcl_UniCharIsAlpha, Tcl_UniCharIsControl,
@@ -10,46 +8,33 @@ of Tcl_UniChar characters
 
 # SYNOPSIS
 
-    #include <tcl.h>
+**#include \<tcl.h\>**
 
-    int
-    Tcl_UniCharIsAlnum(ch)
+int **Tcl_UniCharIsAlnum**(*ch*)
 
-    int
-    Tcl_UniCharIsAlpha(ch)
+int **Tcl_UniCharIsAlpha**(*ch*)
 
-    int
-    Tcl_UniCharIsControl(ch)
+int **Tcl_UniCharIsControl**(*ch*)
 
-    int
-    Tcl_UniCharIsDigit(ch)
+int **Tcl_UniCharIsDigit**(*ch*)
 
-    int
-    Tcl_UniCharIsGraph(ch)
+int **Tcl_UniCharIsGraph**(*ch*)
 
-    int
-    Tcl_UniCharIsLower(ch)
+int **Tcl_UniCharIsLower**(*ch*)
 
-    int
-    Tcl_UniCharIsPrint(ch)
+int **Tcl_UniCharIsPrint**(*ch*)
 
-    int
-    Tcl_UniCharIsPunct(ch)
+int **Tcl_UniCharIsPunct**(*ch*)
 
-    int
-    Tcl_UniCharIsSpace(ch)
+int **Tcl_UniCharIsSpace**(*ch*)
 
-    int
-    Tcl_UniCharIsUpper(ch)
+int **Tcl_UniCharIsUpper**(*ch*)
 
-    int
-    Tcl_UniCharIsWordChar(ch)
+int **Tcl_UniCharIsWordChar**(*ch*)
 
 # ARGUMENTS
 
 The Tcl_UniChar to be examined.
-
-\
 
 # DESCRIPTION
 
@@ -97,3 +82,8 @@ connector punctuation mark.
 # KEYWORDS
 
 unicode, classification
+
+<!---
+Copyright (c) 1997 Sun Microsystems, Inc
+-->
+

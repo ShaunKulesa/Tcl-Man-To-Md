@@ -1,5 +1,3 @@
-\
-
 # NAME
 
 foreach - Iterate over all elements in one or more lists
@@ -8,8 +6,6 @@ foreach - Iterate over all elements in one or more lists
 
 **foreach ***varname list body*\
 **foreach ***varlist1 list1* ?*varlist2 list2 \...*? *body*
-
-\
 
 # DESCRIPTION
 
@@ -83,3 +79,9 @@ for(n), while(n), break(n), continue(n)
 # KEYWORDS
 
 foreach, iteration, list, loop
+
+<!---
+Copyright (c) 1993 The Regents of the University of California
+Copyright (c) 1994-1996 Sun Microsystems, Inc
+-->
+

@@ -1,5 +1,3 @@
-\
-
 # NAME
 
 Tcl_FindExecutable, Tcl_GetNameOfExecutable - identify or return the
@@ -7,20 +5,16 @@ name of the binary file containing the application
 
 # SYNOPSIS
 
-    #include <tcl.h>
+**#include \<tcl.h\>**
 
-    void
-    Tcl_FindExecutable(argv0)
+void **Tcl_FindExecutable**(*argv0*)
 
-    const char *
-    Tcl_GetNameOfExecutable()
+const char \* **Tcl_GetNameOfExecutable**()
 
 # ARGUMENTS
 
 The first command-line argument to the program, which gives the
 application\'s name.
-
-\
 
 # DESCRIPTION
 
@@ -56,3 +50,8 @@ full path name has not been computed or unknown.
 # KEYWORDS
 
 binary, executable file
+
+<!---
+Copyright (c) 1995-1996 Sun Microsystems, Inc
+-->
+

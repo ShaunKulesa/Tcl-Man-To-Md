@@ -221,41 +221,41 @@ The \fBb\fR specifier has no \fBsprintf\fR counterpart.
 Convert the numeric value of a UNICODE character to the character
 itself:
 .PP
-.nf
+.CS
 set value 120
 set char [\fBformat\fR %c $value]
-.fi
+.CE
 .PP
 Convert the output of \fBtime\fR into seconds to an accuracy of
 hundredths of a second:
 .PP
-.nf
+.CS
 set us [lindex [time $someTclCode] 0]
 puts [\fBformat\fR "%.2f seconds to execute" [expr {$us / 1e6}]]
-.fi
+.CE
 .PP
 Create a packed X11 literal color specification:
 .PP
-.nf
+.CS
 # Each color-component should be in range (0..255)
 set color [\fBformat\fR "#%02x%02x%02x" $r $g $b]
-.fi
+.CE
 .PP
 Use XPG3 format codes to allow reordering of fields (a technique that
 is often used in localized message catalogs; see \fBmsgcat\fR) without
 reordering the data values passed to \fBformat\fR:
 .PP
-.nf
+.CS
 set fmt1 "Today, %d shares in %s were bought at $%.2f each"
 puts [\fBformat\fR $fmt1 123 "Global BigCorp" 19.37]
 
 set fmt2 "Bought %2\e$s equity ($%3$.2f x %1\e$d) today"
 puts [\fBformat\fR $fmt2 123 "Global BigCorp" 19.37]
-.fi
+.CE
 .PP
 Print a small table of powers of three:
 .PP
-.nf
+.CS
 # Set up the column widths
 set w1 5
 set w2 10
@@ -275,7 +275,7 @@ for {set i 0} {$i<=20} {incr i} {
 
 # Finish off by printing the separator again
 puts $sep
-.fi
+.CE
 .SH "SEE ALSO"
 scan(n), sprintf(3), string(n)
 .SH KEYWORDS

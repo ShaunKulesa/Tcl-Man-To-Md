@@ -11,7 +11,6 @@
 .SH NAME
 Tcl_ConditionNotify, Tcl_ConditionWait, Tcl_ConditionFinalize, Tcl_GetThreadData, Tcl_MutexLock, Tcl_MutexUnlock, Tcl_MutexFinalize, Tcl_CreateThread, Tcl_JoinThread \- Tcl thread support
 .SH SYNOPSIS
-.nf
 \fB#include <tcl.h>\fR
 .sp
 void
@@ -192,14 +191,14 @@ the script level.  One such package is the \fBThread\fR package.
 To create a thread with portable code, its implementation function should be
 declared as follows:
 .PP
-.nf
+.CS
 static \fBTcl_ThreadCreateProc\fR MyThreadImplFunc;
-.fi
+.CE
 .PP
 It should then be defined like this example, which just counts up to a given
 value and then finishes.
 .PP
-.nf
+.CS
 static \fBTcl_ThreadCreateType\fR
 MyThreadImplFunc(
     ClientData clientData)
@@ -210,12 +209,12 @@ MyThreadImplFunc(
     }
     \fBTCL_THREAD_CREATE_RETURN\fR;
 }
-.fi
+.CE
 .PP
 To create the above thread, make it execute, and wait for it to finish, we
 would do this:
 .PP
-.nf
+.CS
 int limit = 1000000000;
 ClientData limitData = (void*)((intptr_t) limit);
 Tcl_ThreadId id;    \fI/* holds identity of thread created */\fR
@@ -233,7 +232,7 @@ if (\fBTcl_JoinThread\fR(id, &result) != TCL_OK) {
     return;
 }
 \fI/* All cleaned up nicely */\fR
-.fi
+.CE
 .SH "SEE ALSO"
 Tcl_GetCurrentThread(3), Tcl_ThreadQueueEvent(3), Tcl_ThreadAlert(3),
 Tcl_ExitThread(3), Tcl_FinalizeThread(3), Tcl_CreateThreadExitHandler(3),

@@ -1,5 +1,3 @@
-\
-
 # NAME
 
 timerate - Calibrated performance measurements of script execution time
@@ -13,8 +11,6 @@ timerate - Calibrated performance measurements of script execution time
 
 **timerate **?**-calibrate**? ?**-direct**? *script* ?*time*?
 ?*max-count*?
-
-\
 
 # DESCRIPTION
 
@@ -141,3 +137,8 @@ time(n)
 # KEYWORDS
 
 performance measurement, script, time
+
+<!---
+Copyright (c) 2005 Sergey Brester aka sebres
+-->
+

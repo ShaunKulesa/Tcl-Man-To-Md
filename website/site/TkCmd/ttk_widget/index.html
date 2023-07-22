@@ -1,0 +1,549 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+      <script>
+	// Hack for scrolling window when linking to anchor tag with fixed nav header
+        var shiftWindow = function() { scrollBy(0, -75) };
+        window.addEventListener("hashchange", shiftWindow);
+        function load() { if (window.location.hash) shiftWindow(); }
+      </script>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        
+        <link rel="canonical" href="https://www.tcl.tk/man/TkCmd/ttk_widget/">
+        <link rel="shortcut icon" href="../../img/favicon.ico">
+        <title>Ttk widget - Tcl/Tk</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <link href="../../css/font-awesome.min.css" rel="stylesheet">
+    <link href="../../css/base.css" rel="stylesheet">
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+    <script src="../../js/base.js"></script> 
+    </head>
+
+    <body class="">
+
+      <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
+	<div class="container">
+	<a class="navbar-brand" href="../..">Tcl/Tk</a>
+	<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExample04" aria-controls="navbarsExample04" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+	</button>
+
+	<div class="collapse navbar-collapse">
+
+          <ul class="navbar-nav flex-row ml-md-auto d-none d-md-flex">
+            <li class="nav-item">
+              <a class="nav-link" href="#" data-toggle="modal" data-target="#mkdocs_search_modal">
+		<i class="fa fa-search"></i> Search
+              </a>
+            </li>
+          </ul>
+	</div>
+	</div>
+      </nav><div id="content" class="container">
+        
+      <div class="row">
+        <div class="col-md-9" role="main">
+
+
+<nav aria-label="breadcrumb">
+  <ol class="breadcrumb">
+    
+    <li class="breadcrumb-item active" aria-current="page">Ttk widget</li>
+  </ol>
+</nav>
+
+
+<p>\</p>
+<h1 id="name">NAME</h1>
+<p>ttk::widget - Standard options and commands supported by Tk themed
+widgets</p>
+<p>\</p>
+<h1 id="description">DESCRIPTION</h1>
+<p>This manual describes common widget options and commands.</p>
+<h1 id="standard-options">STANDARD OPTIONS</h1>
+<p>The following options are supported by all Tk themed widgets:</p>
+<div class="language-text highlight"><pre><span></span><code>Command-Line Name:  -class
+Database Name:  undefined
+Database Class: undefined
+</code></pre></div>
+<blockquote>
+<p>Specifies the window class. The class is used when querying the option
+database for the window\'s other options, to determine the default
+bindtags for the window, and to select the widget\'s default layout
+and style. This is a read-only option: it may only be specified when
+the window is created, and may not be changed with the <strong>configure</strong>
+widget command.</p>
+</blockquote>
+<div class="language-text highlight"><pre><span></span><code>Command-Line Name:  -cursor
+Database Name:  cursor
+Database Class: Cursor
+</code></pre></div>
+<blockquote>
+<p>Specifies the mouse cursor to be used for the widget. See
+<strong>Tk_GetCursor</strong> and <em>cursors(n)</em> in the Tk reference manual for the
+legal values. If set to the empty string (the default), the cursor is
+inherited from the parent widget.</p>
+</blockquote>
+<div class="language-text highlight"><pre><span></span><code>Command-Line Name:  -takefocus
+Database Name:  takeFocus
+Database Class: TakeFocus
+</code></pre></div>
+<blockquote>
+<p>Determines whether the window accepts the focus during keyboard
+traversal. Either <strong>0</strong>, <strong>1</strong>, a command prefix (to which the widget
+path is appended, and which should return <strong>0</strong> or <strong>1</strong>), or the
+empty string. See <em>options(n)</em> in the Tk reference manual for the full
+description.</p>
+</blockquote>
+<div class="language-text highlight"><pre><span></span><code>Command-Line Name:  -style
+Database Name:  style
+Database Class: Style
+</code></pre></div>
+<blockquote>
+<p>May be used to specify a custom widget style.</p>
+</blockquote>
+<h1 id="scrollable-widget-options">SCROLLABLE WIDGET OPTIONS</h1>
+<p>The following options are supported by widgets that are controllable by
+a scrollbar. See <em>scrollbar(n)</em> for more information</p>
+<div class="language-text highlight"><pre><span></span><code>Command-Line Name:  -xscrollcommand
+Database Name:  xScrollCommand
+Database Class: ScrollCommand
+</code></pre></div>
+<blockquote>
+<p>A command prefix, used to communicate with horizontal scrollbars.</p>
+<p>When the view in the widget\'s window changes, the widget will
+generate a Tcl command by concatenating the scroll command and two
+numbers. Each of the numbers is a fraction between 0 and 1 indicating
+a position in the document; 0 indicates the beginning, and 1 indicates
+the end. The first fraction indicates the first information in the
+widget that is visible in the window, and the second fraction
+indicates the information just after the last portion that is visible.</p>
+<p>Typically the <strong>-xscrollcommand</strong> option consists of the path name of
+a <strong>scrollbar</strong> widget followed by e.g. This will cause the scrollbar
+to be updated whenever the view in the window changes.</p>
+<p>If this option is set to the empty string (the default), then no
+command will be executed.</p>
+</blockquote>
+<div class="language-text highlight"><pre><span></span><code>Command-Line Name:  -yscrollcommand
+Database Name:  yScrollCommand
+Database Class: ScrollCommand
+</code></pre></div>
+<blockquote>
+<p>A command prefix, used to communicate with vertical scrollbars. See
+the description of <strong>-xscrollcommand</strong> above for details.</p>
+</blockquote>
+<h1 id="label-options">LABEL OPTIONS</h1>
+<p>The following options are supported by labels, buttons, and other
+button-like widgets:</p>
+<div class="language-text highlight"><pre><span></span><code>Command-Line Name:  -compound
+Database Name:  compound
+Database Class: Compound
+</code></pre></div>
+<blockquote>
+<p>Specifies how to display the image relative to the text, in the case
+both <strong>-text</strong> and <strong>-image</strong> are present. If set to the empty string
+(the default), the rules described in the \"Elements\" section of
+<em>ttk::intro(n)</em> explain which value is actually used. The other valid
+values are:</p>
+<p>text</p>
+<p>:   Display text only.</p>
+<p>image</p>
+<p>:   Display image only.</p>
+<p>center</p>
+<p>:   Display text centered on top of image.</p>
+<p>top</p>
+<p>:   </p>
+<p>bottom</p>
+<p>:   </p>
+<p>left</p>
+<p>:   </p>
+<p>right</p>
+<p>:   Display image above, below, left of, or right of the text,
+    respectively.</p>
+<p>none</p>
+<p>:   Display the image if present, otherwise the text.</p>
+</blockquote>
+<div class="language-text highlight"><pre><span></span><code>Command-Line Name:  -font
+Database Name:  font
+Database Class: Font
+</code></pre></div>
+<blockquote>
+<p>Font to use for the text displayed by the widget.</p>
+</blockquote>
+<div class="language-text highlight"><pre><span></span><code>Command-Line Name:  -foreground
+Database Name:  textColor
+Database Class: TextColor
+</code></pre></div>
+<blockquote>
+<p>The widget\'s foreground color. If unspecified, the theme default is
+used.</p>
+</blockquote>
+<div class="language-text highlight"><pre><span></span><code>Command-Line Name:  -image
+Database Name:  image
+Database Class: Image
+</code></pre></div>
+<blockquote>
+<p>Specifies an image to display. This is a list of 1 or more elements.
+The first element is the default image name. The rest of the list is a
+sequence of <em>statespec / value</em> pairs as per <strong>style map</strong>, specifying
+different images to use when the widget is in a particular state or
+combination of states. All images in the list should have the same
+size.</p>
+</blockquote>
+<div class="language-text highlight"><pre><span></span><code>Command-Line Name:  -padding
+Database Name:  padding
+Database Class: Padding
+</code></pre></div>
+<blockquote>
+<p>Specifies the internal padding for the widget. The padding is a list
+of up to four length specifications <em>left top right bottom</em>. If fewer
+than four elements are specified, <em>bottom</em> defaults to <em>top</em>, <em>right</em>
+defaults to <em>left</em>, and <em>top</em> defaults to <em>left</em>. In other words, a
+list of three numbers specify the left, vertical, and right padding; a
+list of two numbers specify the horizontal and the vertical padding; a
+single number specifies the same padding all the way around the
+widget.</p>
+</blockquote>
+<div class="language-text highlight"><pre><span></span><code>Command-Line Name:  -text
+Database Name:  text
+Database Class: Text
+</code></pre></div>
+<blockquote>
+<p>Specifies a text string to be displayed inside the widget (unless
+overridden by <strong>-textvariable</strong>).</p>
+</blockquote>
+<div class="language-text highlight"><pre><span></span><code>Command-Line Name:  -textvariable
+Database Name:  textVariable
+Database Class: Variable
+</code></pre></div>
+<blockquote>
+<p>Specifies the name of a global variable whose value will be used in
+place of the <strong>-text</strong> resource.</p>
+</blockquote>
+<div class="language-text highlight"><pre><span></span><code>Command-Line Name:  -underline
+Database Name:  underline
+Database Class: Underline
+</code></pre></div>
+<blockquote>
+<p>If set, specifies the integer index (0-based) of a character to
+underline in the text string. The underlined character is used for
+mnemonic activation.</p>
+</blockquote>
+<div class="language-text highlight"><pre><span></span><code>Command-Line Name:  -width
+Database Name:  width
+Database Class: Width
+</code></pre></div>
+<blockquote>
+<p>If greater than zero, specifies how much space, in character widths,
+to allocate for the text label. If less than zero, specifies a minimum
+width. If zero or unspecified, the natural width of the text label is
+used.</p>
+</blockquote>
+<h1 id="compatibility-options">COMPATIBILITY OPTIONS</h1>
+<p>This option is only available for themed widgets that have traditional
+Tk widgets.</p>
+<div class="language-text highlight"><pre><span></span><code>Command-Line Name:  -state
+Database Name:  state
+Database Class: State
+</code></pre></div>
+<blockquote>
+<p>May be set to <strong>normal</strong> or <strong>disabled</strong> to control the <strong>disabled</strong>
+state bit. This is a write-only option: setting it changes the widget
+state, but the <strong>state</strong> widget command does not affect the <strong>-state</strong>
+option.</p>
+</blockquote>
+<h1 id="commands">COMMANDS</h1>
+<p><em>pathName </em><strong>cget </strong><em>option</em></p>
+<p>:   Returns the current value of the configuration option given by
+    <em>option</em>.</p>
+<p><em>pathName </em><strong>configure</strong> ?<em>option</em>? ?<em>value option value ...</em>?</p>
+<p>:   Query or modify the configuration options of the widget. If one or
+    more <em>option-value</em> pairs are specified, then the command modifies
+    the given widget option(s) to have the given value(s); in this case
+    the command returns an empty string. If <em>option</em> is specified with
+    no <em>value</em>, then the command returns a list describing the named
+    option: the elements of the list are the option name, database name,
+    database class, default value, and current value. If no <em>option</em> is
+    specified, returns a list describing all of the available options
+    for <em>pathName</em>.</p>
+<p><em>pathName </em><strong>identify element </strong><em>x y</em></p>
+<p>:   Returns the name of the element under the point given by <em>x</em> and
+    <em>y</em>, or an empty string if the point does not lie within any
+    element. <em>x</em> and <em>y</em> are pixel coordinates relative to the widget.
+    Some widgets accept other <strong>identify</strong> subcommands.</p>
+<p><em>pathName </em><strong>instate </strong><em>statespec</em> ?<em>script</em>?</p>
+<p>:   Test the widget\'s state. If <em>script</em> is not specified, returns 1 if
+    the widget state matches <em>statespec</em> and 0 otherwise. If <em>script</em> is
+    specified, equivalent to</p>
+<p><div class="language-text highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>&lt;!-- --&gt;
+</span></code></pre></div>
+    if {[pathName instate stateSpec]} script</p>
+<p><em>pathName </em><strong>state</strong> ?<em>stateSpec</em>?</p>
+<p>:   Modify or inquire widget state. If <em>stateSpec</em> is present, sets the
+    widget state: for each flag in <em>stateSpec</em>, sets the corresponding
+    flag or clears it if prefixed by an exclamation point.</p>
+<div class="language-text highlight"><pre><span></span><code>Returns a new state spec indicating which flags were changed:
+
+    set changes [pathName state spec]
+    pathName state $changes
+
+will restore *pathName* to the original state. If *stateSpec* is not
+specified, returns a list of the currently-enabled state flags.
+</code></pre></div>
+<p><em>pathName </em><strong>xview </strong><em>args</em></p>
+<p>:   This command is used to query and change the horizontal position of
+    the content in the widget\'s window. It can take any of the
+    following forms:</p>
+<div class="language-text highlight"><pre><span></span><code>*pathName ***xview**
+
+:   Returns a list containing two elements. Each element is a real
+    fraction between 0 and 1; together they describe the horizontal
+    span that is visible in the window. For example, if the first
+    element is .2 and the second element is .6, 20% of the widget\&#39;s
+    content is off-screen to the left, the middle 40% is visible in
+    the window, and 40% of the content is off-screen to the right.
+    These are the same values passed to scrollbars via the
+    **-xscrollcommand** option.
+
+*pathName ***xview** *index*
+
+:   Adjusts the view in the window so that the content given by
+    *index* is displayed at the left edge of the window.
+
+*pathName ***xview moveto*** fraction*
+
+:   Adjusts the view in the window so that the character *fraction*
+    of the way through the content appears at the left edge of the
+    window. *Fraction* must be a fraction between 0 and 1.
+
+*pathName ***xview scroll ***number what*
+
+:   This command shifts the view in the window left or right
+    according to *number* and *what*. *Number* must be an integer.
+    *What* must be either **units** or **pages**. If *what* is
+    **units**, the view adjusts left or right by *number*
+    average-width characters on the display; if it is **pages** then
+    the view adjusts by *number* screenfuls. If *number* is negative
+    then characters farther to the left become visible; if it is
+    positive then characters farther to the right become visible.
+</code></pre></div>
+<p><em>pathName </em><strong>yview </strong><em>args</em></p>
+<p>:   This command is used to query and change the vertical position of
+    the content in the widget\'s window. It can take any of the
+    following forms:</p>
+<div class="language-text highlight"><pre><span></span><code>*pathName ***yview**
+
+:   Returns a list containing two elements. Each element is a real
+    fraction between 0 and 1; together they describe the vertical
+    span that is visible in the window. For example, if the first
+    element is .2 and the second element is .6, 20% of the widget\&#39;s
+    content is off-screen to the top, the middle 40% is visible in
+    the window, and 40% of the content is off-screen to the bottom.
+    These are the same values passed to scrollbars via the
+    **-yscrollcommand** option.
+
+*pathName ***yview** *index*
+
+:   Adjusts the view in the window so that the content given by
+    *index* is displayed at the top edge of the window.
+
+*pathName ***yview moveto*** fraction*
+
+:   Adjusts the view in the window so that the item *fraction* of
+    the way through the content appears at the top edge of the
+    window. *Fraction* must be a fraction between 0 and 1.
+
+*pathName ***yview scroll ***number what*
+
+:   This command shifts the view in the window up or down according
+    to *number* and *what*. *Number* must be an integer. *What* must
+    be either **units** or **pages**. If *what* is **units**, the
+    view adjusts up or down by *number* average-width characters on
+    the display; if it is **pages** then the view adjusts by
+    *number* screenfuls. If *number* is negative then items farther
+    to the top become visible; if it is positive then items farther
+    to the bottom become visible.
+</code></pre></div>
+<h1 id="widget-states">WIDGET STATES</h1>
+<p>The widget state is a bitmap of independent state flags. Widget state
+flags include:</p>
+<p><strong>active</strong></p>
+<p>:   The mouse cursor is over the widget and pressing a mouse button will
+    cause some action to occur. (aka (Gnome), (Windows),</p>
+<p><strong>disabled</strong></p>
+<p>:   Widget is disabled under program control (aka</p>
+<p><strong>focus</strong></p>
+<p>:   Widget has keyboard focus.</p>
+<p><strong>pressed</strong></p>
+<p>:   Widget is being pressed (aka in Motif).</p>
+<p><strong>selected</strong></p>
+<p>:   or for things like checkbuttons and radiobuttons.</p>
+<p><strong>background</strong></p>
+<p>:   Windows and the Mac have a notion of an or foreground window. The
+    <strong>background</strong> state is set for widgets in a background window, and
+    cleared for those in the foreground window.</p>
+<p><strong>readonly</strong></p>
+<p>:   Widget should not allow user modification.</p>
+<p><strong>alternate</strong></p>
+<p>:   A widget-specific alternate display format. For example, used for
+    checkbuttons and radiobuttons in the or state, and for buttons with
+    <strong>-default active</strong>.</p>
+<p><strong>invalid</strong></p>
+<p>:   The widget\'s value is invalid. (Potential uses: scale widget value
+    out of bounds, entry widget value failed validation.)</p>
+<p><strong>hover</strong></p>
+<p>:   The mouse cursor is within the widget. This is similar to the
+    <strong>active</strong> state; it is used in some themes for widgets that provide
+    distinct visual feedback for the active widget in addition to the
+    active element within the widget.</p>
+<p>A <em>state specification</em> or <em>stateSpec</em> is a list of state names,
+optionally prefixed with an exclamation point (!) indicating that the
+bit is off.</p>
+<h1 id="examples">EXAMPLES</h1>
+<div class="language-text highlight"><pre><span></span><code>set b [ttk::button .b]
+
+# Disable the widget:
+$b state disabled
+
+# Invoke the widget only if it is currently pressed and enabled:
+$b instate {pressed !disabled} { .b invoke }
+
+# Reenable widget:
+$b state !disabled
+</code></pre></div>
+<h1 id="see-also">SEE ALSO</h1>
+<p>ttk::intro(n), ttk::style(n)</p>
+<h1 id="keywords">KEYWORDS</h1>
+<p>state, configure, option</p>
+
+<ul class="metadata page-metadata" data-bi-name="page info" lang="en-us" dir="ltr">
+  <li class="last-updated-holder displayDate loading">
+    <span class="last-updated-text">Last updated:</span>
+    <time role="presentation" datetime="2018-10-25T00:00:00.000Z" data-article-date-source="ms.date"></time>
+  </li>
+<!--
+  <li class="readingTime">
+    2 minutes to read
+  </li>
+-->
+  <li class="contributors-holder">
+    <span class="contributors-text">Contributors</span>
+    <ul class="contributors" data-bi-name="contributors"></ul>
+  </li>
+</ul>
+</div>
+        <div class="col-md-3"><div class="navbar-light navbar-expand-md hidden-print sticky-top sticky-offset" role="complementary">
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggler collapsed" data-toggle="collapse" data-target="#toc-collapse" title="Table of Contents">
+            <span class="fa fa-angle-down"></span>
+        </button>
+    </div>
+
+    <div id="toc-collapse" class="navbar-collapse collapse card">
+        <ul class="nav flex-column bs-sidenav">
+            <li class="nav-item main"><a class="nav-link" href="#name">NAME</a></li>
+            <li class="nav-item main"><a class="nav-link" href="#description">DESCRIPTION</a></li>
+            <li class="nav-item main"><a class="nav-link" href="#standard-options">STANDARD OPTIONS</a></li>
+            <li class="nav-item main"><a class="nav-link" href="#scrollable-widget-options">SCROLLABLE WIDGET OPTIONS</a></li>
+            <li class="nav-item main"><a class="nav-link" href="#label-options">LABEL OPTIONS</a></li>
+            <li class="nav-item main"><a class="nav-link" href="#compatibility-options">COMPATIBILITY OPTIONS</a></li>
+            <li class="nav-item main"><a class="nav-link" href="#commands">COMMANDS</a></li>
+            <li class="nav-item main"><a class="nav-link" href="#widget-states">WIDGET STATES</a></li>
+            <li class="nav-item main"><a class="nav-link" href="#examples">EXAMPLES</a></li>
+            <li class="nav-item main"><a class="nav-link" href="#see-also">SEE ALSO</a></li>
+            <li class="nav-item main"><a class="nav-link" href="#keywords">KEYWORDS</a></li>
+        </ul>
+    </div>
+</div></div>
+      </div>
+      </div>
+
+      <footer class="col-md-12">
+	<hr>
+	<div class="container">
+	</div>
+      </footer>
+      <script>
+	var base_url = "../..",
+            shortcuts = {"help": 191, "next": 78, "previous": 80, "search": 83};
+      </script>
+      <script src="../../js/base.js" defer></script>
+      <script src="../../search/main.js" defer></script>
+
+      <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="Search Modal" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Search</h4>
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            </div>
+            <div class="modal-body">
+                <p>
+                    From here you can search these documents. Enter
+                    your search terms below.
+                </p>
+                <form role="form">
+                    <div class="form-group">
+                        <input type="text" class="form-control" placeholder="Search..." id="mkdocs-search-query" title="Type search term here">
+                    </div>
+                </form>
+                <div id="mkdocs-search-results"></div>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div><div class="modal" id="mkdocs_keyboard_modal" tabindex="-1" role="dialog" aria-labelledby="Keyboard Shortcuts Modal" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <p class="h4 modal-title">Keyboard Shortcuts</p>
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            </div>
+            <div class="modal-body">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th style="width: 20%;">Keys</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="help shortcut"><kbd>?</kbd></td>
+                    <td>Open this help</td>
+                  </tr>
+                  <tr>
+                    <td class="next shortcut"><kbd>n</kbd></td>
+                    <td>Next page</td>
+                  </tr>
+                  <tr>
+                    <td class="prev shortcut"><kbd>p</kbd></td>
+                    <td>Previous page</td>
+                  </tr>
+                  <tr>
+                    <td class="search shortcut"><kbd>s</kbd></td>
+                    <td>Search</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>
+
+    </body>
+</html>

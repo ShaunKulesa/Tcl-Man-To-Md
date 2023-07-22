@@ -1,0 +1,519 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+      <script>
+	// Hack for scrolling window when linking to anchor tag with fixed nav header
+        var shiftWindow = function() { scrollBy(0, -75) };
+        window.addEventListener("hashchange", shiftWindow);
+        function load() { if (window.location.hash) shiftWindow(); }
+      </script>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        
+        <link rel="canonical" href="https://www.tcl.tk/man/TclCmd/open/">
+        <link rel="shortcut icon" href="../../img/favicon.ico">
+        <title>Open - Tcl/Tk</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <link href="../../css/font-awesome.min.css" rel="stylesheet">
+    <link href="../../css/base.css" rel="stylesheet">
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+    <script src="../../js/base.js"></script> 
+    </head>
+
+    <body class="">
+
+      <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
+	<div class="container">
+	<a class="navbar-brand" href="../..">Tcl/Tk</a>
+	<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExample04" aria-controls="navbarsExample04" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+	</button>
+
+	<div class="collapse navbar-collapse">
+
+          <ul class="navbar-nav flex-row ml-md-auto d-none d-md-flex">
+            <li class="nav-item">
+              <a class="nav-link" href="#" data-toggle="modal" data-target="#mkdocs_search_modal">
+		<i class="fa fa-search"></i> Search
+              </a>
+            </li>
+          </ul>
+	</div>
+	</div>
+      </nav><div id="content" class="container">
+        
+      <div class="row">
+        <div class="col-md-9" role="main">
+
+
+<nav aria-label="breadcrumb">
+  <ol class="breadcrumb">
+    
+    <li class="breadcrumb-item active" aria-current="page">Open</li>
+  </ol>
+</nav>
+
+
+<p>\</p>
+<h1 id="name">NAME</h1>
+<p>open - Open a file-based or command pipeline channel</p>
+<h1 id="synopsis">SYNOPSIS</h1>
+<p><strong>open </strong><em>fileName</em>\
+<strong>open </strong><em>fileName access</em>\
+<strong>open </strong><em>fileName access permissions</em></p>
+<p>\</p>
+<h1 id="description">DESCRIPTION</h1>
+<p>This command opens a file, serial port, or command pipeline and returns
+a channel identifier that may be used in future invocations of commands
+like <strong>read</strong>, <strong>puts</strong>, and <strong>close</strong>. If the first character of
+<em>fileName</em> is not <strong>|</strong> then the command opens a file: <em>fileName</em> gives
+the name of the file to open, and it must conform to the conventions
+described in the <strong>filename</strong> manual entry.</p>
+<p>The <em>access</em> argument, if present, indicates the way in which the file
+(or command pipeline) is to be accessed. In the first form <em>access</em> may
+have any of the following values:</p>
+<p><strong>r</strong></p>
+<p>:   Open the file for reading only; the file must already exist. This is
+    the default value if <em>access</em> is not specified.</p>
+<p><strong>r+</strong></p>
+<p>:   Open the file for both reading and writing; the file must already
+    exist.</p>
+<p><strong>w</strong></p>
+<p>:   Open the file for writing only. Truncate it if it exists. If it does
+    not exist, create a new file.</p>
+<p><strong>w+</strong></p>
+<p>:   Open the file for reading and writing. Truncate it if it exists. If
+    it does not exist, create a new file.</p>
+<p><strong>a</strong></p>
+<p>:   Open the file for writing only. If the file does not exist, create a
+    new empty file. Set the file pointer to the end of the file prior to
+    each write.</p>
+<p><strong>a+</strong></p>
+<p>:   Open the file for reading and writing. If the file does not exist,
+    create a new empty file. Set the initial access position to the end
+    of the file.</p>
+<p>All of the legal <em>access</em> values above may have the character <strong>b</strong>
+added as the second or third character in the value to indicate that the
+opened channel should be configured as if with the <strong>fconfigure</strong>
+<strong>-translation binary</strong> option, making the channel suitable for reading
+or writing of binary data.</p>
+<p>In the second form, <em>access</em> consists of a list of any of the following
+flags, most of which have the standard POSIX meanings. One of the flags
+must be either <strong>RDONLY</strong>, <strong>WRONLY</strong> or <strong>RDWR</strong>.</p>
+<p><strong>RDONLY</strong></p>
+<p>:   Open the file for reading only.</p>
+<p><strong>WRONLY</strong></p>
+<p>:   Open the file for writing only.</p>
+<p><strong>RDWR</strong></p>
+<p>:   Open the file for both reading and writing.</p>
+<p><strong>APPEND</strong></p>
+<p>:   Set the file pointer to the end of the file prior to each write.</p>
+<p><strong>BINARY</strong></p>
+<p>:   Configure the opened channel with the <strong>-translation binary</strong>
+    option.</p>
+<p><strong>CREAT</strong></p>
+<p>:   Create the file if it does not already exist (without this flag it
+    is an error for the file not to exist).</p>
+<p><strong>EXCL</strong></p>
+<p>:   If <strong>CREAT</strong> is also specified, an error is returned if the file
+    already exists.</p>
+<p><strong>NOCTTY</strong></p>
+<p>:   If the file is a terminal device, this flag prevents the file from
+    becoming the controlling terminal of the process.</p>
+<p><strong>NONBLOCK</strong></p>
+<p>:   Prevents the process from blocking while opening the file, and
+    possibly in subsequent I/O operations. The exact behavior of this
+    flag is system- and device-dependent; its use is discouraged (it is
+    better to use the <strong>fconfigure</strong> command to put a file in
+    nonblocking mode). For details refer to your system documentation on
+    the <strong>open</strong> system call\'s <strong>O_NONBLOCK</strong> flag.</p>
+<p><strong>TRUNC</strong></p>
+<p>:   If the file exists it is truncated to zero length.</p>
+<p>If a new file is created as part of opening it, <em>permissions</em> (an
+integer) is used to set the permissions for the new file in conjunction
+with the process\'s file mode creation mask. <em>Permissions</em> defaults to
+0666.</p>
+<h1 id="command-pipelines">COMMAND PIPELINES</h1>
+<p>If the first character of <em>fileName</em> is then the remaining characters of
+<em>fileName</em> are treated as a list of arguments that describe a command
+pipeline to invoke, in the same style as the arguments for <strong>exec</strong>. In
+this case, the channel identifier returned by <strong>open</strong> may be used to
+write to the command\'s input pipe or read from its output pipe,
+depending on the value of <em>access</em>. If write-only access is used (e.g.
+<em>access</em> is then standard output for the pipeline is directed to the
+current standard output unless overridden by the command. If read-only
+access is used (e.g. <em>access</em> is standard input for the pipeline is
+taken from the current standard input unless overridden by the command.
+The id of the spawned process is accessible through the <strong>pid</strong> command,
+using the channel id returned by <strong>open</strong> as argument.</p>
+<p>If the command (or one of the commands) executed in the command pipeline
+returns an error (according to the definition in <strong>exec</strong>), a Tcl error
+is generated when <strong>close</strong> is called on the channel unless the pipeline
+is in non-blocking mode then no exit status is returned (a silent
+<strong>close</strong> with -blocking 0).</p>
+<p>It is often useful to use the <strong>fileevent</strong> command with pipelines so
+other processing may happen at the same time as running the command in
+the background.</p>
+<h1 id="serial-communications">SERIAL COMMUNICATIONS</h1>
+<p>If <em>fileName</em> refers to a serial port, then the specified serial port is
+opened and initialized in a platform-dependent manner. Acceptable values
+for the <em>fileName</em> to use to open a serial port are described in the
+PORTABILITY ISSUES section.</p>
+<p>The <strong>fconfigure</strong> command can be used to query and set additional
+configuration options specific to serial ports (where supported):</p>
+<p><strong>-mode</strong> <em>baud</em><strong>,</strong><em>parity</em><strong>,</strong><em>data</em><strong>,</strong><em>stop</em></p>
+<p>:   This option is a set of 4 comma-separated values: the baud rate,
+    parity, number of data bits, and number of stop bits for this serial
+    port. The <em>baud</em> rate is a simple integer that specifies the
+    connection speed. <em>Parity</em> is one of the following letters: <strong>n</strong>,
+    <strong>o</strong>, <strong>e</strong>, <strong>m</strong>, <strong>s</strong>; respectively signifying the parity
+    options of or <em>Data</em> is the number of data bits and should be an
+    integer from 5 to 8, while <em>stop</em> is the number of stop bits and
+    should be the integer 1 or 2.</p>
+<p><strong>-handshake</strong> <em>type</em></p>
+<p>:   (Windows and Unix). This option is used to setup automatic handshake
+    control. Note that not all handshake types maybe supported by your
+    operating system. The <em>type</em> parameter is case-independent.</p>
+<div class="language-text highlight"><pre><span></span><code>If *type* is **none** then any handshake is switched off. **rtscts**
+activates hardware handshake. Hardware handshake signals are
+described below. For software handshake **xonxoff** the handshake
+characters can be redefined with **-xchar**. An additional hardware
+handshake **dtrdsr** is available only under Windows. There is no
+default handshake configuration, the initial value depends on your
+operating system settings. The **-handshake** option cannot be
+queried.
+</code></pre></div>
+<p><strong>-queue</strong></p>
+<p>:   (Windows and Unix). The <strong>-queue</strong> option can only be queried. It
+    returns a list of two integers representing the current number of
+    bytes in the input and output queue respectively.</p>
+<p><strong>-timeout</strong> <em>msec</em></p>
+<p>:   (Windows and Unix). This option is used to set the timeout for
+    blocking read operations. It specifies the maximum interval between
+    the reception of two bytes in milliseconds. For Unix systems the
+    granularity is 100 milliseconds. The <strong>-timeout</strong> option does not
+    affect write operations or nonblocking reads. This option cannot be
+    queried.</p>
+<p><strong>-ttycontrol</strong> <em>{signal boolean signal boolean ...}</em></p>
+<p>:   (Windows and Unix). This option is used to setup the handshake
+    output lines (see below) permanently or to send a BREAK over the
+    serial line. The <em>signal</em> names are case-independent. <strong>{RTS 1 DTR
+    0}</strong> sets the RTS output to high and the DTR output to low. The
+    BREAK condition (see below) is enabled and disabled with <strong>{BREAK
+    1}</strong> and <strong>{BREAK 0}</strong> respectively. It is not a good idea to change
+    the <strong>RTS</strong> (or <strong>DTR</strong>) signal with active hardware handshake
+    <strong>rtscts</strong> (or <strong>dtrdsr</strong>). The result is unpredictable. The
+    <strong>-ttycontrol</strong> option cannot be queried.</p>
+<p><strong>-ttystatus</strong></p>
+<p>:   (Windows and Unix). The <strong>-ttystatus</strong> option can only be queried.
+    It returns the current modem status and handshake input signals (see
+    below). The result is a list of signal,value pairs with a fixed
+    order, e.g. <strong>{CTS 1 DSR 0 RING 1 DCD 0}</strong>. The <em>signal</em> names are
+    returned upper case.</p>
+<p><strong>-xchar</strong> <em>{xonChar xoffChar}</em></p>
+<p>:   (Windows and Unix). This option is used to query or change the
+    software handshake characters. Normally the operating system default
+    should be DC1 (0x11) and DC3 (0x13) representing the ASCII standard
+    XON and XOFF characters.</p>
+<p><strong>-pollinterval</strong> <em>msec</em></p>
+<p>:   (Windows only). This option is used to set the maximum time between
+    polling for fileevents. This affects the time interval between
+    checking for events throughout the Tcl interpreter (the smallest
+    value always wins). Use this option only if you want to poll the
+    serial port more or less often than 10 msec (the default).</p>
+<p><strong>-sysbuffer</strong> <em>inSize</em></p>
+<p>:   </p>
+<p><strong>-sysbuffer</strong> <em>{inSize outSize}</em></p>
+<p>:   (Windows only). This option is used to change the size of Windows
+    system buffers for a serial channel. Especially at higher
+    communication rates the default input buffer size of 4096 bytes can
+    overrun for latent systems. The first form specifies the input
+    buffer size, in the second form both input and output buffers are
+    defined.</p>
+<p><strong>-lasterror</strong></p>
+<p>:   (Windows only). This option is query only. In case of a serial
+    communication error, <strong>read</strong> or <strong>puts</strong> returns a general Tcl file
+    I/O error. <strong>fconfigure</strong> <strong>-lasterror</strong> can be called to get a list
+    of error details. See below for an explanation of the various error
+    codes.</p>
+<h1 id="serial-port-signals">SERIAL PORT SIGNALS</h1>
+<p>RS-232 is the most commonly used standard electrical interface for
+serial communications. A negative voltage (-3V..-12V) define a mark
+(on=1) bit and a positive voltage (+3..+12V) define a space (off=0) bit
+(RS-232C). The following signals are specified for incoming and outgoing
+data, status lines and handshaking. Here we are using the terms
+<em>workstation</em> for your computer and <em>modem</em> for the external device,
+because some signal names (DCD, RI) come from modems. Of course your
+external device may use these signal lines for other purposes.</p>
+<p>TXD(output)</p>
+<p>:   <strong>Transmitted Data:</strong> Outgoing serial data.</p>
+<p>RXD(input)</p>
+<p>:   <strong>Received Data:</strong>Incoming serial data.</p>
+<p>RTS(output)</p>
+<p>:   <strong>Request To Send:</strong> This hardware handshake line informs the modem
+    that your workstation is ready to receive data. Your workstation may
+    automatically reset this signal to indicate that the input buffer is
+    full.</p>
+<p>CTS(input)</p>
+<p>:   <strong>Clear To Send:</strong> The complement to RTS. Indicates that the modem
+    is ready to receive data.</p>
+<p>DTR(output)</p>
+<p>:   <strong>Data Terminal Ready:</strong> This signal tells the modem that the
+    workstation is ready to establish a link. DTR is often enabled
+    automatically whenever a serial port is opened.</p>
+<p>DSR(input)</p>
+<p>:   <strong>Data Set Ready:</strong> The complement to DTR. Tells the workstation
+    that the modem is ready to establish a link.</p>
+<p>DCD(input)</p>
+<p>:   <strong>Data Carrier Detect:</strong> This line becomes active when a modem
+    detects a signal.</p>
+<p>RI(input)</p>
+<p>:   <strong>Ring Indicator:</strong> Goes active when the modem detects an incoming
+    call.</p>
+<p>BREAK</p>
+<p>:   A BREAK condition is not a hardware signal line, but a logical zero
+    on the TXD or RXD lines for a long period of time, usually 250 to
+    500 milliseconds. Normally a receive or transmit data signal stays
+    at the mark (on=1) voltage until the next character is transferred.
+    A BREAK is sometimes used to reset the communications line or change
+    the operating mode of communications hardware.</p>
+<h1 id="error-codes-windows-only">ERROR CODES (Windows only)</h1>
+<p>A lot of different errors may occur during serial read operations or
+during event polling in background. The external device may have been
+switched off, the data lines may be noisy, system buffers may overrun or
+your mode settings may be wrong. That is why a reliable software should
+always <strong>catch</strong> serial read operations. In cases of an error Tcl
+returns a general file I/O error. Then <strong>fconfigure</strong> <strong>-lasterror</strong> may
+help to locate the problem. The following error codes may be returned.</p>
+<p><strong>RXOVER</strong></p>
+<p>:   Windows input buffer overrun. The data comes faster than your
+    scripts reads it or your system is overloaded. Use <strong>fconfigure</strong>
+    <strong>-sysbuffer</strong> to avoid a temporary bottleneck and/or make your
+    script faster.</p>
+<p><strong>TXFULL</strong></p>
+<p>:   Windows output buffer overrun. Complement to RXOVER. This error
+    should practically not happen, because Tcl cares about the output
+    buffer status.</p>
+<p><strong>OVERRUN</strong></p>
+<p>:   UART buffer overrun (hardware) with data lost. The data comes faster
+    than the system driver receives it. Check your advanced serial port
+    settings to enable the FIFO (16550) buffer and/or setup a lower(1)
+    interrupt threshold value.</p>
+<p><strong>RXPARITY</strong></p>
+<p>:   A parity error has been detected by your UART. Wrong parity settings
+    with <strong>fconfigure</strong> <strong>-mode</strong> or a noisy data line (RXD) may cause
+    this error.</p>
+<p><strong>FRAME</strong></p>
+<p>:   A stop-bit error has been detected by your UART. Wrong mode settings
+    with <strong>fconfigure</strong> <strong>-mode</strong> or a noisy data line (RXD) may cause
+    this error.</p>
+<p><strong>BREAK</strong></p>
+<p>:   A BREAK condition has been detected by your UART (see above).</p>
+<h1 id="portability-issues">PORTABILITY ISSUES</h1>
+<p><strong>Windows </strong></p>
+<p>:   Valid values for <em>fileName</em> to open a serial port are of the form
+    <strong>com</strong><em>X</em>, where <em>X</em> is a number, generally from 1 to 9. A legacy
+    form accepted as well is <strong>com</strong><em>X</em><strong>:</strong>. This notation only works
+    for serial ports from 1 to 9. An attempt to open a serial port that
+    does not exist or has a number greater than 9 will fail. An
+    alternate form of opening serial ports is to use the filename
+    <strong>//./comX</strong>, where X is any number that corresponds to a serial
+    port.</p>
+<blockquote>
+<p>When running Tcl interactively, there may be some strange interactions
+between the real console, if one is present, and a command pipeline
+that uses standard input or output. If a command pipeline is opened
+for reading, some of the lines entered at the console will be sent to
+the command pipeline and some will be sent to the Tcl evaluator. If a
+command pipeline is opened for writing, keystrokes entered into the
+console are not visible until the pipe is closed. These problems only
+occur because both Tcl and the child application are competing for the
+console at the same time. If the command pipeline is started from a
+script, so that Tcl is not accessing the console, or if the command
+pipeline does not use standard input or output, but is redirected from
+or to a file, then the above problems do not occur.</p>
+<p>Files opened in the mode or with the <strong>APPEND</strong> flag set are
+implemented by seeking immediately before each write, which is not an
+atomic operation and does not carry the guarantee of strict appending
+that is present on POSIX platforms.</p>
+</blockquote>
+<p><strong>Unix</strong>       </p>
+<p>:   Valid values for <em>fileName</em> to open a serial port are generally of
+    the form <strong>/dev/tty</strong><em>X</em>, where <em>X</em> is <strong>a</strong> or <strong>b</strong>, but the name
+    of any pseudo-file that maps to a serial port may be used. Advanced
+    configuration options are only supported for serial ports when Tcl
+    is built to use the POSIX serial interface.</p>
+<div class="language-text highlight"><pre><span></span><code>When running Tcl interactively, there may be some strange
+interactions between the console, if one is present, and a command
+pipeline that uses standard input. If a command pipeline is opened
+for reading, some of the lines entered at the console will be sent
+to the command pipeline and some will be sent to the Tcl evaluator.
+This problem only occurs because both Tcl and the child application
+are competing for the console at the same time. If the command
+pipeline is started from a script, so that Tcl is not accessing the
+console, or if the command pipeline does not use standard input, but
+is redirected from a file, then the above problem does not occur.
+</code></pre></div>
+<p>See the <strong>PORTABILITY ISSUES</strong> section of the <strong>exec</strong> command for
+additional information not specific to command pipelines about executing
+applications on the various platforms</p>
+<h1 id="examples">EXAMPLES</h1>
+<p>Open a file for writing, forcing it to be created and raising an error
+if it already exists.</p>
+<div class="language-text highlight"><pre><span></span><code>set myNewFile [open filename.txt {WRONLY CREAT EXCL}]
+</code></pre></div>
+<p>Open a file for writing as a log file.</p>
+<div class="language-text highlight"><pre><span></span><code>set myLogFile [open filename.log &quot;a&quot;]
+fconfigure $myLogFile -buffering line
+</code></pre></div>
+<p>Open a command pipeline and catch any errors:</p>
+<div class="language-text highlight"><pre><span></span><code>set fl [open &quot;| ls this_file_does_not_exist&quot;]
+set data [read $fl]
+if {[catch {close $fl} err]} {
+    puts &quot;ls command failed: $err&quot;
+}
+</code></pre></div>
+<p>Open a command pipeline and read binary data from it. Note the unusual
+form with that handles non-trivial edge cases with arguments that
+potentially have spaces in.</p>
+<div class="language-text highlight"><pre><span></span><code>set fl [open |[list create_image_data $input] &quot;rb&quot;]
+set binData [read $fl]
+close $fl
+</code></pre></div>
+<h1 id="see-also">SEE ALSO</h1>
+<p>file(n), close(n), filename(n), fconfigure(n), gets(n), read(n),
+puts(n), exec(n), pid(n), fopen(3)</p>
+<h1 id="keywords">KEYWORDS</h1>
+<p>access mode, append, create, file, non-blocking, open, permissions,
+pipeline, process, serial</p>
+
+<ul class="metadata page-metadata" data-bi-name="page info" lang="en-us" dir="ltr">
+  <li class="last-updated-holder displayDate loading">
+    <span class="last-updated-text">Last updated:</span>
+    <time role="presentation" datetime="2018-10-25T00:00:00.000Z" data-article-date-source="ms.date"></time>
+  </li>
+<!--
+  <li class="readingTime">
+    2 minutes to read
+  </li>
+-->
+  <li class="contributors-holder">
+    <span class="contributors-text">Contributors</span>
+    <ul class="contributors" data-bi-name="contributors"></ul>
+  </li>
+</ul>
+</div>
+        <div class="col-md-3"><div class="navbar-light navbar-expand-md hidden-print sticky-top sticky-offset" role="complementary">
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggler collapsed" data-toggle="collapse" data-target="#toc-collapse" title="Table of Contents">
+            <span class="fa fa-angle-down"></span>
+        </button>
+    </div>
+
+    <div id="toc-collapse" class="navbar-collapse collapse card">
+        <ul class="nav flex-column bs-sidenav">
+            <li class="nav-item main"><a class="nav-link" href="#name">NAME</a></li>
+            <li class="nav-item main"><a class="nav-link" href="#synopsis">SYNOPSIS</a></li>
+            <li class="nav-item main"><a class="nav-link" href="#description">DESCRIPTION</a></li>
+            <li class="nav-item main"><a class="nav-link" href="#command-pipelines">COMMAND PIPELINES</a></li>
+            <li class="nav-item main"><a class="nav-link" href="#serial-communications">SERIAL COMMUNICATIONS</a></li>
+            <li class="nav-item main"><a class="nav-link" href="#serial-port-signals">SERIAL PORT SIGNALS</a></li>
+            <li class="nav-item main"><a class="nav-link" href="#error-codes-windows-only">ERROR CODES (Windows only)</a></li>
+            <li class="nav-item main"><a class="nav-link" href="#portability-issues">PORTABILITY ISSUES</a></li>
+            <li class="nav-item main"><a class="nav-link" href="#examples">EXAMPLES</a></li>
+            <li class="nav-item main"><a class="nav-link" href="#see-also">SEE ALSO</a></li>
+            <li class="nav-item main"><a class="nav-link" href="#keywords">KEYWORDS</a></li>
+        </ul>
+    </div>
+</div></div>
+      </div>
+      </div>
+
+      <footer class="col-md-12">
+	<hr>
+	<div class="container">
+	</div>
+      </footer>
+      <script>
+	var base_url = "../..",
+            shortcuts = {"help": 191, "next": 78, "previous": 80, "search": 83};
+      </script>
+      <script src="../../js/base.js" defer></script>
+      <script src="../../search/main.js" defer></script>
+
+      <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="Search Modal" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Search</h4>
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            </div>
+            <div class="modal-body">
+                <p>
+                    From here you can search these documents. Enter
+                    your search terms below.
+                </p>
+                <form role="form">
+                    <div class="form-group">
+                        <input type="text" class="form-control" placeholder="Search..." id="mkdocs-search-query" title="Type search term here">
+                    </div>
+                </form>
+                <div id="mkdocs-search-results"></div>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div><div class="modal" id="mkdocs_keyboard_modal" tabindex="-1" role="dialog" aria-labelledby="Keyboard Shortcuts Modal" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <p class="h4 modal-title">Keyboard Shortcuts</p>
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            </div>
+            <div class="modal-body">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th style="width: 20%;">Keys</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="help shortcut"><kbd>?</kbd></td>
+                    <td>Open this help</td>
+                  </tr>
+                  <tr>
+                    <td class="next shortcut"><kbd>n</kbd></td>
+                    <td>Next page</td>
+                  </tr>
+                  <tr>
+                    <td class="prev shortcut"><kbd>p</kbd></td>
+                    <td>Previous page</td>
+                  </tr>
+                  <tr>
+                    <td class="search shortcut"><kbd>s</kbd></td>
+                    <td>Search</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>
+
+    </body>
+</html>

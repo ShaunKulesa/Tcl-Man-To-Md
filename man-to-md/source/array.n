@@ -134,7 +134,7 @@ error will be raised.  If \fIpattern\fR is omitted and \fIarrayName\fR is
 an array variable, then the command unsets the entire array.
 The command always returns an empty string.
 .SH EXAMPLES
-.nf
+.CS
 \fBarray set\fR colorcount {
     red   1
     green 5
@@ -180,7 +180,7 @@ foreach color [lsort [\fBarray names\fR colorcount]] {
     number of buckets with 9 entries: 0
     number of buckets with 10 or more entries: 0
     average search distance for entry: 1.2
-.fi
+.CE
 .SH "SEE ALSO"
 list(n), string(n), variable(n), trace(n), foreach(n)
 .SH KEYWORDS

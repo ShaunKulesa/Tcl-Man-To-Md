@@ -691,9 +691,9 @@ in which \fBchan configure\fR will alter input).
 When reading from a serial port, most applications should configure
 the serial port channel to be non-blocking, like this:
 .PP
-.nf
+.CS
 \fBchan configure \fIchannelId \fB\-blocking \fI0\fR.
-.fi
+.CE
 .PP
 Then \fBchan read\fR behaves much like described above.  Note that
 most serial ports are comparatively slow; it is entirely possible to
@@ -774,7 +774,7 @@ This opens a file using a known encoding (CP1252, a very common encoding
 on Windows), searches for a string, rewrites that part, and truncates the
 file after a further two lines.
 .PP
-.nf
+.CS
 set f [open somefile.txt r+]
 \fBchan configure\fR $f -encoding cp1252
 set offset 0
@@ -801,12 +801,12 @@ while {[\fBchan gets\fR $f line] >= 0} {
     set offset [\fBchan tell\fR $f]
 }
 \fBchan close\fR $f
-.fi
+.CE
 .PP
 A network server that does echoing of its input line-by-line without
 preventing servicing of other connections at the same time.
 .PP
-.nf
+.CS
 # This is a very simple logger...
 proc log {message} {
     \fBchan puts\fR stdout $message
@@ -838,7 +838,7 @@ proc echoLine {chan clientName} {
 # for incoming connections...
 socket -server connect 12345
 vwait forever
-.fi
+.CE
 .SH "SEE ALSO"
 close(n), eof(n), fblocked(n), fconfigure(n), fcopy(n), file(n),
 fileevent(n), flush(n), gets(n), open(n), puts(n), read(n), seek(n),

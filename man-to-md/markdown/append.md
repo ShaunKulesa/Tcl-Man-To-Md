@@ -1,5 +1,3 @@
-\
-
 # NAME
 
 append - Append to variable
@@ -7,8 +5,6 @@ append - Append to variable
 # SYNOPSIS
 
 **append ***varName *?*value value value \...*?
-
-\
 
 # DESCRIPTION
 
@@ -37,3 +33,9 @@ concat(n), lappend(n)
 # KEYWORDS
 
 append, variable
+
+<!---
+Copyright (c) 1993 The Regents of the University of California
+Copyright (c) 1994-1996 Sun Microsystems, Inc
+-->
+

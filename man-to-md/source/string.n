@@ -64,15 +64,15 @@ constrained to start with the character in \fIhaystackString\fR specified by
 the index.  For example,
 .RS
 .PP
-.nf
+.CS
 \fBstring first a 0a23456789abcdef 5\fR
-.fi
+.CE
 .PP
 will return \fB10\fR, but
 .PP
-.nf
+.CS
 \fBstring first a 0123456789abcdef 11\fR
-.fi
+.CE
 .PP
 will return \fB\-1\fR.
 .RE
@@ -178,15 +178,15 @@ characters in \fIhaystackString\fR at or before the specified \fIlastIndex\fR
 will be considered by the search.  For example,
 .RS
 .PP
-.nf
+.CS
 \fBstring last a 0a23456789abcdef 15\fR
-.fi
+.CE
 .PP
 will return \fB10\fR, but
 .PP
-.nf
+.CS
 \fBstring last a 0a23456789abcdef 9\fR
-.fi
+.CE
 .PP
 will return \fB1\fR.
 .RE
@@ -213,9 +213,9 @@ appearing first in the list will be checked first, and so on.
 will have no affect for later key matches.  For example,
 .RS
 .PP
-.nf
+.CS
 \fBstring map {abc 1 ab 2 a 3 1 0} 1abcaababcabababc\fR
-.fi
+.CE
 .PP
 will return the string \fB01321221\fR.
 .PP
@@ -223,9 +223,9 @@ Note that if an earlier \fIkey\fR is a prefix of a later one, it will
 completely mask the later one.  So if the previous example is
 reordered like this,
 .PP
-.nf
+.CS
 \fBstring map {1 0 ab 2 a 3 abc 1} 1abcaababcabababc\fR
-.fi
+.CE
 .PP
 it will return the string \fB02c322c222c\fR.
 .RE
@@ -390,9 +390,9 @@ withdrawn in a future version of Tcl. It is better to use the
 \fBencoding convertto\fR command to convert a string to a known
 encoding and then apply \fBstring length\fR to that.
 .PP
-.nf
+.CS
 \fBstring length\fR [encoding convertto utf-8 $theString]
-.fi
+.CE
 .RE
 .TP
 \fBstring wordend \fIstring charIndex\fR
@@ -466,14 +466,14 @@ leading whitespace.
 Test if the string in the variable \fIstring\fR is a proper non-empty
 prefix of the string \fBfoobar\fR.
 .PP
-.nf
+.CS
 set length [\fBstring length\fR $string]
 if {$length == 0} {
     set isPrefix 0
 } else {
     set isPrefix [\fBstring equal\fR \-length $length $string "foobar"]
 }
-.fi
+.CE
 .SH "SEE ALSO"
 expr(n), list(n)
 .SH KEYWORDS

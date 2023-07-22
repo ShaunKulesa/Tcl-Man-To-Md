@@ -1,5 +1,3 @@
-\
-
 # NAME
 
 tell - Return current access position for an open channel
@@ -7,8 +5,6 @@ tell - Return current access position for an open channel
 # SYNOPSIS
 
 **tell ***channelId*
-
-\
 
 # DESCRIPTION
 
@@ -44,3 +40,9 @@ file(n), open(n), close(n), gets(n), seek(n), Tcl_StandardChannels(3)
 # KEYWORDS
 
 access position, channel, seeking
+
+<!---
+Copyright (c) 1993 The Regents of the University of California
+Copyright (c) 1994-1996 Sun Microsystems, Inc
+-->
+

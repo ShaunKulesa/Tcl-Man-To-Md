@@ -11,7 +11,6 @@
 .SH NAME
 Tcl_CallWhenDeleted, Tcl_DontCallWhenDeleted \- Arrange for callback when interpreter is deleted
 .SH SYNOPSIS
-.nf
 \fB#include <tcl.h>\fR
 .sp
 \fBTcl_CallWhenDeleted\fR(\fIinterp\fR, \fIproc\fR, \fIclientData\fR)
@@ -36,11 +35,11 @@ time of the call.
 \fIProc\fR should have arguments and result that match the
 type \fBTcl_InterpDeleteProc\fR:
 .PP
-.nf
+.CS
 typedef void \fBTcl_InterpDeleteProc\fR(
         ClientData \fIclientData\fR,
         Tcl_Interp *\fIinterp\fR);
-.fi
+.CE
 .PP
 The \fIclientData\fR and \fIinterp\fR parameters are
 copies of the \fIclientData\fR and \fIinterp\fR arguments given

@@ -1,5 +1,3 @@
-\
-
 # NAME
 
 lrepeat - Build a list by repeating elements
@@ -7,8 +5,6 @@ lrepeat - Build a list by repeating elements
 # SYNOPSIS
 
 **lrepeat ***count *?*element \...*?
-
-\
 
 # DESCRIPTION
 
@@ -36,3 +32,8 @@ list(n), lappend(n), linsert(n), llength(n), lset(n)
 # KEYWORDS
 
 element, index, list
+
+<!---
+Copyright (c) 2003 Simon Geard.  All rights reserved
+-->
+

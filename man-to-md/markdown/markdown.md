@@ -1,5 +1,3 @@
-\
-
 # NAME
 
 source - Evaluate a file or resource as a Tcl script
@@ -9,8 +7,6 @@ source - Evaluate a file or resource as a Tcl script
 **source ***fileName*
 
 **source** **-encoding ***encodingName fileName*
-
-\
 
 # DESCRIPTION
 
@@ -58,3 +54,10 @@ file(n), cd(n), encoding(n), info(n)
 # KEYWORDS
 
 file, script
+
+<!---
+Copyright (c) 1993 The Regents of the University of California
+Copyright (c) 1994-1996 Sun Microsystems, Inc
+Copyright (c) 2000 Scriptics Corporation
+-->
+

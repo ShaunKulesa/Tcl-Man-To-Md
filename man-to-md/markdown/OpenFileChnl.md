@@ -1,5 +1,3 @@
-\
-
 # NAME
 
 Tcl_OpenFileChannel, Tcl_OpenCommandChannel, Tcl_MakeFileChannel,
@@ -14,100 +12,70 @@ facilities using channels
 
 # SYNOPSIS
 
-    #include <tcl.h>
+**#include \<tcl.h\>**
 
-    Tcl_Channel
-    Tcl_OpenFileChannel(interp, fileName, mode, permissions)
+Tcl_Channel **Tcl_OpenFileChannel**(*interp, fileName, mode,
+permissions*)
 
-    Tcl_Channel
-    Tcl_OpenCommandChannel(interp, argc, argv, flags)
+Tcl_Channel **Tcl_OpenCommandChannel**(*interp, argc, argv, flags*)
 
-    Tcl_Channel
-    Tcl_MakeFileChannel(handle, readOrWrite)
+Tcl_Channel **Tcl_MakeFileChannel**(*handle, readOrWrite*)
 
-    Tcl_Channel
-    Tcl_GetChannel(interp, channelName, modePtr)
+Tcl_Channel **Tcl_GetChannel**(*interp, channelName, modePtr*)
 
-    int
-    Tcl_GetChannelNames(interp)
+int **Tcl_GetChannelNames**(*interp*)
 
-    int
-    Tcl_GetChannelNamesEx(interp, pattern)
+int **Tcl_GetChannelNamesEx**(*interp, pattern*)
 
-    void
-    Tcl_RegisterChannel(interp, channel)
+void **Tcl_RegisterChannel**(*interp, channel*)
 
-    int
-    Tcl_UnregisterChannel(interp, channel)
+int **Tcl_UnregisterChannel**(*interp, channel*)
 
-    int
-    Tcl_DetachChannel(interp, channel)
+int **Tcl_DetachChannel**(*interp, channel*)
 
-    int
-    Tcl_IsStandardChannel(channel)
+int **Tcl_IsStandardChannel**(*channel*)
 
-    int
-    Tcl_Close(interp, channel)
+int **Tcl_Close**(*interp, channel*)
 
-    int
-    Tcl_ReadChars(channel, readObjPtr, charsToRead, appendFlag)
+int **Tcl_ReadChars**(*channel, readObjPtr, charsToRead, appendFlag*)
 
-    int
-    Tcl_Read(channel, readBuf, bytesToRead)
+int **Tcl_Read**(*channel, readBuf, bytesToRead*)
 
-    int
-    Tcl_GetsObj(channel, lineObjPtr)
+int **Tcl_GetsObj**(*channel, lineObjPtr*)
 
-    int
-    Tcl_Gets(channel, lineRead)
+int **Tcl_Gets**(*channel, lineRead*)
 
-    int
-    Tcl_Ungets(channel, input, inputLen, addAtEnd)
+int **Tcl_Ungets**(*channel, input, inputLen, addAtEnd*)
 
-    int
-    Tcl_WriteObj(channel, writeObjPtr)
+int **Tcl_WriteObj**(*channel, writeObjPtr*)
 
-    int
-    Tcl_WriteChars(channel, charBuf, bytesToWrite)
+int **Tcl_WriteChars**(*channel, charBuf, bytesToWrite*)
 
-    int
-    Tcl_Write(channel, byteBuf, bytesToWrite)
+int **Tcl_Write**(*channel, byteBuf, bytesToWrite*)
 
-    int
-    Tcl_ReadRaw(channel, readBuf, bytesToRead)
+int **Tcl_ReadRaw**(*channel, readBuf, bytesToRead*)
 
-    int
-    Tcl_WriteRaw(channel, byteBuf, bytesToWrite)
+int **Tcl_WriteRaw**(*channel, byteBuf, bytesToWrite*)
 
-    int
-    Tcl_Eof(channel)
+int **Tcl_Eof**(*channel*)
 
-    int
-    Tcl_Flush(channel)
+int **Tcl_Flush**(*channel*)
 
-    int
-    Tcl_InputBlocked(channel)
+int **Tcl_InputBlocked**(*channel*)
 
-    int
-    Tcl_InputBuffered(channel)
+int **Tcl_InputBuffered**(*channel*)
 
-    int
-    Tcl_OutputBuffered(channel)
+int **Tcl_OutputBuffered**(*channel*)
 
-    Tcl_WideInt
-    Tcl_Seek(channel, offset, seekMode)
+Tcl_WideInt **Tcl_Seek**(*channel, offset, seekMode*)
 
-    Tcl_WideInt
-    Tcl_Tell(channel)
+Tcl_WideInt **Tcl_Tell**(*channel*)
 
-    int
-    Tcl_TruncateChannel(channel, length)
+int **Tcl_TruncateChannel**(*channel, length*)
 
-    int
-    Tcl_GetChannelOption(interp, channel, optionName, optionValue)
+int **Tcl_GetChannelOption**(*interp, channel, optionName, optionValue*)
 
-    int
-    Tcl_SetChannelOption(interp, channel, optionName, newValue)
+int **Tcl_SetChannelOption**(*interp, channel, optionName, newValue*)
 
 # ARGUMENTS
 
@@ -209,8 +177,6 @@ Where to store the value of an option or a list of all options and their
 values. Must have been initialized by the caller.
 
 New value for the option given by *optionName*.
-
-\
 
 # DESCRIPTION
 
@@ -669,3 +635,8 @@ DString(3), fconfigure(n), filename(n), fopen(3), Tcl_CreateChannel(3)
 
 access point, blocking, buffered I/O, channel, channel driver, end of
 file, flush, input, nonblocking, output, read, seek, write
+
+<!---
+Copyright (c) 1996-1997 Sun Microsystems, Inc
+-->
+

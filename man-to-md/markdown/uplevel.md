@@ -1,5 +1,3 @@
-\
-
 # NAME
 
 uplevel - Execute a script in a different stack frame
@@ -7,8 +5,6 @@ uplevel - Execute a script in a different stack frame
 # SYNOPSIS
 
 **uplevel **?*level*?* arg *?*arg \...*?
-
-\
 
 # DESCRIPTION
 
@@ -90,3 +86,9 @@ apply(n), namespace(n), upvar(n)
 # KEYWORDS
 
 context, level, namespace, stack frame, variable
+
+<!---
+Copyright (c) 1993 The Regents of the University of California
+Copyright (c) 1994-1997 Sun Microsystems, Inc
+-->
+

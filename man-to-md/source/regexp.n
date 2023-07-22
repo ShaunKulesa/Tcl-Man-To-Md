@@ -122,12 +122,12 @@ overall match data, plus one element for each subexpression in the
 regular expression.  Examples are:
 .RS
 .PP
-.nf
+.CS
 \fBregexp\fR -inline -- {\ew(\ew)} " inlined "
       \fI\(-> in n\fR
 \fBregexp\fR -all -inline -- {\ew(\ew)} " inlined "
       \fI\(-> in n li i ne e\fR
-.fi
+.CE
 .RE
 .TP 15
 \fB\-start\fR \fIindex\fR
@@ -162,9 +162,9 @@ Find the first occurrence of a word starting with \fBfoo\fR in a
 string that is not actually an instance of \fBfoobar\fR, and get the
 letters following it up to the end of the word into a variable:
 .PP
-.nf
+.CS
 \fBregexp\fR {\emfoo(?!bar\eM)(\ew*)} $string \-> restOfWord
-.fi
+.CE
 .PP
 Note that the whole matched substring has been placed in the variable
 .QW \fB\->\fR ,
@@ -174,31 +174,31 @@ actually interested in its contents.
 Find the index of the word \fBbadger\fR (in any case) within a string
 and store that in the variable \fBlocation\fR:
 .PP
-.nf
+.CS
 \fBregexp\fR \-indices {(?i)\embadger\eM} $string location
-.fi
+.CE
 .PP
 This could also be written as a \fIbasic\fR regular expression (as opposed
 to using the default syntax of \fIadvanced\fR regular expressions) match by
 prefixing the expression with a suitable flag:
 .PP
-.nf
+.CS
 \fBregexp\fR \-indices {(?ib)\e<badger\e>} $string location
-.fi
+.CE
 .PP
 This counts the number of octal digits in a string:
 .PP
-.nf
+.CS
 \fBregexp\fR \-all {[0\-7]} $string
-.fi
+.CE
 .PP
 This lists all words (consisting of all sequences of non-whitespace
 characters) in a string, and is useful as a more powerful version of the
 \fBsplit\fR command:
 .PP
-.nf
+.CS
 \fBregexp\fR \-all \-inline {\eS+} $string
-.fi
+.CE
 .SH "SEE ALSO"
 re_syntax(n), regsub(n), string(n)
 .SH KEYWORDS

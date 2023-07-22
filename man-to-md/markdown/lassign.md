@@ -1,5 +1,3 @@
-\
-
 # NAME
 
 lassign - Assign list elements to variables
@@ -7,8 +5,6 @@ lassign - Assign list elements to variables
 # SYNOPSIS
 
 **lassign ***list *?*varName \...*?
-
-\
 
 # DESCRIPTION
 
@@ -49,3 +45,9 @@ lindex(n), list(n), lrange(n), lset(n), set(n)
 # KEYWORDS
 
 assign, element, list, multiple, set, variable
+
+<!---
+Copyright (c) 1992-1999 Karl Lehenbauer & Mark Diekhan
+Copyright (c) 2004 Donal K. Fellow
+-->
+

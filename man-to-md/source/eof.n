@@ -28,7 +28,7 @@ the result of a channel creation command provided by a Tcl extension.
 .PP
 Read and print out the contents of a file line-by-line:
 .PP
-.nf
+.CS
 set f [open somefile.txt]
 while {1} {
     set line [gets $f]
@@ -38,11 +38,11 @@ while {1} {
     }
     puts "Read line: $line"
 }
-.fi
+.CE
 .PP
 Read and print out the contents of a file by fixed-size records:
 .PP
-.nf
+.CS
 set f [open somefile.dat]
 fconfigure $f -translation binary
 set recordSize 40
@@ -54,7 +54,7 @@ while {1} {
     }
     puts "Read record: $record"
 }
-.fi
+.CE
 .SH "SEE ALSO"
 file(n), open(n), close(n), fblocked(n), Tcl_StandardChannels(3)
 .SH KEYWORDS

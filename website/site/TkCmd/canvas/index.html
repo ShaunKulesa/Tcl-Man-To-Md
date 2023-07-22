@@ -1,0 +1,1791 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+      <script>
+	// Hack for scrolling window when linking to anchor tag with fixed nav header
+        var shiftWindow = function() { scrollBy(0, -75) };
+        window.addEventListener("hashchange", shiftWindow);
+        function load() { if (window.location.hash) shiftWindow(); }
+      </script>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        
+        <link rel="canonical" href="https://www.tcl.tk/man/TkCmd/canvas/">
+        <link rel="shortcut icon" href="../../img/favicon.ico">
+        <title>Canvas - Tcl/Tk</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <link href="../../css/font-awesome.min.css" rel="stylesheet">
+    <link href="../../css/base.css" rel="stylesheet">
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+    <script src="../../js/base.js"></script> 
+    </head>
+
+    <body class="">
+
+      <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
+	<div class="container">
+	<a class="navbar-brand" href="../..">Tcl/Tk</a>
+	<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExample04" aria-controls="navbarsExample04" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+	</button>
+
+	<div class="collapse navbar-collapse">
+
+          <ul class="navbar-nav flex-row ml-md-auto d-none d-md-flex">
+            <li class="nav-item">
+              <a class="nav-link" href="#" data-toggle="modal" data-target="#mkdocs_search_modal">
+		<i class="fa fa-search"></i> Search
+              </a>
+            </li>
+          </ul>
+	</div>
+	</div>
+      </nav><div id="content" class="container">
+        
+      <div class="row">
+        <div class="col-md-9" role="main">
+
+
+<nav aria-label="breadcrumb">
+  <ol class="breadcrumb">
+    
+    <li class="breadcrumb-item active" aria-current="page">Canvas</li>
+  </ol>
+</nav>
+
+
+<p>\</p>
+<h1 id="name">NAME</h1>
+<p>canvas - Create and manipulate \'canvas\' hypergraphics drawing surface
+widgets</p>
+<h1 id="synopsis">SYNOPSIS</h1>
+<p><strong>canvas</strong> <em>pathName </em>?<em>options</em>?</p>
+<h1 id="standard-options">STANDARD OPTIONS</h1>
+<div class="language-text highlight"><pre><span></span><code>-background -borderwidth    -cursor
+-highlightbackground    -highlightcolor -highlightthickness
+-insertbackground   -insertborderwidth  -insertofftime
+-insertontime   -insertwidth    -relief
+-selectbackground   -selectborderwidth  -selectforeground
+-takefocus  -xscrollcommand -yscrollcommand
+</code></pre></div>
+<p>See the manual entry for details on the standard options.</p>
+<h1 id="widget-specific-options">WIDGET-SPECIFIC OPTIONS</h1>
+<div class="language-text highlight"><pre><span></span><code>Command-Line Name:  -closeenough
+Database Name:  closeEnough
+Database Class: CloseEnough
+</code></pre></div>
+<blockquote>
+<p>Specifies a floating-point value indicating how close the mouse cursor
+must be to an item before it is considered to be the item. Defaults to
+1.0.</p>
+</blockquote>
+<div class="language-text highlight"><pre><span></span><code>Command-Line Name:  -confine
+Database Name:  confine
+Database Class: Confine
+</code></pre></div>
+<blockquote>
+<p>Specifies a boolean value that indicates whether or not it should be
+allowable to set the canvas\'s view outside the region defined by the
+<strong>scrollRegion</strong> argument. Defaults to true, which means that the view
+will be constrained within the scroll region.</p>
+</blockquote>
+<div class="language-text highlight"><pre><span></span><code>Command-Line Name:  -height
+Database Name:  height
+Database Class: Height
+</code></pre></div>
+<blockquote>
+<p>Specifies a desired window height that the canvas widget should
+request from its geometry manager. The value may be specified in any
+of the forms described in the <strong>COORDINATES</strong> section below.</p>
+</blockquote>
+<div class="language-text highlight"><pre><span></span><code>Command-Line Name:  -scrollregion
+Database Name:  scrollRegion
+Database Class: ScrollRegion
+</code></pre></div>
+<blockquote>
+<p>Specifies a list with four coordinates describing the left, top,
+right, and bottom coordinates of a rectangular region. This region is
+used for scrolling purposes and is considered to be the boundary of
+the information in the canvas. Each of the coordinates may be
+specified in any of the forms given in the <strong>COORDINATES</strong> section
+below.</p>
+</blockquote>
+<div class="language-text highlight"><pre><span></span><code>Command-Line Name:  -state
+Database Name:  state
+Database Class: State
+</code></pre></div>
+<blockquote>
+<p>Modifies the default state of the canvas where <em>state</em> may be set to
+one of: <strong>normal</strong>, <strong>disabled</strong>, or <strong>hidden</strong>. Individual canvas
+objects all have their own state option which may override the default
+state. Many options can take separate specifications such that the
+appearance of the item can be different in different situations. The
+options that start with <strong>active</strong> control the appearance when the
+mouse pointer is over it, while the option starting with <strong>disabled</strong>
+controls the appearance when the state is disabled. Canvas items which
+are <strong>disabled</strong> will not react to canvas bindings.</p>
+</blockquote>
+<div class="language-text highlight"><pre><span></span><code>Command-Line Name:  -width
+Database Name:  width
+Database Class: width
+</code></pre></div>
+<blockquote>
+<p>Specifies a desired window width that the canvas widget should request
+from its geometry manager. The value may be specified in any of the
+forms described in the <strong>COORDINATES</strong> section below.</p>
+</blockquote>
+<div class="language-text highlight"><pre><span></span><code>Command-Line Name:  -xscrollincrement
+Database Name:  xScrollIncrement
+Database Class: ScrollIncrement
+</code></pre></div>
+<blockquote>
+<p>Specifies an increment for horizontal scrolling, in any of the usual
+forms permitted for screen distances. If the value of this option is
+greater than zero, the horizontal view in the window will be
+constrained so that the canvas x coordinate at the left edge of the
+window is always an even multiple of <strong>xScrollIncrement</strong>;
+furthermore, the units for scrolling (e.g., the change in view when
+the left and right arrows of a scrollbar are selected) will also be
+<strong>xScrollIncrement</strong>. If the value of this option is less than or
+equal to zero, then horizontal scrolling is unconstrained.</p>
+</blockquote>
+<div class="language-text highlight"><pre><span></span><code>Command-Line Name:  -yscrollincrement
+Database Name:  yScrollIncrement
+Database Class: ScrollIncrement
+</code></pre></div>
+<blockquote>
+<p>Specifies an increment for vertical scrolling, in any of the usual
+forms permitted for screen distances. If the value of this option is
+greater than zero, the vertical view in the window will be constrained
+so that the canvas y coordinate at the top edge of the window is
+always an even multiple of <strong>yScrollIncrement</strong>; furthermore, the
+units for scrolling (e.g., the change in view when the top and bottom
+arrows of a scrollbar are selected) will also be <strong>yScrollIncrement</strong>.
+If the value of this option is less than or equal to zero, then
+vertical scrolling is unconstrained.</p>
+</blockquote>
+<p>\</p>
+<h1 id="introduction">INTRODUCTION</h1>
+<p>The <strong>canvas</strong> command creates a new window (given by the <em>pathName</em>
+argument) and makes it into a canvas widget. Additional options,
+described above, may be specified on the command line or in the option
+database to configure aspects of the canvas such as its colors and 3-D
+relief. The <strong>canvas</strong> command returns its <em>pathName</em> argument. At the
+time this command is invoked, there must not exist a window named
+<em>pathName</em>, but <em>pathName</em>\'s parent must exist.</p>
+<p>Canvas widgets implement structured graphics. A canvas displays any
+number of <em>items</em>, which may be things like rectangles, circles, lines,
+and text. Items may be manipulated (e.g. moved or re-colored) and
+commands may be associated with items in much the same way that the
+<strong>bind</strong> command allows commands to be bound to widgets. For example, a
+particular command may be associated with the \&lt;Button-1> event so that
+the command is invoked whenever button 1 is pressed with the mouse
+cursor over an item. This means that items in a canvas can have
+behaviors defined by the Tcl scripts bound to them.</p>
+<h1 id="display-list">DISPLAY LIST</h1>
+<p>The items in a canvas are ordered for purposes of display, with the
+first item in the display list being displayed first, followed by the
+next item in the list, and so on. Items later in the display list
+obscure those that are earlier in the display list and are sometimes
+referred to as being of earlier items. When a new item is created it is
+placed at the end of the display list, on top of everything else. Widget
+commands may be used to re-arrange the order of the display list.</p>
+<p>Window items are an exception to the above rules. The underlying window
+systems require them always to be drawn on top of other items. In
+addition, the stacking order of window items is not affected by any of
+the canvas widget commands; you must use the Tk <strong>raise</strong> command and
+<strong>lower</strong> command instead.</p>
+<h1 id="item-ids-and-tags">ITEM IDS AND TAGS</h1>
+<p>Items in a canvas widget may be named in either of two ways: by id or by
+tag. Each item has a unique identifying number, which is assigned to
+that item when it is created. The id of an item never changes and id
+numbers are never re-used within the lifetime of a canvas widget.</p>
+<p>Each item may also have any number of <em>tags</em> associated with it. A tag
+is just a string of characters, and it may take any form except that of
+an integer. For example, is OK but is not. The same tag may be
+associated with many different items. This is commonly done to group
+items in various interesting ways; for example, all selected items might
+be given the tag</p>
+<p>The tag <strong>all</strong> is implicitly associated with every item in the canvas;
+it may be used to invoke operations on all the items in the canvas.</p>
+<p>The tag <strong>current</strong> is managed automatically by Tk; it applies to the
+<em>current item</em>, which is the topmost item whose drawn area covers the
+position of the mouse cursor (different item types interpret this in
+varying ways; see the individual item type documentation for details).
+If the mouse is not in the canvas widget or is not over an item, then no
+item has the <strong>current</strong> tag.</p>
+<p>When specifying items in canvas widget commands, if the specifier is an
+integer then it is assumed to refer to the single item with that id. If
+the specifier is not an integer, then it is assumed to refer to all of
+the items in the canvas that have a tag matching the specifier. The
+symbol <em>tagOrId</em> is used below to indicate that an argument specifies
+either an id that selects a single item or a tag that selects zero or
+more items.</p>
+<p><em>tagOrId</em> may contain a logical expressions of tags by using operators:
+and parenthesized subexpressions. For example:</p>
+<div class="language-text highlight"><pre><span></span><code>      .c find withtag {(a&amp;&amp;!b)||(!a&amp;&amp;b)}
+</code></pre></div>
+<p>or equivalently:</p>
+<div class="language-text highlight"><pre><span></span><code>      .c find withtag {a^b}
+</code></pre></div>
+<p>will find only those items with either or tags, but not both.</p>
+<p>Some widget commands only operate on a single item at a time; if
+<em>tagOrId</em> is specified in a way that names multiple items, then the
+normal behavior is for the command to use the first (lowest) of these
+items in the display list that is suitable for the command. Exceptions
+are noted in the widget command descriptions below.</p>
+<h1 id="coordinates">COORDINATES</h1>
+<p>All coordinates related to canvases are stored as floating-point
+numbers. Coordinates and distances are specified in screen units, which
+are floating-point numbers optionally followed by one of several
+letters. If no letter is supplied then the distance is in pixels. If the
+letter is <strong>m</strong> then the distance is in millimeters on the screen; if it
+is <strong>c</strong> then the distance is in centimeters; <strong>i</strong> means inches, and
+<strong>p</strong> means printers points (1/72 inch). Larger y-coordinates refer to
+points lower on the screen; larger x-coordinates refer to points farther
+to the right. Coordinates can be specified either as an even number of
+parameters, or as a single list parameter containing an even number of x
+and y coordinate values.</p>
+<h2 id="transformations">TRANSFORMATIONS</h2>
+<p>Normally the origin of the canvas coordinate system is at the upper-left
+corner of the window containing the canvas. It is possible to adjust the
+origin of the canvas coordinate system relative to the origin of the
+window using the <strong>xview</strong> and <strong>yview</strong> widget commands; this is
+typically used for scrolling. Canvases do not support scaling or
+rotation of the canvas coordinate system relative to the window
+coordinate system.</p>
+<p>Individual items may be moved or scaled using widget commands described
+below, but they may not be rotated.</p>
+<p>Note that the default origin of the canvas\'s visible area is coincident
+with the origin for the whole window as that makes bindings using the
+mouse position easier to work with; you only need to use the <strong>canvasx</strong>
+and <strong>canvasy</strong> widget commands if you adjust the origin of the visible
+area. However, this also means that any focus ring (as controlled by the
+<strong>-highlightthickness</strong> option) and window border (as controlled by the
+<strong>-borderwidth</strong> option) must be taken into account before you get to
+the visible area of the canvas.</p>
+<h1 id="indices">INDICES</h1>
+<p>Text items support the notion of an <em>index</em> for identifying particular
+positions within the item. In a similar fashion, line and polygon items
+support <em>index</em> for identifying, inserting and deleting subsets of their
+coordinates. Indices are used for commands such as inserting or deleting
+a range of characters or coordinates, and setting the insertion cursor
+position. An index may be specified in any of a number of ways, and
+different types of items may support different forms for specifying
+indices. Text items support the following forms for an index; if you
+define new types of text-like items, it would be advisable to support as
+many of these forms as practical. Note that it is possible to refer to
+the character just after the last one in the text item; this is
+necessary for such tasks as inserting new text at the end of the item.
+Lines and Polygons do not support the insertion cursor and the
+selection. Their indices are supposed to be even always, because
+coordinates always appear in pairs.</p>
+<p><em>number</em></p>
+<p>:   A decimal number giving the position of the desired character within
+    the text item. 0 refers to the first character, 1 to the next
+    character, and so on. If indexes are odd for lines and polygons,
+    they will be automatically decremented by one. A number less than 0
+    is treated as if it were zero, and a number greater than the length
+    of the text item is treated as if it were equal to the length of the
+    text item. For polygons, numbers less than 0 or greater than the
+    length of the coordinate list will be adjusted by adding or
+    subtracting the length until the result is between zero and the
+    length, inclusive.</p>
+<p><strong>end</strong></p>
+<p>:   Refers to the character or coordinate just after the last one in the
+    item (same as the number of characters or coordinates in the item).</p>
+<p><strong>insert</strong></p>
+<p>:   Refers to the character just before which the insertion cursor is
+    drawn in this item. Not valid for lines and polygons.</p>
+<p><strong>sel.first</strong></p>
+<p>:   Refers to the first selected character in the item. If the selection
+    is not in this item then this form is illegal.</p>
+<p><strong>sel.last</strong></p>
+<p>:   Refers to the last selected character in the item. If the selection
+    is not in this item then this form is illegal.</p>
+<p><strong>@</strong><em>x,y</em></p>
+<p>:   Refers to the character or coordinate at the point given by <em>x</em> and
+    <em>y</em>, where <em>x</em> and <em>y</em> are specified in the coordinate system of the
+    canvas. If <em>x</em> and <em>y</em> lie outside the coordinates covered by the
+    text item, then they refer to the first or last character in the
+    line that is closest to the given point.</p>
+<h1 id="dash-patterns">DASH PATTERNS</h1>
+<p>Many items support the notion of a dash pattern for outlines.</p>
+<p>The first possible syntax is a list of integers. Each element represents
+the number of pixels of a line segment. Only the odd segments are drawn
+using the color. The other segments are drawn transparent.</p>
+<p>The second possible syntax is a character list containing only 5
+possible characters The space can be used to enlarge the space between
+other line elements, and cannot occur as the first position in the
+string. Some examples:</p>
+<div class="language-text highlight"><pre><span></span><code>-dash .     → -dash {2 4}
+-dash -     → -dash {6 4}
+-dash -.    → -dash {6 4 2 4}
+-dash -..   → -dash {6 4 2 4 2 4}
+-dash {. }  → -dash {2 8}
+-dash ,     → -dash {4 4}
+</code></pre></div>
+<p>The main difference of this syntax with the previous is that it is
+shape-conserving. This means that all values in the dash list will be
+multiplied by the line width before display. This assures that will
+always be displayed as a dot and always as a dash regardless of the line
+width.</p>
+<p>On systems which support only a limited set of dash patterns, the dash
+pattern will be displayed as the closest dash pattern that is available.
+For example, on Windows only the first 4 of the above examples are
+available. The last 2 examples will be displayed identically to the
+first one.</p>
+<h1 id="widget-command">WIDGET COMMAND</h1>
+<p>The <strong>canvas</strong> command creates a new Tcl command whose name is
+<em>pathName</em>. This command may be used to invoke various operations on the
+widget. It has the following general form:</p>
+<div class="language-text highlight"><pre><span></span><code>pathName option ?arg arg ...?
+</code></pre></div>
+<p><em>Option</em> and the <em>arg</em>s determine the exact behavior of the command. The
+following widget commands are possible for canvas widgets:</p>
+<p><em>pathName </em><strong>addtag </strong><em>tag searchSpec </em>?<em>arg arg ...</em>?</p>
+<p>:   For each item that meets the constraints specified by <em>searchSpec</em>
+    and the <em>arg</em>s, add <em>tag</em> to the list of tags associated with the
+    item if it is not already present on that list. It is possible that
+    no items will satisfy the constraints given by <em>searchSpec</em> and
+    <em>arg</em>s, in which case the command has no effect. This command
+    returns an empty string as result. <em>SearchSpec</em> and <em>arg</em>\'s may
+    take any of the following forms:</p>
+<div class="language-text highlight"><pre><span></span><code>**above ***tagOrId*
+
+:   Selects the item just after (above) the one given by *tagOrId*
+    in the display list. If *tagOrId* denotes more than one item,
+    then the last (topmost) of these items in the display list is
+    used.
+
+**all**
+
+:   Selects all the items in the canvas.
+
+**below ***tagOrId*
+
+:   Selects the item just before (below) the one given by *tagOrId*
+    in the display list. If *tagOrId* denotes more than one item,
+    then the first (lowest) of these items in the display list is
+    used.
+
+**closest ***x y *?*halo*? ?*start*?
+
+:   Selects the item closest to the point given by *x* and *y*. If
+    more than one item is at the same closest distance (e.g. two
+    items overlap the point), then the top-most of these items (the
+    last one in the display list) is used. If *halo* is specified,
+    then it must be a non-negative value. Any item closer than
+    *halo* to the point is considered to overlap it. The *start*
+    argument may be used to step circularly through all the closest
+    items. If *start* is specified, it names an item using a tag or
+    id (if by tag, it selects the first item in the display list
+    with the given tag). Instead of selecting the topmost closest
+    item, this form will select the topmost closest item that is
+    below *start* in the display list; if no such item exists, then
+    the selection behaves as if the *start* argument had not been
+    specified.
+
+**enclosed** *x1* *y1* *x2* *y2*
+
+:   Selects all the items completely enclosed within the rectangular
+    region given by *x1*, *y1*, *x2*, and *y2*. *X1* must be no
+    greater than *x2* and *y1* must be no greater than *y2*.
+
+**overlapping** *x1* *y1* *x2* *y2*
+
+:   Selects all the items that overlap or are enclosed within the
+    rectangular region given by *x1*, *y1*, *x2*, and *y2*. *X1*
+    must be no greater than *x2* and *y1* must be no greater than
+    *y2*.
+
+**withtag ***tagOrId*
+
+:   Selects all the items given by *tagOrId*.
+</code></pre></div>
+<p><em>pathName </em><strong>bbox </strong><em>tagOrId</em> ?<em>tagOrId tagOrId ...</em>?</p>
+<p>:   Returns a list with four elements giving an approximate bounding box
+    for all the items named by the <em>tagOrId</em> arguments. The list has the
+    form such that the drawn areas of all the named elements are within
+    the region bounded by <em>x1</em> on the left, <em>x2</em> on the right, <em>y1</em> on
+    the top, and <em>y2</em> on the bottom. The return value may overestimate
+    the actual bounding box by a few pixels. If no items match any of
+    the <em>tagOrId</em> arguments or if the matching items have empty bounding
+    boxes (i.e. they have nothing to display) then an empty string is
+    returned.</p>
+<p><em>pathName </em><strong>bind </strong><em>tagOrId</em> ?<em>sequence</em>? ?<em>command</em>?</p>
+<p>:   This command associates <em>command</em> with all the items given by
+    <em>tagOrId</em> such that whenever the event sequence given by <em>sequence</em>
+    occurs for one of the items the command will be invoked. This widget
+    command is similar to the <strong>bind</strong> command except that it operates
+    on items in a canvas rather than entire widgets. See the <strong>bind</strong>
+    manual entry for complete details on the syntax of <em>sequence</em> and
+    the substitutions performed on <em>command</em> before invoking it. If all
+    arguments are specified then a new binding is created, replacing any
+    existing binding for the same <em>sequence</em> and <em>tagOrId</em> (if the first
+    character of <em>command</em> is then <em>command</em> augments an existing
+    binding rather than replacing it). In this case the return value is
+    an empty string. If <em>command</em> is omitted then the command returns
+    the <em>command</em> associated with <em>tagOrId</em> and <em>sequence</em> (an error
+    occurs if there is no such binding). If both <em>command</em> and
+    <em>sequence</em> are omitted then the command returns a list of all the
+    sequences for which bindings have been defined for <em>tagOrId</em>.</p>
+<div class="language-text highlight"><pre><span></span><code>The only events for which bindings may be specified are those
+related to the mouse and keyboard (such as **Enter**, **Leave**,
+**ButtonPress**, **Motion**, and **KeyPress**) or virtual events.
+The handling of events in canvases uses the current item defined in
+**ITEM IDS AND TAGS** above. **Enter** and **Leave** events trigger
+for an item when it becomes the current item or ceases to be the
+current item; note that these events are different than **Enter**
+and **Leave** events for windows. Mouse-related events are directed
+to the current item, if any. Keyboard-related events are directed to
+the focus item, if any (see the **focus** widget command below for
+more on this). If a virtual event is used in a binding, that binding
+can trigger only if the virtual event is defined by an underlying
+mouse-related or keyboard-related event.
+
+It is possible for multiple bindings to match a particular event.
+This could occur, for example, if one binding is associated with the
+item\&#39;s id and another is associated with one of the item\&#39;s tags.
+When this occurs, all of the matching bindings are invoked. A
+binding associated with the **all** tag is invoked first, followed
+by one binding for each of the item\&#39;s tags (in order), followed by
+a binding associated with the item\&#39;s id. If there are multiple
+matching bindings for a single tag, then only the most specific
+binding is invoked. A **continue** command in a binding script
+terminates that script, and a **break** command terminates that
+script and skips any remaining scripts for the event, just as for
+the **bind** command.
+
+If bindings have been created for a canvas window using the **bind**
+command, then they are invoked in addition to bindings created for
+the canvas\&#39;s items using the **bind** widget command. The bindings
+for items will be invoked before any of the bindings for the window
+as a whole.
+</code></pre></div>
+<p><em>pathName </em><strong>canvasx </strong><em>screenx</em> ?<em>gridspacing</em>?</p>
+<p>:   Given a window x-coordinate in the canvas <em>screenx</em>, this command
+    returns the canvas x-coordinate that is displayed at that location.
+    If <em>gridspacing</em> is specified, then the canvas coordinate is rounded
+    to the nearest multiple of <em>gridspacing</em> units.</p>
+<p><em>pathName </em><strong>canvasy </strong><em>screeny</em> ?<em>gridspacing</em>?</p>
+<p>:   Given a window y-coordinate in the canvas <em>screeny</em> this command
+    returns the canvas y-coordinate that is displayed at that location.
+    If <em>gridspacing</em> is specified, then the canvas coordinate is rounded
+    to the nearest multiple of <em>gridspacing</em> units.</p>
+<p><em>pathName </em><strong>cget</strong> <em>option</em></p>
+<p>:   Returns the current value of the configuration option given by
+    <em>option</em>. <em>Option</em> may have any of the values accepted by the
+    <strong>canvas</strong> command.</p>
+<p><em>pathName </em><strong>configure ?</strong><em>option</em>? ?<em>value</em>? ?<em>option value ...</em>?</p>
+<p>:   Query or modify the configuration options of the widget. If no
+    <em>option</em> is specified, returns a list describing all of the
+    available options for <em>pathName</em> (see <strong>Tk_ConfigureInfo</strong> for
+    information on the format of this list). If <em>option</em> is specified
+    with no <em>value</em>, then the command returns a list describing the one
+    named option (this list will be identical to the corresponding
+    sublist of the value returned if no <em>option</em> is specified). If one
+    or more <em>option-value</em> pairs are specified, then the command
+    modifies the given widget option(s) to have the given value(s); in
+    this case the command returns an empty string. <em>Option</em> may have any
+    of the values accepted by the <strong>canvas</strong> command.</p>
+<p><em>pathName</em> <strong>coords </strong><em>tagOrId </em>?<em>x0 y0 ...</em>?</p>
+<p>:   </p>
+<p><em>pathName</em> <strong>coords </strong><em>tagOrId </em>?<em>coordList</em>?</p>
+<p>:   Query or modify the coordinates that define an item. If no
+    coordinates are specified, this command returns a list whose
+    elements are the coordinates of the item named by <em>tagOrId</em>. If
+    coordinates are specified, then they replace the current coordinates
+    for the named item. If <em>tagOrId</em> refers to multiple items, then the
+    first one in the display list is used.</p>
+<div class="language-text highlight"><pre><span></span><code>Note that for rectangles, ovals and arcs the returned list of
+coordinates has a fixed order, namely the left, top, right and
+bottom coordinates, which may not be the order originally given.
+Also the coordinates are always returned in screen units with no
+units (that is, in pixels). So if the original coordinates were
+specified for instance in centimeters or inches, the returned values
+will nevertheless be in pixels.
+</code></pre></div>
+<p><em>pathName </em><strong>create </strong><em>type x y </em>?<em>x y ...</em>? ?<em>option value ...</em>?</p>
+<p>:   </p>
+<p><em>pathName </em><strong>create </strong><em>type coordList </em>?<em>option value ...</em>?</p>
+<p>:   Create a new item in <em>pathName</em> of type <em>type</em>. The exact format of
+    the arguments after <em>type</em> depends on <em>type</em>, but usually they
+    consist of the coordinates for one or more points, followed by
+    specifications for zero or more item options. See the subsections on
+    individual item types below for more on the syntax of this command.
+    This command returns the id for the new item.</p>
+<p><em>pathName </em><strong>dchars </strong><em>tagOrId first </em>?<em>last</em>?</p>
+<p>:   For each item given by <em>tagOrId</em>, delete the characters, or
+    coordinates, in the range given by <em>first</em> and <em>last</em>, inclusive. If
+    some of the items given by <em>tagOrId</em> do not support indexing
+    operations then they ignore this operation. Text items interpret
+    <em>first</em> and <em>last</em> as indices to a character, line and polygon items
+    interpret them as indices to a coordinate (an x,y pair). Indices are
+    described in <strong>INDICES</strong> above. If <em>last</em> is omitted, it defaults to
+    <em>first</em>. This command returns an empty string.</p>
+<p><em>pathName </em><strong>delete </strong>?<em>tagOrId tagOrId ...</em>?</p>
+<p>:   Delete each of the items given by each <em>tagOrId</em>, and return an
+    empty string.</p>
+<p><em>pathName </em><strong>dtag </strong><em>tagOrId </em>?<em>tagToDelete</em>?</p>
+<p>:   For each of the items given by <em>tagOrId</em>, delete the tag given by
+    <em>tagToDelete</em> from the list of those associated with the item. If an
+    item does not have the tag <em>tagToDelete</em> then the item is unaffected
+    by the command. If <em>tagToDelete</em> is omitted then it defaults to
+    <em>tagOrId</em>. This command returns an empty string.</p>
+<p><em>pathName </em><strong>find </strong><em>searchCommand </em>?<em>arg arg ...</em>?</p>
+<p>:   This command returns a list consisting of all the items that meet
+    the constraints specified by <em>searchCommand</em> and <em>arg</em>\'s.
+    <em>SearchCommand</em> and <em>args</em> have any of the forms accepted by the
+    <strong>addtag</strong> command. The items are returned in stacking order, with
+    the lowest item first.</p>
+<p><em>pathName </em><strong>focus </strong>?<em>tagOrId</em>?</p>
+<p>:   Set the keyboard focus for the canvas widget to the item given by
+    <em>tagOrId</em>. If <em>tagOrId</em> refers to several items, then the focus is
+    set to the first such item in the display list that supports the
+    insertion cursor. If <em>tagOrId</em> does not refer to any items, or if
+    none of them support the insertion cursor, then the focus is not
+    changed. If <em>tagOrId</em> is an empty string, then the focus item is
+    reset so that no item has the focus. If <em>tagOrId</em> is not specified
+    then the command returns the id for the item that currently has the
+    focus, or an empty string if no item has the focus.</p>
+<div class="language-text highlight"><pre><span></span><code>Once the focus has been set to an item, the item will display the
+insertion cursor and all keyboard events will be directed to that
+item. The focus item within a canvas and the focus window on the
+screen (set with the **focus** command) are totally independent: a
+given item does not actually have the input focus unless (a) its
+canvas is the focus window and (b) the item is the focus item within
+the canvas. In most cases it is advisable to follow the **focus**
+widget command with the **focus** command to set the focus window to
+the canvas (if it was not there already).
+</code></pre></div>
+<p><em>pathName </em><strong>gettags</strong> <em>tagOrId</em></p>
+<p>:   Return a list whose elements are the tags associated with the item
+    given by <em>tagOrId</em>. If <em>tagOrId</em> refers to more than one item, then
+    the tags are returned from the first such item in the display list.
+    If <em>tagOrId</em> does not refer to any items, or if the item contains no
+    tags, then an empty string is returned.</p>
+<p><em>pathName </em><strong>icursor </strong><em>tagOrId index</em></p>
+<p>:   Set the position of the insertion cursor for the item(s) given by
+    <em>tagOrId</em> to just before the character whose position is given by
+    <em>index</em>. If some or all of the items given by <em>tagOrId</em> do not
+    support an insertion cursor then this command has no effect on them.
+    See <strong>INDICES</strong> above for a description of the legal forms for
+    <em>index</em>. Note: the insertion cursor is only displayed in an item if
+    that item currently has the keyboard focus (see the <strong>focus</strong> widget
+    command, above), but the cursor position may be set even when the
+    item does not have the focus. This command returns an empty string.</p>
+<p><em>pathName </em><strong>imove </strong><em>tagOrId index x y</em></p>
+<p>:   </p>
+<p>This command causes the <em>index</em>\'th coordinate of each of the items
+indicated by <em>tagOrId</em> to be relocated to the location (<em>x</em>,<em>y</em>). Each
+item interprets <em>index</em> independently according to the rules described
+in <strong>INDICES</strong> above. Out of the standard set of items, only line and
+polygon items may have their coordinates relocated this way.</p>
+<p><em>pathName </em><strong>index </strong><em>tagOrId index</em></p>
+<p>:   This command returns a decimal string giving the numerical index
+    within <em>tagOrId</em> corresponding to <em>index</em>. <em>Index</em> gives a textual
+    description of the desired position as described in <strong>INDICES</strong>
+    above. Text items interpret <em>index</em> as an index to a character, line
+    and polygon items interpret it as an index to a coordinate (an x,y
+    pair). The return value is guaranteed to lie between 0 and the
+    number of characters, or coordinates, within the item, inclusive. If
+    <em>tagOrId</em> refers to multiple items, then the index is processed in
+    the first of these items that supports indexing operations (in
+    display list order).</p>
+<p><em>pathName </em><strong>insert </strong><em>tagOrId beforeThis string</em></p>
+<p>:   For each of the items given by <em>tagOrId</em>, if the item supports text
+    or coordinate, insertion then <em>string</em> is inserted into the item\'s
+    text just before the character, or coordinate, whose index is
+    <em>beforeThis</em>. Text items interpret <em>beforeThis</em> as an index to a
+    character, line and polygon items interpret it as an index to a
+    coordinate (an x,y pair). For lines and polygons the <em>string</em> must
+    be a valid coordinate sequence. See <strong>INDICES</strong> above for
+    information about the forms allowed for <em>beforeThis</em>. This command
+    returns an empty string.</p>
+<p><em>pathName </em><strong>itemcget</strong> <em>tagOrId</em> <em>option</em></p>
+<p>:   Returns the current value of the configuration option for the item
+    given by <em>tagOrId</em> whose name is <em>option</em>. This command is similar
+    to the <strong>cget</strong> widget command except that it applies to a
+    particular item rather than the widget as a whole. <em>Option</em> may have
+    any of the values accepted by the <strong>create</strong> widget command when the
+    item was created. If <em>tagOrId</em> is a tag that refers to more than one
+    item, the first (lowest) such item is used.</p>
+<p><em>pathName </em><strong>itemconfigure </strong><em>tagOrId</em> ?<em>option</em>? ?<em>value</em>? ?<em>option value ...</em>?</p>
+<p>:   This command is similar to the <strong>configure</strong> widget command except
+    that it modifies item-specific options for the items given by
+    <em>tagOrId</em> instead of modifying options for the overall canvas
+    widget. If no <em>option</em> is specified, returns a list describing all
+    of the available options for the first item given by <em>tagOrId</em> (see
+    <strong>Tk_ConfigureInfo</strong> for information on the format of this list). If
+    <em>option</em> is specified with no <em>value</em>, then the command returns a
+    list describing the one named option (this list will be identical to
+    the corresponding sublist of the value returned if no <em>option</em> is
+    specified). If one or more <em>option-value</em> pairs are specified, then
+    the command modifies the given widget option(s) to have the given
+    value(s) in each of the items given by <em>tagOrId</em>; in this case the
+    command returns an empty string. The <em>option</em>s and <em>value</em>s are the
+    same as those permissible in the <strong>create</strong> widget command when the
+    item(s) were created; see the sections describing individual item
+    types below for details on the legal options.</p>
+<p><em>pathName </em><strong>lower </strong><em>tagOrId </em>?<em>belowThis</em>?</p>
+<p>:   Move all of the items given by <em>tagOrId</em> to a new position in the
+    display list just before the item given by <em>belowThis</em>. If <em>tagOrId</em>
+    refers to more than one item then all are moved but the relative
+    order of the moved items will not be changed. <em>BelowThis</em> is a tag
+    or id; if it refers to more than one item then the first (lowest) of
+    these items in the display list is used as the destination location
+    for the moved items. Note: this command has no effect on window
+    items. Window items always obscure other item types, and the
+    stacking order of window items is determined by the <strong>raise</strong>
+    command and <strong>lower</strong> command, not the <strong>raise</strong> widget command and
+    <strong>lower</strong> widget command for canvases. This command returns an empty
+    string.</p>
+<p><em>pathName </em><strong>move </strong><em>tagOrId xAmount yAmount</em></p>
+<p>:   Move each of the items given by <em>tagOrId</em> in the canvas coordinate
+    space by adding <em>xAmount</em> to the x-coordinate of each point
+    associated with the item and <em>yAmount</em> to the y-coordinate of each
+    point associated with the item. This command returns an empty
+    string.</p>
+<p><em>pathName </em><strong>moveto </strong><em>tagOrId xPos yPos</em></p>
+<p>:   </p>
+<p>Move the items given by <em>tagOrId</em> in the canvas coordinate space so that
+the first coordinate pair (the upper-left corner of the bounding box) of
+the first item (the lowest in the display list) with tag <em>tagOrId</em> is
+located at position (<em>xPos</em>,<em>yPos</em>). <em>xPos</em> and <em>yPos</em> may be the empty
+string, in which case the corresponding coordinate will be unchanged.
+All items matching <em>tagOrId</em> remain in the same positions relative to
+each other. This command returns an empty string.</p>
+<p><em>pathName </em><strong>postscript </strong>?<em>option value option value ...</em>?</p>
+<p>:   Generate a Postscript representation for part or all of the canvas.
+    If the <strong>-file</strong> option is specified then the Postscript is written
+    to a file and an empty string is returned; otherwise the Postscript
+    is returned as the result of the command. If the interpreter that
+    owns the canvas is marked as safe, the operation will fail because
+    safe interpreters are not allowed to write files. If the
+    <strong>-channel</strong> option is specified, the argument denotes the name of a
+    channel already opened for writing. The Postscript is written to
+    that channel, and the channel is left open for further writing at
+    the end of the operation. The Postscript is created in Encapsulated
+    Postscript form using version 3.0 of the Document Structuring
+    Conventions. Note: by default Postscript is only generated for
+    information that appears in the canvas\'s window on the screen. If
+    the canvas is freshly created it may still have its initial size of
+    1x1 pixel so nothing will appear in the Postscript. To get around
+    this problem either invoke the <strong>update</strong> command to wait for the
+    canvas window to reach its final size, or else use the <strong>-width</strong>
+    and <strong>-height</strong> options to specify the area of the canvas to print.
+    The <em>option</em>-<em>value</em> argument pairs provide additional information
+    to control the generation of Postscript. The following options are
+    supported:</p>
+<div class="language-text highlight"><pre><span></span><code>**-channel ***channelName*
+
+:   Specifies the name of the channel to which to write the
+    Postscript. If this option and the **-file** option are not
+    specified then the Postscript is returned as the result of the
+    command.
+
+**-colormap ***varName*
+
+:   *VarName* must be the name of an array variable that specifies a
+    color mapping to use in the Postscript. Each element of
+    *varName* must consist of Postscript code to set a particular
+    color value (e.g. When outputting color information in the
+    Postscript, Tk checks to see if there is an element of *varName*
+    with the same name as the color. If so, Tk uses the value of the
+    element as the Postscript command to set the color. If this
+    option has not been specified, or if there is no entry in
+    *varName* for a given color, then Tk uses the red, green, and
+    blue intensities from the X color.
+
+**-colormode ***mode*
+
+:   Specifies how to output color information. *Mode* must be either
+    **color** (for full color output), **gray** (convert all colors
+    to their gray-scale equivalents) or **mono** (convert all colors
+    to black or white).
+
+**-file ***fileName*
+
+:   Specifies the name of the file in which to write the Postscript.
+    If this option and the **-channel** option are not specified
+    then the Postscript is returned as the result of the command.
+
+**-fontmap ***varName*
+
+:   *VarName* must be the name of an array variable that specifies a
+    font mapping to use in the Postscript. Each element of *varName*
+    must consist of a Tcl list with two elements, which are the name
+    and point size of a Postscript font. When outputting Postscript
+    commands for a particular font, Tk checks to see if *varName*
+    contains an element with the same name as the font. If there is
+    such an element, then the font information contained in that
+    element is used in the Postscript. Otherwise Tk attempts to
+    guess what Postscript font to use. Tk\&#39;s guesses generally only
+    work for well-known fonts such as Times and Helvetica and
+    Courier, and only if the X font name does not omit any dashes up
+    through the point size. For example,
+    **-\*-Courier-Bold-R-Normal\--\*-120-\*** will work but
+    **\*Courier-Bold-R-Normal\*120\*** will not; Tk needs the dashes
+    to parse the font name).
+
+**-height ***size*
+
+:   Specifies the height of the area of the canvas to print.
+    Defaults to the height of the canvas window.
+
+**-pageanchor ***anchor*
+
+:   Specifies which point of the printed area of the canvas should
+    appear over the positioning point on the page (which is given by
+    the **-pagex** and **-pagey** options). For example,
+    **-pageanchor n** means that the top center of the area of the
+    canvas being printed (as it appears in the canvas window) should
+    be over the positioning point. Defaults to **center**.
+
+**-pageheight ***size*
+
+:   Specifies that the Postscript should be scaled in both x and y
+    so that the printed area is *size* high on the Postscript page.
+    *Size* consists of a floating-point number followed by **c** for
+    centimeters, **i** for inches, **m** for millimeters, or **p**
+    or nothing for printer\&#39;s points (1/72 inch). Defaults to the
+    height of the printed area on the screen. If both
+    **-pageheight** and **-pagewidth** are specified then the scale
+    factor from **-pagewidth** is used (non-uniform scaling is not
+    implemented).
+
+**-pagewidth ***size*
+
+:   Specifies that the Postscript should be scaled in both x and y
+    so that the printed area is *size* wide on the Postscript page.
+    *Size* has the same form as for **-pageheight**. Defaults to the
+    width of the printed area on the screen. If both **-pageheight**
+    and **-pagewidth** are specified then the scale factor from
+    **-pagewidth** is used (non-uniform scaling is not implemented).
+
+**-pagex ***position*
+
+:   *Position* gives the x-coordinate of the positioning point on
+    the Postscript page, using any of the forms allowed for
+    **-pageheight**. Used in conjunction with the **-pagey** and
+    **-pageanchor** options to determine where the printed area
+    appears on the Postscript page. Defaults to the center of the
+    page.
+
+**-pagey ***position*
+
+:   *Position* gives the y-coordinate of the positioning point on
+    the Postscript page, using any of the forms allowed for
+    **-pageheight**. Used in conjunction with the **-pagex** and
+    **-pageanchor** options to determine where the printed area
+    appears on the Postscript page. Defaults to the center of the
+    page.
+
+**-rotate ***boolean*
+
+:   *Boolean* specifies whether the printed area is to be rotated 90
+    degrees. In non-rotated output the x-axis of the printed area
+    runs along the short dimension of the page in rotated output the
+    x-axis runs along the long dimension of the page Defaults to
+    non-rotated.
+
+**-width ***size*
+
+:   Specifies the width of the area of the canvas to print. Defaults
+    to the width of the canvas window.
+
+**-x ***position*
+
+:   Specifies the x-coordinate of the left edge of the area of the
+    canvas that is to be printed, in canvas coordinates, not window
+    coordinates. Defaults to the coordinate of the left edge of the
+    window.
+
+**-y ***position*
+
+:   Specifies the y-coordinate of the top edge of the area of the
+    canvas that is to be printed, in canvas coordinates, not window
+    coordinates. Defaults to the coordinate of the top edge of the
+    window.
+</code></pre></div>
+<p><em>pathName </em><strong>raise </strong><em>tagOrId </em>?<em>aboveThis</em>?</p>
+<p>:   Move all of the items given by <em>tagOrId</em> to a new position in the
+    display list just after the item given by <em>aboveThis</em>. If <em>tagOrId</em>
+    refers to more than one item then all are moved but the relative
+    order of the moved items will not be changed. <em>AboveThis</em> is a tag
+    or id; if it refers to more than one item then the last (topmost) of
+    these items in the display list is used as the destination location
+    for the moved items. This command returns an empty string.</p>
+<div class="language-text highlight"><pre><span></span><code>Note: this command has no effect on window items. Window items
+always obscure other item types, and the stacking order of window
+items is determined by the **raise** command and **lower** command,
+not the **raise** widget command and **lower** widget command for
+canvases.
+</code></pre></div>
+<p><em>pathName </em><strong>rchars </strong><em>tagOrId first last string</em></p>
+<p>:   </p>
+<p>This command causes the text or coordinates between <em>first</em> and <em>last</em>
+for each of the items indicated by <em>tagOrId</em> to be replaced by <em>string</em>.
+Each item interprets <em>first</em> and <em>last</em> independently according to the
+rules described in <strong>INDICES</strong> above. Out of the standard set of items,
+text items support this operation by altering their text as directed,
+and line and polygon items support this operation by altering their
+coordinate list (in which case <em>string</em> should be a list of coordinates
+to use as a replacement). The other items ignore this operation.</p>
+<p><em>pathName </em><strong>scale </strong><em>tagOrId xOrigin yOrigin xScale yScale</em></p>
+<p>:   Rescale the coordinates of all of the items given by <em>tagOrId</em> in
+    canvas coordinate space. <em>XOrigin</em> and <em>yOrigin</em> identify the origin
+    for the scaling operation and <em>xScale</em> and <em>yScale</em> identify the
+    scale factors for x- and y-coordinates, respectively (a scale factor
+    of 1.0 implies no change to that coordinate). For each of the points
+    defining each item, the x-coordinate is adjusted to change the
+    distance from <em>xOrigin</em> by a factor of <em>xScale</em>. Similarly, each
+    y-coordinate is adjusted to change the distance from <em>yOrigin</em> by a
+    factor of <em>yScale</em>. This command returns an empty string.</p>
+<div class="language-text highlight"><pre><span></span><code>Note that some items have only a single pair of coordinates (e.g.,
+text, images and windows) and so scaling of them by this command can
+only move them around.
+</code></pre></div>
+<p><em>pathName </em><strong>scan</strong> <em>option args</em></p>
+<p>:   This command is used to implement scanning on canvases. It has two
+    forms, depending on <em>option</em>:</p>
+<div class="language-text highlight"><pre><span></span><code>*pathName ***scan mark ***x y*
+
+:   Records *x* and *y* and the canvas\&#39;s current view; used in
+    conjunction with later **scan dragto** commands. Typically this
+    command is associated with a mouse button press in the widget
+    and *x* and *y* are the coordinates of the mouse. It returns an
+    empty string.
+
+*pathName ***scan dragto ***x y ?gain?*
+
+:   This command computes the difference between its *x* and *y*
+    arguments (which are typically mouse coordinates) and the *x*
+    and *y* arguments to the last **scan mark** command for the
+    widget. It then adjusts the view by *gain* times the difference
+    in coordinates, where *gain* defaults to 10. This command is
+    typically associated with mouse motion events in the widget, to
+    produce the effect of dragging the canvas at high speed through
+    its window. The return value is an empty string.
+</code></pre></div>
+<p><em>pathName </em><strong>select </strong><em>option</em> ?<em>tagOrId arg</em>?</p>
+<p>:   Manipulates the selection in one of several ways, depending on
+    <em>option</em>. The command may take any of the forms described below. In
+    all of the descriptions below, <em>tagOrId</em> must refer to an item that
+    supports indexing and selection; if it refers to multiple items then
+    the first of these that supports indexing and the selection is used.
+    <em>Index</em> gives a textual description of a position within <em>tagOrId</em>,
+    as described in <strong>INDICES</strong> above.</p>
+<div class="language-text highlight"><pre><span></span><code>*pathName ***select adjust ***tagOrId index*
+
+:   Locate the end of the selection in *tagOrId* nearest to the
+    character given by *index*, and adjust that end of the selection
+    to be at *index* (i.e. including but not going beyond *index*).
+    The other end of the selection is made the anchor point for
+    future **select to** commands. If the selection is not currently
+    in *tagOrId* then this command behaves the same as the **select
+    to** widget command. Returns an empty string.
+
+*pathName ***select clear**
+
+:   Clear the selection if it is in this widget. If the selection is
+    not in this widget then the command has no effect. Returns an
+    empty string.
+
+*pathName ***select from ***tagOrId index*
+
+:   Set the selection anchor point for the widget to be just before
+    the character given by *index* in the item given by *tagOrId*.
+    This command does not change the selection; it just sets the
+    fixed end of the selection for future **select to** commands.
+    Returns an empty string.
+
+*pathName ***select item**
+
+:   Returns the id of the selected item, if the selection is in an
+    item in this canvas. If the selection is not in this canvas then
+    an empty string is returned.
+
+*pathName ***select to ***tagOrId index*
+
+:   Set the selection to consist of those characters of *tagOrId*
+    between the selection anchor point and *index*. The new
+    selection will include the character given by *index*; it will
+    include the character given by the anchor point only if *index*
+    is greater than or equal to the anchor point. The anchor point
+    is determined by the most recent **select adjust** or **select
+    from** command for this widget. If the selection anchor point
+    for the widget is not currently in *tagOrId*, then it is set to
+    the same character given by *index*. Returns an empty string.
+</code></pre></div>
+<p><em>pathName </em><strong>type</strong><em> tagOrId</em></p>
+<p>:   Returns the type of the item given by <em>tagOrId</em>, such as
+    <strong>rectangle</strong> or <strong>text</strong>. If <em>tagOrId</em> refers to more than one
+    item, then the type of the first item in the display list is
+    returned. If <em>tagOrId</em> does not refer to any items at all then an
+    empty string is returned.</p>
+<p><em>pathName </em><strong>xview </strong>?<em>args</em>?</p>
+<p>:   This command is used to query and change the horizontal position of
+    the information displayed in the canvas\'s window. It can take any
+    of the following forms:</p>
+<div class="language-text highlight"><pre><span></span><code>*pathName ***xview**
+
+:   Returns a list containing two elements. Each element is a real
+    fraction between 0 and 1; together they describe the horizontal
+    span that is visible in the window. For example, if the first
+    element is .2 and the second element is .6, 20% of the canvas\&#39;s
+    area (as defined by the **-scrollregion** option) is off-screen
+    to the left, the middle 40% is visible in the window, and 40% of
+    the canvas is off-screen to the right. These are the same values
+    passed to scrollbars via the **-xscrollcommand** option.
+
+*pathName ***xview moveto*** fraction*
+
+:   Adjusts the view in the window so that *fraction* of the total
+    width of the canvas is off-screen to the left. *Fraction* must
+    be a fraction between 0 and 1.
+
+*pathName ***xview scroll ***number what*
+
+:   This command shifts the view in the window left or right
+    according to *number* and *what*. *Number* must be an integer.
+    *What* must be either **units** or **pages** or an abbreviation
+    of one of these. If *what* is **units**, the view adjusts left
+    or right in units of the **xScrollIncrement** option, if it is
+    greater than zero, or in units of one-tenth the window\&#39;s width
+    otherwise. If *what is ***pages** then the view adjusts in units
+    of nine-tenths the window\&#39;s width. If *number* is negative then
+    information farther to the left becomes visible; if it is
+    positive then information farther to the right becomes visible.
+</code></pre></div>
+<p><em>pathName </em><strong>yview ?</strong><em>args</em>?</p>
+<p>:   This command is used to query and change the vertical position of
+    the information displayed in the canvas\'s window. It can take any
+    of the following forms:</p>
+<div class="language-text highlight"><pre><span></span><code>*pathName ***yview**
+
+:   Returns a list containing two elements. Each element is a real
+    fraction between 0 and 1; together they describe the vertical
+    span that is visible in the window. For example, if the first
+    element is .6 and the second element is 1.0, the lowest 40% of
+    the canvas\&#39;s area (as defined by the **-scrollregion** option)
+    is visible in the window. These are the same values passed to
+    scrollbars via the **-yscrollcommand** option.
+
+*pathName ***yview moveto*** fraction*
+
+:   Adjusts the view in the window so that *fraction* of the
+    canvas\&#39;s area is off-screen to the top. *Fraction* is a
+    fraction between 0 and 1.
+
+*pathName ***yview scroll ***number what*
+
+:   This command adjusts the view in the window up or down according
+    to *number* and *what*. *Number* must be an integer. *What* must
+    be either **units** or **pages**. If *what* is **units**, the
+    view adjusts up or down in units of the **yScrollIncrement**
+    option, if it is greater than zero, or in units of one-tenth the
+    window\&#39;s height otherwise. If *what* is **pages** then the view
+    adjusts in units of nine-tenths the window\&#39;s height. If
+    *number* is negative then higher information becomes visible; if
+    it is positive then lower information becomes visible.
+</code></pre></div>
+<h1 id="overview-of-item-types">OVERVIEW OF ITEM TYPES</h1>
+<p>The sections below describe the various types of items supported by
+canvas widgets. Each item type is characterized by two things: first,
+the form of the <strong>create</strong> command used to create instances of the type;
+and second, a set of configuration options for items of that type, which
+may be used in the <strong>create</strong> and <strong>itemconfigure</strong> widget commands.
+Most items do not support indexing or selection or the commands related
+to them, such as <strong>index</strong> and <strong>insert</strong>. Where items do support these
+facilities, it is noted explicitly in the descriptions below. At
+present, text, line and polygon items provide this support. For lines
+and polygons the indexing facility is used to manipulate the coordinates
+of the item.</p>
+<h2 id="common-item-options">COMMON ITEM OPTIONS</h2>
+<p>Many items share a common set of options. These options are explained
+here, and then referred to be each widget type for brevity.</p>
+<p><strong>-anchor </strong><em>anchorPos</em></p>
+<p>:   <em>AnchorPos</em> tells how to position the item relative to the
+    positioning point for the item; it may have any of the forms
+    accepted by <strong>Tk_GetAnchor</strong>. For example, if <em>anchorPos</em> is
+    <strong>center</strong> then the item is centered on the point; if <em>anchorPos</em> is
+    <strong>n</strong> then the item will be drawn so that its top center point is at
+    the positioning point. This option defaults to <strong>center</strong>.</p>
+<p><strong>-dash </strong><em>pattern</em></p>
+<p>:   </p>
+<p><strong>-activedash </strong><em>pattern</em></p>
+<p>:   </p>
+<p><strong>-disableddash </strong><em>pattern</em></p>
+<p>:   This option specifies dash patterns for the normal, active state,
+    and disabled state of an item. <em>pattern</em> may have any of the forms
+    accepted by <strong>Tk_GetDash</strong>. If the dash options are omitted then the
+    default is a solid outline. See <strong>DASH PATTERNS</strong> for more
+    information.</p>
+<p><strong>-dashoffset </strong><em>offset</em></p>
+<p>:   The starting <em>offset</em> in pixels into the pattern provided by the
+    <strong>-dash</strong> option. <strong>-dashoffset</strong> is ignored if there is no
+    <strong>-dash</strong> pattern. The <em>offset</em> may have any of the forms described
+    in the <strong>COORDINATES</strong> section above.</p>
+<p><strong>-fill </strong><em>color</em></p>
+<p>:   </p>
+<p><strong>-activefill </strong><em>color</em></p>
+<p>:   </p>
+<p><strong>-disabledfill </strong><em>color</em></p>
+<p>:   Specifies the color to be used to fill item\'s area. in its normal,
+    active, and disabled states. The even-odd fill rule is used. <em>Color</em>
+    may have any of the forms accepted by <strong>Tk_GetColor</strong>. For the line
+    item, it specifies the color of the line drawn. For the text item,
+    it specifies the foreground color of the text. If <em>color</em> is an
+    empty string (the default for all canvas items except line and
+    text), then the item will not be filled.</p>
+<p><strong>-outline </strong><em>color</em></p>
+<p>:   </p>
+<p><strong>-activeoutline </strong><em>color</em></p>
+<p>:   </p>
+<p><strong>-disabledoutline </strong><em>color</em></p>
+<p>:   This option specifies the color that should be used to draw the
+    outline of the item in its normal, active and disabled states.
+    <em>Color</em> may have any of the forms accepted by <strong>Tk_GetColor</strong>. If
+    <em>color</em> is specified as an empty string then no outline is drawn for
+    the item.</p>
+<p><strong>-offset </strong><em>offset</em></p>
+<p>:   Specifies the offset of stipples. The offset value can be of the
+    form <strong>x,y</strong> or <em>side</em>, where side can be <strong>n</strong>, <strong>ne</strong>, <strong>e</strong>,
+    <strong>se</strong>, <strong>s</strong>, <strong>sw</strong>, <strong>w</strong>, <strong>nw</strong>, or <strong>center</strong>. In the first
+    case the origin is the origin of the toplevel of the current window.
+    For the canvas itself and canvas objects the origin is the canvas
+    origin, but putting <strong>#</strong> in front of the coordinate pair indicates
+    using the toplevel origin instead. For canvas objects, the
+    <strong>-offset</strong> option is used for stippling as well. For the line and
+    polygon canvas items you can also specify an index as argument,
+    which connects the stipple origin to one of the coordinate points of
+    the line/polygon. Note that stipple offsets are <em>only supported on
+    X11</em>; they are silently ignored on other platforms.</p>
+<p><strong>-outlinestipple </strong><em>bitmap</em></p>
+<p>:   </p>
+<p><strong>-activeoutlinestipple </strong><em>bitmap</em></p>
+<p>:   </p>
+<p><strong>-disabledoutlinestipple </strong><em>bitmap</em></p>
+<p>:   This option specifies stipple patterns that should be used to draw
+    the outline of the item in its normal, active and disabled states.
+    Indicates that the outline for the item should be drawn with a
+    stipple pattern; <em>bitmap</em> specifies the stipple pattern to use, in
+    any of the forms accepted by <strong>Tk_GetBitmap</strong>. If the <strong>-outline</strong>
+    option has not been specified then this option has no effect. If
+    <em>bitmap</em> is an empty string (the default), then the outline is drawn
+    in a solid fashion. <em>Note that stipples are not well supported on
+    platforms that do not</em> use X11 as their drawing API.</p>
+<p><strong>-outlineoffset </strong><em>offset</em></p>
+<p>:   Specifies the offset of the stipple pattern used for outlines, in
+    the same way that the <strong>-outline</strong> option controls fill stipples.
+    (See the <strong>-outline</strong> option for a description of the syntax of
+    <em>offset</em>.)</p>
+<p><strong>-stipple </strong><em>bitmap</em></p>
+<p>:   </p>
+<p><strong>-activestipple </strong><em>bitmap</em></p>
+<p>:   </p>
+<p><strong>-disabledstipple </strong><em>bitmap</em></p>
+<p>:   This option specifies stipple patterns that should be used to fill
+    the item in its normal, active and disabled states. <em>bitmap</em>
+    specifies the stipple pattern to use, in any of the forms accepted
+    by <strong>Tk_GetBitmap</strong>. If the <strong>-fill</strong> option has not been specified
+    then this option has no effect. If <em>bitmap</em> is an empty string (the
+    default), then filling is done in a solid fashion. For the text
+    item, it affects the actual text. <em>Note that stipples are not well
+    supported on platforms that do not</em> use X11 as their drawing API.</p>
+<p><strong>-state </strong><em>state</em></p>
+<p>:   This allows an item to override the canvas widget\'s global <em>state</em>
+    option. It takes the same values: <em>normal</em>, <em>disabled</em> or <em>hidden</em>.</p>
+<p><strong>-tags </strong><em>tagList</em></p>
+<p>:   Specifies a set of tags to apply to the item. <em>TagList</em> consists of
+    a list of tag names, which replace any existing tags for the item.
+    <em>TagList</em> may be an empty list.</p>
+<p><strong>-width </strong><em>outlineWidth</em></p>
+<p>:   </p>
+<p><strong>-activewidth </strong><em>outlineWidth</em></p>
+<p>:   </p>
+<p><strong>-disabledwidth </strong><em>outlineWidth</em></p>
+<p>:   Specifies the width of the outline to be drawn around the item\'s
+    region, in its normal, active and disabled states. <em>outlineWidth</em>
+    may be in any of the forms described in the <strong>COORDINATES</strong> section
+    above. If the <strong>-outline</strong> option has been specified as an empty
+    string then this option has no effect. This option defaults to 1.0.
+    For arcs, wide outlines will be drawn centered on the edges of the
+    arc\'s region.</p>
+<h1 id="standard-item-types">STANDARD ITEM TYPES</h1>
+<h2 id="arc-items">ARC ITEMS</h2>
+<p>Items of type <strong>arc</strong> appear on the display as arc-shaped regions. An
+arc is a section of an oval delimited by two angles (specified by the
+<strong>-start</strong> and <strong>-extent</strong> options) and displayed in one of several ways
+(specified by the <strong>-style</strong> option). Arcs are created with widget
+commands of the following form:</p>
+<div class="language-text highlight"><pre><span></span><code>pathName create arc x1 y1 x2 y2 ?option value ...?
+pathName create arc coordList ?option value ...?
+</code></pre></div>
+<p>The arguments <em>x1</em>, <em>y1</em>, <em>x2</em>, and <em>y2</em> or <em>coordList</em> give the
+coordinates of two diagonally opposite corners of a rectangular region
+enclosing the oval that defines the arc. After the coordinates there may
+be any number of <em>option</em>-<em>value</em> pairs, each of which sets one of the
+configuration options for the item. These same <em>option</em>-<em>value</em> pairs
+may be used in <strong>itemconfigure</strong> widget commands to change the item\'s
+configuration. An arc item becomes the current item when the mouse
+pointer is over any part that is painted or (when fully transparent)
+that would be painted if both the <strong>-fill</strong> and <strong>-outline</strong> options
+were non-empty.</p>
+<p>The following standard options are supported by arcs:</p>
+<blockquote>
+<div class="language-text highlight"><pre><span></span><code>-dash -activedash
+-disableddash -dashoffset
+-fill -activefill
+-disabledfill -offset
+-outline  -activeoutline
+-disabledoutline  -outlineoffset
+-outlinestipple   -activeoutlinestipple
+-disabledoutlinestipple   -stipple
+-activestipple    -disabledstipple
+-state    -tags
+-width    -activewidth
+-disabledwidth
+</code></pre></div>
+</blockquote>
+<p>The following extra options are supported for arcs:</p>
+<p><strong>-extent </strong><em>degrees</em></p>
+<p>:   Specifies the size of the angular range occupied by the arc. The
+    arc\'s range extends for <em>degrees</em> degrees counter-clockwise from
+    the starting angle given by the <strong>-start</strong> option. <em>Degrees</em> may be
+    negative. If it is greater than 360 or less than -360, then
+    <em>degrees</em> modulo 360 is used as the extent.</p>
+<p><strong>-start </strong><em>degrees</em></p>
+<p>:   Specifies the beginning of the angular range occupied by the arc.
+    <em>Degrees</em> is given in units of degrees measured counter-clockwise
+    from the 3-o\'clock position; it may be either positive or negative.</p>
+<p><strong>-style </strong><em>type</em></p>
+<p>:   Specifies how to draw the arc. If <em>type</em> is <strong>pieslice</strong> (the
+    default) then the arc\'s region is defined by a section of the
+    oval\'s perimeter plus two line segments, one between the center of
+    the oval and each end of the perimeter section. If <em>type</em> is
+    <strong>chord</strong> then the arc\'s region is defined by a section of the
+    oval\'s perimeter plus a single line segment connecting the two end
+    points of the perimeter section. If <em>type</em> is <strong>arc</strong> then the
+    arc\'s region consists of a section of the perimeter alone. In this
+    last case the <strong>-fill</strong> option is ignored.</p>
+<h2 id="bitmap-items">BITMAP ITEMS</h2>
+<p>Items of type <strong>bitmap</strong> appear on the display as images with two
+colors, foreground and background. Bitmaps are created with widget
+commands of the following form:</p>
+<div class="language-text highlight"><pre><span></span><code>pathName create bitmap x y ?option value ...?
+pathName create bitmap coordList ?option value ...?
+</code></pre></div>
+<p>The arguments <em>x</em> and <em>y</em> or <em>coordList</em> (which must have two elements)
+specify the coordinates of a point used to position the bitmap on the
+display, as controlled by the <strong>-anchor</strong> option. After the coordinates
+there may be any number of <em>option</em>-<em>value</em> pairs, each of which sets
+one of the configuration options for the item. These same
+<em>option</em>-<em>value</em> pairs may be used in <strong>itemconfigure</strong> widget commands
+to change the item\'s configuration. A bitmap item becomes the current
+item when the mouse pointer is over any part of its bounding box.</p>
+<p>The following standard options are supported by bitmaps:</p>
+<blockquote>
+<div class="language-text highlight"><pre><span></span><code>-anchor   -state
+-tags
+</code></pre></div>
+</blockquote>
+<p>The following extra options are supported for bitmaps:</p>
+<p><strong>-background </strong><em>color</em></p>
+<p>:   </p>
+<p><strong>-activebackground </strong><em>color</em></p>
+<p>:   </p>
+<p><strong>-disabledbackground </strong><em>color</em></p>
+<p>:   Specifies the color to use for each of the bitmap\'s valued pixels
+    in its normal, active and disabled states. <em>Color</em> may have any of
+    the forms accepted by <strong>Tk_GetColor</strong>. If this option is not
+    specified, or if it is specified as an empty string, then nothing is
+    displayed where the bitmap pixels are 0; this produces a transparent
+    effect.</p>
+<p><strong>-bitmap </strong><em>bitmap</em></p>
+<p>:   </p>
+<p><strong>-activebitmap </strong><em>bitmap</em></p>
+<p>:   </p>
+<p><strong>-disabledbitmap </strong><em>bitmap</em></p>
+<p>:   Specifies the bitmaps to display in the item in its normal, active
+    and disabled states. <em>Bitmap</em> may have any of the forms accepted by
+    <strong>Tk_GetBitmap</strong>.</p>
+<p><strong>-foreground </strong><em>color</em></p>
+<p>:   </p>
+<p><strong>-activeforeground </strong><em>color</em></p>
+<p>:   </p>
+<p><strong>-disabledforeground </strong><em>color</em></p>
+<p>:   Specifies the color to use for each of the bitmap\'s valued pixels
+    in its normal, active and disabled states. <em>Color</em> may have any of
+    the forms accepted by <strong>Tk_GetColor</strong>.</p>
+<h2 id="image-items">IMAGE ITEMS</h2>
+<p>Items of type <strong>image</strong> are used to display images on a canvas. Images
+are created with widget commands of the following form:</p>
+<div class="language-text highlight"><pre><span></span><code>pathName create image x y ?option value ...?
+pathName create image coordList ?option value ...?
+</code></pre></div>
+<p>The arguments <em>x</em> and <em>y</em> or <em>coordList</em> specify the coordinates of a
+point used to position the image on the display, as controlled by the
+<strong>-anchor</strong> option. After the coordinates there may be any number of
+<em>option</em>-<em>value</em> pairs, each of which sets one of the configuration
+options for the item. These same <em>option</em>-<em>value</em> pairs may be used in
+<strong>itemconfigure</strong> widget commands to change the item\'s configuration.
+An image item becomes the current item when the mouse pointer is over
+any part of its bounding box.</p>
+<p>The following standard options are supported by images:</p>
+<blockquote>
+<div class="language-text highlight"><pre><span></span><code>-anchor   -state
+-tags
+</code></pre></div>
+</blockquote>
+<p>The following extra options are supported for images:</p>
+<p><strong>-image </strong><em>name</em></p>
+<p>:   </p>
+<p><strong>-activeimage </strong><em>name</em></p>
+<p>:   </p>
+<p><strong>-disabledimage </strong><em>name</em></p>
+<p>:   Specifies the name of the images to display in the item in is
+    normal, active and disabled states. This image must have been
+    created previously with the <strong>image create</strong> command.</p>
+<h2 id="line-items">LINE ITEMS</h2>
+<p>Items of type <strong>line</strong> appear on the display as one or more connected
+line segments or curves. Line items support coordinate indexing
+operations using the <strong>dchars</strong>, <strong>index</strong> and <strong>insert</strong> widget
+commands. Lines are created with widget commands of the following form:</p>
+<div class="language-text highlight"><pre><span></span><code>pathName create line x1 y1... xn yn ?option value ...?
+pathName create line coordList ?option value ...?
+</code></pre></div>
+<p>The arguments <em>x1</em> through <em>yn</em> or <em>coordList</em> give the coordinates for
+a series of two or more points that describe a series of connected line
+segments. After the coordinates there may be any number of
+<em>option</em>-<em>value</em> pairs, each of which sets one of the configuration
+options for the item. These same <em>option</em>-<em>value</em> pairs may be used in
+<strong>itemconfigure</strong> widget commands to change the item\'s configuration. A
+line item is the current item whenever the mouse pointer is over any
+segment of the line, whether drawn or not and whether or not the line is
+smoothed.</p>
+<p>The following standard options are supported by lines:</p>
+<blockquote>
+<div class="language-text highlight"><pre><span></span><code>-dash -activedash
+-disableddash -dashoffset
+-fill -activefill
+-disabledfill -stipple
+-activestipple    -disabledstipple
+-state    -tags
+-width    -activewidth
+-disabledwidth
+</code></pre></div>
+</blockquote>
+<p>The following extra options are supported for lines:</p>
+<p><strong>-arrow </strong><em>where</em></p>
+<p>:   Indicates whether or not arrowheads are to be drawn at one or both
+    ends of the line. <em>Where</em> must have one of the values <strong>none</strong> (for
+    no arrowheads), <strong>first</strong> (for an arrowhead at the first point of
+    the line), <strong>last</strong> (for an arrowhead at the last point of the
+    line), or <strong>both</strong> (for arrowheads at both ends). This option
+    defaults to <strong>none</strong>. When requested to draw an arrowhead, Tk
+    internally adjusts the corresponding line end point so that the
+    rendered line ends at the neck of the arrowhead rather than at its
+    tip so that the line doesn\'t extend past the edge of the arrowhead.
+    This may trigger a <strong>Leave</strong> event if the mouse is hovering this
+    line end. Conversely, when removing an arrowhead Tk adjusts the
+    corresponding line point the other way round, which may trigger an
+    <strong>Enter</strong> event.</p>
+<p><strong>-arrowshape </strong><em>shape</em></p>
+<p>:   This option indicates how to draw arrowheads. The <em>shape</em> argument
+    must be a list with three elements, each specifying a distance in
+    any of the forms described in the <strong>COORDINATES</strong> section above. The
+    first element of the list gives the distance along the line from the
+    neck of the arrowhead to its tip. The second element gives the
+    distance along the line from the trailing points of the arrowhead to
+    the tip, and the third element gives the distance from the outside
+    edge of the line to the trailing points. If this option is not
+    specified then Tk picks a shape.</p>
+<p><strong>-capstyle </strong><em>style</em></p>
+<p>:   Specifies the ways in which caps are to be drawn at the endpoints of
+    the line. <em>Style</em> may have any of the forms accepted by
+    <strong>Tk_GetCapStyle</strong> (<strong>butt</strong>, <strong>projecting</strong>, or <strong>round</strong>). If this
+    option is not specified then it defaults to <strong>butt</strong>. Where
+    arrowheads are drawn the cap style is ignored.</p>
+<p><strong>-joinstyle </strong><em>style</em></p>
+<p>:   Specifies the ways in which joints are to be drawn at the vertices
+    of the line. <em>Style</em> may have any of the forms accepted by
+    <strong>Tk_GetJoinStyle</strong> (<strong>bevel</strong>, <strong>miter</strong>, or <strong>round</strong>). If this
+    option is not specified then it defaults to <strong>round</strong>. If the line
+    only contains two points then this option is irrelevant.</p>
+<p><strong>-smooth </strong><em>smoothMethod</em></p>
+<p>:   <em>smoothMethod</em> must have one of the forms accepted by
+    <strong>Tcl_GetBoolean</strong> or a line smoothing method. Only <strong>true</strong> and
+    <strong>raw</strong> are supported in the core (with <strong>bezier</strong> being an alias
+    for <strong>true</strong>), but more can be added at runtime. If a boolean false
+    value or empty string is given, no smoothing is applied. A boolean
+    truth value assumes <strong>true</strong> smoothing. If the smoothing method is
+    <strong>true</strong>, this indicates that the line should be drawn as a curve,
+    rendered as a set of quadratic splines: one spline is drawn for the
+    first and second line segments, one for the second and third, and so
+    on. Straight-line segments can be generated within a curve by
+    duplicating the end-points of the desired line segment. If the
+    smoothing method is <strong>raw</strong>, this indicates that the line should
+    also be drawn as a curve but where the list of coordinates is such
+    that the first coordinate pair (and every third coordinate pair
+    thereafter) is a knot point on a cubic Bezier curve, and the other
+    coordinates are control points on the cubic Bezier curve. Straight
+    line segments can be generated within a curve by making control
+    points equal to their neighbouring knot points. If the last point is
+    a control point and not a knot point, the point is repeated (one or
+    two times) so that it also becomes a knot point.</p>
+<p><strong>-splinesteps </strong><em>number</em></p>
+<p>:   Specifies the degree of smoothness desired for curves: each spline
+    will be approximated with <em>number</em> line segments. This option is
+    ignored unless the <strong>-smooth</strong> option is true or <strong>raw</strong>.</p>
+<h2 id="oval-items">OVAL ITEMS</h2>
+<p>Items of type <strong>oval</strong> appear as circular or oval regions on the
+display. Each oval may have an outline, a fill, or both. Ovals are
+created with widget commands of the following form:</p>
+<div class="language-text highlight"><pre><span></span><code>pathName create oval x1 y1 x2 y2 ?option value ...?
+pathName create oval coordList ?option value ...?
+</code></pre></div>
+<p>The arguments <em>x1</em>, <em>y1</em>, <em>x2</em>, and <em>y2</em> or <em>coordList</em> give the
+coordinates of two diagonally opposite corners of a rectangular region
+enclosing the oval. The oval will include the top and left edges of the
+rectangle not the lower or right edges. If the region is square then the
+resulting oval is circular; otherwise it is elongated in shape. After
+the coordinates there may be any number of <em>option</em>-<em>value</em> pairs, each
+of which sets one of the configuration options for the item. These same
+<em>option</em>-<em>value</em> pairs may be used in <strong>itemconfigure</strong> widget commands
+to change the item\'s configuration. An oval item becomes the current
+item when the mouse pointer is over any part that is painted or (when
+fully transparent) that would be painted if both the <strong>-fill</strong> and
+<strong>-outline</strong> options were non-empty.</p>
+<p>The following standard options are supported by ovals:</p>
+<blockquote>
+<div class="language-text highlight"><pre><span></span><code>-dash -activedash
+-disableddash -dashoffset
+-fill -activefill
+-disabledfill -offset
+-outline  -activeoutline
+-disabledoutline  -outlineoffset
+-outlinestipple   -activeoutlinestipple
+-disabledoutlinestipple   -stipple
+-activestipple    -disabledstipple
+-state    -tags
+-width    -activewidth
+-disabledwidth
+</code></pre></div>
+</blockquote>
+<p>There are no oval-specific options.</p>
+<h2 id="polygon-items">POLYGON ITEMS</h2>
+<p>Items of type <strong>polygon</strong> appear as polygonal or curved filled regions
+on the display. Polygon items support coordinate indexing operations
+using the <strong>dchars</strong>, <strong>index</strong> and <strong>insert</strong> widget commands. Polygons
+are created with widget commands of the following form:</p>
+<div class="language-text highlight"><pre><span></span><code>pathName create polygon x1 y1 ... xn yn ?option value ...?
+pathName create polygon coordList ?option value ...?
+</code></pre></div>
+<p>The arguments <em>x1</em> through <em>yn</em> or <em>coordList</em> specify the coordinates
+for three or more points that define a polygon. The first point should
+not be repeated as the last to close the shape; Tk will automatically
+close the periphery between the first and last points. After the
+coordinates there may be any number of <em>option</em>-<em>value</em> pairs, each of
+which sets one of the configuration options for the item. These same
+<em>option</em>-<em>value</em> pairs may be used in <strong>itemconfigure</strong> widget commands
+to change the item\'s configuration. A polygon item is the current item
+whenever the mouse pointer is over any part of the polygon, whether
+drawn or not and whether or not the outline is smoothed.</p>
+<p>The following standard options are supported by polygons:</p>
+<blockquote>
+<div class="language-text highlight"><pre><span></span><code>-dash -activedash
+-disableddash -dashoffset
+-fill -activefill
+-disabledfill -offset
+-outline  -activeoutline
+-disabledoutline  -outlineoffset
+-outlinestipple   -activeoutlinestipple
+-disabledoutlinestipple   -stipple
+-activestipple    -disabledstipple
+-state    -tags
+-width    -activewidth
+-disabledwidth
+</code></pre></div>
+</blockquote>
+<p>The following extra options are supported for polygons:</p>
+<p><strong>-joinstyle </strong><em>style</em></p>
+<p>:   Specifies the ways in which joints are to be drawn at the vertices
+    of the outline. <em>Style</em> may have any of the forms accepted by
+    <strong>Tk_GetJoinStyle</strong> (<strong>bevel</strong>, <strong>miter</strong>, or <strong>round</strong>). If this
+    option is not specified then it defaults to <strong>round</strong>.</p>
+<p><strong>-smooth </strong><em>boolean</em></p>
+<p>:   <em>Boolean</em> must have one of the forms accepted by <strong>Tcl_GetBoolean</strong>
+    or a line smoothing method. Only <strong>true</strong> and <strong>raw</strong> are supported
+    in the core (with <strong>bezier</strong> being an alias for <strong>true</strong>), but more
+    can be added at runtime. If a boolean false value or empty string is
+    given, no smoothing is applied. A boolean truth value assumes
+    <strong>true</strong> smoothing. If the smoothing method is <strong>true</strong>, this
+    indicates that the polygon should be drawn as a curve, rendered as a
+    set of quadratic splines: one spline is drawn for the first and
+    second line segments, one for the second and third, and so on.
+    Straight-line segments can be generated within a curve by
+    duplicating the end-points of the desired line segment. If the
+    smoothing method is <strong>raw</strong>, this indicates that the polygon should
+    also be drawn as a curve but where the list of coordinates is such
+    that the first coordinate pair (and every third coordinate pair
+    thereafter) is a knot point on a cubic Bezier curve, and the other
+    coordinates are control points on the cubic Bezier curve. Straight
+    line segments can be generated within a curve by making control
+    points equal to their neighbouring knot points. If the last point is
+    not the second point of a pair of control points, the point is
+    repeated (one or two times) so that it also becomes the second point
+    of a pair of control points (the associated knot point will be the
+    first control point).</p>
+<p><strong>-splinesteps </strong><em>number</em></p>
+<p>:   Specifies the degree of smoothness desired for curves: each spline
+    will be approximated with <em>number</em> line segments. This option is
+    ignored unless the <strong>-smooth</strong> option is true or <strong>raw</strong>.</p>
+<p>Polygon items are different from other items such as rectangles, ovals
+and arcs in that interior points are considered to be a polygon (e.g.
+for purposes of the <strong>find closest</strong> and <strong>find overlapping</strong> widget
+commands) even if it is not filled. For most other item types, an
+interior point is considered to be inside the item only if the item is
+filled or if it has neither a fill nor an outline. If you would like an
+unfilled polygon whose interior points are not considered to be inside
+the polygon, use a line item instead.</p>
+<h2 id="rectangle-items">RECTANGLE ITEMS</h2>
+<p>Items of type <strong>rectangle</strong> appear as rectangular regions on the
+display. Each rectangle may have an outline, a fill, or both. Rectangles
+are created with widget commands of the following form:</p>
+<div class="language-text highlight"><pre><span></span><code>pathName create rectangle x1 y1 x2 y2 ?option value ...?
+pathName create rectangle coordList ?option value ...?
+</code></pre></div>
+<p>The arguments <em>x1</em>, <em>y1</em>, <em>x2</em>, and <em>y2</em> or <em>coordList</em> (which must have
+four elements) give the coordinates of two diagonally opposite corners
+of the rectangle (the rectangle will include its upper and left edges
+but not its lower or right edges). After the coordinates there may be
+any number of <em>option</em>-<em>value</em> pairs, each of which sets one of the
+configuration options for the item. These same <em>option</em>-<em>value</em> pairs
+may be used in <strong>itemconfigure</strong> widget commands to change the item\'s
+configuration. A rectangle item becomes the current item when the mouse
+pointer is over any part that is painted or (when fully transparent)
+that would be painted if both the <strong>-fill</strong> and <strong>-outline</strong> options
+were non-empty.</p>
+<p>The following standard options are supported by rectangles:</p>
+<blockquote>
+<div class="language-text highlight"><pre><span></span><code>-dash -activedash
+-disableddash -dashoffset
+-fill -activefill
+-disabledfill -offset
+-outline  -activeoutline
+-disabledoutline  -outlineoffset
+-outlinestipple   -activeoutlinestipple
+-disabledoutlinestipple   -stipple
+-activestipple    -disabledstipple
+-state    -tags
+-width    -activewidth
+-disabledwidth
+</code></pre></div>
+</blockquote>
+<p>There are no rectangle-specific options.</p>
+<h2 id="text-items">TEXT ITEMS</h2>
+<p>A text item displays a string of characters on the screen in one or more
+lines. Text items support indexing, editing and selection through the
+<strong>dchars</strong> widget command, the <strong>focus</strong> widget command, the <strong>icursor</strong>
+widget command, the <strong>index</strong> widget command, the <strong>insert</strong> widget
+command, and the <strong>select</strong> widget command. Text items are created with
+widget commands of the following form:</p>
+<div class="language-text highlight"><pre><span></span><code>pathName create text x y ?option value ...?
+pathName create text coordList ?option value ...?
+</code></pre></div>
+<p>The arguments <em>x</em> and <em>y</em> or <em>coordList</em> (which must have two elements)
+specify the coordinates of a point used to position the text on the
+display (see the options below for more information on how text is
+displayed). After the coordinates there may be any number of
+<em>option</em>-<em>value</em> pairs, each of which sets one of the configuration
+options for the item. These same <em>option</em>-<em>value</em> pairs may be used in
+<strong>itemconfigure</strong> widget commands to change the item\'s configuration. A
+text item becomes the current item when the mouse pointer is over any
+part of its bounding box.</p>
+<p>The following standard options are supported by text items:</p>
+<blockquote>
+<div class="language-text highlight"><pre><span></span><code>-anchor   -fill
+-activefill   -disabledfill
+-stipple  -activestipple
+-disabledstipple  -state
+-tags
+</code></pre></div>
+</blockquote>
+<p>The following extra options are supported for text items:</p>
+<p><strong>-angle </strong><em>rotationDegrees</em></p>
+<p>:   </p>
+<p><em>RotationDegrees</em> tells how many degrees to rotate the text
+anticlockwise about the positioning point for the text; it may have any
+floating-point value from 0.0 to 360.0. For example, if
+<em>rotationDegrees</em> is <strong>90</strong>, then the text will be drawn vertically from
+bottom to top. This option defaults to <strong>0.0</strong>.</p>
+<p><strong>-font </strong><em>fontName</em></p>
+<p>:   Specifies the font to use for the text item. <em>FontName</em> may be any
+    string acceptable to <strong>Tk_GetFont</strong>. If this option is not
+    specified, it defaults to a system-dependent font.</p>
+<p><strong>-justify </strong><em>how</em></p>
+<p>:   Specifies how to justify the text within its bounding region. <em>How</em>
+    must be one of the values <strong>left</strong>, <strong>right</strong>, or <strong>center</strong>. This
+    option will only matter if the text is displayed as multiple lines.
+    If the option is omitted, it defaults to <strong>left</strong>.</p>
+<p><strong>-text </strong><em>string</em></p>
+<p>:   <em>String</em> specifies the characters to be displayed in the text item.
+    Newline characters cause line breaks. The characters in the item may
+    also be changed with the <strong>insert</strong> and <strong>delete</strong> widget commands.
+    This option defaults to an empty string.</p>
+<p><strong>-underline </strong></p>
+<p>:   Specifies the integer index of a character within the text to be
+    underlined. 0 corresponds to the first character of the text
+    displayed, 1 to the next character, and so on. -1 means that no
+    underline should be drawn (if the whole text item is to be
+    underlined, the appropriate font should be used instead).</p>
+<p><strong>-width </strong><em>lineLength</em></p>
+<p>:   Specifies a maximum line length for the text, in any of the forms
+    described in the <strong>COORDINATES</strong> section above. If this option is
+    zero (the default) the text is broken into lines only at newline
+    characters. However, if this option is non-zero then any line that
+    would be longer than <em>lineLength</em> is broken just before a space
+    character to make the line shorter than <em>lineLength</em>; the space
+    character is treated as if it were a newline character.</p>
+<h2 id="window-items">WINDOW ITEMS</h2>
+<p>Items of type <strong>window</strong> cause a particular window to be displayed at a
+given position on the canvas. Window items are created with widget
+commands of the following form:</p>
+<div class="language-text highlight"><pre><span></span><code>pathName create window x y ?option value ...?
+pathName create window coordList ?option value ...?
+</code></pre></div>
+<p>The arguments <em>x</em> and <em>y</em> or <em>coordList</em> (which must have two elements)
+specify the coordinates of a point used to position the window on the
+display, as controlled by the <strong>-anchor</strong> option. After the coordinates
+there may be any number of <em>option</em>-<em>value</em> pairs, each of which sets
+one of the configuration options for the item. These same
+<em>option</em>-<em>value</em> pairs may be used in <strong>itemconfigure</strong> widget commands
+to change the item\'s configuration. Theoretically, a window item
+becomes the current item when the mouse pointer is over any part of its
+bounding box, but in practice this typically does not happen because the
+mouse pointer ceases to be over the canvas at that point.</p>
+<p>The following standard options are supported by window items:</p>
+<blockquote>
+<div class="language-text highlight"><pre><span></span><code>-anchor   -state
+-tags
+</code></pre></div>
+</blockquote>
+<p>The following extra options are supported for window items:</p>
+<p><strong>-height </strong><em>pixels</em></p>
+<p>:   Specifies the height to assign to the item\'s window. <em>Pixels</em> may
+    have any of the forms described in the <strong>COORDINATES</strong> section
+    above. If this option is not specified, or if it is specified as
+    zero, then the window is given whatever height it requests
+    internally.</p>
+<p><strong>-width </strong><em>pixels</em></p>
+<p>:   Specifies the width to assign to the item\'s window. <em>Pixels</em> may
+    have any of the forms described in the <strong>COORDINATES</strong> section
+    above. If this option is not specified, or if it is specified as
+    zero, then the window is given whatever width it requests
+    internally.</p>
+<p><strong>-window </strong><em>pathName</em></p>
+<p>:   Specifies the window to associate with this item. The window
+    specified by <em>pathName</em> must either be a child of the canvas widget
+    or a child of some ancestor of the canvas widget. <em>PathName</em> may not
+    refer to a top-level window.</p>
+<p>Note: due to restrictions in the ways that windows are managed, it is
+not possible to draw other graphical items (such as lines and images) on
+top of window items. A window item always obscures any graphics that
+overlap it, regardless of their order in the display list. Also note
+that window items, unlike other canvas items, are not clipped for
+display by their containing canvas\'s border, and are instead clipped by
+the parent widget of the window specified by the <strong>-window</strong> option;
+when the parent widget is the canvas, this means that the window item
+can overlap the canvas\'s border.</p>
+<h1 id="application-defined-item-types">APPLICATION-DEFINED ITEM TYPES</h1>
+<p>It is possible for individual applications to define new item types for
+canvas widgets using C code. See the documentation for
+<strong>Tk_CreateItemType</strong>.</p>
+<h1 id="bindings">BINDINGS</h1>
+<p>In the current implementation, new canvases are not given any default
+behavior: you will have to execute explicit Tcl commands to give the
+canvas its behavior.</p>
+<h1 id="credits">CREDITS</h1>
+<p>Tk\'s canvas widget is a blatant ripoff of ideas from Joel Bartlett\'s
+<em>ezd</em> program. <em>Ezd</em> provides structured graphics in a Scheme
+environment and preceded canvases by a year or two. Its simple
+mechanisms for placing and animating graphical objects inspired the
+functions of canvases.</p>
+<h1 id="see-also">SEE ALSO</h1>
+<p>bind(n), font(n), image(n), scrollbar(n)</p>
+<h1 id="keywords">KEYWORDS</h1>
+<p>canvas, widget</p>
+
+<ul class="metadata page-metadata" data-bi-name="page info" lang="en-us" dir="ltr">
+  <li class="last-updated-holder displayDate loading">
+    <span class="last-updated-text">Last updated:</span>
+    <time role="presentation" datetime="2018-10-25T00:00:00.000Z" data-article-date-source="ms.date"></time>
+  </li>
+<!--
+  <li class="readingTime">
+    2 minutes to read
+  </li>
+-->
+  <li class="contributors-holder">
+    <span class="contributors-text">Contributors</span>
+    <ul class="contributors" data-bi-name="contributors"></ul>
+  </li>
+</ul>
+</div>
+        <div class="col-md-3"><div class="navbar-light navbar-expand-md hidden-print sticky-top sticky-offset" role="complementary">
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggler collapsed" data-toggle="collapse" data-target="#toc-collapse" title="Table of Contents">
+            <span class="fa fa-angle-down"></span>
+        </button>
+    </div>
+
+    <div id="toc-collapse" class="navbar-collapse collapse card">
+        <ul class="nav flex-column bs-sidenav">
+            <li class="nav-item main"><a class="nav-link" href="#name">NAME</a></li>
+            <li class="nav-item main"><a class="nav-link" href="#synopsis">SYNOPSIS</a></li>
+            <li class="nav-item main"><a class="nav-link" href="#standard-options">STANDARD OPTIONS</a></li>
+            <li class="nav-item main"><a class="nav-link" href="#widget-specific-options">WIDGET-SPECIFIC OPTIONS</a></li>
+            <li class="nav-item main"><a class="nav-link" href="#introduction">INTRODUCTION</a></li>
+            <li class="nav-item main"><a class="nav-link" href="#display-list">DISPLAY LIST</a></li>
+            <li class="nav-item main"><a class="nav-link" href="#item-ids-and-tags">ITEM IDS AND TAGS</a></li>
+            <li class="nav-item main"><a class="nav-link" href="#coordinates">COORDINATES</a></li>
+                <li class="nav-item">
+                    <a href="#transformations" class="nav-link">TRANSFORMATIONS</a>
+                </li>
+            <li class="nav-item main"><a class="nav-link" href="#indices">INDICES</a></li>
+            <li class="nav-item main"><a class="nav-link" href="#dash-patterns">DASH PATTERNS</a></li>
+            <li class="nav-item main"><a class="nav-link" href="#widget-command">WIDGET COMMAND</a></li>
+            <li class="nav-item main"><a class="nav-link" href="#overview-of-item-types">OVERVIEW OF ITEM TYPES</a></li>
+                <li class="nav-item">
+                    <a href="#common-item-options" class="nav-link">COMMON ITEM OPTIONS</a>
+                </li>
+            <li class="nav-item main"><a class="nav-link" href="#standard-item-types">STANDARD ITEM TYPES</a></li>
+                <li class="nav-item">
+                    <a href="#arc-items" class="nav-link">ARC ITEMS</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#bitmap-items" class="nav-link">BITMAP ITEMS</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#image-items" class="nav-link">IMAGE ITEMS</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#line-items" class="nav-link">LINE ITEMS</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#oval-items" class="nav-link">OVAL ITEMS</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#polygon-items" class="nav-link">POLYGON ITEMS</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#rectangle-items" class="nav-link">RECTANGLE ITEMS</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#text-items" class="nav-link">TEXT ITEMS</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#window-items" class="nav-link">WINDOW ITEMS</a>
+                </li>
+            <li class="nav-item main"><a class="nav-link" href="#application-defined-item-types">APPLICATION-DEFINED ITEM TYPES</a></li>
+            <li class="nav-item main"><a class="nav-link" href="#bindings">BINDINGS</a></li>
+            <li class="nav-item main"><a class="nav-link" href="#credits">CREDITS</a></li>
+            <li class="nav-item main"><a class="nav-link" href="#see-also">SEE ALSO</a></li>
+            <li class="nav-item main"><a class="nav-link" href="#keywords">KEYWORDS</a></li>
+        </ul>
+    </div>
+</div></div>
+      </div>
+      </div>
+
+      <footer class="col-md-12">
+	<hr>
+	<div class="container">
+	</div>
+      </footer>
+      <script>
+	var base_url = "../..",
+            shortcuts = {"help": 191, "next": 78, "previous": 80, "search": 83};
+      </script>
+      <script src="../../js/base.js" defer></script>
+      <script src="../../search/main.js" defer></script>
+
+      <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="Search Modal" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Search</h4>
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            </div>
+            <div class="modal-body">
+                <p>
+                    From here you can search these documents. Enter
+                    your search terms below.
+                </p>
+                <form role="form">
+                    <div class="form-group">
+                        <input type="text" class="form-control" placeholder="Search..." id="mkdocs-search-query" title="Type search term here">
+                    </div>
+                </form>
+                <div id="mkdocs-search-results"></div>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div><div class="modal" id="mkdocs_keyboard_modal" tabindex="-1" role="dialog" aria-labelledby="Keyboard Shortcuts Modal" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <p class="h4 modal-title">Keyboard Shortcuts</p>
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            </div>
+            <div class="modal-body">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th style="width: 20%;">Keys</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="help shortcut"><kbd>?</kbd></td>
+                    <td>Open this help</td>
+                  </tr>
+                  <tr>
+                    <td class="next shortcut"><kbd>n</kbd></td>
+                    <td>Next page</td>
+                  </tr>
+                  <tr>
+                    <td class="prev shortcut"><kbd>p</kbd></td>
+                    <td>Previous page</td>
+                  </tr>
+                  <tr>
+                    <td class="search shortcut"><kbd>s</kbd></td>
+                    <td>Search</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>
+
+    </body>
+</html>

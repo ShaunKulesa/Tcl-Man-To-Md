@@ -1,21 +1,16 @@
-\
-
 # NAME
 
 Tcl_SourceRCFile - source the Tcl rc file
 
 # SYNOPSIS
 
-    #include <tcl.h>
+**#include \<tcl.h\>**
 
-    void
-    Tcl_SourceRCFile(interp)
+void **Tcl_SourceRCFile**(*interp*)
 
 # ARGUMENTS
 
 Tcl interpreter to source rc file into.
-
-\
 
 # DESCRIPTION
 
@@ -28,3 +23,8 @@ the file it indicates cannot be found, no action is taken.
 # KEYWORDS
 
 application-specific initialization, main program, rc file
+
+<!---
+Copyright (c) 1998-2000 Scriptics Corporation
+-->
+

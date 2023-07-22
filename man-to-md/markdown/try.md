@@ -1,5 +1,3 @@
-\
-
 # NAME
 
 try - Trap and process errors and exceptions
@@ -7,8 +5,6 @@ try - Trap and process errors and exceptions
 # SYNOPSIS
 
 **try*** body* ?*handler\...*? ?**finally*** script*?
-
-\
 
 # DESCRIPTION
 
@@ -96,3 +92,8 @@ catch(n), error(n), return(n), throw(n)
 # KEYWORDS
 
 cleanup, error, exception, final, resource management
+
+<!---
+Copyright (c) 2008 Donal K. Fellow
+-->
+

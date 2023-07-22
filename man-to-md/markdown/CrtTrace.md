@@ -1,5 +1,3 @@
-\
-
 # NAME
 
 Tcl_CreateTrace, Tcl_CreateObjTrace, Tcl_DeleteTrace - arrange for
@@ -7,15 +5,14 @@ command execution to be traced
 
 # SYNOPSIS
 
-    #include <tcl.h>
+**#include \<tcl.h\>**
 
-    Tcl_Trace
-    Tcl_CreateTrace(interp, level, proc, clientData)
+Tcl_Trace **Tcl_CreateTrace**(*interp, level, proc, clientData*)
 
-    Tcl_Trace
-    Tcl_CreateObjTrace(interp, level, flags, objProc, clientData, deleteProc)
+Tcl_Trace **Tcl_CreateObjTrace**(*interp, level, flags, objProc,
+clientData, deleteProc*)
 
-    Tcl_DeleteTrace(interp, trace)
+**Tcl_DeleteTrace**(*interp, trace*)
 
 # ARGUMENTS
 
@@ -43,8 +40,6 @@ callback when the trace is deleted.
 
 Token for trace to be removed (return value from previous call to
 **Tcl_CreateTrace**).
-
-\
 
 # DESCRIPTION
 
@@ -167,3 +162,10 @@ of *command*.
 # KEYWORDS
 
 command, create, delete, interpreter, trace
+
+<!---
+Copyright (c) 1989-1993 The Regents of the University of California
+Copyright (c) 1994-1996 Sun Microsystems, Inc
+Copyright (c) 2002 Kevin B. Kenny <kennykb@acm.org>.  All rights reserved
+-->
+

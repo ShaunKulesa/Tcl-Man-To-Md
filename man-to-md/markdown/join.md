@@ -1,5 +1,3 @@
-\
-
 # NAME
 
 join - Create a string by joining together list elements
@@ -7,8 +5,6 @@ join - Create a string by joining together list elements
 # SYNOPSIS
 
 **join ***list *?*joinString*?
-
-\
 
 # DESCRIPTION
 
@@ -38,3 +34,9 @@ list(n), lappend(n), split(n)
 # KEYWORDS
 
 element, join, list, separator
+
+<!---
+Copyright (c) 1993 The Regents of the University of California
+Copyright (c) 1994-1996 Sun Microsystems, Inc
+-->
+

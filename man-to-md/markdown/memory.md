@@ -1,5 +1,3 @@
-\
-
 # NAME
 
 memory - Control Tcl memory debugging capabilities
@@ -7,8 +5,6 @@ memory - Control Tcl memory debugging capabilities
 # SYNOPSIS
 
 **memory ***option *?*arg arg \...*?
-
-\
 
 # DESCRIPTION
 
@@ -111,3 +107,9 @@ TCL_MEM_DEBUG
 # KEYWORDS
 
 memory, debug
+
+<!---
+Copyright (c) 1992-1999 Karl Lehenbauer & Mark Diekhan
+Copyright (c) 2000 Scriptics Corporation
+-->
+

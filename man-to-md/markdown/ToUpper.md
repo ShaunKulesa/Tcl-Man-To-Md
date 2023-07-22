@@ -1,5 +1,3 @@
-\
-
 # NAME
 
 Tcl_UniCharToUpper, Tcl_UniCharToLower, Tcl_UniCharToTitle,
@@ -8,33 +6,25 @@ manipulating the case of Unicode characters and UTF-8 strings
 
 # SYNOPSIS
 
-    #include <tcl.h>
+**#include \<tcl.h\>**
 
-    Tcl_UniChar
-    Tcl_UniCharToUpper(ch)
+Tcl_UniChar **Tcl_UniCharToUpper**(*ch*)
 
-    Tcl_UniChar
-    Tcl_UniCharToLower(ch)
+Tcl_UniChar **Tcl_UniCharToLower**(*ch*)
 
-    Tcl_UniChar
-    Tcl_UniCharToTitle(ch)
+Tcl_UniChar **Tcl_UniCharToTitle**(*ch*)
 
-    int
-    Tcl_UtfToUpper(str)
+int **Tcl_UtfToUpper**(*str*)
 
-    int
-    Tcl_UtfToLower(str)
+int **Tcl_UtfToLower**(*str*)
 
-    int
-    Tcl_UtfToTitle(str)
+int **Tcl_UtfToTitle**(*str*)
 
 # ARGUMENTS
 
 The Unicode character to be converted.
 
 Pointer to UTF-8 string to be converted in place.
-
-\
 
 # DESCRIPTION
 
@@ -85,3 +75,8 @@ value is handled.
 # KEYWORDS
 
 utf, unicode, toupper, tolower, totitle, case
+
+<!---
+Copyright (c) 1997 Sun Microsystems, Inc
+-->
+

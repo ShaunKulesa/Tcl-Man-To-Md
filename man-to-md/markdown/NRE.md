@@ -1,5 +1,3 @@
-\
-
 # NAME
 
 Tcl_NRCreateCommand, Tcl_NRCallObjProc, Tcl_NREvalObj, Tcl_NREvalObjv,
@@ -8,29 +6,23 @@ Tcl_NRCmdSwap, Tcl_NRExprObj, Tcl_NRAddCallback - Non-Recursive
 
 # SYNOPSIS
 
-    #include <tcl.h>
+**#include \<tcl.h\>**
 
-    Tcl_Command
-    Tcl_NRCreateCommand(interp, cmdName, proc, nreProc, clientData,
-                        deleteProc)
+Tcl_Command **Tcl_NRCreateCommand**(*interp, cmdName, proc, nreProc,
+clientData,* deleteProc)
 
-    int
-    Tcl_NRCallObjProc(interp, nreProc, clientData, objc, objv)
+int **Tcl_NRCallObjProc**(*interp, nreProc, clientData, objc, objv*)
 
-    int
-    Tcl_NREvalObj(interp, objPtr, flags)
+int **Tcl_NREvalObj**(*interp, objPtr, flags*)
 
-    int
-    Tcl_NREvalObjv(interp, objc, objv, flags)
+int **Tcl_NREvalObjv**(*interp, objc, objv, flags*)
 
-    int
-    Tcl_NRCmdSwap(interp, cmd, objc, objv, flags)
+int **Tcl_NRCmdSwap**(*interp, cmd, objc, objv, flags*)
 
-    int
-    Tcl_NRExprObj(interp, objPtr, resultPtr)
+int **Tcl_NRExprObj**(*interp, objPtr, resultPtr*)
 
-    void
-    Tcl_NRAddCallback(interp, postProcPtr, data0, data1, data2, data3)
+void **Tcl_NRAddCallback**(*interp, postProcPtr, data0, data1, data2,
+data3*)
 
 # ARGUMENTS
 
@@ -69,8 +61,6 @@ A function to push.
 
 *data0* through *data3* are four one-word values that will be passed to
 the function designated by *postProcPtr* when it is invoked.
-
-\
 
 # DESCRIPTION
 
@@ -225,3 +215,7 @@ stackless, nonrecursive, execute, command, global, value, result, script
 # COPYRIGHT
 
 Copyright © 2008 Kevin B. Kenny. Copyright © 2018 Nathan Coulter.
+
+<!---
+-->
+

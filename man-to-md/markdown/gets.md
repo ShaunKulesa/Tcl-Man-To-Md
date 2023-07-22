@@ -1,5 +1,3 @@
-\
-
 # NAME
 
 gets - Read a line from a channel
@@ -7,8 +5,6 @@ gets - Read a line from a channel
 # SYNOPSIS
 
 **gets ***channelId* ?*varName*?
-
-\
 
 # DESCRIPTION
 
@@ -59,3 +55,9 @@ file(n), eof(n), fblocked(n), Tcl_StandardChannels(3)
 # KEYWORDS
 
 blocking, channel, end of file, end of line, line, non-blocking, read
+
+<!---
+Copyright (c) 1993 The Regents of the University of California
+Copyright (c) 1994-1996 Sun Microsystems, Inc
+-->
+

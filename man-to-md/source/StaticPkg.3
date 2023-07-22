@@ -10,7 +10,6 @@
 .SH NAME
 Tcl_StaticPackage \- make a statically linked package available via the 'load' command
 .SH SYNOPSIS
-.nf
 \fB#include <tcl.h>\fR
 .sp
 \fBTcl_StaticPackage\fR(\fIinterp, prefix, initProc, safeInitProc\fR)
@@ -52,10 +51,10 @@ or not.
 \fIinitProc\fR and \fIsafeInitProc\fR must both match the
 following prototype:
 .PP
-.nf
+.CS
 typedef int \fBTcl_PackageInitProc\fR(
         Tcl_Interp *\fIinterp\fR);
-.fi
+.CE
 .PP
 The \fIinterp\fR argument identifies the interpreter in which the package
 is to be loaded.  The initialization procedure must return \fBTCL_OK\fR or

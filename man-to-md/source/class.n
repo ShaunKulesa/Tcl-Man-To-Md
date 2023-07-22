@@ -11,11 +11,9 @@
 .SH NAME
 oo::class \- class of all classes
 .SH SYNOPSIS
-.nf
 package require TclOO
 
 \fBoo::class\fI method \fR?\fIarg ...\fR?
-.fi
 .SH "CLASS HIERARCHY"
 .nf
 \fBoo::object\fR
@@ -93,7 +91,7 @@ This example defines a simple class hierarchy and creates a new instance of
 it. It then invokes a method of the object before destroying the hierarchy and
 showing that the destruction is transitive.
 .PP
-.nf
+.CS
 \fBoo::class create\fR fruit {
     method eat {} {
         puts "yummy!"
@@ -125,7 +123,7 @@ set b [banana \fBnew\fR]
 $b eat               \fI\(-> prints "skin now off" and "yummy!"\fR
 fruit destroy
 $b eat               \fI\(-> error "unknown command"\fR
-.fi
+.CE
 .SH "SEE ALSO"
 oo::define(n), oo::object(n)
 .SH KEYWORDS

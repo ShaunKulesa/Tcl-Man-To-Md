@@ -11,7 +11,6 @@
 .SH NAME
 Tcl_ClassGetMetadata, Tcl_ClassSetMetadata, Tcl_CopyObjectInstance, Tcl_GetClassAsObject, Tcl_GetObjectAsClass, Tcl_GetObjectCommand, Tcl_GetObjectFromObj, Tcl_GetObjectName, Tcl_GetObjectNamespace, Tcl_NewObjectInstance, Tcl_ObjectDeleted, Tcl_ObjectGetMetadata, Tcl_ObjectGetMethodNameMapper, Tcl_ObjectSetMetadata, Tcl_ObjectSetMethodNameMapper \- manipulate objects and classes
 .SH SYNOPSIS
-.nf
 \fB#include <tclOO.h>\fR
 .sp
 Tcl_Object
@@ -155,14 +154,14 @@ remove a piece of metadata that was not attached.
 .PP
 The contents of the Tcl_ObjectMetadataType structure are as follows:
 .PP
-.nf
+.CS
 typedef const struct {
     int \fIversion\fR;
     const char *\fIname\fR;
     Tcl_ObjectMetadataDeleteProc *\fIdeleteProc\fR;
     Tcl_CloneProc *\fIcloneProc\fR;
 } \fBTcl_ObjectMetadataType\fR;
-.fi
+.CE
 .PP
 The \fIversion\fR field allows for future expansion of the structure, and
 should always be declared equal to TCL_OO_METADATA_VERSION_CURRENT. The
@@ -183,10 +182,10 @@ copied.
 Functions matching this signature are used to delete metadata associated with
 a class or object.
 .PP
-.nf
+.CS
 typedef void \fBTcl_ObjectMetadataDeleteProc\fR(
         ClientData \fImetadata\fR);
-.fi
+.CE
 .PP
 The \fImetadata\fR argument gives the address of the metadata to be
 deleted.
@@ -195,12 +194,12 @@ deleted.
 Functions matching this signature are used to create copies of metadata
 associated with a class or object.
 .PP
-.nf
+.CS
 typedef int \fBTcl_CloneProc\fR(
         Tcl_Interp *\fIinterp\fR,
         ClientData \fIsrcMetadata\fR,
         ClientData *\fIdstMetadataPtr\fR);
-.fi
+.CE
 .PP
 The \fIinterp\fR argument gives a place to write an error message when the
 attempt to clone the object is to fail, in which case the clone procedure must
@@ -222,13 +221,13 @@ method implementations is to be used.
 .SS "TCL_OBJECTMAPMETHODNAMEPROC FUNCTION SIGNATURE"
 The \fITcl_ObjectMapMethodNameProc\fR callback is defined as follows:
 .PP
-.nf
+.CS
 typedef int \fBTcl_ObjectMapMethodNameProc\fR(
         Tcl_Interp *\fIinterp\fR,
         Tcl_Object \fIobject\fR,
         Tcl_Class *\fIstartClsPtr\fR,
         Tcl_Obj *\fImethodNameObj\fR);
-.fi
+.CE
 .PP
 If the result is TCL_OK, the remapping is assumed to have been done. If the
 result is TCL_ERROR, an error message will have been left in \fIinterp\fR and

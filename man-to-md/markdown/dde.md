@@ -1,5 +1,3 @@
-\
-
 # NAME
 
 dde - Execute a Dynamic Data Exchange command
@@ -20,8 +18,6 @@ dde - Execute a Dynamic Data Exchange command
 **dde services ***service topic*
 
 **dde eval** ?**-async**? *topic cmd *?*arg arg \...*?
-
-\
 
 # DESCRIPTION
 
@@ -171,3 +167,9 @@ tk(n), winfo(n), send(n)
 # KEYWORDS
 
 application, dde, name, remote execution
+
+<!---
+Copyright (c) 1997 Sun Microsystems, Inc
+Copyright (c) 2001 ActiveState Corporation
+-->
+

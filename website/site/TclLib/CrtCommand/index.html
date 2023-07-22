@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+      <script>
+	// Hack for scrolling window when linking to anchor tag with fixed nav header
+        var shiftWindow = function() { scrollBy(0, -75) };
+        window.addEventListener("hashchange", shiftWindow);
+        function load() { if (window.location.hash) shiftWindow(); }
+      </script>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        
+        <link rel="canonical" href="https://www.tcl.tk/man/TclLib/CrtCommand/">
+        <link rel="shortcut icon" href="../../img/favicon.ico">
+        <title>CrtCommand - Tcl/Tk</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <link href="../../css/font-awesome.min.css" rel="stylesheet">
+    <link href="../../css/base.css" rel="stylesheet">
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+    <script src="../../js/base.js"></script> 
+    </head>
+
+    <body class="">
+
+      <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
+	<div class="container">
+	<a class="navbar-brand" href="../..">Tcl/Tk</a>
+	<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExample04" aria-controls="navbarsExample04" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+	</button>
+
+	<div class="collapse navbar-collapse">
+
+          <ul class="navbar-nav flex-row ml-md-auto d-none d-md-flex">
+            <li class="nav-item">
+              <a class="nav-link" href="#" data-toggle="modal" data-target="#mkdocs_search_modal">
+		<i class="fa fa-search"></i> Search
+              </a>
+            </li>
+          </ul>
+	</div>
+	</div>
+      </nav><div id="content" class="container">
+        
+      <div class="row">
+        <div class="col-md-9" role="main">
+
+
+<nav aria-label="breadcrumb">
+  <ol class="breadcrumb">
+    
+    <li class="breadcrumb-item active" aria-current="page">CrtCommand</li>
+  </ol>
+</nav>
+
+
+<p>\</p>
+<h1 id="name">NAME</h1>
+<p>Tcl_CreateCommand - implement new commands in C</p>
+<h1 id="synopsis">SYNOPSIS</h1>
+<p><strong>#include \&lt;tcl.h></strong></p>
+<p>Tcl_Command <strong>Tcl_CreateCommand</strong>(<em>interp, cmdName, proc, clientData,
+deleteProc</em>)</p>
+<h1 id="arguments">ARGUMENTS</h1>
+<p>Interpreter in which to create new command.</p>
+<p>Name of command.</p>
+<p>Implementation of new command: <em>proc</em> will be called whenever <em>cmdName</em>
+is invoked as a command.</p>
+<p>Arbitrary one-word value to pass to <em>proc</em> and <em>deleteProc</em>.</p>
+<p>Procedure to call before <em>cmdName</em> is deleted from the interpreter;
+allows for command-specific cleanup. If NULL, then no procedure is
+called before the command is deleted.</p>
+<p>\</p>
+<h1 id="description">DESCRIPTION</h1>
+<p><strong>Tcl_CreateCommand</strong> defines a new command in <em>interp</em> and associates
+it with procedure <em>proc</em> such that whenever <em>cmdName</em> is invoked as a
+Tcl command (via a call to <strong>Tcl_Eval</strong>) the Tcl interpreter will call
+<em>proc</em> to process the command. It differs from <strong>Tcl_CreateObjCommand</strong>
+in that a new string-based command is defined; that is, a command
+procedure is defined that takes an array of argument strings instead of
+values. The value-based command procedures registered by
+<strong>Tcl_CreateObjCommand</strong> can execute significantly faster than the
+string-based command procedures defined by <strong>Tcl_CreateCommand</strong>. This
+is because they take Tcl values as arguments and those values can retain
+an internal representation that can be manipulated more efficiently.
+Also, Tcl\'s interpreter now uses values internally. In order to invoke
+a string-based command procedure registered by <strong>Tcl_CreateCommand</strong>, it
+must generate and fetch a string representation from each argument value
+before the call. New commands should be defined using
+<strong>Tcl_CreateObjCommand</strong>. We support <strong>Tcl_CreateCommand</strong> for backwards
+compatibility.</p>
+<p>The procedures <strong>Tcl_DeleteCommand</strong>, <strong>Tcl_GetCommandInfo</strong>, and
+<strong>Tcl_SetCommandInfo</strong> are used in conjunction with
+<strong>Tcl_CreateCommand</strong>.</p>
+<p><strong>Tcl_CreateCommand</strong> will delete an existing command <em>cmdName</em>, if one
+is already associated with the interpreter. It returns a token that may
+be used to refer to the command in subsequent calls to
+<strong>Tcl_GetCommandName</strong>. If <em>cmdName</em> contains any <strong>::</strong> namespace
+qualifiers, then the command is added to the specified namespace;
+otherwise the command is added to the global namespace. If
+<strong>Tcl_CreateCommand</strong> is called for an interpreter that is in the
+process of being deleted, then it does not create a new command and it
+returns NULL. <em>Proc</em> should have arguments and result that match the
+type <strong>Tcl_CmdProc</strong>:</p>
+<div class="language-text highlight"><pre><span></span><code>typedef int Tcl_CmdProc(
+        ClientData clientData,
+        Tcl_Interp *interp,
+        int argc,
+        const char *argv[]);
+</code></pre></div>
+<p>When <em>proc</em> is invoked the <em>clientData</em> and <em>interp</em> parameters will be
+copies of the <em>clientData</em> and <em>interp</em> arguments given to
+<strong>Tcl_CreateCommand</strong>. Typically, <em>clientData</em> points to an
+application-specific data structure that describes what to do when the
+command procedure is invoked. <em>Argc</em> and <em>argv</em> describe the arguments
+to the command, <em>argc</em> giving the number of arguments (including the
+command name) and <em>argv</em> giving the values of the arguments as strings.
+The <em>argv</em> array will contain <em>argc</em>+1 values; the first <em>argc</em> values
+point to the argument strings, and the last value is NULL. Note that the
+argument strings should not be modified as they may point to constant
+strings or may be shared with other parts of the interpreter.</p>
+<p>Note that the argument strings are encoded in normalized UTF-8 since
+version 8.1 of Tcl.</p>
+<p><em>Proc</em> must return an integer code that is expected to be one of
+<strong>TCL_OK</strong>, <strong>TCL_ERROR</strong>, <strong>TCL_RETURN</strong>, <strong>TCL_BREAK</strong>, or
+<strong>TCL_CONTINUE</strong>. See the Tcl overview man page for details on what
+these codes mean. Most normal commands will only return <strong>TCL_OK</strong> or
+<strong>TCL_ERROR</strong>. In addition, <em>proc</em> must set the interpreter result; in
+the case of a <strong>TCL_OK</strong> return code this gives the result of the
+command, and in the case of <strong>TCL_ERROR</strong> it gives an error message. The
+<strong>Tcl_SetResult</strong> procedure provides an easy interface for setting the
+return value; for complete details on how the interpreter result field
+is managed, see the <strong>Tcl_Interp</strong> man page. Before invoking a command
+procedure, <strong>Tcl_Eval</strong> sets the interpreter result to point to an empty
+string, so simple commands can return an empty result by doing nothing
+at all.</p>
+<p>The contents of the <em>argv</em> array belong to Tcl and are not guaranteed to
+persist once <em>proc</em> returns: <em>proc</em> should not modify them, nor should
+it set the interpreter result to point anywhere within the <em>argv</em>
+values. Call <strong>Tcl_SetResult</strong> with status <strong>TCL_VOLATILE</strong> if you want
+to return something from the <em>argv</em> array.</p>
+<p><em>DeleteProc</em> will be invoked when (if) <em>cmdName</em> is deleted. This can
+occur through a call to <strong>Tcl_DeleteCommand</strong> or <strong>Tcl_DeleteInterp</strong>,
+or by replacing <em>cmdName</em> in another call to <strong>Tcl_CreateCommand</strong>.
+<em>DeleteProc</em> is invoked before the command is deleted, and gives the
+application an opportunity to release any structures associated with the
+command. <em>DeleteProc</em> should have arguments and result that match the
+type <strong>Tcl_CmdDeleteProc</strong>:</p>
+<div class="language-text highlight"><pre><span></span><code>typedef void Tcl_CmdDeleteProc(
+        ClientData clientData);
+</code></pre></div>
+<p>The <em>clientData</em> argument will be the same as the <em>clientData</em> argument
+passed to <strong>Tcl_CreateCommand</strong>.</p>
+<h1 id="see-also">SEE ALSO</h1>
+<p>Tcl_CreateObjCommand, Tcl_DeleteCommand, Tcl_GetCommandInfo,
+Tcl_SetCommandInfo, Tcl_GetCommandName, Tcl_SetObjResult</p>
+<h1 id="keywords">KEYWORDS</h1>
+<p>bind, command, create, delete, interpreter, namespace</p>
+
+<ul class="metadata page-metadata" data-bi-name="page info" lang="en-us" dir="ltr">
+  <li class="last-updated-holder displayDate loading">
+    <span class="last-updated-text">Last updated:</span>
+    <time role="presentation" datetime="2018-10-25T00:00:00.000Z" data-article-date-source="ms.date"></time>
+  </li>
+<!--
+  <li class="readingTime">
+    2 minutes to read
+  </li>
+-->
+  <li class="contributors-holder">
+    <span class="contributors-text">Contributors</span>
+    <ul class="contributors" data-bi-name="contributors"></ul>
+  </li>
+</ul>
+</div>
+        <div class="col-md-3"><div class="navbar-light navbar-expand-md hidden-print sticky-top sticky-offset" role="complementary">
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggler collapsed" data-toggle="collapse" data-target="#toc-collapse" title="Table of Contents">
+            <span class="fa fa-angle-down"></span>
+        </button>
+    </div>
+
+    <div id="toc-collapse" class="navbar-collapse collapse card">
+        <ul class="nav flex-column bs-sidenav">
+            <li class="nav-item main"><a class="nav-link" href="#name">NAME</a></li>
+            <li class="nav-item main"><a class="nav-link" href="#synopsis">SYNOPSIS</a></li>
+            <li class="nav-item main"><a class="nav-link" href="#arguments">ARGUMENTS</a></li>
+            <li class="nav-item main"><a class="nav-link" href="#description">DESCRIPTION</a></li>
+            <li class="nav-item main"><a class="nav-link" href="#see-also">SEE ALSO</a></li>
+            <li class="nav-item main"><a class="nav-link" href="#keywords">KEYWORDS</a></li>
+        </ul>
+    </div>
+</div></div>
+      </div>
+      </div>
+
+      <footer class="col-md-12">
+	<hr>
+	<div class="container">
+	</div>
+      </footer>
+      <script>
+	var base_url = "../..",
+            shortcuts = {"help": 191, "next": 78, "previous": 80, "search": 83};
+      </script>
+      <script src="../../js/base.js" defer></script>
+      <script src="../../search/main.js" defer></script>
+
+      <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="Search Modal" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Search</h4>
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            </div>
+            <div class="modal-body">
+                <p>
+                    From here you can search these documents. Enter
+                    your search terms below.
+                </p>
+                <form role="form">
+                    <div class="form-group">
+                        <input type="text" class="form-control" placeholder="Search..." id="mkdocs-search-query" title="Type search term here">
+                    </div>
+                </form>
+                <div id="mkdocs-search-results"></div>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div><div class="modal" id="mkdocs_keyboard_modal" tabindex="-1" role="dialog" aria-labelledby="Keyboard Shortcuts Modal" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <p class="h4 modal-title">Keyboard Shortcuts</p>
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            </div>
+            <div class="modal-body">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th style="width: 20%;">Keys</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="help shortcut"><kbd>?</kbd></td>
+                    <td>Open this help</td>
+                  </tr>
+                  <tr>
+                    <td class="next shortcut"><kbd>n</kbd></td>
+                    <td>Next page</td>
+                  </tr>
+                  <tr>
+                    <td class="prev shortcut"><kbd>p</kbd></td>
+                    <td>Previous page</td>
+                  </tr>
+                  <tr>
+                    <td class="search shortcut"><kbd>s</kbd></td>
+                    <td>Search</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>
+
+    </body>
+</html>

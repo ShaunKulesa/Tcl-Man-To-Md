@@ -1,5 +1,3 @@
-\
-
 # NAME
 
 exec - Invoke subprocesses
@@ -7,8 +5,6 @@ exec - Invoke subprocesses
 # SYNOPSIS
 
 **exec **?*switches*? *arg *?*arg \...*? ?**&**?
-
-\
 
 # DESCRIPTION
 
@@ -408,3 +404,10 @@ error(n), file(n), open(n)
 # KEYWORDS
 
 execute, pipeline, redirection, subprocess
+
+<!---
+Copyright (c) 1993 The Regents of the University of California
+Copyright (c) 1994-1996 Sun Microsystems, Inc
+Copyright (c) 2006 Donal K. Fellows
+-->
+

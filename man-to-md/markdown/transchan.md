@@ -1,5 +1,3 @@
-\
-
 # NAME
 
 transchan - command handler API of channel transforms
@@ -7,8 +5,6 @@ transchan - command handler API of channel transforms
 # SYNOPSIS
 
 **cmdPrefix ***option* ?*arg arg \...*?
-
-\
 
 # DESCRIPTION
 
@@ -158,3 +154,8 @@ chan(n), refchan(n)
 # KEYWORDS
 
 API, channel, ensemble, prefix, transformation
+
+<!---
+Copyright (c) 2008 Donal K. Fellow
+-->
+

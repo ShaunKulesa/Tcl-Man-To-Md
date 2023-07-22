@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+      <script>
+	// Hack for scrolling window when linking to anchor tag with fixed nav header
+        var shiftWindow = function() { scrollBy(0, -75) };
+        window.addEventListener("hashchange", shiftWindow);
+        function load() { if (window.location.hash) shiftWindow(); }
+      </script>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        
+        <link rel="canonical" href="https://www.tcl.tk/man/TkLib/Clipboard/">
+        <link rel="shortcut icon" href="../../img/favicon.ico">
+        <title>Clipboard - Tcl/Tk</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <link href="../../css/font-awesome.min.css" rel="stylesheet">
+    <link href="../../css/base.css" rel="stylesheet">
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+    <script src="../../js/base.js"></script> 
+    </head>
+
+    <body class="">
+
+      <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
+	<div class="container">
+	<a class="navbar-brand" href="../..">Tcl/Tk</a>
+	<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExample04" aria-controls="navbarsExample04" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+	</button>
+
+	<div class="collapse navbar-collapse">
+
+          <ul class="navbar-nav flex-row ml-md-auto d-none d-md-flex">
+            <li class="nav-item">
+              <a class="nav-link" href="#" data-toggle="modal" data-target="#mkdocs_search_modal">
+		<i class="fa fa-search"></i> Search
+              </a>
+            </li>
+          </ul>
+	</div>
+	</div>
+      </nav><div id="content" class="container">
+        
+      <div class="row">
+        <div class="col-md-9" role="main">
+
+
+<nav aria-label="breadcrumb">
+  <ol class="breadcrumb">
+    
+    <li class="breadcrumb-item active" aria-current="page">Clipboard</li>
+  </ol>
+</nav>
+
+
+<p>\</p>
+<h1 id="name">NAME</h1>
+<p>clipboard - Manipulate Tk clipboard</p>
+<h1 id="synopsis">SYNOPSIS</h1>
+<p><strong>clipboard </strong><em>option</em> ?<em>arg arg ...</em>?</p>
+<p>\</p>
+<h1 id="description">DESCRIPTION</h1>
+<p>This command provides a Tcl interface to the Tk clipboard, which stores
+data for later retrieval using the selection mechanism (via the
+<strong>-selection CLIPBOARD</strong> option). In order to copy data into the
+clipboard, <strong>clipboard clear</strong> must be called, followed by a sequence of
+one or more calls to <strong>clipboard</strong> append. To ensure that the clipboard
+is updated atomically, all appends should be completed before returning
+to the event loop.</p>
+<p>The first argument to <strong>clipboard</strong> determines the format of the rest of
+the arguments and the behavior of the command. The following forms are
+currently supported:</p>
+<p><strong>clipboard append</strong> ?<strong>-displayof</strong> <em>window</em>? ?<strong>-format</strong> <em>format</em>? ?<strong>-type</strong> <em>type</em>? ?<strong>- -</strong>? <em>data</em></p>
+<p>:   Appends <em>data</em> to the clipboard on <em>window</em>\'s display in the form
+    given by <em>type</em> with the representation given by <em>format</em> and claims
+    ownership of the clipboard on <em>window</em>\'s display.</p>
+<div class="language-text highlight"><pre><span></span><code>*Type* specifies the form in which the selection is to be returned
+(the desired for conversion, in ICCCM terminology), and should be an
+atom name such as **STRING** or **FILE_NAME**; see the Inter-Client
+Communication Conventions Manual for complete details. *Type*
+defaults to **STRING**.
+
+The *format* argument specifies the representation that should be
+used to transmit the selection to the requester (the second column
+of Table 2 of the ICCCM), and defaults to **STRING**. If *format* is
+**STRING**, the selection is transmitted as 8-bit ASCII characters.
+If *format* is **ATOM**, then the *data* is divided into fields
+separated by white space; each field is converted to its atom value,
+and the 32-bit atom value is transmitted instead of the atom name.
+For any other *format*, *data* is divided into fields separated by
+white space and each field is converted to a 32-bit integer; an
+array of integers is transmitted to the selection requester. Note
+that strings passed to **clipboard append** are concatenated before
+conversion, so the caller must take care to ensure appropriate
+spacing across string boundaries. All items appended to the
+clipboard with the same *type* must have the same *format*.
+
+The *format* argument is needed only for compatibility with
+clipboard requesters that do not use Tk. If the Tk toolkit is being
+used to retrieve the **CLIPBOARD** selection then the value is
+converted back to a string at the requesting end, so *format* is
+irrelevant.
+
+A **- -** argument may be specified to mark the end of options: the
+next argument will always be used as *data*. This feature may be
+convenient if, for example, *data* starts with a **-**.
+</code></pre></div>
+<p><strong>clipboard clear</strong> ?<strong>-displayof</strong> <em>window</em>?</p>
+<p>:   Claims ownership of the clipboard on <em>window</em>\'s display and removes
+    any previous contents. <em>Window</em> defaults to Returns an empty string.</p>
+<p><strong>clipboard get</strong> ?<strong>-displayof</strong> <em>window</em>? ?<strong>-type</strong> <em>type</em>?</p>
+<p>:   Retrieve data from the clipboard on <em>window</em>\'s display. <em>Window</em>
+    defaults to <em>Type</em> specifies the form in which the data is to be
+    returned and should be an atom name such as <strong>STRING</strong> or
+    <strong>FILE_NAME</strong>. <em>Type</em> defaults to <strong>STRING</strong>. This command is
+    equivalent to</p>
+<div class="language-text highlight"><pre><span></span><code>Note that on modern X11 systems, the most useful type to retrieve
+for transferred strings is not **STRING**, but rather
+**UTF8_STRING**.
+</code></pre></div>
+<h1 id="examples">EXAMPLES</h1>
+<p>Get the current contents of the clipboard.</p>
+<div class="language-text highlight"><pre><span></span><code>if {[catch {clipboard get} contents]} {
+    # There were no clipboard contents at all
+}
+</code></pre></div>
+<p>Set the clipboard to contain a fixed string.</p>
+<div class="language-text highlight"><pre><span></span><code>clipboard clear
+clipboard append &quot;some fixed string&quot;
+</code></pre></div>
+<p>You can put custom data into the clipboard by using a custom <strong>-type</strong>
+option. This is not necessarily portable, but can be very useful. The
+method of passing Tcl scripts this way is effective, but should be mixed
+with safe interpreters in production code.</p>
+<div class="language-text highlight"><pre><span></span><code># This is a very simple canvas serializer;
+# it produces a script that recreates the item(s) when executed
+proc getItemConfig {canvas tag} {
+   set script {}
+   foreach item [$canvas find withtag $tag] {
+      append script {$canvas create } [$canvas type $item]
+      append script { } [$canvas coords $item] { }
+      foreach config [$canvas itemconf $item] {
+         lassign $config name - - - value
+         append script [list $name $value] { }
+      }
+      append script \n
+   }
+   return [string trim $script]
+}
+
+# Set up a binding on a canvas to cut and paste an item
+set c [canvas .c]
+pack $c
+$c create text 150 30 -text &quot;cut and paste me&quot;
+bind $c &lt;&lt;Cut&gt;&gt; {
+   clipboard clear
+   clipboard append -type TkCanvasItem \
+         [getItemConfig %W current]
+   # Delete because this is cut, not copy.
+   %W delete current
+}
+bind $c &lt;&lt;Paste&gt;&gt; {
+   catch {
+      set canvas %W
+      eval [clipboard get -type TkCanvasItem]
+   }
+}
+</code></pre></div>
+<h1 id="see-also">SEE ALSO</h1>
+<p>interp(n), selection(n)</p>
+<h1 id="keywords">KEYWORDS</h1>
+<p>clear, format, clipboard, append, selection, type</p>
+
+<ul class="metadata page-metadata" data-bi-name="page info" lang="en-us" dir="ltr">
+  <li class="last-updated-holder displayDate loading">
+    <span class="last-updated-text">Last updated:</span>
+    <time role="presentation" datetime="2018-10-25T00:00:00.000Z" data-article-date-source="ms.date"></time>
+  </li>
+<!--
+  <li class="readingTime">
+    2 minutes to read
+  </li>
+-->
+  <li class="contributors-holder">
+    <span class="contributors-text">Contributors</span>
+    <ul class="contributors" data-bi-name="contributors"></ul>
+  </li>
+</ul>
+</div>
+        <div class="col-md-3"><div class="navbar-light navbar-expand-md hidden-print sticky-top sticky-offset" role="complementary">
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggler collapsed" data-toggle="collapse" data-target="#toc-collapse" title="Table of Contents">
+            <span class="fa fa-angle-down"></span>
+        </button>
+    </div>
+
+    <div id="toc-collapse" class="navbar-collapse collapse card">
+        <ul class="nav flex-column bs-sidenav">
+            <li class="nav-item main"><a class="nav-link" href="#name">NAME</a></li>
+            <li class="nav-item main"><a class="nav-link" href="#synopsis">SYNOPSIS</a></li>
+            <li class="nav-item main"><a class="nav-link" href="#description">DESCRIPTION</a></li>
+            <li class="nav-item main"><a class="nav-link" href="#examples">EXAMPLES</a></li>
+            <li class="nav-item main"><a class="nav-link" href="#see-also">SEE ALSO</a></li>
+            <li class="nav-item main"><a class="nav-link" href="#keywords">KEYWORDS</a></li>
+        </ul>
+    </div>
+</div></div>
+      </div>
+      </div>
+
+      <footer class="col-md-12">
+	<hr>
+	<div class="container">
+	</div>
+      </footer>
+      <script>
+	var base_url = "../..",
+            shortcuts = {"help": 191, "next": 78, "previous": 80, "search": 83};
+      </script>
+      <script src="../../js/base.js" defer></script>
+      <script src="../../search/main.js" defer></script>
+
+      <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="Search Modal" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Search</h4>
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            </div>
+            <div class="modal-body">
+                <p>
+                    From here you can search these documents. Enter
+                    your search terms below.
+                </p>
+                <form role="form">
+                    <div class="form-group">
+                        <input type="text" class="form-control" placeholder="Search..." id="mkdocs-search-query" title="Type search term here">
+                    </div>
+                </form>
+                <div id="mkdocs-search-results"></div>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div><div class="modal" id="mkdocs_keyboard_modal" tabindex="-1" role="dialog" aria-labelledby="Keyboard Shortcuts Modal" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <p class="h4 modal-title">Keyboard Shortcuts</p>
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            </div>
+            <div class="modal-body">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th style="width: 20%;">Keys</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="help shortcut"><kbd>?</kbd></td>
+                    <td>Open this help</td>
+                  </tr>
+                  <tr>
+                    <td class="next shortcut"><kbd>n</kbd></td>
+                    <td>Next page</td>
+                  </tr>
+                  <tr>
+                    <td class="prev shortcut"><kbd>p</kbd></td>
+                    <td>Previous page</td>
+                  </tr>
+                  <tr>
+                    <td class="search shortcut"><kbd>s</kbd></td>
+                    <td>Search</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>
+
+    </body>
+</html>

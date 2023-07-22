@@ -1,5 +1,3 @@
-\
-
 # NAME
 
 switch - Evaluate one of several scripts, depending on a given value
@@ -9,8 +7,6 @@ switch - Evaluate one of several scripts, depending on a given value
 **switch **?*options*?* string pattern body *?*pattern body *\...?
 
 **switch **?*options*?* string *{*pattern body *?*pattern body *\...?}
-
-\
 
 # DESCRIPTION
 
@@ -161,3 +157,9 @@ for(n), if(n), regexp(n)
 # KEYWORDS
 
 switch, match, regular expression
+
+<!---
+Copyright (c) 1993 The Regents of the University of California
+Copyright (c) 1994-1997 Sun Microsystems, Inc
+-->
+

@@ -101,10 +101,10 @@ subsequent) arguments. This facilitates lookups in nested
 dictionaries. For example, the following two commands are equivalent:
 .RS
 .PP
-.nf
+.CS
 dict get $dict foo bar spong
 dict get [dict get [dict get $dict foo] bar] spong
-.fi
+.CE
 .PP
 If no keys are provided, \fBdict get\fR will return a list containing pairs of
 elements in a manner similar to \fBarray get\fR. That is, the first
@@ -319,7 +319,7 @@ removed, which are excised from the order.
 .PP
 Basic dictionary usage:
 .PP
-.nf
+.CS
 # Make a dictionary to map extensions to descriptions
 set filetypes [\fBdict create\fR .txt "Text File" .tcl "Tcl File"]
 
@@ -341,11 +341,11 @@ foreach filename [glob *] {
         puts "$filename is a [\fBdict get\fR $filetypes $ext]"
     }
 }
-.fi
+.CE
 .PP
 Constructing and using nested dictionaries:
 .PP
-.nf
+.CS
 # Data for one employee
 \fBdict set\fR employeeInfo 12345-A forenames "Joe"
 \fBdict set\fR employeeInfo 12345-A surname   "Schmoe"
@@ -375,11 +375,11 @@ puts "There are [\fBdict size\fR $employeeInfo] employees"
 foreach id [\fBdict keys\fR $employeeInfo] {
     puts "Hello, [\fBdict get\fR $employeeInfo $id forenames]!"
 }
-.fi
+.CE
 .PP
 A localizable version of \fBstring toupper\fR:
 .PP
-.nf
+.CS
 # Set up the basic C locale
 set capital [\fBdict create\fR C [\fBdict create\fR]]
 foreach c [split {abcdefghijklmnopqrstuvwxyz} ""] {
@@ -396,11 +396,11 @@ foreach c [split {abcdefghijklmnopqrstuvwxyz} ""] {
 # Now get the mapping for the current locale and use it.
 set upperCaseMap [\fBdict get\fR $capital $env(LANG)]
 set upperCase [string map $upperCaseMap $string]
-.fi
+.CE
 .PP
 Showing the detail of \fBdict with\fR:
 .PP
-.nf
+.CS
 proc sumDictionary {varName} {
     upvar 1 $varName vbl
     foreach key [\fBdict keys\fR $vbl] {
@@ -425,17 +425,17 @@ sumDictionary myDict
 
 puts "dictionary is now \\"$myDict\\""
 #    prints: \fIdictionary is now "a {total 6} b {total 15}"\fR
-.fi
+.CE
 .PP
 When \fBdict with\fR is used with a key that clashes with the name of the
 dictionary variable:
 .PP
-.nf
+.CS
 set foo {foo {a b} bar 2 baz 3}
 \fBdict with\fR foo {}
 puts $foo
 #    prints: \fIa b foo {a b} bar 2 baz 3\fR
-.fi
+.CE
 .SH "SEE ALSO"
 append(n), array(n), foreach(n), incr(n), list(n), lappend(n), lmap(n), set(n)
 .SH KEYWORDS

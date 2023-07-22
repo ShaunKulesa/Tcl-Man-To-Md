@@ -1,15 +1,12 @@
-\
-
 # NAME
 
 Tcl_ParseArgsObjv - parse arguments according to a tabular description
 
 # SYNOPSIS
 
-    #include <tcl.h>
+**#include \<tcl.h\>**
 
-    int
-    Tcl_ParseArgsObjv(interp, argTable, objcPtr, objv, remObjv)
+int **Tcl_ParseArgsObjv**(*interp, argTable, objcPtr, objv, remObjv*)
 
 # ARGUMENTS
 
@@ -27,8 +24,6 @@ Pointer to a variable that will hold the array of unprocessed arguments.
 Should be NULL if no return of unprocessed arguments is required. If
 *objcPtr* is updated to a non-zero value, the array returned through
 this must be deallocated using **ckfree**.
-
-\
 
 # DESCRIPTION
 
@@ -183,3 +178,8 @@ Tcl_GetIndexFromObj(3), Tcl_Main(3), Tcl_CreateObjCommand(3)
 # KEYWORDS
 
 argument, parse
+
+<!---
+Copyright (c) 2008 Donal K. Fellow
+-->
+

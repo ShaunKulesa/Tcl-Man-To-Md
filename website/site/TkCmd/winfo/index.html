@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+      <script>
+	// Hack for scrolling window when linking to anchor tag with fixed nav header
+        var shiftWindow = function() { scrollBy(0, -75) };
+        window.addEventListener("hashchange", shiftWindow);
+        function load() { if (window.location.hash) shiftWindow(); }
+      </script>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        
+        <link rel="canonical" href="https://www.tcl.tk/man/TkCmd/winfo/">
+        <link rel="shortcut icon" href="../../img/favicon.ico">
+        <title>Winfo - Tcl/Tk</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <link href="../../css/font-awesome.min.css" rel="stylesheet">
+    <link href="../../css/base.css" rel="stylesheet">
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+    <script src="../../js/base.js"></script> 
+    </head>
+
+    <body class="">
+
+      <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
+	<div class="container">
+	<a class="navbar-brand" href="../..">Tcl/Tk</a>
+	<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExample04" aria-controls="navbarsExample04" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+	</button>
+
+	<div class="collapse navbar-collapse">
+
+          <ul class="navbar-nav flex-row ml-md-auto d-none d-md-flex">
+            <li class="nav-item">
+              <a class="nav-link" href="#" data-toggle="modal" data-target="#mkdocs_search_modal">
+		<i class="fa fa-search"></i> Search
+              </a>
+            </li>
+          </ul>
+	</div>
+	</div>
+      </nav><div id="content" class="container">
+        
+      <div class="row">
+        <div class="col-md-9" role="main">
+
+
+<nav aria-label="breadcrumb">
+  <ol class="breadcrumb">
+    
+    <li class="breadcrumb-item active" aria-current="page">Winfo</li>
+  </ol>
+</nav>
+
+
+<p>\</p>
+<h1 id="name">NAME</h1>
+<p>winfo - Return window-related information</p>
+<h1 id="synopsis">SYNOPSIS</h1>
+<p><strong>winfo</strong> <em>option </em>?<em>arg arg ...</em>?</p>
+<p>\</p>
+<h1 id="description">DESCRIPTION</h1>
+<p>The <strong>winfo</strong> command is used to retrieve information about windows
+managed by Tk. It can take any of a number of different forms, depending
+on the <em>option</em> argument. The legal forms are:</p>
+<p><strong>winfo atom </strong>?<strong>-displayof </strong><em>window</em>? <em>name</em></p>
+<p>:   Returns a decimal string giving the integer identifier for the atom
+    whose name is <em>name</em>. If no atom exists with the name <em>name</em> then a
+    new one is created. If the <strong>-displayof</strong> option is given then the
+    atom is looked up on the display of <em>window</em>; otherwise it is looked
+    up on the display of the application\'s main window.</p>
+<p><strong>winfo atomname </strong>?<strong>-displayof </strong><em>window</em>? <em>id</em></p>
+<p>:   Returns the textual name for the atom whose integer identifier is
+    <em>id</em>. If the <strong>-displayof</strong> option is given then the identifier is
+    looked up on the display of <em>window</em>; otherwise it is looked up on
+    the display of the application\'s main window. This command is the
+    inverse of the <strong>winfo atom</strong> command. It generates an error if no
+    such atom exists.</p>
+<p><strong>winfo cells </strong><em>window</em></p>
+<p>:   Returns a decimal string giving the number of cells in the color map
+    for <em>window</em>.</p>
+<p><strong>winfo children </strong><em>window</em></p>
+<p>:   Returns a list containing the path names of all the children of
+    <em>window</em>. Top-level windows are returned as children of their
+    logical parents. The list is in stacking order, with the lowest
+    window first, except for Top-level windows which are not returned in
+    stacking order. Use the <strong>wm stackorder</strong> command to query the
+    stacking order of Top-level windows.</p>
+<p><strong>winfo class </strong><em>window</em></p>
+<p>:   Returns the class name for <em>window</em>.</p>
+<p><strong>winfo colormapfull </strong><em>window</em></p>
+<p>:   Returns 1 if the colormap for <em>window</em> is known to be full, 0
+    otherwise. The colormap for a window is to be full if the last
+    attempt to allocate a new color on that window failed and this
+    application has not freed any colors in the colormap since the
+    failed allocation.</p>
+<p><strong>winfo containing </strong>?<strong>-displayof </strong><em>window</em>? <em>rootX rootY</em></p>
+<p>:   Returns the path name for the window containing the point given by
+    <em>rootX</em> and <em>rootY</em>. <em>RootX</em> and <em>rootY</em> are specified in screen
+    units (i.e. any form acceptable to <strong>Tk_GetPixels</strong>) in the
+    coordinate system of the root window (if a virtual-root window
+    manager is in use then the coordinate system of the virtual root
+    window is used). If the <strong>-displayof</strong> option is given then the
+    coordinates refer to the screen containing <em>window</em>; otherwise they
+    refer to the screen of the application\'s main window. If no window
+    in this application contains the point then an empty string is
+    returned. An empty string is also returned if the point lies in the
+    title bar or border of its highest containing toplevel in this
+    application. (Note that with some window managers the borders may be
+    invisible.) In selecting the containing window, children are given
+    higher priority than parents and among siblings the highest one in
+    the stacking order is chosen.</p>
+<p><strong>winfo depth </strong><em>window</em></p>
+<p>:   Returns a decimal string giving the depth of <em>window</em> (number of
+    bits per pixel).</p>
+<p><strong>winfo exists </strong><em>window</em></p>
+<p>:   Returns 1 if there exists a window named <em>window</em>, 0 if no such
+    window exists.</p>
+<p><strong>winfo fpixels </strong><em>window</em> <em>number</em></p>
+<p>:   Returns a floating-point value giving the number of pixels in
+    <em>window</em> corresponding to the distance given by <em>number</em>. <em>Number</em>
+    may be specified in any of the forms acceptable to
+    <strong>Tk_GetScreenMM</strong>, such as or The return value may be fractional;
+    for an integer value, use <strong>winfo pixels</strong>.</p>
+<p><strong>winfo geometry </strong><em>window</em></p>
+<p>:   Returns the geometry for <em>window</em>, in the form
+    <em>width</em><strong>x</strong><em>height</em><strong>+</strong><em>x</em><strong>+</strong><em>y</em>. All dimensions are in pixels.</p>
+<p><strong>winfo height </strong><em>window</em></p>
+<p>:   Returns a decimal string giving <em>window</em>\'s height in pixels. When a
+    window is first created its height will be 1 pixel; the height will
+    eventually be changed by a geometry manager to fulfil the window\'s
+    needs. If you need the true height immediately after creating a
+    widget, invoke <strong>update</strong> to force the geometry manager to arrange
+    it, or use <strong>winfo reqheight</strong> to get the window\'s requested height
+    instead of its actual height.</p>
+<p><strong>winfo id </strong><em>window</em></p>
+<p>:   Returns a hexadecimal string giving a low-level platform-specific
+    identifier for <em>window</em>. On Unix platforms, this is the X window
+    identifier. Under Windows, this is the Windows HWND. On the
+    Macintosh the value has no meaning outside Tk.</p>
+<p><strong>winfo interps </strong>?<strong>-displayof </strong><em>window</em>?</p>
+<p>:   Returns a list whose members are the names of all Tcl interpreters
+    (e.g. all Tk-based applications) currently registered for a
+    particular display. If the <strong>-displayof</strong> option is given then the
+    return value refers to the display of <em>window</em>; otherwise it refers
+    to the display of the application\'s main window.</p>
+<p><strong>winfo ismapped </strong><em>window</em></p>
+<p>:   Returns <strong>1</strong> if <em>window</em> is currently mapped, <strong>0</strong> otherwise.</p>
+<p><strong>winfo manager </strong><em>window</em></p>
+<p>:   Returns the name of the geometry manager currently responsible for
+    <em>window</em>, or an empty string if <em>window</em> is not managed by any
+    geometry manager. The name is usually the name of the Tcl command
+    for the geometry manager, such as <strong>pack</strong> or <strong>place</strong>. If the
+    geometry manager is a widget, such as canvases or text, the name is
+    the widget\'s class command, such as <strong>canvas</strong>.</p>
+<p><strong>winfo name </strong><em>window</em></p>
+<p>:   Returns <em>window</em>\'s name (i.e. its name within its parent, as
+    opposed to its full path name). The command <strong>winfo name .</strong> will
+    return the name of the application.</p>
+<p><strong>winfo parent </strong><em>window</em></p>
+<p>:   Returns the path name of <em>window</em>\'s parent, or an empty string if
+    <em>window</em> is the main window of the application.</p>
+<p><strong>winfo pathname </strong>?<strong>-displayof </strong><em>window</em>? <em>id</em></p>
+<p>:   Returns the path name of the window whose X identifier is <em>id</em>. <em>Id</em>
+    must be a decimal, hexadecimal, or octal integer and must correspond
+    to a window in the invoking application. If the <strong>-displayof</strong>
+    option is given then the identifier is looked up on the display of
+    <em>window</em>; otherwise it is looked up on the display of the
+    application\'s main window.</p>
+<p><strong>winfo pixels </strong><em>window</em> <em>number</em></p>
+<p>:   Returns the number of pixels in <em>window</em> corresponding to the
+    distance given by <em>number</em>. <em>Number</em> may be specified in any of the
+    forms acceptable to <strong>Tk_GetPixels</strong>, such as or The result is
+    rounded to the nearest integer value; for a fractional result, use
+    <strong>winfo fpixels</strong>.</p>
+<p><strong>winfo pointerx </strong><em>window</em></p>
+<p>:   If the mouse pointer is on the same screen as <em>window</em>, returns the
+    pointer\'s x coordinate, measured in pixels in the screen\'s root
+    window. If a virtual root window is in use on the screen, the
+    position is measured in the virtual root. If the mouse pointer is
+    not on the same screen as <em>window</em> then -1 is returned.</p>
+<p><strong>winfo pointerxy </strong><em>window</em></p>
+<p>:   If the mouse pointer is on the same screen as <em>window</em>, returns a
+    list with two elements, which are the pointer\'s x and y coordinates
+    measured in pixels in the screen\'s root window. If a virtual root
+    window is in use on the screen, the position is computed in the
+    virtual root. If the mouse pointer is not on the same screen as
+    <em>window</em> then both of the returned coordinates are -1.</p>
+<p><strong>winfo pointery </strong><em>window</em></p>
+<p>:   If the mouse pointer is on the same screen as <em>window</em>, returns the
+    pointer\'s y coordinate, measured in pixels in the screen\'s root
+    window. If a virtual root window is in use on the screen, the
+    position is computed in the virtual root. If the mouse pointer is
+    not on the same screen as <em>window</em> then -1 is returned.</p>
+<p><strong>winfo reqheight </strong><em>window</em></p>
+<p>:   Returns a decimal string giving <em>window</em>\'s requested height, in
+    pixels. This is the value used by <em>window</em>\'s geometry manager to
+    compute its geometry.</p>
+<p><strong>winfo reqwidth </strong><em>window</em></p>
+<p>:   Returns a decimal string giving <em>window</em>\'s requested width, in
+    pixels. This is the value used by <em>window</em>\'s geometry manager to
+    compute its geometry.</p>
+<p><strong>winfo rgb </strong><em>window color</em></p>
+<p>:   Returns a list containing three decimal values in the range 0 to
+    65535, which are the red, green, and blue intensities that
+    correspond to <em>color</em> in the window given by <em>window</em>. <em>Color</em> may
+    be specified in any of the forms acceptable for a color option.</p>
+<p><strong>winfo rootx </strong><em>window</em></p>
+<p>:   Returns a decimal string giving the x-coordinate, in the root window
+    of the screen, of the upper-left corner of <em>window</em>\'s border (or
+    <em>window</em> if it has no border).</p>
+<p><strong>winfo rooty </strong><em>window</em></p>
+<p>:   Returns a decimal string giving the y-coordinate, in the root window
+    of the screen, of the upper-left corner of <em>window</em>\'s border (or
+    <em>window</em> if it has no border).</p>
+<p><strong>winfo screen </strong><em>window</em></p>
+<p>:   Returns the name of the screen associated with <em>window</em>, in the form
+    <em>displayName</em>.<em>screenIndex</em>.</p>
+<p><strong>winfo screencells </strong><em>window</em></p>
+<p>:   Returns a decimal string giving the number of cells in the default
+    color map for <em>window</em>\'s screen.</p>
+<p><strong>winfo screendepth </strong><em>window</em></p>
+<p>:   Returns a decimal string giving the depth of the root window of
+    <em>window</em>\'s screen (number of bits per pixel).</p>
+<p><strong>winfo screenheight </strong><em>window</em></p>
+<p>:   Returns a decimal string giving the height of <em>window</em>\'s screen, in
+    pixels.</p>
+<p><strong>winfo screenmmheight </strong><em>window</em></p>
+<p>:   Returns a decimal string giving the height of <em>window</em>\'s screen, in
+    millimeters.</p>
+<p><strong>winfo screenmmwidth </strong><em>window</em></p>
+<p>:   Returns a decimal string giving the width of <em>window</em>\'s screen, in
+    millimeters.</p>
+<p><strong>winfo screenvisual </strong><em>window</em></p>
+<p>:   Returns one of the following strings to indicate the default visual
+    class for <em>window</em>\'s screen: <strong>directcolor</strong>, <strong>grayscale</strong>,
+    <strong>pseudocolor</strong>, <strong>staticcolor</strong>, <strong>staticgray</strong>, or <strong>truecolor</strong>.</p>
+<p><strong>winfo screenwidth </strong><em>window</em></p>
+<p>:   Returns a decimal string giving the width of <em>window</em>\'s screen, in
+    pixels.</p>
+<p><strong>winfo server </strong><em>window</em></p>
+<p>:   Returns a string containing information about the server for
+    <em>window</em>\'s display. The exact format of this string may vary from
+    platform to platform. For X servers the string has the form where
+    <em>major</em> and <em>minor</em> are the version and revision numbers provided by
+    the server (e.g., <strong>X11R5</strong>), <em>vendor</em> is the name of the vendor for
+    the server, and <em>vendorRelease</em> is an integer release number
+    provided by the server.</p>
+<p><strong>winfo toplevel </strong><em>window</em></p>
+<p>:   Returns the path name of the top-of-hierarchy window containing
+    <em>window</em>. In standard Tk this will always be a <strong>toplevel</strong> widget,
+    but extensions may create other kinds of top-of-hierarchy widgets.</p>
+<p><strong>winfo viewable </strong><em>window</em></p>
+<p>:   Returns 1 if <em>window</em> and all of its ancestors up through the
+    nearest toplevel window are mapped. Returns 0 if any of these
+    windows are not mapped.</p>
+<p><strong>winfo visual </strong><em>window</em></p>
+<p>:   Returns one of the following strings to indicate the visual class
+    for <em>window</em>: <strong>directcolor</strong>, <strong>grayscale</strong>, <strong>pseudocolor</strong>,
+    <strong>staticcolor</strong>, <strong>staticgray</strong>, or <strong>truecolor</strong>.</p>
+<p><strong>winfo visualid </strong><em>window</em></p>
+<p>:   Returns the X identifier for the visual for <em>window</em>.</p>
+<p><strong>winfo visualsavailable </strong><em>window</em> ?<strong>includeids</strong>?</p>
+<p>:   Returns a list whose elements describe the visuals available for
+    <em>window</em>\'s screen. Each element consists of a visual class followed
+    by an integer depth. The class has the same form as returned by
+    <strong>winfo visual</strong>. The depth gives the number of bits per pixel in
+    the visual. In addition, if the <strong>includeids</strong> argument is provided,
+    then the depth is followed by the X identifier for the visual.</p>
+<p><strong>winfo vrootheight </strong><em>window</em></p>
+<p>:   Returns the height of the virtual root window associated with
+    <em>window</em> if there is one; otherwise returns the height of
+    <em>window</em>\'s screen.</p>
+<p><strong>winfo vrootwidth </strong><em>window</em></p>
+<p>:   Returns the width of the virtual root window associated with
+    <em>window</em> if there is one; otherwise returns the width of <em>window</em>\'s
+    screen.</p>
+<p><strong>winfo vrootx </strong><em>window</em></p>
+<p>:   Returns the x-offset of the virtual root window associated with
+    <em>window</em>, relative to the root window of its screen. This is
+    normally either zero or negative. Returns 0 if there is no virtual
+    root window for <em>window</em>.</p>
+<p><strong>winfo vrooty </strong><em>window</em></p>
+<p>:   Returns the y-offset of the virtual root window associated with
+    <em>window</em>, relative to the root window of its screen. This is
+    normally either zero or negative. Returns 0 if there is no virtual
+    root window for <em>window</em>.</p>
+<p><strong>winfo width </strong><em>window</em></p>
+<p>:   Returns a decimal string giving <em>window</em>\'s width in pixels. When a
+    window is first created its width will be 1 pixel; the width will
+    eventually be changed by a geometry manager to fulfil the window\'s
+    needs. If you need the true width immediately after creating a
+    widget, invoke <strong>update</strong> to force the geometry manager to arrange
+    it, or use <strong>winfo reqwidth</strong> to get the window\'s requested width
+    instead of its actual width.</p>
+<p><strong>winfo x </strong><em>window</em></p>
+<p>:   Returns a decimal string giving the x-coordinate, in <em>window</em>\'s
+    parent, of the upper-left corner of <em>window</em>\'s border (or <em>window</em>
+    if it has no border).</p>
+<p><strong>winfo y </strong><em>window</em></p>
+<p>:   Returns a decimal string giving the y-coordinate, in <em>window</em>\'s
+    parent, of the upper-left corner of <em>window</em>\'s border (or <em>window</em>
+    if it has no border).</p>
+<h1 id="example">EXAMPLE</h1>
+<p>Print where the mouse pointer is and what window it is currently over:</p>
+<div class="language-text highlight"><pre><span></span><code>lassign [winfo pointerxy .] x y
+puts -nonewline &quot;Mouse pointer at ($x,$y) which is &quot;
+set win [winfo containing $x $y]
+if {$win eq &quot;&quot;} {
+    puts &quot;over no window&quot;
+} else {
+    puts &quot;over $win&quot;
+}
+</code></pre></div>
+<h1 id="keywords">KEYWORDS</h1>
+<p>atom, children, class, geometry, height, identifier, information,
+interpreters, mapped, parent, path name, screen, virtual root, width,
+window</p>
+
+<ul class="metadata page-metadata" data-bi-name="page info" lang="en-us" dir="ltr">
+  <li class="last-updated-holder displayDate loading">
+    <span class="last-updated-text">Last updated:</span>
+    <time role="presentation" datetime="2018-10-25T00:00:00.000Z" data-article-date-source="ms.date"></time>
+  </li>
+<!--
+  <li class="readingTime">
+    2 minutes to read
+  </li>
+-->
+  <li class="contributors-holder">
+    <span class="contributors-text">Contributors</span>
+    <ul class="contributors" data-bi-name="contributors"></ul>
+  </li>
+</ul>
+</div>
+        <div class="col-md-3"><div class="navbar-light navbar-expand-md hidden-print sticky-top sticky-offset" role="complementary">
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggler collapsed" data-toggle="collapse" data-target="#toc-collapse" title="Table of Contents">
+            <span class="fa fa-angle-down"></span>
+        </button>
+    </div>
+
+    <div id="toc-collapse" class="navbar-collapse collapse card">
+        <ul class="nav flex-column bs-sidenav">
+            <li class="nav-item main"><a class="nav-link" href="#name">NAME</a></li>
+            <li class="nav-item main"><a class="nav-link" href="#synopsis">SYNOPSIS</a></li>
+            <li class="nav-item main"><a class="nav-link" href="#description">DESCRIPTION</a></li>
+            <li class="nav-item main"><a class="nav-link" href="#example">EXAMPLE</a></li>
+            <li class="nav-item main"><a class="nav-link" href="#keywords">KEYWORDS</a></li>
+        </ul>
+    </div>
+</div></div>
+      </div>
+      </div>
+
+      <footer class="col-md-12">
+	<hr>
+	<div class="container">
+	</div>
+      </footer>
+      <script>
+	var base_url = "../..",
+            shortcuts = {"help": 191, "next": 78, "previous": 80, "search": 83};
+      </script>
+      <script src="../../js/base.js" defer></script>
+      <script src="../../search/main.js" defer></script>
+
+      <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="Search Modal" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Search</h4>
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            </div>
+            <div class="modal-body">
+                <p>
+                    From here you can search these documents. Enter
+                    your search terms below.
+                </p>
+                <form role="form">
+                    <div class="form-group">
+                        <input type="text" class="form-control" placeholder="Search..." id="mkdocs-search-query" title="Type search term here">
+                    </div>
+                </form>
+                <div id="mkdocs-search-results"></div>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div><div class="modal" id="mkdocs_keyboard_modal" tabindex="-1" role="dialog" aria-labelledby="Keyboard Shortcuts Modal" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <p class="h4 modal-title">Keyboard Shortcuts</p>
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            </div>
+            <div class="modal-body">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th style="width: 20%;">Keys</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="help shortcut"><kbd>?</kbd></td>
+                    <td>Open this help</td>
+                  </tr>
+                  <tr>
+                    <td class="next shortcut"><kbd>n</kbd></td>
+                    <td>Next page</td>
+                  </tr>
+                  <tr>
+                    <td class="prev shortcut"><kbd>p</kbd></td>
+                    <td>Previous page</td>
+                  </tr>
+                  <tr>
+                    <td class="search shortcut"><kbd>s</kbd></td>
+                    <td>Search</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>
+
+    </body>
+</html>

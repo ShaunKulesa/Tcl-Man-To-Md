@@ -23,31 +23,31 @@ the number of elements in it.
 .PP
 The result is the number of elements:
 .PP
-.nf
+.CS
 % \fBllength\fR {a b c d e}
 5
 % \fBllength\fR {a b c}
 3
 % \fBllength\fR {}
 0
-.fi
+.CE
 .PP
 Elements are not guaranteed to be exactly words in a dictionary sense
 of course, especially when quoting is used:
 .PP
-.nf
+.CS
 % \fBllength\fR {a b {c d} e}
 4
 % \fBllength\fR {a b { } c d e}
 6
-.fi
+.CE
 .PP
 An empty list is not necessarily an empty string:
 .PP
-.nf
+.CS
 % set var { }; puts "[string length $var],[\fBllength\fR $var]"
 1,0
-.fi
+.CE
 .SH "SEE ALSO"
 list(n), lappend(n), lindex(n), linsert(n), lsearch(n),
 lset(n), lsort(n), lrange(n), lreplace(n)

@@ -1,5 +1,3 @@
-\
-
 # NAME
 
 Tcl_CreateTimerHandler, Tcl_DeleteTimerHandler - call a procedure at a
@@ -7,12 +5,12 @@ given time
 
 # SYNOPSIS
 
-    #include <tcl.h>
+**#include \<tcl.h\>**
 
-    Tcl_TimerToken
-    Tcl_CreateTimerHandler(milliseconds, proc, clientData)
+Tcl_TimerToken **Tcl_CreateTimerHandler**(*milliseconds, proc,
+clientData*)
 
-    Tcl_DeleteTimerHandler(token)
+**Tcl_DeleteTimerHandler**(*token*)
 
 # ARGUMENTS
 
@@ -24,8 +22,6 @@ Arbitrary one-word value to pass to *proc*.
 
 Token for previously created timer handler (the return value from some
 previous call to **Tcl_CreateTimerHandler**).
-
-\
 
 # DESCRIPTION
 
@@ -66,3 +62,9 @@ after(n), Tcl_CreateFileHandler(3), Tcl_DoWhenIdle(3)
 # KEYWORDS
 
 callback, clock, handler, timer
+
+<!---
+Copyright (c) 1990 The Regents of the University of California
+Copyright (c) 1994-1996 Sun Microsystems, Inc
+-->
+

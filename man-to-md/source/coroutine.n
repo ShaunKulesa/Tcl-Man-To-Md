@@ -11,14 +11,12 @@
 .SH NAME
 coroutine, yield, yieldto \- Create and produce values from coroutines
 .SH SYNOPSIS
-.nf
 \fBcoroutine \fIname command\fR ?\fIarg...\fR?
 \fByield\fR ?\fIvalue\fR?
 .VS TIP396
 \fByieldto\fR \fIcommand\fR ?\fIarg...\fR?
 \fIname\fR ?\fIvalue...\fR?
 .VE TIP396
-.fi
 .BE
 .SH DESCRIPTION
 .PP
@@ -57,11 +55,11 @@ The recommended way of writing a version of \fByield\fR that allows resumption
 with multiple arguments is by using \fByieldto\fR and the \fBreturn\fR
 command, like this:
 .PP
-.nf
+.CS
 proc yieldm {value} {
     \fByieldto\fR return -level 0 $value
 }
-.fi
+.CE
 .VE TIP396
 .PP
 The coroutine can also be deleted by destroying the command \fIname\fR, and
@@ -80,7 +78,7 @@ determined in the namespace that the \fBcoroutine\fR command was called from.
 This example shows a coroutine that will produce an infinite sequence of
 even values, and a loop that consumes the first ten of them.
 .PP
-.nf
+.CS
 proc allNumbers {} {
     \fByield\fR
     set i 0
@@ -94,11 +92,11 @@ for {set i 0} {$i < 10} {incr i} {
     puts "received [\fInextNumber\fR]"
 }
 rename nextNumber {}
-.fi
+.CE
 .PP
 In this example, the coroutine acts to add up the arguments passed to it.
 .PP
-.nf
+.CS
 \fBcoroutine\fR accumulator apply {{} {
     set x 0
     while 1 {
@@ -108,13 +106,13 @@ In this example, the coroutine acts to add up the arguments passed to it.
 for {set i 0} {$i < 10} {incr i} {
     puts "$i -> [\fIaccumulator\fR $i]"
 }
-.fi
+.CE
 .PP
 This example demonstrates the use of coroutines to implement the classic Sieve
 of Eratosthenes algorithm for finding prime numbers. Note the creation of
 coroutines inside a coroutine.
 .PP
-.nf
+.CS
 proc filterByFactor {source n} {
     \fByield\fR [info coroutine]
     while 1 {
@@ -136,13 +134,13 @@ proc filterByFactor {source n} {
 for {set i 1} {$i <= 20} {incr i} {
     puts "prime#$i = [\fIeratosthenes\fR]"
 }
-.fi
+.CE
 .PP
 .VS TIP396
 This example shows how a value can be passed around a group of three
 coroutines that yield to each other:
 .PP
-.nf
+.CS
 proc juggler {name target {value ""}} {
     if {$value eq ""} {
         set value [\fByield\fR [info coroutine]]
@@ -156,14 +154,14 @@ proc juggler {name target {value ""}} {
 \fBcoroutine\fR j1 juggler Larry [
     \fBcoroutine\fR j2 juggler Curly [
         \fBcoroutine\fR j3 juggler Moe j1]] "Nyuck!Nyuck!Nyuck!"
-.fi
+.CE
 .VE TIP396
 .SS "DETAILED SEMANTICS"
 .PP
 This example demonstrates that coroutines start from the global namespace, and
 that \fIcommand\fR resolution happens before the coroutine stack is created.
 .PP
-.nf
+.CS
 proc report {where level} {
     # Where was the caller called from?
     set ns [uplevel 2 {namespace current}]
@@ -182,7 +180,7 @@ namespace eval demo {
     }
     makeExample
 }
-.fi
+.CE
 .PP
 Which produces the output below. In particular, we can see that stack
 manipulation has occurred (comparing the levels from the first and second
@@ -191,10 +189,10 @@ can also see that coroutine names are local to the current namespace if not
 qualified, and that coroutines may yield at depth (e.g., in called
 procedures).
 .PP
-.nf
+.CS
 making from 2
 made inner 1 context=:: name=::demo::coroEg
-.fi
+.CE
 .SH "SEE ALSO"
 apply(n), info(n), proc(n), return(n)
 .SH KEYWORDS

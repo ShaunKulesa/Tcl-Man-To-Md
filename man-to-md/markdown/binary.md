@@ -1,5 +1,3 @@
-\
-
 # NAME
 
 binary - Insert and extract fields from binary strings
@@ -11,8 +9,6 @@ binary - Insert and extract fields from binary strings
 
 **binary format ***formatString *?*arg arg \...*?\
 **binary scan ***string formatString *?*varName varName \...*?
-
-\
 
 # DESCRIPTION
 
@@ -897,3 +893,9 @@ encoding(n), format(n), scan(n), string(n), tcl_platform(n)
 # KEYWORDS
 
 binary, format, scan
+
+<!---
+Copyright (c) 1997 Sun Microsystems, Inc
+Copyright (c) 2008 Donal K. Fellow
+-->
+

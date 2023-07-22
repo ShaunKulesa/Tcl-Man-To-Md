@@ -1,0 +1,918 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+      <script>
+	// Hack for scrolling window when linking to anchor tag with fixed nav header
+        var shiftWindow = function() { scrollBy(0, -75) };
+        window.addEventListener("hashchange", shiftWindow);
+        function load() { if (window.location.hash) shiftWindow(); }
+      </script>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        
+        <link rel="canonical" href="https://www.tcl.tk/man/TkCmd/wm/">
+        <link rel="shortcut icon" href="../../img/favicon.ico">
+        <title>Wm - Tcl/Tk</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <link href="../../css/font-awesome.min.css" rel="stylesheet">
+    <link href="../../css/base.css" rel="stylesheet">
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+    <script src="../../js/base.js"></script> 
+    </head>
+
+    <body class="">
+
+      <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
+	<div class="container">
+	<a class="navbar-brand" href="../..">Tcl/Tk</a>
+	<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExample04" aria-controls="navbarsExample04" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+	</button>
+
+	<div class="collapse navbar-collapse">
+
+          <ul class="navbar-nav flex-row ml-md-auto d-none d-md-flex">
+            <li class="nav-item">
+              <a class="nav-link" href="#" data-toggle="modal" data-target="#mkdocs_search_modal">
+		<i class="fa fa-search"></i> Search
+              </a>
+            </li>
+          </ul>
+	</div>
+	</div>
+      </nav><div id="content" class="container">
+        
+      <div class="row">
+        <div class="col-md-9" role="main">
+
+
+<nav aria-label="breadcrumb">
+  <ol class="breadcrumb">
+    
+    <li class="breadcrumb-item active" aria-current="page">Wm</li>
+  </ol>
+</nav>
+
+
+<p>\</p>
+<h1 id="name">NAME</h1>
+<p>wm - Communicate with window manager</p>
+<h1 id="synopsis">SYNOPSIS</h1>
+<p><strong>wm</strong> <em>option window </em>?<em>args</em>?</p>
+<p>\</p>
+<h1 id="description">DESCRIPTION</h1>
+<p>The <strong>wm</strong> command is used to interact with window managers in order to
+control such things as the title for a window, its geometry, or the
+increments in terms of which it may be resized. The <strong>wm</strong> command can
+take any of a number of different forms, depending on the <em>option</em>
+argument. All of the forms expect at least one additional argument,
+<em>window</em>, which must be the path name of a top-level window.</p>
+<p>The legal forms for the <strong>wm</strong> command are:</p>
+<p><strong>wm aspect </strong><em>window</em> ?<em>minNumer minDenom maxNumer maxDenom</em>?</p>
+<p>:   If <em>minNumer</em>, <em>minDenom</em>, <em>maxNumer</em>, and <em>maxDenom</em> are all
+    specified, then they will be passed to the window manager and the
+    window manager should use them to enforce a range of acceptable
+    aspect ratios for <em>window</em>. The aspect ratio of <em>window</em>
+    (width/length) will be constrained to lie between
+    <em>minNumer</em>/<em>minDenom</em> and <em>maxNumer</em>/<em>maxDenom</em>. If <em>minNumer</em> etc.
+    are all specified as empty strings, then any existing aspect ratio
+    restrictions are removed. If <em>minNumer</em> etc. are specified, then the
+    command returns an empty string. Otherwise, it returns a Tcl list
+    containing four elements, which are the current values of
+    <em>minNumer</em>, <em>minDenom</em>, <em>maxNumer</em>, and <em>maxDenom</em> (if no aspect
+    restrictions are in effect, then an empty string is returned).</p>
+<p><strong>wm attributes </strong><em>window</em></p>
+<p>:   </p>
+<p><strong>wm attributes </strong><em>window</em> ?<strong>option</strong>?</p>
+<p>:   </p>
+<p><strong>wm attributes </strong><em>window</em> ?<strong>option value option value...</strong>?</p>
+<p>:   This subcommand returns or sets platform specific attributes
+    associated with a window. The first form returns a list of the
+    platform specific flags and their values. The second form returns
+    the value for the specific option. The third form sets one or more
+    of the values. The values are as follows:</p>
+<div class="language-text highlight"><pre><span></span><code>All platforms support the following attributes (though X11 users
+should see the notes below):
+
+**-alpha**
+
+:   Specifies the alpha transparency level of the toplevel. It
+    accepts a value from **0.0** (fully transparent) to **1.0**
+    (opaque). Values outside that range will be constrained. Where
+    not supported, the **-alpha** value remains at **1.0**.
+
+**-fullscreen**
+
+:   Places the window in a mode that takes up the entire screen, has
+    no borders, and covers the general use area (i.e. Start menu and
+    taskbar on Windows, dock and menubar on OSX, general window
+    decorations on X11).
+
+**-topmost**
+
+:   Specifies whether this is a topmost window (displays above all
+    other windows).
+
+On Windows, the following attributes may be set.
+
+**-disabled**
+
+:   Specifies whether the window is in a disabled state.
+
+**-toolwindow**
+
+:   Specifies a toolwindow style window (as defined in the MSDN).
+
+**-transparentcolor**
+
+:   Specifies the transparent color index of the toplevel. It takes
+    any color value accepted by **Tk_GetColor**. If the empty string
+    is specified (default), no transparent color is used. This is
+    supported on Windows 2000/XP+. Where not supported, the
+    **-transparentcolor** value remains at **{}**.
+
+On Mac OS X, the following attributes may be set.
+
+**-modified**
+
+:   Specifies the modification state of the window (determines
+    whether the window close widget contains the modification
+    indicator and whether the proxy icon is draggable).
+
+**-notify**
+
+:   Specifies process notification state (bouncing of the
+    application dock icon).
+
+**-titlepath**
+
+:   Specifies the path of the file referenced as the window proxy
+    icon (which can be dragged and dropped in lieu of the file\&#39;s
+    finder icon).
+
+**-transparent**
+
+:   Makes the window content area transparent and turns off the
+    window shadow. For the transparency to be effective, the
+    toplevel background needs to be set to a color with some alpha,
+    e.g.
+
+On X11, the following attributes may be set. These are not supported
+by all window managers, and will have no effect under older WMs.
+
+**-type**
+
+:
+
+Requests that the window should be interpreted by the window manager
+as being of the specified type(s). This may cause the window to be
+decorated in a different way or otherwise managed differently,
+though exactly what happens is entirely up to the window manager. A
+list of types may be used, in order of preference. The following
+values are mapped to constants defined in the EWMH specification
+(using others is possible, but not advised):
+
+&gt; **desktop**
+&gt;
+&gt; :   indicates a desktop feature,
+&gt;
+&gt; **dock**
+&gt;
+&gt; :   indicates a dock/panel feature,
+&gt;
+&gt; **toolbar**
+&gt;
+&gt; :   indicates a toolbar window that should be acting on behalf of
+&gt;     another window, as indicated with **wm transient**,
+&gt;
+&gt; **menu**
+&gt;
+&gt; :   indicates a torn-off menu that should be acting on behalf of
+&gt;     another window, as indicated with **wm transient**,
+&gt;
+&gt; **utility**
+&gt;
+&gt; :   indicates a utility window (e.g., palette or toolbox) that
+&gt;     should be acting on behalf of another window, as indicated
+&gt;     with **wm transient**,
+&gt;
+&gt; **splash**
+&gt;
+&gt; :   indicates a splash screen, displayed during application start
+&gt;     up,
+&gt;
+&gt; **dialog**
+&gt;
+&gt; :   indicates a general dialog window, that should be acting on
+&gt;     behalf of another window, as indicated with **wm transient**,
+&gt;
+&gt; **dropdown_menu**
+&gt;
+&gt; :   indicates a menu summoned from a menu bar, which should
+&gt;     usually also be set to be override-redirected (with **wm
+&gt;     overrideredirect**),
+&gt;
+&gt; **popup_menu**
+&gt;
+&gt; :   indicates a popup menu, which should usually also be set to be
+&gt;     override-redirected (with **wm overrideredirect**),
+&gt;
+&gt; **tooltip**
+&gt;
+&gt; :   indicates a tooltip window, which should usually also be set
+&gt;     to be override-redirected (with **wm overrideredirect**),
+&gt;
+&gt; **notification**
+&gt;
+&gt; :   indicates a window that provides a background notification of
+&gt;     some event, which should usually also be set to be
+&gt;     override-redirected (with **wm** overrideredirect),
+&gt;
+&gt; **combo**
+&gt;
+&gt; :   indicates the drop-down list of a combobox widget, which
+&gt;     should usually also be set to be override-redirected (with
+&gt;     **wm overrideredirect**),
+&gt;
+&gt; **dnd**
+&gt;
+&gt; :   indicates a window that represents something being dragged,
+&gt;     which should usually also be set to be override-redirected
+&gt;     (with **wm overrideredirect**),
+&gt;
+&gt; **normal**
+&gt;
+&gt; :   indicates a window that has no special interpretation.
+
+**-zoomed**
+
+:   Requests that the window should be maximized. This is the same
+    as **wm state** zoomed on Windows and Mac OS X.
+
+On X11, changes to window attributes are performed asynchronously.
+Querying the value of an attribute returns the current state, which
+will not be the same as the value most recently set if the window
+manager has not yet processed the request or if it does not support
+the attribute.
+</code></pre></div>
+<p><strong>wm client </strong><em>window</em> ?<em>name</em>?</p>
+<p>:   If <em>name</em> is specified, this command stores <em>name</em> (which should be
+    the name of the host on which the application is executing) in
+    <em>window</em>\'s <strong>WM_CLIENT_MACHINE</strong> property for use by the window
+    manager or session manager. The command returns an empty string in
+    this case. If <em>name</em> is not specified, the command returns the last
+    name set in a <strong>wm client</strong> command for <em>window</em>. If <em>name</em> is
+    specified as an empty string, the command deletes the
+    <strong>WM_CLIENT_MACHINE</strong> property from <em>window</em>.</p>
+<p><strong>wm colormapwindows </strong><em>window</em> ?<em>windowList</em>?</p>
+<p>:   This command is used to manipulate the <strong>WM_COLORMAP_WINDOWS</strong>
+    property, which provides information to the window managers about
+    windows that have private colormaps.</p>
+<div class="language-text highlight"><pre><span></span><code>If *windowList* is not specified, the command returns a list whose
+elements are the names of the windows in the **WM_COLORMAP_WINDOWS**
+property. If *windowList* is specified, it consists of a list of
+window path names; the command overwrites the
+**WM_COLORMAP_WINDOWS** property with the given windows and returns
+an empty string. The **WM_COLORMAP_WINDOWS** property should
+normally contain a list of the internal windows within *window*
+whose colormaps differ from their parents.
+
+The order of the windows in the property indicates a priority order:
+the window manager will attempt to install as many colormaps as
+possible from the head of this list when *window* gets the colormap
+focus. If *window* is not included among the windows in
+*windowList*, Tk implicitly adds it at the end of the
+**WM_COLORMAP_WINDOWS** property, so that its colormap is lowest in
+priority. If **wm colormapwindows** is not invoked, Tk will
+automatically set the property for each top-level window to all the
+internal windows whose colormaps differ from their parents, followed
+by the top-level itself; the order of the internal windows is
+undefined. See the ICCCM documentation for more information on the
+**WM_COLORMAP_WINDOWS** property.
+</code></pre></div>
+<p><strong>wm command </strong><em>window</em> ?<em>value</em>?</p>
+<p>:   If <em>value</em> is specified, this command stores <em>value</em> in <em>window</em>\'s
+    <strong>WM_COMMAND</strong> property for use by the window manager or session
+    manager and returns an empty string. <em>Value</em> must have proper list
+    structure; the elements should contain the words of the command used
+    to invoke the application. If <em>value</em> is not specified then the
+    command returns the last value set in a <strong>wm command</strong> command for
+    <em>window</em>. If <em>value</em> is specified as an empty string, the command
+    deletes the <strong>WM_COMMAND</strong> property from <em>window</em>.</p>
+<p><strong>wm deiconify </strong><em>window</em></p>
+<p>:   Arrange for <em>window</em> to be displayed in normal (non-iconified) form.
+    This is done by mapping the window. If the window has never been
+    mapped then this command will not map the window, but it will ensure
+    that when the window is first mapped it will be displayed in
+    de-iconified form. On Windows, a deiconified window will also be
+    raised and be given the focus (made the active window). Returns an
+    empty string.</p>
+<p><strong>wm focusmodel </strong><em>window</em> ?<strong>active</strong>|<strong>passive</strong>?</p>
+<p>:   If <strong>active</strong> or <strong>passive</strong> is supplied as an optional argument to
+    the command, then it specifies the focus model for <em>window</em>. In this
+    case the command returns an empty string. If no additional argument
+    is supplied, then the command returns the current focus model for
+    <em>window</em>.</p>
+<div class="language-text highlight"><pre><span></span><code>An **active** focus model means that *window* will claim the input
+focus for itself or its descendants, even at times when the focus is
+currently in some other application. **Passive** means that *window*
+will never claim the focus for itself: the window manager should
+give the focus to *window* at appropriate times. However, once the
+focus has been given to *window* or one of its descendants, the
+application may re-assign the focus among *window*\&#39;s descendants.
+The focus model defaults to **passive**, and Tk\&#39;s **focus** command
+assumes a passive model of focusing.
+</code></pre></div>
+<p><strong>wm forget </strong><em>window</em></p>
+<p>:   The <em>window</em> will be unmapped from the screen and will no longer be
+    managed by <strong>wm</strong>. Windows created with the <strong>toplevel</strong> command
+    will be treated like <strong>frame</strong> windows once they are no longer
+    managed by <strong>wm</strong>, however, the <strong>-menu</strong> configuration will be
+    remembered and the menus will return once the widget is managed
+    again.</p>
+<p><strong>wm frame </strong><em>window</em></p>
+<p>:   If <em>window</em> has been reparented by the window manager into a
+    decorative frame, the command returns the platform specific window
+    identifier for the outermost frame that contains <em>window</em> (the
+    window whose parent is the root or virtual root). If <em>window</em> has
+    not been reparented by the window manager then the command returns
+    the platform specific window identifier for <em>window</em>.</p>
+<p><strong>wm geometry </strong><em>window</em> ?<em>newGeometry</em>?</p>
+<p>:   If <em>newGeometry</em> is specified, then the geometry of <em>window</em> is
+    changed and an empty string is returned. Otherwise the current
+    geometry for <em>window</em> is returned (this is the most recent geometry
+    specified either by manual resizing or in a <strong>wm geometry</strong>
+    command). <em>NewGeometry</em> has the form
+    <strong>=</strong><em>width</em><strong>x</strong><em>height</em><strong>±</strong><em>x</em><strong>±</strong><em>y</em>, where any of <strong>=</strong>,
+    <em>width</em><strong>x</strong><em>height</em>, or <strong>±</strong><em>x</em><strong>±</strong><em>y</em> may be omitted. <em>Width</em>
+    and <em>height</em> are positive integers specifying the desired dimensions
+    of <em>window</em>. If <em>window</em> is gridded (see <strong>GRIDDED GEOMETRY
+    MANAGEMENT</strong> below) then the dimensions are specified in grid units;
+    otherwise they are specified in pixel units.</p>
+<div class="language-text highlight"><pre><span></span><code>*X* and *y* specify the desired location of *window* on the screen,
+in pixels. If *x* is preceded by **+**, it specifies the number of
+pixels between the left edge of the screen and the left edge of
+*window*\&#39;s border; if preceded by **-** then *x* specifies the
+number of pixels between the right edge of the screen and the right
+edge of *window*\&#39;s border. If *y* is preceded by **+** then it
+specifies the number of pixels between the top of the screen and the
+top of *window*\&#39;s border; if *y* is preceded by **-** then it
+specifies the number of pixels between the bottom of *window*\&#39;s
+border and the bottom of the screen.
+
+If *newGeometry* is specified as an empty string then any existing
+user-specified geometry for *window* is cancelled, and the window
+will revert to the size requested internally by its widgets.
+
+Note that this is related to **winfo geometry**, but not the same.
+That can only query the geometry, and always reflects Tk\&#39;s current
+understanding of the actual size and location of *window*, whereas
+**wm geometry** allows both setting and querying of the *window
+manager*\&#39;s understanding of the size and location of the window.
+This can vary significantly, for example to reflect the addition of
+decorative elements to *window* such as title bars, and window
+managers are not required to precisely follow the requests made
+through this command.
+</code></pre></div>
+<p><strong>wm grid </strong><em>window</em> ?<em>baseWidth baseHeight widthInc heightInc</em>?</p>
+<p>:   This command indicates that <em>window</em> is to be managed as a gridded
+    window. It also specifies the relationship between grid units and
+    pixel units. <em>BaseWidth</em> and <em>baseHeight</em> specify the number of grid
+    units corresponding to the pixel dimensions requested internally by
+    <em>window</em> using <strong>Tk_GeometryRequest</strong>. <em>WidthInc</em> and <em>heightInc</em>
+    specify the number of pixels in each horizontal and vertical grid
+    unit. These four values determine a range of acceptable sizes for
+    <em>window</em>, corresponding to grid-based widths and heights that are
+    non-negative integers. Tk will pass this information to the window
+    manager; during manual resizing, the window manager will restrict
+    the window\'s size to one of these acceptable sizes.</p>
+<div class="language-text highlight"><pre><span></span><code>Furthermore, during manual resizing the window manager will display
+the window\&#39;s current size in terms of grid units rather than
+pixels. If *baseWidth* etc. are all specified as empty strings, then
+*window* will no longer be managed as a gridded window. If
+*baseWidth* etc. are specified then the return value is an empty
+string.
+
+Otherwise the return value is a Tcl list containing four elements
+corresponding to the current *baseWidth*, *baseHeight*, *widthInc*,
+and *heightInc*; if *window* is not currently gridded, then an empty
+string is returned.
+
+Note: this command should not be needed very often, since the
+**Tk_SetGrid** library procedure and the **setGrid** option provide
+easier access to the same functionality.
+</code></pre></div>
+<p><strong>wm group </strong><em>window</em> ?<em>pathName</em>?</p>
+<p>:   If <em>pathName</em> is specified, it gives the path name for the leader of
+    a group of related windows. The window manager may use this
+    information, for example, to unmap all of the windows in a group
+    when the group\'s leader is iconified. <em>PathName</em> may be specified
+    as an empty string to remove <em>window</em> from any group association. If
+    <em>pathName</em> is specified then the command returns an empty string;
+    otherwise it returns the path name of <em>window</em>\'s current group
+    leader, or an empty string if <em>window</em> is not part of any group.</p>
+<p><strong>wm iconbitmap </strong><em>window</em> ?<em>bitmap</em>?</p>
+<p>:   If <em>bitmap</em> is specified, then it names a bitmap in the standard
+    forms accepted by Tk (see the <strong>Tk_GetBitmap</strong> manual entry for
+    details). This bitmap is passed to the window manager to be
+    displayed in <em>window</em>\'s icon, and the command returns an empty
+    string. If an empty string is specified for <em>bitmap</em>, then any
+    current icon bitmap is cancelled for <em>window</em>. If <em>bitmap</em> is
+    specified then the command returns an empty string. Otherwise it
+    returns the name of the current icon bitmap associated with
+    <em>window</em>, or an empty string if <em>window</em> has no icon bitmap. On the
+    Windows operating system, an additional flag is supported:</p>
+<div class="language-text highlight"><pre><span></span><code>**wm iconbitmap ***window* ?**-default**? ?*image*?
+
+:   If the **-default** flag is given, the icon is applied to all
+    toplevel windows (existing and future) to which no other
+    specific icon has yet been applied. In addition to bitmap image
+    types, a full path specification to any file which contains a
+    valid Windows icon is also accepted (usually .ico or .icr
+    files), or any file for which the shell has assigned an icon.
+    Tcl will first test if the file contains an icon, then if it has
+    an assigned icon, and finally, if that fails, test for a bitmap.
+</code></pre></div>
+<p><strong>wm iconify </strong><em>window</em></p>
+<p>:   Arrange for <em>window</em> to be iconified. It <em>window</em> has not yet been
+    mapped for the first time, this command will arrange for it to
+    appear in the iconified state when it is eventually mapped.</p>
+<p><strong>wm iconmask </strong><em>window</em> ?<em>bitmap</em>?</p>
+<p>:   If <em>bitmap</em> is specified, then it names a bitmap in the standard
+    forms accepted by Tk (see the <strong>Tk_GetBitmap</strong> manual entry for
+    details). This bitmap is passed to the window manager to be used as
+    a mask in conjunction with the <strong>iconbitmap</strong> option: where the mask
+    has zeroes no icon will be displayed; where it has ones, the bits
+    from the icon bitmap will be displayed. If an empty string is
+    specified for <em>bitmap</em> then any current icon mask is cancelled for
+    <em>window</em> (this is equivalent to specifying a bitmap of all ones). If
+    <em>bitmap</em> is specified then the command returns an empty string.
+    Otherwise it returns the name of the current icon mask associated
+    with <em>window</em>, or an empty string if no mask is in effect.</p>
+<p><strong>wm iconname </strong><em>window</em> ?<em>newName</em>?</p>
+<p>:   If <em>newName</em> is specified, then it is passed to the window manager;
+    the window manager should display <em>newName</em> inside the icon
+    associated with <em>window</em>. In this case an empty string is returned
+    as result. If <em>newName</em> is not specified then the command returns
+    the current icon name for <em>window</em>, or an empty string if no icon
+    name has been specified (in this case the window manager will
+    normally display the window\'s title, as specified with the <strong>wm
+    title</strong> command).</p>
+<p><strong>wm iconphoto </strong><em>window</em> ?<strong>-default</strong>? <em>image1</em> ?<em>image2 ...</em>?</p>
+<p>:   Sets the titlebar icon for <em>window</em> based on the named photo images.
+    If <strong>-default</strong> is specified, this is applied to all future created
+    toplevels as well. The data in the images is taken as a snapshot at
+    the time of invocation. If the images are later changed, this is not
+    reflected to the titlebar icons. Multiple images are accepted to
+    allow different images sizes (e.g., 16x16 and 32x32) to be provided.
+    The window manager may scale provided icons to an appropriate size.</p>
+<div class="language-text highlight"><pre><span></span><code>On Windows, the images are packed into a Windows icon structure.
+This will override an ico specified to **wm iconbitmap**, and vice
+versa.
+
+On X, the images are arranged into the \_NET_WM_ICON X property,
+which most modern window managers support. A **wm iconbitmap** may
+exist simultaneously. It is recommended to use not more than 2
+icons, placing the larger icon first.
+
+On Macintosh, the first image called is loaded into an OSX-native
+icon format, and becomes the application icon in dialogs, the Dock,
+and other contexts. At the script level the command will accept only
+the first image passed in the parameters as support for multiple
+sizes/resolutions on macOS is outside Tk\&#39;s scope. Developers should
+use the largest icon they can support (preferably 512 pixels) to
+ensure smooth rendering on the Mac.
+</code></pre></div>
+<p><strong>wm iconposition </strong><em>window</em> ?<em>x y</em>?</p>
+<p>:   If <em>x</em> and <em>y</em> are specified, they are passed to the window manager
+    as a hint about where to position the icon for <em>window</em>. In this
+    case an empty string is returned. If <em>x</em> and <em>y</em> are specified as
+    empty strings then any existing icon position hint is cancelled. If
+    neither <em>x</em> nor <em>y</em> is specified, then the command returns a Tcl
+    list containing two values, which are the current icon position
+    hints (if no hints are in effect then an empty string is returned).</p>
+<p><strong>wm iconwindow </strong><em>window</em> ?<em>pathName</em>?</p>
+<p>:   If <em>pathName</em> is specified, it is the path name for a window to use
+    as icon for <em>window</em>: when <em>window</em> is iconified then <em>pathName</em>
+    will be mapped to serve as icon, and when <em>window</em> is de-iconified
+    then <em>pathName</em> will be unmapped again. If <em>pathName</em> is specified
+    as an empty string then any existing icon window association for
+    <em>window</em> will be cancelled. If the <em>pathName</em> argument is specified
+    then an empty string is returned. Otherwise the command returns the
+    path name of the current icon window for <em>window</em>, or an empty
+    string if there is no icon window currently specified for <em>window</em>.
+    Button press events are disabled for <em>window</em> as long as it is an
+    icon window; this is needed in order to allow window managers to
+    those events. Note: not all window managers support the notion of an
+    icon window.</p>
+<p><strong>wm manage </strong><em>widget</em></p>
+<p>:   The <em>widget</em> specified will become a stand alone top-level window.
+    The window will be decorated with the window managers title bar,
+    etc. Only <em>frame</em>, <em>labelframe</em> and <em>toplevel</em> widgets can be used
+    with this command. Attempting to pass any other widget type will
+    raise an error. Attempting to manage a <em>toplevel</em> widget is benign
+    and achieves nothing. See also <strong>GEOMETRY MANAGEMENT</strong>.</p>
+<p><strong>wm maxsize </strong><em>window</em> ?<em>width height</em>?</p>
+<p>:   If <em>width</em> and <em>height</em> are specified, they give the maximum
+    permissible dimensions for <em>window</em>. For gridded windows the
+    dimensions are specified in grid units; otherwise they are specified
+    in pixel units. The window manager will restrict the window\'s
+    dimensions to be less than or equal to <em>width</em> and <em>height</em>. If
+    <em>width</em> and <em>height</em> are specified, then the command returns an
+    empty string. Otherwise it returns a Tcl list with two elements,
+    which are the maximum width and height currently in effect. The
+    maximum size defaults to the size of the screen. See the sections on
+    geometry management below for more information.</p>
+<p><strong>wm minsize </strong><em>window</em> ?<em>width height</em>?</p>
+<p>:   If <em>width</em> and <em>height</em> are specified, they give the minimum
+    permissible dimensions for <em>window</em>. For gridded windows the
+    dimensions are specified in grid units; otherwise they are specified
+    in pixel units. The window manager will restrict the window\'s
+    dimensions to be greater than or equal to <em>width</em> and <em>height</em>. If
+    <em>width</em> and <em>height</em> are specified, then the command returns an
+    empty string. Otherwise it returns a Tcl list with two elements,
+    which are the minimum width and height currently in effect. The
+    minimum size defaults to one pixel in each dimension. See the
+    sections on geometry management below for more information.</p>
+<p><strong>wm overrideredirect </strong><em>window</em> ?<em>boolean</em>?</p>
+<p>:   If <em>boolean</em> is specified, it must have a proper boolean form and
+    the override-redirect flag for <em>window</em> is set to that value. If
+    <em>boolean</em> is not specified then <strong>1</strong> or <strong>0</strong> is returned to
+    indicate whether or not the override-redirect flag is currently set
+    for <em>window</em>. Setting the override-redirect flag for a window causes
+    it to be ignored by the window manager; among other things, this
+    means that the window will not be reparented from the root window
+    into a decorative frame and the user will not be able to manipulate
+    the window using the normal window manager mechanisms.</p>
+<div class="language-text highlight"><pre><span></span><code>Note that the override-redirect flag is only guaranteed to be taken
+notice of when the window is first mapped or when mapped after the
+state is changed from withdrawn to normal. Some, but not all,
+platforms will take notice at additional times.
+</code></pre></div>
+<p><strong>wm positionfrom </strong><em>window</em> ?<em>who</em>?</p>
+<p>:   If <em>who</em> is specified, it must be either <strong>program</strong> or <strong>user</strong>, or
+    an abbreviation of one of these two. It indicates whether
+    <em>window</em>\'s current position was requested by the program or by the
+    user. Many window managers ignore program-requested initial
+    positions and ask the user to manually position the window; if
+    <strong>user</strong> is specified then the window manager should position the
+    window at the given place without asking the user for assistance. If
+    <em>who</em> is specified as an empty string, then the current position
+    source is cancelled. If <em>who</em> is specified, then the command returns
+    an empty string. Otherwise it returns <strong>user</strong> or <strong>program</strong> to
+    indicate the source of the window\'s current position, or an empty
+    string if no source has been specified yet. Most window managers
+    interpret as equivalent to <strong>program</strong>. Tk will automatically set
+    the position source to <strong>user</strong> when a <strong>wm geometry</strong> command is
+    invoked, unless the source has been set explicitly to <strong>program</strong>.</p>
+<p><strong>wm protocol </strong><em>window</em> ?<em>name</em>? ?<em>command</em>?</p>
+<p>:   This command is used to manage window manager protocols. The <em>name</em>
+    argument in the <strong>wm protocol</strong> command is the name of an atom
+    corresponding to a window manager protocol. Examples include
+    <strong>WM_DELETE_WINDOW</strong> or <strong>WM_SAVE_YOURSELF</strong> or <strong>WM_TAKE_FOCUS</strong>.</p>
+<div class="language-text highlight"><pre><span></span><code>A *window manager protocol* is a class of messages sent from a
+window manager to a Tk application outside of the normal event
+processing system. The main example is the **WM_DELETE_WINDOW**
+protocol; these messages are sent when the user clicks the close
+widget in the title bar of a window. Handlers for window manager
+protocols are installed with the **wm protocol** command. As a rule,
+if no handler has been installed for a protocol by the **wm
+protocol** command then all messages of that protocol are ignored.
+The **WM_DELETE_WINDOW** protocol is an exception to this rule. At
+start-up Tk installs a handler for this protocol, which responds by
+destroying the window. The **wm protocol** command can be used to
+replace this default handler by one which responds differently.
+
+The list of available window manager protocols depends on the window
+manager, but all window managers supported by Tk provide
+**WM_DELETE_WINDOW**. On the Windows platform, a
+**WM_SAVE_YOURSELF** message is sent on user logout or system
+restart.
+
+If both *name* and *command* are specified, then *command* becomes
+the handler for the protocol specified by *name*. The atom for
+*name* will be added to *window*\&#39;s **WM_PROTOCOLS** property to
+tell the window manager that the application has a handler for the
+protocol specified by *name*, and *command* will be invoked in the
+future whenever the window manager sends a message of that protocol
+to the Tk application. In this case the **wm protocol** command
+returns an empty string. If *name* is specified but *command* is
+not, then the current handler for *name* is returned, or an empty
+string if there is no handler defined for *name* (as a special case,
+the default handler for **WM_DELETE_WINDOW** is not returned). If
+*command* is specified as an empty string then the atom for *name*
+is removed from the **WM_PROTOCOLS** property of *window* and the
+handler is destroyed; an empty string is returned. Lastly, if
+neither *name* nor *command* is specified, the **wm protocol**
+command returns a list of all of the protocols for which handlers
+are currently defined for *window*.
+</code></pre></div>
+<p><strong>wm resizable </strong><em>window</em> ?<em>width height</em>?</p>
+<p>:   This command controls whether or not the user may interactively
+    resize a top-level window. If <em>width</em> and <em>height</em> are specified,
+    they are boolean values that determine whether the width and height
+    of <em>window</em> may be modified by the user. In this case the command
+    returns an empty string. If <em>width</em> and <em>height</em> are omitted then
+    the command returns a list with two 0/1 elements that indicate
+    whether the width and height of <em>window</em> are currently resizable. By
+    default, windows are resizable in both dimensions. If resizing is
+    disabled, then the window\'s size will be the size from the most
+    recent interactive resize or <strong>wm geometry</strong> command. If there has
+    been no such operation then the window\'s natural size will be used.</p>
+<p><strong>wm sizefrom </strong><em>window</em> ?<em>who</em>?</p>
+<p>:   If <em>who</em> is specified, it must be either <strong>program</strong> or <strong>user</strong>, or
+    an abbreviation of one of these two. It indicates whether
+    <em>window</em>\'s current size was requested by the program or by the
+    user. Some window managers ignore program-requested sizes and ask
+    the user to manually size the window; if <strong>user</strong> is specified then
+    the window manager should give the window its specified size without
+    asking the user for assistance. If <em>who</em> is specified as an empty
+    string, then the current size source is cancelled. If <em>who</em> is
+    specified, then the command returns an empty string. Otherwise it
+    returns <strong>user</strong> or <strong>window</strong> to indicate the source of the
+    window\'s current size, or an empty string if no source has been
+    specified yet. Most window managers interpret as equivalent to
+    <strong>program</strong>.</p>
+<p><strong>wm stackorder </strong><em>window</em> ?<strong>isabove</strong>|<strong>isbelow </strong><em>window</em>?</p>
+<p>:   The <strong>stackorder</strong> command returns a list of toplevel windows in
+    stacking order, from lowest to highest. When a single toplevel
+    window is passed, the returned list recursively includes all of the
+    window\'s children that are toplevels. Only those toplevels that are
+    currently mapped to the screen are returned. The <strong>stackorder</strong>
+    command can also be used to determine if one toplevel is positioned
+    above or below a second toplevel. When two window arguments
+    separated by either <strong>isabove</strong> or <strong>isbelow</strong> are passed, a boolean
+    result indicates whether or not the first window is currently above
+    or below the second window in the stacking order.</p>
+<p><strong>wm state </strong><em>window</em> ?newstate?</p>
+<p>:   If <em>newstate</em> is specified, the window will be set to the new state,
+    otherwise it returns the current state of <em>window</em>: either
+    <strong>normal</strong>, <strong>iconic</strong>, <strong>withdrawn</strong>, <strong>icon</strong>, or (Windows and Mac
+    OS X only) <strong>zoomed</strong>. The difference between <strong>iconic</strong> and
+    <strong>icon</strong> is that <strong>iconic</strong> refers to a window that has been
+    iconified (e.g., with the <strong>wm iconify</strong> command) while <strong>icon</strong>
+    refers to a window whose only purpose is to serve as the icon for
+    some other window (via the <strong>wm</strong> iconwindow command). The <strong>icon</strong>
+    state cannot be set.</p>
+<p><strong>wm title </strong><em>window</em> ?<em>string</em>?</p>
+<p>:   If <em>string</em> is specified, then it will be passed to the window
+    manager for use as the title for <em>window</em> (the window manager should
+    display this string in <em>window</em>\'s title bar). In this case the
+    command returns an empty string. If <em>string</em> is not specified then
+    the command returns the current title for the <em>window</em>. The title
+    for a window defaults to its name.</p>
+<p><strong>wm transient </strong><em>window</em> ?<em>container</em>?</p>
+<p>:   If <em>container</em> is specified, then the window manager is informed
+    that <em>window</em> is a transient window (e.g. pull-down menu) working on
+    behalf of <em>container</em> (where <em>container</em> is the path name for a
+    top-level window). If <em>container</em> is specified as an empty string
+    then <em>window</em> is marked as not being a transient window any more.
+    Otherwise the command returns the path name of <em>window</em>\'s current
+    container, or an empty string if <em>window</em> is not currently a
+    transient window. A transient window will mirror state changes in
+    the container and inherit the state of the container when initially
+    mapped. The directed graph with an edge from each transient to its
+    container must be acyclic. In particular, it is an error to attempt
+    to make a window a transient of itself. The window manager may also
+    decorate a transient window differently, removing some features
+    normally present (e.g., minimize and maximize buttons) though this
+    is entirely at the discretion of the window manager.</p>
+<p><strong>wm withdraw </strong><em>window</em></p>
+<p>:   Arranges for <em>window</em> to be withdrawn from the screen. This causes
+    the window to be unmapped and forgotten about by the window manager.
+    If the window has never been mapped, then this command causes the
+    window to be mapped in the withdrawn state. Not all window managers
+    appear to know how to handle windows that are mapped in the
+    withdrawn state. Note: it sometimes seems to be necessary to
+    withdraw a window and then re-map it (e.g. with <strong>wm deiconify</strong>) to
+    get some window managers to pay attention to changes in window
+    attributes such as group.</p>
+<h1 id="geometry-management">GEOMETRY MANAGEMENT</h1>
+<p>By default a top-level window appears on the screen in its <em>natural
+size</em>, which is the one determined internally by its widgets and
+geometry managers. If the natural size of a top-level window changes,
+then the window\'s size changes to match. A top-level window can be
+given a size other than its natural size in two ways. First, the user
+can resize the window manually using the facilities of the window
+manager, such as resize handles. Second, the application can request a
+particular size for a top-level window using the <strong>wm geometry</strong>
+command. These two cases are handled identically by Tk; in either case,
+the requested size overrides the natural size. You can return the window
+to its natural by invoking <strong>wm geometry</strong> with an empty <em>geometry</em>
+string.</p>
+<p>Normally a top-level window can have any size from one pixel in each
+dimension up to the size of its screen. However, you can use the <strong>wm
+minsize</strong> and <strong>wm maxsize</strong> commands to limit the range of allowable
+sizes. The range set by <strong>wm minsize</strong> and <strong>wm maxsize</strong> applies to all
+forms of resizing, including the window\'s natural size as well as
+manual resizes and the <strong>wm geometry</strong> command. You can also use the
+command <strong>wm resizable</strong> to completely disable interactive resizing in
+one or both dimensions.</p>
+<p>The <strong>wm manage</strong> and <strong>wm forget</strong> commands may be used to perform
+undocking and docking of windows. After a widget is managed by <strong>wm
+manage</strong> command, all other <strong>wm</strong> subcommands may be used with the
+widget. Only widgets created using the toplevel command may have an
+attached menu via the <strong>-menu</strong> configure option. A toplevel widget may
+be used as a frame and managed with any of the other geometry managers
+after using the <strong>wm forget</strong> command. Any menu associated with a
+toplevel widget will be hidden when managed by another geometry
+managers. The menus will reappear once the window is managed by <strong>wm</strong>.
+All custom bindtags for widgets in a subtree that have their top-level
+widget changed via a <strong>wm manage</strong> or <strong>wm forget</strong> command, must be
+redone to adjust any top-level widget path in the bindtags. Bindtags
+that have not been customized do not have to be redone.</p>
+<h1 id="gridded-geometry-management">GRIDDED GEOMETRY MANAGEMENT</h1>
+<p>Gridded geometry management occurs when one of the widgets of an
+application supports a range of useful sizes. This occurs, for example,
+in a text editor where the scrollbars, menus, and other adornments are
+fixed in size but the edit widget can support any number of lines of
+text or characters per line. In this case, it is usually desirable to
+let the user specify the number of lines or characters-per-line, either
+with the <strong>wm geometry</strong> command or by interactively resizing the
+window. In the case of text, and in other interesting cases also, only
+discrete sizes of the window make sense, such as integral numbers of
+lines and characters-per-line; arbitrary pixel sizes are not useful.</p>
+<p>Gridded geometry management provides support for this kind of
+application. Tk (and the window manager) assume that there is a grid of
+some sort within the application and that the application should be
+resized in terms of <em>grid units</em> rather than pixels. Gridded geometry
+management is typically invoked by turning on the <strong>setGrid</strong> option for
+a widget; it can also be invoked with the <strong>wm grid</strong> command or by
+calling <strong>Tk_SetGrid</strong>. In each of these approaches the particular
+widget (or sometimes code in the application as a whole) specifies the
+relationship between integral grid sizes for the window and pixel sizes.
+To return to non-gridded geometry management, invoke <strong>wm grid</strong> with
+empty argument strings.</p>
+<p>When gridded geometry management is enabled then all the dimensions
+specified in <strong>wm minsize</strong>, <strong>wm maxsize</strong>, and <strong>wm geometry</strong>
+commands are treated as grid units rather than pixel units. Interactive
+resizing is also carried out in even numbers of grid units rather than
+pixels.</p>
+<h1 id="bugs">BUGS</h1>
+<p>Most existing window managers appear to have bugs that affect the
+operation of the <strong>wm</strong> command. For example, some changes will not take
+effect if the window is already active: the window will have to be
+withdrawn and de-iconified in order to make the change happen.</p>
+<h1 id="examples">EXAMPLES</h1>
+<p>A fixed-size window that says that it is fixed-size too:</p>
+<div class="language-text highlight"><pre><span></span><code>toplevel .fixed
+wm title     .fixed &quot;Fixed-size Window&quot;
+wm resizable .fixed 0 0
+</code></pre></div>
+<p>A simple dialog-like window, centred on the screen:</p>
+<div class="language-text highlight"><pre><span></span><code># Create and arrange the dialog contents.
+toplevel .msg
+label  .msg.l  -text &quot;This is a very simple dialog demo.&quot;
+button .msg.ok -text OK -default active -command {destroy .msg}
+pack .msg.ok -side bottom -fill x
+pack .msg.l  -expand 1    -fill both
+
+# Now set the widget up as a centred dialog.
+
+# But first, we need the geometry managers to finish setting
+# up the interior of the dialog, for which we need to run the
+# event loop with the widget hidden completely...
+wm withdraw .msg
+update
+set x [expr {([winfo screenwidth .]-[winfo width .msg])/2}]
+set y [expr {([winfo screenheight .]-[winfo height .msg])/2}]
+wm geometry  .msg +$x+$y
+wm transient .msg .
+wm title     .msg &quot;Dialog demo&quot;
+wm deiconify .msg
+</code></pre></div>
+<h1 id="see-also">SEE ALSO</h1>
+<p>toplevel(n), winfo(n)</p>
+<h1 id="keywords">KEYWORDS</h1>
+<p>aspect ratio, deiconify, focus model, geometry, grid, group, icon,
+iconify, increments, position, size, title, top-level window, units,
+window manager</p>
+
+<ul class="metadata page-metadata" data-bi-name="page info" lang="en-us" dir="ltr">
+  <li class="last-updated-holder displayDate loading">
+    <span class="last-updated-text">Last updated:</span>
+    <time role="presentation" datetime="2018-10-25T00:00:00.000Z" data-article-date-source="ms.date"></time>
+  </li>
+<!--
+  <li class="readingTime">
+    2 minutes to read
+  </li>
+-->
+  <li class="contributors-holder">
+    <span class="contributors-text">Contributors</span>
+    <ul class="contributors" data-bi-name="contributors"></ul>
+  </li>
+</ul>
+</div>
+        <div class="col-md-3"><div class="navbar-light navbar-expand-md hidden-print sticky-top sticky-offset" role="complementary">
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggler collapsed" data-toggle="collapse" data-target="#toc-collapse" title="Table of Contents">
+            <span class="fa fa-angle-down"></span>
+        </button>
+    </div>
+
+    <div id="toc-collapse" class="navbar-collapse collapse card">
+        <ul class="nav flex-column bs-sidenav">
+            <li class="nav-item main"><a class="nav-link" href="#name">NAME</a></li>
+            <li class="nav-item main"><a class="nav-link" href="#synopsis">SYNOPSIS</a></li>
+            <li class="nav-item main"><a class="nav-link" href="#description">DESCRIPTION</a></li>
+            <li class="nav-item main"><a class="nav-link" href="#geometry-management">GEOMETRY MANAGEMENT</a></li>
+            <li class="nav-item main"><a class="nav-link" href="#gridded-geometry-management">GRIDDED GEOMETRY MANAGEMENT</a></li>
+            <li class="nav-item main"><a class="nav-link" href="#bugs">BUGS</a></li>
+            <li class="nav-item main"><a class="nav-link" href="#examples">EXAMPLES</a></li>
+            <li class="nav-item main"><a class="nav-link" href="#see-also">SEE ALSO</a></li>
+            <li class="nav-item main"><a class="nav-link" href="#keywords">KEYWORDS</a></li>
+        </ul>
+    </div>
+</div></div>
+      </div>
+      </div>
+
+      <footer class="col-md-12">
+	<hr>
+	<div class="container">
+	</div>
+      </footer>
+      <script>
+	var base_url = "../..",
+            shortcuts = {"help": 191, "next": 78, "previous": 80, "search": 83};
+      </script>
+      <script src="../../js/base.js" defer></script>
+      <script src="../../search/main.js" defer></script>
+
+      <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="Search Modal" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Search</h4>
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            </div>
+            <div class="modal-body">
+                <p>
+                    From here you can search these documents. Enter
+                    your search terms below.
+                </p>
+                <form role="form">
+                    <div class="form-group">
+                        <input type="text" class="form-control" placeholder="Search..." id="mkdocs-search-query" title="Type search term here">
+                    </div>
+                </form>
+                <div id="mkdocs-search-results"></div>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div><div class="modal" id="mkdocs_keyboard_modal" tabindex="-1" role="dialog" aria-labelledby="Keyboard Shortcuts Modal" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <p class="h4 modal-title">Keyboard Shortcuts</p>
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            </div>
+            <div class="modal-body">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th style="width: 20%;">Keys</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="help shortcut"><kbd>?</kbd></td>
+                    <td>Open this help</td>
+                  </tr>
+                  <tr>
+                    <td class="next shortcut"><kbd>n</kbd></td>
+                    <td>Next page</td>
+                  </tr>
+                  <tr>
+                    <td class="prev shortcut"><kbd>p</kbd></td>
+                    <td>Previous page</td>
+                  </tr>
+                  <tr>
+                    <td class="search shortcut"><kbd>s</kbd></td>
+                    <td>Search</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>
+
+    </body>
+</html>

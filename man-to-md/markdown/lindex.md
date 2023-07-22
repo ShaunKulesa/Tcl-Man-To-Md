@@ -1,5 +1,3 @@
-\
-
 # NAME
 
 lindex - Retrieve an element from a list
@@ -7,8 +5,6 @@ lindex - Retrieve an element from a list
 # SYNOPSIS
 
 **lindex ***list ?index \...?*
-
-\
 
 # DESCRIPTION
 
@@ -99,3 +95,10 @@ lsort(n), lrange(n), lreplace(n), string(n)
 # KEYWORDS
 
 element, index, list
+
+<!---
+Copyright (c) 1993 The Regents of the University of California
+Copyright (c) 1994-1996 Sun Microsystems, Inc
+Copyright (c) 2001 Kevin B. Kenny <kennykb@acm.org>.  All rights reserved
+-->
+

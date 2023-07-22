@@ -1,5 +1,3 @@
-\
-
 # NAME
 
 Tcl_LimitAddHandler, Tcl_LimitCheck, Tcl_LimitExceeded,
@@ -11,52 +9,38 @@ check resource limits on interpreters
 
 # SYNOPSIS
 
-    #include <tcl.h>
+**#include \<tcl.h\>**
 
-    int
-    Tcl_LimitCheck(interp)
+int **Tcl_LimitCheck**(*interp*)
 
-    int
-    Tcl_LimitReady(interp)
+int **Tcl_LimitReady**(*interp*)
 
-    int
-    Tcl_LimitExceeded(interp)
+int **Tcl_LimitExceeded**(*interp*)
 
-    int
-    Tcl_LimitTypeExceeded(interp, type)
+int **Tcl_LimitTypeExceeded**(*interp, type*)
 
-    int
-    Tcl_LimitTypeEnabled(interp, type)
+int **Tcl_LimitTypeEnabled**(*interp, type*)
 
-    void
-    Tcl_LimitTypeSet(interp, type)
+void **Tcl_LimitTypeSet**(*interp, type*)
 
-    void
-    Tcl_LimitTypeReset(interp, type)
+void **Tcl_LimitTypeReset**(*interp, type*)
 
-    int
-    Tcl_LimitGetCommands(interp)
+int **Tcl_LimitGetCommands**(*interp*)
 
-    void
-    Tcl_LimitSetCommands(interp, commandLimit)
+void **Tcl_LimitSetCommands**(*interp, commandLimit*)
 
-    void
-    Tcl_LimitGetTime(interp, timeLimitPtr)
+void **Tcl_LimitGetTime**(*interp, timeLimitPtr*)
 
-    void
-    Tcl_LimitSetTime(interp, timeLimitPtr)
+void **Tcl_LimitSetTime**(*interp, timeLimitPtr*)
 
-    int
-    Tcl_LimitGetGranularity(interp, type)
+int **Tcl_LimitGetGranularity**(*interp, type*)
 
-    void
-    Tcl_LimitSetGranularity(interp, type, granularity)
+void **Tcl_LimitSetGranularity**(*interp, type, granularity*)
 
-    void
-    Tcl_LimitAddHandler(interp, type, handlerProc, clientData, deleteProc)
+void **Tcl_LimitAddHandler**(*interp, type, handlerProc, clientData,
+deleteProc*)
 
-    void
-    Tcl_LimitRemoveHandler(interp, type, handlerProc, clientData)
+void **Tcl_LimitRemoveHandler**(*interp, type, handlerProc, clientData*)
 
 # ARGUMENTS
 
@@ -88,8 +72,6 @@ Arbitrary pointer-sized word used to pass some context to the
 
 Function to call whenever a handler is deleted. May be NULL if the
 *clientData* requires no deletion.
-
-\
 
 # DESCRIPTION
 
@@ -190,3 +172,8 @@ or **TCL_STATIC**).
 # KEYWORDS
 
 interpreter, resource, limit, commands, time, callback
+
+<!---
+Copyright (c) 2004 Donal K. Fellow
+-->
+

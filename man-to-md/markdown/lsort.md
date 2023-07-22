@@ -1,5 +1,3 @@
-\
-
 # NAME
 
 lsort - Sort the elements of a list
@@ -7,8 +5,6 @@ lsort - Sort the elements of a list
 # SYNOPSIS
 
 **lsort **?*options*? *list*
-
-\
 
 # DESCRIPTION
 
@@ -223,3 +219,11 @@ lset(n), lrange(n), lreplace(n)
 # KEYWORDS
 
 element, list, order, sort
+
+<!---
+Copyright (c) 1993 The Regents of the University of California
+Copyright (c) 1994-1996 Sun Microsystems, Inc
+Copyright (c) 1999 Scriptics Corporatio
+Copyright (c) 2001 Kevin B. Kenny <kennykb@acm.org>.  All rights reserved
+-->
+

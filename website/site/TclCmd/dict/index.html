@@ -1,0 +1,552 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+      <script>
+	// Hack for scrolling window when linking to anchor tag with fixed nav header
+        var shiftWindow = function() { scrollBy(0, -75) };
+        window.addEventListener("hashchange", shiftWindow);
+        function load() { if (window.location.hash) shiftWindow(); }
+      </script>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        
+        <link rel="canonical" href="https://www.tcl.tk/man/TclCmd/dict/">
+        <link rel="shortcut icon" href="../../img/favicon.ico">
+        <title>Dict - Tcl/Tk</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <link href="../../css/font-awesome.min.css" rel="stylesheet">
+    <link href="../../css/base.css" rel="stylesheet">
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+    <script src="../../js/base.js"></script> 
+    </head>
+
+    <body class="">
+
+      <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
+	<div class="container">
+	<a class="navbar-brand" href="../..">Tcl/Tk</a>
+	<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExample04" aria-controls="navbarsExample04" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+	</button>
+
+	<div class="collapse navbar-collapse">
+
+          <ul class="navbar-nav flex-row ml-md-auto d-none d-md-flex">
+            <li class="nav-item">
+              <a class="nav-link" href="#" data-toggle="modal" data-target="#mkdocs_search_modal">
+		<i class="fa fa-search"></i> Search
+              </a>
+            </li>
+          </ul>
+	</div>
+	</div>
+      </nav><div id="content" class="container">
+        
+      <div class="row">
+        <div class="col-md-9" role="main">
+
+
+<nav aria-label="breadcrumb">
+  <ol class="breadcrumb">
+    
+    <li class="breadcrumb-item active" aria-current="page">Dict</li>
+  </ol>
+</nav>
+
+
+<p>\</p>
+<h1 id="name">NAME</h1>
+<p>dict - Manipulate dictionaries</p>
+<h1 id="synopsis">SYNOPSIS</h1>
+<p><strong>dict </strong><em>option arg </em>?<em>arg ...</em>?</p>
+<p>\</p>
+<h1 id="description">DESCRIPTION</h1>
+<p>Performs one of several operations on dictionary values or variables
+containing dictionary values (see the <strong>DICTIONARY VALUES</strong> section
+below for a description), depending on <em>option</em>. The legal <em>option</em>s
+(which may be abbreviated) are:</p>
+<p><strong>dict append </strong><em>dictionaryVariable key </em>?<em>string ...</em>?</p>
+<p>:   This appends the given string (or strings) to the value that the
+    given key maps to in the dictionary value contained in the given
+    variable, writing the resulting dictionary value back to that
+    variable. Non-existent keys are treated as if they map to an empty
+    string. The updated dictionary value is returned.</p>
+<p><strong>dict create </strong>?<em>key value ...</em>?</p>
+<p>:   Return a new dictionary that contains each of the key/value mappings
+    listed as arguments (keys and values alternating, with each key
+    being followed by its associated value.)</p>
+<p><strong>dict exists </strong><em>dictionaryValue key </em>?<em>key ...</em>?</p>
+<p>:   This returns a boolean value indicating whether the given key (or
+    path of keys through a set of nested dictionaries) exists in the
+    given dictionary value. This returns a true value exactly when
+    <strong>dict</strong> get on that path will succeed.</p>
+<p><strong>dict filter </strong><em>dictionaryValue filterType arg </em>?<em>arg ...</em>?</p>
+<p>:   This takes a dictionary value and returns a new dictionary that
+    contains just those key/value pairs that match the specified filter
+    type (which may be abbreviated.) Supported filter types are:</p>
+<div class="language-text highlight"><pre><span></span><code>**dict filter ***dictionaryValue ***key** ?*globPattern \...*?
+
+:
+
+The key rule only matches those key/value pairs whose keys match any
+of the given patterns (in the style of **string match**.)
+
+**dict filter ***dictionaryValue ***script {***keyVariable valueVariable***} ***script*
+
+:   The script rule tests for matching by assigning the key to the
+    *keyVariable* and the value to the *valueVariable*, and then
+    evaluating the given script which should result in a boolean
+    value (with the key/value pair only being included in the result
+    of the **dict** filter when a true value is returned.) Note that
+    the first argument after the rule selection word is a
+    two-element list. If the *script* returns with a condition of
+    **TCL_BREAK**, no further key/value pairs are considered for
+    inclusion in the resulting dictionary, and a condition of
+    **TCL_CONTINUE** is equivalent to a false result. The key/value
+    pairs are tested in the order in which the keys were inserted
+    into the dictionary.
+
+**dict filter ***dictionaryValue ***value **?*globPattern \...*?
+
+:
+
+The value rule only matches those key/value pairs whose values match
+any of the given patterns (in the style of **string match**.)
+</code></pre></div>
+<p><strong>dict for {</strong><em>keyVariable valueVariable</em><strong>} </strong><em>dictionaryValue body</em></p>
+<p>:   This command takes three arguments, the first a two-element list of
+    variable names (for the key and value respectively of each mapping
+    in the dictionary), the second the dictionary value to iterate
+    across, and the third a script to be evaluated for each mapping with
+    the key and value variables set appropriately (in the manner of
+    <strong>foreach</strong>.) The result of the command is an empty string. If any
+    evaluation of the body generates a <strong>TCL_BREAK</strong> result, no further
+    pairs from the dictionary will be iterated over and the <strong>dict for</strong>
+    command will terminate successfully immediately. If any evaluation
+    of the body generates a <strong>TCL_CONTINUE</strong> result, this shall be
+    treated exactly like a normal <strong>TCL_OK</strong> result. The order of
+    iteration is the order in which the keys were inserted into the
+    dictionary.</p>
+<p><strong>dict get </strong><em>dictionaryValue </em>?<em>key ...</em>?</p>
+<p>:   Given a dictionary value (first argument) and a key (second
+    argument), this will retrieve the value for that key. Where several
+    keys are supplied, the behaviour of the command shall be as if the
+    result of <strong>dict get \$dictVal \$key</strong> was passed as the first
+    argument to <strong>dict get</strong> with the remaining arguments as second (and
+    possibly subsequent) arguments. This facilitates lookups in nested
+    dictionaries. For example, the following two commands are
+    equivalent:</p>
+<div class="language-text highlight"><pre><span></span><code>    dict get $dict foo bar spong
+    dict get [dict get [dict get $dict foo] bar] spong
+
+If no keys are provided, **dict get** will return a list containing
+pairs of elements in a manner similar to **array get**. That is, the
+first element of each pair would be the key and the second element
+would be the value for that key.
+
+It is an error to attempt to retrieve a value for a key that is not
+present in the dictionary.
+</code></pre></div>
+<p><strong>dict incr </strong><em>dictionaryVariable key </em>?<em>increment</em>?</p>
+<p>:   This adds the given increment value (an integer that defaults to 1
+    if not specified) to the value that the given key maps to in the
+    dictionary value contained in the given variable, writing the
+    resulting dictionary value back to that variable. Non-existent keys
+    are treated as if they map to 0. It is an error to increment a value
+    for an existing key if that value is not an integer. The updated
+    dictionary value is returned.</p>
+<p><strong>dict info </strong><em>dictionaryValue</em></p>
+<p>:   This returns information (intended for display to people) about the
+    given dictionary though the format of this data is dependent on the
+    implementation of the dictionary. For dictionaries that are
+    implemented by hash tables, it is expected that this will return the
+    string produced by <strong>Tcl_HashStats</strong>, similar to <strong>array
+    statistics</strong>.</p>
+<p><strong>dict keys </strong><em>dictionaryValue </em>?<em>globPattern</em>?</p>
+<p>:   Return a list of all keys in the given dictionary value. If a
+    pattern is supplied, only those keys that match it (according to the
+    rules of <strong>string match</strong>) will be returned. The returned keys will
+    be in the order that they were inserted into the dictionary.</p>
+<p><strong>dict lappend </strong><em>dictionaryVariable key </em>?<em>value ...</em>?</p>
+<p>:   This appends the given items to the list value that the given key
+    maps to in the dictionary value contained in the given variable,
+    writing the resulting dictionary value back to that variable.
+    Non-existent keys are treated as if they map to an empty list, and
+    it is legal for there to be no items to append to the list. It is an
+    error for the value that the key maps to to not be representable as
+    a list. The updated dictionary value is returned.</p>
+<p><strong>dict map </strong>{<em>keyVariable valueVariable</em>} <em>dictionaryValue body</em></p>
+<p>:   This command applies a transformation to each element of a
+    dictionary, returning a new dictionary. It takes three arguments:
+    the first is a two-element list of variable names (for the key and
+    value respectively of each mapping in the dictionary), the second
+    the dictionary value to iterate across, and the third a script to be
+    evaluated for each mapping with the key and value variables set
+    appropriately (in the manner of <strong>lmap</strong>). In an iteration where the
+    evaluated script completes normally (<strong>TCL_OK</strong>, as opposed to an
+    <strong>error</strong>, etc.) the result of the script is put into an accumulator
+    dictionary using the key that is the current contents of the
+    <em>keyVariable</em> variable at that point. The result of the <strong>dict map</strong>
+    command is the accumulator dictionary after all keys have been
+    iterated over.</p>
+<div class="language-text highlight"><pre><span></span><code>If the evaluation of the body for any particular step generates a
+**break**, no further pairs from the dictionary will be iterated
+over and the **dict** map command will terminate successfully
+immediately. If the evaluation of the body for a particular step
+generates a **continue** result, the current iteration is aborted
+and the accumulator dictionary is not modified. The order of
+iteration is the natural order of the dictionary (typically the
+order in which the keys were added to the dictionary; the order is
+the same as that used in **dict for**).
+</code></pre></div>
+<p><strong>dict merge </strong>?<em>dictionaryValue ...</em>?</p>
+<p>:   Return a dictionary that contains the contents of each of the
+    <em>dictionaryValue</em> arguments. Where two (or more) dictionaries
+    contain a mapping for the same key, the resulting dictionary maps
+    that key to the value according to the last dictionary on the
+    command line containing a mapping for that key.</p>
+<p><strong>dict remove </strong><em>dictionaryValue </em>?<em>key ...</em>?</p>
+<p>:   Return a new dictionary that is a copy of an old one passed in as
+    first argument except without mappings for each of the keys listed.
+    It is legal for there to be no keys to remove, and it also legal for
+    any of the keys to be removed to not be present in the input
+    dictionary in the first place.</p>
+<p><strong>dict replace </strong><em>dictionaryValue </em>?<em>key value ...</em>?</p>
+<p>:   Return a new dictionary that is a copy of an old one passed in as
+    first argument except with some values different or some extra
+    key/value pairs added. It is legal for this command to be called
+    with no key/value pairs, but illegal for this command to be called
+    with a key but no value.</p>
+<p><strong>dict set </strong><em>dictionaryVariable key </em>?<em>key ...</em>? <em>value</em></p>
+<p>:   This operation takes the name of a variable containing a dictionary
+    value and places an updated dictionary value in that variable
+    containing a mapping from the given key to the given value. When
+    multiple keys are present, this operation creates or updates a chain
+    of nested dictionaries. The updated dictionary value is returned.</p>
+<p><strong>dict size </strong><em>dictionaryValue</em></p>
+<p>:   Return the number of key/value mappings in the given dictionary
+    value.</p>
+<p><strong>dict unset </strong><em>dictionaryVariable key </em>?<em>key ...</em>?</p>
+<p>:   This operation (the companion to <strong>dict set</strong>) takes the name of a
+    variable containing a dictionary value and places an updated
+    dictionary value in that variable that does not contain a mapping
+    for the given key. Where multiple keys are present, this describes a
+    path through nested dictionaries to the mapping to remove. At least
+    one key must be specified, but the last key on the key-path need not
+    exist. All other components on the path must exist. The updated
+    dictionary value is returned.</p>
+<p><strong>dict update </strong><em>dictionaryVariable key varName </em>?<em>key varName ...</em>? <em>body</em></p>
+<p>:   Execute the Tcl script in <em>body</em> with the value for each <em>key</em> (as
+    found by reading the dictionary value in <em>dictionaryVariable</em>)
+    mapped to the variable <em>varName</em>. There may be multiple
+    <em>key</em>/<em>varName</em> pairs. If a <em>key</em> does not have a mapping, that
+    corresponds to an unset <em>varName</em>. When <em>body</em> terminates, any
+    changes made to the <em>varName</em>s is reflected back to the dictionary
+    within <em>dictionaryVariable</em> (unless <em>dictionaryVariable</em> itself
+    becomes unreadable, when all updates are silently discarded), even
+    if the result of <em>body</em> is an error or some other kind of
+    exceptional exit. The result of <strong>dict</strong> update is (unless some kind
+    of error occurs) the result of the evaluation of <em>body</em>.</p>
+<div class="language-text highlight"><pre><span></span><code>Each *varName* is mapped in the scope enclosing the **dict update**;
+it is recommended that this command only be used in a local scope
+(**proc**edure, lambda term for **apply**, or method). Because of
+this, the variables set by **dict update** will continue to exist
+after the command finishes (unless explicitly **unset**). Note that
+the mapping of values to variables does not use traces; changes to
+the *dictionaryVariable*\&#39;s contents only happen when *body*
+terminates.
+</code></pre></div>
+<p><strong>dict values </strong><em>dictionaryValue </em>?<em>globPattern</em>?</p>
+<p>:   Return a list of all values in the given dictionary value. If a
+    pattern is supplied, only those values that match it (according to
+    the rules of <strong>string match</strong>) will be returned. The returned values
+    will be in the order of that the keys associated with those values
+    were inserted into the dictionary.</p>
+<p><strong>dict with </strong><em>dictionaryVariable </em>?<em>key ...</em>? <em>body</em></p>
+<p>:   Execute the Tcl script in <em>body</em> with the value for each key in
+    <em>dictionaryVariable</em> mapped (in a manner similarly to <strong>dict</strong>
+    update) to a variable with the same name. Where one or more <em>key</em>s
+    are available, these indicate a chain of nested dictionaries, with
+    the innermost dictionary being the one opened out for the execution
+    of <em>body</em>. As with <strong>dict update</strong>, making <em>dictionaryVariable</em>
+    unreadable will make the updates to the dictionary be discarded, and
+    this also happens if the contents of <em>dictionaryVariable</em> are
+    adjusted so that the chain of dictionaries no longer exists. The
+    result of <strong>dict with</strong> is (unless some kind of error occurs) the
+    result of the evaluation of <em>body</em>.</p>
+<div class="language-text highlight"><pre><span></span><code>The variables are mapped in the scope enclosing the **dict with**;
+it is recommended that this command only be used in a local scope
+(**proc**edure, lambda term for **apply**, or method). Because of
+this, the variables set by **dict with** will continue to exist
+after the command finishes (unless explicitly **unset**). Note that
+the mapping of values to variables does not use traces; changes to
+the *dictionaryVariable*\&#39;s contents only happen when *body*
+terminates.
+
+If the *dictionaryVariable* contains a value that is not a
+dictionary at the point when the *body* terminates (which can easily
+happen if the name is the same as any of the keys in dictionary)
+then an error occurs at that point. This command is thus not
+recommended for use when the keys in the dictionary are expected to
+clash with the *dictionaryVariable* name itself. Where the contained
+key does map to a dictionary, the net effect is to combine that
+inner dictionary into the outer dictionary; see the **EXAMPLES**
+below for an illustration of this.
+</code></pre></div>
+<h1 id="dictionary-values">DICTIONARY VALUES</h1>
+<p>Dictionaries are values that contain an efficient, order-preserving
+mapping from arbitrary keys to arbitrary values. Each key in the
+dictionary maps to a single value. They have a textual format that is
+exactly that of any list with an even number of elements, with each
+mapping in the dictionary being represented as two items in the list.
+When a command takes a dictionary and produces a new dictionary based on
+it (either returning it or writing it back into the variable that the
+starting dictionary was read from) the new dictionary will have the same
+order of keys, modulo any deleted keys and with new keys added on to the
+end. When a string is interpreted as a dictionary and it would otherwise
+have duplicate keys, only the last value for a particular key is used;
+the others are ignored, meaning that, and are equivalent dictionaries
+(with different string representations).</p>
+<p>Operations that derive a new dictionary from an old one (e.g., updates
+like <strong>dict set</strong> and <strong>dict unset</strong>) preserve the order of keys in the
+dictionary. The exceptions to this are for any new keys they add, which
+are appended to the sequence, and any keys that are removed, which are
+excised from the order.</p>
+<h1 id="examples">EXAMPLES</h1>
+<p>Basic dictionary usage:</p>
+<div class="language-text highlight"><pre><span></span><code># Make a dictionary to map extensions to descriptions
+set filetypes [dict create .txt &quot;Text File&quot; .tcl &quot;Tcl File&quot;]
+
+# Add/update the dictionary
+dict set filetypes .tcl &quot;Tcl Script&quot;
+dict set filetypes .tm  &quot;Tcl Module&quot;
+dict set filetypes .gif &quot;GIF Image&quot;
+dict set filetypes .png &quot;PNG Image&quot;
+
+# Simple read from the dictionary
+set ext &quot;.tcl&quot;
+set desc [dict get $filetypes $ext]
+puts &quot;$ext is for a $desc&quot;
+
+# Somewhat more complex, with existence test
+foreach filename [glob *] {
+    set ext [file extension $filename]
+    if {[dict exists $filetypes $ext]} {
+        puts &quot;$filename is a [dict get $filetypes $ext]&quot;
+    }
+}
+</code></pre></div>
+<p>Constructing and using nested dictionaries:</p>
+<div class="language-text highlight"><pre><span></span><code># Data for one employee
+dict set employeeInfo 12345-A forenames &quot;Joe&quot;
+dict set employeeInfo 12345-A surname   &quot;Schmoe&quot;
+dict set employeeInfo 12345-A street &quot;147 Short Street&quot;
+dict set employeeInfo 12345-A city   &quot;Springfield&quot;
+dict set employeeInfo 12345-A phone  &quot;555-1234&quot;
+# Data for another employee
+dict set employeeInfo 98372-J forenames &quot;Anne&quot;
+dict set employeeInfo 98372-J surname   &quot;Other&quot;
+dict set employeeInfo 98372-J street &quot;32995 Oakdale Way&quot;
+dict set employeeInfo 98372-J city   &quot;Springfield&quot;
+dict set employeeInfo 98372-J phone  &quot;555-8765&quot;
+# The above data probably ought to come from a database...
+
+# Print out some employee info
+set i 0
+puts &quot;There are [dict size $employeeInfo] employees&quot;
+dict for {id info} $employeeInfo {
+    puts &quot;Employee #[incr i]: $id&quot;
+    dict with info {
+        puts &quot;   Name: $forenames $surname&quot;
+        puts &quot;   Address: $street, $city&quot;
+        puts &quot;   Telephone: $phone&quot;
+    }
+}
+# Another way to iterate and pick out names...
+foreach id [dict keys $employeeInfo] {
+    puts &quot;Hello, [dict get $employeeInfo $id forenames]!&quot;
+}
+</code></pre></div>
+<p>A localizable version of <strong>string toupper</strong>:</p>
+<div class="language-text highlight"><pre><span></span><code># Set up the basic C locale
+set capital [dict create C [dict create]]
+foreach c [split {abcdefghijklmnopqrstuvwxyz} &quot;&quot;] {
+    dict set capital C $c [string toupper $c]
+}
+
+# English locales can luckily share the &quot;C&quot; locale
+dict set capital en [dict get $capital C]
+dict set capital en_US [dict get $capital C]
+dict set capital en_GB [dict get $capital C]
+
+# ... and so on for other supported languages ...
+
+# Now get the mapping for the current locale and use it.
+set upperCaseMap [dict get $capital $env(LANG)]
+set upperCase [string map $upperCaseMap $string]
+</code></pre></div>
+<p>Showing the detail of <strong>dict with</strong>:</p>
+<div class="language-text highlight"><pre><span></span><code>proc sumDictionary {varName} {
+    upvar 1 $varName vbl
+    foreach key [dict keys $vbl] {
+        # Manufacture an entry in the subdictionary
+        dict set vbl $key total 0
+        # Add the values and remove the old
+        dict with vbl $key {
+            set total [expr {$x + $y + $z}]
+            unset x y z
+        }
+    }
+    puts &quot;last total was $total, for key $key&quot;
+}
+
+set myDict {
+    a {x 1 y 2 z 3}
+    b {x 6 y 5 z 4}
+}
+
+sumDictionary myDict
+#    prints: last total was 15, for key b
+
+puts &quot;dictionary is now \&quot;$myDict\&quot;&quot;
+#    prints: dictionary is now &quot;a {total 6} b {total 15}&quot;
+</code></pre></div>
+<p>When <strong>dict with</strong> is used with a key that clashes with the name of the
+dictionary variable:</p>
+<div class="language-text highlight"><pre><span></span><code>set foo {foo {a b} bar 2 baz 3}
+dict with foo {}
+puts $foo
+#    prints: a b foo {a b} bar 2 baz 3
+</code></pre></div>
+<h1 id="see-also">SEE ALSO</h1>
+<p>append(n), array(n), foreach(n), incr(n), list(n), lappend(n), lmap(n),
+set(n)</p>
+<h1 id="keywords">KEYWORDS</h1>
+<p>dictionary, create, update, lookup, iterate, filter, map</p>
+
+<ul class="metadata page-metadata" data-bi-name="page info" lang="en-us" dir="ltr">
+  <li class="last-updated-holder displayDate loading">
+    <span class="last-updated-text">Last updated:</span>
+    <time role="presentation" datetime="2018-10-25T00:00:00.000Z" data-article-date-source="ms.date"></time>
+  </li>
+<!--
+  <li class="readingTime">
+    2 minutes to read
+  </li>
+-->
+  <li class="contributors-holder">
+    <span class="contributors-text">Contributors</span>
+    <ul class="contributors" data-bi-name="contributors"></ul>
+  </li>
+</ul>
+</div>
+        <div class="col-md-3"><div class="navbar-light navbar-expand-md hidden-print sticky-top sticky-offset" role="complementary">
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggler collapsed" data-toggle="collapse" data-target="#toc-collapse" title="Table of Contents">
+            <span class="fa fa-angle-down"></span>
+        </button>
+    </div>
+
+    <div id="toc-collapse" class="navbar-collapse collapse card">
+        <ul class="nav flex-column bs-sidenav">
+            <li class="nav-item main"><a class="nav-link" href="#name">NAME</a></li>
+            <li class="nav-item main"><a class="nav-link" href="#synopsis">SYNOPSIS</a></li>
+            <li class="nav-item main"><a class="nav-link" href="#description">DESCRIPTION</a></li>
+            <li class="nav-item main"><a class="nav-link" href="#dictionary-values">DICTIONARY VALUES</a></li>
+            <li class="nav-item main"><a class="nav-link" href="#examples">EXAMPLES</a></li>
+            <li class="nav-item main"><a class="nav-link" href="#see-also">SEE ALSO</a></li>
+            <li class="nav-item main"><a class="nav-link" href="#keywords">KEYWORDS</a></li>
+        </ul>
+    </div>
+</div></div>
+      </div>
+      </div>
+
+      <footer class="col-md-12">
+	<hr>
+	<div class="container">
+	</div>
+      </footer>
+      <script>
+	var base_url = "../..",
+            shortcuts = {"help": 191, "next": 78, "previous": 80, "search": 83};
+      </script>
+      <script src="../../js/base.js" defer></script>
+      <script src="../../search/main.js" defer></script>
+
+      <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="Search Modal" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Search</h4>
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            </div>
+            <div class="modal-body">
+                <p>
+                    From here you can search these documents. Enter
+                    your search terms below.
+                </p>
+                <form role="form">
+                    <div class="form-group">
+                        <input type="text" class="form-control" placeholder="Search..." id="mkdocs-search-query" title="Type search term here">
+                    </div>
+                </form>
+                <div id="mkdocs-search-results"></div>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div><div class="modal" id="mkdocs_keyboard_modal" tabindex="-1" role="dialog" aria-labelledby="Keyboard Shortcuts Modal" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <p class="h4 modal-title">Keyboard Shortcuts</p>
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            </div>
+            <div class="modal-body">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th style="width: 20%;">Keys</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="help shortcut"><kbd>?</kbd></td>
+                    <td>Open this help</td>
+                  </tr>
+                  <tr>
+                    <td class="next shortcut"><kbd>n</kbd></td>
+                    <td>Next page</td>
+                  </tr>
+                  <tr>
+                    <td class="prev shortcut"><kbd>p</kbd></td>
+                    <td>Previous page</td>
+                  </tr>
+                  <tr>
+                    <td class="search shortcut"><kbd>s</kbd></td>
+                    <td>Search</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>
+
+    </body>
+</html>

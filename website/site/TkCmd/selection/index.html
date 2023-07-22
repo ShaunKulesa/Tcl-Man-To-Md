@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+      <script>
+	// Hack for scrolling window when linking to anchor tag with fixed nav header
+        var shiftWindow = function() { scrollBy(0, -75) };
+        window.addEventListener("hashchange", shiftWindow);
+        function load() { if (window.location.hash) shiftWindow(); }
+      </script>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        
+        <link rel="canonical" href="https://www.tcl.tk/man/TkCmd/selection/">
+        <link rel="shortcut icon" href="../../img/favicon.ico">
+        <title>Selection - Tcl/Tk</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <link href="../../css/font-awesome.min.css" rel="stylesheet">
+    <link href="../../css/base.css" rel="stylesheet">
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+    <script src="../../js/base.js"></script> 
+    </head>
+
+    <body class="">
+
+      <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
+	<div class="container">
+	<a class="navbar-brand" href="../..">Tcl/Tk</a>
+	<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExample04" aria-controls="navbarsExample04" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+	</button>
+
+	<div class="collapse navbar-collapse">
+
+          <ul class="navbar-nav flex-row ml-md-auto d-none d-md-flex">
+            <li class="nav-item">
+              <a class="nav-link" href="#" data-toggle="modal" data-target="#mkdocs_search_modal">
+		<i class="fa fa-search"></i> Search
+              </a>
+            </li>
+          </ul>
+	</div>
+	</div>
+      </nav><div id="content" class="container">
+        
+      <div class="row">
+        <div class="col-md-9" role="main">
+
+
+<nav aria-label="breadcrumb">
+  <ol class="breadcrumb">
+    
+    <li class="breadcrumb-item active" aria-current="page">Selection</li>
+  </ol>
+</nav>
+
+
+<p>\</p>
+<h1 id="name">NAME</h1>
+<p>selection - Manipulate the X selection</p>
+<h1 id="synopsis">SYNOPSIS</h1>
+<p><strong>selection </strong><em>option</em> ?<em>arg arg ...</em>?</p>
+<p>\</p>
+<h1 id="description">DESCRIPTION</h1>
+<p>This command provides a Tcl interface to the X selection mechanism and
+implements the full selection functionality described in the X
+Inter-Client Communication Conventions Manual (ICCCM).</p>
+<p>Note that for management of the <strong>CLIPBOARD</strong> selection (see below), the
+<strong>clipboard</strong> command may also be used.</p>
+<p>The first argument to <strong>selection</strong> determines the format of the rest of
+the arguments and the behavior of the command. The following forms are
+currently supported:</p>
+<p><strong>selection clear</strong> ?<strong>-displayof</strong> <em>window</em>? ?<strong>-selection</strong> <em>selection</em>?</p>
+<p>:   If <em>selection</em> exists anywhere on <em>window</em>\'s display, clear it so
+    that no window owns the selection anymore. <em>Selection</em> specifies the
+    X selection that should be cleared, and should be an atom name such
+    as <strong>PRIMARY</strong> or <strong>CLIPBOARD</strong>; see the Inter-Client Communication
+    Conventions Manual for complete details. <em>Selection</em> defaults to
+    <strong>PRIMARY</strong> and <em>window</em> defaults to Returns an empty string.</p>
+<p><strong>selection get</strong> ?<strong>-displayof</strong> <em>window</em>? ?<strong>-selection</strong> <em>selection</em>? ?<strong>-type</strong> <em>type</em>?</p>
+<p>:   Retrieves the value of <em>selection</em> from <em>window</em>\'s display and
+    returns it as a result. <em>Selection</em> defaults to <strong>PRIMARY</strong> and
+    <em>window</em> defaults to <em>Type</em> specifies the form in which the
+    selection is to be returned (the desired for conversion, in ICCCM
+    terminology), and should be an atom name such as <strong>STRING</strong> or
+    <strong>FILE_NAME</strong>; see the Inter-Client Communication Conventions Manual
+    for complete details. <em>Type</em> defaults to <strong>STRING</strong>. The selection
+    owner may choose to return the selection in any of several different
+    representation formats, such as <strong>STRING</strong>, <strong>UTF8_STRING</strong>,
+    <strong>ATOM</strong>, <strong>INTEGER</strong>, etc. (this format is different than the
+    selection type; see the ICCCM for all the confusing details). If the
+    selection is returned in a non-string format, such as <strong>INTEGER</strong> or
+    <strong>ATOM</strong>, the <strong>selection</strong> command converts it to string format as
+    a collection of fields separated by spaces: atoms are converted to
+    their textual names, and anything else is converted to hexadecimal
+    integers. Note that <strong>selection get</strong> does not retrieve the
+    selection in the <strong>UTF8_STRING</strong> format unless told to.</p>
+<p><strong>selection handle</strong> ?<strong>-selection</strong> <em>s</em>? ?<strong>-type</strong> <em>t</em>? ?<strong>-format</strong> <em>f</em>? <em>window command</em></p>
+<p>:   Creates a handler for selection requests, such that <em>command</em> will
+    be executed whenever selection <em>s</em> is owned by <em>window</em> and someone
+    attempts to retrieve it in the form given by type <em>t</em> (e.g. <em>t</em> is
+    specified in the <strong>selection get</strong> command). <em>S</em> defaults to
+    <strong>PRIMARY</strong>, <em>t</em> defaults to <strong>STRING</strong>, and <em>f</em> defaults to
+    <strong>STRING</strong>. If <em>command</em> is an empty string then any existing
+    handler for <em>window</em>, <em>t</em>, and <em>s</em> is removed. Note that when the
+    selection is handled as type <strong>STRING</strong> it is also automatically
+    handled as type <strong>UTF8_STRING</strong> as well.</p>
+<div class="language-text highlight"><pre><span></span><code>When *selection* is requested, *window* is the selection owner, and
+*type* is the requested type, *command* will be executed as a Tcl
+command with two additional numbers appended to it (with space
+separators). The two additional numbers are *offset* and *maxChars*:
+*offset* specifies a starting character position in the selection
+and *maxChars* gives the maximum number of characters to retrieve.
+The command should return a value consisting of at most *maxChars*
+of the selection, starting at position *offset*. For very large
+selections (larger than *maxChars*) the selection will be retrieved
+using several invocations of *command* with increasing *offset*
+values. If *command* returns a string whose length is less than
+*maxChars*, the return value is assumed to include all of the
+remainder of the selection; if the length of *command*\&#39;s result is
+equal to *maxChars* then *command* will be invoked again, until it
+eventually returns a result shorter than *maxChars*. The value of
+*maxChars* will always be relatively large (thousands of
+characters).
+
+If *command* returns an error then the selection retrieval is
+rejected just as if the selection did not exist at all.
+
+The *format* argument specifies the representation that should be
+used to transmit the selection to the requester (the second column
+of Table 2 of the ICCCM), and defaults to **STRING**. If *format* is
+**STRING**, the selection is transmitted as 8-bit ASCII characters
+(i.e. just in the form returned by *command*, in the system
+**encoding**; the **UTF8_STRING** format always uses UTF-8 as its
+encoding). If *format* is **ATOM**, then the return value from
+*command* is divided into fields separated by white space; each
+field is converted to its atom value, and the 32-bit atom value is
+transmitted instead of the atom name. For any other *format*, the
+return value from *command* is divided into fields separated by
+white space and each field is converted to a 32-bit integer; an
+array of integers is transmitted to the selection requester.
+
+The *format* argument is needed only for compatibility with
+selection requesters that do not use Tk. If Tk is being used to
+retrieve the selection then the value is converted back to a string
+at the requesting end, so *format* is irrelevant.
+</code></pre></div>
+<p><strong>selection own</strong> ?<strong>-displayof</strong> <em>window</em>? ?<strong>-selection</strong> <em>selection</em>?</p>
+<p>:   </p>
+<p><strong>selection own</strong> ?<strong>-command</strong> <em>command</em>? ?<strong>-selection</strong> <em>selection</em>? <em>window</em></p>
+<p>:   The first form of <strong>selection own</strong> returns the path name of the
+    window in this application that owns <em>selection</em> on the display
+    containing <em>window</em>, or an empty string if no window in this
+    application owns the selection. <em>Selection</em> defaults to <strong>PRIMARY</strong>
+    and <em>window</em> defaults to</p>
+<div class="language-text highlight"><pre><span></span><code>The second form of **selection own** causes *window* to become the
+new owner of *selection* on *window*\&#39;s display, returning an empty
+string as result. The existing owner, if any, is notified that it
+has lost the selection. If *command* is specified, it is a Tcl
+script to execute when some other window claims ownership of the
+selection away from *window*. *Selection* defaults to PRIMARY.
+</code></pre></div>
+<h1 id="widget-facilities">WIDGET FACILITIES</h1>
+<p>The <strong>text</strong>, <strong>entry</strong>, <strong>ttk::entry</strong>, <strong>listbox</strong>, <strong>spinbox</strong> and
+<strong>ttk::spinbox</strong> widgets have the option <strong>-exportselection</strong>. If a
+widget has this option set to boolean <strong>true</strong>, then (in an unsafe
+interpreter) a selection made in the widget is automatically written to
+the <strong>PRIMARY</strong> selection.</p>
+<p>A GUI event, for example <strong>\&lt;\&lt;PasteSelection>></strong>, can copy the
+<strong>PRIMARY</strong> selection to certain widgets. This copy is implemented by a
+widget binding to the event. The binding script makes appropriate calls
+to the <strong>selection</strong> command.</p>
+<h1 id="portability-issues">PORTABILITY ISSUES</h1>
+<p>On X11, the <strong>PRIMARY</strong> selection is a system-wide feature of the X
+server, allowing communication between different processes that are X11
+clients.</p>
+<p>On Windows, the <strong>PRIMARY</strong> selection is not provided by the system, but
+only by Tk, and so it is shared only between windows of a parent
+interpreter and its child interpreters. It is not shared between
+interpreters in different processes or different threads. Each parent
+interpreter has a separate <strong>PRIMARY</strong> selection that is shared only
+with its child interpreters which are not safe interpreters.</p>
+<h1 id="security">SECURITY</h1>
+<p>A safe interpreter cannot read from the <strong>PRIMARY</strong> selection because
+its <strong>selection</strong> command is hidden. For this reason the <strong>PRIMARY</strong>
+selection cannot be written to the Tk widgets of a safe interpreter.</p>
+<p>A Tk widget can have its option <strong>-exportselection</strong> set to boolean
+<strong>true</strong>, but in a safe interpreter this option has no effect: writing
+from the widget to the <strong>PRIMARY</strong> selection is disabled.</p>
+<p>These are security features. A safe interpreter may run untrusted code,
+and it is a security risk if this untrusted code can read or write the
+<strong>PRIMARY</strong> selection used by other interpreters.</p>
+<h1 id="examples">EXAMPLES</h1>
+<p>On X11 platforms, one of the standard selections available is the
+<strong>SECONDARY</strong> selection. Hardly anything uses it, but here is how to
+read it using Tk:</p>
+<div class="language-text highlight"><pre><span></span><code>set selContents [selection get -selection SECONDARY]
+</code></pre></div>
+<p>Many different types of data may be available for a selection; the
+special type <strong>TARGETS</strong> allows you to get a list of available types:</p>
+<div class="language-text highlight"><pre><span></span><code>foreach type [selection get -type TARGETS] {
+   puts &quot;Selection PRIMARY supports type $type&quot;
+}
+</code></pre></div>
+<p>To claim the selection, you must first set up a handler to supply the
+data for the selection. Then you have to claim the selection...</p>
+<div class="language-text highlight"><pre><span></span><code># Set up the data handler ready for incoming requests
+set foo &quot;This is a string with some data in it... blah blah&quot;
+selection handle -selection SECONDARY . getData
+proc getData {offset maxChars} {
+   puts &quot;Retrieving selection starting at $offset&quot;
+   return [string range $::foo $offset [expr {$offset+$maxChars-1}]]
+}
+
+# Now we grab the selection itself
+puts &quot;Claiming selection&quot;
+selection own -command lost -selection SECONDARY .
+proc lost {} {
+   puts &quot;Lost selection&quot;
+}
+</code></pre></div>
+<h1 id="see-also">SEE ALSO</h1>
+<p>clipboard(n)</p>
+<h1 id="keywords">KEYWORDS</h1>
+<p>clear, format, handler, ICCCM, own, selection, target, type</p>
+
+<ul class="metadata page-metadata" data-bi-name="page info" lang="en-us" dir="ltr">
+  <li class="last-updated-holder displayDate loading">
+    <span class="last-updated-text">Last updated:</span>
+    <time role="presentation" datetime="2018-10-25T00:00:00.000Z" data-article-date-source="ms.date"></time>
+  </li>
+<!--
+  <li class="readingTime">
+    2 minutes to read
+  </li>
+-->
+  <li class="contributors-holder">
+    <span class="contributors-text">Contributors</span>
+    <ul class="contributors" data-bi-name="contributors"></ul>
+  </li>
+</ul>
+</div>
+        <div class="col-md-3"><div class="navbar-light navbar-expand-md hidden-print sticky-top sticky-offset" role="complementary">
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggler collapsed" data-toggle="collapse" data-target="#toc-collapse" title="Table of Contents">
+            <span class="fa fa-angle-down"></span>
+        </button>
+    </div>
+
+    <div id="toc-collapse" class="navbar-collapse collapse card">
+        <ul class="nav flex-column bs-sidenav">
+            <li class="nav-item main"><a class="nav-link" href="#name">NAME</a></li>
+            <li class="nav-item main"><a class="nav-link" href="#synopsis">SYNOPSIS</a></li>
+            <li class="nav-item main"><a class="nav-link" href="#description">DESCRIPTION</a></li>
+            <li class="nav-item main"><a class="nav-link" href="#widget-facilities">WIDGET FACILITIES</a></li>
+            <li class="nav-item main"><a class="nav-link" href="#portability-issues">PORTABILITY ISSUES</a></li>
+            <li class="nav-item main"><a class="nav-link" href="#security">SECURITY</a></li>
+            <li class="nav-item main"><a class="nav-link" href="#examples">EXAMPLES</a></li>
+            <li class="nav-item main"><a class="nav-link" href="#see-also">SEE ALSO</a></li>
+            <li class="nav-item main"><a class="nav-link" href="#keywords">KEYWORDS</a></li>
+        </ul>
+    </div>
+</div></div>
+      </div>
+      </div>
+
+      <footer class="col-md-12">
+	<hr>
+	<div class="container">
+	</div>
+      </footer>
+      <script>
+	var base_url = "../..",
+            shortcuts = {"help": 191, "next": 78, "previous": 80, "search": 83};
+      </script>
+      <script src="../../js/base.js" defer></script>
+      <script src="../../search/main.js" defer></script>
+
+      <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="Search Modal" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Search</h4>
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            </div>
+            <div class="modal-body">
+                <p>
+                    From here you can search these documents. Enter
+                    your search terms below.
+                </p>
+                <form role="form">
+                    <div class="form-group">
+                        <input type="text" class="form-control" placeholder="Search..." id="mkdocs-search-query" title="Type search term here">
+                    </div>
+                </form>
+                <div id="mkdocs-search-results"></div>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div><div class="modal" id="mkdocs_keyboard_modal" tabindex="-1" role="dialog" aria-labelledby="Keyboard Shortcuts Modal" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <p class="h4 modal-title">Keyboard Shortcuts</p>
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            </div>
+            <div class="modal-body">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th style="width: 20%;">Keys</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="help shortcut"><kbd>?</kbd></td>
+                    <td>Open this help</td>
+                  </tr>
+                  <tr>
+                    <td class="next shortcut"><kbd>n</kbd></td>
+                    <td>Next page</td>
+                  </tr>
+                  <tr>
+                    <td class="prev shortcut"><kbd>p</kbd></td>
+                    <td>Previous page</td>
+                  </tr>
+                  <tr>
+                    <td class="search shortcut"><kbd>s</kbd></td>
+                    <td>Search</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>
+
+    </body>
+</html>

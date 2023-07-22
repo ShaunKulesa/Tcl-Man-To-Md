@@ -1,22 +1,17 @@
-\
-
 # NAME
 
 Tcl_OOInitStubs - initialize library access to TclOO functionality
 
 # SYNOPSIS
 
-    #include <tclOO.h>
+**#include \<tclOO.h\>**
 
-    const char *
-    Tcl_OOInitStubs(interp)
+const char \* **Tcl_OOInitStubs**(*interp*)
 
 # ARGUMENTS
 
 The Tcl interpreter that the TclOO API is integrated with and whose C
 interface is going to be used.
-
-\
 
 # DESCRIPTION
 
@@ -50,3 +45,8 @@ stubs
 # SEE ALSO
 
 Tcl_InitStubs(3)
+
+<!---
+Copyright (c) 2012 Donal K. Fellow
+-->
+

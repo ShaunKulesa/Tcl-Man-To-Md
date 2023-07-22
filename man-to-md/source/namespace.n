@@ -219,15 +219,15 @@ and \fBnamespace inscope\fR appends additional \fIarg\fRs
 as proper list elements.
 .RS
 .PP
-.nf
+.CS
 \fBnamespace inscope ::foo $script $x $y $z\fR
-.fi
+.CE
 .PP
 is equivalent to
 .PP
-.nf
+.CS
 \fBnamespace eval ::foo [concat $script [list $x $y $z]]\fR
-.fi
+.CE
 .PP
 thus additional arguments will not undergo a second round of substitution,
 as is the case with \fBnamespace eval\fR.
@@ -337,7 +337,7 @@ The global namespace holds all global variables and commands.
 The \fBnamespace eval\fR command lets you create new namespaces.
 For example,
 .PP
-.nf
+.CS
 \fBnamespace eval\fR Counter {
     \fBnamespace export\fR bump
     variable num 0
@@ -347,7 +347,7 @@ For example,
         incr num
     }
 }
-.fi
+.CE
 .PP
 creates a new namespace containing the variable \fBnum\fR and
 the procedure \fBbump\fR.
@@ -369,7 +369,7 @@ namespace over time using a series of \fBnamespace eval\fR commands.
 For example, the following series of commands has the same effect
 as the namespace definition shown above:
 .PP
-.nf
+.CS
 \fBnamespace eval\fR Counter {
     variable num 0
     proc bump {} {
@@ -385,7 +385,7 @@ as the namespace definition shown above:
 \fBnamespace eval\fR Counter {
      rename test ""
 }
-.fi
+.CE
 .PP
 Note that the \fBtest\fR procedure is added to the \fBCounter\fR namespace,
 and later removed via the \fBrename\fR command.
@@ -419,16 +419,16 @@ Names must be qualified by the namespace that contains them.
 From the global namespace,
 we might access the \fBCounter\fR procedures like this:
 .PP
-.nf
+.CS
 Counter::bump 5
 Counter::Reset
-.fi
+.CE
 .PP
 We could access the current count like this:
 .PP
-.nf
+.CS
 puts "count = $Counter::num"
-.fi
+.CE
 .PP
 When one namespace contains another, you may need more than one
 qualifier to reach its elements.
@@ -436,23 +436,23 @@ If we had a namespace \fBFoo\fR that contained the namespace \fBCounter\fR,
 you could invoke its \fBbump\fR procedure
 from the global namespace like this:
 .PP
-.nf
+.CS
 Foo::Counter::bump 3
-.fi
+.CE
 .PP
 You can also use qualified names when you create and rename commands.
 For example, you could add a procedure to the \fBFoo\fR
 namespace like this:
 .PP
-.nf
+.CS
 proc Foo::Test {args} {return $args}
-.fi
+.CE
 .PP
 And you could move the same procedure to another namespace like this:
 .PP
-.nf
+.CS
 rename Foo::Test Bar::Test
-.fi
+.CE
 .PP
 There are a few remaining points about qualified names
 that we should cover.
@@ -491,12 +491,12 @@ namespace.
 .PP
 In the following example,
 .PP
-.nf
+.CS
 set traceLevel 0
 \fBnamespace eval\fR Debug {
     printTrace $traceLevel
 }
-.fi
+.CE
 .PP
 Tcl looks for \fBtraceLevel\fR in the namespace \fBDebug\fR
 and then in the global namespace.
@@ -505,7 +505,7 @@ If a variable or command name is not found in either context,
 the name is undefined.
 To make this point absolutely clear, consider the following example:
 .PP
-.nf
+.CS
 set traceLevel 0
 \fBnamespace eval\fR Foo {
     variable traceLevel 3
@@ -514,7 +514,7 @@ set traceLevel 0
         printTrace $traceLevel
     }
 }
-.fi
+.CE
 .PP
 Here Tcl looks for \fBtraceLevel\fR first in the namespace \fBFoo::Debug\fR.
 Since it is not found there, Tcl then looks for it
@@ -526,16 +526,16 @@ You can use the \fBnamespace which\fR command to clear up any question
 about name resolution.
 For example, the command:
 .PP
-.nf
+.CS
 \fBnamespace eval\fR Foo::Debug {\fBnamespace which\fR \-variable traceLevel}
-.fi
+.CE
 .PP
 returns \fB::traceLevel\fR.
 On the other hand, the command,
 .PP
-.nf
+.CS
 \fBnamespace eval\fR Foo {\fBnamespace which\fR \-variable traceLevel}
-.fi
+.CE
 .PP
 returns \fB::Foo::traceLevel\fR.
 .PP
@@ -575,27 +575,27 @@ For example, suppose that all of the commands in a package
 like BLT are contained in a namespace called \fBBlt\fR.
 Then you might access these commands like this:
 .PP
-.nf
+.CS
 Blt::graph .g \-background red
 Blt::table . .g 0,0
-.fi
+.CE
 .PP
 If you use the \fBgraph\fR and \fBtable\fR commands frequently,
 you may want to access them without the \fBBlt::\fR prefix.
 You can do this by importing the commands into the current namespace,
 like this:
 .PP
-.nf
+.CS
 \fBnamespace import\fR Blt::*
-.fi
+.CE
 .PP
 This adds all exported commands from the \fBBlt\fR namespace
 into the current namespace context, so you can write code like this:
 .PP
-.nf
+.CS
 graph .g \-background red
 table . .g 0,0
-.fi
+.CE
 .PP
 The \fBnamespace import\fR command only imports commands
 from a namespace that that namespace exported
@@ -606,9 +606,9 @@ a bad idea since you do not know what you will get.
 It is better to import just the specific commands you need.
 For example, the command
 .PP
-.nf
+.CS
 \fBnamespace import\fR Blt::graph Blt::table
-.fi
+.CE
 .PP
 imports only the \fBgraph\fR and \fBtable\fR commands into the
 current context.
@@ -621,16 +621,16 @@ reissue the \fBnamespace import\fR command to pick up new commands
 that have appeared in a namespace.  In that case, you can use the
 \fB\-force\fR option, and existing commands will be silently overwritten:
 .PP
-.nf
+.CS
 \fBnamespace import\fR \-force Blt::graph Blt::table
-.fi
+.CE
 .PP
 If for some reason, you want to stop using the imported commands,
 you can remove them with a \fBnamespace forget\fR command, like this:
 .PP
-.nf
+.CS
 \fBnamespace forget\fR Blt::*
-.fi
+.CE
 .PP
 This searches the current namespace for any commands imported from \fBBlt\fR.
 If it finds any, it removes them.  Otherwise, it does nothing.
@@ -639,15 +639,15 @@ prefix.
 .PP
 When you delete a command from the exporting namespace like this:
 .PP
-.nf
+.CS
 rename Blt::graph ""
-.fi
+.CE
 .PP
 the command is automatically removed from all namespaces that import it.
 .SH "EXPORTING COMMANDS"
 You can export commands from a namespace like this:
 .PP
-.nf
+.CS
 \fBnamespace eval\fR Counter {
     \fBnamespace export\fR bump reset
     variable Num 0
@@ -671,15 +671,15 @@ You can export commands from a namespace like this:
         }
     }
 }
-.fi
+.CE
 .PP
 The procedures \fBbump\fR and \fBreset\fR are exported,
 so they are included when you import from the \fBCounter\fR namespace,
 like this:
 .PP
-.nf
+.CS
 \fBnamespace import\fR Counter::*
-.fi
+.CE
 .PP
 However, the \fBCheck\fR procedure is not exported,
 so it is ignored by the import operation.
@@ -699,7 +699,7 @@ and traces for evaluation in the global context.  For instance, the following
 code indicates how to direct a variable \fBtrace\fR callback into the current
 namespace:
 .PP
-.nf
+.CS
 \fBnamespace eval\fR a {
     variable b
     proc theTraceCallback { n1 n2 op } {
@@ -710,13 +710,13 @@ namespace:
     trace add variable b write [\fBnamespace code\fR theTraceCallback]
 }
 set a::b c
-.fi
+.CE
 .PP
 When executed, it prints the message:
 .PP
-.nf
+.CS
 the value of a::b has changed to c
-.fi
+.CE
 .SH ENSEMBLES
 .PP
 The \fBnamespace ensemble\fR is used to create and manipulate ensemble
@@ -894,7 +894,7 @@ delete its namespace.
 .SH EXAMPLES
 Create a namespace containing a variable and an exported command:
 .PP
-.nf
+.CS
 \fBnamespace eval\fR foo {
     variable bar 0
     proc grill {} {
@@ -903,11 +903,11 @@ Create a namespace containing a variable and an exported command:
     }
     \fBnamespace export\fR grill
 }
-.fi
+.CE
 .PP
 Call the command defined in the previous example in various ways.
 .PP
-.nf
+.CS
 # Direct call
 ::foo::grill
 
@@ -929,26 +929,26 @@ grill
 }
 foo grill
 foobar grill
-.fi
+.CE
 .PP
 Look up where the command imported in the previous example came from:
 .PP
-.nf
+.CS
 puts "grill came from [\fBnamespace origin\fR grill]"
-.fi
+.CE
 .PP
 Remove all imported commands from the current namespace:
 .PP
-.nf
+.CS
 namespace forget {*}[namespace import]
-.fi
+.CE
 .PP
 .VS 8.6
 Create an ensemble for simple working with numbers, using the
 \fB\-parameters\fR option to allow the operator to be put between the first
 and second arguments.
 .PP
-.nf
+.CS
 \fBnamespace eval\fR do {
     \fBnamespace export\fR *
     \fBnamespace ensemble\fR create -parameters x
@@ -958,7 +958,7 @@ and second arguments.
 
 # In use, the ensemble works like this:
 puts [do 1 plus [do 9 minus 7]]
-.fi
+.CE
 .VE 8.6
 .SH "SEE ALSO"
 interp(n), upvar(n), variable(n)

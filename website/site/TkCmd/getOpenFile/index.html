@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+      <script>
+	// Hack for scrolling window when linking to anchor tag with fixed nav header
+        var shiftWindow = function() { scrollBy(0, -75) };
+        window.addEventListener("hashchange", shiftWindow);
+        function load() { if (window.location.hash) shiftWindow(); }
+      </script>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        
+        <link rel="canonical" href="https://www.tcl.tk/man/TkCmd/getOpenFile/">
+        <link rel="shortcut icon" href="../../img/favicon.ico">
+        <title>getOpenFile - Tcl/Tk</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <link href="../../css/font-awesome.min.css" rel="stylesheet">
+    <link href="../../css/base.css" rel="stylesheet">
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+    <script src="../../js/base.js"></script> 
+    </head>
+
+    <body class="">
+
+      <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
+	<div class="container">
+	<a class="navbar-brand" href="../..">Tcl/Tk</a>
+	<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExample04" aria-controls="navbarsExample04" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+	</button>
+
+	<div class="collapse navbar-collapse">
+
+          <ul class="navbar-nav flex-row ml-md-auto d-none d-md-flex">
+            <li class="nav-item">
+              <a class="nav-link" href="#" data-toggle="modal" data-target="#mkdocs_search_modal">
+		<i class="fa fa-search"></i> Search
+              </a>
+            </li>
+          </ul>
+	</div>
+	</div>
+      </nav><div id="content" class="container">
+        
+      <div class="row">
+        <div class="col-md-9" role="main">
+
+
+<nav aria-label="breadcrumb">
+  <ol class="breadcrumb">
+    
+    <li class="breadcrumb-item active" aria-current="page">getOpenFile</li>
+  </ol>
+</nav>
+
+
+<p>\</p>
+<h1 id="name">NAME</h1>
+<p>tk_getOpenFile, tk_getSaveFile - pop up a dialog box for the user to
+select a file to open or save.</p>
+<h1 id="synopsis">SYNOPSIS</h1>
+<p><strong>tk_getOpenFile </strong>?<em>option value ...</em>? <strong>tk_getSaveFile </strong>?<em>option
+value ...</em>?</p>
+<p>\</p>
+<h1 id="description">DESCRIPTION</h1>
+<p>The procedures <strong>tk_getOpenFile</strong> and <strong>tk_getSaveFile</strong> pop up a dialog
+box for the user to select a file to open or save. The
+<strong>tk_getOpenFile</strong> command is usually associated with the <strong>Open</strong>
+command in the <strong>File</strong> menu. Its purpose is for the user to select an
+existing file <em>only</em>. If the user enters a non-existent file, the dialog
+box gives the user an error prompt and requires the user to give an
+alternative selection. If an application allows the user to create new
+files, it should do so by providing a separate <strong>New</strong> menu command.</p>
+<p>The <strong>tk_getSaveFile</strong> command is usually associated with the <strong>Save</strong>
+as command in the <strong>File</strong> menu. If the user enters a file that already
+exists, the dialog box prompts the user for confirmation whether the
+existing file should be overwritten or not.</p>
+<p>The following <em>option-value</em> pairs are possible as command line
+arguments to these two commands:</p>
+<p><strong>-command</strong> <em>string</em></p>
+<p>:   Specifies the prefix of a Tcl command to invoke when the user closes
+    the dialog after having selected an item. This callback is not
+    called if the user cancelled the dialog. The actual command consists
+    of <em>string</em> followed by a space and the value selected by the user
+    in the dialog. This is only available on Mac OS X.</p>
+<p><strong>-confirmoverwrite</strong> <em>boolean</em></p>
+<p>:   Configures how the Save dialog reacts when the selected file already
+    exists, and saving would overwrite it. A true value requests a
+    confirmation dialog be presented to the user. A false value requests
+    that the overwrite take place without confirmation. Default value is
+    true.</p>
+<p><strong>-defaultextension</strong> <em>extension</em></p>
+<p>:   Specifies a string that will be appended to the filename if the user
+    enters a filename without an extension. The default value is the
+    empty string, which means no extension will be appended to the
+    filename in any case. This option is ignored on Mac OS X, which does
+    not require extensions to filenames, and the UNIX implementation
+    guesses reasonable values for this from the <strong>-filetypes</strong> option
+    when this is not supplied.</p>
+<p><strong>-filetypes</strong> <em>filePatternList</em></p>
+<p>:   If a <strong>File types</strong> listbox exists in the file dialog on the
+    particular platform, this option gives the <em>filetype</em>s in this
+    listbox. When the user choose a filetype in the listbox, only the
+    files of that type are listed. If this option is unspecified, or if
+    it is set to the empty list, or if the <strong>File types</strong> listbox is not
+    supported by the particular platform then all files are listed
+    regardless of their types. See the section <strong>SPECIFYING FILE
+    PATTERNS</strong> below for a discussion on the contents of
+    <em>filePatternList</em>.</p>
+<p><strong>-initialdir</strong> <em>directory</em></p>
+<p>:   Specifies that the files in <em>directory</em> should be displayed when the
+    dialog pops up. If this parameter is not specified, the initial
+    directory defaults to the current working directory on non-Windows
+    systems and on Windows systems prior to Vista. On Vista and later
+    systems, the initial directory defaults to the last user-selected
+    directory for the application. If the parameter specifies a relative
+    path, the return value will convert the relative path to an absolute
+    path.</p>
+<p><strong>-initialfile</strong> <em>filename</em></p>
+<p>:   Specifies a filename to be displayed in the dialog when it pops up.</p>
+<p><strong>-message</strong> <em>string</em></p>
+<p>:   Specifies a message to include in the client area of the dialog.
+    This is only available on Mac OS X.</p>
+<p><strong>-multiple</strong> <em>boolean</em></p>
+<p>:   Allows the user to choose multiple files from the Open dialog.</p>
+<p><strong>-parent</strong> <em>window</em></p>
+<p>:   Makes <em>window</em> the logical parent of the file dialog. The file
+    dialog is displayed on top of its parent window. On Mac OS X, this
+    turns the file dialog into a sheet attached to the parent window.</p>
+<p><strong>-title</strong> <em>titleString</em></p>
+<p>:   Specifies a string to display as the title of the dialog box. If
+    this option is not specified, then a default title is displayed.</p>
+<p><strong>-typevariable</strong> <em>variableName</em></p>
+<p>:   The global variable <em>variableName</em> is used to preselect which filter
+    is used from <em>filterList</em> when the dialog box is opened and is
+    updated when the dialog box is closed, to the last selected filter.
+    The variable is read once at the beginning to select the appropriate
+    filter. If the variable does not exist, or its value does not match
+    any filter typename, or is empty (<strong>{}</strong>), the dialog box will
+    revert to the default behavior of selecting the first filter in the
+    list. If the dialog is canceled, the variable is not modified.</p>
+<p>If the user selects a file, both <strong>tk_getOpenFile</strong> and
+<strong>tk_getSaveFile</strong> return the full pathname of this file. If the user
+cancels the operation, both commands return the empty string.</p>
+<h1 id="specifying-file-patterns">SPECIFYING FILE PATTERNS</h1>
+<p>The <em>filePatternList</em> value given by the <strong>-filetypes</strong> option is a list
+of file patterns. Each file pattern is a list of the form</p>
+<div class="language-text highlight"><pre><span></span><code>typeName {extension ?extension ...?} ?{macType ?macType ...?}?
+</code></pre></div>
+<p><em>typeName</em> is the name of the file type described by this file pattern
+and is the text string that appears in the <strong>File types</strong> listbox.
+<em>extension</em> is a file extension for this file pattern. <em>macType</em> is a
+four-character Macintosh file type. The list of <em>macType</em>s is optional
+and may be omitted for applications that do not need to execute on the
+Macintosh platform.</p>
+<p>Several file patterns may have the same <em>typeName,</em> in which case they
+refer to the same file type and share the same entry in the listbox.
+When the user selects an entry in the listbox, all the files that match
+at least one of the file patterns corresponding to that entry are
+listed. Usually, each file pattern corresponds to a distinct type of
+file. The use of more than one file pattern for one type of file is only
+necessary on the Macintosh platform.</p>
+<p>On the Macintosh platform, a file matches a file pattern if its name
+matches at least one of the <em>extension</em>(s) AND it belongs to at least
+one of the <em>macType</em>(s) of the file pattern. For example, the <strong>C Source
+Files</strong> file pattern in the sample code matches with files that have a
+<strong>.c</strong> extension AND belong to the <em>macType</em> <strong>TEXT</strong>. To use the OR
+rule instead, you can use two file patterns, one with the <em>extensions</em>
+only and the other with the <em>macType</em> only. The <strong>GIF Files</strong> file type
+in the sample code matches files that <em>either</em> have a <strong>.gif</strong> extension
+OR belong to the <em>macType</em> <strong>GIFF</strong>.</p>
+<p>On the Unix and Windows platforms, a file matches a file pattern if its
+name matches at least one of the <em>extension</em>(s) of the file pattern. The
+<em>macType</em>s are ignored.</p>
+<h1 id="specifying-extensions">SPECIFYING EXTENSIONS</h1>
+<p>On the Unix and Macintosh platforms, extensions are matched using
+glob-style pattern matching. On the Windows platform, extensions are
+matched by the underlying operating system. The types of possible
+extensions are:</p>
+<p>(1) the special extension matches any file;</p>
+<p>(2) the special extension matches any files that do not have an
+    extension (i.e., the filename contains no full stop character);</p>
+<p>(3) any character string that does not contain any wild card characters
+    (* and ?).</p>
+<p>Due to the different pattern matching rules on the various platforms, to
+ensure portability, wild card characters are not allowed in the
+extensions, except as in the special extension Extensions without a full
+stop character (e.g. are allowed but may not work on all platforms.</p>
+<h1 id="example">EXAMPLE</h1>
+<div class="language-text highlight"><pre><span></span><code>set types {
+    {{Text Files}       {.txt}        }
+    {{TCL Scripts}      {.tcl}        }
+    {{C Source Files}   {.c}      TEXT}
+    {{GIF Files}        {.gif}        }
+    {{GIF Files}        {}        GIFF}
+    {{All Files}        *             }
+}
+set filename [tk_getOpenFile -filetypes $types]
+
+if {$filename ne &quot;&quot;} {
+    # Open the file ...
+}
+</code></pre></div>
+<h1 id="see-also">SEE ALSO</h1>
+<p>tk_chooseDirectory</p>
+<h1 id="keywords">KEYWORDS</h1>
+<p>file selection dialog</p>
+
+<ul class="metadata page-metadata" data-bi-name="page info" lang="en-us" dir="ltr">
+  <li class="last-updated-holder displayDate loading">
+    <span class="last-updated-text">Last updated:</span>
+    <time role="presentation" datetime="2018-10-25T00:00:00.000Z" data-article-date-source="ms.date"></time>
+  </li>
+<!--
+  <li class="readingTime">
+    2 minutes to read
+  </li>
+-->
+  <li class="contributors-holder">
+    <span class="contributors-text">Contributors</span>
+    <ul class="contributors" data-bi-name="contributors"></ul>
+  </li>
+</ul>
+</div>
+        <div class="col-md-3"><div class="navbar-light navbar-expand-md hidden-print sticky-top sticky-offset" role="complementary">
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggler collapsed" data-toggle="collapse" data-target="#toc-collapse" title="Table of Contents">
+            <span class="fa fa-angle-down"></span>
+        </button>
+    </div>
+
+    <div id="toc-collapse" class="navbar-collapse collapse card">
+        <ul class="nav flex-column bs-sidenav">
+            <li class="nav-item main"><a class="nav-link" href="#name">NAME</a></li>
+            <li class="nav-item main"><a class="nav-link" href="#synopsis">SYNOPSIS</a></li>
+            <li class="nav-item main"><a class="nav-link" href="#description">DESCRIPTION</a></li>
+            <li class="nav-item main"><a class="nav-link" href="#specifying-file-patterns">SPECIFYING FILE PATTERNS</a></li>
+            <li class="nav-item main"><a class="nav-link" href="#specifying-extensions">SPECIFYING EXTENSIONS</a></li>
+            <li class="nav-item main"><a class="nav-link" href="#example">EXAMPLE</a></li>
+            <li class="nav-item main"><a class="nav-link" href="#see-also">SEE ALSO</a></li>
+            <li class="nav-item main"><a class="nav-link" href="#keywords">KEYWORDS</a></li>
+        </ul>
+    </div>
+</div></div>
+      </div>
+      </div>
+
+      <footer class="col-md-12">
+	<hr>
+	<div class="container">
+	</div>
+      </footer>
+      <script>
+	var base_url = "../..",
+            shortcuts = {"help": 191, "next": 78, "previous": 80, "search": 83};
+      </script>
+      <script src="../../js/base.js" defer></script>
+      <script src="../../search/main.js" defer></script>
+
+      <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="Search Modal" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Search</h4>
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            </div>
+            <div class="modal-body">
+                <p>
+                    From here you can search these documents. Enter
+                    your search terms below.
+                </p>
+                <form role="form">
+                    <div class="form-group">
+                        <input type="text" class="form-control" placeholder="Search..." id="mkdocs-search-query" title="Type search term here">
+                    </div>
+                </form>
+                <div id="mkdocs-search-results"></div>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div><div class="modal" id="mkdocs_keyboard_modal" tabindex="-1" role="dialog" aria-labelledby="Keyboard Shortcuts Modal" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <p class="h4 modal-title">Keyboard Shortcuts</p>
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            </div>
+            <div class="modal-body">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th style="width: 20%;">Keys</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="help shortcut"><kbd>?</kbd></td>
+                    <td>Open this help</td>
+                  </tr>
+                  <tr>
+                    <td class="next shortcut"><kbd>n</kbd></td>
+                    <td>Next page</td>
+                  </tr>
+                  <tr>
+                    <td class="prev shortcut"><kbd>p</kbd></td>
+                    <td>Previous page</td>
+                  </tr>
+                  <tr>
+                    <td class="search shortcut"><kbd>s</kbd></td>
+                    <td>Search</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>
+
+    </body>
+</html>

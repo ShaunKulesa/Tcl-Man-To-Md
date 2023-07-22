@@ -1,5 +1,3 @@
-\
-
 # NAME
 
 Tcl_NewDictObj, Tcl_DictObjPut, Tcl_DictObjGet, Tcl_DictObjRemove,
@@ -9,38 +7,28 @@ as dictionaries
 
 # SYNOPSIS
 
-    #include <tcl.h>
+**#include \<tcl.h\>**
 
-    Tcl_Obj *
-    Tcl_NewDictObj()
+Tcl_Obj \* **Tcl_NewDictObj**()
 
-    int
-    Tcl_DictObjGet(interp, dictPtr, keyPtr, valuePtrPtr)
+int **Tcl_DictObjGet**(*interp, dictPtr, keyPtr, valuePtrPtr*)
 
-    int
-    Tcl_DictObjPut(interp, dictPtr, keyPtr, valuePtr)
+int **Tcl_DictObjPut**(*interp, dictPtr, keyPtr, valuePtr*)
 
-    int
-    Tcl_DictObjRemove(interp, dictPtr, keyPtr)
+int **Tcl_DictObjRemove**(*interp, dictPtr, keyPtr*)
 
-    int
-    Tcl_DictObjSize(interp, dictPtr, sizePtr)
+int **Tcl_DictObjSize**(*interp, dictPtr, sizePtr*)
 
-    int
-    Tcl_DictObjFirst(interp, dictPtr, searchPtr,
-                     keyPtrPtr, valuePtrPtr, donePtr)
+int **Tcl_DictObjFirst**(*interp, dictPtr, searchPtr,* keyPtrPtr,
+valuePtrPtr, donePtr)
 
-    void
-    Tcl_DictObjNext(searchPtr, keyPtrPtr, valuePtrPtr, donePtr)
+void **Tcl_DictObjNext**(*searchPtr, keyPtrPtr, valuePtrPtr, donePtr*)
 
-    void
-    Tcl_DictObjDone(searchPtr)
+void **Tcl_DictObjDone**(*searchPtr*)
 
-    int
-    Tcl_DictObjPutKeyList(interp, dictPtr, keyc, keyv, valuePtr)
+int **Tcl_DictObjPutKeyList**(*interp, dictPtr, keyc, keyv, valuePtr*)
 
-    int
-    Tcl_DictObjRemoveKeyList(interp, dictPtr, keyc, keyv)
+int **Tcl_DictObjRemoveKeyList**(*interp, dictPtr, keyc, keyv*)
 
 # ARGUMENTS
 
@@ -87,8 +75,6 @@ Array of *keyc* pointers to values that **Tcl_DictObjPutKeyList** and
 **Tcl_DictObjRemoveKeyList** will use to locate the key/value pair to
 manipulate within the sub-dictionaries of the main dictionary value
 passed to them.
-
-\
 
 # DESCRIPTION
 
@@ -232,3 +218,8 @@ Tcl_NewObj, Tcl_DecrRefCount, Tcl_IncrRefCount, Tcl_InitObjHashTable
 
 dict, dict value, dictionary, dictionary value, hash table, iteration,
 value
+
+<!---
+Copyright (c) 2003 Donal K. Fellow
+-->
+

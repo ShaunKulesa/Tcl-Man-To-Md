@@ -10,7 +10,6 @@
 .SH NAME
 Tcl_NewObj, Tcl_DuplicateObj, Tcl_IncrRefCount, Tcl_DecrRefCount, Tcl_IsShared, Tcl_InvalidateStringRep \- manipulate Tcl values
 .SH SYNOPSIS
-.nf
 \fB#include <tcl.h>\fR
 .sp
 Tcl_Obj *
@@ -109,7 +108,7 @@ by defining their own \fBTcl_ObjType\fR structs.
 Each Tcl value is represented by a \fBTcl_Obj\fR structure
 which is defined as follows.
 .PP
-.nf
+.CS
 typedef struct Tcl_Obj {
     int \fIrefCount\fR;
     char *\fIbytes\fR;
@@ -130,7 +129,7 @@ typedef struct Tcl_Obj {
         } \fIptrAndLongRep\fR;
     } \fIinternalRep\fR;
 } \fBTcl_Obj\fR;
-.fi
+.CE
 .PP
 The \fIbytes\fR and the \fIlength\fR members together hold
 a value's UTF-8 string representation,
@@ -234,24 +233,24 @@ to see how to create a new value type.
 As an example of the lifetime of a value,
 consider the following sequence of commands:
 .PP
-.nf
+.CS
 \fBset x 123\fR
-.fi
+.CE
 .PP
 This assigns to \fIx\fR an untyped value whose
 \fIbytes\fR member points to \fB123\fR and \fIlength\fR member contains 3.
 The value's \fItypePtr\fR member is NULL.
 .PP
-.nf
+.CS
 \fBputs "x is $x"\fR
-.fi
+.CE
 .PP
 \fIx\fR's string representation is valid (since \fIbytes\fR is non-NULL)
 and is fetched for the command.
 .PP
-.nf
+.CS
 \fBincr x\fR
-.fi
+.CE
 .PP
 The \fBincr\fR command first gets an integer from \fIx\fR's value
 by calling \fBTcl_GetIntFromObj\fR.
@@ -268,9 +267,9 @@ then invalidates its string representation
 since the string representation
 no longer corresponds to the internal representation.
 .PP
-.nf
+.CS
 \fBputs "x is now $x"\fR
-.fi
+.CE
 .PP
 The string representation of \fIx\fR's value is needed
 and is recomputed.
@@ -331,14 +330,14 @@ that implements \fBlinsert\fR.
 This procedure modifies the list value passed to it in \fIobjv[1]\fR
 by inserting \fIobjc-3\fR new elements before \fIindex\fR.
 .PP
-.nf
+.CS
 listPtr = objv[1];
 if (\fBTcl_IsShared\fR(listPtr)) {
     listPtr = \fBTcl_DuplicateObj\fR(listPtr);
 }
 result = Tcl_ListObjReplace(interp, listPtr, index, 0,
         (objc-3), &(objv[3]));
-.fi
+.CE
 .PP
 As another example, \fBincr\fR's command procedure
 must check whether the variable's value is shared before

@@ -1,5 +1,3 @@
-\
-
 # NAME
 
 for - \'For\' loop
@@ -7,8 +5,6 @@ for - \'For\' loop
 # SYNOPSIS
 
 **for ***start test next body*
-
-\
 
 # DESCRIPTION
 
@@ -68,3 +64,9 @@ break(n), continue(n), foreach(n), while(n)
 # KEYWORDS
 
 boolean, for, iteration, loop
+
+<!---
+Copyright (c) 1993 The Regents of the University of California
+Copyright (c) 1994-1997 Sun Microsystems, Inc
+-->
+

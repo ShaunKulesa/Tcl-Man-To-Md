@@ -11,7 +11,6 @@
 .SH NAME
 Tcl_NewDictObj, Tcl_DictObjPut, Tcl_DictObjGet, Tcl_DictObjRemove, Tcl_DictObjSize, Tcl_DictObjFirst, Tcl_DictObjNext, Tcl_DictObjDone, Tcl_DictObjPutKeyList, Tcl_DictObjRemoveKeyList \- manipulate Tcl values as dictionaries
 .SH SYNOPSIS
-.nf
 \fB#include <tcl.h>\fR
 .sp
 Tcl_Obj *
@@ -194,7 +193,7 @@ keys must exist and have dictionaries as their values.
 Using the dictionary iteration interface to search determine if there
 is a key that maps to itself:
 .PP
-.nf
+.CS
 Tcl_DictSearch search;
 Tcl_Obj *key, *value;
 int done;
@@ -227,7 +226,7 @@ for (; !done ; \fBTcl_DictObjNext\fR(&search, &key, &value, &done)) {
 \fBTcl_DictObjDone\fR(&search);
 Tcl_SetObjResult(interp, Tcl_NewBooleanObj(!done));
 return TCL_OK;
-.fi
+.CE
 .SH "SEE ALSO"
 Tcl_NewObj, Tcl_DecrRefCount, Tcl_IncrRefCount, Tcl_InitObjHashTable
 .SH KEYWORDS

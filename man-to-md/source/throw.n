@@ -36,9 +36,9 @@ general to most specific.
 The following produces an error that is identical to that produced by
 \fBexpr\fR when trying to divide a value by zero.
 .PP
-.nf
+.CS
 \fBthrow\fR {ARITH DIVZERO {divide by zero}} {divide by zero}
-.fi
+.CE
 .SH "SEE ALSO"
 catch(n), error(n), errorCode(n), errorInfo(n), return(n), try(n)
 .SH "KEYWORDS"

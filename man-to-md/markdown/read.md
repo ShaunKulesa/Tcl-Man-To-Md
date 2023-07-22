@@ -1,5 +1,3 @@
-\
-
 # NAME
 
 read - Read from a channel
@@ -9,8 +7,6 @@ read - Read from a channel
 **read **?**-nonewline**? *channelId*
 
 **read ***channelId numChars*
-
-\
 
 # DESCRIPTION
 
@@ -82,3 +78,9 @@ file(n), eof(n), fblocked(n), fconfigure(n), Tcl_StandardChannels(3)
 
 blocking, channel, end of line, end of file, nonblocking, read,
 translation, encoding
+
+<!---
+Copyright (c) 1993 The Regents of the University of California
+Copyright (c) 1994-1996 Sun Microsystems, Inc
+-->
+

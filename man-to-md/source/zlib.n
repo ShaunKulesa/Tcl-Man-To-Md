@@ -11,9 +11,7 @@
 .SH NAME
 zlib \- compression and decompression operations
 .SH SYNOPSIS
-.nf
 \fBzlib \fIsubcommand arg ...\fR
-.fi
 .BE
 .SH DESCRIPTION
 .PP
@@ -440,29 +438,29 @@ internally buffered data.
 To compress a Tcl string, it should be first converted to a particular charset
 encoding since the \fBzlib\fR command always operates on binary strings.
 .PP
-.nf
+.CS
 set binData [encoding convertto utf-8 $string]
 set compData [\fBzlib compress\fR $binData]
-.fi
+.CE
 .PP
 When converting back, it is also important to reverse the charset encoding:
 .PP
-.nf
+.CS
 set binData [\fBzlib decompress\fR $compData]
 set string [encoding convertfrom utf-8 $binData]
-.fi
+.CE
 .PP
 The compression operation from above can also be done with streams, which is
 especially helpful when you want to accumulate the data by stages:
 .PP
-.nf
+.CS
 set strm [\fBzlib stream\fR compress]
 $\fIstrm \fBput\fR [encoding convertto utf-8 $string]
 # ...
 $\fIstrm \fBfinalize\fR
 set compData [$\fIstrm \fBget\fR]
 $\fIstrm \fBclose\fR
-.fi
+.CE
 .SH "SEE ALSO"
 binary(n), chan(n), encoding(n), Tcl_ZlibDeflate(3), RFC1950 \- RFC1952
 .SH "KEYWORDS"

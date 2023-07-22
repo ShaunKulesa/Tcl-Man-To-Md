@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+      <script>
+	// Hack for scrolling window when linking to anchor tag with fixed nav header
+        var shiftWindow = function() { scrollBy(0, -75) };
+        window.addEventListener("hashchange", shiftWindow);
+        function load() { if (window.location.hash) shiftWindow(); }
+      </script>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        
+        <link rel="canonical" href="https://www.tcl.tk/man/TclLib/Panic/">
+        <link rel="shortcut icon" href="../../img/favicon.ico">
+        <title>Panic - Tcl/Tk</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <link href="../../css/font-awesome.min.css" rel="stylesheet">
+    <link href="../../css/base.css" rel="stylesheet">
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+    <script src="../../js/base.js"></script> 
+    </head>
+
+    <body class="">
+
+      <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
+	<div class="container">
+	<a class="navbar-brand" href="../..">Tcl/Tk</a>
+	<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExample04" aria-controls="navbarsExample04" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+	</button>
+
+	<div class="collapse navbar-collapse">
+
+          <ul class="navbar-nav flex-row ml-md-auto d-none d-md-flex">
+            <li class="nav-item">
+              <a class="nav-link" href="#" data-toggle="modal" data-target="#mkdocs_search_modal">
+		<i class="fa fa-search"></i> Search
+              </a>
+            </li>
+          </ul>
+	</div>
+	</div>
+      </nav><div id="content" class="container">
+        
+      <div class="row">
+        <div class="col-md-9" role="main">
+
+
+<nav aria-label="breadcrumb">
+  <ol class="breadcrumb">
+    
+    <li class="breadcrumb-item active" aria-current="page">Panic</li>
+  </ol>
+</nav>
+
+
+<p>\</p>
+<h1 id="name">NAME</h1>
+<p>Tcl_Panic, Tcl_PanicVA, Tcl_SetPanicProc - report fatal error and abort</p>
+<h1 id="synopsis">SYNOPSIS</h1>
+<p><strong>#include \&lt;tcl.h></strong></p>
+<p>void <strong>Tcl_Panic</strong>(<em>format</em>, <em>arg</em>, <em>arg</em>, <em>...</em>)</p>
+<p>void <strong>Tcl_PanicVA</strong>(<em>format</em>, <em>argList</em>)</p>
+<p>void <strong>Tcl_SetPanicProc</strong>(<em>panicProc</em>)</p>
+<h1 id="arguments">ARGUMENTS</h1>
+<p>A printf-style format string.</p>
+<p>Arguments matching the format string.</p>
+<p>An argument list of arguments matching the format string. Must have been
+initialized using <strong>va_start</strong>, and cleared using <strong>va_end</strong>.</p>
+<p>Procedure to report fatal error message and abort.</p>
+<p>\</p>
+<h1 id="description">DESCRIPTION</h1>
+<p>When the Tcl library detects that its internal data structures are in an
+inconsistent state, or that its C procedures have been called in a
+manner inconsistent with their documentation, it calls <strong>Tcl_Panic</strong> to
+display a message describing the error and abort the process. The
+<em>format</em> argument is a format string describing how to format the
+remaining arguments <em>arg</em> into an error message, according to the same
+formatting rules used by the <strong>printf</strong> family of functions. The same
+formatting rules are also used by the built-in Tcl command <strong>format</strong>.</p>
+<p>In a freshly loaded Tcl library, <strong>Tcl_Panic</strong> prints the formatted
+error message to the standard error file of the process, and then calls
+<strong>abort</strong> to terminate the process. <strong>Tcl_Panic</strong> does not return. On
+Windows, when a debugger is running, the formatted error message is sent
+to the debugger instead. If the windows executable does not have a
+stderr channel (e.g. <strong>wish.exe</strong>), then a system dialog box is used to
+display the panic message.</p>
+<p><strong>Tcl_SetPanicProc</strong> may be used to modify the behavior of
+<strong>Tcl_Panic</strong>. The <em>panicProc</em> argument should match the type
+<strong>Tcl_PanicProc</strong>:</p>
+<div class="language-text highlight"><pre><span></span><code>typedef void Tcl_PanicProc(
+        const char *format,
+        arg, arg,...);
+</code></pre></div>
+<p>After <strong>Tcl_SetPanicProc</strong> returns, any future calls to <strong>Tcl_Panic</strong>
+will call <em>panicProc</em>, passing along the <em>format</em> and <em>arg</em> arguments.
+<em>panicProc</em> should avoid making calls into the Tcl library, or into
+other libraries that may call the Tcl library, since the original call
+to <strong>Tcl_Panic</strong> indicates the Tcl library is not in a state of reliable
+operation.</p>
+<p>The typical use of <strong>Tcl_SetPanicProc</strong> arranges for the error message
+to be displayed or reported in a manner more suitable for the
+application or the platform.</p>
+<p>Although the primary callers of <strong>Tcl_Panic</strong> are the procedures of the
+Tcl library, <strong>Tcl_Panic</strong> is a public function and may be called by any
+extension or application that wishes to abort the process and have a
+panic message displayed the same way that panic messages from Tcl will
+be displayed.</p>
+<p><strong>Tcl_PanicVA</strong> is the same as <strong>Tcl_Panic</strong> except that instead of
+taking a variable number of arguments it takes an argument list.</p>
+<h1 id="see-also">SEE ALSO</h1>
+<p>abort(3), printf(3), exec(n), format(n)</p>
+<h1 id="keywords">KEYWORDS</h1>
+<p>abort, fatal, error</p>
+
+<ul class="metadata page-metadata" data-bi-name="page info" lang="en-us" dir="ltr">
+  <li class="last-updated-holder displayDate loading">
+    <span class="last-updated-text">Last updated:</span>
+    <time role="presentation" datetime="2018-10-25T00:00:00.000Z" data-article-date-source="ms.date"></time>
+  </li>
+<!--
+  <li class="readingTime">
+    2 minutes to read
+  </li>
+-->
+  <li class="contributors-holder">
+    <span class="contributors-text">Contributors</span>
+    <ul class="contributors" data-bi-name="contributors"></ul>
+  </li>
+</ul>
+</div>
+        <div class="col-md-3"><div class="navbar-light navbar-expand-md hidden-print sticky-top sticky-offset" role="complementary">
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggler collapsed" data-toggle="collapse" data-target="#toc-collapse" title="Table of Contents">
+            <span class="fa fa-angle-down"></span>
+        </button>
+    </div>
+
+    <div id="toc-collapse" class="navbar-collapse collapse card">
+        <ul class="nav flex-column bs-sidenav">
+            <li class="nav-item main"><a class="nav-link" href="#name">NAME</a></li>
+            <li class="nav-item main"><a class="nav-link" href="#synopsis">SYNOPSIS</a></li>
+            <li class="nav-item main"><a class="nav-link" href="#arguments">ARGUMENTS</a></li>
+            <li class="nav-item main"><a class="nav-link" href="#description">DESCRIPTION</a></li>
+            <li class="nav-item main"><a class="nav-link" href="#see-also">SEE ALSO</a></li>
+            <li class="nav-item main"><a class="nav-link" href="#keywords">KEYWORDS</a></li>
+        </ul>
+    </div>
+</div></div>
+      </div>
+      </div>
+
+      <footer class="col-md-12">
+	<hr>
+	<div class="container">
+	</div>
+      </footer>
+      <script>
+	var base_url = "../..",
+            shortcuts = {"help": 191, "next": 78, "previous": 80, "search": 83};
+      </script>
+      <script src="../../js/base.js" defer></script>
+      <script src="../../search/main.js" defer></script>
+
+      <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="Search Modal" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Search</h4>
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            </div>
+            <div class="modal-body">
+                <p>
+                    From here you can search these documents. Enter
+                    your search terms below.
+                </p>
+                <form role="form">
+                    <div class="form-group">
+                        <input type="text" class="form-control" placeholder="Search..." id="mkdocs-search-query" title="Type search term here">
+                    </div>
+                </form>
+                <div id="mkdocs-search-results"></div>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div><div class="modal" id="mkdocs_keyboard_modal" tabindex="-1" role="dialog" aria-labelledby="Keyboard Shortcuts Modal" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <p class="h4 modal-title">Keyboard Shortcuts</p>
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            </div>
+            <div class="modal-body">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th style="width: 20%;">Keys</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="help shortcut"><kbd>?</kbd></td>
+                    <td>Open this help</td>
+                  </tr>
+                  <tr>
+                    <td class="next shortcut"><kbd>n</kbd></td>
+                    <td>Next page</td>
+                  </tr>
+                  <tr>
+                    <td class="prev shortcut"><kbd>p</kbd></td>
+                    <td>Previous page</td>
+                  </tr>
+                  <tr>
+                    <td class="search shortcut"><kbd>s</kbd></td>
+                    <td>Search</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>
+
+    </body>
+</html>

@@ -32,7 +32,7 @@ in a number of places throughout the Tcl core (e.g. in \fBfcopy\fR,
 \fBlsort\fR and \fBtrace\fR command callbacks). This example shows how
 to do this using core Tcl commands:
 .PP
-.nf
+.CS
 set script {
     puts "logging now"
     lappend $myCurrentLogVar
@@ -47,7 +47,7 @@ for {set i 0} {$i<10} {incr i} {
     update    ;# Check for the asynch log switch
     \fBeval\fR $script $i [clock clicks]
 }
-.fi
+.CE
 .PP
 Note that in the most common case (where the script fragment is
 actually just a list of words forming a command prefix), it is better
@@ -58,7 +58,7 @@ The following procedure acts in a way that is analogous to the
 \fBlappend\fR command, except it inserts the argument values at the
 start of the list in the variable:
 .PP
-.nf
+.CS
 proc lprepend {varName args} {
     upvar 1 $varName var
     # Ensure that the variable exists and contains a list
@@ -66,14 +66,14 @@ proc lprepend {varName args} {
     # Now we insert all the arguments in one go
     set var [\fBeval\fR [list linsert $var 0] $args]
 }
-.fi
+.CE
 .PP
 However, the last line would now normally be written without
 \fBeval\fR, like this:
 .PP
-.nf
+.CS
 set var [linsert $var 0 {*}$args]
-.fi
+.CE
 .SH "SEE ALSO"
 catch(n), concat(n), error(n), errorCode(n), errorInfo(n), interp(n), list(n),
 namespace(n), subst(n), uplevel(n)

@@ -1,5 +1,3 @@
-\
-
 # NAME
 
 seek - Change the access position for an open channel
@@ -7,8 +5,6 @@ seek - Change the access position for an open channel
 # SYNOPSIS
 
 **seek ***channelId offset *?*origin*?
-
-\
 
 # DESCRIPTION
 
@@ -82,3 +78,9 @@ file(n), open(n), close(n), gets(n), tell(n), Tcl_StandardChannels(3)
 # KEYWORDS
 
 access position, file, seek
+
+<!---
+Copyright (c) 1993 The Regents of the University of California
+Copyright (c) 1994-1996 Sun Microsystems, Inc
+-->
+

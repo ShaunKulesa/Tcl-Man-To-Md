@@ -1,0 +1,518 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+      <script>
+	// Hack for scrolling window when linking to anchor tag with fixed nav header
+        var shiftWindow = function() { scrollBy(0, -75) };
+        window.addEventListener("hashchange", shiftWindow);
+        function load() { if (window.location.hash) shiftWindow(); }
+      </script>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        
+        <link rel="canonical" href="https://www.tcl.tk/man/TclCmd/define/">
+        <link rel="shortcut icon" href="../../img/favicon.ico">
+        <title>Define - Tcl/Tk</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <link href="../../css/font-awesome.min.css" rel="stylesheet">
+    <link href="../../css/base.css" rel="stylesheet">
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+    <script src="../../js/base.js"></script> 
+    </head>
+
+    <body class="">
+
+      <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
+	<div class="container">
+	<a class="navbar-brand" href="../..">Tcl/Tk</a>
+	<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExample04" aria-controls="navbarsExample04" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+	</button>
+
+	<div class="collapse navbar-collapse">
+
+          <ul class="navbar-nav flex-row ml-md-auto d-none d-md-flex">
+            <li class="nav-item">
+              <a class="nav-link" href="#" data-toggle="modal" data-target="#mkdocs_search_modal">
+		<i class="fa fa-search"></i> Search
+              </a>
+            </li>
+          </ul>
+	</div>
+	</div>
+      </nav><div id="content" class="container">
+        
+      <div class="row">
+        <div class="col-md-9" role="main">
+
+
+<nav aria-label="breadcrumb">
+  <ol class="breadcrumb">
+    
+    <li class="breadcrumb-item active" aria-current="page">Define</li>
+  </ol>
+</nav>
+
+
+<p>\</p>
+<h1 id="name">NAME</h1>
+<p>oo::define, oo::objdefine - define and configure classes and objects</p>
+<h1 id="synopsis">SYNOPSIS</h1>
+<p>package require TclOO</p>
+<p><strong>oo::define</strong><em> class defScript</em> <strong>oo::define</strong><em> class subcommand arg</em>
+?<em>arg ...</em>? <strong>oo::objdefine</strong><em> object defScript</em> <strong>oo::objdefine</strong><em>
+object subcommand arg</em> ?<em>arg ...</em>?</p>
+<p>\</p>
+<h1 id="description">DESCRIPTION</h1>
+<p>The <strong>oo::define</strong> command is used to control the configuration of
+classes, and the <strong>oo::objdefine</strong> command is used to control the
+configuration of objects (including classes as instance objects), with
+the configuration being applied to the entity named in the <em>class</em> or
+the <em>object</em> argument. Configuring a class also updates the
+configuration of all subclasses of the class and all objects that are
+instances of that class or which mix it in (as modified by any
+per-instance configuration). The way in which the configuration is done
+is controlled by either the <em>defScript</em> argument or by the <em>subcommand</em>
+and following <em>arg</em> arguments; when the second is present, it is exactly
+as if all the arguments from <em>subcommand</em> onwards are made into a list
+and that list is used as the <em>defScript</em> argument.</p>
+<h2 id="configuring-classes">CONFIGURING CLASSES</h2>
+<p>The following commands are supported in the <em>defScript</em> for
+<strong>oo::define</strong>, each of which may also be used in the <em>subcommand</em> form:</p>
+<p><strong>constructor</strong><em> argList bodyScript</em></p>
+<p>:   This creates or updates the constructor for a class. The formal
+    arguments to the constructor (defined using the same format as for
+    the Tcl <strong>proc</strong> command) will be <em>argList</em>, and the body of the
+    constructor will be <em>bodyScript</em>. When the body of the constructor
+    is evaluated, the current namespace of the constructor will be a
+    namespace that is unique to the object being constructed. Within the
+    constructor, the <strong>next</strong> command should be used to call the
+    superclasses\' constructors. If <em>bodyScript</em> is the empty string,
+    the constructor will be deleted.</p>
+<p><strong>deletemethod</strong><em> name</em> ?<em>name ...</em>?</p>
+<p>:   This deletes each of the methods called <em>name</em> from a class. The
+    methods must have previously existed in that class. Does not affect
+    the superclasses of the class, nor does it affect the subclasses or
+    instances of the class (except when they have a call chain through
+    the class being modified) or the class object itself.</p>
+<p><strong>destructor</strong><em> bodyScript</em></p>
+<p>:   This creates or updates the destructor for a class. Destructors take
+    no arguments, and the body of the destructor will be <em>bodyScript</em>.
+    The destructor is called when objects of the class are deleted, and
+    when called will have the object\'s unique namespace as the current
+    namespace. Destructors should use the <strong>next</strong> command to call the
+    superclasses\' destructors. Note that destructors are not called in
+    all situations (e.g. if the interpreter is destroyed). If
+    <em>bodyScript</em> is the empty string, the destructor will be deleted.</p>
+<div class="language-text highlight"><pre><span></span><code>Note that errors during the evaluation of a destructor *are not
+returned* to the code that causes the destruction of an object.
+Instead, they are passed to the currently-defined **bgerror**
+handler.
+</code></pre></div>
+<p><strong>export</strong><em> name </em>?<em>name ...</em>?</p>
+<p>:   This arranges for each of the named methods, <em>name</em>, to be exported
+    (i.e. usable outside an instance through the instance object\'s
+    command) by the class being defined. Note that the methods
+    themselves may be actually defined by a superclass; subclass exports
+    override superclass visibility, and may in turn be overridden by
+    instances.</p>
+<p><strong>filter</strong> ?<em>-slotOperation</em>? ?<em>methodName ...</em>?</p>
+<p>:   </p>
+<p>This slot (see <strong>SLOTTED DEFINITIONS</strong> below)</p>
+<p>sets or updates the list of method names that are used to guard whether
+method call to instances of the class may be called and what the
+method\'s results are. Each <em>methodName</em> names a single filtering method
+(which may be exposed or not exposed); it is not an error for a
+non-existent method to be named since they may be defined by subclasses.</p>
+<p>By default, this slot works by appending.</p>
+<p><strong>forward</strong><em> name cmdName </em>?<em>arg ...</em>?</p>
+<p>:   This creates or updates a forwarded method called <em>name</em>. The method
+    is defined be forwarded to the command called <em>cmdName</em>, with
+    additional arguments, <em>arg</em> etc., added before those arguments
+    specified by the caller of the method. The <em>cmdName</em> will always be
+    resolved using the rules of the invoking objects\' namespaces, i.e.,
+    when <em>cmdName</em> is not fully-qualified, the command will be searched
+    for in each object\'s namespace, using the instances\' namespace\'s
+    path, or by looking in the global namespace. The method will be
+    exported if <em>name</em> starts with a lower-case letter, and non-exported
+    otherwise.</p>
+<p><strong>method</strong><em> name argList bodyScript</em></p>
+<p>:   This creates or updates a method that is implemented as a
+    procedure-like script. The name of the method is <em>name</em>, the formal
+    arguments to the method (defined using the same format as for the
+    Tcl <strong>proc</strong> command) will be <em>argList</em>, and the body of the method
+    will be <em>bodyScript</em>. When the body of the method is evaluated, the
+    current namespace of the method will be a namespace that is unique
+    to the current object. The method will be exported if <em>name</em> starts
+    with a lower-case letter, and non-exported otherwise; this behavior
+    can be overridden via <strong>export</strong> and <strong>unexport</strong>.</p>
+<p><strong>mixin</strong> ?<em>-slotOperation</em>? ?<em>className ...</em>?</p>
+<p>:   </p>
+<p>This slot (see <strong>SLOTTED DEFINITIONS</strong> below)</p>
+<p>sets or updates the list of additional classes that are to be mixed into
+all the instances of the class being defined. Each <em>className</em> argument
+names a single class that is to be mixed in.</p>
+<p>By default, this slot works by replacement.</p>
+<p><strong>renamemethod</strong><em> fromName toName</em></p>
+<p>:   This renames the method called <em>fromName</em> in a class to <em>toName</em>.
+    The method must have previously existed in the class, and <em>toName</em>
+    must not previously refer to a method in that class. Does not affect
+    the superclasses of the class, nor does it affect the subclasses or
+    instances of the class (except when they have a call chain through
+    the class being modified), or the class object itself. Does not
+    change the export status of the method; if it was exported before,
+    it will be afterwards.</p>
+<p><strong>self</strong><em> subcommand arg ...</em></p>
+<p>:   </p>
+<p><strong>self</strong><em> script</em></p>
+<p>:   This command is equivalent to calling <strong>oo::objdefine</strong> on the class
+    being defined (see <strong>CONFIGURING OBJECTS</strong> below for a description
+    of the supported values of <em>subcommand</em>). It follows the same
+    general pattern of argument handling as the <strong>oo::define</strong> and
+    <strong>oo::objdefine</strong> commands, and operates identically to</p>
+<p><strong>superclass</strong> ?<em>-slotOperation</em>? ?<em>className ...</em>?</p>
+<p>:   </p>
+<p>This slot (see <strong>SLOTTED DEFINITIONS</strong> below)</p>
+<p>allows the alteration of the superclasses of the class being defined.
+Each <em>className</em> argument names one class that is to be a superclass of
+the defined class. Note that objects must not be changed from being
+classes to being non-classes or vice-versa, that an empty parent class
+is equivalent to <strong>oo::object</strong>, and that the parent classes of
+<strong>oo::object</strong> and <strong>oo::class</strong> may not be modified.</p>
+<p>By default, this slot works by replacement.</p>
+<p><strong>unexport</strong><em> name </em>?<em>name ...</em>?</p>
+<p>:   This arranges for each of the named methods, <em>name</em>, to be not
+    exported (i.e. not usable outside the instance through the instance
+    object\'s command, but instead just through the <strong>my</strong> command
+    visible in each object\'s context) by the class being defined. Note
+    that the methods themselves may be actually defined by a superclass;
+    subclass unexports override superclass visibility, and may be
+    overridden by instance unexports.</p>
+<p><strong>variable</strong> ?<em>-slotOperation</em>? ?<em>name ...</em>?</p>
+<p>:   </p>
+<p>This slot (see <strong>SLOTTED DEFINITIONS</strong> below) arranges for each of the
+named variables to be automatically made available in the methods,
+constructor and destructor declared by the class being defined. Each
+variable name must not have any namespace separators and must not look
+like an array access. All variables will be actually present in the
+instance object on which the method is executed. Note that the variable
+lists declared by a superclass or subclass are completely disjoint, as
+are variable lists declared by instances; the list of variable names is
+just for methods (and constructors and destructors) declared by this
+class. By default, this slot works by appending.</p>
+<h2 id="configuring-objects">CONFIGURING OBJECTS</h2>
+<p>The following commands are supported in the <em>defScript</em> for
+<strong>oo::objdefine</strong>, each of which may also be used in the <em>subcommand</em>
+form:</p>
+<p><strong>class</strong><em> className</em></p>
+<p>:   This allows the class of an object to be changed after creation.
+    Note that the class\'s constructors are not called when this is
+    done, and so the object may well be in an inconsistent state unless
+    additional configuration work is done.</p>
+<p><strong>deletemethod</strong><em> name</em> ?<em>name ...</em></p>
+<p>:   This deletes each of the methods called <em>name</em> from an object. The
+    methods must have previously existed in that object (e.g., because
+    it was created through <strong>oo::objdefine method</strong>). Does not affect
+    the classes that the object is an instance of, or remove the
+    exposure of those class-provided methods in the instance of that
+    class.</p>
+<p><strong>export</strong><em> name </em>?<em>name ...</em>?</p>
+<p>:   This arranges for each of the named methods, <em>name</em>, to be exported
+    (i.e. usable outside the object through the object\'s command) by
+    the object being defined. Note that the methods themselves may be
+    actually defined by a class or superclass; object exports override
+    class visibility.</p>
+<p><strong>filter</strong> ?<em>-slotOperation</em>? ?<em>methodName ...</em>?</p>
+<p>:   </p>
+<p>This slot (see <strong>SLOTTED DEFINITIONS</strong> below)</p>
+<p>sets or updates the list of method names that are used to guard whether
+a method call to the object may be called and what the method\'s results
+are. Each <em>methodName</em> names a single filtering method (which may be
+exposed or not exposed); it is not an error for a non-existent method to
+be named. Note that the actual list of filters also depends on the
+filters set upon any classes that the object is an instance of.</p>
+<p>By default, this slot works by appending.</p>
+<p><strong>forward</strong><em> name cmdName </em>?<em>arg ...</em>?</p>
+<p>:   This creates or updates a forwarded object method called <em>name</em>. The
+    method is defined be forwarded to the command called <em>cmdName</em>, with
+    additional arguments, <em>arg</em> etc., added before those arguments
+    specified by the caller of the method. Forwarded methods should be
+    deleted using the <strong>method</strong> subcommand. The method will be exported
+    if <em>name</em> starts with a lower-case letter, and non-exported
+    otherwise.</p>
+<p><strong>method</strong><em> name argList bodyScript</em></p>
+<p>:   This creates, updates or deletes an object method. The name of the
+    method is <em>name</em>, the formal arguments to the method (defined using
+    the same format as for the Tcl <strong>proc</strong> command) will be <em>argList</em>,
+    and the body of the method will be <em>bodyScript</em>. When the body of
+    the method is evaluated, the current namespace of the method will be
+    a namespace that is unique to the object. The method will be
+    exported if <em>name</em> starts with a lower-case letter, and non-exported
+    otherwise.</p>
+<p><strong>mixin</strong> ?<em>-slotOperation</em>? ?<em>className ...</em>?</p>
+<p>:   </p>
+<p>This slot (see <strong>SLOTTED DEFINITIONS</strong> below)</p>
+<p>sets or updates a per-object list of additional classes that are to be
+mixed into the object. Each argument, <em>className</em>, names a single class
+that is to be mixed in.</p>
+<p>By default, this slot works by replacement.</p>
+<p><strong>renamemethod</strong><em> fromName toName</em></p>
+<p>:   This renames the method called <em>fromName</em> in an object to <em>toName</em>.
+    The method must have previously existed in the object, and <em>toName</em>
+    must not previously refer to a method in that object. Does not
+    affect the classes that the object is an instance of and cannot
+    rename in an instance object the methods provided by those classes
+    (though a <strong>oo::objdefine forward</strong>ed method may provide an
+    equivalent capability). Does not change the export status of the
+    method; if it was exported before, it will be afterwards.</p>
+<p><strong>unexport</strong><em> name </em>?<em>name ...</em>?</p>
+<p>:   This arranges for each of the named methods, <em>name</em>, to be not
+    exported (i.e. not usable outside the object through the object\'s
+    command, but instead just through the <strong>my</strong> command visible in the
+    object\'s context) by the object being defined. Note that the
+    methods themselves may be actually defined by a class; instance
+    unexports override class visibility.</p>
+<p><strong>variable</strong> ?<em>-slotOperation</em>? ?<em>name ...</em>?</p>
+<p>:   </p>
+<p>This slot (see <strong>SLOTTED DEFINITIONS</strong> below) arranges for each of the
+named variables to be automatically made available in the methods
+declared by the object being defined. Each variable name must not have
+any namespace separators and must not look like an array access. All
+variables will be actually present in the object on which the method is
+executed. Note that the variable lists declared by the classes and
+mixins of which the object is an instance are completely disjoint; the
+list of variable names is just for methods declared by this object. By
+default, this slot works by appending.</p>
+<h1 id="slotted-definitions">SLOTTED DEFINITIONS</h1>
+<p>Some of the configurable definitions of a class or object are <em>slotted</em>
+definitions. This means that the configuration is implemented by a slot
+object, that is an instance of the class <strong>oo::Slot</strong>, which manages a
+list of values (class names, variable names, etc.) that comprises the
+contents of the slot. The class defines three operations (as methods)
+that may be done on the slot:</p>
+<p><em>slot</em> <strong>-append</strong> ?<em>member ...</em>?</p>
+<p>:   </p>
+<p>This appends the given <em>member</em> elements to the slot definition.</p>
+<p><em>slot</em> <strong>-clear</strong></p>
+<p>:   </p>
+<p>This sets the slot definition to the empty list.</p>
+<p><em>slot</em> <strong>-set</strong> ?<em>member ...</em>?</p>
+<p>:   </p>
+<p>This replaces the slot definition with the given <em>member</em> elements.</p>
+<p>A consequence of this is that any use of a slot\'s default operation
+where the first member argument begins with a hyphen will be an error.
+One of the above operations should be used explicitly in those
+circumstances.</p>
+<h2 id="slot-implementation">SLOT IMPLEMENTATION</h2>
+<p>Internally, slot objects also define a method <strong>--default-operation</strong>
+which is forwarded to the default operation of the slot (thus, for the
+class slot, this is forwarded to and these methods which provide the
+implementation interface:</p>
+<p><em>slot</em> <strong>Get</strong></p>
+<p>:   </p>
+<p>Returns a list that is the current contents of the slot. This method
+must always be called from a stack frame created by a call to
+<strong>oo::define</strong> or <strong>oo::objdefine</strong>.</p>
+<p><em>slot</em> <strong>Set </strong><em>elementList</em></p>
+<p>:   </p>
+<p>Sets the contents of the slot to the list <em>elementList</em> and returns the
+empty string. This method must always be called from a stack frame
+created by a call to <strong>oo::define</strong> or <strong>oo::objdefine</strong>.</p>
+<p>The implementation of these methods is slot-dependent (and responsible
+for accessing the correct part of the class or object definition). Slots
+also have an unknown method handler to tie all these pieces together,
+and they hide their <strong>destroy</strong> method so that it is not invoked
+inadvertently. It is <em>recommended</em> that any user changes to the slot
+mechanism be restricted to defining new operations whose names start
+with a hyphen.</p>
+<h1 id="examples">EXAMPLES</h1>
+<p>This example demonstrates how to use both forms of the <strong>oo::define</strong>
+and <strong>oo::objdefine</strong> commands (they work in the same way), as well as
+illustrating four of the subcommands of them.</p>
+<div class="language-text highlight"><pre><span></span><code>oo::class create c
+c create o
+oo::define c method foo {} {
+    puts &quot;world&quot;
+}
+oo::objdefine o {
+    method bar {} {
+        my Foo &quot;hello &quot;
+        my foo
+    }
+    forward Foo ::puts -nonewline
+    unexport foo
+}
+o bar                → prints &quot;hello world&quot;
+o foo                → error &quot;unknown method foo&quot;
+o Foo Bar            → error &quot;unknown method Foo&quot;
+oo::objdefine o renamemethod bar lollipop
+o lollipop           → prints &quot;hello world&quot;
+</code></pre></div>
+<p>This example shows how additional classes can be mixed into an object.
+It also shows how <strong>mixin</strong> is a slot that supports appending:</p>
+<div class="language-text highlight"><pre><span></span><code>oo::object create inst
+inst m1              → error &quot;unknown method m1&quot;
+inst m2              → error &quot;unknown method m2&quot;
+
+oo::class create A {
+    method m1 {} {
+        puts &quot;red brick&quot;
+    }
+}
+oo::objdefine inst {
+    mixin A
+}
+inst m1              → prints &quot;red brick&quot;
+inst m2              → error &quot;unknown method m2&quot;
+
+oo::class create B {
+    method m2 {} {
+        puts &quot;blue brick&quot;
+    }
+}
+oo::objdefine inst {
+    mixin -append B
+}
+inst m1              → prints &quot;red brick&quot;
+inst m2              → prints &quot;blue brick&quot;
+</code></pre></div>
+<h1 id="see-also">SEE ALSO</h1>
+<p>next(n), oo::class(n), oo::object(n)</p>
+<h1 id="keywords">KEYWORDS</h1>
+<p>class, definition, method, object, slot</p>
+
+<ul class="metadata page-metadata" data-bi-name="page info" lang="en-us" dir="ltr">
+  <li class="last-updated-holder displayDate loading">
+    <span class="last-updated-text">Last updated:</span>
+    <time role="presentation" datetime="2018-10-25T00:00:00.000Z" data-article-date-source="ms.date"></time>
+  </li>
+<!--
+  <li class="readingTime">
+    2 minutes to read
+  </li>
+-->
+  <li class="contributors-holder">
+    <span class="contributors-text">Contributors</span>
+    <ul class="contributors" data-bi-name="contributors"></ul>
+  </li>
+</ul>
+</div>
+        <div class="col-md-3"><div class="navbar-light navbar-expand-md hidden-print sticky-top sticky-offset" role="complementary">
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggler collapsed" data-toggle="collapse" data-target="#toc-collapse" title="Table of Contents">
+            <span class="fa fa-angle-down"></span>
+        </button>
+    </div>
+
+    <div id="toc-collapse" class="navbar-collapse collapse card">
+        <ul class="nav flex-column bs-sidenav">
+            <li class="nav-item main"><a class="nav-link" href="#name">NAME</a></li>
+            <li class="nav-item main"><a class="nav-link" href="#synopsis">SYNOPSIS</a></li>
+            <li class="nav-item main"><a class="nav-link" href="#description">DESCRIPTION</a></li>
+                <li class="nav-item">
+                    <a href="#configuring-classes" class="nav-link">CONFIGURING CLASSES</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#configuring-objects" class="nav-link">CONFIGURING OBJECTS</a>
+                </li>
+            <li class="nav-item main"><a class="nav-link" href="#slotted-definitions">SLOTTED DEFINITIONS</a></li>
+                <li class="nav-item">
+                    <a href="#slot-implementation" class="nav-link">SLOT IMPLEMENTATION</a>
+                </li>
+            <li class="nav-item main"><a class="nav-link" href="#examples">EXAMPLES</a></li>
+            <li class="nav-item main"><a class="nav-link" href="#see-also">SEE ALSO</a></li>
+            <li class="nav-item main"><a class="nav-link" href="#keywords">KEYWORDS</a></li>
+        </ul>
+    </div>
+</div></div>
+      </div>
+      </div>
+
+      <footer class="col-md-12">
+	<hr>
+	<div class="container">
+	</div>
+      </footer>
+      <script>
+	var base_url = "../..",
+            shortcuts = {"help": 191, "next": 78, "previous": 80, "search": 83};
+      </script>
+      <script src="../../js/base.js" defer></script>
+      <script src="../../search/main.js" defer></script>
+
+      <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="Search Modal" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Search</h4>
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            </div>
+            <div class="modal-body">
+                <p>
+                    From here you can search these documents. Enter
+                    your search terms below.
+                </p>
+                <form role="form">
+                    <div class="form-group">
+                        <input type="text" class="form-control" placeholder="Search..." id="mkdocs-search-query" title="Type search term here">
+                    </div>
+                </form>
+                <div id="mkdocs-search-results"></div>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div><div class="modal" id="mkdocs_keyboard_modal" tabindex="-1" role="dialog" aria-labelledby="Keyboard Shortcuts Modal" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <p class="h4 modal-title">Keyboard Shortcuts</p>
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            </div>
+            <div class="modal-body">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th style="width: 20%;">Keys</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="help shortcut"><kbd>?</kbd></td>
+                    <td>Open this help</td>
+                  </tr>
+                  <tr>
+                    <td class="next shortcut"><kbd>n</kbd></td>
+                    <td>Next page</td>
+                  </tr>
+                  <tr>
+                    <td class="prev shortcut"><kbd>p</kbd></td>
+                    <td>Previous page</td>
+                  </tr>
+                  <tr>
+                    <td class="search shortcut"><kbd>s</kbd></td>
+                    <td>Search</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>
+
+    </body>
+</html>

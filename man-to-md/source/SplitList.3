@@ -11,7 +11,6 @@
 .SH NAME
 Tcl_SplitList, Tcl_Merge, Tcl_ScanElement, Tcl_ConvertElement, Tcl_ScanCountedElement, Tcl_ConvertCountedElement \- manipulate Tcl lists
 .SH SYNOPSIS
-.nf
 \fB#include <tcl.h>\fR
 .sp
 int
@@ -80,20 +79,20 @@ responsibility to free up all of this storage.
 For example, suppose that you have called \fBTcl_SplitList\fR with
 the following code:
 .PP
-.nf
+.CS
 int argc, code;
 char *string;
 char **argv;
 \&...
 code = \fBTcl_SplitList\fR(interp, string, &argc, &argv);
-.fi
+.CE
 .PP
 Then you should eventually free the storage with a call like the
 following:
 .PP
-.nf
+.CS
 Tcl_Free((char *) argv);
-.fi
+.CE
 .PP
 \fBTcl_SplitList\fR normally returns \fBTCL_OK\fR, which means the list was
 successfully parsed.

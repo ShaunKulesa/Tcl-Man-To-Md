@@ -1,5 +1,3 @@
-\
-
 # NAME
 
 Tcl_CreateEnsemble, Tcl_FindEnsemble, Tcl_GetEnsembleFlags,
@@ -12,50 +10,36 @@ manipulate ensemble commands
 
 # SYNOPSIS
 
-    #include <tcl.h>
+**#include \<tcl.h\>**
 
-    Tcl_Command
-    Tcl_CreateEnsemble(interp, name, namespacePtr, ensFlags)
+Tcl_Command **Tcl_CreateEnsemble**(*interp, name, namespacePtr,
+ensFlags*)
 
-    Tcl_Command
-    Tcl_FindEnsemble(interp, cmdNameObj, flags)
+Tcl_Command **Tcl_FindEnsemble**(*interp, cmdNameObj, flags*)
 
-    int
-    Tcl_IsEnsemble(token)
+int **Tcl_IsEnsemble**(*token*)
 
-    int
-    Tcl_GetEnsembleFlags(interp, token, ensFlagsPtr)
+int **Tcl_GetEnsembleFlags**(*interp, token, ensFlagsPtr*)
 
-    int
-    Tcl_SetEnsembleFlags(interp, token, ensFlags)
+int **Tcl_SetEnsembleFlags**(*interp, token, ensFlags*)
 
-    int
-    Tcl_GetEnsembleMappingDict(interp, token, dictObjPtr)
+int **Tcl_GetEnsembleMappingDict**(*interp, token, dictObjPtr*)
 
-    int
-    Tcl_SetEnsembleMappingDict(interp, token, dictObj)
+int **Tcl_SetEnsembleMappingDict**(*interp, token, dictObj*)
 
-    int
-    Tcl_GetEnsembleParameterList(interp, token, listObjPtr)
+int **Tcl_GetEnsembleParameterList**(*interp, token, listObjPtr*)
 
-    int
-    Tcl_SetEnsembleParameterList(interp, token, listObj)
+int **Tcl_SetEnsembleParameterList**(*interp, token, listObj*)
 
+int **Tcl_GetEnsembleSubcommandList**(*interp, token, listObjPtr*)
 
-    int
-    Tcl_GetEnsembleSubcommandList(interp, token, listObjPtr)
+int **Tcl_SetEnsembleSubcommandList**(*interp, token, listObj*)
 
-    int
-    Tcl_SetEnsembleSubcommandList(interp, token, listObj)
+int **Tcl_GetEnsembleUnknownHandler**(*interp, token, listObjPtr*)
 
-    int
-    Tcl_GetEnsembleUnknownHandler(interp, token, listObjPtr)
+int **Tcl_SetEnsembleUnknownHandler**(*interp, token, listObj*)
 
-    int
-    Tcl_SetEnsembleUnknownHandler(interp, token, listObj)
-
-    int
-    Tcl_GetEnsembleNamespace(interp, token, namespacePtrPtr)
+int **Tcl_GetEnsembleNamespace**(*interp, token, namespacePtrPtr*)
 
 # ARGUMENTS
 
@@ -103,8 +87,6 @@ current unknown handler prefix.
 
 Pointer to a variable into which to write the handle of the namespace to
 which the ensemble is bound.
-
-\
 
 # DESCRIPTION
 
@@ -222,3 +204,8 @@ namespace(n), Tcl_DeleteCommandFromToken(3)
 # KEYWORDS
 
 command, ensemble
+
+<!---
+Copyright (c) 2005 Donal K. Fellow
+-->
+

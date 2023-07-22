@@ -1,5 +1,3 @@
-\
-
 # NAME
 
 set - Read and write variables
@@ -7,8 +5,6 @@ set - Read and write variables
 # SYNOPSIS
 
 **set ***varName *?*value*?
-
-\
 
 # DESCRIPTION
 
@@ -64,3 +60,9 @@ variable(n)
 # KEYWORDS
 
 read, write, variable
+
+<!---
+Copyright (c) 1993 The Regents of the University of California
+Copyright (c) 1994-1996 Sun Microsystems, Inc
+-->
+

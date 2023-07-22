@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+      <script>
+	// Hack for scrolling window when linking to anchor tag with fixed nav header
+        var shiftWindow = function() { scrollBy(0, -75) };
+        window.addEventListener("hashchange", shiftWindow);
+        function load() { if (window.location.hash) shiftWindow(); }
+      </script>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        
+        <link rel="canonical" href="https://www.tcl.tk/man/TclCmd/format/">
+        <link rel="shortcut icon" href="../../img/favicon.ico">
+        <title>Format - Tcl/Tk</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <link href="../../css/font-awesome.min.css" rel="stylesheet">
+    <link href="../../css/base.css" rel="stylesheet">
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+    <script src="../../js/base.js"></script> 
+    </head>
+
+    <body class="">
+
+      <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
+	<div class="container">
+	<a class="navbar-brand" href="../..">Tcl/Tk</a>
+	<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExample04" aria-controls="navbarsExample04" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+	</button>
+
+	<div class="collapse navbar-collapse">
+
+          <ul class="navbar-nav flex-row ml-md-auto d-none d-md-flex">
+            <li class="nav-item">
+              <a class="nav-link" href="#" data-toggle="modal" data-target="#mkdocs_search_modal">
+		<i class="fa fa-search"></i> Search
+              </a>
+            </li>
+          </ul>
+	</div>
+	</div>
+      </nav><div id="content" class="container">
+        
+      <div class="row">
+        <div class="col-md-9" role="main">
+
+
+<nav aria-label="breadcrumb">
+  <ol class="breadcrumb">
+    
+    <li class="breadcrumb-item active" aria-current="page">Format</li>
+  </ol>
+</nav>
+
+
+<p>\</p>
+<h1 id="name">NAME</h1>
+<p>format - Format a string in the style of sprintf</p>
+<h1 id="synopsis">SYNOPSIS</h1>
+<p><strong>format </strong><em>formatString </em>?<em>arg arg ...</em>?</p>
+<p>\</p>
+<h1 id="introduction">INTRODUCTION</h1>
+<p>This command generates a formatted string in a fashion similar to the
+ANSI C <strong>sprintf</strong> procedure. <em>FormatString</em> indicates how to format the
+result, using <strong>%</strong> conversion specifiers as in <strong>sprintf</strong>, and the
+additional arguments, if any, provide values to be substituted into the
+result. The return value from <strong>format</strong> is the formatted string.</p>
+<h1 id="details-on-formatting">DETAILS ON FORMATTING</h1>
+<p>The command operates by scanning <em>formatString</em> from left to right. Each
+character from the format string is appended to the result string unless
+it is a percent sign. If the character is a <strong>%</strong> then it is not copied
+to the result string. Instead, the characters following the <strong>%</strong>
+character are treated as a conversion specifier. The conversion
+specifier controls the conversion of the next successive <em>arg</em> to a
+particular format and the result is appended to the result string in
+place of the conversion specifier. If there are multiple conversion
+specifiers in the format string, then each one controls the conversion
+of one additional <em>arg</em>. The <strong>format</strong> command must be given enough
+<em>arg</em>s to meet the needs of all of the conversion specifiers in
+<em>formatString</em>.</p>
+<p>Each conversion specifier may contain up to six different parts: an XPG3
+position specifier, a set of flags, a minimum field width, a precision,
+a size modifier, and a conversion character. Any of these fields may be
+omitted except for the conversion character. The fields that are present
+must appear in the order given above. The paragraphs below discuss each
+of these fields in turn.</p>
+<h2 id="optional-positional-specifier">OPTIONAL POSITIONAL SPECIFIER</h2>
+<p>If the <strong>%</strong> is followed by a decimal number and a <strong>\$</strong>, as in then
+the value to convert is not taken from the next sequential argument.
+Instead, it is taken from the argument indicated by the number, where 1
+corresponds to the first <em>arg</em>. If the conversion specifier requires
+multiple arguments because of <strong>*</strong> characters in the specifier then
+successive arguments are used, starting with the argument given by the
+number. This follows the XPG3 conventions for positional specifiers. If
+there are any positional specifiers in <em>formatString</em> then all of the
+specifiers must be positional.</p>
+<h2 id="optional-flags">OPTIONAL FLAGS</h2>
+<p>The second portion of a conversion specifier may contain any of the
+following flag characters, in any order:</p>
+<p><strong>-</strong></p>
+<p>:   Specifies that the converted argument should be left-justified in
+    its field (numbers are normally right-justified with leading spaces
+    if needed).</p>
+<p><strong>+</strong></p>
+<p>:   Specifies that a number should always be printed with a sign, even
+    if positive.</p>
+<p><em>space</em></p>
+<p>:   Specifies that a space should be added to the beginning of the
+    number if the first character is not a sign.</p>
+<p><strong>0</strong></p>
+<p>:   Specifies that the number should be padded on the left with zeroes
+    instead of spaces.</p>
+<p><strong>#</strong></p>
+<p>:   Requests an alternate output form. For <strong>o</strong> conversions it
+    guarantees that the first digit is always <strong>0</strong>. For <strong>x</strong> or <strong>X</strong>
+    conversions, <strong>0x</strong> or <strong>0X</strong> (respectively) will be added to the
+    beginning of the result unless it is zero. For <strong>b</strong> conversions,
+    <strong>0b</strong> will be added to the beginning of the result unless it is
+    zero. For all floating-point conversions (<strong>e</strong>, <strong>E</strong>, <strong>f</strong>,
+    <strong>g</strong>, and <strong>G</strong>) it guarantees that the result always has a decimal
+    point. For <strong>g</strong> and <strong>G</strong> conversions it specifies that trailing
+    zeroes should not be removed.</p>
+<h2 id="optional-field-width">OPTIONAL FIELD WIDTH</h2>
+<p>The third portion of a conversion specifier is a decimal number giving a
+minimum field width for this conversion. It is typically used to make
+columns line up in tabular printouts. If the converted argument contains
+fewer characters than the minimum field width then it will be padded so
+that it is as wide as the minimum field width. Padding normally occurs
+by adding extra spaces on the left of the converted argument, but the
+<strong>0</strong> and <strong>-</strong> flags may be used to specify padding with zeroes on the
+left or with spaces on the right, respectively. If the minimum field
+width is specified as <strong>*</strong> rather than a number, then the next
+argument to the <strong>format</strong> command determines the minimum field width;
+it must be an integer value.</p>
+<h2 id="optional-precisionbound">OPTIONAL PRECISION/BOUND</h2>
+<p>The fourth portion of a conversion specifier is a precision, which
+consists of a period followed by a number. The number is used in
+different ways for different conversions. For <strong>e</strong>, <strong>E</strong>, and <strong>f</strong>
+conversions it specifies the number of digits to appear to the right of
+the decimal point. For <strong>g</strong> and <strong>G</strong> conversions it specifies the
+total number of digits to appear, including those on both sides of the
+decimal point (however, trailing zeroes after the decimal point will
+still be omitted unless the <strong>#</strong> flag has been specified). For integer
+conversions, it specifies a minimum number of digits to print (leading
+zeroes will be added if necessary). For <strong>s</strong> conversions it specifies
+the maximum number of characters to be printed; if the string is longer
+than this then the trailing characters will be dropped. If the precision
+is specified with <strong>*</strong> rather than a number then the next argument to
+the <strong>format</strong> command determines the precision; it must be a numeric
+string.</p>
+<h2 id="optional-size-modifier">OPTIONAL SIZE MODIFIER</h2>
+<p>The fifth part of a conversion specifier is a size modifier, which must
+be <strong>ll</strong>, <strong>h</strong>, or <strong>l</strong>. If it is <strong>ll</strong> it specifies that an integer
+value is taken without truncation for conversion to a formatted
+substring. If it is <strong>h</strong> it specifies that an integer value is
+truncated to a 16-bit range before converting. This option is rarely
+useful. If it is <strong>l</strong> it specifies that the integer value is truncated
+to the same range as that produced by the <strong>wide()</strong> function of the
+<strong>expr</strong> command (at least a 64-bit range). If neither <strong>h</strong> nor <strong>l</strong>
+are present, the integer value is truncated to the same range as that
+produced by the <strong>int()</strong> function of the <strong>expr</strong> command (at least a
+32-bit range, but determined by the value of the <strong>wordSize</strong> element of
+the <strong>tcl_platform</strong> array).</p>
+<h2 id="mandatory-conversion-type">MANDATORY CONVERSION TYPE</h2>
+<p>The last thing in a conversion specifier is an alphabetic character that
+determines what kind of conversion to perform. The following conversion
+characters are currently supported:</p>
+<p><strong>d</strong></p>
+<p>:   Convert integer to signed decimal string.</p>
+<p><strong>u</strong></p>
+<p>:   Convert integer to unsigned decimal string.</p>
+<p><strong>i</strong></p>
+<p>:   Convert integer to signed decimal string (equivalent to <strong>d</strong>).</p>
+<p><strong>o</strong></p>
+<p>:   Convert integer to unsigned octal string.</p>
+<p><strong>x</strong> or <strong>X</strong></p>
+<p>:   Convert integer to unsigned hexadecimal string, using digits for
+    <strong>x</strong> and for <strong>X</strong>).</p>
+<p><strong>b</strong></p>
+<p>:   Convert integer to unsigned binary string, using digits 0 and 1.</p>
+<p><strong>c</strong></p>
+<p>:   Convert integer to the Unicode character it represents.</p>
+<p><strong>s</strong></p>
+<p>:   No conversion; just insert string.</p>
+<p><strong>f</strong></p>
+<p>:   Convert number to signed decimal string of the form <em>xx.yyy</em>, where
+    the number of <em>y</em>\'s is determined by the precision (default: 6). If
+    the precision is 0 then no decimal point is output.</p>
+<p><strong>e</strong> or <strong>E</strong></p>
+<p>:   Convert number to scientific notation in the form <em>x.yyy</em><strong>e±</strong><em>zz</em>,
+    where the number of <em>y</em>\'s is determined by the precision (default:
+    6). If the precision is 0 then no decimal point is output. If the
+    <strong>E</strong> form is used then <strong>E</strong> is printed instead of <strong>e</strong>.</p>
+<p><strong>g</strong> or <strong>G</strong></p>
+<p>:   If the exponent is less than -4 or greater than or equal to the
+    precision, then convert number as for <strong>%e</strong> or <strong>%E</strong>. Otherwise
+    convert as for <strong>%f</strong>. Trailing zeroes and a trailing decimal point
+    are omitted.</p>
+<p><strong>%</strong></p>
+<p>:   No conversion: just insert <strong>%</strong>.</p>
+<h1 id="differences-from-ansi-sprintf">DIFFERENCES FROM ANSI SPRINTF</h1>
+<p>The behavior of the format command is the same as the ANSI C <strong>sprintf</strong>
+procedure except for the following differences:</p>
+<p>[1]</p>
+<p>:   Tcl guarantees that it will be working with UNICODE characters.</p>
+<p>[2]</p>
+<p>:   <strong>%p</strong> and <strong>%n</strong> specifiers are not supported.</p>
+<p>[3]</p>
+<p>:   For <strong>%c</strong> conversions the argument must be an integer value, which
+    will then be converted to the corresponding character value.</p>
+<p>[4]</p>
+<p>:   The size modifiers are ignored when formatting floating-point
+    values. The <strong>ll</strong> modifier has no <strong>sprintf</strong> counterpart. The
+    <strong>b</strong> specifier has no <strong>sprintf</strong> counterpart.</p>
+<h1 id="examples">EXAMPLES</h1>
+<p>Convert the numeric value of a UNICODE character to the character
+itself:</p>
+<div class="language-text highlight"><pre><span></span><code>set value 120
+set char [format %c $value]
+</code></pre></div>
+<p>Convert the output of <strong>time</strong> into seconds to an accuracy of hundredths
+of a second:</p>
+<div class="language-text highlight"><pre><span></span><code>set us [lindex [time $someTclCode] 0]
+puts [format &quot;%.2f seconds to execute&quot; [expr {$us / 1e6}]]
+</code></pre></div>
+<p>Create a packed X11 literal color specification:</p>
+<div class="language-text highlight"><pre><span></span><code># Each color-component should be in range (0..255)
+set color [format &quot;#%02x%02x%02x&quot; $r $g $b]
+</code></pre></div>
+<p>Use XPG3 format codes to allow reordering of fields (a technique that is
+often used in localized message catalogs; see <strong>msgcat</strong>) without
+reordering the data values passed to <strong>format</strong>:</p>
+<div class="language-text highlight"><pre><span></span><code>set fmt1 &quot;Today, %d shares in %s were bought at $%.2f each&quot;
+puts [format $fmt1 123 &quot;Global BigCorp&quot; 19.37]
+
+set fmt2 &quot;Bought %2\$s equity ($%3$.2f x %1\$d) today&quot;
+puts [format $fmt2 123 &quot;Global BigCorp&quot; 19.37]
+</code></pre></div>
+<p>Print a small table of powers of three:</p>
+<div class="language-text highlight"><pre><span></span><code># Set up the column widths
+set w1 5
+set w2 10
+
+# Make a nice header (with separator) for the table first
+set sep +-[string repeat - $w1]-+-[string repeat - $w2]-+
+puts $sep
+puts [format &quot;| %-*s | %-*s |&quot; $w1 &quot;Index&quot; $w2 &quot;Power&quot;]
+puts $sep
+
+# Print the contents of the table
+set p 1
+for {set i 0} {$i&lt;=20} {incr i} {
+    puts [format &quot;| %*d | %*ld |&quot; $w1 $i $w2 $p]
+    set p [expr {wide($p) * 3}]
+}
+
+# Finish off by printing the separator again
+puts $sep
+</code></pre></div>
+<h1 id="see-also">SEE ALSO</h1>
+<p>scan(n), sprintf(3), string(n)</p>
+<h1 id="keywords">KEYWORDS</h1>
+<p>conversion specifier, format, sprintf, string, substitution</p>
+
+<ul class="metadata page-metadata" data-bi-name="page info" lang="en-us" dir="ltr">
+  <li class="last-updated-holder displayDate loading">
+    <span class="last-updated-text">Last updated:</span>
+    <time role="presentation" datetime="2018-10-25T00:00:00.000Z" data-article-date-source="ms.date"></time>
+  </li>
+<!--
+  <li class="readingTime">
+    2 minutes to read
+  </li>
+-->
+  <li class="contributors-holder">
+    <span class="contributors-text">Contributors</span>
+    <ul class="contributors" data-bi-name="contributors"></ul>
+  </li>
+</ul>
+</div>
+        <div class="col-md-3"><div class="navbar-light navbar-expand-md hidden-print sticky-top sticky-offset" role="complementary">
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggler collapsed" data-toggle="collapse" data-target="#toc-collapse" title="Table of Contents">
+            <span class="fa fa-angle-down"></span>
+        </button>
+    </div>
+
+    <div id="toc-collapse" class="navbar-collapse collapse card">
+        <ul class="nav flex-column bs-sidenav">
+            <li class="nav-item main"><a class="nav-link" href="#name">NAME</a></li>
+            <li class="nav-item main"><a class="nav-link" href="#synopsis">SYNOPSIS</a></li>
+            <li class="nav-item main"><a class="nav-link" href="#introduction">INTRODUCTION</a></li>
+            <li class="nav-item main"><a class="nav-link" href="#details-on-formatting">DETAILS ON FORMATTING</a></li>
+                <li class="nav-item">
+                    <a href="#optional-positional-specifier" class="nav-link">OPTIONAL POSITIONAL SPECIFIER</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#optional-flags" class="nav-link">OPTIONAL FLAGS</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#optional-field-width" class="nav-link">OPTIONAL FIELD WIDTH</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#optional-precisionbound" class="nav-link">OPTIONAL PRECISION/BOUND</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#optional-size-modifier" class="nav-link">OPTIONAL SIZE MODIFIER</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#mandatory-conversion-type" class="nav-link">MANDATORY CONVERSION TYPE</a>
+                </li>
+            <li class="nav-item main"><a class="nav-link" href="#differences-from-ansi-sprintf">DIFFERENCES FROM ANSI SPRINTF</a></li>
+            <li class="nav-item main"><a class="nav-link" href="#examples">EXAMPLES</a></li>
+            <li class="nav-item main"><a class="nav-link" href="#see-also">SEE ALSO</a></li>
+            <li class="nav-item main"><a class="nav-link" href="#keywords">KEYWORDS</a></li>
+        </ul>
+    </div>
+</div></div>
+      </div>
+      </div>
+
+      <footer class="col-md-12">
+	<hr>
+	<div class="container">
+	</div>
+      </footer>
+      <script>
+	var base_url = "../..",
+            shortcuts = {"help": 191, "next": 78, "previous": 80, "search": 83};
+      </script>
+      <script src="../../js/base.js" defer></script>
+      <script src="../../search/main.js" defer></script>
+
+      <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="Search Modal" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Search</h4>
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            </div>
+            <div class="modal-body">
+                <p>
+                    From here you can search these documents. Enter
+                    your search terms below.
+                </p>
+                <form role="form">
+                    <div class="form-group">
+                        <input type="text" class="form-control" placeholder="Search..." id="mkdocs-search-query" title="Type search term here">
+                    </div>
+                </form>
+                <div id="mkdocs-search-results"></div>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div><div class="modal" id="mkdocs_keyboard_modal" tabindex="-1" role="dialog" aria-labelledby="Keyboard Shortcuts Modal" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <p class="h4 modal-title">Keyboard Shortcuts</p>
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            </div>
+            <div class="modal-body">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th style="width: 20%;">Keys</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="help shortcut"><kbd>?</kbd></td>
+                    <td>Open this help</td>
+                  </tr>
+                  <tr>
+                    <td class="next shortcut"><kbd>n</kbd></td>
+                    <td>Next page</td>
+                  </tr>
+                  <tr>
+                    <td class="prev shortcut"><kbd>p</kbd></td>
+                    <td>Previous page</td>
+                  </tr>
+                  <tr>
+                    <td class="search shortcut"><kbd>s</kbd></td>
+                    <td>Search</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>
+
+    </body>
+</html>

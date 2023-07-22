@@ -46,7 +46,7 @@ with
 .PP
 The semantics of \fBapply\fR can also be described by:
 .PP
-.nf
+.CS
 proc apply {fun args} {
     set len [llength $fun]
     if {($len < 2) || ($len > 3)} {
@@ -61,13 +61,13 @@ proc apply {fun args} {
     set code [catch {uplevel 1 $name $args} res opt]
     return -options $opt $res
 }
-.fi
+.CE
 .SH EXAMPLES
 .PP
 This shows how to make a simple general command that applies a transformation
 to each element of a list.
 .PP
-.nf
+.CS
 proc map {lambda list} {
     set result {}
     foreach item $list {
@@ -79,12 +79,12 @@ map {x {return [string length $x]:$x}} {a bb ccc dddd}
       \fI\(-> 1:a 2:bb 3:ccc 4:dddd\fR
 map {x {expr {$x**2 + 3*$x - 2}}} {-4 -3 -2 -1 0 1 2 3 4}
       \fI\(-> 2 -2 -4 -4 -2 2 8 16 26\fR
-.fi
+.CE
 .PP
 The \fBapply\fR command is also useful for defining callbacks for use in the
 \fBtrace\fR command:
 .PP
-.nf
+.CS
 set vbl "123abc"
 trace add variable vbl write {\fBapply\fR {{v1 v2 op} {
     upvar 1 $v1 v
@@ -92,7 +92,7 @@ trace add variable vbl write {\fBapply\fR {{v1 v2 op} {
 }}}
 set vbl 123
 set vbl abc
-.fi
+.CE
 .SH "SEE ALSO"
 proc(n), uplevel(n)
 .SH KEYWORDS

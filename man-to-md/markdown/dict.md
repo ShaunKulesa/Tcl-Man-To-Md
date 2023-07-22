@@ -1,5 +1,3 @@
-\
-
 # NAME
 
 dict - Manipulate dictionaries
@@ -7,8 +5,6 @@ dict - Manipulate dictionaries
 # SYNOPSIS
 
 **dict ***option arg *?*arg \...*?
-
-\
 
 # DESCRIPTION
 
@@ -427,3 +423,8 @@ set(n)
 # KEYWORDS
 
 dictionary, create, update, lookup, iterate, filter, map
+
+<!---
+Copyright (c) 2003 Donal K. Fellow
+-->
+

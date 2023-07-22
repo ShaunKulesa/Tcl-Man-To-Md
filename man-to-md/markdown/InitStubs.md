@@ -1,15 +1,12 @@
-\
-
 # NAME
 
 Tcl_InitStubs - initialize the Tcl stubs mechanism
 
 # SYNOPSIS
 
-    #include <tcl.h>
+**#include \<tcl.h\>**
 
-    const char *
-    Tcl_InitStubs(interp, version, exact)
+const char \* **Tcl_InitStubs**(*interp, version, exact*)
 
 # ARGUMENTS
 
@@ -22,8 +19,6 @@ Non-zero means that only the particular version specified by *version*
 is acceptable. Zero means that versions newer than *version* are also
 acceptable as long as they have the same major version number as
 *version*.
-
-\
 
 # INTRODUCTION
 
@@ -87,3 +82,8 @@ Tk_InitStubs
 # KEYWORDS
 
 stubs
+
+<!---
+Copyright (c) 1998-1999 Scriptics Corporatio
+-->
+

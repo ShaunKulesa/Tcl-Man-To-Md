@@ -10,7 +10,6 @@
 .SH NAME
 Tcl_RegisterObjType, Tcl_GetObjType, Tcl_AppendAllObjTypes, Tcl_ConvertToType  \- manipulate Tcl value types
 .SH SYNOPSIS
-.nf
 \fB#include <tcl.h>\fR
 .sp
 \fBTcl_RegisterObjType\fR(\fItypePtr\fR)
@@ -102,7 +101,7 @@ other extensions to look up their Tcl_ObjType by name with
 the \fBTcl_GetObjType\fR routine.
 The \fBTcl_ObjType\fR structure is defined as follows:
 .PP
-.nf
+.CS
 typedef struct Tcl_ObjType {
     const char *\fIname\fR;
     Tcl_FreeInternalRepProc *\fIfreeIntRepProc\fR;
@@ -110,7 +109,7 @@ typedef struct Tcl_ObjType {
     Tcl_UpdateStringProc *\fIupdateStringProc\fR;
     Tcl_SetFromAnyProc *\fIsetFromAnyProc\fR;
 } \fBTcl_ObjType\fR;
-.fi
+.CE
 .SS "THE NAME FIELD"
 .PP
 The \fIname\fR member describes the name of the type, e.g. \fBint\fR.
@@ -125,11 +124,11 @@ The \fIsetFromAnyProc\fR member contains the address of a function
 called to create a valid internal representation
 from a value's string representation.
 .PP
-.nf
+.CS
 typedef int \fBTcl_SetFromAnyProc\fR(
         Tcl_Interp *\fIinterp\fR,
         Tcl_Obj *\fIobjPtr\fR);
-.fi
+.CE
 .PP
 If an internal representation cannot be created from the string,
 it returns \fBTCL_ERROR\fR and puts a message
@@ -170,10 +169,10 @@ The \fIupdateStringProc\fR member contains the address of a function
 called to create a valid string representation
 from a value's internal representation.
 .PP
-.nf
+.CS
 typedef void \fBTcl_UpdateStringProc\fR(
         Tcl_Obj *\fIobjPtr\fR);
-.fi
+.CE
 .PP
 \fIobjPtr\fR's \fIbytes\fR member is always NULL when it is called.
 It must always set \fIbytes\fR non-NULL before returning.
@@ -204,11 +203,11 @@ or other similar routines ask for the string representation.
 The \fIdupIntRepProc\fR member contains the address of a function
 called to copy an internal representation from one value to another.
 .PP
-.nf
+.CS
 typedef void \fBTcl_DupInternalRepProc\fR(
         Tcl_Obj *\fIsrcPtr\fR,
         Tcl_Obj *\fIdupPtr\fR);
-.fi
+.CE
 .PP
 \fIdupPtr\fR's internal representation is made a copy of \fIsrcPtr\fR's
 internal representation.
@@ -227,10 +226,10 @@ reasonably can.
 The \fIfreeIntRepProc\fR member contains the address of a function
 that is called when a value is freed.
 .PP
-.nf
+.CS
 typedef void \fBTcl_FreeInternalRepProc\fR(
         Tcl_Obj *\fIobjPtr\fR);
-.fi
+.CE
 .PP
 The \fIfreeIntRepProc\fR function can deallocate the storage
 for the value's internal representation

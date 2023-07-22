@@ -1,5 +1,3 @@
-\
-
 # NAME
 
 Tcl_GetOpenFile - Return a FILE\* for a channel registered in the given
@@ -7,10 +5,9 @@ interpreter (Unix only)
 
 # SYNOPSIS
 
-    #include <tcl.h>
+**#include \<tcl.h\>**
 
-    int
-    Tcl_GetOpenFile(interp, chanID, write, checkUsage, filePtr)
+int **Tcl_GetOpenFile**(*interp, chanID, write, checkUsage, filePtr*)
 
 # ARGUMENTS
 
@@ -26,8 +23,6 @@ for the access indicated by *write*.
 
 Points to word in which to store pointer to FILE structure for the file
 given by *chanID*.
-
-\
 
 # DESCRIPTION
 
@@ -50,3 +45,8 @@ Note that this interface is only supported on the Unix platform.
 # KEYWORDS
 
 channel, file handle, permissions, pipeline, read, write
+
+<!---
+Copyright (c) 1996-1997 Sun Microsystems, Inc
+-->
+

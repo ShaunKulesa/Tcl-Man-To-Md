@@ -33,12 +33,12 @@ such as \fBa(b)\fR.
 .PP
 This procedure sets the namespace variable \fI::a::x\fR
 .PP
-.nf
+.CS
 proc reset {} {
     \fBglobal\fR a::x
     set x 0
 }
-.fi
+.CE
 .PP
 This procedure accumulates the strings passed to it in a global
 buffer, separated by newlines.  It is useful for situations when you
@@ -46,12 +46,12 @@ want to build a message piece-by-piece (as if with \fBputs\fR) but
 send that full message in a single piece (e.g. over a connection
 opened with \fBsocket\fR or as part of a counted HTTP response).
 .PP
-.nf
+.CS
 proc accum {string} {
     \fBglobal\fR accumulator
     append accumulator $string \en
 }
-.fi
+.CE
 .SH "SEE ALSO"
 namespace(n), upvar(n), variable(n)
 .SH KEYWORDS

@@ -1,17 +1,12 @@
-\
-
 # NAME
 
 Tcl_GetHostName - get the name of the local host
 
 # SYNOPSIS
 
-    #include <tcl.h>
+**#include \<tcl.h\>**
 
-    const char *
-    Tcl_GetHostName()
-
-\
+const char \* **Tcl_GetHostName**()
 
 # DESCRIPTION
 
@@ -24,3 +19,8 @@ free it.
 # KEYWORDS
 
 hostname
+
+<!---
+Copyright (c) 1998-2000 Scriptics Corporation
+-->
+

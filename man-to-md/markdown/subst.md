@@ -1,5 +1,3 @@
-\
-
 # NAME
 
 subst - Perform backslash, command, and variable substitutions
@@ -8,8 +6,6 @@ subst - Perform backslash, command, and variable substitutions
 
 **subst **?**-nobackslashes**? ?**-nocommands**? ?**-novariables**?
 *string*
-
-\
 
 # DESCRIPTION
 
@@ -111,3 +107,10 @@ Tcl(n), eval(n), break(n), continue(n)
 
 backslash substitution, command substitution, quoting, substitution,
 variable substitution
+
+<!---
+Copyright (c) 1994 The Regents of the University of California
+Copyright (c) 1994-1996 Sun Microsystems, Inc
+Copyright (c) 2001 Donal K. Fellow
+-->
+

@@ -255,9 +255,9 @@ Substitutions take place from left to right, and each substitution is
 evaluated completely before attempting to evaluate the next.  Thus, a
 sequence like
 .PP
-.nf
+.CS
 set y [set x 0][incr x][incr x]
-.fi
+.CE
 .PP
 will always set the variable \fIy\fR to the value, \fI012\fR.
 .RE

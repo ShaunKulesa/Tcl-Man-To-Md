@@ -51,14 +51,14 @@ these three cases.
 This example reads a file one line at a time and prints it out with
 the current line number attached to the start of each line.
 .PP
-.nf
+.CS
 set chan [open "some.file.txt"]
 set lineNumber 0
 while {[\fBgets\fR $chan line] >= 0} {
     puts "[incr lineNumber]: $line"
 }
 close $chan
-.fi
+.CE
 
 .SH "SEE ALSO"
 file(n), eof(n), fblocked(n), Tcl_StandardChannels(3)

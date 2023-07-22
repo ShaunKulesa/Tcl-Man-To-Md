@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+      <script>
+	// Hack for scrolling window when linking to anchor tag with fixed nav header
+        var shiftWindow = function() { scrollBy(0, -75) };
+        window.addEventListener("hashchange", shiftWindow);
+        function load() { if (window.location.hash) shiftWindow(); }
+      </script>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        
+        <link rel="canonical" href="https://www.tcl.tk/man/TclLib/Ensemble/">
+        <link rel="shortcut icon" href="../../img/favicon.ico">
+        <title>Ensemble - Tcl/Tk</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <link href="../../css/font-awesome.min.css" rel="stylesheet">
+    <link href="../../css/base.css" rel="stylesheet">
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+    <script src="../../js/base.js"></script> 
+    </head>
+
+    <body class="">
+
+      <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
+	<div class="container">
+	<a class="navbar-brand" href="../..">Tcl/Tk</a>
+	<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExample04" aria-controls="navbarsExample04" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+	</button>
+
+	<div class="collapse navbar-collapse">
+
+          <ul class="navbar-nav flex-row ml-md-auto d-none d-md-flex">
+            <li class="nav-item">
+              <a class="nav-link" href="#" data-toggle="modal" data-target="#mkdocs_search_modal">
+		<i class="fa fa-search"></i> Search
+              </a>
+            </li>
+          </ul>
+	</div>
+	</div>
+      </nav><div id="content" class="container">
+        
+      <div class="row">
+        <div class="col-md-9" role="main">
+
+
+<nav aria-label="breadcrumb">
+  <ol class="breadcrumb">
+    
+    <li class="breadcrumb-item active" aria-current="page">Ensemble</li>
+  </ol>
+</nav>
+
+
+<p>\</p>
+<h1 id="name">NAME</h1>
+<p>Tcl_CreateEnsemble, Tcl_FindEnsemble, Tcl_GetEnsembleFlags,
+Tcl_GetEnsembleMappingDict, Tcl_GetEnsembleNamespace,
+Tcl_GetEnsembleParameterList, Tcl_GetEnsembleUnknownHandler,
+Tcl_GetEnsembleSubcommandList, Tcl_IsEnsemble, Tcl_SetEnsembleFlags,
+Tcl_SetEnsembleMappingDict, Tcl_SetEnsembleParameterList,
+Tcl_SetEnsembleSubcommandList, Tcl_SetEnsembleUnknownHandler -
+manipulate ensemble commands</p>
+<h1 id="synopsis">SYNOPSIS</h1>
+<p><strong>#include \&lt;tcl.h></strong></p>
+<p>Tcl_Command <strong>Tcl_CreateEnsemble</strong>(<em>interp, name, namespacePtr,
+ensFlags</em>)</p>
+<p>Tcl_Command <strong>Tcl_FindEnsemble</strong>(<em>interp, cmdNameObj, flags</em>)</p>
+<p>int <strong>Tcl_IsEnsemble</strong>(<em>token</em>)</p>
+<p>int <strong>Tcl_GetEnsembleFlags</strong>(<em>interp, token, ensFlagsPtr</em>)</p>
+<p>int <strong>Tcl_SetEnsembleFlags</strong>(<em>interp, token, ensFlags</em>)</p>
+<p>int <strong>Tcl_GetEnsembleMappingDict</strong>(<em>interp, token, dictObjPtr</em>)</p>
+<p>int <strong>Tcl_SetEnsembleMappingDict</strong>(<em>interp, token, dictObj</em>)</p>
+<p>int <strong>Tcl_GetEnsembleParameterList</strong>(<em>interp, token, listObjPtr</em>)</p>
+<p>int <strong>Tcl_SetEnsembleParameterList</strong>(<em>interp, token, listObj</em>)</p>
+<p>int <strong>Tcl_GetEnsembleSubcommandList</strong>(<em>interp, token, listObjPtr</em>)</p>
+<p>int <strong>Tcl_SetEnsembleSubcommandList</strong>(<em>interp, token, listObj</em>)</p>
+<p>int <strong>Tcl_GetEnsembleUnknownHandler</strong>(<em>interp, token, listObjPtr</em>)</p>
+<p>int <strong>Tcl_SetEnsembleUnknownHandler</strong>(<em>interp, token, listObj</em>)</p>
+<p>int <strong>Tcl_GetEnsembleNamespace</strong>(<em>interp, token, namespacePtrPtr</em>)</p>
+<h1 id="arguments">ARGUMENTS</h1>
+<p>The interpreter in which the ensemble is to be created or found. Also
+where error result messages are written. The functions whose names start
+with <strong>Tcl_GetEnsemble</strong> may have a NULL for the <em>interp</em>, but all other
+functions must not.</p>
+<p>The name of the ensemble command to be created.</p>
+<p>The namespace to which the ensemble command is to be bound, or NULL for
+the current namespace.</p>
+<p>An ORed set of flag bits describing the basic configuration of the
+ensemble. Currently only one bit has meaning, <strong>TCL_ENSEMBLE_PREFIX</strong>,
+which is present when the ensemble command should also match unambiguous
+prefixes of subcommands.</p>
+<p>A value holding the name of the ensemble command to look up.</p>
+<p>An ORed set of flag bits controlling the behavior of
+<strong>Tcl_FindEnsemble</strong>. Currently only <strong>TCL_LEAVE_ERR_MSG</strong> is supported.</p>
+<p>A normal command token that refers to an ensemble command, or which you
+wish to use for testing as an ensemble command in <strong>Tcl_IsEnsemble</strong>.</p>
+<p>Pointer to a variable into which to write the current ensemble flag
+bits; currently only the bit <strong>TCL_ENSEMBLE_PREFIX</strong> is defined.</p>
+<p>A dictionary value to use for the subcommand to implementation command
+prefix mapping dictionary in the ensemble. May be NULL if the mapping
+dictionary is to be removed.</p>
+<p>Pointer to a variable into which to write the current ensemble mapping
+dictionary.</p>
+<p>A list value to use for the list of formal pre-subcommand parameters,
+the defined list of subcommands in the dictionary or the unknown
+subcommand handler command prefix. May be NULL if the subcommand list or
+unknown handler are to be removed.</p>
+<p>Pointer to a variable into which to write the current list of formal
+pre-subcommand parameters, the defined list of subcommands or the
+current unknown handler prefix.</p>
+<p>Pointer to a variable into which to write the handle of the namespace to
+which the ensemble is bound.</p>
+<p>\</p>
+<h1 id="description">DESCRIPTION</h1>
+<p>An ensemble is a command, bound to some namespace, which consists of a
+collection of subcommands implemented by other Tcl commands. The first
+argument to the ensemble command is always interpreted as a selector
+that states what subcommand to execute.</p>
+<p>Ensembles are created using <strong>Tcl_CreateEnsemble</strong>, which takes four
+arguments: the interpreter to work within, the name of the ensemble to
+create, the namespace within the interpreter to bind the ensemble to,
+and the default set of ensemble flags. The result of the function is the
+command token for the ensemble, which may be used to further configure
+the ensemble using the API described below in <strong>ENSEMBLE PROPERTIES</strong>.</p>
+<p>Given the name of an ensemble command, the token for that command may be
+retrieved using <strong>Tcl_FindEnsemble</strong>. If the given command name (in
+<em>cmdNameObj</em>) does not refer to an ensemble command, the result of the
+function is NULL and (if the <strong>TCL_LEAVE_ERR_MSG</strong> bit is set in
+<em>flags</em>) an error message is left in the interpreter result.</p>
+<p>A command token may be checked to see if it refers to an ensemble using
+<strong>Tcl_IsEnsemble</strong>. This returns 1 if the token refers to an ensemble,
+or 0 otherwise.</p>
+<h2 id="ensemble-properties">ENSEMBLE PROPERTIES</h2>
+<p>Every ensemble has four read-write properties and a read-only property.
+The properties are:</p>
+<p><strong>flags</strong> (read-write)</p>
+<p>:   The set of flags for the ensemble, expressed as a bit-field.
+    Currently, the only public flag is <strong>TCL_ENSEMBLE_PREFIX</strong> which is
+    set when unambiguous prefixes of subcommands are permitted to be
+    resolved to implementations as well as exact matches. The flags may
+    be read and written using <strong>Tcl_GetEnsembleFlags</strong> and
+    <strong>Tcl_SetEnsembleFlags</strong> respectively. The result of both of those
+    functions is a Tcl result code (<strong>TCL_OK</strong>, or <strong>TCL_ERROR</strong> if the
+    token does not refer to an ensemble).</p>
+<p><strong>mapping dictionary</strong> (read-write)</p>
+<p>:   A dictionary containing a mapping from subcommand names to lists of
+    words to use as a command prefix (replacing the first two words of
+    the command which are the ensemble command itself and the subcommand
+    name), or NULL if every subcommand is to be mapped to the command
+    with the same unqualified name in the ensemble\'s bound namespace.
+    Defaults to NULL. May be read and written using
+    <strong>Tcl_GetEnsembleMappingDict</strong> and <strong>Tcl_SetEnsembleMappingDict</strong>
+    respectively. The result of both of those functions is a Tcl result
+    code (<strong>TCL_OK</strong>, or <strong>TCL_ERROR</strong> if the token does not refer to an
+    ensemble) and the dictionary obtained from
+    <strong>Tcl_GetEnsembleMappingDict</strong> should always be treated as immutable
+    even if it is unshared. All command names in prefixes set via
+    <strong>Tcl_SetEnsembleMappingDict</strong> must be fully qualified.</p>
+<p><strong>formal pre-subcommand parameter list</strong> (read-write)</p>
+<p>:   </p>
+<p>A list of formal parameter names (the names only being used when
+generating error messages) that come at invocation of the ensemble
+between the name of the ensemble and the subcommand argument. NULL (the
+default) is equivalent to the empty list. May be read and written using
+<strong>Tcl_GetEnsembleParameterList</strong> and <strong>Tcl_SetEnsembleParameterList</strong>
+respectively. The result of both of those functions is a Tcl result code
+(<strong>TCL_OK</strong>, or <strong>TCL_ERROR</strong> if the token does not refer to an
+ensemble) and the dictionary obtained from
+<strong>Tcl_GetEnsembleParameterList</strong> should always be treated as immutable
+even if it is unshared.</p>
+<p><strong>subcommand list</strong> (read-write)</p>
+<p>:   A list of all the subcommand names for the ensemble, or NULL if this
+    is to be derived from either the keys of the mapping dictionary (see
+    above) or (if that is also NULL) from the set of commands exported
+    by the bound namespace. May be read and written using
+    <strong>Tcl_GetEnsembleSubcommandList</strong> and
+    <strong>Tcl_SetEnsembleSubcommandList</strong> respectively. The result of both
+    of those functions is a Tcl result code (<strong>TCL_OK</strong>, or
+    <strong>TCL_ERROR</strong> if the token does not refer to an ensemble) and the
+    list obtained from <strong>Tcl_GetEnsembleSubcommandList</strong> should always
+    be treated as immutable even if it is unshared.</p>
+<p><strong>unknown subcommand handler command prefix</strong> (read-write)</p>
+<p>:   A list of words to prepend on the front of any subcommand when the
+    subcommand is unknown to the ensemble (according to the current
+    prefix handling rule); see the <strong>namespace ensemble</strong> command for
+    more details. If NULL, the default behavior - generate a suitable
+    error message - will be used when an unknown subcommand is
+    encountered. May be read and written using
+    <strong>Tcl_GetEnsembleUnknownHandler</strong> and
+    <strong>Tcl_SetEnsembleUnknownHandler</strong> respectively. The result of both
+    functions is a Tcl result code (<strong>TCL_OK</strong>, or <strong>TCL_ERROR</strong> if the
+    token does not refer to an ensemble) and the list obtained from
+    <strong>Tcl_GetEnsembleUnknownHandler</strong> should always be treated as
+    immutable even if it is unshared.</p>
+<p><strong>bound namespace</strong> (read-only)</p>
+<p>:   The namespace to which the ensemble is bound; when the namespace is
+    deleted, so too will the ensemble, and this namespace is also the
+    namespace whose list of exported commands is used if both the
+    mapping dictionary and the subcommand list properties are NULL. May
+    be read using <strong>Tcl_GetEnsembleNamespace</strong> which returns a Tcl
+    result code (<strong>TCL_OK</strong>, or <strong>TCL_ERROR</strong> if the token does not
+    refer to an ensemble).</p>
+<h1 id="see-also">SEE ALSO</h1>
+<p>namespace(n), Tcl_DeleteCommandFromToken(3)</p>
+<h1 id="keywords">KEYWORDS</h1>
+<p>command, ensemble</p>
+
+<ul class="metadata page-metadata" data-bi-name="page info" lang="en-us" dir="ltr">
+  <li class="last-updated-holder displayDate loading">
+    <span class="last-updated-text">Last updated:</span>
+    <time role="presentation" datetime="2018-10-25T00:00:00.000Z" data-article-date-source="ms.date"></time>
+  </li>
+<!--
+  <li class="readingTime">
+    2 minutes to read
+  </li>
+-->
+  <li class="contributors-holder">
+    <span class="contributors-text">Contributors</span>
+    <ul class="contributors" data-bi-name="contributors"></ul>
+  </li>
+</ul>
+</div>
+        <div class="col-md-3"><div class="navbar-light navbar-expand-md hidden-print sticky-top sticky-offset" role="complementary">
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggler collapsed" data-toggle="collapse" data-target="#toc-collapse" title="Table of Contents">
+            <span class="fa fa-angle-down"></span>
+        </button>
+    </div>
+
+    <div id="toc-collapse" class="navbar-collapse collapse card">
+        <ul class="nav flex-column bs-sidenav">
+            <li class="nav-item main"><a class="nav-link" href="#name">NAME</a></li>
+            <li class="nav-item main"><a class="nav-link" href="#synopsis">SYNOPSIS</a></li>
+            <li class="nav-item main"><a class="nav-link" href="#arguments">ARGUMENTS</a></li>
+            <li class="nav-item main"><a class="nav-link" href="#description">DESCRIPTION</a></li>
+                <li class="nav-item">
+                    <a href="#ensemble-properties" class="nav-link">ENSEMBLE PROPERTIES</a>
+                </li>
+            <li class="nav-item main"><a class="nav-link" href="#see-also">SEE ALSO</a></li>
+            <li class="nav-item main"><a class="nav-link" href="#keywords">KEYWORDS</a></li>
+        </ul>
+    </div>
+</div></div>
+      </div>
+      </div>
+
+      <footer class="col-md-12">
+	<hr>
+	<div class="container">
+	</div>
+      </footer>
+      <script>
+	var base_url = "../..",
+            shortcuts = {"help": 191, "next": 78, "previous": 80, "search": 83};
+      </script>
+      <script src="../../js/base.js" defer></script>
+      <script src="../../search/main.js" defer></script>
+
+      <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="Search Modal" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Search</h4>
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            </div>
+            <div class="modal-body">
+                <p>
+                    From here you can search these documents. Enter
+                    your search terms below.
+                </p>
+                <form role="form">
+                    <div class="form-group">
+                        <input type="text" class="form-control" placeholder="Search..." id="mkdocs-search-query" title="Type search term here">
+                    </div>
+                </form>
+                <div id="mkdocs-search-results"></div>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div><div class="modal" id="mkdocs_keyboard_modal" tabindex="-1" role="dialog" aria-labelledby="Keyboard Shortcuts Modal" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <p class="h4 modal-title">Keyboard Shortcuts</p>
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            </div>
+            <div class="modal-body">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th style="width: 20%;">Keys</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="help shortcut"><kbd>?</kbd></td>
+                    <td>Open this help</td>
+                  </tr>
+                  <tr>
+                    <td class="next shortcut"><kbd>n</kbd></td>
+                    <td>Next page</td>
+                  </tr>
+                  <tr>
+                    <td class="prev shortcut"><kbd>p</kbd></td>
+                    <td>Previous page</td>
+                  </tr>
+                  <tr>
+                    <td class="search shortcut"><kbd>s</kbd></td>
+                    <td>Search</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>
+
+    </body>
+</html>

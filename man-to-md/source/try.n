@@ -73,7 +73,7 @@ the \fB\-during\fR key.
 .PP
 Ensure that a file is closed no matter what:
 .PP
-.nf
+.CS
 set f [open /some/file/name a]
 \fBtry\fR {
     puts $f "some message"
@@ -81,11 +81,11 @@ set f [open /some/file/name a]
 } \fBfinally\fR {
     close $f
 }
-.fi
+.CE
 .PP
 Handle different reasons for a file to not be openable for reading:
 .PP
-.nf
+.CS
 \fBtry\fR {
     set f [open /some/file/name r]
 } \fBtrap\fR {POSIX EISDIR} {} {
@@ -93,7 +93,7 @@ Handle different reasons for a file to not be openable for reading:
 } \fBtrap\fR {POSIX ENOENT} {} {
     puts "failed to open /some/file/name: it doesn't exist"
 }
-.fi
+.CE
 .SH "SEE ALSO"
 catch(n), error(n), return(n), throw(n)
 .SH "KEYWORDS"

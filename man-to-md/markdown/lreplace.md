@@ -1,5 +1,3 @@
-\
-
 # NAME
 
 lreplace - Replace elements in a list with new elements
@@ -7,8 +5,6 @@ lreplace - Replace elements in a list with new elements
 # SYNOPSIS
 
 **lreplace ***list first last *?*element element \...*?
-
-\
 
 # DESCRIPTION
 
@@ -84,3 +80,10 @@ lset(n), lrange(n), lsort(n), string(n)
 # KEYWORDS
 
 element, list, replace
+
+<!---
+Copyright (c) 1993 The Regents of the University of California
+Copyright (c) 1994-1996 Sun Microsystems, Inc
+Copyright (c) 2001 Kevin B. Kenny <kennykb@acm.org>.  All rights reserved
+-->
+

@@ -1,5 +1,3 @@
-\
-
 # NAME
 
 unknown - Handle attempts to use non-existent commands
@@ -7,8 +5,6 @@ unknown - Handle attempts to use non-existent commands
 # SYNOPSIS
 
 **unknown ***cmdName *?*arg arg \...*?
-
-\
 
 # DESCRIPTION
 
@@ -80,3 +76,9 @@ info(n), proc(n), interp(n), library(n), namespace(n)
 # KEYWORDS
 
 error, non-existent command, unknown
+
+<!---
+Copyright (c) 1993 The Regents of the University of California
+Copyright (c) 1994-1996 Sun Microsystems, Inc
+-->
+

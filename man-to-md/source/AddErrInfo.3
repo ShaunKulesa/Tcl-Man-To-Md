@@ -11,7 +11,6 @@
 .SH NAME
 Tcl_GetReturnOptions, Tcl_SetReturnOptions, Tcl_AddErrorInfo, Tcl_AppendObjToErrorInfo, Tcl_AddObjErrorInfo, Tcl_SetObjErrorCode, Tcl_SetErrorCode, Tcl_SetErrorCodeVA, Tcl_SetErrorLine, Tcl_GetErrorLine, Tcl_PosixError, Tcl_LogCommandInfo \- retrieve or record information about errors and other return options
 .SH SYNOPSIS
-.nf
 \fB#include <tcl.h>\fR
 .sp
 Tcl_Obj *
@@ -118,7 +117,7 @@ A typical usage for \fBTcl_GetReturnOptions\fR is to
 retrieve the stack trace when script evaluation returns
 \fBTCL_ERROR\fR, like so:
 .PP
-.nf
+.CS
 int code = Tcl_Eval(interp, script);
 if (code == TCL_ERROR) {
     Tcl_Obj *options = \fBTcl_GetReturnOptions\fR(interp, code);
@@ -130,7 +129,7 @@ if (code == TCL_ERROR) {
     /* Do something with stackTrace */
     Tcl_DecrRefCount(options);
 }
-.fi
+.CE
 .PP
 \fBTcl_SetReturnOptions\fR sets the return options
 of \fIinterp\fR to be \fIoptions\fR.  If \fIoptions\fR
@@ -144,13 +143,13 @@ As an example, Tcl's \fBreturn\fR command itself could
 be implemented in terms of \fBTcl_SetReturnOptions\fR
 like so:
 .PP
-.nf
+.CS
 if ((objc % 2) == 0) { /* explicit result argument */
     objc--;
     Tcl_SetObjResult(interp, objv[objc]);
 }
 return \fBTcl_SetReturnOptions\fR(interp, Tcl_NewListObj(objc-1, objv+1));
-.fi
+.CE
 .PP
 (It is not really implemented that way.  Internal access
 privileges allow for a more efficient alternative that meshes

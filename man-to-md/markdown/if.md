@@ -1,5 +1,3 @@
-\
-
 # NAME
 
 if - Execute scripts conditionally
@@ -8,8 +6,6 @@ if - Execute scripts conditionally
 
 **if ***expr1 *?**then**? *body1 ***elseif ***expr2 *?**then**? *body2*
 **elseif** \... ?**else**? ?*bodyN*?
-
-\
 
 # DESCRIPTION
 
@@ -70,3 +66,9 @@ expr(n), for(n), foreach(n)
 # KEYWORDS
 
 boolean, conditional, else, false, if, true
+
+<!---
+Copyright (c) 1993 The Regents of the University of California
+Copyright (c) 1994-1996 Sun Microsystems, Inc
+-->
+

@@ -11,12 +11,10 @@
 .SH NAME
 next, nextto \- invoke superclass method implementations
 .SH SYNOPSIS
-.nf
 package require TclOO
 
 \fBnext\fR ?\fIarg ...\fR?
 \fBnextto\fI class\fR ?\fIarg ...\fR?
-.fi
 .BE
 
 .SH DESCRIPTION
@@ -106,7 +104,7 @@ normal when it is called.)
 This example demonstrates how to use the \fBnext\fR command to call the
 (super)class's implementation of a method. The script:
 .PP
-.nf
+.CS
 oo::class create theSuperclass {
     method example {args} {
         puts "in the superclass, args = $args"
@@ -128,11 +126,11 @@ oo::objdefine obj method example args {
     \fBnext\fR
 }
 obj example 1 2 3
-.fi
+.CE
 .PP
 prints the following:
 .PP
-.nf
+.CS
 per-object method, args = 1 2 3
 before chaining from subclass, args = x 1 2 3 y
 in the superclass, args = a x 1 2 3 y b
@@ -142,13 +140,13 @@ before chaining from subclass, args =
 in the superclass, args = a b
 in the superclass, args = pureSynthesis
 after chaining from subclass
-.fi
+.CE
 .PP
 This example demonstrates how to build a simple cache class that applies
 memoization to all the method calls of the objects it is mixed into, and shows
 how it can make a difference to computation times:
 .PP
-.nf
+.CS
 oo::class create cache {
     filter Memoize
     method Memoize args {
@@ -197,7 +195,7 @@ puts [demo compute  4 5 6]      \fI\(-> prints "34" instantly\fR
 puts [demo compute  1 2 3]      \fI\(-> prints "7" instantly\fR
 demo flushCache
 puts [demo compute  1 2 3]      \fI\(-> prints "7" after delay\fR
-.fi
+.CE
 .SH "SEE ALSO"
 oo::class(n), oo::define(n), oo::object(n), self(n)
 .SH KEYWORDS

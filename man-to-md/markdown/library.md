@@ -1,5 +1,3 @@
-\
-
 # NAME
 
 auto_execok, auto_import, auto_load, auto_mkindex, auto_qualify,
@@ -9,21 +7,13 @@ standard library of Tcl procedures
 
 # SYNOPSIS
 
-    auto_execok cmd
-    auto_import pattern
-    auto_load cmd
-    auto_mkindex dir pattern pattern ...
-    auto_qualify command namespace
-    auto_reset
-    tcl_findLibrary basename version patch initScript enVarName varName
-    parray arrayName ?pattern?
-    tcl_endOfWord str start
-    tcl_startOfNextWord str start
-    tcl_startOfPreviousWord str start
-    tcl_wordBreakAfter str start
-    tcl_wordBreakBefore str start
-
-\
+**auto_execok ***cmd* **auto_import ***pattern* **auto_load ***cmd*
+**auto_mkindex ***dir pattern pattern \...* **auto_qualify ***command
+namespace* **auto_reset** **tcl_findLibrary ***basename version patch
+initScript enVarName varName* **parray ***arrayName* ?*pattern*?
+**tcl_endOfWord ***str start* **tcl_startOfNextWord ***str start*
+**tcl_startOfPreviousWord ***str start* **tcl_wordBreakAfter ***str
+start* **tcl_wordBreakBefore ***str start*
 
 # INTRODUCTION
 
@@ -315,3 +305,9 @@ env(n), info(n), re_syntax(n)
 # KEYWORDS
 
 auto-exec, auto-load, library, unknown, word, whitespace
+
+<!---
+Copyright (c) 1991-1993 The Regents of the University of California
+Copyright (c) 1994-1996 Sun Microsystems, Inc
+-->
+

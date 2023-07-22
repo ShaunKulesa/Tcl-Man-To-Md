@@ -10,7 +10,6 @@
 .SH NAME
 Tcl_NewStringObj, Tcl_NewUnicodeObj, Tcl_SetStringObj, Tcl_SetUnicodeObj, Tcl_GetStringFromObj, Tcl_GetString, Tcl_GetUnicodeFromObj, Tcl_GetUnicode, Tcl_GetUniChar, Tcl_GetCharLength, Tcl_GetRange, Tcl_AppendToObj, Tcl_AppendUnicodeToObj, Tcl_AppendObjToObj, Tcl_AppendStringsToObj, Tcl_AppendStringsToObjVA, Tcl_AppendLimitedToObj, Tcl_Format, Tcl_AppendFormatToObj, Tcl_ObjPrintf, Tcl_AppendPrintfToObj, Tcl_SetObjLength, Tcl_AttemptSetObjLength, Tcl_ConcatObj \- manipulate Tcl values as strings
 .SH SYNOPSIS
-.nf
 \fB#include <tcl.h>\fR
 .sp
 Tcl_Obj *
@@ -277,9 +276,9 @@ bytes is necessary to append only whole multi-byte characters.
 command.  The actual command procedure for \fBformat\fR is little more
 than
 .PP
-.nf
+.CS
 \fBTcl_Format\fR(interp, \fBTcl_GetString\fR(objv[1]), objc-2, objv+2);
-.fi
+.CE
 .PP
 The \fIobjc\fR Tcl_Obj values in \fIobjv\fR are formatted into a string
 according to the conversion specification in \fIformat\fR argument, following
@@ -292,24 +291,24 @@ is non-NULL.
 \fBTcl_AppendFormatToObj\fR is an appending alternative form
 of \fBTcl_Format\fR with functionality equivalent to:
 .PP
-.nf
+.CS
 Tcl_Obj *newPtr = \fBTcl_Format\fR(interp, format, objc, objv);
 if (newPtr == NULL) return TCL_ERROR;
 \fBTcl_AppendObjToObj\fR(objPtr, newPtr);
 \fBTcl_DecrRefCount\fR(newPtr);
 return TCL_OK;
-.fi
+.CE
 .PP
 but with greater convenience and efficiency when the appending
 functionality is needed.
 .PP
 \fBTcl_ObjPrintf\fR serves as a replacement for the common sequence
 .PP
-.nf
+.CS
 char buf[SOME_SUITABLE_LENGTH];
 sprintf(buf, format, ...);
 \fBTcl_NewStringObj\fR(buf, -1);
-.fi
+.CE
 .PP
 but with greater convenience and no need to
 determine \fBSOME_SUITABLE_LENGTH\fR. The formatting is done with the same
@@ -325,10 +324,10 @@ to represent.  The variable number of arguments passed in should be of
 the types that would be suitable for passing to \fBsprintf\fR.  Note in
 this example usage, \fIx\fR is of type \fBint\fR.
 .PP
-.nf
+.CS
 int x = 5;
 Tcl_Obj *objPtr = \fBTcl_ObjPrintf\fR("Value is %d", x);
-.fi
+.CE
 .PP
 If the value of \fIformat\fR contains internal inconsistencies or invalid
 specifier formats, the formatted string result produced by
@@ -340,11 +339,11 @@ Compile-time protection may be provided by some compilers.
 \fBTcl_AppendPrintfToObj\fR is an appending alternative form
 of \fBTcl_ObjPrintf\fR with functionality equivalent to
 .PP
-.nf
+.CS
 Tcl_Obj *newPtr = \fBTcl_ObjPrintf\fR(format, ...);
 \fBTcl_AppendObjToObj\fR(objPtr, newPtr);
 \fBTcl_DecrRefCount\fR(newPtr);
-.fi
+.CE
 .PP
 but with greater convenience and efficiency when the appending
 functionality is needed.

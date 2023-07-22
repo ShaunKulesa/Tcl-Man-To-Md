@@ -11,14 +11,12 @@
 .SH NAME
 oo::define, oo::objdefine \- define and configure classes and objects
 .SH SYNOPSIS
-.nf
 package require TclOO
 
 \fBoo::define\fI class defScript\fR
 \fBoo::define\fI class subcommand arg\fR ?\fIarg ...\fR?
 \fBoo::objdefine\fI object defScript\fR
 \fBoo::objdefine\fI object subcommand arg\fR ?\fIarg ...\fR?
-.fi
 .BE
 
 .SH DESCRIPTION
@@ -349,7 +347,7 @@ This example demonstrates how to use both forms of the \fBoo::define\fR and
 \fBoo::objdefine\fR commands (they work in the same way), as well as
 illustrating four of the subcommands of them.
 .PP
-.nf
+.CS
 oo::class create c
 c create o
 \fBoo::define\fR c \fBmethod\fR foo {} {
@@ -368,12 +366,12 @@ o foo                \fI\(-> error "unknown method foo"\fR
 o Foo Bar            \fI\(-> error "unknown method Foo"\fR
 \fBoo::objdefine\fR o \fBrenamemethod\fR bar lollipop
 o lollipop           \fI\(-> prints "hello world"\fR
-.fi
+.CE
 .PP
 This example shows how additional classes can be mixed into an object. It also
 shows how \fBmixin\fR is a slot that supports appending:
 .PP
-.nf
+.CS
 oo::object create inst
 inst m1              \fI\(-> error "unknown method m1"\fR
 inst m2              \fI\(-> error "unknown method m2"\fR
@@ -399,7 +397,7 @@ oo::class create B {
 }
 inst m1              \fI\(-> prints "red brick"\fR
 inst m2              \fI\(-> prints "blue brick"\fR
-.fi
+.CE
 .SH "SEE ALSO"
 next(n), oo::class(n), oo::object(n)
 .SH KEYWORDS

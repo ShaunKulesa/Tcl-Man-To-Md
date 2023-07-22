@@ -1,5 +1,3 @@
-\
-
 # NAME
 
 Tcl_DoWhenIdle, Tcl_CancelIdleCall - invoke a procedure when there are
@@ -7,19 +5,17 @@ no pending events
 
 # SYNOPSIS
 
-    #include <tcl.h>
+**#include \<tcl.h\>**
 
-    Tcl_DoWhenIdle(proc, clientData)
+**Tcl_DoWhenIdle**(*proc, clientData*)
 
-    Tcl_CancelIdleCall(proc, clientData)
+**Tcl_CancelIdleCall**(*proc, clientData*)
 
 # ARGUMENTS
 
 Procedure to invoke.
 
 Arbitrary one-word value to pass to *proc*.
-
-\
 
 # DESCRIPTION
 
@@ -78,3 +74,9 @@ after(n), Tcl_CreateFileHandler(3), Tcl_CreateTimerHandler(3)
 # KEYWORDS
 
 callback, defer, idle callback
+
+<!---
+Copyright (c) 1990 The Regents of the University of California
+Copyright (c) 1994-1996 Sun Microsystems, Inc
+-->
+

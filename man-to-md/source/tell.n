@@ -31,7 +31,7 @@ the result of a channel creation command provided by a Tcl extension.
 .PP
 Read a line from a file channel only if it starts with \fBfoobar\fR:
 .PP
-.nf
+.CS
 # Save the offset in case we need to undo the read...
 set offset [\fBtell\fR $chan]
 if {[read $chan 6] eq "foobar"} {
@@ -41,7 +41,7 @@ if {[read $chan 6] eq "foobar"} {
     # Undo the read...
     seek $chan $offset
 }
-.fi
+.CE
 .SH "SEE ALSO"
 file(n), open(n), close(n), gets(n), seek(n), Tcl_StandardChannels(3)
 .SH KEYWORDS

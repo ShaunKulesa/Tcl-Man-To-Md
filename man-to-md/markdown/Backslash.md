@@ -1,15 +1,12 @@
-\
-
 # NAME
 
 Tcl_Backslash - parse a backslash sequence
 
 # SYNOPSIS
 
-    #include <tcl.h>
+**#include \<tcl.h\>**
 
-    char
-    Tcl_Backslash(src, countPtr)
+char **Tcl_Backslash**(*src, countPtr*)
 
 # ARGUMENTS
 
@@ -17,8 +14,6 @@ Pointer to a string starting with a backslash.
 
 If *countPtr* is not NULL, *\*countPtr* gets filled in with number of
 characters in the backslash sequence, including the backslash character.
-
-\
 
 # DESCRIPTION
 
@@ -42,3 +37,9 @@ Tcl(n), Tcl_UtfBackslash(3)
 # KEYWORDS
 
 backslash, parse
+
+<!---
+Copyright (c) 1989-1993 The Regents of the University of California
+Copyright (c) 1994-1996 Sun Microsystems, Inc
+-->
+

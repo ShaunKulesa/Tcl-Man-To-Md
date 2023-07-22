@@ -1,17 +1,12 @@
-\
-
 # NAME
 
 next, nextto - invoke superclass method implementations
 
 # SYNOPSIS
 
-    package require TclOO
+package require TclOO
 
-    next ?arg ...?
-    nextto class ?arg ...?
-
-\
+**next** ?*arg \...*? **nextto*** class* ?*arg \...*?
 
 # DESCRIPTION
 
@@ -222,3 +217,8 @@ oo::class(n), oo::define(n), oo::object(n), self(n)
 # KEYWORDS
 
 call, method, method chain
+
+<!---
+Copyright (c) 2007 Donal K. Fellow
+-->
+

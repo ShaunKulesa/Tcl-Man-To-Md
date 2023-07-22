@@ -1,5 +1,3 @@
-\
-
 # NAME
 
 close - Close an open channel
@@ -7,8 +5,6 @@ close - Close an open channel
 # SYNOPSIS
 
 **close ***channelId* ?r(ead)\|w(rite)?
-
-\
 
 # DESCRIPTION
 
@@ -97,3 +93,9 @@ file(n), open(n), socket(n), eof(n), Tcl_StandardChannels(3)
 # KEYWORDS
 
 blocking, channel, close, nonblocking, half-close
+
+<!---
+Copyright (c) 1993 The Regents of the University of California
+Copyright (c) 1994-1996 Sun Microsystems, Inc
+-->
+

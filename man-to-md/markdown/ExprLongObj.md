@@ -1,5 +1,3 @@
-\
-
 # NAME
 
 Tcl_ExprLongObj, Tcl_ExprDoubleObj, Tcl_ExprBooleanObj, Tcl_ExprObj -
@@ -7,19 +5,15 @@ evaluate an expression
 
 # SYNOPSIS
 
-    #include <tcl.h>
+**#include \<tcl.h\>**
 
-    int
-    Tcl_ExprLongObj(interp, objPtr, longPtr)
+int **Tcl_ExprLongObj**(*interp, objPtr, longPtr*)
 
-    int
-    Tcl_ExprDoubleObj(interp, objPtr, doublePtr)
+int **Tcl_ExprDoubleObj**(*interp, objPtr, doublePtr*)
 
-    int
-    Tcl_ExprBooleanObj(interp, objPtr, booleanPtr)
+int **Tcl_ExprBooleanObj**(*interp, objPtr, booleanPtr*)
 
-    int
-    Tcl_ExprObj(interp, objPtr, resultPtrPtr)
+int **Tcl_ExprObj**(*interp, objPtr, resultPtrPtr*)
 
 # ARGUMENTS
 
@@ -38,8 +32,6 @@ expression.
 
 Pointer to location in which to store a pointer to the value that is the
 result of the expression.
-
-\
 
 # DESCRIPTION
 
@@ -93,3 +85,8 @@ Tcl_GetObjResult
 # KEYWORDS
 
 boolean, double, evaluate, expression, integer, value, string
+
+<!---
+Copyright (c) 1996-1997 Sun Microsystems, Inc
+-->
+

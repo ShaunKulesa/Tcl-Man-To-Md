@@ -1,5 +1,3 @@
-\
-
 # NAME
 
 Tcl_CreateCloseHandler, Tcl_DeleteCloseHandler - arrange for callbacks
@@ -7,13 +5,11 @@ when channels are closed
 
 # SYNOPSIS
 
-    #include <tcl.h>
+**#include \<tcl.h\>**
 
-    void
-    Tcl_CreateCloseHandler(channel, proc, clientData)
+void **Tcl_CreateCloseHandler**(*channel, proc, clientData*)
 
-    void
-    Tcl_DeleteCloseHandler(channel, proc, clientData)
+void **Tcl_DeleteCloseHandler**(*channel, proc, clientData*)
 
 # ARGUMENTS
 
@@ -22,8 +18,6 @@ The channel for which to create or delete a close callback.
 The procedure to call as the callback.
 
 Arbitrary one-word value to pass to *proc*.
-
-\
 
 # DESCRIPTION
 
@@ -51,3 +45,8 @@ close(n), Tcl_Close(3), Tcl_UnregisterChannel(3)
 # KEYWORDS
 
 callback, channel closing
+
+<!---
+Copyright (c) 1994-1996 Sun Microsystems, Inc
+-->
+

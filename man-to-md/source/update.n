@@ -45,7 +45,7 @@ during the next call to \fBupdate\fR.
 .PP
 Run computations for about a second and then finish:
 .PP
-.nf
+.CS
 set x 1000
 set done 0
 after 1000 set done 1
@@ -58,7 +58,7 @@ while {!$done} {
     # the Tk package is loaded, updating a user interface.
     \fBupdate\fR
 }
-.fi
+.CE
 .SH "SEE ALSO"
 after(n), interp(n)
 .SH KEYWORDS

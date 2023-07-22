@@ -1,5 +1,3 @@
-\
-
 # NAME
 
 glob - Return names of files that match patterns
@@ -7,8 +5,6 @@ glob - Return names of files that match patterns
 # SYNOPSIS
 
 **glob **?*switches*? ?*pattern \...*?
-
-\
 
 # DESCRIPTION
 
@@ -194,3 +190,9 @@ file(n)
 # KEYWORDS
 
 exist, file, glob, pattern
+
+<!---
+Copyright (c) 1993 The Regents of the University of California
+Copyright (c) 1994-1996 Sun Microsystems, Inc
+-->
+

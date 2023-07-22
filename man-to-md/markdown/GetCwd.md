@@ -1,18 +1,14 @@
-\
-
 # NAME
 
 Tcl_GetCwd, Tcl_Chdir - manipulate the current working directory
 
 # SYNOPSIS
 
-    #include <tcl.h>
+**#include \<tcl.h\>**
 
-    char *
-    Tcl_GetCwd(interp, bufferPtr)
+char \* **Tcl_GetCwd**(*interp*, *bufferPtr*)
 
-    int
-    Tcl_Chdir(dirName)
+int **Tcl_Chdir**(*dirName*)
 
 # ARGUMENTS
 
@@ -23,8 +19,6 @@ the time of the call it should be uninitialized or free. The caller must
 eventually call **Tcl_DStringFree** to free up anything stored here.
 
 File path in UTF-8 format.
-
-\
 
 # DESCRIPTION
 
@@ -46,3 +40,8 @@ UTF-8. The function returns -1 on error or 0 on success.
 # KEYWORDS
 
 pwd
+
+<!---
+Copyright (c) 1998-1999 Scriptics Corporatio
+-->
+

@@ -1,21 +1,17 @@
-\
-
 # NAME
 
 oo::class - class of all classes
 
 # SYNOPSIS
 
-    package require TclOO
+package require TclOO
 
-    oo::class method ?arg ...?
+**oo::class*** method *?*arg \...*?
 
 # CLASS HIERARCHY
 
     oo::object
        → oo::class
-
-\
 
 # DESCRIPTION
 
@@ -134,3 +130,8 @@ oo::define(n), oo::object(n)
 # KEYWORDS
 
 class, metaclass, object
+
+<!---
+Copyright (c) 2007 Donal K. Fellow
+-->
+

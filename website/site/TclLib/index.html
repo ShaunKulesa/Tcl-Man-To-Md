@@ -1,0 +1,778 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+      <script>
+	// Hack for scrolling window when linking to anchor tag with fixed nav header
+        var shiftWindow = function() { scrollBy(0, -75) };
+        window.addEventListener("hashchange", shiftWindow);
+        function load() { if (window.location.hash) shiftWindow(); }
+      </script>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        
+        <link rel="canonical" href="https://www.tcl.tk/man/TclLib/">
+        <link rel="shortcut icon" href="../img/favicon.ico">
+        <title>TclLib - Tcl/Tk</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <link href="../css/font-awesome.min.css" rel="stylesheet">
+    <link href="../css/base.css" rel="stylesheet">
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+    <script src="../js/base.js"></script> 
+    </head>
+
+    <body class="">
+
+      <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
+	<div class="container">
+	<a class="navbar-brand" href="..">Tcl/Tk</a>
+	<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExample04" aria-controls="navbarsExample04" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+	</button>
+
+	<div class="collapse navbar-collapse">
+
+          <ul class="navbar-nav flex-row ml-md-auto d-none d-md-flex">
+            <li class="nav-item">
+              <a class="nav-link" href="#" data-toggle="modal" data-target="#mkdocs_search_modal">
+		<i class="fa fa-search"></i> Search
+              </a>
+            </li>
+          </ul>
+	</div>
+	</div>
+      </nav><div id="content" class="container">
+        
+      <div class="row">
+        <div class="col-md-9" role="main">
+
+
+<nav aria-label="breadcrumb">
+  <ol class="breadcrumb">
+    
+    
+    <li class="breadcrumb-item">Home</li>
+    
+    
+    
+    <li class="breadcrumb-item">TclLib</li>
+    
+    
+    <li class="breadcrumb-item active" aria-current="page">TclLib</li>
+  </ol>
+</nav>
+
+
+<h1 id="tcllib">TclLib</h1>
+<h2 id="commands">Commands</h2>
+<ul>
+<li><a href="Access/">Tcl_Access</a></li>
+<li><a href="Access/">Tcl_Stat</a></li>
+<li><a href="AddErrInfo/">Tcl_GetReturnOptions</a></li>
+<li><a href="AddErrInfo/">Tcl_SetReturnOptions</a></li>
+<li><a href="AddErrInfo/">Tcl_AddErrorInfo</a></li>
+<li><a href="AddErrInfo/">Tcl_AppendObjToErrorInfo</a></li>
+<li><a href="AddErrInfo/">Tcl_AddObjErrorInfo</a></li>
+<li><a href="AddErrInfo/">Tcl_SetObjErrorCode</a></li>
+<li><a href="AddErrInfo/">Tcl_SetErrorCode</a></li>
+<li><a href="AddErrInfo/">Tcl_SetErrorCodeVA</a></li>
+<li><a href="AddErrInfo/">Tcl_SetErrorLine</a></li>
+<li><a href="AddErrInfo/">Tcl_GetErrorLine</a></li>
+<li><a href="AddErrInfo/">Tcl_PosixError</a></li>
+<li><a href="AddErrInfo/">Tcl_LogCommandInfo</a></li>
+<li><a href="Alloc/">Tcl_Alloc</a></li>
+<li><a href="Alloc/">Tcl_Free</a></li>
+<li><a href="Alloc/">Tcl_Realloc</a></li>
+<li><a href="Alloc/">Tcl_AttemptAlloc</a></li>
+<li><a href="Alloc/">Tcl_AttemptRealloc</a></li>
+<li><a href="Alloc/">Tcl_GetMemoryInfo</a></li>
+<li><a href="Alloc/">ckalloc</a></li>
+<li><a href="Alloc/">ckfree</a></li>
+<li><a href="Alloc/">ckrealloc</a></li>
+<li><a href="Alloc/">attemptckalloc</a></li>
+<li><a href="Alloc/">attemptckrealloc</a></li>
+<li><a href="AllowExc/">Tcl_AllowExceptions</a></li>
+<li><a href="AppInit/">Tcl_AppInit</a></li>
+<li><a href="AssocData/">Tcl_GetAssocData</a></li>
+<li><a href="AssocData/">Tcl_SetAssocData</a></li>
+<li><a href="AssocData/">Tcl_DeleteAssocData</a></li>
+<li><a href="Async/">Tcl_AsyncCreate</a></li>
+<li><a href="Async/">Tcl_AsyncMark</a></li>
+<li><a href="Async/">Tcl_AsyncInvoke</a></li>
+<li><a href="Async/">Tcl_AsyncDelete</a></li>
+<li><a href="Async/">Tcl_AsyncReady</a></li>
+<li><a href="BackgdErr/">Tcl_BackgroundException</a></li>
+<li><a href="BackgdErr/">Tcl_BackgroundError</a></li>
+<li><a href="Backslash/">Tcl_Backslash</a></li>
+<li><a href="BoolObj/">Tcl_NewBooleanObj</a></li>
+<li><a href="BoolObj/">Tcl_SetBooleanObj</a></li>
+<li><a href="BoolObj/">Tcl_GetBooleanFromObj</a></li>
+<li><a href="ByteArrObj/">Tcl_NewByteArrayObj</a></li>
+<li><a href="ByteArrObj/">Tcl_SetByteArrayObj</a></li>
+<li><a href="ByteArrObj/">Tcl_GetByteArrayFromObj</a></li>
+<li><a href="ByteArrObj/">Tcl_SetByteArrayLength</a></li>
+<li><a href="CallDel/">Tcl_CallWhenDeleted</a></li>
+<li><a href="CallDel/">Tcl_DontCallWhenDeleted</a></li>
+<li><a href="Cancel/">Tcl_CancelEval</a></li>
+<li><a href="Cancel/">Tcl_Canceled</a></li>
+<li><a href="ChnlStack/">Tcl_StackChannel</a></li>
+<li><a href="ChnlStack/">Tcl_UnstackChannel</a></li>
+<li><a href="ChnlStack/">Tcl_GetStackedChannel</a></li>
+<li><a href="ChnlStack/">Tcl_GetTopChannel</a></li>
+<li><a href="Class/">oo::class</a></li>
+<li><a href="CmdCmplt/">Tcl_CommandComplete</a></li>
+<li><a href="Concat/">concat</a></li>
+<li><a href="CrtAlias/">Tcl_IsSafe</a></li>
+<li><a href="CrtAlias/">Tcl_MakeSafe</a></li>
+<li><a href="CrtAlias/">Tcl_CreateChild</a></li>
+<li><a href="CrtAlias/">Tcl_CreateSlave</a></li>
+<li><a href="CrtAlias/">Tcl_GetChild</a></li>
+<li><a href="CrtAlias/">Tcl_GetSlave</a></li>
+<li><a href="CrtAlias/">Tcl_GetParent</a></li>
+<li><a href="CrtAlias/">Tcl_GetMaster</a></li>
+<li><a href="CrtAlias/">Tcl_GetInterpPath</a></li>
+<li><a href="CrtAlias/">Tcl_CreateAlias</a></li>
+<li><a href="CrtAlias/">Tcl_CreateAliasObj</a></li>
+<li><a href="CrtAlias/">Tcl_GetAlias</a></li>
+<li><a href="CrtAlias/">Tcl_GetAliasObj</a></li>
+<li><a href="CrtAlias/">Tcl_ExposeCommand</a></li>
+<li><a href="CrtAlias/">Tcl_HideCommand</a></li>
+<li><a href="CrtChannel/">Tcl_CreateChannel</a></li>
+<li><a href="CrtChannel/">Tcl_GetChannelInstanceData</a></li>
+<li><a href="CrtChannel/">Tcl_GetChannelType</a></li>
+<li><a href="CrtChannel/">Tcl_GetChannelName</a></li>
+<li><a href="CrtChannel/">Tcl_GetChannelHandle</a></li>
+<li><a href="CrtChannel/">Tcl_GetChannelMode</a></li>
+<li><a href="CrtChannel/">Tcl_GetChannelBufferSize</a></li>
+<li><a href="CrtChannel/">Tcl_SetChannelBufferSize</a></li>
+<li><a href="CrtChannel/">Tcl_NotifyChannel</a></li>
+<li><a href="CrtChannel/">Tcl_BadChannelOption</a></li>
+<li><a href="CrtChannel/">Tcl_ChannelName</a></li>
+<li><a href="CrtChannel/">Tcl_ChannelVersion</a></li>
+<li><a href="CrtChannel/">Tcl_ChannelBlockModeProc</a></li>
+<li><a href="CrtChannel/">Tcl_ChannelCloseProc</a></li>
+<li><a href="CrtChannel/">Tcl_ChannelClose2Proc</a></li>
+<li><a href="CrtChannel/">Tcl_ChannelInputProc</a></li>
+<li><a href="CrtChannel/">Tcl_ChannelOutputProc</a></li>
+<li><a href="CrtChannel/">Tcl_ChannelSeekProc</a></li>
+<li><a href="CrtChannel/">Tcl_ChannelWideSeekProc</a></li>
+<li><a href="CrtChannel/">Tcl_ChannelTruncateProc</a></li>
+<li><a href="CrtChannel/">Tcl_ChannelSetOptionProc</a></li>
+<li><a href="CrtChannel/">Tcl_ChannelGetOptionProc</a></li>
+<li><a href="CrtChannel/">Tcl_ChannelWatchProc</a></li>
+<li><a href="CrtChannel/">Tcl_ChannelGetHandleProc</a></li>
+<li><a href="CrtChannel/">Tcl_ChannelFlushProc</a></li>
+<li><a href="CrtChannel/">Tcl_ChannelHandlerProc</a></li>
+<li><a href="CrtChannel/">Tcl_ChannelThreadActionProc</a></li>
+<li><a href="CrtChannel/">Tcl_IsChannelShared</a></li>
+<li><a href="CrtChannel/">Tcl_IsChannelRegistered</a></li>
+<li><a href="CrtChannel/">Tcl_CutChannel</a></li>
+<li><a href="CrtChannel/">Tcl_SpliceChannel</a></li>
+<li><a href="CrtChannel/">Tcl_IsChannelExisting</a></li>
+<li><a href="CrtChannel/">Tcl_ClearChannelHandlers</a></li>
+<li><a href="CrtChannel/">Tcl_GetChannelThread</a></li>
+<li><a href="CrtChannel/">Tcl_ChannelBuffered</a></li>
+<li><a href="CrtChnlHdlr/">Tcl_CreateChannelHandler</a></li>
+<li><a href="CrtChnlHdlr/">Tcl_DeleteChannelHandler</a></li>
+<li><a href="CrtCloseHdlr/">Tcl_CreateCloseHandler</a></li>
+<li><a href="CrtCloseHdlr/">Tcl_DeleteCloseHandler</a></li>
+<li><a href="CrtCommand/">Tcl_CreateCommand</a></li>
+<li><a href="CrtFileHdlr/">Tcl_CreateFileHandler</a></li>
+<li><a href="CrtFileHdlr/">Tcl_DeleteFileHandler</a></li>
+<li><a href="CrtInterp/">Tcl_CreateInterp</a></li>
+<li><a href="CrtInterp/">Tcl_DeleteInterp</a></li>
+<li><a href="CrtInterp/">Tcl_InterpActive</a></li>
+<li><a href="CrtInterp/">Tcl_InterpDeleted</a></li>
+<li><a href="CrtMathFnc/">Tcl_CreateMathFunc</a></li>
+<li><a href="CrtMathFnc/">Tcl_GetMathFuncInfo</a></li>
+<li><a href="CrtMathFnc/">Tcl_ListMathFuncs</a></li>
+<li><a href="CrtObjCmd/">Tcl_CreateObjCommand</a></li>
+<li><a href="CrtObjCmd/">Tcl_DeleteCommand</a></li>
+<li><a href="CrtObjCmd/">Tcl_DeleteCommandFromToken</a></li>
+<li><a href="CrtObjCmd/">Tcl_GetCommandInfo</a></li>
+<li><a href="CrtObjCmd/">Tcl_GetCommandInfoFromToken</a></li>
+<li><a href="CrtObjCmd/">Tcl_SetCommandInfo</a></li>
+<li><a href="CrtObjCmd/">Tcl_SetCommandInfoFromToken</a></li>
+<li><a href="CrtObjCmd/">Tcl_GetCommandName</a></li>
+<li><a href="CrtObjCmd/">Tcl_GetCommandFullName</a></li>
+<li><a href="CrtObjCmd/">Tcl_GetCommandFromObj</a></li>
+<li><a href="CrtTimerHdlr/">Tcl_CreateTimerHandler</a></li>
+<li><a href="CrtTimerHdlr/">Tcl_DeleteTimerHandler</a></li>
+<li><a href="CrtTrace/">Tcl_CreateTrace</a></li>
+<li><a href="CrtTrace/">Tcl_CreateObjTrace</a></li>
+<li><a href="CrtTrace/">Tcl_DeleteTrace</a></li>
+<li><a href="DetachPids/">Tcl_DetachPids</a></li>
+<li><a href="DetachPids/">Tcl_ReapDetachedProcs</a></li>
+<li><a href="DetachPids/">Tcl_WaitPid</a></li>
+<li><a href="DictObj/">Tcl_NewDictObj</a></li>
+<li><a href="DictObj/">Tcl_DictObjPut</a></li>
+<li><a href="DictObj/">Tcl_DictObjGet</a></li>
+<li><a href="DictObj/">Tcl_DictObjRemove</a></li>
+<li><a href="DictObj/">Tcl_DictObjSize</a></li>
+<li><a href="DictObj/">Tcl_DictObjFirst</a></li>
+<li><a href="DictObj/">Tcl_DictObjNext</a></li>
+<li><a href="DictObj/">Tcl_DictObjDone</a></li>
+<li><a href="DictObj/">Tcl_DictObjPutKeyList</a></li>
+<li><a href="DictObj/">Tcl_DictObjRemoveKeyList</a></li>
+<li><a href="DoOneEvent/">Tcl_DoOneEvent</a></li>
+<li><a href="DoubleObj/">Tcl_NewDoubleObj</a></li>
+<li><a href="DoubleObj/">Tcl_SetDoubleObj</a></li>
+<li><a href="DoubleObj/">Tcl_GetDoubleFromObj</a></li>
+<li><a href="DoWhenIdle/">Tcl_DoWhenIdle</a></li>
+<li><a href="DoWhenIdle/">Tcl_CancelIdleCall</a></li>
+<li><a href="DString/">Tcl_DStringInit</a></li>
+<li><a href="DString/">Tcl_DStringAppend</a></li>
+<li><a href="DString/">Tcl_DStringAppendElement</a></li>
+<li><a href="DString/">Tcl_DStringStartSublist</a></li>
+<li><a href="DString/">Tcl_DStringEndSublist</a></li>
+<li><a href="DString/">Tcl_DStringLength</a></li>
+<li><a href="DString/">Tcl_DStringValue</a></li>
+<li><a href="DString/">Tcl_DStringSetLength</a></li>
+<li><a href="DString/">Tcl_DStringTrunc</a></li>
+<li><a href="DString/">Tcl_DStringFree</a></li>
+<li><a href="DString/">Tcl_DStringResult</a></li>
+<li><a href="DString/">Tcl_DStringGetResult</a></li>
+<li><a href="DumpActiveMemory/">Tcl_DumpActiveMemory</a></li>
+<li><a href="DumpActiveMemory/">Tcl_InitMemory</a></li>
+<li><a href="DumpActiveMemory/">Tcl_ValidateAllMemory</a></li>
+<li><a href="Encoding/">encoding</a></li>
+<li><a href="Ensemble/">Tcl_CreateEnsemble</a></li>
+<li><a href="Ensemble/">Tcl_FindEnsemble</a></li>
+<li><a href="Ensemble/">Tcl_GetEnsembleFlags</a></li>
+<li><a href="Ensemble/">Tcl_GetEnsembleMappingDict</a></li>
+<li><a href="Ensemble/">Tcl_GetEnsembleNamespace</a></li>
+<li><a href="Ensemble/">Tcl_GetEnsembleParameterList</a></li>
+<li><a href="Ensemble/">Tcl_GetEnsembleUnknownHandler</a></li>
+<li><a href="Ensemble/">Tcl_GetEnsembleSubcommandList</a></li>
+<li><a href="Ensemble/">Tcl_IsEnsemble</a></li>
+<li><a href="Ensemble/">Tcl_SetEnsembleFlags</a></li>
+<li><a href="Ensemble/">Tcl_SetEnsembleMappingDict</a></li>
+<li><a href="Ensemble/">Tcl_SetEnsembleParameterList</a></li>
+<li><a href="Ensemble/">Tcl_SetEnsembleSubcommandList</a></li>
+<li><a href="Ensemble/">Tcl_SetEnsembleUnknownHandler</a></li>
+<li><a href="Environment/">Tcl_PutEnv</a></li>
+<li><a href="Eval/">eval</a></li>
+<li><a href="Exit/">exit</a></li>
+<li><a href="ExprLong/">Tcl_ExprLong</a></li>
+<li><a href="ExprLong/">Tcl_ExprDouble</a></li>
+<li><a href="ExprLong/">Tcl_ExprBoolean</a></li>
+<li><a href="ExprLong/">Tcl_ExprString</a></li>
+<li><a href="ExprLongObj/">Tcl_ExprLongObj</a></li>
+<li><a href="ExprLongObj/">Tcl_ExprDoubleObj</a></li>
+<li><a href="ExprLongObj/">Tcl_ExprBooleanObj</a></li>
+<li><a href="ExprLongObj/">Tcl_ExprObj</a></li>
+<li><a href="FileSystem/">Tcl_FSRegister</a></li>
+<li><a href="FileSystem/">Tcl_FSUnregister</a></li>
+<li><a href="FileSystem/">Tcl_FSData</a></li>
+<li><a href="FileSystem/">Tcl_FSMountsChanged</a></li>
+<li><a href="FileSystem/">Tcl_FSGetFileSystemForPath</a></li>
+<li><a href="FileSystem/">Tcl_FSGetPathType</a></li>
+<li><a href="FileSystem/">Tcl_FSCopyFile</a></li>
+<li><a href="FileSystem/">Tcl_FSCopyDirectory</a></li>
+<li><a href="FileSystem/">Tcl_FSCreateDirectory</a></li>
+<li><a href="FileSystem/">Tcl_FSDeleteFile</a></li>
+<li><a href="FileSystem/">Tcl_FSRemoveDirectory</a></li>
+<li><a href="FileSystem/">Tcl_FSRenameFile</a></li>
+<li><a href="FileSystem/">Tcl_FSListVolumes</a></li>
+<li><a href="FileSystem/">Tcl_FSEvalFile</a></li>
+<li><a href="FileSystem/">Tcl_FSEvalFileEx</a></li>
+<li><a href="FileSystem/">Tcl_FSLoadFile</a></li>
+<li><a href="FileSystem/">Tcl_FSUnloadFile</a></li>
+<li><a href="FileSystem/">Tcl_FSMatchInDirectory</a></li>
+<li><a href="FileSystem/">Tcl_FSLink</a></li>
+<li><a href="FileSystem/">Tcl_FSLstat</a></li>
+<li><a href="FileSystem/">Tcl_FSUtime</a></li>
+<li><a href="FileSystem/">Tcl_FSFileAttrsGet</a></li>
+<li><a href="FileSystem/">Tcl_FSFileAttrsSet</a></li>
+<li><a href="FileSystem/">Tcl_FSFileAttrStrings</a></li>
+<li><a href="FileSystem/">Tcl_FSStat</a></li>
+<li><a href="FileSystem/">Tcl_FSAccess</a></li>
+<li><a href="FileSystem/">Tcl_FSOpenFileChannel</a></li>
+<li><a href="FileSystem/">Tcl_FSGetCwd</a></li>
+<li><a href="FileSystem/">Tcl_FSChdir</a></li>
+<li><a href="FileSystem/">Tcl_FSPathSeparator</a></li>
+<li><a href="FileSystem/">Tcl_FSJoinPath</a></li>
+<li><a href="FileSystem/">Tcl_FSSplitPath</a></li>
+<li><a href="FileSystem/">Tcl_FSEqualPaths</a></li>
+<li><a href="FileSystem/">Tcl_FSGetNormalizedPath</a></li>
+<li><a href="FileSystem/">Tcl_FSJoinToPath</a></li>
+<li><a href="FileSystem/">Tcl_FSConvertToPathType</a></li>
+<li><a href="FileSystem/">Tcl_FSGetInternalRep</a></li>
+<li><a href="FileSystem/">Tcl_FSGetTranslatedPath</a></li>
+<li><a href="FileSystem/">Tcl_FSGetTranslatedStringPath</a></li>
+<li><a href="FileSystem/">Tcl_FSNewNativePath</a></li>
+<li><a href="FileSystem/">Tcl_FSGetNativePath</a></li>
+<li><a href="FileSystem/">Tcl_FSFileSystemInfo</a></li>
+<li><a href="FileSystem/">Tcl_GetAccessTimeFromStat</a></li>
+<li><a href="FileSystem/">Tcl_GetBlockSizeFromStat</a></li>
+<li><a href="FileSystem/">Tcl_GetBlocksFromStat</a></li>
+<li><a href="FileSystem/">Tcl_GetChangeTimeFromStat</a></li>
+<li><a href="FileSystem/">Tcl_GetDeviceTypeFromStat</a></li>
+<li><a href="FileSystem/">Tcl_GetFSDeviceFromStat</a></li>
+<li><a href="FileSystem/">Tcl_GetFSInodeFromStat</a></li>
+<li><a href="FileSystem/">Tcl_GetGroupIdFromStat</a></li>
+<li><a href="FileSystem/">Tcl_GetLinkCountFromStat</a></li>
+<li><a href="FileSystem/">Tcl_GetModeFromStat</a></li>
+<li><a href="FileSystem/">Tcl_GetModificationTimeFromStat</a></li>
+<li><a href="FileSystem/">Tcl_GetSizeFromStat</a></li>
+<li><a href="FileSystem/">Tcl_GetUserIdFromStat</a></li>
+<li><a href="FileSystem/">Tcl_AllocStatBuf</a></li>
+<li><a href="FindExec/">Tcl_FindExecutable</a></li>
+<li><a href="FindExec/">Tcl_GetNameOfExecutable</a></li>
+<li><a href="GetCwd/">Tcl_GetCwd</a></li>
+<li><a href="GetCwd/">Tcl_Chdir</a></li>
+<li><a href="GetHostName/">Tcl_GetHostName</a></li>
+<li><a href="GetIndex/">Tcl_GetIndexFromObj</a></li>
+<li><a href="GetIndex/">Tcl_GetIndexFromObjStruct</a></li>
+<li><a href="GetInt/">Tcl_GetInt</a></li>
+<li><a href="GetInt/">Tcl_GetDouble</a></li>
+<li><a href="GetInt/">Tcl_GetBoolean</a></li>
+<li><a href="GetOpnFl/">Tcl_GetOpenFile</a></li>
+<li><a href="GetStdChan/">Tcl_GetStdChannel</a></li>
+<li><a href="GetStdChan/">Tcl_SetStdChannel</a></li>
+<li><a href="GetTime/">Tcl_GetTime</a></li>
+<li><a href="GetTime/">Tcl_SetTimeProc</a></li>
+<li><a href="GetTime/">Tcl_QueryTimeProc</a></li>
+<li><a href="GetVersion/">Tcl_GetVersion</a></li>
+<li><a href="Hash/">Tcl_InitHashTable</a></li>
+<li><a href="Hash/">Tcl_InitCustomHashTable</a></li>
+<li><a href="Hash/">Tcl_InitObjHashTable</a></li>
+<li><a href="Hash/">Tcl_DeleteHashTable</a></li>
+<li><a href="Hash/">Tcl_CreateHashEntry</a></li>
+<li><a href="Hash/">Tcl_DeleteHashEntry</a></li>
+<li><a href="Hash/">Tcl_FindHashEntry</a></li>
+<li><a href="Hash/">Tcl_GetHashValue</a></li>
+<li><a href="Hash/">Tcl_SetHashValue</a></li>
+<li><a href="Hash/">Tcl_GetHashKey</a></li>
+<li><a href="Hash/">Tcl_FirstHashEntry</a></li>
+<li><a href="Hash/">Tcl_NextHashEntry</a></li>
+<li><a href="Hash/">Tcl_HashStats</a></li>
+<li><a href="Init/">Tcl_Init</a></li>
+<li><a href="InitStubs/">Tcl_InitStubs</a></li>
+<li><a href="Interp/">interp</a></li>
+<li><a href="IntObj/">Tcl_NewIntObj</a></li>
+<li><a href="IntObj/">Tcl_NewLongObj</a></li>
+<li><a href="IntObj/">Tcl_NewWideIntObj</a></li>
+<li><a href="IntObj/">Tcl_SetIntObj</a></li>
+<li><a href="IntObj/">Tcl_SetLongObj</a></li>
+<li><a href="IntObj/">Tcl_SetWideIntObj</a></li>
+<li><a href="IntObj/">Tcl_GetIntFromObj</a></li>
+<li><a href="IntObj/">Tcl_GetLongFromObj</a></li>
+<li><a href="IntObj/">Tcl_GetWideIntFromObj</a></li>
+<li><a href="IntObj/">Tcl_NewBignumObj</a></li>
+<li><a href="IntObj/">Tcl_SetBignumObj</a></li>
+<li><a href="IntObj/">Tcl_GetBignumFromObj</a></li>
+<li><a href="IntObj/">Tcl_TakeBignumFromObj</a></li>
+<li><a href="Limit/">Tcl_LimitAddHandler</a></li>
+<li><a href="Limit/">Tcl_LimitCheck</a></li>
+<li><a href="Limit/">Tcl_LimitExceeded</a></li>
+<li><a href="Limit/">Tcl_LimitGetCommands</a></li>
+<li><a href="Limit/">Tcl_LimitGetGranularity</a></li>
+<li><a href="Limit/">Tcl_LimitGetTime</a></li>
+<li><a href="Limit/">Tcl_LimitReady</a></li>
+<li><a href="Limit/">Tcl_LimitRemoveHandler</a></li>
+<li><a href="Limit/">Tcl_LimitSetCommands</a></li>
+<li><a href="Limit/">Tcl_LimitSetGranularity</a></li>
+<li><a href="Limit/">Tcl_LimitSetTime</a></li>
+<li><a href="Limit/">Tcl_LimitTypeEnabled</a></li>
+<li><a href="Limit/">Tcl_LimitTypeExceeded</a></li>
+<li><a href="Limit/">Tcl_LimitTypeReset</a></li>
+<li><a href="Limit/">Tcl_LimitTypeSet</a></li>
+<li><a href="LinkVar/">Tcl_LinkVar</a></li>
+<li><a href="LinkVar/">Tcl_UnlinkVar</a></li>
+<li><a href="LinkVar/">Tcl_UpdateLinkedVar</a></li>
+<li><a href="ListObj/">Tcl_ListObjAppendList</a></li>
+<li><a href="ListObj/">Tcl_ListObjAppendElement</a></li>
+<li><a href="ListObj/">Tcl_NewListObj</a></li>
+<li><a href="ListObj/">Tcl_SetListObj</a></li>
+<li><a href="ListObj/">Tcl_ListObjGetElements</a></li>
+<li><a href="ListObj/">Tcl_ListObjLength</a></li>
+<li><a href="ListObj/">Tcl_ListObjIndex</a></li>
+<li><a href="ListObj/">Tcl_ListObjReplace</a></li>
+<li><a href="Load/">load</a></li>
+<li><a href="Method/">Tcl_ClassSetConstructor</a></li>
+<li><a href="Method/">Tcl_ClassSetDestructor</a></li>
+<li><a href="Method/">Tcl_MethodDeclarerClass</a></li>
+<li><a href="Method/">Tcl_MethodDeclarerObject</a></li>
+<li><a href="Method/">Tcl_MethodIsPublic</a></li>
+<li><a href="Method/">Tcl_MethodIsType</a></li>
+<li><a href="Method/">Tcl_MethodName</a></li>
+<li><a href="Method/">Tcl_NewInstanceMethod</a></li>
+<li><a href="Method/">Tcl_NewMethod</a></li>
+<li><a href="Method/">Tcl_ObjectContextInvokeNext</a></li>
+<li><a href="Method/">Tcl_ObjectContextIsFiltering</a></li>
+<li><a href="Method/">Tcl_ObjectContextMethod</a></li>
+<li><a href="Method/">Tcl_ObjectContextObject</a></li>
+<li><a href="Method/">Tcl_ObjectContextSkippedArgs</a></li>
+<li><a href="Namespace/">namespace</a></li>
+<li><a href="Notifier/">Tcl_CreateEventSource</a></li>
+<li><a href="Notifier/">Tcl_DeleteEventSource</a></li>
+<li><a href="Notifier/">Tcl_SetMaxBlockTime</a></li>
+<li><a href="Notifier/">Tcl_QueueEvent</a></li>
+<li><a href="Notifier/">Tcl_ThreadQueueEvent</a></li>
+<li><a href="Notifier/">Tcl_ThreadAlert</a></li>
+<li><a href="Notifier/">Tcl_GetCurrentThread</a></li>
+<li><a href="Notifier/">Tcl_DeleteEvents</a></li>
+<li><a href="Notifier/">Tcl_InitNotifier</a></li>
+<li><a href="Notifier/">Tcl_FinalizeNotifier</a></li>
+<li><a href="Notifier/">Tcl_WaitForEvent</a></li>
+<li><a href="Notifier/">Tcl_AlertNotifier</a></li>
+<li><a href="Notifier/">Tcl_SetTimer</a></li>
+<li><a href="Notifier/">Tcl_ServiceAll</a></li>
+<li><a href="Notifier/">Tcl_ServiceEvent</a></li>
+<li><a href="Notifier/">Tcl_GetServiceMode</a></li>
+<li><a href="Notifier/">Tcl_SetServiceMode</a></li>
+<li><a href="Notifier/">Tcl_ServiceModeHook</a></li>
+<li><a href="Notifier/">Tcl_SetNotifier</a></li>
+<li><a href="NRE/">Tcl_NRCreateCommand</a></li>
+<li><a href="NRE/">Tcl_NRCallObjProc</a></li>
+<li><a href="NRE/">Tcl_NREvalObj</a></li>
+<li><a href="NRE/">Tcl_NREvalObjv</a></li>
+<li><a href="NRE/">Tcl_NRCmdSwap</a></li>
+<li><a href="NRE/">Tcl_NRExprObj</a></li>
+<li><a href="NRE/">Tcl_NRAddCallback</a></li>
+<li><a href="Object/">oo::object</a></li>
+<li><a href="ObjectType/">Tcl_RegisterObjType</a></li>
+<li><a href="ObjectType/">Tcl_GetObjType</a></li>
+<li><a href="ObjectType/">Tcl_AppendAllObjTypes</a></li>
+<li><a href="ObjectType/">Tcl_ConvertToType</a></li>
+<li><a href="OOInitStubs/">Tcl_OOInitStubs</a></li>
+<li><a href="OpenFileChnl/">Tcl_OpenFileChannel</a></li>
+<li><a href="OpenFileChnl/">Tcl_OpenCommandChannel</a></li>
+<li><a href="OpenFileChnl/">Tcl_MakeFileChannel</a></li>
+<li><a href="OpenFileChnl/">Tcl_GetChannel</a></li>
+<li><a href="OpenFileChnl/">Tcl_GetChannelNames</a></li>
+<li><a href="OpenFileChnl/">Tcl_GetChannelNamesEx</a></li>
+<li><a href="OpenFileChnl/">Tcl_RegisterChannel</a></li>
+<li><a href="OpenFileChnl/">Tcl_UnregisterChannel</a></li>
+<li><a href="OpenFileChnl/">Tcl_DetachChannel</a></li>
+<li><a href="OpenFileChnl/">Tcl_IsStandardChannel</a></li>
+<li><a href="OpenFileChnl/">Tcl_Close</a></li>
+<li><a href="OpenFileChnl/">Tcl_ReadChars</a></li>
+<li><a href="OpenFileChnl/">Tcl_Read</a></li>
+<li><a href="OpenFileChnl/">Tcl_GetsObj</a></li>
+<li><a href="OpenFileChnl/">Tcl_Gets</a></li>
+<li><a href="OpenFileChnl/">Tcl_WriteObj</a></li>
+<li><a href="OpenFileChnl/">Tcl_WriteChars</a></li>
+<li><a href="OpenFileChnl/">Tcl_Write</a></li>
+<li><a href="OpenFileChnl/">Tcl_Flush</a></li>
+<li><a href="OpenFileChnl/">Tcl_Seek</a></li>
+<li><a href="OpenFileChnl/">Tcl_Tell</a></li>
+<li><a href="OpenFileChnl/">Tcl_TruncateChannel</a></li>
+<li><a href="OpenFileChnl/">Tcl_GetChannelOption</a></li>
+<li><a href="OpenFileChnl/">Tcl_SetChannelOption</a></li>
+<li><a href="OpenFileChnl/">Tcl_Eof</a></li>
+<li><a href="OpenFileChnl/">Tcl_InputBlocked</a></li>
+<li><a href="OpenFileChnl/">Tcl_InputBuffered</a></li>
+<li><a href="OpenFileChnl/">Tcl_OutputBuffered</a></li>
+<li><a href="OpenFileChnl/">Tcl_Ungets</a></li>
+<li><a href="OpenFileChnl/">Tcl_ReadRaw</a></li>
+<li><a href="OpenFileChnl/">Tcl_WriteRaw</a></li>
+<li><a href="OpenTcp/">Tcl_OpenTcpClient</a></li>
+<li><a href="OpenTcp/">Tcl_MakeTcpClientChannel</a></li>
+<li><a href="OpenTcp/">Tcl_OpenTcpServer</a></li>
+<li><a href="Panic/">Tcl_Panic</a></li>
+<li><a href="Panic/">Tcl_PanicVA</a></li>
+<li><a href="Panic/">Tcl_SetPanicProc</a></li>
+<li><a href="ParseArgs/">Tcl_ParseArgsObjv</a></li>
+<li><a href="ParseCmd/">Tcl_ParseCommand</a></li>
+<li><a href="ParseCmd/">Tcl_ParseExpr</a></li>
+<li><a href="ParseCmd/">Tcl_ParseBraces</a></li>
+<li><a href="ParseCmd/">Tcl_ParseQuotedString</a></li>
+<li><a href="ParseCmd/">Tcl_ParseVarName</a></li>
+<li><a href="ParseCmd/">Tcl_ParseVar</a></li>
+<li><a href="ParseCmd/">Tcl_FreeParse</a></li>
+<li><a href="ParseCmd/">Tcl_EvalTokens</a></li>
+<li><a href="ParseCmd/">Tcl_EvalTokensStandard</a></li>
+<li><a href="PkgRequire/">Tcl_PkgRequire</a></li>
+<li><a href="PkgRequire/">Tcl_PkgRequireEx</a></li>
+<li><a href="PkgRequire/">Tcl_PkgRequireProc</a></li>
+<li><a href="PkgRequire/">Tcl_PkgPresent</a></li>
+<li><a href="PkgRequire/">Tcl_PkgPresentEx</a></li>
+<li><a href="PkgRequire/">Tcl_PkgProvide</a></li>
+<li><a href="PkgRequire/">Tcl_PkgProvideEx</a></li>
+<li><a href="Preserve/">Tcl_Preserve</a></li>
+<li><a href="Preserve/">Tcl_Release</a></li>
+<li><a href="Preserve/">Tcl_EventuallyFree</a></li>
+<li><a href="PrintDbl/">Tcl_PrintDouble</a></li>
+<li><a href="RecEvalObj/">Tcl_RecordAndEvalObj</a></li>
+<li><a href="RecordEval/">Tcl_RecordAndEval</a></li>
+<li><a href="RegConfig/">Tcl_RegisterConfig</a></li>
+<li><a href="RegExp/">regexp</a></li>
+<li><a href="SaveResult/">Tcl_SaveInterpState</a></li>
+<li><a href="SaveResult/">Tcl_RestoreInterpState</a></li>
+<li><a href="SaveResult/">Tcl_DiscardInterpState</a></li>
+<li><a href="SaveResult/">Tcl_SaveResult</a></li>
+<li><a href="SaveResult/">Tcl_RestoreResult</a></li>
+<li><a href="SaveResult/">Tcl_DiscardResult</a></li>
+<li><a href="SetChanErr/">Tcl_SetChannelError</a></li>
+<li><a href="SetChanErr/">Tcl_SetChannelErrorInterp</a></li>
+<li><a href="SetChanErr/">Tcl_GetChannelError</a></li>
+<li><a href="SetChanErr/">Tcl_GetChannelErrorInterp</a></li>
+<li><a href="SetErrno/">Tcl_SetErrno</a></li>
+<li><a href="SetErrno/">Tcl_GetErrno</a></li>
+<li><a href="SetErrno/">Tcl_ErrnoId</a></li>
+<li><a href="SetErrno/">Tcl_ErrnoMsg</a></li>
+<li><a href="SetRecLmt/">Tcl_SetRecursionLimit</a></li>
+<li><a href="SetResult/">Tcl_SetObjResult</a></li>
+<li><a href="SetResult/">Tcl_GetObjResult</a></li>
+<li><a href="SetResult/">Tcl_SetResult</a></li>
+<li><a href="SetResult/">Tcl_GetStringResult</a></li>
+<li><a href="SetResult/">Tcl_AppendResult</a></li>
+<li><a href="SetResult/">Tcl_AppendResultVA</a></li>
+<li><a href="SetResult/">Tcl_AppendElement</a></li>
+<li><a href="SetResult/">Tcl_ResetResult</a></li>
+<li><a href="SetResult/">Tcl_TransferResult</a></li>
+<li><a href="SetResult/">Tcl_FreeResult</a></li>
+<li><a href="SetVar/">Tcl_SetVar2Ex</a></li>
+<li><a href="SetVar/">Tcl_SetVar</a></li>
+<li><a href="SetVar/">Tcl_SetVar2</a></li>
+<li><a href="SetVar/">Tcl_ObjSetVar2</a></li>
+<li><a href="SetVar/">Tcl_GetVar2Ex</a></li>
+<li><a href="SetVar/">Tcl_GetVar</a></li>
+<li><a href="SetVar/">Tcl_GetVar2</a></li>
+<li><a href="SetVar/">Tcl_ObjGetVar2</a></li>
+<li><a href="SetVar/">Tcl_UnsetVar</a></li>
+<li><a href="SetVar/">Tcl_UnsetVar2</a></li>
+<li><a href="Signal/">Tcl_SignalId</a></li>
+<li><a href="Signal/">Tcl_SignalMsg</a></li>
+<li><a href="Sleep/">Tcl_Sleep</a></li>
+<li><a href="SourceRCFile/">Tcl_SourceRCFile</a></li>
+<li><a href="SplitList/">Tcl_SplitList</a></li>
+<li><a href="SplitList/">Tcl_Merge</a></li>
+<li><a href="SplitList/">Tcl_ScanElement</a></li>
+<li><a href="SplitList/">Tcl_ConvertElement</a></li>
+<li><a href="SplitList/">Tcl_ScanCountedElement</a></li>
+<li><a href="SplitList/">Tcl_ConvertCountedElement</a></li>
+<li><a href="SplitPath/">Tcl_SplitPath</a></li>
+<li><a href="SplitPath/">Tcl_JoinPath</a></li>
+<li><a href="SplitPath/">Tcl_GetPathType</a></li>
+<li><a href="StaticPkg/">Tcl_StaticPackage</a></li>
+<li><a href="StdChannels/">Tcl_StandardChannels</a></li>
+<li><a href="StringObj/">Tcl_NewStringObj</a></li>
+<li><a href="StringObj/">Tcl_NewUnicodeObj</a></li>
+<li><a href="StringObj/">Tcl_SetStringObj</a></li>
+<li><a href="StringObj/">Tcl_SetUnicodeObj</a></li>
+<li><a href="StringObj/">Tcl_GetStringFromObj</a></li>
+<li><a href="StringObj/">Tcl_GetString</a></li>
+<li><a href="StringObj/">Tcl_GetUnicodeFromObj</a></li>
+<li><a href="StringObj/">Tcl_GetUnicode</a></li>
+<li><a href="StringObj/">Tcl_GetUniChar</a></li>
+<li><a href="StringObj/">Tcl_GetCharLength</a></li>
+<li><a href="StringObj/">Tcl_GetRange</a></li>
+<li><a href="StringObj/">Tcl_AppendToObj</a></li>
+<li><a href="StringObj/">Tcl_AppendUnicodeToObj</a></li>
+<li><a href="StringObj/">Tcl_AppendObjToObj</a></li>
+<li><a href="StringObj/">Tcl_AppendStringsToObj</a></li>
+<li><a href="StringObj/">Tcl_AppendStringsToObjVA</a></li>
+<li><a href="StringObj/">Tcl_AppendLimitedToObj</a></li>
+<li><a href="StringObj/">Tcl_Format</a></li>
+<li><a href="StringObj/">Tcl_AppendFormatToObj</a></li>
+<li><a href="StringObj/">Tcl_ObjPrintf</a></li>
+<li><a href="StringObj/">Tcl_AppendPrintfToObj</a></li>
+<li><a href="StringObj/">Tcl_SetObjLength</a></li>
+<li><a href="StringObj/">Tcl_AttemptSetObjLength</a></li>
+<li><a href="StringObj/">Tcl_ConcatObj</a></li>
+<li><a href="StrMatch/">Tcl_StringMatch</a></li>
+<li><a href="StrMatch/">Tcl_StringCaseMatch</a></li>
+<li><a href="SubstObj/">Tcl_SubstObj</a></li>
+<li><a href="TclZlib/">Tcl_ZlibAdler32</a></li>
+<li><a href="TclZlib/">Tcl_ZlibCRC32</a></li>
+<li><a href="TclZlib/">Tcl_ZlibDeflate</a></li>
+<li><a href="TclZlib/">Tcl_ZlibInflate</a></li>
+<li><a href="TclZlib/">Tcl_ZlibStreamChecksum</a></li>
+<li><a href="TclZlib/">Tcl_ZlibStreamClose</a></li>
+<li><a href="TclZlib/">Tcl_ZlibStreamEof</a></li>
+<li><a href="TclZlib/">Tcl_ZlibStreamGet</a></li>
+<li><a href="TclZlib/">Tcl_ZlibStreamGetCommandName</a></li>
+<li><a href="TclZlib/">Tcl_ZlibStreamInit</a></li>
+<li><a href="TclZlib/">Tcl_ZlibStreamPut</a></li>
+<li><a href="Tcl_Main/">Tcl_Main</a></li>
+<li><a href="Tcl_Main/">Tcl_MainEx</a></li>
+<li><a href="Tcl_Main/">Tcl_MainExW</a></li>
+<li><a href="Tcl_Main/">Tcl_SetStartupScript</a></li>
+<li><a href="Tcl_Main/">Tcl_GetStartupScript</a></li>
+<li><a href="Tcl_Main/">Tcl_SetMainLoop</a></li>
+<li><a href="TCL_MEM_DEBUG/">TCL_MEM_DEBUG</a></li>
+<li><a href="Thread/">Tcl_ConditionNotify</a></li>
+<li><a href="Thread/">Tcl_ConditionWait</a></li>
+<li><a href="Thread/">Tcl_ConditionFinalize</a></li>
+<li><a href="Thread/">Tcl_GetThreadData</a></li>
+<li><a href="Thread/">Tcl_MutexLock</a></li>
+<li><a href="Thread/">Tcl_MutexUnlock</a></li>
+<li><a href="Thread/">Tcl_MutexFinalize</a></li>
+<li><a href="Thread/">Tcl_CreateThread</a></li>
+<li><a href="Thread/">Tcl_JoinThread</a></li>
+<li><a href="ToUpper/">Tcl_UniCharToUpper</a></li>
+<li><a href="ToUpper/">Tcl_UniCharToLower</a></li>
+<li><a href="ToUpper/">Tcl_UniCharToTitle</a></li>
+<li><a href="ToUpper/">Tcl_UtfToUpper</a></li>
+<li><a href="ToUpper/">Tcl_UtfToLower</a></li>
+<li><a href="ToUpper/">Tcl_UtfToTitle</a></li>
+<li><a href="TraceCmd/">Tcl_CommandTraceInfo</a></li>
+<li><a href="TraceCmd/">Tcl_TraceCommand</a></li>
+<li><a href="TraceCmd/">Tcl_UntraceCommand</a></li>
+<li><a href="TraceVar/">Tcl_TraceVar</a></li>
+<li><a href="TraceVar/">Tcl_TraceVar2</a></li>
+<li><a href="TraceVar/">Tcl_UntraceVar</a></li>
+<li><a href="TraceVar/">Tcl_UntraceVar2</a></li>
+<li><a href="TraceVar/">Tcl_VarTraceInfo</a></li>
+<li><a href="TraceVar/">Tcl_VarTraceInfo2</a></li>
+<li><a href="Translate/">Tcl_TranslateFileName</a></li>
+<li><a href="UniCharIsAlpha/">Tcl_UniCharIsAlnum</a></li>
+<li><a href="UniCharIsAlpha/">Tcl_UniCharIsAlpha</a></li>
+<li><a href="UniCharIsAlpha/">Tcl_UniCharIsControl</a></li>
+<li><a href="UniCharIsAlpha/">Tcl_UniCharIsDigit</a></li>
+<li><a href="UniCharIsAlpha/">Tcl_UniCharIsGraph</a></li>
+<li><a href="UniCharIsAlpha/">Tcl_UniCharIsLower</a></li>
+<li><a href="UniCharIsAlpha/">Tcl_UniCharIsPrint</a></li>
+<li><a href="UniCharIsAlpha/">Tcl_UniCharIsPunct</a></li>
+<li><a href="UniCharIsAlpha/">Tcl_UniCharIsSpace</a></li>
+<li><a href="UniCharIsAlpha/">Tcl_UniCharIsUpper</a></li>
+<li><a href="UniCharIsAlpha/">Tcl_UniCharIsWordChar</a></li>
+<li><a href="UpVar/">upvar</a></li>
+<li><a href="Utf/">Tcl_UniChar</a></li>
+<li><a href="Utf/">Tcl_UniCharToUtf</a></li>
+<li><a href="Utf/">Tcl_UtfToUniChar</a></li>
+<li><a href="Utf/">Tcl_UniCharToUtfDString</a></li>
+<li><a href="Utf/">Tcl_UtfToUniCharDString</a></li>
+<li><a href="Utf/">Tcl_UniCharLen</a></li>
+<li><a href="Utf/">Tcl_UniCharNcmp</a></li>
+<li><a href="Utf/">Tcl_UniCharNcasecmp</a></li>
+<li><a href="Utf/">Tcl_UniCharCaseMatch</a></li>
+<li><a href="Utf/">Tcl_UtfNcmp</a></li>
+<li><a href="Utf/">Tcl_UtfNcasecmp</a></li>
+<li><a href="Utf/">Tcl_UtfCharComplete</a></li>
+<li><a href="Utf/">Tcl_NumUtfChars</a></li>
+<li><a href="Utf/">Tcl_UtfFindFirst</a></li>
+<li><a href="Utf/">Tcl_UtfFindLast</a></li>
+<li><a href="Utf/">Tcl_UtfNext</a></li>
+<li><a href="Utf/">Tcl_UtfPrev</a></li>
+<li><a href="Utf/">Tcl_UniCharAtIndex</a></li>
+<li><a href="Utf/">Tcl_UtfAtIndex</a></li>
+<li><a href="Utf/">Tcl_UtfBackslash</a></li>
+<li><a href="WrongNumArgs/">Tcl_WrongNumArgs</a></li>
+</ul>
+
+<ul class="metadata page-metadata" data-bi-name="page info" lang="en-us" dir="ltr">
+  <li class="last-updated-holder displayDate loading">
+    <span class="last-updated-text">Last updated:</span>
+    <time role="presentation" datetime="2018-10-25T00:00:00.000Z" data-article-date-source="ms.date"></time>
+  </li>
+<!--
+  <li class="readingTime">
+    2 minutes to read
+  </li>
+-->
+  <li class="contributors-holder">
+    <span class="contributors-text">Contributors</span>
+    <ul class="contributors" data-bi-name="contributors"></ul>
+  </li>
+</ul>
+</div>
+        <div class="col-md-3"><div class="navbar-light navbar-expand-md hidden-print sticky-top sticky-offset" role="complementary">
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggler collapsed" data-toggle="collapse" data-target="#toc-collapse" title="Table of Contents">
+            <span class="fa fa-angle-down"></span>
+        </button>
+    </div>
+
+    <div id="toc-collapse" class="navbar-collapse collapse card">
+        <ul class="nav flex-column bs-sidenav">
+            <li class="nav-item main"><a class="nav-link" href="#tcllib">TclLib</a></li>
+                <li class="nav-item">
+                    <a href="#commands" class="nav-link">Commands</a>
+                </li>
+        </ul>
+    </div>
+</div></div>
+      </div>
+      </div>
+
+      <footer class="col-md-12">
+	<hr>
+	<div class="container">
+	</div>
+      </footer>
+      <script>
+	var base_url = "..",
+            shortcuts = {"help": 191, "next": 78, "previous": 80, "search": 83};
+      </script>
+      <script src="../js/base.js" defer></script>
+      <script src="../search/main.js" defer></script>
+
+      <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="Search Modal" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Search</h4>
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            </div>
+            <div class="modal-body">
+                <p>
+                    From here you can search these documents. Enter
+                    your search terms below.
+                </p>
+                <form role="form">
+                    <div class="form-group">
+                        <input type="text" class="form-control" placeholder="Search..." id="mkdocs-search-query" title="Type search term here">
+                    </div>
+                </form>
+                <div id="mkdocs-search-results"></div>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div><div class="modal" id="mkdocs_keyboard_modal" tabindex="-1" role="dialog" aria-labelledby="Keyboard Shortcuts Modal" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <p class="h4 modal-title">Keyboard Shortcuts</p>
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            </div>
+            <div class="modal-body">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th style="width: 20%;">Keys</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="help shortcut"><kbd>?</kbd></td>
+                    <td>Open this help</td>
+                  </tr>
+                  <tr>
+                    <td class="next shortcut"><kbd>n</kbd></td>
+                    <td>Next page</td>
+                  </tr>
+                  <tr>
+                    <td class="prev shortcut"><kbd>p</kbd></td>
+                    <td>Previous page</td>
+                  </tr>
+                  <tr>
+                    <td class="search shortcut"><kbd>s</kbd></td>
+                    <td>Search</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>
+
+    </body>
+</html>

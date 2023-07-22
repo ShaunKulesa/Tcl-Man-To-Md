@@ -1,5 +1,3 @@
-\
-
 # NAME
 
 regexp - Match a regular expression against a string
@@ -8,8 +6,6 @@ regexp - Match a regular expression against a string
 
 **regexp **?*switches*? *exp string *?*matchVar*? ?*subMatchVar
 subMatchVar \...*?
-
-\
 
 # DESCRIPTION
 
@@ -165,3 +161,8 @@ re_syntax(n), regsub(n), string(n)
 # KEYWORDS
 
 match, parsing, pattern, regular expression, splitting, string
+
+<!---
+Copyright (c) 1998 Sun Microsystems, Inc
+-->
+

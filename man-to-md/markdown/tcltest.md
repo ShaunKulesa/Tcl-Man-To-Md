@@ -1,59 +1,42 @@
-\
-
 # NAME
 
 tcltest - Test harness support code and utilities
 
 # SYNOPSIS
 
-    package require tcltest ?2.5?
+**package require tcltest** ?**2.5**?
 
-    tcltest::test name description ?-option value ...?
-    tcltest::test name description ?constraints? body result
+**tcltest::test ***name description* ?*-option value \...*?
+**tcltest::test ***name description* ?*constraints*? *body result*
 
-    tcltest::loadTestedCommands
-    tcltest::makeDirectory name ?directory?
-    tcltest::removeDirectory name ?directory?
-    tcltest::makeFile contents name ?directory?
-    tcltest::removeFile name ?directory?
-    tcltest::viewFile name ?directory?
-    tcltest::cleanupTests ?runningMultipleTests?
-    tcltest::runAllTests
+**tcltest::loadTestedCommands** **tcltest::makeDirectory ***name*
+?*directory*? **tcltest::removeDirectory ***name* ?*directory*?
+**tcltest::makeFile ***contents name* ?*directory*?
+**tcltest::removeFile ***name* ?*directory*? **tcltest::viewFile
+***name* ?*directory*? **tcltest::cleanupTests
+**?*runningMultipleTests*? **tcltest::runAllTests**
 
-    tcltest::configure
-    tcltest::configure -option
-    tcltest::configure -option value ?-option value ...?
-    tcltest::customMatch mode command
-    tcltest::testConstraint constraint ?value?
-    tcltest::outputChannel ?channelID?
-    tcltest::errorChannel ?channelID?
-    tcltest::interpreter ?interp?
+**tcltest::configure** **tcltest::configure ***-option*
+**tcltest::configure ***-option value* ?*-option value \...*?
+**tcltest::customMatch ***mode command* **tcltest::testConstraint
+***constraint* ?*value*? **tcltest::outputChannel **?*channelID*?
+**tcltest::errorChannel **?*channelID*? **tcltest::interpreter
+**?*interp*?
 
-    tcltest::debug ?level?
-    tcltest::errorFile ?filename?
-    tcltest::limitConstraints ?boolean?
-    tcltest::loadFile ?filename?
-    tcltest::loadScript ?script?
-    tcltest::match ?patternList?
-    tcltest::matchDirectories ?patternList?
-    tcltest::matchFiles ?patternList?
-    tcltest::outputFile ?filename?
-    tcltest::preserveCore ?level?
-    tcltest::singleProcess ?boolean?
-    tcltest::skip ?patternList?
-    tcltest::skipDirectories ?patternList?
-    tcltest::skipFiles ?patternList?
-    tcltest::temporaryDirectory ?directory?
-    tcltest::testsDirectory ?directory?
-    tcltest::verbose ?level?
+**tcltest::debug **?*level*? **tcltest::errorFile **?*filename*?
+**tcltest::limitConstraints **?*boolean*? **tcltest::loadFile
+**?*filename*? **tcltest::loadScript **?*script*? **tcltest::match
+**?*patternList*? **tcltest::matchDirectories **?*patternList*?
+**tcltest::matchFiles **?*patternList*? **tcltest::outputFile
+**?*filename*? **tcltest::preserveCore **?*level*?
+**tcltest::singleProcess **?*boolean*? **tcltest::skip **?*patternList*?
+**tcltest::skipDirectories **?*patternList*? **tcltest::skipFiles
+**?*patternList*? **tcltest::temporaryDirectory **?*directory*?
+**tcltest::testsDirectory **?*directory*? **tcltest::verbose **?*level*?
 
-    tcltest::test name description optionList
-    tcltest::bytestring string
-    tcltest::normalizeMsg msg
-    tcltest::normalizePath pathVar
-    tcltest::workingDirectory ?dir?
-
-\
+**tcltest::test ***name description optionList* **tcltest::bytestring
+***string* **tcltest::normalizeMsg ***msg* **tcltest::normalizePath
+***pathVar* **tcltest::workingDirectory **?*dir*?
 
 # DESCRIPTION
 
@@ -1161,3 +1144,11 @@ produce output.
 # KEYWORDS
 
 test, test harness, test suite
+
+<!---
+Copyright (c) 1990-1994 The Regents of the University of Californi
+Copyright (c) 1994-1997 Sun Microsystems, Inc
+Copyright (c) 1998-1999 Scriptics Corporatio
+Copyright (c) 2000 Ajuba Solution
+-->
+

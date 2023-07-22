@@ -1,5 +1,3 @@
-\
-
 # NAME
 
 Tcl_GetInt, Tcl_GetDouble, Tcl_GetBoolean - convert from string to
@@ -7,16 +5,13 @@ integer, double, or boolean
 
 # SYNOPSIS
 
-    #include <tcl.h>
+**#include \<tcl.h\>**
 
-    int
-    Tcl_GetInt(interp, src, intPtr)
+int **Tcl_GetInt**(*interp, src, intPtr*)
 
-    int
-    Tcl_GetDouble(interp, src, doublePtr)
+int **Tcl_GetDouble**(*interp, src, doublePtr*)
 
-    int
-    Tcl_GetBoolean(interp, src, intPtr)
+int **Tcl_GetBoolean**(*interp, src, intPtr*)
 
 # ARGUMENTS
 
@@ -28,8 +23,6 @@ Points to place to store integer value converted from *src*.
 
 Points to place to store double-precision floating-point value converted
 from *src*.
-
-\
 
 # DESCRIPTION
 
@@ -74,3 +67,9 @@ may be abbreviated, and upper-case spellings are also acceptable.
 # KEYWORDS
 
 boolean, conversion, double, floating-point, integer
+
+<!---
+Copyright (c) 1989-1993 The Regents of the University of California
+Copyright (c) 1994-1996 Sun Microsystems, Inc
+-->
+

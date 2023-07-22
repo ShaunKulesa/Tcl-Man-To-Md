@@ -18,7 +18,6 @@ expressions by placing commands in the \fBtcl::mathfunc\fR namespace,
 as described in the \fBmathfunc\fR manual page; the API described on
 this page is not expected to be maintained indefinitely.
 .SH SYNOPSIS
-.nf
 \fB#include <tcl.h>\fR
 .sp
 void
@@ -92,27 +91,27 @@ Whenever the function is invoked in an expression Tcl will invoke
 \fIproc\fR.  \fIProc\fR should have arguments and result that match
 the type \fBTcl_MathProc\fR:
 .PP
-.nf
+.CS
 typedef int \fBTcl_MathProc\fR(
         ClientData \fIclientData\fR,
         Tcl_Interp *\fIinterp\fR,
         Tcl_Value *\fIargs\fR,
         Tcl_Value *\fIresultPtr\fR);
-.fi
+.CE
 .PP
 When \fIproc\fR is invoked the \fIclientData\fR and \fIinterp\fR
 arguments will be the same as those passed to \fBTcl_CreateMathFunc\fR.
 \fIArgs\fR will point to an array of \fInumArgs\fR Tcl_Value structures,
 which describe the actual arguments to the function:
 .PP
-.nf
+.CS
 typedef struct Tcl_Value {
     Tcl_ValueType \fItype\fR;
     long \fIintValue\fR;
     double \fIdoubleValue\fR;
     Tcl_WideInt \fIwideValue\fR;
 } \fBTcl_Value\fR;
-.fi
+.CE
 .PP
 The \fItype\fR field indicates the type of the argument and is
 one of \fBTCL_INT\fR, \fBTCL_DOUBLE\fR or \fBTCL_WIDE_INT\fR.

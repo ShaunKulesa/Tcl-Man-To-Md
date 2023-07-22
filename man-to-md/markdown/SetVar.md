@@ -1,5 +1,3 @@
-\
-
 # NAME
 
 Tcl_SetVar2Ex, Tcl_SetVar, Tcl_SetVar2, Tcl_ObjSetVar2, Tcl_GetVar2Ex,
@@ -8,37 +6,28 @@ manipulate Tcl variables
 
 # SYNOPSIS
 
-    #include <tcl.h>
+**#include \<tcl.h\>**
 
-    Tcl_Obj *
-    Tcl_SetVar2Ex(interp, name1, name2, newValuePtr, flags)
+Tcl_Obj \* **Tcl_SetVar2Ex**(*interp, name1, name2, newValuePtr, flags*)
 
-    const char *
-    Tcl_SetVar(interp, varName, newValue, flags)
+const char \* **Tcl_SetVar**(*interp, varName, newValue, flags*)
 
-    const char *
-    Tcl_SetVar2(interp, name1, name2, newValue, flags)
+const char \* **Tcl_SetVar2**(*interp, name1, name2, newValue, flags*)
 
-    Tcl_Obj *
-    Tcl_ObjSetVar2(interp, part1Ptr, part2Ptr, newValuePtr, flags)
+Tcl_Obj \* **Tcl_ObjSetVar2**(*interp, part1Ptr, part2Ptr, newValuePtr,
+flags*)
 
-    Tcl_Obj *
-    Tcl_GetVar2Ex(interp, name1, name2, flags)
+Tcl_Obj \* **Tcl_GetVar2Ex**(*interp, name1, name2, flags*)
 
-    const char *
-    Tcl_GetVar(interp, varName, flags)
+const char \* **Tcl_GetVar**(*interp, varName, flags*)
 
-    const char *
-    Tcl_GetVar2(interp, name1, name2, flags)
+const char \* **Tcl_GetVar2**(*interp, name1, name2, flags*)
 
-    Tcl_Obj *
-    Tcl_ObjGetVar2(interp, part1Ptr, part2Ptr, flags)
+Tcl_Obj \* **Tcl_ObjGetVar2**(*interp, part1Ptr, part2Ptr, flags*)
 
-    int
-    Tcl_UnsetVar(interp, varName, flags)
+int **Tcl_UnsetVar**(*interp, varName, flags*)
 
-    int
-    Tcl_UnsetVar2(interp, name1, name2, flags)
+int **Tcl_UnsetVar2**(*interp, name1, name2, flags*)
 
 # ARGUMENTS
 
@@ -71,8 +60,6 @@ an array variable.
 
 If non-NULL, points to a value containing the name of an element within
 an array and *part1Ptr* must refer to an array variable.
-
-\
 
 # DESCRIPTION
 
@@ -225,3 +212,9 @@ Tcl_GetObjResult, Tcl_GetStringResult, Tcl_TraceVar
 # KEYWORDS
 
 array, get variable, interpreter, scalar, set, unset, value, variable
+
+<!---
+Copyright (c) 1989-1993 The Regents of the University of California
+Copyright (c) 1994-1997 Sun Microsystems, Inc
+-->
+

@@ -114,18 +114,18 @@ and \fBupdate\fR commands.
 This defines a command to make Tcl do nothing at all for \fIN\fR
 seconds:
 .PP
-.nf
+.CS
 proc sleep {N} {
     \fBafter\fR [expr {int($N * 1000)}]
 }
-.fi
+.CE
 .PP
 This arranges for the command \fIwake_up\fR to be run in eight hours
 (providing the event loop is active at that time):
 .PP
-.nf
+.CS
 \fBafter\fR [expr {1000 * 60 * 60 * 8}] wake_up
-.fi
+.CE
 .PP
 The following command can be used to do long-running calculations (as
 represented here by \fI::my_calc::one_step\fR, which is assumed to
@@ -138,14 +138,14 @@ already-triggered timer event only when the event queue has been
 drained) and is useful when you want to ensure that a Tk GUI remains
 responsive during a slow task.
 .PP
-.nf
+.CS
 proc doOneStep {} {
     if {[::my_calc::one_step]} {
         \fBafter idle\fR [list \fBafter\fR 0 doOneStep]
     }
 }
 doOneStep
-.fi
+.CE
 .SH "SEE ALSO"
 concat(n), interp(n), update(n), vwait(n)
 .SH KEYWORDS

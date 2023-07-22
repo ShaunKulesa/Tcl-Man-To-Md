@@ -33,7 +33,7 @@ servers, as it allows you to write your code in a line-by-line style
 without preventing the servicing of other connections.  This can be
 seen in this simple echo-service:
 .PP
-.nf
+.CS
 # This is called whenever a new client connects to the server
 proc connect {chan host port} {
     set clientName [format <%s:%d> $host $port]
@@ -60,7 +60,7 @@ proc echoLine {chan clientName} {
 # for incoming connections...
 socket -server connect 12345
 vwait forever
-.fi
+.CE
 .SH "SEE ALSO"
 gets(n), open(n), read(n), socket(n), Tcl_StandardChannels(3)
 .SH KEYWORDS

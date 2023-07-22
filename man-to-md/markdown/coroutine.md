@@ -1,17 +1,12 @@
-\
-
 # NAME
 
 coroutine, yield, yieldto - Create and produce values from coroutines
 
 # SYNOPSIS
 
-    coroutine name command ?arg...?
-    yield ?value?
-    yieldto command ?arg...?
-    name ?value...?
+**coroutine ***name command* ?*arg\...*? **yield** ?*value*?
 
-\
+**yieldto** *command* ?*arg\...*? *name* ?*value\...*?
 
 # DESCRIPTION
 
@@ -183,3 +178,8 @@ apply(n), info(n), proc(n), return(n)
 # KEYWORDS
 
 coroutine, generator
+
+<!---
+Copyright (c) 2009 Donal K. Fellows
+-->
+

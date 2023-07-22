@@ -1,5 +1,3 @@
-\
-
 # NAME
 
 namespace - create and manipulate contexts for commands and variables
@@ -7,8 +5,6 @@ namespace - create and manipulate contexts for commands and variables
 # SYNOPSIS
 
 **namespace **?*subcommand*? ?*arg \...*?
-
-\
 
 # DESCRIPTION
 
@@ -823,3 +819,11 @@ interp(n), upvar(n), variable(n)
 # KEYWORDS
 
 command, ensemble, exported, internal, variable
+
+<!---
+Copyright (c) 1993-1997 Bell Labs Innovations for Lucent Technologie
+Copyright (c) 1997 Sun Microsystems, Inc
+Copyright (c) 2000 Scriptics Corporation
+Copyright (c) 2004-2005 Donal K. Fellows
+-->
+

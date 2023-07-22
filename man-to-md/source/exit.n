@@ -28,7 +28,7 @@ the calling process, the \fBexit\fR command is an important part of
 signaling that something fatal has gone wrong. This code fragment is
 useful in scripts to act as a general problem trap:
 .PP
-.nf
+.CS
 proc main {} {
     # ... put the real main code in here ...
 }
@@ -44,7 +44,7 @@ if {[catch {main} msg options]} {
     # Reserve code 1 for "expected" error exits...
     \fBexit\fR 2
 }
-.fi
+.CE
 .SH "SEE ALSO"
 exec(n)
 .SH KEYWORDS

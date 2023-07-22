@@ -1,5 +1,3 @@
-\
-
 # NAME
 
 lrange - Return one or more adjacent elements from a list
@@ -7,8 +5,6 @@ lrange - Return one or more adjacent elements from a list
 # SYNOPSIS
 
 **lrange ***list first last*
-
-\
 
 # DESCRIPTION
 
@@ -59,3 +55,10 @@ lset(n), lreplace(n), lsort(n), string(n)
 # KEYWORDS
 
 element, list, range, sublist
+
+<!---
+Copyright (c) 1993 The Regents of the University of California
+Copyright (c) 1994-1996 Sun Microsystems, Inc
+Copyright (c) 2001 Kevin B. Kenny <kennykb@acm.org>.  All rights reserved
+-->
+

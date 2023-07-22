@@ -1,0 +1,531 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+      <script>
+	// Hack for scrolling window when linking to anchor tag with fixed nav header
+        var shiftWindow = function() { scrollBy(0, -75) };
+        window.addEventListener("hashchange", shiftWindow);
+        function load() { if (window.location.hash) shiftWindow(); }
+      </script>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        
+        <link rel="canonical" href="https://www.tcl.tk/man/TclCmd/expr/">
+        <link rel="shortcut icon" href="../../img/favicon.ico">
+        <title>Expr - Tcl/Tk</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <link href="../../css/font-awesome.min.css" rel="stylesheet">
+    <link href="../../css/base.css" rel="stylesheet">
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+    <script src="../../js/base.js"></script> 
+    </head>
+
+    <body class="">
+
+      <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
+	<div class="container">
+	<a class="navbar-brand" href="../..">Tcl/Tk</a>
+	<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExample04" aria-controls="navbarsExample04" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+	</button>
+
+	<div class="collapse navbar-collapse">
+
+          <ul class="navbar-nav flex-row ml-md-auto d-none d-md-flex">
+            <li class="nav-item">
+              <a class="nav-link" href="#" data-toggle="modal" data-target="#mkdocs_search_modal">
+		<i class="fa fa-search"></i> Search
+              </a>
+            </li>
+          </ul>
+	</div>
+	</div>
+      </nav><div id="content" class="container">
+        
+      <div class="row">
+        <div class="col-md-9" role="main">
+
+
+<nav aria-label="breadcrumb">
+  <ol class="breadcrumb">
+    
+    <li class="breadcrumb-item active" aria-current="page">Expr</li>
+  </ol>
+</nav>
+
+
+<p>\</p>
+<h1 id="name">NAME</h1>
+<p>expr - Evaluate an expression</p>
+<h1 id="synopsis">SYNOPSIS</h1>
+<p><strong>expr </strong><em>arg </em>?<em>arg arg ...</em>?</p>
+<p>\</p>
+<h1 id="description">DESCRIPTION</h1>
+<p>Concatenates <em>arg</em>s (adding separator spaces between them), evaluates
+the result as a Tcl expression, and returns the value. The operators
+permitted in Tcl expressions include a subset of the operators permitted
+in C expressions. For those operators common to both Tcl and C, Tcl
+applies the same meaning and precedence as the corresponding C
+operators. Expressions almost always yield numeric results (integer or
+floating-point values). For example, the expression</p>
+<div class="language-text highlight"><pre><span></span><code>expr 8.2 + 6
+</code></pre></div>
+<p>evaluates to 14.2. Tcl expressions differ from C expressions in the way
+that operands are specified. Also, Tcl expressions support non-numeric
+operands and string comparisons, as well as some additional operators
+not found in C.</p>
+<h2 id="operands">OPERANDS</h2>
+<p>A Tcl expression consists of a combination of operands, operators,
+parentheses and commas. White space may be used between the operands and
+operators and parentheses (or commas); it is ignored by the
+expression\'s instructions. Where possible, operands are interpreted as
+integer values. Integer values may be specified in decimal (the normal
+case), in binary (if the first two characters of the operand are
+<strong>0b</strong>), in octal (if the first two characters of the operand are
+<strong>0o</strong>), or in hexadecimal (if the first two characters of the operand
+are <strong>0x</strong>). For compatibility with older Tcl releases, an octal integer
+value is also indicated simply when the first character of the operand
+is <strong>0</strong>, whether or not the second character is also <strong>o</strong>. If an
+operand does not have one of the integer formats given above, then it is
+treated as a floating-point number if that is possible. Floating-point
+numbers may be specified in any of several common formats making use of
+the decimal digits, the decimal point <strong>.</strong>, the characters <strong>e</strong> or
+<strong>E</strong> indicating scientific notation, and the sign characters <strong>+</strong> or
+<strong>-</strong>. For example, all of the following are valid floating-point
+numbers: 2.1, 3., 6e4, 7.91e+16. Also recognized as floating point
+values are the strings <strong>Inf</strong> and <strong>NaN</strong> making use of any case for
+each character. If no numeric interpretation is possible (note that all
+literal operands that are not numeric or boolean must be quoted with
+either braces or with double quotes), then an operand is left as a
+string (and only a limited set of operators may be applied to it).</p>
+<p>Operands may be specified in any of the following ways:</p>
+<p>[1]</p>
+<p>:   As a numeric value, either integer or floating-point.</p>
+<p>[2]</p>
+<p>:   As a boolean value, using any form understood by <strong>string is</strong>
+    <strong>boolean</strong>.</p>
+<p>[3]</p>
+<p>:   As a Tcl variable, using standard <strong>\$</strong> notation. The variable\'s
+    value will be used as the operand.</p>
+<p>[4]</p>
+<p>:   As a string enclosed in double-quotes. The expression parser will
+    perform backslash, variable, and command substitutions on the
+    information between the quotes, and use the resulting value as the
+    operand</p>
+<p>[5]</p>
+<p>:   As a string enclosed in braces. The characters between the open
+    brace and matching close brace will be used as the operand without
+    any substitutions.</p>
+<p>[6]</p>
+<p>:   As a Tcl command enclosed in brackets. The command will be executed
+    and its result will be used as the operand.</p>
+<p>[7]</p>
+<p>:   As a mathematical function whose arguments have any of the above
+    forms for operands, such as <strong>sin(\$x)</strong>. See <strong>MATH FUNCTIONS</strong>
+    below for a discussion of how mathematical functions are handled.</p>
+<p>Where the above substitutions occur (e.g. inside quoted strings), they
+are performed by the expression\'s instructions. However, the command
+parser may already have performed one round of substitution before the
+expression processor was called. As discussed below, it is usually best
+to enclose expressions in braces to prevent the command parser from
+performing substitutions on the contents.</p>
+<p>For some examples of simple expressions, suppose the variable <strong>a</strong> has
+the value 3 and the variable <strong>b</strong> has the value 6. Then the command on
+the left side of each of the lines below will produce the value on the
+right side of the line:</p>
+<div class="language-text highlight"><pre><span></span><code>expr {3.1 + $a} 6.1
+expr {2 + &quot;$a.$b&quot;}  5.6
+expr {4*[llength &quot;6 2&quot;]}    8
+expr {{word one} &lt; &quot;word $a&quot;}   0
+</code></pre></div>
+<h2 id="operators">OPERATORS</h2>
+<p>The valid operators (most of which are also available as commands in the
+<strong>tcl::mathop</strong> namespace; see the <strong>mathop</strong>(n) manual page for
+details) are listed below, grouped in decreasing order of precedence:</p>
+<p><strong>-  +  \~  !</strong></p>
+<p>:   Unary minus, unary plus, bit-wise NOT, logical NOT. None of these
+    operators may be applied to string operands, and bit-wise NOT may be
+    applied only to integers.</p>
+<p><strong>**</strong></p>
+<p>:   Exponentiation. Valid for any numeric operands. The maximum exponent
+    value that Tcl can handle if the first number is an integer > 1 is
+    268435455.</p>
+<p><strong>*  /  %</strong></p>
+<p>:   Multiply, divide, remainder. None of these operators may be applied
+    to string operands, and remainder may be applied only to integers.
+    The remainder will always have the same sign as the divisor and an
+    absolute value smaller than the absolute value of the divisor.</p>
+<div class="language-text highlight"><pre><span></span><code>When applied to integers, the division and remainder operators can
+be considered to partition the number line into a sequence of
+equal-sized adjacent non-overlapping pieces where each piece is the
+size of the divisor; the division result identifies which piece the
+divisor lay within, and the remainder result identifies where within
+that piece the divisor lay. A consequence of this is that the result
+of is always -6, and the result of is always 3.
+</code></pre></div>
+<p><strong>+  -</strong></p>
+<p>:   Add and subtract. Valid for any numeric operands.</p>
+<p><strong>\&lt;\&lt;  >></strong></p>
+<p>:   Left and right shift. Valid for integer operands only. A right shift
+    always propagates the sign bit.</p>
+<p><strong>\&lt;  >  \&lt;=  >=</strong></p>
+<p>:   Boolean less, greater, less than or equal, and greater than or
+    equal. Each operator produces 1 if the condition is true, 0
+    otherwise. These operators may be applied to strings as well as
+    numeric operands, in which case string comparison is used.</p>
+<p><strong>==  !=</strong></p>
+<p>:   Boolean equal and not equal. Each operator produces a zero/one
+    result. Valid for all operand types.</p>
+<p><strong>eq  ne</strong></p>
+<p>:   Boolean string equal and string not equal. Each operator produces a
+    zero/one result. The operand types are interpreted only as strings.</p>
+<p><strong>in  ni</strong></p>
+<p>:   List containment and negated list containment. Each operator
+    produces a zero/one result and treats its first argument as a string
+    and its second argument as a Tcl list. The <strong>in</strong> operator indicates
+    whether the first argument is a member of the second argument list;
+    the <strong>ni</strong> operator inverts the sense of the result.</p>
+<p><strong>&amp;</strong></p>
+<p>:   Bit-wise AND. Valid for integer operands only.</p>
+<p><strong>\^</strong></p>
+<p>:   Bit-wise exclusive OR. Valid for integer operands only.</p>
+<p><strong>|</strong></p>
+<p>:   Bit-wise OR. Valid for integer operands only.</p>
+<p><strong>&amp;&amp;</strong></p>
+<p>:   Logical AND. Produces a 1 result if both operands are non-zero, 0
+    otherwise. Valid for boolean and numeric (integers or
+    floating-point) operands only. This operator evaluates lazily; it
+    only evaluates its second operand if it must in order to determine
+    its result.</p>
+<p><strong>||</strong></p>
+<p>:   Logical OR. Produces a 0 result if both operands are zero, 1
+    otherwise. Valid for boolean and numeric (integers or
+    floating-point) operands only. This operator evaluates lazily; it
+    only evaluates its second operand if it must in order to determine
+    its result.</p>
+<p><em>x </em><strong>?</strong><em> y </em><strong>:</strong><em> z</em></p>
+<p>:   If-then-else, as in C. If <em>x</em> evaluates to non-zero, then the result
+    is the value of <em>y</em>. Otherwise the result is the value of <em>z</em>. The
+    <em>x</em> operand must have a boolean or numeric value. This operator
+    evaluates lazily; it evaluates only one of <em>y</em> or <em>z</em>.</p>
+<p>See the C manual for more details on the results produced by each
+operator. The exponentiation operator promotes types like the multiply
+and divide operators, and produces a result that is the same as the
+output of the <strong>pow</strong> function (after any type conversions.) All of the
+binary operators but exponentiation group left-to-right within the same
+precedence level; exponentiation groups right-to-left. For example, the
+command</p>
+<div class="language-text highlight"><pre><span></span><code>expr {4*2 &lt; 7}
+</code></pre></div>
+<p>returns 0, while</p>
+<div class="language-text highlight"><pre><span></span><code>expr {2**3**2}
+</code></pre></div>
+<p>returns 512.</p>
+<p>The <strong>&amp;&amp;</strong>, <strong>||</strong>, and <strong>?:</strong> operators have just as in C, which
+means that operands are not evaluated if they are not needed to
+determine the outcome. For example, in the command</p>
+<div class="language-text highlight"><pre><span></span><code>expr {$v?[a]:[b]}
+</code></pre></div>
+<p>only one of or will actually be evaluated, depending on the value of
+<strong>\$v</strong>. Note, however, that this is only true if the entire expression
+is enclosed in braces; otherwise the Tcl parser will evaluate both and
+before invoking the <strong>expr</strong> command.</p>
+<h2 id="math-functions">MATH FUNCTIONS</h2>
+<p>When the expression parser encounters a mathematical function such as
+<strong>sin(\$x)</strong>, it replaces it with a call to an ordinary Tcl command in
+the <strong>tcl::mathfunc</strong> namespace. The processing of an expression such
+as:</p>
+<div class="language-text highlight"><pre><span></span><code>expr {sin($x+$y)}
+</code></pre></div>
+<p>is the same in every way as the processing of:</p>
+<div class="language-text highlight"><pre><span></span><code>expr {[tcl::mathfunc::sin [expr {$x+$y}]]}
+</code></pre></div>
+<p>which in turn is the same as the processing of:</p>
+<div class="language-text highlight"><pre><span></span><code>tcl::mathfunc::sin [expr {$x+$y}]
+</code></pre></div>
+<p>The executor will search for <strong>tcl::mathfunc::sin</strong> using the usual
+rules for resolving functions in namespaces. Either
+<strong>::tcl::mathfunc::sin</strong> or <strong>[namespace</strong>
+current]::tcl::mathfunc::sin will satisfy the request, and others may
+as well (depending on the current <strong>namespace path</strong> setting).</p>
+<p>Some mathematical functions have several arguments, separated by commas
+like in C. Thus:</p>
+<div class="language-text highlight"><pre><span></span><code>expr {hypot($x,$y)}
+</code></pre></div>
+<p>ends up as</p>
+<div class="language-text highlight"><pre><span></span><code>tcl::mathfunc::hypot $x $y
+</code></pre></div>
+<p>See the <strong>mathfunc</strong>(n) manual page for the math functions that are
+available by default.</p>
+<h2 id="types-overflow-and-precision">TYPES, OVERFLOW, AND PRECISION</h2>
+<p>All internal computations involving integers are done calling on the
+LibTomMath multiple precision integer library as required so that all
+integer calculations are performed exactly. Note that in Tcl releases
+prior to 8.5, integer calculations were performed with one of the C
+types <em>long int</em> or <em>Tcl_WideInt</em>, causing implicit range truncation in
+those calculations where values overflowed the range of those types. Any
+code that relied on these implicit truncations will need to explicitly
+add <strong>int()</strong> or <strong>wide()</strong> function calls to expressions at the points
+where such truncation is required to take place.</p>
+<p>All internal computations involving floating-point are done with the C
+type <em>double</em>. When converting a string to floating-point, exponent
+overflow is detected and results in the <em>double</em> value of <strong>Inf</strong> or
+<strong>-Inf</strong> as appropriate. Floating-point overflow and underflow are
+detected to the degree supported by the hardware, which is generally
+pretty reliable.</p>
+<p>Conversion among internal representations for integer, floating-point,
+and string operands is done automatically as needed. For arithmetic
+computations, integers are used until some floating-point number is
+introduced, after which floating-point is used. For example,</p>
+<div class="language-text highlight"><pre><span></span><code>expr {5 / 4}
+</code></pre></div>
+<p>returns 1, while</p>
+<div class="language-text highlight"><pre><span></span><code>expr {5 / 4.0}
+expr {5 / ( [string length &quot;abcd&quot;] + 0.0 )}
+</code></pre></div>
+<p>both return 1.25. Floating-point values are always returned with a or an
+so that they will not look like integer values. For example,</p>
+<div class="language-text highlight"><pre><span></span><code>expr {20.0/5.0}
+</code></pre></div>
+<p>returns <strong>4.0</strong>, not <strong>4</strong>.</p>
+<h2 id="string-operations">STRING OPERATIONS</h2>
+<p>String values may be used as operands of the comparison operators,
+although the expression evaluator tries to do comparisons as integer or
+floating-point when it can, i.e., when all arguments to the operator
+allow numeric interpretations, except in the case of the <strong>eq</strong> and
+<strong>ne</strong> operators. If one of the operands of a comparison is a string and
+the other has a numeric value, a canonical string representation of the
+numeric operand value is generated to compare with the string operand.
+Canonical string representation for integer values is a decimal string
+format. Canonical string representation for floating-point values is
+that produced by the <strong>%g</strong> format specifier of Tcl\'s <strong>format</strong>
+command. For example, the commands</p>
+<div class="language-text highlight"><pre><span></span><code>expr {&quot;0x03&quot; &gt; &quot;2&quot;}
+expr {&quot;0y&quot; &gt; &quot;0x12&quot;}
+</code></pre></div>
+<p>both return 1. The first comparison is done using integer comparison,
+and the second is done using string comparison. Because of Tcl\'s
+tendency to treat values as numbers whenever possible, it is not
+generally a good idea to use operators like <strong>==</strong> when you really want
+string comparison and the values of the operands could be arbitrary; it
+is better in these cases to use the <strong>eq</strong> or <strong>ne</strong> operators, or the
+<strong>string</strong> command instead.</p>
+<h1 id="performance-considerations">PERFORMANCE CONSIDERATIONS</h1>
+<p>Enclose expressions in braces for the best speed and the smallest
+storage requirements. This allows the Tcl bytecode compiler to generate
+the best code.</p>
+<p>As mentioned above, expressions are substituted twice: once by the Tcl
+parser and once by the <strong>expr</strong> command. For example, the commands</p>
+<div class="language-text highlight"><pre><span></span><code>set a 3
+set b {$a + 2}
+expr $b*4
+</code></pre></div>
+<p>return 11, not a multiple of 4. This is because the Tcl parser will
+first substitute for the variable <strong>b</strong>, then the <strong>expr</strong> command will
+evaluate the expression</p>
+<p>Most expressions do not require a second round of substitutions. Either
+they are enclosed in braces or, if not, their variable and command
+substitutions yield numbers or strings that do not themselves require
+substitutions. However, because a few unbraced expressions need two
+rounds of substitutions, the bytecode compiler must emit additional
+instructions to handle this situation. The most expensive code is
+required for unbraced expressions that contain command substitutions.
+These expressions must be implemented by generating new code each time
+the expression is executed.</p>
+<p>If it is necessary to include a non-constant expression string within
+the wider context of an otherwise-constant expression, the most
+efficient technique is to put the varying part inside a recursive
+<strong>expr</strong>, as this at least allows for the compilation of the outer part,
+though it does mean that the varying part must itself be evaluated as a
+separate expression. Thus, in this example the result is 20 and the
+outer expression benefits from fully cached bytecode compilation.</p>
+<div class="language-text highlight"><pre><span></span><code>set a 3
+set b {$a + 2}
+expr {[expr $b] * 4}
+</code></pre></div>
+<p>When the expression is unbraced to allow the substitution of a function
+or operator, consider using the commands documented in the
+<strong>mathfunc</strong>(n) or <strong>mathop</strong>(n) manual pages directly instead.</p>
+<h1 id="examples">EXAMPLES</h1>
+<p>Define a procedure that computes an mathematical function:</p>
+<div class="language-text highlight"><pre><span></span><code>proc tcl::mathfunc::calc {x y} {
+    expr { ($x**2 - $y**2) / exp($x**2 + $y**2) }
+}
+</code></pre></div>
+<p>Convert polar coordinates into cartesian coordinates:</p>
+<div class="language-text highlight"><pre><span></span><code># convert from ($radius,$angle)
+set x [expr { $radius * cos($angle) }]
+set y [expr { $radius * sin($angle) }]
+</code></pre></div>
+<p>Convert cartesian coordinates into polar coordinates:</p>
+<div class="language-text highlight"><pre><span></span><code># convert from ($x,$y)
+set radius [expr { hypot($y, $x) }]
+set angle  [expr { atan2($y, $x) }]
+</code></pre></div>
+<p>Print a message describing the relationship of two string values to each
+other:</p>
+<div class="language-text highlight"><pre><span></span><code>puts &quot;a and b are [expr {$a eq $b ? {equal} : {different}}]&quot;
+</code></pre></div>
+<p>Set a variable to whether an environment variable is both defined at all
+and also set to a true boolean value:</p>
+<div class="language-text highlight"><pre><span></span><code>set isTrue [expr {
+    [info exists ::env(SOME_ENV_VAR)] &amp;&amp;
+    [string is true -strict $::env(SOME_ENV_VAR)]
+}]
+</code></pre></div>
+<p>Generate a random integer in the range 0..99 inclusive:</p>
+<div class="language-text highlight"><pre><span></span><code>set randNum [expr { int(100 * rand()) }]
+</code></pre></div>
+<h1 id="see-also">SEE ALSO</h1>
+<p>array(n), for(n), if(n), mathfunc(n), mathop(n), namespace(n), proc(n),
+string(n), Tcl(n), while(n)</p>
+<h1 id="keywords">KEYWORDS</h1>
+<p>arithmetic, boolean, compare, expression, fuzzy comparison</p>
+<h1 id="copyright">COPYRIGHT</h1>
+<div class="language-text highlight"><pre><span></span><code>Copyright © 1993 The Regents of the University of California.
+Copyright © 1994-2000 Sun Microsystems Incorporated.
+Copyright © 2005 Kevin B. Kenny &lt;kennykb@acm.org&gt;. All rights reserved.
+</code></pre></div>
+
+<ul class="metadata page-metadata" data-bi-name="page info" lang="en-us" dir="ltr">
+  <li class="last-updated-holder displayDate loading">
+    <span class="last-updated-text">Last updated:</span>
+    <time role="presentation" datetime="2018-10-25T00:00:00.000Z" data-article-date-source="ms.date"></time>
+  </li>
+<!--
+  <li class="readingTime">
+    2 minutes to read
+  </li>
+-->
+  <li class="contributors-holder">
+    <span class="contributors-text">Contributors</span>
+    <ul class="contributors" data-bi-name="contributors"></ul>
+  </li>
+</ul>
+</div>
+        <div class="col-md-3"><div class="navbar-light navbar-expand-md hidden-print sticky-top sticky-offset" role="complementary">
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggler collapsed" data-toggle="collapse" data-target="#toc-collapse" title="Table of Contents">
+            <span class="fa fa-angle-down"></span>
+        </button>
+    </div>
+
+    <div id="toc-collapse" class="navbar-collapse collapse card">
+        <ul class="nav flex-column bs-sidenav">
+            <li class="nav-item main"><a class="nav-link" href="#name">NAME</a></li>
+            <li class="nav-item main"><a class="nav-link" href="#synopsis">SYNOPSIS</a></li>
+            <li class="nav-item main"><a class="nav-link" href="#description">DESCRIPTION</a></li>
+                <li class="nav-item">
+                    <a href="#operands" class="nav-link">OPERANDS</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#operators" class="nav-link">OPERATORS</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#math-functions" class="nav-link">MATH FUNCTIONS</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#types-overflow-and-precision" class="nav-link">TYPES, OVERFLOW, AND PRECISION</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#string-operations" class="nav-link">STRING OPERATIONS</a>
+                </li>
+            <li class="nav-item main"><a class="nav-link" href="#performance-considerations">PERFORMANCE CONSIDERATIONS</a></li>
+            <li class="nav-item main"><a class="nav-link" href="#examples">EXAMPLES</a></li>
+            <li class="nav-item main"><a class="nav-link" href="#see-also">SEE ALSO</a></li>
+            <li class="nav-item main"><a class="nav-link" href="#keywords">KEYWORDS</a></li>
+            <li class="nav-item main"><a class="nav-link" href="#copyright">COPYRIGHT</a></li>
+        </ul>
+    </div>
+</div></div>
+      </div>
+      </div>
+
+      <footer class="col-md-12">
+	<hr>
+	<div class="container">
+	</div>
+      </footer>
+      <script>
+	var base_url = "../..",
+            shortcuts = {"help": 191, "next": 78, "previous": 80, "search": 83};
+      </script>
+      <script src="../../js/base.js" defer></script>
+      <script src="../../search/main.js" defer></script>
+
+      <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="Search Modal" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Search</h4>
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            </div>
+            <div class="modal-body">
+                <p>
+                    From here you can search these documents. Enter
+                    your search terms below.
+                </p>
+                <form role="form">
+                    <div class="form-group">
+                        <input type="text" class="form-control" placeholder="Search..." id="mkdocs-search-query" title="Type search term here">
+                    </div>
+                </form>
+                <div id="mkdocs-search-results"></div>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div><div class="modal" id="mkdocs_keyboard_modal" tabindex="-1" role="dialog" aria-labelledby="Keyboard Shortcuts Modal" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <p class="h4 modal-title">Keyboard Shortcuts</p>
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            </div>
+            <div class="modal-body">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th style="width: 20%;">Keys</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="help shortcut"><kbd>?</kbd></td>
+                    <td>Open this help</td>
+                  </tr>
+                  <tr>
+                    <td class="next shortcut"><kbd>n</kbd></td>
+                    <td>Next page</td>
+                  </tr>
+                  <tr>
+                    <td class="prev shortcut"><kbd>p</kbd></td>
+                    <td>Previous page</td>
+                  </tr>
+                  <tr>
+                    <td class="search shortcut"><kbd>s</kbd></td>
+                    <td>Search</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>
+
+    </body>
+</html>

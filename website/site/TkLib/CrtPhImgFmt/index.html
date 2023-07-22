@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+      <script>
+	// Hack for scrolling window when linking to anchor tag with fixed nav header
+        var shiftWindow = function() { scrollBy(0, -75) };
+        window.addEventListener("hashchange", shiftWindow);
+        function load() { if (window.location.hash) shiftWindow(); }
+      </script>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        
+        <link rel="canonical" href="https://www.tcl.tk/man/TkLib/CrtPhImgFmt/">
+        <link rel="shortcut icon" href="../../img/favicon.ico">
+        <title>CrtPhImgFmt - Tcl/Tk</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <link href="../../css/font-awesome.min.css" rel="stylesheet">
+    <link href="../../css/base.css" rel="stylesheet">
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+    <script src="../../js/base.js"></script> 
+    </head>
+
+    <body class="">
+
+      <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
+	<div class="container">
+	<a class="navbar-brand" href="../..">Tcl/Tk</a>
+	<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExample04" aria-controls="navbarsExample04" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+	</button>
+
+	<div class="collapse navbar-collapse">
+
+          <ul class="navbar-nav flex-row ml-md-auto d-none d-md-flex">
+            <li class="nav-item">
+              <a class="nav-link" href="#" data-toggle="modal" data-target="#mkdocs_search_modal">
+		<i class="fa fa-search"></i> Search
+              </a>
+            </li>
+          </ul>
+	</div>
+	</div>
+      </nav><div id="content" class="container">
+        
+      <div class="row">
+        <div class="col-md-9" role="main">
+
+
+<nav aria-label="breadcrumb">
+  <ol class="breadcrumb">
+    
+    <li class="breadcrumb-item active" aria-current="page">CrtPhImgFmt</li>
+  </ol>
+</nav>
+
+
+<p>\</p>
+<h1 id="name">NAME</h1>
+<p>Tk_CreatePhotoImageFormat - define new file format for photo images</p>
+<h1 id="synopsis">SYNOPSIS</h1>
+<p><strong>#include \&lt;tk.h></strong></p>
+<p><strong>Tk_CreatePhotoImageFormat</strong>(<em>formatPtr</em>)</p>
+<h1 id="arguments">ARGUMENTS</h1>
+<p>Structure that defines the new file format.</p>
+<p>\</p>
+<h1 id="description">DESCRIPTION</h1>
+<p><strong>Tk_CreatePhotoImageFormat</strong> is invoked to define a new file format for
+image data for use with photo images. The code that implements an image
+file format is called an image file format handler, or handler for
+short. The photo image code maintains a list of handlers that can be
+used to read and write data to or from a file. Some handlers may also
+support reading image data from a string or converting image data to a
+string format. The user can specify which handler to use with the
+<strong>-format</strong> image configuration option or the <strong>-format</strong> option to the
+<strong>read</strong> and <strong>write</strong> photo image subcommands.</p>
+<p>An image file format handler consists of a collection of procedures plus
+a Tk_PhotoImageFormat structure, which contains the name of the image
+file format and pointers to six procedures provided by the handler to
+deal with files and strings in this format. The Tk_PhotoImageFormat
+structure contains the following fields:</p>
+<div class="language-text highlight"><pre><span></span><code>typedef struct Tk_PhotoImageFormat {
+    const char *name;
+    Tk_ImageFileMatchProc *fileMatchProc;
+    Tk_ImageStringMatchProc *stringMatchProc;
+    Tk_ImageFileReadProc *fileReadProc;
+    Tk_ImageStringReadProc *stringReadProc;
+    Tk_ImageFileWriteProc *fileWriteProc;
+    Tk_ImageStringWriteProc *stringWriteProc;
+} Tk_PhotoImageFormat;
+</code></pre></div>
+<p>The handler need not provide implementations of all six procedures. For
+example, the procedures that handle string data would not be provided
+for a format in which the image data are stored in binary, and could
+therefore contain null characters. If any procedure is not implemented,
+the corresponding pointer in the Tk_PhotoImageFormat structure should be
+set to NULL. The handler must provide the <em>fileMatchProc</em> procedure if
+it provides the <em>fileReadProc</em> procedure, and the <em>stringMatchProc</em>
+procedure if it provides the <em>stringReadProc</em> procedure.</p>
+<h2 id="name_1">NAME</h2>
+<p><em>formatPtr->name</em> provides a name for the image type. Once
+<strong>Tk_CreatePhotoImageFormat</strong> returns, this name may be used in the
+<strong>-format</strong> photo image configuration and subcommand option. The manual
+page for the photo image (photo(n)) describes how image file formats are
+chosen based on their names and the value given to the <strong>-format</strong>
+option. The first character of <em>formatPtr->name</em> must not be an
+uppercase character from the ASCII character set (that is, one of the
+characters <strong>A</strong>-<strong>Z</strong>). Such names are used only for legacy interface
+support (see below).</p>
+<h2 id="filematchproc">FILEMATCHPROC</h2>
+<p><em>formatPtr->fileMatchProc</em> provides the address of a procedure for Tk
+to call when it is searching for an image file format handler suitable
+for reading data in a given file. <em>formatPtr->fileMatchProc</em> must match
+the following prototype:</p>
+<div class="language-text highlight"><pre><span></span><code>typedef int Tk_ImageFileMatchProc(
+        Tcl_Channel chan,
+        const char *fileName,
+        Tcl_Obj *format,
+        int *widthPtr,
+        int *heightPtr,
+        Tcl_Interp *interp);
+</code></pre></div>
+<p>The <em>fileName</em> argument is the name of the file containing the image
+data, which is open for reading as <em>chan</em>. The <em>format</em> argument
+contains the value given for the <strong>-format</strong> option, or NULL if the
+option was not specified. If the data in the file appears to be in the
+format supported by this handler, the <em>formatPtr->fileMatchProc</em>
+procedure should store the width and height of the image in *<em>widthPtr</em>
+and *<em>heightPtr</em> respectively, and return 1. Otherwise it should return
+0.</p>
+<h2 id="stringmatchproc">STRINGMATCHPROC</h2>
+<p><em>formatPtr->stringMatchProc</em> provides the address of a procedure for Tk
+to call when it is searching for an image file format handler for
+suitable for reading data from a given string.
+<em>formatPtr->stringMatchProc</em> must match the following prototype:</p>
+<div class="language-text highlight"><pre><span></span><code>typedef int Tk_ImageStringMatchProc(
+        Tcl_Obj *data,
+        Tcl_Obj *format,
+        int *widthPtr,
+        int *heightPtr,
+        Tcl_Interp *interp);
+</code></pre></div>
+<p>The <em>data</em> argument points to the object containing the image data. The
+<em>format</em> argument contains the value given for the <strong>-format</strong> option,
+or NULL if the option was not specified. If the data in the string
+appears to be in the format supported by this handler, the
+<em>formatPtr->stringMatchProc</em> procedure should store the width and
+height of the image in *<em>widthPtr</em> and *<em>heightPtr</em> respectively, and
+return 1. Otherwise it should return 0.</p>
+<h2 id="filereadproc">FILEREADPROC</h2>
+<p><em>formatPtr->fileReadProc</em> provides the address of a procedure for Tk to
+call to read data from an image file into a photo image.
+<em>formatPtr->fileReadProc</em> must match the following prototype:</p>
+<div class="language-text highlight"><pre><span></span><code>typedef int Tk_ImageFileReadProc(
+        Tcl_Interp *interp,
+        Tcl_Channel chan,
+        const char *fileName,
+        Tcl_Obj *format,
+        PhotoHandle imageHandle,
+        int destX, int destY,
+        int width, int height,
+        int srcX, int srcY);
+</code></pre></div>
+<p>The <em>interp</em> argument is the interpreter in which the command was
+invoked to read the image; it should be used for reporting errors. The
+image data is in the file named <em>fileName</em>, which is open for reading as
+<em>chan</em>. The <em>format</em> argument contains the value given for the
+<strong>-format</strong> option, or NULL if the option was not specified. The image
+data in the file, or a subimage of it, is to be read into the photo
+image identified by the handle <em>imageHandle</em>. The subimage of the data
+in the file is of dimensions <em>width</em> x <em>height</em> and has its top-left
+corner at coordinates (<em>srcX</em>,<em>srcY</em>). It is to be stored in the photo
+image with its top-left corner at coordinates (<em>destX</em>,<em>destY</em>) using
+the <strong>Tk_PhotoPutBlock</strong> procedure. The return value is a standard Tcl
+return value.</p>
+<h2 id="stringreadproc">STRINGREADPROC</h2>
+<p><em>formatPtr->stringReadProc</em> provides the address of a procedure for Tk
+to call to read data from a string into a photo image.
+<em>formatPtr->stringReadProc</em> must match the following prototype:</p>
+<div class="language-text highlight"><pre><span></span><code>typedef int Tk_ImageStringReadProc(
+        Tcl_Interp *interp,
+        Tcl_Obj *data,
+        Tcl_Obj *format,
+        PhotoHandle imageHandle,
+        int destX, int destY,
+        int width, int height,
+        int srcX, int srcY);
+</code></pre></div>
+<p>The <em>interp</em> argument is the interpreter in which the command was
+invoked to read the image; it should be used for reporting errors. The
+<em>data</em> argument points to the image data in object form. The <em>format</em>
+argument contains the value given for the <strong>-format</strong> option, or NULL if
+the option was not specified. The image data in the string, or a
+subimage of it, is to be read into the photo image identified by the
+handle <em>imageHandle</em>. The subimage of the data in the string is of
+dimensions <em>width</em> x <em>height</em> and has its top-left corner at coordinates
+(<em>srcX</em>,<em>srcY</em>). It is to be stored in the photo image with its top-left
+corner at coordinates (<em>destX</em>,<em>destY</em>) using the <strong>Tk_PhotoPutBlock</strong>
+procedure. The return value is a standard Tcl return value.</p>
+<h2 id="filewriteproc">FILEWRITEPROC</h2>
+<p><em>formatPtr->fileWriteProc</em> provides the address of a procedure for Tk
+to call to write data from a photo image to a file.
+<em>formatPtr->fileWriteProc</em> must match the following prototype:</p>
+<div class="language-text highlight"><pre><span></span><code>typedef int Tk_ImageFileWriteProc(
+        Tcl_Interp *interp,
+        const char *fileName,
+        Tcl_Obj *format,
+        Tk_PhotoImageBlock *blockPtr);
+</code></pre></div>
+<p>The <em>interp</em> argument is the interpreter in which the command was
+invoked to write the image; it should be used for reporting errors. The
+image data to be written are in memory and are described by the
+Tk_PhotoImageBlock structure pointed to by <em>blockPtr</em>; see the manual
+page FindPhoto(3) for details. The <em>fileName</em> argument points to the
+string giving the name of the file in which to write the image data. The
+<em>format</em> argument contains the value given for the <strong>-format</strong> option,
+or NULL if the option was not specified. The format string can contain
+extra characters after the name of the format. If appropriate, the
+<em>formatPtr->fileWriteProc</em> procedure may interpret these characters to
+specify further details about the image file. The return value is a
+standard Tcl return value.</p>
+<h2 id="stringwriteproc">STRINGWRITEPROC</h2>
+<p><em>formatPtr->stringWriteProc</em> provides the address of a procedure for Tk
+to call to translate image data from a photo image into a string.
+<em>formatPtr->stringWriteProc</em> must match the following prototype:</p>
+<div class="language-text highlight"><pre><span></span><code>typedef int Tk_ImageStringWriteProc(
+        Tcl_Interp *interp,
+        Tcl_Obj *format,
+        Tk_PhotoImageBlock *blockPtr);
+</code></pre></div>
+<p>The <em>interp</em> argument is the interpreter in which the command was
+invoked to convert the image; it should be used for reporting errors.
+The image data to be converted are in memory and are described by the
+Tk_PhotoImageBlock structure pointed to by <em>blockPtr</em>; see the manual
+page FindPhoto(3) for details. The data for the string should be put in
+the interpreter <em>interp</em> result. The <em>format</em> argument contains the
+value given for the <strong>-format</strong> option, or NULL if the option was not
+specified. The format string can contain extra characters after the name
+of the format. If appropriate, the <em>formatPtr->stringWriteProc</em>
+procedure may interpret these characters to specify further details
+about the image file. The return value is a standard Tcl return value.</p>
+<h1 id="legacy-interface-support">LEGACY INTERFACE SUPPORT</h1>
+<p>In Tk 8.2 and earlier, the definition of all the function pointer types
+stored in fields of a <strong>Tk_PhotoImageFormat</strong> struct were incompatibly
+different. Legacy programs and libraries dating from those days may
+still contain code that defines extended Tk photo image formats using
+the old interface. The Tk header file will still support this legacy
+interface if the code is compiled with the macro <strong>USE_OLD_IMAGE</strong>
+defined. Alternatively, the legacy interfaces are used if the first
+character of <em>formatPtr->name</em> is an uppercase ASCII character
+(<strong>A</strong>-<strong>Z</strong>), and explicit casts are used to forgive the type mismatch.
+For example,</p>
+<div class="language-text highlight"><pre><span></span><code>static Tk_PhotoImageFormat myFormat = {
+    &quot;MyFormat&quot;,
+    (Tk_ImageFileMatchProc *) FileMatch,
+    NULL,
+    (Tk_ImageFileReadProc *) FileRead,
+    NULL,
+    NULL,
+    NULL
+};
+</code></pre></div>
+<p>would define a minimal <strong>Tk_PhotoImageFormat</strong> that operates provide
+only file reading capability, where <strong>FileMatch</strong> and <strong>FileRead</strong> are
+written according to the legacy interfaces of Tk 8.2 or earlier.</p>
+<p>Any stub-enabled extension providing an extended photo image format via
+the legacy interface enabled by the <strong>USE_OLD_IMAGE</strong> macro that is
+compiled against Tk 8.5 headers and linked against the Tk 8.5 stub
+library will produce a file that can be loaded only into interps with Tk
+8.5 or later; that is, the normal stub-compatibility rules. If a
+developer needs to generate from such code a file that is loadable into
+interps with Tk 8.4 or earlier, they must use Tk 8.4 headers and stub
+libraries to do so.</p>
+<p>Any new code written today should not make use of the legacy interfaces.
+Expect their support to go away in Tk 9.</p>
+<h1 id="see-also">SEE ALSO</h1>
+<p>Tk_FindPhoto, Tk_PhotoPutBlock</p>
+<h1 id="keywords">KEYWORDS</h1>
+<p>photo image, image file</p>
+
+<ul class="metadata page-metadata" data-bi-name="page info" lang="en-us" dir="ltr">
+  <li class="last-updated-holder displayDate loading">
+    <span class="last-updated-text">Last updated:</span>
+    <time role="presentation" datetime="2018-10-25T00:00:00.000Z" data-article-date-source="ms.date"></time>
+  </li>
+<!--
+  <li class="readingTime">
+    2 minutes to read
+  </li>
+-->
+  <li class="contributors-holder">
+    <span class="contributors-text">Contributors</span>
+    <ul class="contributors" data-bi-name="contributors"></ul>
+  </li>
+</ul>
+</div>
+        <div class="col-md-3"><div class="navbar-light navbar-expand-md hidden-print sticky-top sticky-offset" role="complementary">
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggler collapsed" data-toggle="collapse" data-target="#toc-collapse" title="Table of Contents">
+            <span class="fa fa-angle-down"></span>
+        </button>
+    </div>
+
+    <div id="toc-collapse" class="navbar-collapse collapse card">
+        <ul class="nav flex-column bs-sidenav">
+            <li class="nav-item main"><a class="nav-link" href="#name">NAME</a></li>
+            <li class="nav-item main"><a class="nav-link" href="#synopsis">SYNOPSIS</a></li>
+            <li class="nav-item main"><a class="nav-link" href="#arguments">ARGUMENTS</a></li>
+            <li class="nav-item main"><a class="nav-link" href="#description">DESCRIPTION</a></li>
+                <li class="nav-item">
+                    <a href="#name_1" class="nav-link">NAME</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#filematchproc" class="nav-link">FILEMATCHPROC</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#stringmatchproc" class="nav-link">STRINGMATCHPROC</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#filereadproc" class="nav-link">FILEREADPROC</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#stringreadproc" class="nav-link">STRINGREADPROC</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#filewriteproc" class="nav-link">FILEWRITEPROC</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#stringwriteproc" class="nav-link">STRINGWRITEPROC</a>
+                </li>
+            <li class="nav-item main"><a class="nav-link" href="#legacy-interface-support">LEGACY INTERFACE SUPPORT</a></li>
+            <li class="nav-item main"><a class="nav-link" href="#see-also">SEE ALSO</a></li>
+            <li class="nav-item main"><a class="nav-link" href="#keywords">KEYWORDS</a></li>
+        </ul>
+    </div>
+</div></div>
+      </div>
+      </div>
+
+      <footer class="col-md-12">
+	<hr>
+	<div class="container">
+	</div>
+      </footer>
+      <script>
+	var base_url = "../..",
+            shortcuts = {"help": 191, "next": 78, "previous": 80, "search": 83};
+      </script>
+      <script src="../../js/base.js" defer></script>
+      <script src="../../search/main.js" defer></script>
+
+      <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="Search Modal" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Search</h4>
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            </div>
+            <div class="modal-body">
+                <p>
+                    From here you can search these documents. Enter
+                    your search terms below.
+                </p>
+                <form role="form">
+                    <div class="form-group">
+                        <input type="text" class="form-control" placeholder="Search..." id="mkdocs-search-query" title="Type search term here">
+                    </div>
+                </form>
+                <div id="mkdocs-search-results"></div>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div><div class="modal" id="mkdocs_keyboard_modal" tabindex="-1" role="dialog" aria-labelledby="Keyboard Shortcuts Modal" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <p class="h4 modal-title">Keyboard Shortcuts</p>
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            </div>
+            <div class="modal-body">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th style="width: 20%;">Keys</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="help shortcut"><kbd>?</kbd></td>
+                    <td>Open this help</td>
+                  </tr>
+                  <tr>
+                    <td class="next shortcut"><kbd>n</kbd></td>
+                    <td>Next page</td>
+                  </tr>
+                  <tr>
+                    <td class="prev shortcut"><kbd>p</kbd></td>
+                    <td>Previous page</td>
+                  </tr>
+                  <tr>
+                    <td class="search shortcut"><kbd>s</kbd></td>
+                    <td>Search</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>
+
+    </body>
+</html>

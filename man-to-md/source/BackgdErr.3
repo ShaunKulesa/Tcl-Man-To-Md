@@ -11,7 +11,6 @@
 .SH NAME
 Tcl_BackgroundException, Tcl_BackgroundError \- report Tcl exception that occurred in background processing
 .SH SYNOPSIS
-.nf
 \fB#include <tcl.h>\fR
 .sp
 \fBTcl_BackgroundException\fR(\fIinterp, code\fR)
@@ -70,9 +69,9 @@ The \fBTcl_BackgroundError\fR routine is an older and simpler interface
 useful when the exception code reported is \fBTCL_ERROR\fR.  It is
 equivalent to:
 .PP
-.nf
+.CS
 Tcl_BackgroundException(interp, TCL_ERROR);
-.fi
+.CE
 
 .SH KEYWORDS
 background, bgerror, error, interp

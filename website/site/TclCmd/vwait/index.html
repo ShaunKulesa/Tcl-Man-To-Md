@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+      <script>
+	// Hack for scrolling window when linking to anchor tag with fixed nav header
+        var shiftWindow = function() { scrollBy(0, -75) };
+        window.addEventListener("hashchange", shiftWindow);
+        function load() { if (window.location.hash) shiftWindow(); }
+      </script>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        
+        <link rel="canonical" href="https://www.tcl.tk/man/TclCmd/vwait/">
+        <link rel="shortcut icon" href="../../img/favicon.ico">
+        <title>Vwait - Tcl/Tk</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <link href="../../css/font-awesome.min.css" rel="stylesheet">
+    <link href="../../css/base.css" rel="stylesheet">
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+    <script src="../../js/base.js"></script> 
+    </head>
+
+    <body class="">
+
+      <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
+	<div class="container">
+	<a class="navbar-brand" href="../..">Tcl/Tk</a>
+	<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExample04" aria-controls="navbarsExample04" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+	</button>
+
+	<div class="collapse navbar-collapse">
+
+          <ul class="navbar-nav flex-row ml-md-auto d-none d-md-flex">
+            <li class="nav-item">
+              <a class="nav-link" href="#" data-toggle="modal" data-target="#mkdocs_search_modal">
+		<i class="fa fa-search"></i> Search
+              </a>
+            </li>
+          </ul>
+	</div>
+	</div>
+      </nav><div id="content" class="container">
+        
+      <div class="row">
+        <div class="col-md-9" role="main">
+
+
+<nav aria-label="breadcrumb">
+  <ol class="breadcrumb">
+    
+    <li class="breadcrumb-item active" aria-current="page">Vwait</li>
+  </ol>
+</nav>
+
+
+<p>\</p>
+<h1 id="name">NAME</h1>
+<p>vwait - Process events until a variable is written</p>
+<h1 id="synopsis">SYNOPSIS</h1>
+<p><strong>vwait</strong> <em>varName</em></p>
+<p>\</p>
+<h1 id="description">DESCRIPTION</h1>
+<p>This command enters the Tcl event loop to process events, blocking the
+application if no events are ready. It continues processing events until
+some event handler sets the value of the global variable <em>varName</em>. Once
+<em>varName</em> has been set, the <strong>vwait</strong> command will return as soon as the
+event handler that modified <em>varName</em> completes. The <em>varName</em> argument
+is always interpreted as a variable name with respect to the global
+namespace, but can refer to any namespace\'s variables if the
+fully-qualified name is given.</p>
+<p>In some cases the <strong>vwait</strong> command may not return immediately after
+<em>varName</em> is set. This happens if the event handler that sets <em>varName</em>
+does not complete immediately. For example, if an event handler sets
+<em>varName</em> and then itself calls <strong>vwait</strong> to wait for a different
+variable, then it may not return for a long time. During this time the
+top-level <strong>vwait</strong> is blocked waiting for the event handler to
+complete, so it cannot return either. (See the <strong>NESTED VWAITS BY
+EXAMPLE</strong> below.)</p>
+<p>To be clear, <em>multiple </em><strong>vwait</strong><em> calls will nest and will not happen
+in</em> parallel. The outermost call to <strong>vwait</strong> will not return until all
+the inner ones do. It is recommended that code should never nest
+<strong>vwait</strong> calls (by avoiding putting them in event callbacks) but when
+that is not possible, care should be taken to add interlock variables to
+the code to prevent all reentrant calls to <strong>vwait</strong> that are not
+<em>strictly</em> necessary. Be aware that the synchronous modes of operation
+of some Tcl packages (e.g., <strong>http</strong>) use <strong>vwait</strong> internally; if using
+the event loop, it is best to use the asynchronous callback-based modes
+of operation of those packages where available.</p>
+<h1 id="examples">EXAMPLES</h1>
+<p>Run the event-loop continually until some event calls <strong>exit</strong>. (You can
+use any variable not mentioned elsewhere, but the name <em>forever</em> reminds
+you at a glance of the intent.)</p>
+<div class="language-text highlight"><pre><span></span><code>vwait forever
+</code></pre></div>
+<p>Wait five seconds for a connection to a server socket, otherwise close
+the socket and continue running the script:</p>
+<div class="language-text highlight"><pre><span></span><code># Initialise the state
+after 5000 set state timeout
+set server [socket -server accept 12345]
+proc accept {args} {
+    global state connectionInfo
+    set state accepted
+    set connectionInfo $args
+}
+
+# Wait for something to happen
+vwait state
+
+# Clean up events that could have happened
+close $server
+after cancel set state timeout
+
+# Do something based on how the vwait finished...
+switch $state {
+    timeout {
+        puts &quot;no connection on port 12345&quot;
+    }
+    accepted {
+       puts &quot;connection: $connectionInfo&quot;
+       puts [lindex $connectionInfo 0] &quot;Hello there!&quot;
+    }
+}
+</code></pre></div>
+<p>A command that will wait for some time delay by waiting for a namespace
+variable to be set. Includes an interlock to prevent nested waits.</p>
+<div class="language-text highlight"><pre><span></span><code>namespace eval example {
+    variable v done
+    proc wait {delay} {
+        variable v
+        if {$v ne &quot;waiting&quot;} {
+            set v waiting
+            after $delay [namespace code {set v done}]
+            vwait [namespace which -variable v]
+        }
+        return $v
+    }
+}
+</code></pre></div>
+<p>When running inside a <strong>coroutine</strong>, an alternative to using <strong>vwait</strong>
+is to <strong>yield</strong> to an outer event loop and to get recommenced when the
+variable is set, or at an idle moment after that.</p>
+<div class="language-text highlight"><pre><span></span><code>coroutine task apply {{} {
+    # simulate [after 1000]
+    after 1000 [info coroutine]
+    yield
+
+    # schedule the setting of a global variable, as normal
+    after 2000 {set var 1}
+
+    # simulate [vwait var]
+    proc updatedVar {task args} {
+        after idle $task
+        trace remove variable ::var write &quot;updatedVar $task&quot;
+    }
+    trace add variable ::var write &quot;updatedVar [info coroutine]&quot;
+    yield
+}}
+</code></pre></div>
+<h2 id="nested-vwaits-by-example">NESTED VWAITS BY EXAMPLE</h2>
+<p>This example demonstrates what can happen when the <strong>vwait</strong> command is
+nested. The script will never finish because the waiting for the <em>a</em>
+variable never finishes; that <strong>vwait</strong> command is still waiting for a
+script scheduled with <strong>after</strong> to complete, which just happens to be
+running an inner <strong>vwait</strong> (for <em>b</em>) even though the event that the
+outer <strong>vwait</strong> was waiting for (the setting of <em>a</em>) has occurred.</p>
+<div class="language-text highlight"><pre><span></span><code>after 500 {
+    puts &quot;waiting for b&quot;
+    vwait b
+    puts &quot;b was set&quot;
+}
+after 1000 {
+    puts &quot;setting a&quot;
+    set a 10
+}
+puts &quot;waiting for a&quot;
+vwait a
+puts &quot;a was set&quot;
+puts &quot;setting b&quot;
+set b 42
+</code></pre></div>
+<p>If you run the above code, you get this output:</p>
+<div class="language-text highlight"><pre><span></span><code>waiting for a
+waiting for b
+setting a
+</code></pre></div>
+<p>The script will never print until after it has printed because of the
+nesting of <strong>vwait</strong> commands, and yet <em>b</em> will not be set until after
+the outer <strong>vwait</strong> returns, so the script has deadlocked. The only ways
+to avoid this are to either structure the overall program in
+continuation-passing style or to use <strong>coroutine</strong> to make the
+continuations implicit. The first of these options would be written as:</p>
+<div class="language-text highlight"><pre><span></span><code>after 500 {
+    puts &quot;waiting for b&quot;
+    trace add variable b write {apply {args {
+        global a b
+        trace remove variable ::b write \
+                [lrange [info level 0] 0 1]
+        puts &quot;b was set&quot;
+        set ::done ok
+    }}}
+}
+after 1000 {
+    puts &quot;setting a&quot;
+    set a 10
+}
+puts &quot;waiting for a&quot;
+trace add variable a write {apply {args {
+    global a b
+    trace remove variable a write [lrange [info level 0] 0 1]
+    puts &quot;a was set&quot;
+    puts &quot;setting b&quot;
+    set b 42
+}}}
+vwait done
+</code></pre></div>
+<p>The second option, with <strong>coroutine</strong> and some helper procedures, is
+done like this:</p>
+<div class="language-text highlight"><pre><span></span><code># A coroutine-based wait-for-variable command
+proc waitvar globalVar {
+    trace add variable ::$globalVar write \
+            [list apply {{v c args} {
+        trace remove variable $v write \
+                [lrange [info level 0] 0 3]
+        after 0 $c
+    }} ::$globalVar [info coroutine]]
+    yield
+}
+# A coroutine-based wait-for-some-time command
+proc waittime ms {
+    after $ms [info coroutine]
+    yield
+}
+
+coroutine task-1 eval {
+    puts &quot;waiting for a&quot;
+    waitvar a
+    puts &quot;a was set&quot;
+    puts &quot;setting b&quot;
+    set b 42
+}
+coroutine task-2 eval {
+    waittime 500
+    puts &quot;waiting for b&quot;
+    waitvar b
+    puts &quot;b was set&quot;
+    set done ok
+}
+coroutine task-3 eval {
+    waittime 1000
+    puts &quot;setting a&quot;
+    set a 10
+}
+vwait done
+</code></pre></div>
+<h1 id="see-also">SEE ALSO</h1>
+<p>global(n), update(n)</p>
+<h1 id="keywords">KEYWORDS</h1>
+<p>asynchronous I/O, event, variable, wait</p>
+
+<ul class="metadata page-metadata" data-bi-name="page info" lang="en-us" dir="ltr">
+  <li class="last-updated-holder displayDate loading">
+    <span class="last-updated-text">Last updated:</span>
+    <time role="presentation" datetime="2018-10-25T00:00:00.000Z" data-article-date-source="ms.date"></time>
+  </li>
+<!--
+  <li class="readingTime">
+    2 minutes to read
+  </li>
+-->
+  <li class="contributors-holder">
+    <span class="contributors-text">Contributors</span>
+    <ul class="contributors" data-bi-name="contributors"></ul>
+  </li>
+</ul>
+</div>
+        <div class="col-md-3"><div class="navbar-light navbar-expand-md hidden-print sticky-top sticky-offset" role="complementary">
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggler collapsed" data-toggle="collapse" data-target="#toc-collapse" title="Table of Contents">
+            <span class="fa fa-angle-down"></span>
+        </button>
+    </div>
+
+    <div id="toc-collapse" class="navbar-collapse collapse card">
+        <ul class="nav flex-column bs-sidenav">
+            <li class="nav-item main"><a class="nav-link" href="#name">NAME</a></li>
+            <li class="nav-item main"><a class="nav-link" href="#synopsis">SYNOPSIS</a></li>
+            <li class="nav-item main"><a class="nav-link" href="#description">DESCRIPTION</a></li>
+            <li class="nav-item main"><a class="nav-link" href="#examples">EXAMPLES</a></li>
+                <li class="nav-item">
+                    <a href="#nested-vwaits-by-example" class="nav-link">NESTED VWAITS BY EXAMPLE</a>
+                </li>
+            <li class="nav-item main"><a class="nav-link" href="#see-also">SEE ALSO</a></li>
+            <li class="nav-item main"><a class="nav-link" href="#keywords">KEYWORDS</a></li>
+        </ul>
+    </div>
+</div></div>
+      </div>
+      </div>
+
+      <footer class="col-md-12">
+	<hr>
+	<div class="container">
+	</div>
+      </footer>
+      <script>
+	var base_url = "../..",
+            shortcuts = {"help": 191, "next": 78, "previous": 80, "search": 83};
+      </script>
+      <script src="../../js/base.js" defer></script>
+      <script src="../../search/main.js" defer></script>
+
+      <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="Search Modal" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Search</h4>
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            </div>
+            <div class="modal-body">
+                <p>
+                    From here you can search these documents. Enter
+                    your search terms below.
+                </p>
+                <form role="form">
+                    <div class="form-group">
+                        <input type="text" class="form-control" placeholder="Search..." id="mkdocs-search-query" title="Type search term here">
+                    </div>
+                </form>
+                <div id="mkdocs-search-results"></div>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div><div class="modal" id="mkdocs_keyboard_modal" tabindex="-1" role="dialog" aria-labelledby="Keyboard Shortcuts Modal" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <p class="h4 modal-title">Keyboard Shortcuts</p>
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            </div>
+            <div class="modal-body">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th style="width: 20%;">Keys</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="help shortcut"><kbd>?</kbd></td>
+                    <td>Open this help</td>
+                  </tr>
+                  <tr>
+                    <td class="next shortcut"><kbd>n</kbd></td>
+                    <td>Next page</td>
+                  </tr>
+                  <tr>
+                    <td class="prev shortcut"><kbd>p</kbd></td>
+                    <td>Previous page</td>
+                  </tr>
+                  <tr>
+                    <td class="search shortcut"><kbd>s</kbd></td>
+                    <td>Search</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>
+
+    </body>
+</html>

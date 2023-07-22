@@ -1,5 +1,3 @@
-\
-
 # NAME
 
 lreverse - Reverse the order of a list
@@ -7,8 +5,6 @@ lreverse - Reverse the order of a list
 # SYNOPSIS
 
 **lreverse ***list*
-
-\
 
 # DESCRIPTION
 
@@ -29,3 +25,8 @@ list(n), lsearch(n), lsort(n)
 # KEYWORDS
 
 element, list, reverse
+
+<!---
+Copyright (c) 2006 Donal K. Fellows.  All rights reserved
+-->
+

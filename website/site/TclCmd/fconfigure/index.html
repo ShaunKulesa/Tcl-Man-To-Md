@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+      <script>
+	// Hack for scrolling window when linking to anchor tag with fixed nav header
+        var shiftWindow = function() { scrollBy(0, -75) };
+        window.addEventListener("hashchange", shiftWindow);
+        function load() { if (window.location.hash) shiftWindow(); }
+      </script>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        
+        <link rel="canonical" href="https://www.tcl.tk/man/TclCmd/fconfigure/">
+        <link rel="shortcut icon" href="../../img/favicon.ico">
+        <title>Fconfigure - Tcl/Tk</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <link href="../../css/font-awesome.min.css" rel="stylesheet">
+    <link href="../../css/base.css" rel="stylesheet">
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+    <script src="../../js/base.js"></script> 
+    </head>
+
+    <body class="">
+
+      <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
+	<div class="container">
+	<a class="navbar-brand" href="../..">Tcl/Tk</a>
+	<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExample04" aria-controls="navbarsExample04" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+	</button>
+
+	<div class="collapse navbar-collapse">
+
+          <ul class="navbar-nav flex-row ml-md-auto d-none d-md-flex">
+            <li class="nav-item">
+              <a class="nav-link" href="#" data-toggle="modal" data-target="#mkdocs_search_modal">
+		<i class="fa fa-search"></i> Search
+              </a>
+            </li>
+          </ul>
+	</div>
+	</div>
+      </nav><div id="content" class="container">
+        
+      <div class="row">
+        <div class="col-md-9" role="main">
+
+
+<nav aria-label="breadcrumb">
+  <ol class="breadcrumb">
+    
+    <li class="breadcrumb-item active" aria-current="page">Fconfigure</li>
+  </ol>
+</nav>
+
+
+<p>\</p>
+<h1 id="name">NAME</h1>
+<p>fconfigure - Set and get options on a channel</p>
+<h1 id="synopsis">SYNOPSIS</h1>
+<p><strong>fconfigure </strong><em>channelId</em> <strong>fconfigure </strong><em>channelId</em> <em>name</em>
+<strong>fconfigure </strong><em>channelId</em> <em>name value </em>?<em>name value ...</em>?</p>
+<p>\</p>
+<h1 id="description">DESCRIPTION</h1>
+<p>The <strong>fconfigure</strong> command sets and retrieves options for channels.</p>
+<p><em>ChannelId</em> identifies the channel for which to set or query an option
+and must refer to an open channel such as a Tcl standard channel
+(<strong>stdin</strong>, <strong>stdout</strong>, or <strong>stderr</strong>), the return value from an
+invocation of <strong>open</strong> or <strong>socket</strong>, or the result of a channel
+creation command provided by a Tcl extension.</p>
+<p>If no <em>name</em> or <em>value</em> arguments are supplied, the command returns a
+list containing alternating option names and values for the channel. If
+<em>name</em> is supplied but no <em>value</em> then the command returns the current
+value of the given option. If one or more pairs of <em>name</em> and <em>value</em>
+are supplied, the command sets each of the named options to the
+corresponding <em>value</em>; in this case the return value is an empty string.</p>
+<p>The options described below are supported for all channels. In addition,
+each channel type may add options that only it supports. See the manual
+entry for the command that creates each type of channels for the options
+that that specific type of channel supports. For example, see the manual
+entry for the <strong>socket</strong> command for additional options for sockets, and
+the <strong>open</strong> command for additional options for serial devices.</p>
+<p><strong>-blocking</strong> <em>boolean</em></p>
+<p>:   The <strong>-blocking</strong> option determines whether I/O operations on the
+    channel can cause the process to block indefinitely. The value of
+    the option must be a proper boolean value. Channels are normally in
+    blocking mode; if a channel is placed into nonblocking mode it will
+    affect the operation of the <strong>gets</strong>, <strong>read</strong>, <strong>puts</strong>, <strong>flush</strong>,
+    and <strong>close</strong> commands by allowing them to operate asynchronously;
+    see the documentation for those commands for details. For
+    nonblocking mode to work correctly, the application must be using
+    the Tcl event loop (e.g. by calling <strong>Tcl_DoOneEvent</strong> or invoking
+    the <strong>vwait</strong> command).</p>
+<p><strong>-buffering</strong> <em>newValue</em></p>
+<p>:   If <em>newValue</em> is <strong>full</strong> then the I/O system will buffer output
+    until its internal buffer is full or until the <strong>flush</strong> command is
+    invoked. If <em>newValue</em> is <strong>line</strong>, then the I/O system will
+    automatically flush output for the channel whenever a newline
+    character is output. If <em>newValue</em> is <strong>none</strong>, the I/O system will
+    flush automatically after every output operation. The default is for
+    <strong>-buffering</strong> to be set to <strong>full</strong> except for channels that
+    connect to terminal-like devices; for these channels the initial
+    setting is <strong>line</strong>. Additionally, <strong>stdin</strong> and <strong>stdout</strong> are
+    initially set to <strong>line</strong>, and <strong>stderr</strong> is set to <strong>none</strong>.</p>
+<p><strong>-buffersize</strong> <em>newSize</em></p>
+<p>:   <em>Newvalue</em> must be an integer; its value is used to set the size of
+    buffers, in bytes, subsequently allocated for this channel to store
+    input or output. <em>Newvalue</em> must be between one and one million,
+    allowing buffers of one to one million bytes in size.</p>
+<p><strong>-encoding</strong> <em>name</em></p>
+<p>:   This option is used to specify the encoding of the channel, so that
+    the data can be converted to and from Unicode for use in Tcl. For
+    instance, in order for Tcl to read characters from a Japanese file
+    in <strong>shiftjis</strong> and properly process and display the contents, the
+    encoding would be set to <strong>shiftjis</strong>. Thereafter, when reading from
+    the channel, the bytes in the Japanese file would be converted to
+    Unicode as they are read. Writing is also supported - as Tcl strings
+    are written to the channel they will automatically be converted to
+    the specified encoding on output.</p>
+<div class="language-text highlight"><pre><span></span><code>If a file contains pure binary data (for instance, a JPEG image),
+the encoding for the channel should be configured to be **binary**.
+Tcl will then assign no interpretation to the data in the file and
+simply read or write raw bytes. The Tcl **binary** command can be
+used to manipulate this byte-oriented data. It is usually better to
+set the **-translation** option to **binary** when you want to
+transfer binary data, as this turns off the other automatic
+interpretations of the bytes in the stream as well.
+
+The default encoding for newly opened channels is the same platform-
+and locale-dependent system encoding used for interfacing with the
+operating system, as returned by **encoding system**.
+</code></pre></div>
+<p><strong>-eofchar</strong> <em>char</em></p>
+<p>:   </p>
+<p><strong>-eofchar</strong> <strong>{</strong><em>inChar outChar</em><strong>}</strong></p>
+<p>:   This option supports DOS file systems that use Control-z (\x1A) as
+    an end of file marker. If <em>char</em> is not an empty string, then this
+    character signals end-of-file when it is encountered during input.
+    For output, the end-of-file character is output when the channel is
+    closed. If <em>char</em> is the empty string, then there is no special end
+    of file character marker. For read-write channels, a two-element
+    list specifies the end of file marker for input and output,
+    respectively. As a convenience, when setting the end-of-file
+    character for a read-write channel you can specify a single value
+    that will apply to both reading and writing. When querying the
+    end-of-file character of a read-write channel, a two-element list
+    will always be returned. The default value for <strong>-eofchar</strong> is the
+    empty string in all cases except for files under Windows. In that
+    case the <strong>-eofchar</strong> is Control-z (\x1A) for reading and the empty
+    string for writing. The acceptable range for <strong>-eofchar</strong> values is
+    \x01 - \x7F; attempting to set <strong>-eofchar</strong> to a value outside of
+    this range will generate an error.</p>
+<p><strong>-translation</strong> <em>mode</em></p>
+<p>:   </p>
+<p><strong>-translation</strong> <strong>{</strong><em>inMode outMode</em><strong>}</strong></p>
+<p>:   In Tcl scripts the end of a line is always represented using a
+    single newline character (\n). However, in actual files and devices
+    the end of a line may be represented differently on different
+    platforms, or even for different devices on the same platform. For
+    example, under UNIX newlines are used in files, whereas
+    carriage-return-linefeed sequences are normally used in network
+    connections. On input (i.e., with <strong>gets</strong> and <strong>read</strong>) the Tcl I/O
+    system automatically translates the external end-of-line
+    representation into newline characters. Upon output (i.e., with
+    <strong>puts</strong>), the I/O system translates newlines to the external
+    end-of-line representation. The default translation mode, <strong>auto</strong>,
+    handles all the common cases automatically, but the <strong>-translation</strong>
+    option provides explicit control over the end of line translations.</p>
+<div class="language-text highlight"><pre><span></span><code>The value associated with **-translation** is a single item for
+read-only and write-only channels. The value is a two-element list
+for read-write channels; the read translation mode is the first
+element of the list, and the write translation mode is the second
+element. As a convenience, when setting the translation mode for a
+read-write channel you can specify a single value that will apply to
+both reading and writing. When querying the translation mode of a
+read-write channel, a two-element list will always be returned. The
+following values are currently supported:
+
+**auto**
+
+:   As the input translation mode, **auto** treats any of newline
+    (**lf**), carriage return (**cr**), or carriage return followed
+    by a newline (**crlf**) as the end of line representation. The
+    end of line representation can even change from line-to-line,
+    and all cases are translated to a newline. As the output
+    translation mode, **auto** chooses a platform specific
+    representation; for sockets on all platforms Tcl chooses
+    **crlf**, for all Unix flavors, it chooses **lf**, and for the
+    various flavors of Windows it chooses **crlf**. The default
+    setting for **-translation** is **auto** for both input and
+    output.
+
+**binary**
+
+:   No end-of-line translations are performed. This is nearly
+    identical to **lf** mode, except that in addition **binary**
+    mode also sets the end-of-file character to the empty string
+    (which disables it) and sets the encoding to **binary** (which
+    disables encoding filtering). See the description of
+    **-eofchar** and **-encoding** for more information.
+
+    Internally, i.e. when it comes to the actual behaviour of the
+    translator this value **is** identical to **lf** and is
+    therefore reported as such when queried. Even if **binary** was
+    used to set the translation.
+
+**cr**
+
+:   The end of a line in the underlying file or device is
+    represented by a single carriage return character. As the input
+    translation mode, **cr** mode converts carriage returns to
+    newline characters. As the output translation mode, **cr** mode
+    translates newline characters to carriage returns.
+
+**crlf**
+
+:   The end of a line in the underlying file or device is
+    represented by a carriage return character followed by a
+    linefeed character. As the input translation mode, **crlf** mode
+    converts carriage-return-linefeed sequences to newline
+    characters. As the output translation mode, **crlf** mode
+    translates newline characters to carriage-return-linefeed
+    sequences. This mode is typically used on Windows platforms and
+    for network connections.
+
+**lf**
+
+:   The end of a line in the underlying file or device is
+    represented by a single newline (linefeed) character. In this
+    mode no translations occur during either input or output. This
+    mode is typically used on UNIX platforms.
+</code></pre></div>
+<h1 id="standard-channels">STANDARD CHANNELS</h1>
+<p>The Tcl standard channels (<strong>stdin</strong>, <strong>stdout</strong>, and <strong>stderr</strong>) can be
+configured through this command like every other channel opened by the
+Tcl library. Beyond the standard options described above they will also
+support any special option according to their current type. If, for
+example, a Tcl application is started by the <strong>inet</strong> super-server
+common on Unix system its Tcl standard channels will be sockets and thus
+support the socket options.</p>
+<h1 id="examples">EXAMPLES</h1>
+<p>Instruct Tcl to always send output to <strong>stdout</strong> immediately, whether or
+not it is to a terminal:</p>
+<div class="language-text highlight"><pre><span></span><code>fconfigure stdout -buffering none
+</code></pre></div>
+<p>Open a socket and read lines from it without ever blocking the
+processing of other events:</p>
+<div class="language-text highlight"><pre><span></span><code>set s [socket some.where.com 12345]
+fconfigure $s -blocking 0
+fileevent $s readable &quot;readMe $s&quot;
+proc readMe chan {
+    if {[gets $chan line] &lt; 0} {
+        if {[eof $chan]} {
+            close $chan
+            return
+        }
+        # Could not read a complete line this time; Tcl&#39;s
+        # internal buffering will hold the partial line for us
+        # until some more data is available over the socket.
+    } else {
+        puts stdout $line
+    }
+}
+</code></pre></div>
+<p>Read a PPM-format image from a file:</p>
+<div class="language-text highlight"><pre><span></span><code># Open the file and put it into Unix ASCII mode
+set f [open teapot.ppm]
+fconfigure $f -encoding ascii -translation lf
+
+# Get the header
+if {[gets $f] ne &quot;P6&quot;} {
+    error &quot;not a raw-bits PPM&quot;
+}
+
+# Read lines until we have got non-comment lines
+# that supply us with three decimal values.
+set words {}
+while {[llength $words] &lt; 3} {
+    gets $f line
+    if {[string match &quot;#*&quot; $line]} continue
+    lappend words {*}[join [scan $line %d%d%d]]
+}
+
+# Those words supply the size of the image and its
+# overall depth per channel. Assign to variables.
+lassign $words xSize ySize depth
+
+# Now switch to binary mode to pull in the data,
+# one byte per channel (red,green,blue) per pixel.
+fconfigure $f -translation binary
+set numDataBytes [expr {3 * $xSize * $ySize}]
+set data [read $f $numDataBytes]
+
+close $f
+</code></pre></div>
+<h1 id="see-also">SEE ALSO</h1>
+<p>close(n), flush(n), gets(n), open(n), puts(n), read(n), socket(n),
+Tcl_StandardChannels(3)</p>
+<h1 id="keywords">KEYWORDS</h1>
+<p>blocking, buffering, carriage return, end of line, flushing, linemode,
+newline, nonblocking, platform, translation, encoding, filter, byte
+array, binary</p>
+
+<ul class="metadata page-metadata" data-bi-name="page info" lang="en-us" dir="ltr">
+  <li class="last-updated-holder displayDate loading">
+    <span class="last-updated-text">Last updated:</span>
+    <time role="presentation" datetime="2018-10-25T00:00:00.000Z" data-article-date-source="ms.date"></time>
+  </li>
+<!--
+  <li class="readingTime">
+    2 minutes to read
+  </li>
+-->
+  <li class="contributors-holder">
+    <span class="contributors-text">Contributors</span>
+    <ul class="contributors" data-bi-name="contributors"></ul>
+  </li>
+</ul>
+</div>
+        <div class="col-md-3"><div class="navbar-light navbar-expand-md hidden-print sticky-top sticky-offset" role="complementary">
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggler collapsed" data-toggle="collapse" data-target="#toc-collapse" title="Table of Contents">
+            <span class="fa fa-angle-down"></span>
+        </button>
+    </div>
+
+    <div id="toc-collapse" class="navbar-collapse collapse card">
+        <ul class="nav flex-column bs-sidenav">
+            <li class="nav-item main"><a class="nav-link" href="#name">NAME</a></li>
+            <li class="nav-item main"><a class="nav-link" href="#synopsis">SYNOPSIS</a></li>
+            <li class="nav-item main"><a class="nav-link" href="#description">DESCRIPTION</a></li>
+            <li class="nav-item main"><a class="nav-link" href="#standard-channels">STANDARD CHANNELS</a></li>
+            <li class="nav-item main"><a class="nav-link" href="#examples">EXAMPLES</a></li>
+            <li class="nav-item main"><a class="nav-link" href="#see-also">SEE ALSO</a></li>
+            <li class="nav-item main"><a class="nav-link" href="#keywords">KEYWORDS</a></li>
+        </ul>
+    </div>
+</div></div>
+      </div>
+      </div>
+
+      <footer class="col-md-12">
+	<hr>
+	<div class="container">
+	</div>
+      </footer>
+      <script>
+	var base_url = "../..",
+            shortcuts = {"help": 191, "next": 78, "previous": 80, "search": 83};
+      </script>
+      <script src="../../js/base.js" defer></script>
+      <script src="../../search/main.js" defer></script>
+
+      <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="Search Modal" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Search</h4>
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            </div>
+            <div class="modal-body">
+                <p>
+                    From here you can search these documents. Enter
+                    your search terms below.
+                </p>
+                <form role="form">
+                    <div class="form-group">
+                        <input type="text" class="form-control" placeholder="Search..." id="mkdocs-search-query" title="Type search term here">
+                    </div>
+                </form>
+                <div id="mkdocs-search-results"></div>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div><div class="modal" id="mkdocs_keyboard_modal" tabindex="-1" role="dialog" aria-labelledby="Keyboard Shortcuts Modal" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <p class="h4 modal-title">Keyboard Shortcuts</p>
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            </div>
+            <div class="modal-body">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th style="width: 20%;">Keys</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="help shortcut"><kbd>?</kbd></td>
+                    <td>Open this help</td>
+                  </tr>
+                  <tr>
+                    <td class="next shortcut"><kbd>n</kbd></td>
+                    <td>Next page</td>
+                  </tr>
+                  <tr>
+                    <td class="prev shortcut"><kbd>p</kbd></td>
+                    <td>Previous page</td>
+                  </tr>
+                  <tr>
+                    <td class="search shortcut"><kbd>s</kbd></td>
+                    <td>Search</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>
+
+    </body>
+</html>

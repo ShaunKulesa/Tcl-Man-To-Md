@@ -1,19 +1,14 @@
-\
-
 # NAME
 
 oo::define, oo::objdefine - define and configure classes and objects
 
 # SYNOPSIS
 
-    package require TclOO
+package require TclOO
 
-    oo::define class defScript
-    oo::define class subcommand arg ?arg ...?
-    oo::objdefine object defScript
-    oo::objdefine object subcommand arg ?arg ...?
-
-\
+**oo::define*** class defScript* **oo::define*** class subcommand arg*
+?*arg \...*? **oo::objdefine*** object defScript* **oo::objdefine***
+object subcommand arg* ?*arg \...*?
 
 # DESCRIPTION
 
@@ -430,3 +425,8 @@ next(n), oo::class(n), oo::object(n)
 # KEYWORDS
 
 class, definition, method, object, slot
+
+<!---
+Copyright (c) 2007 Donal K. Fellow
+-->
+

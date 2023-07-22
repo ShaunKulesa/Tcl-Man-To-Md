@@ -1,5 +1,3 @@
-\
-
 # NAME
 
 Tcl_StaticPackage - make a statically linked package available via the
@@ -7,9 +5,9 @@ Tcl_StaticPackage - make a statically linked package available via the
 
 # SYNOPSIS
 
-    #include <tcl.h>
+**#include \<tcl.h\>**
 
-    Tcl_StaticPackage(interp, prefix, initProc, safeInitProc)
+**Tcl_StaticPackage**(*interp, prefix, initProc, safeInitProc*)
 
 # ARGUMENTS
 
@@ -27,8 +25,6 @@ interpreter.
 Procedure to call to incorporate this package into a safe interpreter
 (one that will execute untrusted scripts). NULL means the package cannot
 be used in safe interpreters.
-
-\
 
 # DESCRIPTION
 
@@ -65,3 +61,8 @@ initialization procedure, package, static linking
 # SEE ALSO
 
 load(n), package(n), Tcl_PkgRequire(3)
+
+<!---
+Copyright (c) 1995-1996 Sun Microsystems, Inc
+-->
+

@@ -11,7 +11,6 @@
 .SH NAME
 Tcl_CreateChannel, Tcl_GetChannelInstanceData, Tcl_GetChannelType, Tcl_GetChannelName, Tcl_GetChannelHandle, Tcl_GetChannelMode, Tcl_GetChannelBufferSize, Tcl_SetChannelBufferSize, Tcl_NotifyChannel, Tcl_BadChannelOption, Tcl_ChannelName, Tcl_ChannelVersion, Tcl_ChannelBlockModeProc, Tcl_ChannelCloseProc, Tcl_ChannelClose2Proc, Tcl_ChannelInputProc, Tcl_ChannelOutputProc, Tcl_ChannelSeekProc, Tcl_ChannelWideSeekProc, Tcl_ChannelTruncateProc, Tcl_ChannelSetOptionProc, Tcl_ChannelGetOptionProc, Tcl_ChannelWatchProc, Tcl_ChannelGetHandleProc, Tcl_ChannelFlushProc, Tcl_ChannelHandlerProc, Tcl_ChannelThreadActionProc, Tcl_IsChannelShared, Tcl_IsChannelRegistered, Tcl_CutChannel, Tcl_SpliceChannel, Tcl_IsChannelExisting, Tcl_ClearChannelHandlers, Tcl_GetChannelThread, Tcl_ChannelBuffered \- procedures for creating and manipulating channels
 .SH SYNOPSIS
-.nf
 \fB#include <tcl.h>\fR
 .sp
 Tcl_Channel
@@ -312,7 +311,7 @@ details about the old structure.
 .PP
 The \fBTcl_ChannelType\fR structure contains the following fields:
 .PP
-.nf
+.CS
 typedef struct Tcl_ChannelType {
         const char *\fItypeName\fR;
         Tcl_ChannelTypeVersion \fIversion\fR;
@@ -332,7 +331,7 @@ typedef struct Tcl_ChannelType {
         Tcl_DriverThreadActionProc *\fIthreadActionProc\fR;
         Tcl_DriverTruncateProc *\fItruncateProc\fR;
 } \fBTcl_ChannelType\fR;
-.fi
+.CE
 .PP
 It is not necessary to provide implementations for all channel
 operations.  Those which are not necessary may be set to NULL in the
@@ -398,11 +397,11 @@ The \fIblockModeProc\fR field contains the address of a function called by
 the generic layer to set blocking and nonblocking mode on the device.
 \fIBlockModeProc\fR should match the following prototype:
 .PP
-.nf
+.CS
 typedef int \fBTcl_DriverBlockModeProc\fR(
         ClientData \fIinstanceData\fR,
         int \fImode\fR);
-.fi
+.CE
 .PP
 The \fIinstanceData\fR is the same as the value passed to
 \fBTcl_CreateChannel\fR when this channel was created.  The \fImode\fR
@@ -433,11 +432,11 @@ The \fIcloseProc\fR field contains the address of a function called by the
 generic layer to clean up driver-related information when the channel is
 closed. \fICloseProc\fR must match the following prototype:
 .PP
-.nf
+.CS
 typedef int \fBTcl_DriverCloseProc\fR(
         ClientData \fIinstanceData\fR,
         Tcl_Interp *\fIinterp\fR);
-.fi
+.CE
 .PP
 The \fIinstanceData\fR argument is the same as the value provided to
 \fBTcl_CreateChannel\fR when the channel was created. The function should
@@ -455,12 +454,12 @@ independently may set \fIcloseProc\fR to \fBTCL_CLOSE2PROC\fR and set
 \fIclose2Proc\fR to the address of a function that matches the
 following prototype:
 .PP
-.nf
+.CS
 typedef int \fBTcl_DriverClose2Proc\fR(
         ClientData \fIinstanceData\fR,
         Tcl_Interp *\fIinterp\fR,
         int \fIflags\fR);
-.fi
+.CE
 .PP
 The \fIclose2Proc\fR will be called with \fIflags\fR set to an OR'ed
 combination of \fBTCL_CLOSE_READ\fR or \fBTCL_CLOSE_WRITE\fR to
@@ -486,13 +485,13 @@ The \fIinputProc\fR field contains the address of a function called by the
 generic layer to read data from the file or device and store it in an
 internal buffer. \fIInputProc\fR must match the following prototype:
 .PP
-.nf
+.CS
 typedef int \fBTcl_DriverInputProc\fR(
         ClientData \fIinstanceData\fR,
         char *\fIbuf\fR,
         int \fIbufSize\fR,
         int *\fIerrorCodePtr\fR);
-.fi
+.CE
 .PP
 \fIInstanceData\fR is the same as the value passed to
 \fBTcl_CreateChannel\fR when the channel was created.  The \fIbuf\fR
@@ -530,13 +529,13 @@ The \fIoutputProc\fR field contains the address of a function called by the
 generic layer to transfer data from an internal buffer to the output device.
 \fIOutputProc\fR must match the following prototype:
 .PP
-.nf
+.CS
 typedef int \fBTcl_DriverOutputProc\fR(
         ClientData \fIinstanceData\fR,
         const char *\fIbuf\fR,
         int \fItoWrite\fR,
         int *\fIerrorCodePtr\fR);
-.fi
+.CE
 .PP
 \fIInstanceData\fR is the same as the value passed to
 \fBTcl_CreateChannel\fR when the channel was created. The \fIbuf\fR
@@ -569,13 +568,13 @@ generic layer to move the access point at which subsequent input or output
 operations will be applied. \fISeekProc\fR must match the following
 prototype:
 .PP
-.nf
+.CS
 typedef int \fBTcl_DriverSeekProc\fR(
         ClientData \fIinstanceData\fR,
         long \fIoffset\fR,
         int \fIseekMode\fR,
         int *\fIerrorCodePtr\fR);
-.fi
+.CE
 .PP
 The \fIinstanceData\fR argument is the same as the value given to
 \fBTcl_CreateChannel\fR when this channel was created.  \fIOffset\fR and
@@ -599,13 +598,13 @@ in preference to the \fIseekProc\fR, but both must be defined if the
 \fIwideSeekProc\fR is defined.  \fIWideSeekProc\fR must match the
 following prototype:
 .PP
-.nf
+.CS
 typedef Tcl_WideInt \fBTcl_DriverWideSeekProc\fR(
         ClientData \fIinstanceData\fR,
         Tcl_WideInt \fIoffset\fR,
         int \fIseekMode\fR,
         int *\fIerrorCodePtr\fR);
-.fi
+.CE
 .PP
 The arguments and return values mean the same thing as with
 \fIseekProc\fR above, except that the type of offsets and the return
@@ -621,13 +620,13 @@ The \fIsetOptionProc\fR field contains the address of a function called by
 the generic layer to set a channel type specific option on a channel.
 \fIsetOptionProc\fR must match the following prototype:
 .PP
-.nf
+.CS
 typedef int \fBTcl_DriverSetOptionProc\fR(
         ClientData \fIinstanceData\fR,
         Tcl_Interp *\fIinterp\fR,
         const char *\fIoptionName\fR,
         const char *\fInewValue\fR);
-.fi
+.CE
 .PP
 \fIoptionName\fR is the name of an option to set, and \fInewValue\fR is
 the new value for that option, as a string. The \fIinstanceData\fR is the
@@ -662,13 +661,13 @@ The \fIgetOptionProc\fR field contains the address of a function called by
 the generic layer to get the value of a channel type specific option on a
 channel. \fIgetOptionProc\fR must match the following prototype:
 .PP
-.nf
+.CS
 typedef int \fBTcl_DriverGetOptionProc\fR(
         ClientData \fIinstanceData\fR,
         Tcl_Interp *\fIinterp\fR,
         const char *\fIoptionName\fR,
         Tcl_DString *\fIoptionValue\fR);
-.fi
+.CE
 .PP
 \fIOptionName\fR is the name of an option supported by this type of
 channel. If the option name is not NULL, the function stores its current
@@ -700,11 +699,11 @@ by the generic layer to initialize the event notification mechanism to
 notice events of interest on this channel.
 \fIWatchProc\fR should match the following prototype:
 .PP
-.nf
+.CS
 typedef void \fBTcl_DriverWatchProc\fR(
         ClientData \fIinstanceData\fR,
         int \fImask\fR);
-.fi
+.CE
 .PP
 The \fIinstanceData\fR is the same as the value passed to
 \fBTcl_CreateChannel\fR when this channel was created. The \fImask\fR
@@ -731,12 +730,12 @@ The \fIgetHandleProc\fR field contains the address of a function called by
 the generic layer to retrieve a device-specific handle from the channel.
 \fIGetHandleProc\fR should match the following prototype:
 .PP
-.nf
+.CS
 typedef int \fBTcl_DriverGetHandleProc\fR(
         ClientData \fIinstanceData\fR,
         int \fIdirection\fR,
         ClientData *\fIhandlePtr\fR);
-.fi
+.CE
 .PP
 \fIInstanceData\fR is the same as the value passed to
 \fBTcl_CreateChannel\fR when this channel was created. The \fIdirection\fR
@@ -760,10 +759,10 @@ The \fIflushProc\fR field is currently reserved for future use.
 It should be set to NULL.
 \fIFlushProc\fR should match the following prototype:
 .PP
-.nf
+.CS
 typedef int \fBTcl_DriverFlushProc\fR(
         ClientData \fIinstanceData\fR);
-.fi
+.CE
 .PP
 This value can be retrieved with \fBTcl_ChannelFlushProc\fR, which returns
 a pointer to the function.
@@ -775,11 +774,11 @@ be defined for stacked channel drivers that wish to be notified of events
 that occur on the underlying (stacked) channel.
 \fIHandlerProc\fR should match the following prototype:
 .PP
-.nf
+.CS
 typedef int \fBTcl_DriverHandlerProc\fR(
         ClientData \fIinstanceData\fR,
         int \fIinterestMask\fR);
-.fi
+.CE
 .PP
 \fIInstanceData\fR is the same as the value passed to \fBTcl_CreateChannel\fR
 when this channel was created.  The \fIinterestMask\fR is an OR-ed
@@ -804,11 +803,11 @@ driver that it should update or initialize any thread-specific data it
 might be maintaining using the calling thread as the associate. See
 \fBTcl_CutChannel\fR and \fBTcl_SpliceChannel\fR for more detail.
 .PP
-.nf
+.CS
 typedef void \fBTcl_DriverThreadActionProc\fR(
         ClientData \fIinstanceData\fR,
         int \fIaction\fR);
-.fi
+.CE
 .PP
 \fIInstanceData\fR is the same as the value passed to
 \fBTcl_CreateChannel\fR when this channel was created.
@@ -821,11 +820,11 @@ The \fItruncateProc\fR field contains the address of the function
 called by the generic layer when a channel is truncated to some
 length. It can be NULL.
 .PP
-.nf
+.CS
 typedef int \fBTcl_DriverTruncateProc\fR(
         ClientData \fIinstanceData\fR,
         Tcl_WideInt \fIlength\fR);
-.fi
+.CE
 .PP
 \fIInstanceData\fR is the same as the value passed to
 \fBTcl_CreateChannel\fR when this channel was created, and
@@ -850,16 +849,16 @@ It always returns \fBTCL_ERROR\fR
 An error message is generated in \fIinterp\fR's result value to
 indicate that a command was invoked with a bad option.
 The message has the form
-.nf
+.CS
     bad option "blah": should be one of
     <...generic options...>+<...specific options...>
-.fi
+.CE
 so you get for instance:
-.nf
+.CS
     bad option "-blah": should be one of -blocking,
     -buffering, -buffersize, -eofchar, -translation,
     -peername, or -sockname
-.fi
+.CE
 when called with \fIoptionList\fR equal to
 .QW "peername sockname"
 .PP
@@ -875,7 +874,7 @@ before the last option.
 The original (8.3.1 and below) \fBTcl_ChannelType\fR structure contains
 the following fields:
 .PP
-.nf
+.CS
 typedef struct Tcl_ChannelType {
     const char *\fItypeName\fR;
     Tcl_DriverBlockModeProc *\fIblockModeProc\fR;
@@ -889,7 +888,7 @@ typedef struct Tcl_ChannelType {
     Tcl_DriverGetHandleProc *\fIgetHandleProc\fR;
     Tcl_DriverClose2Proc *\fIclose2Proc\fR;
 } \fBTcl_ChannelType\fR;
-.fi
+.CE
 .PP
 It is still possible to create channel with the above structure.  The
 internal channel code will determine the version.  It is imperative to use
@@ -901,7 +900,7 @@ Prior to 8.4.0 (i.e. during the later releases of 8.3 and early part
 of the 8.4 development cycle) the \fBTcl_ChannelType\fR structure
 contained the following fields:
 .PP
-.nf
+.CS
 typedef struct Tcl_ChannelType {
     const char *\fItypeName\fR;
     Tcl_ChannelTypeVersion \fIversion\fR;
@@ -919,7 +918,7 @@ typedef struct Tcl_ChannelType {
     Tcl_DriverHandlerProc *\fIhandlerProc\fR;
     Tcl_DriverTruncateProc *\fItruncateProc\fR;
 } \fBTcl_ChannelType\fR;
-.fi
+.CE
 .PP
 When the above structure is registered as a channel type, the
 \fIversion\fR field should always be \fBTCL_CHANNEL_VERSION_2\fR.

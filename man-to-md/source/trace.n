@@ -55,9 +55,9 @@ When the trace triggers, depending on the operations being traced, a number of
 arguments are appended to \fIcommandPrefix\fR so that the actual command is as
 follows:
 .PP
-.nf
+.CS
 \fIcommandPrefix oldName newName op\fR
-.fi
+.CE
 .PP
 \fIOldName\fR and \fInewName\fR give the traced command's current (old) name,
 and the name to which it is being renamed (the empty string if this is a
@@ -124,9 +124,9 @@ command is as follows:
 .PP
 For \fBenter\fR and \fBenterstep\fR operations:
 .PP
-.nf
+.CS
 \fIcommandPrefix command-string op\fR
-.fi
+.CE
 .PP
 \fICommand-string\fR gives the complete current command being
 executed (the traced command for a \fBenter\fR operation, an
@@ -142,9 +142,9 @@ error will occur.
 .PP
 For \fBleave\fR and \fBleavestep\fR operations:
 .PP
-.nf
+.CS
 \fIcommandPrefix command-string code result op\fR
-.fi
+.CE
 .PP
 \fICommand-string\fR gives the complete current command being
 executed (the traced command for a \fBenter\fR operation, an
@@ -224,9 +224,9 @@ interpreter in which to execute them.
 When the trace triggers, three arguments are appended to
 \fIcommandPrefix\fR so that the actual command is as follows:
 .PP
-.nf
+.CS
 \fIcommandPrefix name1 name2 op\fR
-.fi
+.CE
 .PP
 \fIName1\fR and \fIname2\fR give the name(s) for the variable
 being accessed:  if the variable is a scalar then \fIname1\fR
@@ -381,31 +381,31 @@ Print a message whenever either of the global variables \fBfoo\fR and
 \fBbar\fR are updated, even if they have a different local name at the
 time (which can be done with the \fBupvar\fR command):
 .PP
-.nf
+.CS
 proc tracer {varname args} {
     upvar #0 $varname var
     puts "$varname was updated to be \e"$var\e""
 }
 \fBtrace add\fR variable foo write "tracer foo"
 \fBtrace add\fR variable bar write "tracer bar"
-.fi
+.CE
 .PP
 Ensure that the global variable \fBfoobar\fR always contains the
 product of the global variables \fBfoo\fR and \fBbar\fR:
 .PP
-.nf
+.CS
 proc doMult args {
     global foo bar foobar
     set foobar [expr {$foo * $bar}]
 }
 \fBtrace add\fR variable foo write doMult
 \fBtrace add\fR variable bar write doMult
-.fi
+.CE
 .PP
 Print a trace of what commands are executed during the processing of a Tcl
 procedure:
 .PP
-.nf
+.CS
 proc x {} { y }
 proc y {} { z }
 proc z {} { puts hello }
@@ -416,7 +416,7 @@ x
     \fIreport z enterstep\fR
     \fIreport {puts hello} enterstep\fR
     \fIhello\fR
-.fi
+.CE
 .SH "SEE ALSO"
 set(n), unset(n)
 .SH KEYWORDS

@@ -1,5 +1,3 @@
-\
-
 # NAME
 
 file - Manipulate file names and attributes
@@ -7,8 +5,6 @@ file - Manipulate file names and attributes
 # SYNOPSIS
 
 **file ***option* *name* ?*arg arg \...*?
-
-\
 
 # DESCRIPTION
 
@@ -502,3 +498,9 @@ fblocked(n), flush(n)
 
 attributes, copy files, delete files, directory, file, move files, name,
 rename files, stat, user
+
+<!---
+Copyright (c) 1993 The Regents of the University of California
+Copyright (c) 1994-1996 Sun Microsystems, Inc
+-->
+

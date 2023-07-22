@@ -11,11 +11,9 @@
 .SH NAME
 oo::copy \- create copies of objects and classes
 .SH SYNOPSIS
-.nf
 package require TclOO
 
 \fBoo::copy\fI sourceObject \fR?\fItargetObject\fR? ?\fItargetNamespace\fR?
-.fi
 .BE
 .SH DESCRIPTION
 .PP
@@ -58,14 +56,14 @@ the new object or class.
 This example creates an object, copies it, modifies the source object, and
 then demonstrates that the copied object is indeed a copy.
 .PP
-.nf
+.CS
 oo::object create src
 oo::objdefine src method msg {} {puts foo}
 \fBoo::copy\fR src dst
 oo::objdefine src method msg {} {puts bar}
 src msg              \fI\(-> prints "bar"\fR
 dst msg              \fI\(-> prints "foo"\fR
-.fi
+.CE
 .SH "SEE ALSO"
 oo::class(n), oo::define(n), oo::object(n)
 .SH KEYWORDS

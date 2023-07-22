@@ -1,5 +1,3 @@
-\
-
 # NAME
 
 Tcl_BackgroundException, Tcl_BackgroundError - report Tcl exception that
@@ -7,19 +5,17 @@ occurred in background processing
 
 # SYNOPSIS
 
-    #include <tcl.h>
+**#include \<tcl.h\>**
 
-    Tcl_BackgroundException(interp, code)
+**Tcl_BackgroundException**(*interp, code*)
 
-    Tcl_BackgroundError(interp)
+**Tcl_BackgroundError**(*interp*)
 
 # ARGUMENTS
 
 Interpreter in which the exception occurred.
 
 The exceptional return code to be reported.
-
-\
 
 # DESCRIPTION
 
@@ -66,3 +62,9 @@ equivalent to:
 # KEYWORDS
 
 background, bgerror, error, interp
+
+<!---
+Copyright (c) 1992-1994 The Regents of the University of California
+Copyright (c) 1994-1996 Sun Microsystems, Inc
+-->
+

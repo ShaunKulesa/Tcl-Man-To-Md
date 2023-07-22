@@ -33,12 +33,12 @@ underlying file or device is able to absorb it.
 .PP
 Prompt for the user to type some information in on the console:
 .PP
-.nf
+.CS
 puts -nonewline "Please type your name: "
 \fBflush\fR stdout
 gets stdin name
 puts "Hello there, $name!"
-.fi
+.CE
 .SH "SEE ALSO"
 file(n), open(n), socket(n), Tcl_StandardChannels(3)
 .SH KEYWORDS

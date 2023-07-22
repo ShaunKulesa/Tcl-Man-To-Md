@@ -11,7 +11,6 @@
 .SH NAME
 Tcl_ZlibAdler32, Tcl_ZlibCRC32, Tcl_ZlibDeflate, Tcl_ZlibInflate, Tcl_ZlibStreamChecksum, Tcl_ZlibStreamClose, Tcl_ZlibStreamEof, Tcl_ZlibStreamGet, Tcl_ZlibStreamGetCommandName, Tcl_ZlibStreamInit, Tcl_ZlibStreamPut \- compression and decompression functions
 .SH SYNOPSIS
-.nf
 #include <tcl.h>
 .sp
 int
@@ -51,7 +50,6 @@ int
 \fBTcl_ZlibStreamGet\fR(\fIzshandle, dataObj, count\fR)
 .sp
 \fBTcl_ZlibStreamSetCompressionDictionary\fR(\fIzshandle, compDict\fR)
-.fi
 .SH ARGUMENTS
 .AS Tcl_ZlibStream zshandle in
 .AP Tcl_Interp *interp in
@@ -143,9 +141,9 @@ the \fIbytes\fR parameter instead of a pointer to the array of bytes to
 compute the checksum over. Thus, typical usage in the single data block case
 is like this:
 .PP
-.nf
+.CS
 checksum = \fBTcl_ZlibCRC32\fR(\fBTcl_ZlibCRC32\fR(0,NULL,0), data, length);
-.fi
+.CE
 .PP
 Note that the Adler-32 algorithm is not a real checksum, but instead is a
 related type of hash that works best on longer data.

@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+      <script>
+	// Hack for scrolling window when linking to anchor tag with fixed nav header
+        var shiftWindow = function() { scrollBy(0, -75) };
+        window.addEventListener("hashchange", shiftWindow);
+        function load() { if (window.location.hash) shiftWindow(); }
+      </script>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        
+        <link rel="canonical" href="https://www.tcl.tk/man/TclLib/RegExp/">
+        <link rel="shortcut icon" href="../../img/favicon.ico">
+        <title>RegExp - Tcl/Tk</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <link href="../../css/font-awesome.min.css" rel="stylesheet">
+    <link href="../../css/base.css" rel="stylesheet">
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+    <script src="../../js/base.js"></script> 
+    </head>
+
+    <body class="">
+
+      <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
+	<div class="container">
+	<a class="navbar-brand" href="../..">Tcl/Tk</a>
+	<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExample04" aria-controls="navbarsExample04" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+	</button>
+
+	<div class="collapse navbar-collapse">
+
+          <ul class="navbar-nav flex-row ml-md-auto d-none d-md-flex">
+            <li class="nav-item">
+              <a class="nav-link" href="#" data-toggle="modal" data-target="#mkdocs_search_modal">
+		<i class="fa fa-search"></i> Search
+              </a>
+            </li>
+          </ul>
+	</div>
+	</div>
+      </nav><div id="content" class="container">
+        
+      <div class="row">
+        <div class="col-md-9" role="main">
+
+
+<nav aria-label="breadcrumb">
+  <ol class="breadcrumb">
+    
+    <li class="breadcrumb-item active" aria-current="page">RegExp</li>
+  </ol>
+</nav>
+
+
+<p>\</p>
+<h1 id="name">NAME</h1>
+<p>regexp - Match a regular expression against a string</p>
+<h1 id="synopsis">SYNOPSIS</h1>
+<p><strong>regexp </strong>?<em>switches</em>? <em>exp string </em>?<em>matchVar</em>? ?<em>subMatchVar
+subMatchVar ...</em>?</p>
+<p>\</p>
+<h1 id="description">DESCRIPTION</h1>
+<p>Determines whether the regular expression <em>exp</em> matches part or all of
+<em>string</em> and returns 1 if it does, 0 if it does not, unless <strong>-inline</strong>
+is specified (see below). (Regular expression matching is described in
+the <strong>re_syntax</strong> reference page.)</p>
+<p>If additional arguments are specified after <em>string</em> then they are
+treated as the names of variables in which to return information about
+which part(s) of <em>string</em> matched <em>exp</em>. <em>MatchVar</em> will be set to the
+range of <em>string</em> that matched all of <em>exp</em>. The first <em>subMatchVar</em>
+will contain the characters in <em>string</em> that matched the leftmost
+parenthesized subexpression within <em>exp</em>, the next <em>subMatchVar</em> will
+contain the characters that matched the next parenthesized subexpression
+to the right in <em>exp</em>, and so on.</p>
+<p>If the initial arguments to <strong>regexp</strong> start with <strong>-</strong> then they are
+treated as switches. The following switches are currently supported:</p>
+<p><strong>-about</strong></p>
+<p>:   Instead of attempting to match the regular expression, returns a
+    list containing information about the regular expression. The first
+    element of the list is a subexpression count. The second element is
+    a list of property names that describe various attributes of the
+    regular expression. This switch is primarily intended for debugging
+    purposes.</p>
+<p><strong>-expanded</strong></p>
+<p>:   Enables use of the expanded regular expression syntax where
+    whitespace and comments are ignored. This is the same as specifying
+    the <strong>(?x)</strong> embedded option (see the <strong>re_syntax</strong> manual page).</p>
+<p><strong>-indices</strong></p>
+<p>:   Changes what is stored in the <em>matchVar</em> and <em>subMatchVar</em>s. Instead
+    of storing the matching characters from <em>string</em>, each variable will
+    contain a list of two decimal strings giving the indices in <em>string</em>
+    of the first and last characters in the matching range of
+    characters.</p>
+<p><strong>-line</strong></p>
+<p>:   Enables newline-sensitive matching. By default, newline is a
+    completely ordinary character with no special meaning. With this
+    flag, bracket expressions and never match newline, matches an empty
+    string after any newline in addition to its normal function, and
+    matches an empty string before any newline in addition to its normal
+    function. This flag is equivalent to specifying both <strong>-linestop</strong>
+    and <strong>-lineanchor</strong>, or the <strong>(?n)</strong> embedded option (see the
+    <strong>re_syntax</strong> manual page).</p>
+<p><strong>-linestop</strong></p>
+<p>:   Changes the behavior of bracket expressions and so that they stop at
+    newlines. This is the same as specifying the <strong>(?p)</strong> embedded
+    option (see the <strong>re_syntax</strong> manual page).</p>
+<p><strong>-lineanchor</strong></p>
+<p>:   Changes the behavior of and (the so they match the beginning and end
+    of a line respectively. This is the same as specifying the <strong>(?w)</strong>
+    embedded option (see the <strong>re_syntax</strong> manual page).</p>
+<p><strong>-nocase</strong></p>
+<p>:   Causes upper-case characters in <em>string</em> to be treated as lower case
+    during the matching process.</p>
+<p><strong>-all</strong></p>
+<p>:   Causes the regular expression to be matched as many times as
+    possible in the string, returning the total number of matches found.
+    If this is specified with match variables, they will contain
+    information for the last match only.</p>
+<p><strong>-inline</strong></p>
+<p>:   Causes the command to return, as a list, the data that would
+    otherwise be placed in match variables. When using <strong>-inline</strong>,
+    match variables may not be specified. If used with <strong>-all</strong>, the
+    list will be concatenated at each iteration, such that a flat list
+    is always returned. For each match iteration, the command will
+    append the overall match data, plus one element for each
+    subexpression in the regular expression. Examples are:</p>
+<div class="language-text highlight"><pre><span></span><code>    regexp -inline -- {\w(\w)} &quot; inlined &quot;
+          → in n
+    regexp -all -inline -- {\w(\w)} &quot; inlined &quot;
+          → in n li i ne e
+</code></pre></div>
+<p><strong>-start</strong> <em>index</em></p>
+<p>:   Specifies a character index offset into the string to start matching
+    the regular expression at. The <em>index</em> value is interpreted in the
+    same manner as the <em>index</em> argument to <strong>string index</strong>. When using
+    this switch, will not match the beginning of the line, and \A will
+    still match the start of the string at <em>index</em>. If <strong>-indices</strong> is
+    specified, the indices will be indexed starting from the absolute
+    beginning of the input string. <em>index</em> will be constrained to the
+    bounds of the input string.</p>
+<p><strong>- -</strong></p>
+<p>:   Marks the end of switches. The argument following this one will be
+    treated as <em>exp</em> even if it starts with a <strong>-</strong>.</p>
+<p>If there are more <em>subMatchVar</em>s than parenthesized subexpressions
+within <em>exp</em>, or if a particular subexpression in <em>exp</em> does not match
+the string (e.g. because it was in a portion of the expression that was
+not matched), then the corresponding <em>subMatchVar</em> will be set to if
+<strong>-indices</strong> has been specified or to an empty string otherwise.</p>
+<h1 id="examples">EXAMPLES</h1>
+<p>Find the first occurrence of a word starting with <strong>foo</strong> in a string
+that is not actually an instance of <strong>foobar</strong>, and get the letters
+following it up to the end of the word into a variable:</p>
+<div class="language-text highlight"><pre><span></span><code>regexp {\mfoo(?!bar\M)(\w*)} $string -&gt; restOfWord
+</code></pre></div>
+<p>Note that the whole matched substring has been placed in the variable
+which is a name chosen to look nice given that we are not actually
+interested in its contents.</p>
+<p>Find the index of the word <strong>badger</strong> (in any case) within a string and
+store that in the variable <strong>location</strong>:</p>
+<div class="language-text highlight"><pre><span></span><code>regexp -indices {(?i)\mbadger\M} $string location
+</code></pre></div>
+<p>This could also be written as a <em>basic</em> regular expression (as opposed
+to using the default syntax of <em>advanced</em> regular expressions) match by
+prefixing the expression with a suitable flag:</p>
+<div class="language-text highlight"><pre><span></span><code>regexp -indices {(?ib)\&lt;badger\&gt;} $string location
+</code></pre></div>
+<p>This counts the number of octal digits in a string:</p>
+<div class="language-text highlight"><pre><span></span><code>regexp -all {[0-7]} $string
+</code></pre></div>
+<p>This lists all words (consisting of all sequences of non-whitespace
+characters) in a string, and is useful as a more powerful version of the
+<strong>split</strong> command:</p>
+<div class="language-text highlight"><pre><span></span><code>regexp -all -inline {\S+} $string
+</code></pre></div>
+<h1 id="see-also">SEE ALSO</h1>
+<p>re_syntax(n), regsub(n), string(n)</p>
+<h1 id="keywords">KEYWORDS</h1>
+<p>match, parsing, pattern, regular expression, splitting, string</p>
+
+<ul class="metadata page-metadata" data-bi-name="page info" lang="en-us" dir="ltr">
+  <li class="last-updated-holder displayDate loading">
+    <span class="last-updated-text">Last updated:</span>
+    <time role="presentation" datetime="2018-10-25T00:00:00.000Z" data-article-date-source="ms.date"></time>
+  </li>
+<!--
+  <li class="readingTime">
+    2 minutes to read
+  </li>
+-->
+  <li class="contributors-holder">
+    <span class="contributors-text">Contributors</span>
+    <ul class="contributors" data-bi-name="contributors"></ul>
+  </li>
+</ul>
+</div>
+        <div class="col-md-3"><div class="navbar-light navbar-expand-md hidden-print sticky-top sticky-offset" role="complementary">
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggler collapsed" data-toggle="collapse" data-target="#toc-collapse" title="Table of Contents">
+            <span class="fa fa-angle-down"></span>
+        </button>
+    </div>
+
+    <div id="toc-collapse" class="navbar-collapse collapse card">
+        <ul class="nav flex-column bs-sidenav">
+            <li class="nav-item main"><a class="nav-link" href="#name">NAME</a></li>
+            <li class="nav-item main"><a class="nav-link" href="#synopsis">SYNOPSIS</a></li>
+            <li class="nav-item main"><a class="nav-link" href="#description">DESCRIPTION</a></li>
+            <li class="nav-item main"><a class="nav-link" href="#examples">EXAMPLES</a></li>
+            <li class="nav-item main"><a class="nav-link" href="#see-also">SEE ALSO</a></li>
+            <li class="nav-item main"><a class="nav-link" href="#keywords">KEYWORDS</a></li>
+        </ul>
+    </div>
+</div></div>
+      </div>
+      </div>
+
+      <footer class="col-md-12">
+	<hr>
+	<div class="container">
+	</div>
+      </footer>
+      <script>
+	var base_url = "../..",
+            shortcuts = {"help": 191, "next": 78, "previous": 80, "search": 83};
+      </script>
+      <script src="../../js/base.js" defer></script>
+      <script src="../../search/main.js" defer></script>
+
+      <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="Search Modal" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Search</h4>
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            </div>
+            <div class="modal-body">
+                <p>
+                    From here you can search these documents. Enter
+                    your search terms below.
+                </p>
+                <form role="form">
+                    <div class="form-group">
+                        <input type="text" class="form-control" placeholder="Search..." id="mkdocs-search-query" title="Type search term here">
+                    </div>
+                </form>
+                <div id="mkdocs-search-results"></div>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div><div class="modal" id="mkdocs_keyboard_modal" tabindex="-1" role="dialog" aria-labelledby="Keyboard Shortcuts Modal" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <p class="h4 modal-title">Keyboard Shortcuts</p>
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            </div>
+            <div class="modal-body">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th style="width: 20%;">Keys</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="help shortcut"><kbd>?</kbd></td>
+                    <td>Open this help</td>
+                  </tr>
+                  <tr>
+                    <td class="next shortcut"><kbd>n</kbd></td>
+                    <td>Next page</td>
+                  </tr>
+                  <tr>
+                    <td class="prev shortcut"><kbd>p</kbd></td>
+                    <td>Previous page</td>
+                  </tr>
+                  <tr>
+                    <td class="search shortcut"><kbd>s</kbd></td>
+                    <td>Search</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>
+
+    </body>
+</html>

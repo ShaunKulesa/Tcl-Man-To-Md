@@ -137,9 +137,9 @@ Note that Tcl defines this operation exactly even for negative numbers, so
 that the following command returns a true value (omitting the namespace for
 clarity):
 .PP
-.nf
+.CS
 \fB==\fR [\fB*\fR [\fB/\fI x y\fR] \fIy\fR] [\fB\-\fI x\fR [\fB%\fI x y\fR]]
-.fi
+.CE
 .RE
 .TP
 \fB**\fR ?\fInumber\fR ...?
@@ -283,7 +283,7 @@ The simplest way to use the operators is often by using \fBnamespace path\fR
 to make the commands available. This has the advantage of not affecting the
 set of commands defined by the current namespace.
 .PP
-.nf
+.CS
 namespace path {\fB::tcl::mathop\fR ::tcl::mathfunc}
 
 \fI# Compute the sum of some numbers\fR
@@ -301,7 +301,7 @@ set inRange [\fB<=\fR 1 $x 5]
 
 \fI# Test to see if a list is sorted\fR
 set sorted [\fB<=\fR {*}$list]
-.fi
+.CE
 .SH "SEE ALSO"
 expr(n), mathfunc(n), namespace(n)
 .SH KEYWORDS

@@ -1,14 +1,10 @@
-\
-
 # NAME
 
 zlib - compression and decompression operations
 
 # SYNOPSIS
 
-    zlib subcommand arg ...
-
-\
+**zlib ***subcommand arg \...*
 
 # DESCRIPTION
 
@@ -457,3 +453,8 @@ binary(n), chan(n), encoding(n), Tcl_ZlibDeflate(3), RFC1950 - RFC1952
 # KEYWORDS
 
 compress, decompress, deflate, gzip, inflate, zlib
+
+<!---
+Copyright (c) 2008-2012 Donal K. Fellow
+-->
+

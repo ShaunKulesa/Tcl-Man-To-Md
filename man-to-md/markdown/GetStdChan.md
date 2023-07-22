@@ -1,5 +1,3 @@
-\
-
 # NAME
 
 Tcl_GetStdChannel, Tcl_SetStdChannel - procedures for retrieving and
@@ -7,12 +5,11 @@ replacing the standard channels
 
 # SYNOPSIS
 
-    #include <tcl.h>
+**#include \<tcl.h\>**
 
-    Tcl_Channel
-    Tcl_GetStdChannel(type)
+Tcl_Channel **Tcl_GetStdChannel**(*type*)
 
-    Tcl_SetStdChannel(channel, type)
+**Tcl_SetStdChannel**(*channel, type*)
 
 # ARGUMENTS
 
@@ -20,8 +17,6 @@ The identifier for the standard channel to retrieve or modify. Must be
 one of **TCL_STDIN**, **TCL_STDOUT**, or **TCL_STDERR**.
 
 The channel to use as the new value for the specified standard channel.
-
-\
 
 # DESCRIPTION
 
@@ -80,3 +75,8 @@ Tcl_Close(3), Tcl_CreateChannel(3), Tcl_Main(3), tclsh(1)
 # KEYWORDS
 
 standard channel, standard input, standard output, standard error
+
+<!---
+Copyright (c) 1996 Sun Microsystems, Inc
+-->
+

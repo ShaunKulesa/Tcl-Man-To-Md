@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+      <script>
+	// Hack for scrolling window when linking to anchor tag with fixed nav header
+        var shiftWindow = function() { scrollBy(0, -75) };
+        window.addEventListener("hashchange", shiftWindow);
+        function load() { if (window.location.hash) shiftWindow(); }
+      </script>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        
+        <link rel="canonical" href="https://www.tcl.tk/man/TclLib/OpenTcp/">
+        <link rel="shortcut icon" href="../../img/favicon.ico">
+        <title>OpenTcp - Tcl/Tk</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <link href="../../css/font-awesome.min.css" rel="stylesheet">
+    <link href="../../css/base.css" rel="stylesheet">
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+    <script src="../../js/base.js"></script> 
+    </head>
+
+    <body class="">
+
+      <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
+	<div class="container">
+	<a class="navbar-brand" href="../..">Tcl/Tk</a>
+	<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExample04" aria-controls="navbarsExample04" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+	</button>
+
+	<div class="collapse navbar-collapse">
+
+          <ul class="navbar-nav flex-row ml-md-auto d-none d-md-flex">
+            <li class="nav-item">
+              <a class="nav-link" href="#" data-toggle="modal" data-target="#mkdocs_search_modal">
+		<i class="fa fa-search"></i> Search
+              </a>
+            </li>
+          </ul>
+	</div>
+	</div>
+      </nav><div id="content" class="container">
+        
+      <div class="row">
+        <div class="col-md-9" role="main">
+
+
+<nav aria-label="breadcrumb">
+  <ol class="breadcrumb">
+    
+    <li class="breadcrumb-item active" aria-current="page">OpenTcp</li>
+  </ol>
+</nav>
+
+
+<p>\</p>
+<h1 id="name">NAME</h1>
+<p>Tcl_OpenTcpClient, Tcl_MakeTcpClientChannel, Tcl_OpenTcpServer -
+procedures to open channels using TCP sockets</p>
+<h1 id="synopsis">SYNOPSIS</h1>
+<p><strong>#include \&lt;tcl.h> </strong></p>
+<p>Tcl_Channel <strong>Tcl_OpenTcpClient</strong>(<em>interp, port, host, myaddr, myport,
+async</em>)</p>
+<p>Tcl_Channel <strong>Tcl_MakeTcpClientChannel</strong>(<em>sock</em>)</p>
+<p>Tcl_Channel <strong>Tcl_OpenTcpServer</strong>(<em>interp, port, myaddr, proc,
+clientData</em>)</p>
+<h1 id="arguments">ARGUMENTS</h1>
+<p>Tcl interpreter to use for error reporting. If non-NULL and an error
+occurs, an error message is left in the interpreter\'s result.</p>
+<p>A port number to connect to as a client or to listen on as a server.</p>
+<p>A string specifying a host name or address for the remote end of the
+connection.</p>
+<p>A port number for the client\'s end of the socket. If 0, a port number
+is allocated at random.</p>
+<p>A string specifying the host name or address for network interface to
+use for the local end of the connection. If NULL, a default interface is
+chosen.</p>
+<p>If nonzero, the client socket is connected asynchronously to the server.</p>
+<p>Platform-specific handle for client TCP socket.</p>
+<p>Pointer to a procedure to invoke each time a new connection is accepted
+via the socket.</p>
+<p>Arbitrary one-word value to pass to <em>proc</em>.</p>
+<p>\</p>
+<h1 id="description">DESCRIPTION</h1>
+<p>These functions are convenience procedures for creating channels that
+communicate over TCP sockets. The operations on a channel are described
+in the manual entry for <strong>Tcl_OpenFileChannel</strong>.</p>
+<h2 id="tcl_opentcpclient">TCL_OPENTCPCLIENT</h2>
+<p><strong>Tcl_OpenTcpClient</strong> opens a client TCP socket connected to a <em>port</em> on
+a specific <em>host</em>, and returns a channel that can be used to communicate
+with the server. The host to connect to can be specified either as a
+domain name style name (e.g. <strong>www.sunlabs.com</strong>), or as a string
+containing the alphanumeric representation of its four-byte address
+(e.g. <strong>127.0.0.1</strong>). Use the string <strong>localhost</strong> to connect to a TCP
+socket on the host on which the function is invoked.</p>
+<p>The <em>myaddr</em> and <em>myport</em> arguments allow a client to specify an address
+for the local end of the connection. If <em>myaddr</em> is NULL, then an
+interface is chosen automatically by the operating system. If <em>myport</em>
+is 0, then a port number is chosen at random by the operating system.</p>
+<p>If <em>async</em> is zero, the call to <strong>Tcl_OpenTcpClient</strong> returns only after
+the client socket has either successfully connected to the server, or
+the attempted connection has failed. If <em>async</em> is nonzero the socket is
+connected asynchronously and the returned channel may not yet be
+connected to the server when the call to <strong>Tcl_OpenTcpClient</strong> returns.
+If the channel is in blocking mode and an input or output operation is
+done on the channel before the connection is completed or fails, that
+operation will wait until the connection either completes successfully
+or fails. If the channel is in nonblocking mode, the input or output
+operation will return immediately and a subsequent call to
+<strong>Tcl_InputBlocked</strong> on the channel will return nonzero.</p>
+<p>The returned channel is opened for reading and writing. If an error
+occurs in opening the socket, <strong>Tcl_OpenTcpClient</strong> returns NULL and
+records a POSIX error code that can be retrieved with <strong>Tcl_GetErrno</strong>.
+In addition, if <em>interp</em> is non-NULL, an error message is left in the
+interpreter\'s result.</p>
+<p>The newly created channel is not registered in the supplied interpreter;
+to register it, use <strong>Tcl_RegisterChannel</strong>. If one of the standard
+channels, <strong>stdin</strong>, <strong>stdout</strong> or <strong>stderr</strong> was previously closed, the
+act of creating the new channel also assigns it as a replacement for the
+standard channel.</p>
+<h2 id="tcl_maketcpclientchannel">TCL_MAKETCPCLIENTCHANNEL</h2>
+<p><strong>Tcl_MakeTcpClientChannel</strong> creates a <strong>Tcl_Channel</strong> around an
+existing, platform specific, handle for a client TCP socket.</p>
+<p>The newly created channel is not registered in the supplied interpreter;
+to register it, use <strong>Tcl_RegisterChannel</strong>. If one of the standard
+channels, <strong>stdin</strong>, <strong>stdout</strong> or <strong>stderr</strong> was previously closed, the
+act of creating the new channel also assigns it as a replacement for the
+standard channel.</p>
+<h2 id="tcl_opentcpserver">TCL_OPENTCPSERVER</h2>
+<p><strong>Tcl_OpenTcpServer</strong> opens a TCP socket on the local host on a
+specified <em>port</em> and uses the Tcl event mechanism to accept requests
+from clients to connect to it. The <em>myaddr</em> argument specifies the
+network interface. If <em>myaddr</em> is NULL the special address INADDR_ANY
+should be used to allow connections from any network interface. Each
+time a client connects to this socket, Tcl creates a channel for the new
+connection and invokes <em>proc</em> with information about the channel. <em>Proc</em>
+must match the following prototype:</p>
+<div class="language-text highlight"><pre><span></span><code>typedef void Tcl_TcpAcceptProc(
+        ClientData clientData,
+        Tcl_Channel channel,
+        char *hostName,
+        int port);
+</code></pre></div>
+<p>The <em>clientData</em> argument will be the same as the <em>clientData</em> argument
+to <strong>Tcl_OpenTcpServer</strong>, <em>channel</em> will be the handle for the new
+channel, <em>hostName</em> points to a string containing the name of the client
+host making the connection, and <em>port</em> will contain the client\'s port
+number. The new channel is opened for both input and output. If <em>proc</em>
+raises an error, the connection is closed automatically. <em>Proc</em> has no
+return value, but if it wishes to reject the connection it can close
+<em>channel</em>.</p>
+<p><strong>Tcl_OpenTcpServer</strong> normally returns a pointer to a channel
+representing the server socket. If an error occurs,
+<strong>Tcl_OpenTcpServer</strong> returns NULL and records a POSIX error code that
+can be retrieved with <strong>Tcl_GetErrno</strong>. In addition, if the interpreter
+is non-NULL, an error message is left in the interpreter\'s result.</p>
+<p>The channel returned by <strong>Tcl_OpenTcpServer</strong> cannot be used for either
+input or output. It is simply a handle for the socket used to accept
+connections. The caller can close the channel to shut down the server
+and disallow further connections from new clients.</p>
+<p>TCP server channels operate correctly only in applications that dispatch
+events through <strong>Tcl_DoOneEvent</strong> or through Tcl commands such as
+<strong>vwait</strong>; otherwise Tcl will never notice that a connection request
+from a remote client is pending.</p>
+<p>The newly created channel is not registered in the supplied interpreter;
+to register it, use <strong>Tcl_RegisterChannel</strong>. If one of the standard
+channels, <strong>stdin</strong>, <strong>stdout</strong> or <strong>stderr</strong> was previously closed, the
+act of creating the new channel also assigns it as a replacement for the
+standard channel.</p>
+<h1 id="platform-issues">PLATFORM ISSUES</h1>
+<p>On Unix platforms, the socket handle is a Unix file descriptor as
+returned by the <strong>socket</strong> system call. On the Windows platform, the
+socket handle is a <strong>SOCKET</strong> as defined in the WinSock API.</p>
+<h1 id="see-also">SEE ALSO</h1>
+<p>Tcl_OpenFileChannel(3), Tcl_RegisterChannel(3), vwait(n)</p>
+<h1 id="keywords">KEYWORDS</h1>
+<p>channel, client, server, socket, TCP</p>
+
+<ul class="metadata page-metadata" data-bi-name="page info" lang="en-us" dir="ltr">
+  <li class="last-updated-holder displayDate loading">
+    <span class="last-updated-text">Last updated:</span>
+    <time role="presentation" datetime="2018-10-25T00:00:00.000Z" data-article-date-source="ms.date"></time>
+  </li>
+<!--
+  <li class="readingTime">
+    2 minutes to read
+  </li>
+-->
+  <li class="contributors-holder">
+    <span class="contributors-text">Contributors</span>
+    <ul class="contributors" data-bi-name="contributors"></ul>
+  </li>
+</ul>
+</div>
+        <div class="col-md-3"><div class="navbar-light navbar-expand-md hidden-print sticky-top sticky-offset" role="complementary">
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggler collapsed" data-toggle="collapse" data-target="#toc-collapse" title="Table of Contents">
+            <span class="fa fa-angle-down"></span>
+        </button>
+    </div>
+
+    <div id="toc-collapse" class="navbar-collapse collapse card">
+        <ul class="nav flex-column bs-sidenav">
+            <li class="nav-item main"><a class="nav-link" href="#name">NAME</a></li>
+            <li class="nav-item main"><a class="nav-link" href="#synopsis">SYNOPSIS</a></li>
+            <li class="nav-item main"><a class="nav-link" href="#arguments">ARGUMENTS</a></li>
+            <li class="nav-item main"><a class="nav-link" href="#description">DESCRIPTION</a></li>
+                <li class="nav-item">
+                    <a href="#tcl_opentcpclient" class="nav-link">TCL_OPENTCPCLIENT</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#tcl_maketcpclientchannel" class="nav-link">TCL_MAKETCPCLIENTCHANNEL</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#tcl_opentcpserver" class="nav-link">TCL_OPENTCPSERVER</a>
+                </li>
+            <li class="nav-item main"><a class="nav-link" href="#platform-issues">PLATFORM ISSUES</a></li>
+            <li class="nav-item main"><a class="nav-link" href="#see-also">SEE ALSO</a></li>
+            <li class="nav-item main"><a class="nav-link" href="#keywords">KEYWORDS</a></li>
+        </ul>
+    </div>
+</div></div>
+      </div>
+      </div>
+
+      <footer class="col-md-12">
+	<hr>
+	<div class="container">
+	</div>
+      </footer>
+      <script>
+	var base_url = "../..",
+            shortcuts = {"help": 191, "next": 78, "previous": 80, "search": 83};
+      </script>
+      <script src="../../js/base.js" defer></script>
+      <script src="../../search/main.js" defer></script>
+
+      <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="Search Modal" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Search</h4>
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            </div>
+            <div class="modal-body">
+                <p>
+                    From here you can search these documents. Enter
+                    your search terms below.
+                </p>
+                <form role="form">
+                    <div class="form-group">
+                        <input type="text" class="form-control" placeholder="Search..." id="mkdocs-search-query" title="Type search term here">
+                    </div>
+                </form>
+                <div id="mkdocs-search-results"></div>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div><div class="modal" id="mkdocs_keyboard_modal" tabindex="-1" role="dialog" aria-labelledby="Keyboard Shortcuts Modal" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <p class="h4 modal-title">Keyboard Shortcuts</p>
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            </div>
+            <div class="modal-body">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th style="width: 20%;">Keys</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="help shortcut"><kbd>?</kbd></td>
+                    <td>Open this help</td>
+                  </tr>
+                  <tr>
+                    <td class="next shortcut"><kbd>n</kbd></td>
+                    <td>Next page</td>
+                  </tr>
+                  <tr>
+                    <td class="prev shortcut"><kbd>p</kbd></td>
+                    <td>Previous page</td>
+                  </tr>
+                  <tr>
+                    <td class="search shortcut"><kbd>s</kbd></td>
+                    <td>Search</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>
+
+    </body>
+</html>

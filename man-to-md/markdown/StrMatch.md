@@ -1,5 +1,3 @@
-\
-
 # NAME
 
 Tcl_StringMatch, Tcl_StringCaseMatch - test whether a string matches a
@@ -7,13 +5,11 @@ pattern
 
 # SYNOPSIS
 
-    #include <tcl.h>
+**#include \<tcl.h\>**
 
-    int
-    Tcl_StringMatch(str, pattern)
+int **Tcl_StringMatch**(*str*, *pattern*)
 
-    int
-    Tcl_StringCaseMatch(str, pattern, flags)
+int **Tcl_StringCaseMatch**(*str*, *pattern*, *flags*)
 
 # ARGUMENTS
 
@@ -24,8 +20,6 @@ set \*?\\\[\].
 
 OR-ed combination of match flags, currently only **TCL_MATCH_NOCASE**. 0
 specifies a case-sensitive search.
-
-\
 
 # DESCRIPTION
 
@@ -44,3 +38,9 @@ essentially matched in the lower case.
 # KEYWORDS
 
 match, pattern, string
+
+<!---
+Copyright (c) 1989-1993 The Regents of the University of California
+Copyright (c) 1994-1996 Sun Microsystems, Inc
+-->
+

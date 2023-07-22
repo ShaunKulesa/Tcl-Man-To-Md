@@ -1,5 +1,3 @@
-\
-
 # NAME
 
 registry - Manipulate the Windows registry
@@ -9,8 +7,6 @@ registry - Manipulate the Windows registry
 **package require registry 1.3**
 
 **registry **?*-mode*? *option* *keyName* ?*arg arg \...*?
-
-\
 
 # DESCRIPTION
 
@@ -204,3 +200,9 @@ interpreter:
 # KEYWORDS
 
 registry
+
+<!---
+Copyright (c) 1997 Sun Microsystems, Inc
+Copyright (c) 2002 ActiveState Corporation
+-->
+

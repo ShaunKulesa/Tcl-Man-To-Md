@@ -1,5 +1,3 @@
-\
-
 # NAME
 
 lmap - Iterate over all elements in one or more lists and collect
@@ -9,8 +7,6 @@ results
 
 **lmap ***varname list body*\
 **lmap ***varlist1 list1* ?*varlist2 list2 \...*? *body*
-
-\
 
 # DESCRIPTION
 
@@ -77,3 +73,8 @@ break(n), continue(n), for(n), foreach(n), while(n)
 # KEYWORDS
 
 foreach, iteration, list, loop, map
+
+<!---
+Copyright (c) 2012 Trevor Dave
+-->
+

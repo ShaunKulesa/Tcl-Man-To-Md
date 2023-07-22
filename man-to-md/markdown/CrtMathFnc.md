@@ -1,5 +1,3 @@
-\
-
 # NAME
 
 Tcl_CreateMathFunc, Tcl_GetMathFuncInfo, Tcl_ListMathFuncs - Define,
@@ -15,17 +13,15 @@ page is not expected to be maintained indefinitely.
 
 # SYNOPSIS
 
-    #include <tcl.h>
+**#include \<tcl.h\>**
 
-    void
-    Tcl_CreateMathFunc(interp, name, numArgs, argTypes, proc, clientData)
+void **Tcl_CreateMathFunc**(*interp, name, numArgs, argTypes, proc,
+clientData*)
 
-    int
-    Tcl_GetMathFuncInfo(interp, name, numArgsPtr, argTypesPtr, procPtr,
-                        clientDataPtr)
+int **Tcl_GetMathFuncInfo**(*interp, name, numArgsPtr, argTypesPtr,
+procPtr,* clientDataPtr)
 
-    Tcl_Obj *
-    Tcl_ListMathFuncs(interp, pattern)
+Tcl_Obj \* **Tcl_ListMathFuncs**(*interp, pattern*)
 
 # ARGUMENTS
 
@@ -60,8 +56,6 @@ function is not implemented directly in bytecode.
 
 Pattern to match against function names so as to filter them (by passing
 to *Tcl_StringMatch*), or NULL to not apply any filter.
-
-\
 
 # DESCRIPTION
 
@@ -153,3 +147,9 @@ Tcl_NewListObj(3)
 # KEYWORDS
 
 expression, mathematical function
+
+<!---
+Copyright (c) 1989-1993 The Regents of the University of California
+Copyright (c) 1994-1996 Sun Microsystems, Inc
+-->
+

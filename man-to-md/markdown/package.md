@@ -1,26 +1,17 @@
-\
-
 # NAME
 
 package - Facilities for package loading and version control
 
 # SYNOPSIS
 
-    package forget ?package package ...?
-    package ifneeded package version ?script?
-    package names
-    package present package ?requirement...?
-    package present -exact package version
-    package provide package ?version?
-    package require package ?requirement...?
-    package require -exact package version
-    package unknown ?command?
-    package vcompare version1 version2
-    package versions package
-    package vsatisfies version requirement...
-    package prefer ?latest|stable?
-
-\
+**package forget** ?*package package \...*? **package ifneeded
+***package version* ?*script*? **package names** **package present
+***package *?*requirement\...*? **package present -exact ***package
+version* **package provide ***package *?*version*? **package require
+***package *?*requirement\...*? **package require -exact ***package
+version* **package unknown **?*command*? **package vcompare ***version1
+version2* **package versions ***package* **package vsatisfies ***version
+requirement\...* **package prefer **?**latest**\|**stable**?
 
 # DESCRIPTION
 
@@ -294,3 +285,8 @@ msgcat(n), packagens(n), pkgMkIndex(n)
 # KEYWORDS
 
 package, version
+
+<!---
+Copyright (c) 1996 Sun Microsystems, Inc
+-->
+

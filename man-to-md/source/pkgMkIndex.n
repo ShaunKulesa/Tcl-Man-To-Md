@@ -11,9 +11,7 @@
 .SH NAME
 pkg_mkIndex \- Build an index for automatic loading of packages
 .SH SYNOPSIS
-.nf
 \fBpkg_mkIndex\fR ?\fIoptions...\fR? \fIdir\fR ?\fIpattern pattern ...\fR?
-.fi
 .BE
 .SH DESCRIPTION
 .PP

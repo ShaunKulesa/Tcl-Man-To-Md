@@ -1,5 +1,3 @@
-\
-
 # NAME
 
 Tcl_IsSafe, Tcl_MakeSafe, Tcl_CreateChild, Tcl_CreateSlave,
@@ -10,59 +8,41 @@ Tcl interpreters, aliases and hidden commands
 
 # SYNOPSIS
 
-    #include <tcl.h>
+**#include \<tcl.h\>**
 
-    int
-    Tcl_IsSafe(interp)
+int **Tcl_IsSafe**(*interp*)
 
-    int
-    Tcl_MakeSafe(interp)
+int **Tcl_MakeSafe**(*interp*)
 
-    Tcl_Interp *
-    Tcl_CreateChild(interp, name, isSafe)
+Tcl_Interp \* **Tcl_CreateChild**(*interp, name, isSafe*)
 
+Tcl_Interp \* **Tcl_CreateSlave**(*interp, name, isSafe*)
 
-    Tcl_Interp *
-    Tcl_CreateSlave(interp, name, isSafe)
+Tcl_Interp \* **Tcl_GetChild**(*interp, name*)
 
-    Tcl_Interp *
-    Tcl_GetChild(interp, name)
+Tcl_Interp \* **Tcl_GetSlave**(*interp, name*)
 
+Tcl_Interp \* **Tcl_GetParent**(*interp*)
 
-    Tcl_Interp *
-    Tcl_GetSlave(interp, name)
+Tcl_Interp \* **Tcl_GetMaster**(*interp*)
 
-    Tcl_Interp *
-    Tcl_GetParent(interp)
+int **Tcl_GetInterpPath**(*interp, childInterp*)
 
+int **Tcl_CreateAlias**(*childInterp, childCmd, targetInterp,
+targetCmd,* argc, argv)
 
-    Tcl_Interp *
-    Tcl_GetMaster(interp)
+int **Tcl_CreateAliasObj**(*childInterp, childCmd, targetInterp,
+targetCmd,* objc, objv)
 
-    int
-    Tcl_GetInterpPath(interp, childInterp)
+int **Tcl_GetAlias**(*interp, childCmd, targetInterpPtr, targetCmdPtr,*
+argcPtr, argvPtr)
 
-    int
-    Tcl_CreateAlias(childInterp, childCmd, targetInterp, targetCmd,
-                    argc, argv)
+int **Tcl_GetAliasObj**(*interp, childCmd, targetInterpPtr,
+targetCmdPtr,* objcPtr, objvPtr)
 
-    int
-    Tcl_CreateAliasObj(childInterp, childCmd, targetInterp, targetCmd,
-                       objc, objv)
+int **Tcl_ExposeCommand**(*interp, hiddenCmdName, cmdName*)
 
-    int
-    Tcl_GetAlias(interp, childCmd, targetInterpPtr, targetCmdPtr,
-                 argcPtr, argvPtr)
-
-    int
-    Tcl_GetAliasObj(interp, childCmd, targetInterpPtr, targetCmdPtr,
-                    objcPtr, objvPtr)
-
-    int
-    Tcl_ExposeCommand(interp, hiddenCmdName, cmdName)
-
-    int
-    Tcl_HideCommand(interp, cmdName, hiddenCmdName)
+int **Tcl_HideCommand**(*interp, cmdName, hiddenCmdName*)
 
 # ARGUMENTS
 
@@ -117,8 +97,6 @@ Name of an exposed command to hide or create.
 
 Name under which a hidden command is stored and with which it can be
 exposed or invoked.
-
-\
 
 # DESCRIPTION
 
@@ -237,3 +215,8 @@ interp
 
 alias, command, exposed commands, hidden commands, interpreter, invoke,
 parent, child
+
+<!---
+Copyright (c) 1995-1996 Sun Microsystems, Inc
+-->
+

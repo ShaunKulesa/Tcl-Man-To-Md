@@ -1,5 +1,3 @@
-\
-
 # NAME
 
 incr - Increment the value of a variable
@@ -7,8 +5,6 @@ incr - Increment the value of a variable
 # SYNOPSIS
 
 **incr ***varName *?*increment*?
-
-\
 
 # DESCRIPTION
 
@@ -51,3 +47,9 @@ expr(n), set(n)
 # KEYWORDS
 
 add, increment, variable, value
+
+<!---
+Copyright (c) 1993 The Regents of the University of California
+Copyright (c) 1994-1996 Sun Microsystems, Inc
+-->
+

@@ -1,5 +1,3 @@
-\
-
 # NAME
 
 Tcl_GetIndexFromObj, Tcl_GetIndexFromObjStruct - lookup string in table
@@ -7,15 +5,13 @@ of keywords
 
 # SYNOPSIS
 
-    #include <tcl.h>
+**#include \<tcl.h\>**
 
-    int
-    Tcl_GetIndexFromObj(interp, objPtr, tablePtr, msg, flags,
-    indexPtr)
+int **Tcl_GetIndexFromObj**(*interp, objPtr, tablePtr, msg, flags,*
+indexPtr)
 
-    int
-    Tcl_GetIndexFromObjStruct(interp, objPtr, structTablePtr, offset,
-                              msg, flags, indexPtr)
+int **Tcl_GetIndexFromObjStruct**(*interp, objPtr, structTablePtr,
+offset,* msg, flags, indexPtr)
 
 # ARGUMENTS
 
@@ -49,8 +45,6 @@ operation. The only bit that is currently defined is **TCL_EXACT**.
 
 The index of the string in *tablePtr* that matches the value of *objPtr*
 is returned here.
-
-\
 
 # DESCRIPTION
 
@@ -98,3 +92,8 @@ prefix(n), Tcl_WrongNumArgs(3)
 # KEYWORDS
 
 index, option, value, table lookup
+
+<!---
+Copyright (c) 1997 Sun Microsystems, Inc
+-->
+

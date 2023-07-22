@@ -10,7 +10,6 @@
 .SH NAME
 Tcl_ParseArgsObjv \- parse arguments according to a tabular description
 .SH SYNOPSIS
-.nf
 \fB#include <tcl.h>\fR
 .sp
 int
@@ -77,7 +76,7 @@ Marks the end of the table of argument descriptors.
 Each entry of the argument descriptor table must be a structure of type
 \fBTcl_ArgvInfo\fR. The structure is defined as this:
 .PP
-.nf
+.CS
 typedef struct {
     int \fItype\fR;
     const char *\fIkeyStr\fR;
@@ -86,7 +85,7 @@ typedef struct {
     const char *\fIhelpStr\fR;
     ClientData \fIclientData\fR;
 } \fBTcl_ArgvInfo\fR;
-.fi
+.CE
 .PP
 The \fIkeyStr\fR field contains the name of the option; by convention, this
 will normally begin with a
@@ -125,12 +124,12 @@ handler callback function passed in \fIsrcPtr\fR to decide. That function will
 have the following signature:
 .RS
 .PP
-.nf
+.CS
 typedef int (\fBTcl_ArgvFuncProc\fR)(
         ClientData \fIclientData\fR,
         Tcl_Obj *\fIobjPtr\fR,
         void *\fIdstPtr\fR);
-.fi
+.CE
 .PP
 The result is a boolean value indicating whether to consume the following
 argument. The \fIclientData\fR is the value from the table entry, the
@@ -147,14 +146,14 @@ signal an error, in which case it should also set the interpreter result). The
 function will have the following signature:
 .RS
 .PP
-.nf
+.CS
 typedef int (\fBTcl_ArgvGenFuncProc\fR)(
         ClientData \fIclientData\fR,
         Tcl_Interp *\fIinterp\fR,
         int \fIobjc\fR,
         Tcl_Obj *const *\fIobjv\fR,
         void *\fIdstPtr\fR);
-.fi
+.CE
 .PP
 The \fIclientData\fR is the value from the table entry, the \fIinterp\fR is
 where to store any error messages, the \fIkeyStr\fR is the name of the

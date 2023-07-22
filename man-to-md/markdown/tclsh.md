@@ -1,5 +1,3 @@
-\
-
 # NAME
 
 tclsh - Simple shell containing Tcl interpreter
@@ -7,8 +5,6 @@ tclsh - Simple shell containing Tcl interpreter
 # SYNOPSIS
 
 **tclsh** ?**-encoding ***name*? ?*fileName arg arg \...*?
-
-\
 
 # DESCRIPTION
 
@@ -132,3 +128,9 @@ auto_path(n), encoding(n), env(n), fconfigure(n)
 # KEYWORDS
 
 application, argument, interpreter, prompt, script file, shell
+
+<!---
+Copyright (c) 1993 The Regents of the University of California
+Copyright (c) 1994-1996 Sun Microsystems, Inc
+-->
+

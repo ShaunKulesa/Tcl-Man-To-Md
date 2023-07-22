@@ -40,7 +40,7 @@ refers to a variable in a non-existent namespace.
 Create an array containing a mapping from some numbers to their
 squares and remove the array elements for non-prime numbers:
 .PP
-.nf
+.CS
 array set squares {
     1 1    6 36
     2 4    7 49
@@ -57,7 +57,7 @@ parray squares
 
 puts "The prime squares are:"
 parray squares
-.fi
+.CE
 .SH "SEE ALSO"
 set(n), trace(n), upvar(n)
 .SH KEYWORDS

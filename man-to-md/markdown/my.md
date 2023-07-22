@@ -1,16 +1,12 @@
-\
-
 # NAME
 
 my - invoke any method of current object
 
 # SYNOPSIS
 
-    package require TclOO
+package require TclOO
 
-    my methodName ?arg ...?
-
-\
+**my*** methodName* ?*arg \...*?
 
 # DESCRIPTION
 
@@ -48,3 +44,8 @@ next(n), oo::object(n), self(n)
 # KEYWORDS
 
 method, method visibility, object, private method, public method
+
+<!---
+Copyright (c) 2007 Donal K. Fellow
+-->
+

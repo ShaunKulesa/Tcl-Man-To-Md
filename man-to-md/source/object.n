@@ -11,11 +11,9 @@
 .SH NAME
 oo::object \- root class of the class hierarchy
 .SH SYNOPSIS
-.nf
 package require TclOO
 
 \fBoo::object\fI method \fR?\fIarg ...\fR?
-.fi
 .SH "CLASS HIERARCHY"
 .nf
 \fBoo::object\fR
@@ -105,7 +103,7 @@ subclass.
 .PP
 This example demonstrates basic use of an object.
 .PP
-.nf
+.CS
 set obj [\fBoo::object\fR new]
 $obj foo             \fI\(-> error "unknown method foo"\fR
 oo::objdefine $obj method foo {} {
@@ -117,7 +115,7 @@ $obj foo             \fI\(-> prints "bar2"\fR
 $obj variable count  \fI\(-> error "unknown method variable"\fR
 $obj \fBdestroy\fR
 $obj foo             \fI\(-> error "unknown command obj"\fR
-.fi
+.CE
 .SH "SEE ALSO"
 my(n), oo::class(n)
 .SH KEYWORDS

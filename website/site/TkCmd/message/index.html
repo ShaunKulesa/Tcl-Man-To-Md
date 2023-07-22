@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+      <script>
+	// Hack for scrolling window when linking to anchor tag with fixed nav header
+        var shiftWindow = function() { scrollBy(0, -75) };
+        window.addEventListener("hashchange", shiftWindow);
+        function load() { if (window.location.hash) shiftWindow(); }
+      </script>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        
+        <link rel="canonical" href="https://www.tcl.tk/man/TkCmd/message/">
+        <link rel="shortcut icon" href="../../img/favicon.ico">
+        <title>Message - Tcl/Tk</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <link href="../../css/font-awesome.min.css" rel="stylesheet">
+    <link href="../../css/base.css" rel="stylesheet">
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+    <script src="../../js/base.js"></script> 
+    </head>
+
+    <body class="">
+
+      <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
+	<div class="container">
+	<a class="navbar-brand" href="../..">Tcl/Tk</a>
+	<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExample04" aria-controls="navbarsExample04" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+	</button>
+
+	<div class="collapse navbar-collapse">
+
+          <ul class="navbar-nav flex-row ml-md-auto d-none d-md-flex">
+            <li class="nav-item">
+              <a class="nav-link" href="#" data-toggle="modal" data-target="#mkdocs_search_modal">
+		<i class="fa fa-search"></i> Search
+              </a>
+            </li>
+          </ul>
+	</div>
+	</div>
+      </nav><div id="content" class="container">
+        
+      <div class="row">
+        <div class="col-md-9" role="main">
+
+
+<nav aria-label="breadcrumb">
+  <ol class="breadcrumb">
+    
+    <li class="breadcrumb-item active" aria-current="page">Message</li>
+  </ol>
+</nav>
+
+
+<p>\</p>
+<h1 id="name">NAME</h1>
+<p>message - Create and manipulate \'message\' non-interactive text widgets</p>
+<h1 id="synopsis">SYNOPSIS</h1>
+<p><strong>message</strong> <em>pathName </em>?<em>options</em>?</p>
+<h1 id="standard-options">STANDARD OPTIONS</h1>
+<div class="language-text highlight"><pre><span></span><code>-anchor -background -borderwidth
+-cursor -font   -foreground
+-highlightbackground    -highlightcolor -highlightthickness
+-padx   -pady   -relief
+-takefocus  -text   -textvariable
+</code></pre></div>
+<p>See the manual entry for details on the standard options.</p>
+<h1 id="widget-specific-options">WIDGET-SPECIFIC OPTIONS</h1>
+<div class="language-text highlight"><pre><span></span><code>Command-Line Name:  -aspect
+Database Name:  aspect
+Database Class: Aspect
+</code></pre></div>
+<blockquote>
+<p>Specifies a non-negative integer value indicating desired aspect ratio
+for the text. The aspect ratio is specified as 100*width/height. 100
+means the text should be as wide as it is tall, 200 means the text
+should be twice as wide as it is tall, 50 means the text should be
+twice as tall as it is wide, and so on. Used to choose line length for
+text if <strong>-width</strong> option is not specified. Defaults to 150.</p>
+</blockquote>
+<div class="language-text highlight"><pre><span></span><code>Command-Line Name:  -justify
+Database Name:  justify
+Database Class: Justify
+</code></pre></div>
+<blockquote>
+<p>Specifies how to justify lines of text. Must be one of <strong>left</strong>,
+<strong>center</strong>, or <strong>right</strong>. Defaults to <strong>left</strong>. This option works
+together with the <strong>-anchor</strong>, <strong>-aspect</strong>, <strong>-padx</strong>, <strong>-pady</strong>, and
+<strong>-width</strong> options to provide a variety of arrangements of the text
+within the window. The <strong>-aspect</strong> and <strong>-width</strong> options determine
+the amount of screen space needed to display the text. The
+<strong>-anchor</strong>, <strong>-padx</strong>, and <strong>-pady</strong> options determine where this
+rectangular area is displayed within the widget\'s window, and the
+<strong>-justify</strong> option determines how each line is displayed within that
+rectangular region. For example, suppose <strong>-anchor</strong> is <strong>e</strong> and
+<strong>-justify</strong> is <strong>left</strong>, and that the message window is much larger
+than needed for the text. The text will be displayed so that the left
+edges of all the lines line up and the right edge of the longest line
+is <strong>-padx</strong> from the right side of the window; the entire text block
+will be centered in the vertical span of the window.</p>
+</blockquote>
+<div class="language-text highlight"><pre><span></span><code>Command-Line Name:  -width
+Database Name:  width
+Database Class: Width
+</code></pre></div>
+<blockquote>
+<p>Specifies the length of lines in the window. The value may have any of
+the forms acceptable to <strong>Tk_GetPixels</strong>. If this option has a value
+greater than zero then the <strong>-aspect</strong> option is ignored and the
+<strong>-width</strong> option determines the line length. If this option has a
+value less than or equal to zero, then the <strong>-aspect</strong> option
+determines the line length.</p>
+</blockquote>
+<p>\</p>
+<h1 id="description">DESCRIPTION</h1>
+<p>The <strong>message</strong> command creates a new window (given by the <em>pathName</em>
+argument) and makes it into a message widget. Additional options,
+described above, may be specified on the command line or in the option
+database to configure aspects of the message such as its colors, font,
+text, and initial relief. The <strong>message</strong> command returns its <em>pathName</em>
+argument. At the time this command is invoked, there must not exist a
+window named <em>pathName</em>, but <em>pathName</em>\'s parent must exist.</p>
+<p>A message is a widget that displays a textual string. A message widget
+has three special features that differentiate it from a <strong>label</strong>
+widget. First, it breaks up its string into lines in order to produce a
+given aspect ratio for the window. The line breaks are chosen at word
+boundaries wherever possible (if not even a single word would fit on a
+line, then the word will be split across lines). Newline characters in
+the string will force line breaks; they can be used, for example, to
+leave blank lines in the display.</p>
+<p>The second feature of a message widget is justification. The text may be
+displayed left-justified (each line starts at the left side of the
+window), centered on a line-by-line basis, or right-justified (each line
+ends at the right side of the window).</p>
+<p>The third feature of a message widget is that it handles control
+characters and non-printing characters specially. Tab characters are
+replaced with enough blank space to line up on the next 8-character
+boundary. Newlines cause line breaks. Other control characters (ASCII
+code less than 0x20) and characters not defined in the font are
+displayed as a four-character sequence <strong>\x</strong><em>hh</em> where <em>hh</em> is the
+two-digit hexadecimal number corresponding to the character. In the
+unusual case where the font does not contain all of the characters in
+then control characters and undefined characters are not displayed at
+all.</p>
+<h1 id="widget-command">WIDGET COMMAND</h1>
+<p>The <strong>message</strong> command creates a new Tcl command whose name is
+<em>pathName</em>. This command may be used to invoke various operations on the
+widget. It has the following general form:</p>
+<div class="language-text highlight"><pre><span></span><code>pathName option ?arg arg ...?
+</code></pre></div>
+<p><em>Option</em> and the <em>arg</em>s determine the exact behavior of the command. The
+following commands are possible for message widgets:</p>
+<p><em>pathName </em><strong>cget </strong><em>option</em></p>
+<p>:   Returns the current value of the configuration option given by
+    <em>option</em>. <em>Option</em> may have any of the values accepted by the
+    <strong>message</strong> command.</p>
+<p><em>pathName </em><strong>configure</strong> ?<em>option</em>? ?<em>value option value ...</em>?</p>
+<p>:   Query or modify the configuration options of the widget. If no
+    <em>option</em> is specified, returns a list describing all of the
+    available options for <em>pathName</em> (see <strong>Tk_ConfigureInfo</strong> for
+    information on the format of this list). If <em>option</em> is specified
+    with no <em>value</em>, then the command returns a list describing the one
+    named option (this list will be identical to the corresponding
+    sublist of the value returned if no <em>option</em> is specified). If one
+    or more <em>option-value</em> pairs are specified, then the command
+    modifies the given widget option(s) to have the given value(s); in
+    this case the command returns an empty string. <em>Option</em> may have any
+    of the values accepted by the <strong>message</strong> command.</p>
+<h1 id="default-bindings">DEFAULT BINDINGS</h1>
+<p>When a new message is created, it has no default event bindings:
+messages are intended for output purposes only.</p>
+<h1 id="bugs">BUGS</h1>
+<p>Tabs do not work very well with text that is centered or
+right-justified. The most common result is that the line is justified
+wrong.</p>
+<h1 id="see-also">SEE ALSO</h1>
+<p>label(n)</p>
+<h1 id="keywords">KEYWORDS</h1>
+<p>message, widget</p>
+
+<ul class="metadata page-metadata" data-bi-name="page info" lang="en-us" dir="ltr">
+  <li class="last-updated-holder displayDate loading">
+    <span class="last-updated-text">Last updated:</span>
+    <time role="presentation" datetime="2018-10-25T00:00:00.000Z" data-article-date-source="ms.date"></time>
+  </li>
+<!--
+  <li class="readingTime">
+    2 minutes to read
+  </li>
+-->
+  <li class="contributors-holder">
+    <span class="contributors-text">Contributors</span>
+    <ul class="contributors" data-bi-name="contributors"></ul>
+  </li>
+</ul>
+</div>
+        <div class="col-md-3"><div class="navbar-light navbar-expand-md hidden-print sticky-top sticky-offset" role="complementary">
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggler collapsed" data-toggle="collapse" data-target="#toc-collapse" title="Table of Contents">
+            <span class="fa fa-angle-down"></span>
+        </button>
+    </div>
+
+    <div id="toc-collapse" class="navbar-collapse collapse card">
+        <ul class="nav flex-column bs-sidenav">
+            <li class="nav-item main"><a class="nav-link" href="#name">NAME</a></li>
+            <li class="nav-item main"><a class="nav-link" href="#synopsis">SYNOPSIS</a></li>
+            <li class="nav-item main"><a class="nav-link" href="#standard-options">STANDARD OPTIONS</a></li>
+            <li class="nav-item main"><a class="nav-link" href="#widget-specific-options">WIDGET-SPECIFIC OPTIONS</a></li>
+            <li class="nav-item main"><a class="nav-link" href="#description">DESCRIPTION</a></li>
+            <li class="nav-item main"><a class="nav-link" href="#widget-command">WIDGET COMMAND</a></li>
+            <li class="nav-item main"><a class="nav-link" href="#default-bindings">DEFAULT BINDINGS</a></li>
+            <li class="nav-item main"><a class="nav-link" href="#bugs">BUGS</a></li>
+            <li class="nav-item main"><a class="nav-link" href="#see-also">SEE ALSO</a></li>
+            <li class="nav-item main"><a class="nav-link" href="#keywords">KEYWORDS</a></li>
+        </ul>
+    </div>
+</div></div>
+      </div>
+      </div>
+
+      <footer class="col-md-12">
+	<hr>
+	<div class="container">
+	</div>
+      </footer>
+      <script>
+	var base_url = "../..",
+            shortcuts = {"help": 191, "next": 78, "previous": 80, "search": 83};
+      </script>
+      <script src="../../js/base.js" defer></script>
+      <script src="../../search/main.js" defer></script>
+
+      <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="Search Modal" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Search</h4>
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            </div>
+            <div class="modal-body">
+                <p>
+                    From here you can search these documents. Enter
+                    your search terms below.
+                </p>
+                <form role="form">
+                    <div class="form-group">
+                        <input type="text" class="form-control" placeholder="Search..." id="mkdocs-search-query" title="Type search term here">
+                    </div>
+                </form>
+                <div id="mkdocs-search-results"></div>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div><div class="modal" id="mkdocs_keyboard_modal" tabindex="-1" role="dialog" aria-labelledby="Keyboard Shortcuts Modal" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <p class="h4 modal-title">Keyboard Shortcuts</p>
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            </div>
+            <div class="modal-body">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th style="width: 20%;">Keys</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="help shortcut"><kbd>?</kbd></td>
+                    <td>Open this help</td>
+                  </tr>
+                  <tr>
+                    <td class="next shortcut"><kbd>n</kbd></td>
+                    <td>Next page</td>
+                  </tr>
+                  <tr>
+                    <td class="prev shortcut"><kbd>p</kbd></td>
+                    <td>Previous page</td>
+                  </tr>
+                  <tr>
+                    <td class="search shortcut"><kbd>s</kbd></td>
+                    <td>Search</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>
+
+    </body>
+</html>

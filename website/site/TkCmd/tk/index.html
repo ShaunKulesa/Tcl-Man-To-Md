@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+      <script>
+	// Hack for scrolling window when linking to anchor tag with fixed nav header
+        var shiftWindow = function() { scrollBy(0, -75) };
+        window.addEventListener("hashchange", shiftWindow);
+        function load() { if (window.location.hash) shiftWindow(); }
+      </script>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        
+        <link rel="canonical" href="https://www.tcl.tk/man/TkCmd/tk/">
+        <link rel="shortcut icon" href="../../img/favicon.ico">
+        <title>Tk - Tcl/Tk</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <link href="../../css/font-awesome.min.css" rel="stylesheet">
+    <link href="../../css/base.css" rel="stylesheet">
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+    <script src="../../js/base.js"></script> 
+    </head>
+
+    <body class="">
+
+      <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
+	<div class="container">
+	<a class="navbar-brand" href="../..">Tcl/Tk</a>
+	<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExample04" aria-controls="navbarsExample04" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+	</button>
+
+	<div class="collapse navbar-collapse">
+
+          <ul class="navbar-nav flex-row ml-md-auto d-none d-md-flex">
+            <li class="nav-item">
+              <a class="nav-link" href="#" data-toggle="modal" data-target="#mkdocs_search_modal">
+		<i class="fa fa-search"></i> Search
+              </a>
+            </li>
+          </ul>
+	</div>
+	</div>
+      </nav><div id="content" class="container">
+        
+      <div class="row">
+        <div class="col-md-9" role="main">
+
+
+<nav aria-label="breadcrumb">
+  <ol class="breadcrumb">
+    
+    <li class="breadcrumb-item active" aria-current="page">Tk</li>
+  </ol>
+</nav>
+
+
+<p>\</p>
+<h1 id="name">NAME</h1>
+<p>tk - Manipulate Tk internal state</p>
+<h1 id="synopsis">SYNOPSIS</h1>
+<p><strong>tk</strong> <em>option </em>?<em>arg arg ...</em>?</p>
+<p>\</p>
+<h1 id="description">DESCRIPTION</h1>
+<p>The <strong>tk</strong> command provides access to miscellaneous elements of Tk\'s
+internal state. Most of the information manipulated by this command
+pertains to the application as a whole, or to a screen or display,
+rather than to a particular window. The command can take any of a number
+of different forms depending on the <em>option</em> argument. The legal forms
+are:</p>
+<p><strong>tk appname </strong>?<em>newName</em>?</p>
+<p>:   If <em>newName</em> is not specified, this command returns the name of the
+    application (the name that may be used in <strong>send</strong> commands to
+    communicate with the application). If <em>newName</em> is specified, then
+    the name of the application is changed to <em>newName</em>. If the given
+    name is already in use, then a suffix of the form or is appended in
+    order to make the name unique. The command\'s result is the name
+    actually chosen. <em>newName</em> should not start with a capital letter.
+    This will interfere with option processing, since names starting
+    with capitals are assumed to be classes; as a result, Tk may not be
+    able to find some options for the application. If sends have been
+    disabled by deleting the <strong>send</strong> command, this command will
+    reenable them and recreate the <strong>send</strong> command.</p>
+<p><strong>tk busy </strong><em>subcommand</em> ...</p>
+<p>:   This command controls the marking of window hierarchies as rendering
+    them non-interactive while some other operation is proceeding. For
+    more details see the <strong>busy</strong> manual page.</p>
+<p><strong>tk caret </strong><em>window </em>?<strong>-x </strong><em>x</em>? ?<strong>-y </strong><em>y</em>? ?<strong>-height </strong><em>height</em>?</p>
+<p>:   Sets and queries the caret location for the display of the specified
+    Tk window <em>window</em>. The caret is the per-display cursor location
+    used for indicating global focus (e.g. to comply with Microsoft
+    Accessibility guidelines), as well as for location of the
+    over-the-spot XIM (X Input Methods) or Windows IME windows. If no
+    options are specified, the last values used for setting the caret
+    are return in option-value pair format. <strong>-x</strong> and <strong>-y</strong> represent
+    window-relative coordinates, and <strong>-height</strong> is the height of the
+    current cursor location, or the height of the specified <em>window</em> if
+    none is given.</p>
+<p><strong>tk inactive </strong>?<strong>-displayof </strong><em>window</em>? ?<strong>reset</strong>?</p>
+<p>:   Returns a positive integer, the number of milliseconds since the
+    last time the user interacted with the system. If the <strong>-displayof</strong>
+    option is given then the return value refers to the display of
+    <em>window</em>; otherwise it refers to the display of the application\'s
+    main window.</p>
+<div class="language-text highlight"><pre><span></span><code>**tk inactive** will return -1, if querying the user inactive time
+is not supported by the system, and in safe interpreters.
+
+If the literal string **reset** is given as an additional argument,
+the timer is reset and an empty string is returned. Resetting the
+inactivity time is forbidden in safe interpreters and will throw an
+error if tried.
+</code></pre></div>
+<p><strong>tk fontchooser </strong><em>subcommand</em> ...</p>
+<p>:   Controls the Tk font selection dialog. For more details see the
+    <strong>fontchooser</strong> manual page.</p>
+<p><strong>tk scaling </strong>?<strong>-displayof </strong><em>window</em>? ?<em>number</em>?</p>
+<p>:   Sets and queries the current scaling factor used by Tk to convert
+    between physical units (for example, points, inches, or millimeters)
+    and pixels. The <em>number</em> argument is a floating point number that
+    specifies the number of pixels per point on <em>window</em>\'s display. If
+    the <em>window</em> argument is omitted, it defaults to the main window. If
+    the <em>number</em> argument is omitted, the current value of the scaling
+    factor is returned.</p>
+<div class="language-text highlight"><pre><span></span><code>A is a unit of measurement equal to 1/72 inch. A scaling factor of
+1.0 corresponds to 1 pixel per point, which is equivalent to a
+standard 72 dpi monitor. A scaling factor of 1.25 would mean 1.25
+pixels per point, which is the setting for a 90 dpi monitor; setting
+the scaling factor to 1.25 on a 72 dpi monitor would cause
+everything in the application to be displayed 1.25 times as large as
+normal. The initial value for the scaling factor is set when the
+application starts, based on properties of the installed monitor,
+but it can be changed at any time. Measurements made after the
+scaling factor is changed will use the new scaling factor, but it is
+undefined whether existing widgets will resize themselves
+dynamically to accommodate the new scaling factor.
+</code></pre></div>
+<p><strong>tk useinputmethods </strong>?<strong>-displayof </strong><em>window</em>? ?<em>boolean</em>?</p>
+<p>:   Sets and queries the state of whether Tk should use XIM (X Input
+    Methods) for filtering events. The resulting state is returned. XIM
+    is used in some locales (i.e., Japanese, Korean), to handle special
+    input devices. This feature is only significant on X. If XIM support
+    is not available, this will always return 0. If the <em>window</em>
+    argument is omitted, it defaults to the main window. If the
+    <em>boolean</em> argument is omitted, the current state is returned. This
+    is turned on by default for the main display.</p>
+<p><strong>tk windowingsystem</strong></p>
+<p>:   Returns the current Tk windowing system, one of <strong>x11</strong> (X11-based),
+    <strong>win32</strong> (MS Windows), or <strong>aqua</strong> (Mac OS X Aqua).</p>
+<h1 id="see-also">SEE ALSO</h1>
+<p>busy(n), fontchooser(n), send(n), winfo(n)</p>
+<h1 id="keywords">KEYWORDS</h1>
+<p>application name, send</p>
+
+<ul class="metadata page-metadata" data-bi-name="page info" lang="en-us" dir="ltr">
+  <li class="last-updated-holder displayDate loading">
+    <span class="last-updated-text">Last updated:</span>
+    <time role="presentation" datetime="2018-10-25T00:00:00.000Z" data-article-date-source="ms.date"></time>
+  </li>
+<!--
+  <li class="readingTime">
+    2 minutes to read
+  </li>
+-->
+  <li class="contributors-holder">
+    <span class="contributors-text">Contributors</span>
+    <ul class="contributors" data-bi-name="contributors"></ul>
+  </li>
+</ul>
+</div>
+        <div class="col-md-3"><div class="navbar-light navbar-expand-md hidden-print sticky-top sticky-offset" role="complementary">
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggler collapsed" data-toggle="collapse" data-target="#toc-collapse" title="Table of Contents">
+            <span class="fa fa-angle-down"></span>
+        </button>
+    </div>
+
+    <div id="toc-collapse" class="navbar-collapse collapse card">
+        <ul class="nav flex-column bs-sidenav">
+            <li class="nav-item main"><a class="nav-link" href="#name">NAME</a></li>
+            <li class="nav-item main"><a class="nav-link" href="#synopsis">SYNOPSIS</a></li>
+            <li class="nav-item main"><a class="nav-link" href="#description">DESCRIPTION</a></li>
+            <li class="nav-item main"><a class="nav-link" href="#see-also">SEE ALSO</a></li>
+            <li class="nav-item main"><a class="nav-link" href="#keywords">KEYWORDS</a></li>
+        </ul>
+    </div>
+</div></div>
+      </div>
+      </div>
+
+      <footer class="col-md-12">
+	<hr>
+	<div class="container">
+	</div>
+      </footer>
+      <script>
+	var base_url = "../..",
+            shortcuts = {"help": 191, "next": 78, "previous": 80, "search": 83};
+      </script>
+      <script src="../../js/base.js" defer></script>
+      <script src="../../search/main.js" defer></script>
+
+      <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="Search Modal" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Search</h4>
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            </div>
+            <div class="modal-body">
+                <p>
+                    From here you can search these documents. Enter
+                    your search terms below.
+                </p>
+                <form role="form">
+                    <div class="form-group">
+                        <input type="text" class="form-control" placeholder="Search..." id="mkdocs-search-query" title="Type search term here">
+                    </div>
+                </form>
+                <div id="mkdocs-search-results"></div>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div><div class="modal" id="mkdocs_keyboard_modal" tabindex="-1" role="dialog" aria-labelledby="Keyboard Shortcuts Modal" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <p class="h4 modal-title">Keyboard Shortcuts</p>
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            </div>
+            <div class="modal-body">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th style="width: 20%;">Keys</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="help shortcut"><kbd>?</kbd></td>
+                    <td>Open this help</td>
+                  </tr>
+                  <tr>
+                    <td class="next shortcut"><kbd>n</kbd></td>
+                    <td>Next page</td>
+                  </tr>
+                  <tr>
+                    <td class="prev shortcut"><kbd>p</kbd></td>
+                    <td>Previous page</td>
+                  </tr>
+                  <tr>
+                    <td class="search shortcut"><kbd>s</kbd></td>
+                    <td>Search</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>
+
+    </body>
+</html>

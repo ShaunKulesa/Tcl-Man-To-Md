@@ -107,10 +107,10 @@ The two forms may be mixed, so \fB\-types {d f r w}\fR will find all
 regular files OR directories that have both read AND write permissions.
 The following are equivalent:
 .PP
-.nf
+.CS
 \fBglob \-type d *\fR
 \fBglob */\fR
-.fi
+.CE
 .PP
 except that the first case doesn't return the trailing
 .QW /
@@ -231,22 +231,22 @@ or
 .PP
 Find all the Tcl files in the current directory:
 .PP
-.nf
+.CS
 \fBglob\fR *.tcl
-.fi
+.CE
 .PP
 Find all the Tcl files in the user's home directory, irrespective of
 what the current directory is:
 .PP
-.nf
+.CS
 \fBglob\fR \-directory ~ *.tcl
-.fi
+.CE
 .PP
 Find all subdirectories of the current directory:
 .PP
-.nf
+.CS
 \fBglob\fR \-type d *
-.fi
+.CE
 .PP
 Find all files whose name contains an
 .QW a ,
@@ -255,9 +255,9 @@ a
 or the sequence
 .QW cde :
 .PP
-.nf
+.CS
 \fBglob\fR \-type f *{a,b,cde}*
-.fi
+.CE
 .SH "SEE ALSO"
 file(n)
 .SH KEYWORDS

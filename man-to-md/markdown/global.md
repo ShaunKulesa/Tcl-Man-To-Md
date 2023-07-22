@@ -1,5 +1,3 @@
-\
-
 # NAME
 
 global - Access global variables
@@ -7,8 +5,6 @@ global - Access global variables
 # SYNOPSIS
 
 **global **?*varname \...*?
-
-\
 
 # DESCRIPTION
 
@@ -53,3 +49,9 @@ namespace(n), upvar(n), variable(n)
 # KEYWORDS
 
 global, namespace, procedure, variable
+
+<!---
+Copyright (c) 1993 The Regents of the University of California
+Copyright (c) 1994-1997 Sun Microsystems, Inc
+-->
+

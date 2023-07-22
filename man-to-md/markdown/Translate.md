@@ -1,5 +1,3 @@
-\
-
 # NAME
 
 Tcl_TranslateFileName - convert file name to native form and replace
@@ -7,10 +5,9 @@ tilde with home directory
 
 # SYNOPSIS
 
-    #include <tcl.h>
+**#include \<tcl.h\>**
 
-    char *
-    Tcl_TranslateFileName(interp, name, bufferPtr)
+char \* **Tcl_TranslateFileName**(*interp*, *name*, *bufferPtr*)
 
 # ARGUMENTS
 
@@ -21,8 +18,6 @@ File name, which may start with a
 If needed, this dynamic string is used to store the new file name. At
 the time of the call it should be uninitialized or free. The caller must
 eventually call **Tcl_DStringFree** to free up anything stored here.
-
-\
 
 # DESCRIPTION
 
@@ -64,3 +59,9 @@ filename(n)
 # KEYWORDS
 
 file name, home directory, tilde, translate, user
+
+<!---
+Copyright (c) 1989-1993 The Regents of the University of California
+Copyright (c) 1994-1998 Sun Microsystems, Inc
+-->
+

@@ -1,5 +1,3 @@
-\
-
 # NAME
 
 Tcl_AsyncCreate, Tcl_AsyncMark, Tcl_AsyncInvoke, Tcl_AsyncDelete,
@@ -7,20 +5,17 @@ Tcl_AsyncReady - handle asynchronous events
 
 # SYNOPSIS
 
-    #include <tcl.h>
+**#include \<tcl.h\>**
 
-    Tcl_AsyncHandler
-    Tcl_AsyncCreate(proc, clientData)
+Tcl_AsyncHandler **Tcl_AsyncCreate**(*proc, clientData*)
 
-    Tcl_AsyncMark(async)
+**Tcl_AsyncMark**(*async*)
 
-    int
-    Tcl_AsyncInvoke(interp, code)
+int **Tcl_AsyncInvoke**(*interp, code*)
 
-    Tcl_AsyncDelete(async)
+**Tcl_AsyncDelete**(*async*)
 
-    int
-    Tcl_AsyncReady()
+int **Tcl_AsyncReady**()
 
 # ARGUMENTS
 
@@ -36,8 +31,6 @@ active.
 
 Completion code from command that just completed in *interp*, or 0 if
 *interp* is NULL.
-
-\
 
 # DESCRIPTION
 
@@ -137,3 +130,9 @@ state by calling **Tcl_RestoreInterpState**, and then returning the
 # KEYWORDS
 
 asynchronous event, handler, signal, Tcl_SaveInterpState, thread
+
+<!---
+Copyright (c) 1989-1993 The Regents of the University of California
+Copyright (c) 1994-1996 Sun Microsystems, Inc
+-->
+

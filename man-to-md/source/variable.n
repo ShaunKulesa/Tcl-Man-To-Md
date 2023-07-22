@@ -62,15 +62,15 @@ elements within the array can be set using ordinary
 .PP
 Create a variable in a namespace:
 .PP
-.nf
+.CS
 namespace eval foo {
     \fBvariable\fR bar 12345
 }
-.fi
+.CE
 .PP
 Create an array in a namespace:
 .PP
-.nf
+.CS
 namespace eval someNS {
     \fBvariable\fR someAry
     array set someAry {
@@ -78,11 +78,11 @@ namespace eval someNS {
         otherName otherValue
     }
 }
-.fi
+.CE
 .PP
 Access variables in namespaces from a procedure:
 .PP
-.nf
+.CS
 namespace eval foo {
     proc spong {} {
         # Variable in this namespace
@@ -94,7 +94,7 @@ namespace eval foo {
         parray someAry
     }
 }
-.fi
+.CE
 .SH "SEE ALSO"
 global(n), namespace(n), upvar(n)
 .SH KEYWORDS

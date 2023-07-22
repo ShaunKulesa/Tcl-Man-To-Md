@@ -31,7 +31,7 @@ All process identifiers are returned as decimal strings.
 Print process information about the processes in a pipeline using the
 SysV \fBps\fR program before reading the output of that pipeline:
 .PP
-.nf
+.CS
 set pipeline [open "| zcat somefile.gz | grep foobar | sort -u"]
 # Print process information
 exec ps -fp [\fBpid\fR $pipeline] >@stdout
@@ -39,7 +39,7 @@ exec ps -fp [\fBpid\fR $pipeline] >@stdout
 puts [string repeat - 70]
 puts [read $pipeline]
 close $pipeline
-.fi
+.CE
 
 .SH "SEE ALSO"
 exec(n), open(n)

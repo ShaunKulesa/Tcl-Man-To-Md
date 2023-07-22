@@ -685,7 +685,7 @@ its class, superclasses or mixins).
 This command prints out a procedure suitable for saving in a Tcl
 script:
 .PP
-.nf
+.CS
 proc printProc {procName} {
     set result [list proc $procName]
     set formals {}
@@ -700,26 +700,26 @@ proc printProc {procName} {
     }
     puts [lappend result $formals [\fBinfo body\fR $procName]]
 }
-.fi
+.CE
 .SS "EXAMPLES WITH OBJECTS"
 .VS 8.6
 .PP
 Every object necessarily knows what its class is; this information is
 trivially extractable through introspection:
 .PP
-.nf
+.CS
 oo::class create c
 c create o
 puts [\fBinfo object class\fR o]
                      \fI\(-> prints "::c"\fR
 puts [\fBinfo object class\fR c]
                      \fI\(-> prints "::oo::class"\fR
-.fi
+.CE
 .PP
 The introspection capabilities can be used to discover what class implements a
 method and get how it is defined. This procedure illustrates how:
 .PP
-.nf
+.CS
 proc getDef {obj method} {
     foreach inf [\fBinfo object call\fR $obj $method] {
         lassign $inf calltype name locus methodtype
@@ -733,7 +733,7 @@ proc getDef {obj method} {
     }
     error "no definition for $method"
 }
-.fi
+.CE
 .PP
 This is an alternate way of looking up the definition; it is implemented by
 manually scanning the list of methods up the inheritance tree. This code
@@ -741,7 +741,7 @@ assumes that only single inheritance is in use, and that there is no complex
 use of mixed-in classes (in such cases, using \fBinfo object call\fR as above
 is the simplest way of doing this by far):
 .PP
-.nf
+.CS
 proc getDef {obj method} {
     if {$method in [\fBinfo object methods\fR $obj]} {
         # Assume no forwards
@@ -758,7 +758,7 @@ proc getDef {obj method} {
     # Assume no forwards
     return [\fBinfo class definition\fR $cls $method]
 }
-.fi
+.CE
 .VE 8.6
 .SH "SEE ALSO"
 .VS 8.6

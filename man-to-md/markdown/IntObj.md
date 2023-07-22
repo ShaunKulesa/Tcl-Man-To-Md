@@ -1,5 +1,3 @@
-\
-
 # NAME
 
 Tcl_NewIntObj, Tcl_NewLongObj, Tcl_NewWideIntObj, Tcl_SetIntObj,
@@ -10,48 +8,37 @@ manipulate Tcl values as integers
 
 # SYNOPSIS
 
-    #include <tcl.h>
+**#include \<tcl.h\>**
 
-    Tcl_Obj *
-    Tcl_NewIntObj(intValue)
+Tcl_Obj \* **Tcl_NewIntObj**(*intValue*)
 
-    Tcl_Obj *
-    Tcl_NewLongObj(longValue)
+Tcl_Obj \* **Tcl_NewLongObj**(*longValue*)
 
-    Tcl_Obj *
-    Tcl_NewWideIntObj(wideValue)
+Tcl_Obj \* **Tcl_NewWideIntObj**(*wideValue*)
 
-    Tcl_SetIntObj(objPtr, intValue)
+**Tcl_SetIntObj**(*objPtr, intValue*)
 
-    Tcl_SetLongObj(objPtr, longValue)
+**Tcl_SetLongObj**(*objPtr, longValue*)
 
-    Tcl_SetWideIntObj(objPtr, wideValue)
+**Tcl_SetWideIntObj**(*objPtr, wideValue*)
 
-    int
-    Tcl_GetIntFromObj(interp, objPtr, intPtr)
+int **Tcl_GetIntFromObj**(*interp, objPtr, intPtr*)
 
-    int
-    Tcl_GetLongFromObj(interp, objPtr, longPtr)
+int **Tcl_GetLongFromObj**(*interp, objPtr, longPtr*)
 
-    int
-    Tcl_GetWideIntFromObj(interp, objPtr, widePtr)
+int **Tcl_GetWideIntFromObj**(*interp, objPtr, widePtr*)
 
+**#include \<tclTomMath.h\>**
 
-    #include <tclTomMath.h>
+Tcl_Obj \* **Tcl_NewBignumObj**(*bigValue*)
 
-    Tcl_Obj *
-    Tcl_NewBignumObj(bigValue)
+**Tcl_SetBignumObj**(*objPtr, bigValue*)
 
-    Tcl_SetBignumObj(objPtr, bigValue)
+int **Tcl_GetBignumFromObj**(*interp, objPtr, bigValue*)
 
-    int
-    Tcl_GetBignumFromObj(interp, objPtr, bigValue)
+int **Tcl_TakeBignumFromObj**(*interp, objPtr, bigValue*)
 
-    int
-    Tcl_TakeBignumFromObj(interp, objPtr, bigValue)
-
-    int
-    Tcl_InitBignumFromDouble(interp, doubleValue, bigValue)
+int **Tcl_InitBignumFromDouble**(*interp, doubleValue, bigValue*)
 
 # ARGUMENTS
 
@@ -82,8 +69,6 @@ library.
 
 Double value from which the integer part is determined and used to
 initialize a multi-precision integer value.
-
-\
 
 # DESCRIPTION
 
@@ -153,3 +138,8 @@ Tcl_NewObj, Tcl_DecrRefCount, Tcl_IncrRefCount, Tcl_GetObjResult
 
 integer, integer value, integer type, internal representation, value,
 value type, string representation
+
+<!---
+Copyright (c) 1996-1997 Sun Microsystems, Inc
+-->
+

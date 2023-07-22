@@ -11,7 +11,6 @@
 .SH NAME
 Tcl_GetStdChannel, Tcl_SetStdChannel \- procedures for retrieving and replacing the standard channels
 .SH SYNOPSIS
-.nf
 \fB#include <tcl.h>\fR
 .sp
 Tcl_Channel
@@ -54,9 +53,9 @@ set to NULL.
 If a non-NULL value for \fIchannel\fR is passed to \fBTcl_SetStdChannel\fR,
 then that same value should be passed to \fBTcl_RegisterChannel\fR, like so:
 .PP
-.nf
+.CS
 Tcl_RegisterChannel(NULL, channel);
-.fi
+.CE
 .PP
 This is a workaround for a misfeature in \fBTcl_SetStdChannel\fR that it
 fails to do some reference counting housekeeping.  This misfeature cannot

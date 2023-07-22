@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+      <script>
+	// Hack for scrolling window when linking to anchor tag with fixed nav header
+        var shiftWindow = function() { scrollBy(0, -75) };
+        window.addEventListener("hashchange", shiftWindow);
+        function load() { if (window.location.hash) shiftWindow(); }
+      </script>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        
+        <link rel="canonical" href="https://www.tcl.tk/man/TkLib/3DBorder/">
+        <link rel="shortcut icon" href="../../img/favicon.ico">
+        <title>3DBorder - Tcl/Tk</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <link href="../../css/font-awesome.min.css" rel="stylesheet">
+    <link href="../../css/base.css" rel="stylesheet">
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+    <script src="../../js/base.js"></script> 
+    </head>
+
+    <body class="">
+
+      <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
+	<div class="container">
+	<a class="navbar-brand" href="../..">Tcl/Tk</a>
+	<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExample04" aria-controls="navbarsExample04" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+	</button>
+
+	<div class="collapse navbar-collapse">
+
+          <ul class="navbar-nav flex-row ml-md-auto d-none d-md-flex">
+            <li class="nav-item">
+              <a class="nav-link" href="#" data-toggle="modal" data-target="#mkdocs_search_modal">
+		<i class="fa fa-search"></i> Search
+              </a>
+            </li>
+          </ul>
+	</div>
+	</div>
+      </nav><div id="content" class="container">
+        
+      <div class="row">
+        <div class="col-md-9" role="main">
+
+
+<nav aria-label="breadcrumb">
+  <ol class="breadcrumb">
+    
+    <li class="breadcrumb-item active" aria-current="page">3DBorder</li>
+  </ol>
+</nav>
+
+
+<p>\</p>
+<h1 id="name">NAME</h1>
+<p>Tk_Alloc3DBorderFromObj, Tk_Get3DBorder, Tk_Get3DBorderFromObj,
+Tk_Draw3DRectangle, Tk_Fill3DRectangle, Tk_Draw3DPolygon,
+Tk_Fill3DPolygon, Tk_3DVerticalBevel, Tk_3DHorizontalBevel,
+Tk_SetBackgroundFromBorder, Tk_NameOf3DBorder, Tk_3DBorderColor,
+Tk_3DBorderGC, Tk_Free3DBorderFromObj, Tk_Free3DBorder - draw borders
+with three-dimensional appearance</p>
+<h1 id="synopsis">SYNOPSIS</h1>
+<p><strong>#include \&lt;tk.h></strong></p>
+<p>Tk_3DBorder <strong>Tk_Alloc3DBorderFromObj(</strong><em>interp, tkwin, objPtr</em><strong>)</strong></p>
+<p>Tk_3DBorder <strong>Tk_Get3DBorder(</strong><em>interp, tkwin, colorName</em><strong>)</strong></p>
+<p>Tk_3DBorder <strong>Tk_Get3DBorderFromObj(</strong><em>tkwin, objPtr</em><strong>)</strong></p>
+<p>void <strong>Tk_Draw3DRectangle(</strong><em>tkwin, drawable, border, x, y, width,
+height, borderWidth, relief</em><strong>)</strong></p>
+<p>void <strong>Tk_Fill3DRectangle(</strong><em>tkwin, drawable, border, x, y, width,
+height, borderWidth, relief</em><strong>)</strong></p>
+<p>void <strong>Tk_Draw3DPolygon(</strong><em>tkwin, drawable, border, pointPtr, numPoints,
+polyBorderWidth, leftRelief</em><strong>)</strong></p>
+<p>void <strong>Tk_Fill3DPolygon(</strong><em>tkwin, drawable, border, pointPtr, numPoints,
+polyBorderWidth, leftRelief</em><strong>)</strong></p>
+<p>void <strong>Tk_3DVerticalBevel</strong>(<em>tkwin, drawable, border, x, y, width,
+height, leftBevel, relief</em><strong>)</strong></p>
+<p>void <strong>Tk_3DHorizontalBevel</strong>(<em>tkwin, drawable, border, x, y, width,
+height, leftIn, rightIn, topBevel, relief</em><strong>)</strong></p>
+<p>void <strong>Tk_SetBackgroundFromBorder(</strong><em>tkwin, border</em><strong>)</strong></p>
+<p>const char * <strong>Tk_NameOf3DBorder(</strong><em>border</em><strong>)</strong></p>
+<p>XColor * <strong>Tk_3DBorderColor(</strong><em>border</em><strong>)</strong></p>
+<p>GC * <strong>Tk_3DBorderGC(</strong><em>tkwin, border, which</em><strong>)</strong></p>
+<p><strong>Tk_Free3DBorderFromObj(</strong><em>tkwin, objPtr</em><strong>)</strong></p>
+<p><strong>Tk_Free3DBorder(</strong><em>border</em><strong>)</strong></p>
+<h1 id="arguments">ARGUMENTS</h1>
+<p>Interpreter to use for error reporting.</p>
+<p>Token for window (for all procedures except <strong>Tk_Get3DBorder</strong>, must be
+the window for which the border was allocated).</p>
+<p>Pointer to value whose value describes color corresponding to background
+(flat areas). Illuminated edges will be brighter than this and shadowed
+edges will be darker than this.</p>
+<p>Same as <em>objPtr</em> except value is supplied as a string rather than a
+value.</p>
+<p>X token for window or pixmap; indicates where graphics are to be drawn.
+Must either be the X window for <em>tkwin</em> or a pixmap with the same screen
+and depth as <em>tkwin</em>.</p>
+<p>Token for border previously allocated in call to <strong>Tk_Get3DBorder</strong>.</p>
+<p>X-coordinate of upper-left corner of rectangle describing border or
+bevel, in pixels.</p>
+<p>Y-coordinate of upper-left corner of rectangle describing border or
+bevel, in pixels.</p>
+<p>Width of rectangle describing border or bevel, in pixels.</p>
+<p>Height of rectangle describing border or bevel, in pixels.</p>
+<p>Width of border in pixels. Positive means border is inside rectangle
+given by <em>x</em>, <em>y</em>, <em>width</em>, <em>height</em>, negative means border is outside
+rectangle.</p>
+<p>Indicates 3-D position of interior of value relative to exterior; should
+be <strong>TK_RELIEF_RAISED</strong>, <strong>TK_RELIEF_SUNKEN</strong>, <strong>TK_RELIEF_GROOVE</strong>,
+<strong>TK_RELIEF_SOLID</strong>, or <strong>TK_RELIEF_RIDGE</strong> (may also be
+<strong>TK_RELIEF_FLAT</strong> for <strong>Tk_Fill3DRectangle</strong>).</p>
+<p>Pointer to array of points describing the set of vertices in a polygon.
+The polygon need not be closed (it will be closed automatically if it is
+not).</p>
+<p>Number of points at <em>*pointPtr</em>.</p>
+<p>Width of border in pixels. If positive, border is drawn to left of
+trajectory given by <em>pointPtr</em>; if negative, border is drawn to right of
+trajectory. If <em>leftRelief</em> is <strong>TK_RELIEF_GROOVE</strong> or
+<strong>TK_RELIEF_RIDGE</strong> then the border is centered on the trajectory.</p>
+<p>Height of left side of polygon\'s path relative to right.
+<strong>TK_RELIEF_RAISED</strong> means left side should appear higher and
+<strong>TK_RELIEF_SUNKEN</strong> means right side should appear higher;
+<strong>TK_RELIEF_GROOVE</strong> and <strong>TK_RELIEF_RIDGE</strong> mean the obvious things.
+For <strong>Tk_Fill3DPolygon</strong>, <strong>TK_RELIEF_FLAT</strong> may also be specified to
+indicate no difference in height.</p>
+<p>Non-zero means this bevel forms the left side of the value; zero means
+it forms the right side.</p>
+<p>Non-zero means that the left edge of the horizontal bevel angles in, so
+that the bottom of the edge is farther to the right than the top. Zero
+means the edge angles out, so that the bottom is farther to the left
+than the top.</p>
+<p>Non-zero means that the right edge of the horizontal bevel angles in, so
+that the bottom of the edge is farther to the left than the top. Zero
+means the edge angles out, so that the bottom is farther to the right
+than the top.</p>
+<p>Non-zero means this bevel forms the top side of the value; zero means it
+forms the bottom side.</p>
+<p>Specifies which of the border\'s graphics contexts is desired. Must be
+<strong>TK_3D_FLAT_GC</strong>, <strong>TK_3D_LIGHT_GC</strong>, or <strong>TK_3D_DARK_GC</strong>.</p>
+<p>\</p>
+<h1 id="description">DESCRIPTION</h1>
+<p>These procedures provide facilities for drawing window borders in a way
+that produces a three-dimensional appearance.
+<strong>Tk_Alloc3DBorderFromObj</strong> allocates colors and Pixmaps needed to draw
+a border in the window given by the <em>tkwin</em> argument. The value of
+<em>objPtr</em> is a standard Tk color name that determines the border colors.
+The color indicated by <em>objPtr</em> will not actually be used in the border;
+it indicates the background color for the window (i.e. a color for flat
+surfaces). The illuminated portions of the border will appear brighter
+than indicated by <em>objPtr</em>, and the shadowed portions of the border will
+appear darker than <em>objPtr</em>.</p>
+<p><strong>Tk_Alloc3DBorderFromObj</strong> returns a token that may be used in later
+calls to <strong>Tk_Draw3DRectangle</strong>. If an error occurs in allocating
+information for the border (e.g. a bogus color name was given) then NULL
+is returned and an error message is left as the result of interpreter
+<em>interp</em>. If it returns successfully, <strong>Tk_Alloc3DBorderFromObj</strong> caches
+information about the return value in <em>objPtr</em>, which speeds up future
+calls to <strong>Tk_Alloc3DBorderFromObj</strong> with the same <em>objPtr</em> and <em>tkwin</em>.</p>
+<p><strong>Tk_Get3DBorder</strong> is identical to <strong>Tk_Alloc3DBorderFromObj</strong> except
+that the color is specified with a string instead of a value. This
+prevents <strong>Tk_Get3DBorder</strong> from caching the return value, so
+<strong>Tk_Get3DBorder</strong> is less efficient than <strong>Tk_Alloc3DBorderFromObj</strong>.</p>
+<p><strong>Tk_Get3DBorderFromObj</strong> returns the token for an existing border,
+given the window and color name used to create the border.
+<strong>Tk_Get3DBorderFromObj</strong> does not actually create the border; it must
+already have been created with a previous call to
+<strong>Tk_Alloc3DBorderFromObj</strong> or <strong>Tk_Get3DBorder</strong>. The return value is
+cached in <em>objPtr</em>, which speeds up future calls to
+<strong>Tk_Get3DBorderFromObj</strong> with the same <em>objPtr</em> and <em>tkwin</em>.</p>
+<p>Once a border structure has been created, <strong>Tk_Draw3DRectangle</strong> may be
+invoked to draw the border. The <em>tkwin</em> argument specifies the window
+for which the border was allocated, and <em>drawable</em> specifies a window or
+pixmap in which the border is to be drawn. <em>Drawable</em> need not refer to
+the same window as <em>tkwin</em>, but it must refer to a compatible pixmap or
+window: one associated with the same screen and with the same depth as
+<em>tkwin</em>. The <em>x</em>, <em>y</em>, <em>width</em>, and <em>height</em> arguments define the
+bounding box of the border region within <em>drawable</em> (usually <em>x</em> and <em>y</em>
+are zero and <em>width</em> and <em>height</em> are the dimensions of the window), and
+<em>borderWidth</em> specifies the number of pixels actually occupied by the
+border. The <em>relief</em> argument indicates which of several
+three-dimensional effects is desired: <strong>TK_RELIEF_RAISED</strong> means that
+the interior of the rectangle should appear raised relative to the
+exterior of the rectangle, and <strong>TK_RELIEF_SUNKEN</strong> means that the
+interior should appear depressed. <strong>TK_RELIEF_GROOVE</strong> and
+<strong>TK_RELIEF_RIDGE</strong> mean that there should appear to be a groove or
+ridge around the exterior of the rectangle.</p>
+<p><strong>Tk_Fill3DRectangle</strong> is somewhat like <strong>Tk_Draw3DRectangle</strong> except
+that it first fills the rectangular area with the background color (one
+corresponding to the color used to create <em>border</em>). Then it calls
+<strong>Tk_Draw3DRectangle</strong> to draw a border just inside the outer edge of
+the rectangular area. The argument <em>relief</em> indicates the desired effect
+(<strong>TK_RELIEF_FLAT</strong> means no border should be drawn; all that happens is
+to fill the rectangle with the background color).</p>
+<p>The procedure <strong>Tk_Draw3DPolygon</strong> may be used to draw more complex
+shapes with a three-dimensional appearance. The <em>pointPtr</em> and
+<em>numPoints</em> arguments define a trajectory, <em>polyBorderWidth</em> indicates
+how wide the border should be (and on which side of the trajectory to
+draw it), and <em>leftRelief</em> indicates which side of the trajectory should
+appear raised. <strong>Tk_Draw3DPolygon</strong> draws a border around the given
+trajectory using the colors from <em>border</em> to produce a three-dimensional
+appearance. If the trajectory is non-self-intersecting, the appearance
+will be a raised or sunken polygon shape. The trajectory may be
+self-intersecting, although it\'s not clear how useful this is.</p>
+<p><strong>Tk_Fill3DPolygon</strong> is to <strong>Tk_Draw3DPolygon</strong> what
+<strong>Tk_Fill3DRectangle</strong> is to <strong>Tk_Draw3DRectangle</strong>: it fills the
+polygonal area with the background color from <em>border</em>, then calls
+<strong>Tk_Draw3DPolygon</strong> to draw a border around the area (unless
+<em>leftRelief</em> is <strong>TK_RELIEF_FLAT</strong>; in this case no border is drawn).</p>
+<p>The procedures <strong>Tk_3DVerticalBevel</strong> and <strong>Tk_3DHorizontalBevel</strong>
+provide lower-level drawing primitives that are used by procedures such
+as <strong>Tk_Draw3DRectangle</strong>. These procedures are also useful in their own
+right for drawing rectilinear border shapes. <strong>Tk_3DVerticalBevel</strong>
+draws a vertical beveled edge, such as the left or right side of a
+rectangle, and <strong>Tk_3DHorizontalBevel</strong> draws a horizontal beveled edge,
+such as the top or bottom of a rectangle. Each procedure takes <em>x</em>, <em>y</em>,
+<em>width</em>, and <em>height</em> arguments that describe the rectangular area of
+the beveled edge (e.g., <em>width</em> is the border width for
+<strong>Tk_3DVerticalBevel</strong>). The <em>leftBorder</em> and <em>topBorder</em> arguments
+indicate the position of the border relative to the of the value, and
+<em>relief</em> indicates the relief of the inside of the value relative to the
+outside. <strong>Tk_3DVerticalBevel</strong> just draws a rectangular region.
+<strong>Tk_3DHorizontalBevel</strong> draws a trapezoidal region to generate mitered
+corners; it should be called after <strong>Tk_3DVerticalBevel</strong> (otherwise
+<strong>Tk_3DVerticalBevel</strong> will overwrite the mitering in the corner). The
+<em>leftIn</em> and <em>rightIn</em> arguments to <strong>Tk_3DHorizontalBevel</strong> describe
+the mitering at the corners; a value of 1 means that the bottom edge of
+the trapezoid will be shorter than the top, 0 means it will be longer.
+For example, to draw a rectangular border the top bevel should be drawn
+with 1 for both <em>leftIn</em> and <em>rightIn</em>, and the bottom bevel should be
+drawn with 0 for both arguments.</p>
+<p>The procedure <strong>Tk_SetBackgroundFromBorder</strong> will modify the background
+pixel and/or pixmap of <em>tkwin</em> to produce a result compatible with
+<em>border</em>. For color displays, the resulting background will just be the
+color specified when <em>border</em> was created; for monochrome displays, the
+resulting background will be a light stipple pattern, in order to
+distinguish the background from the illuminated portion of the border.</p>
+<p>Given a token for a border, the procedure <strong>Tk_NameOf3DBorder</strong> will
+return the color name that was used to create the border.</p>
+<p>The procedure <strong>Tk_3DBorderColor</strong> returns the XColor structure that
+will be used for flat surfaces drawn for its <em>border</em> argument by
+procedures like <strong>Tk_Fill3DRectangle</strong>. The return value corresponds to
+the color name that was used to create the border. The XColor, and its
+associated pixel value, will remain allocated as long as <em>border</em>
+exists.</p>
+<p>The procedure <strong>Tk_3DBorderGC</strong> returns one of the X graphics contexts
+that are used to draw the border. The argument <em>which</em> selects which one
+of the three possible GC\'s: <strong>TK_3D_FLAT_GC</strong> returns the context used
+for flat surfaces, <strong>TK_3D_LIGHT_GC</strong> returns the context for light
+shadows, and <strong>TK_3D_DARK_GC</strong> returns the context for dark shadows.</p>
+<p>When a border is no longer needed, <strong>Tk_Free3DBorderFromObj</strong> or
+<strong>Tk_Free3DBorder</strong> should be called to release the resources associated
+with it. For <strong>Tk_Free3DBorderFromObj</strong> the border to release is
+specified with the window and color name used to create the border; for
+<strong>Tk_Free3DBorder</strong> the border to release is specified with the
+Tk_3DBorder token for the border. There should be exactly one call to
+<strong>Tk_Free3DBorderFromObj</strong> or <strong>Tk_Free3DBorder</strong> for each call to
+<strong>Tk_Alloc3DBorderFromObj</strong> or <strong>Tk_Get3DBorder</strong>.</p>
+<h1 id="keywords">KEYWORDS</h1>
+<p>3D, background, border, color, depressed, illumination, value, polygon,
+raised, shadow, three-dimensional effect</p>
+
+<ul class="metadata page-metadata" data-bi-name="page info" lang="en-us" dir="ltr">
+  <li class="last-updated-holder displayDate loading">
+    <span class="last-updated-text">Last updated:</span>
+    <time role="presentation" datetime="2018-10-25T00:00:00.000Z" data-article-date-source="ms.date"></time>
+  </li>
+<!--
+  <li class="readingTime">
+    2 minutes to read
+  </li>
+-->
+  <li class="contributors-holder">
+    <span class="contributors-text">Contributors</span>
+    <ul class="contributors" data-bi-name="contributors"></ul>
+  </li>
+</ul>
+</div>
+        <div class="col-md-3"><div class="navbar-light navbar-expand-md hidden-print sticky-top sticky-offset" role="complementary">
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggler collapsed" data-toggle="collapse" data-target="#toc-collapse" title="Table of Contents">
+            <span class="fa fa-angle-down"></span>
+        </button>
+    </div>
+
+    <div id="toc-collapse" class="navbar-collapse collapse card">
+        <ul class="nav flex-column bs-sidenav">
+            <li class="nav-item main"><a class="nav-link" href="#name">NAME</a></li>
+            <li class="nav-item main"><a class="nav-link" href="#synopsis">SYNOPSIS</a></li>
+            <li class="nav-item main"><a class="nav-link" href="#arguments">ARGUMENTS</a></li>
+            <li class="nav-item main"><a class="nav-link" href="#description">DESCRIPTION</a></li>
+            <li class="nav-item main"><a class="nav-link" href="#keywords">KEYWORDS</a></li>
+        </ul>
+    </div>
+</div></div>
+      </div>
+      </div>
+
+      <footer class="col-md-12">
+	<hr>
+	<div class="container">
+	</div>
+      </footer>
+      <script>
+	var base_url = "../..",
+            shortcuts = {"help": 191, "next": 78, "previous": 80, "search": 83};
+      </script>
+      <script src="../../js/base.js" defer></script>
+      <script src="../../search/main.js" defer></script>
+
+      <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="Search Modal" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Search</h4>
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            </div>
+            <div class="modal-body">
+                <p>
+                    From here you can search these documents. Enter
+                    your search terms below.
+                </p>
+                <form role="form">
+                    <div class="form-group">
+                        <input type="text" class="form-control" placeholder="Search..." id="mkdocs-search-query" title="Type search term here">
+                    </div>
+                </form>
+                <div id="mkdocs-search-results"></div>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div><div class="modal" id="mkdocs_keyboard_modal" tabindex="-1" role="dialog" aria-labelledby="Keyboard Shortcuts Modal" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <p class="h4 modal-title">Keyboard Shortcuts</p>
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            </div>
+            <div class="modal-body">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th style="width: 20%;">Keys</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="help shortcut"><kbd>?</kbd></td>
+                    <td>Open this help</td>
+                  </tr>
+                  <tr>
+                    <td class="next shortcut"><kbd>n</kbd></td>
+                    <td>Next page</td>
+                  </tr>
+                  <tr>
+                    <td class="prev shortcut"><kbd>p</kbd></td>
+                    <td>Previous page</td>
+                  </tr>
+                  <tr>
+                    <td class="search shortcut"><kbd>s</kbd></td>
+                    <td>Search</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>
+
+    </body>
+</html>

@@ -1,16 +1,12 @@
-\
-
 # NAME
 
 oo::copy - create copies of objects and classes
 
 # SYNOPSIS
 
-    package require TclOO
+package require TclOO
 
-    oo::copy sourceObject ?targetObject? ?targetNamespace?
-
-\
+**oo::copy*** sourceObject *?*targetObject*? ?*targetNamespace*?
 
 # DESCRIPTION
 
@@ -65,3 +61,8 @@ oo::class(n), oo::define(n), oo::object(n)
 # KEYWORDS
 
 clone, copy, duplication, object
+
+<!---
+Copyright (c) 2007 Donal K. Fellow
+-->
+

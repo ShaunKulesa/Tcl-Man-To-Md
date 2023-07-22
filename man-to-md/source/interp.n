@@ -208,7 +208,7 @@ is only captured with this setting on.
 .PP
 For example, with code like
 .PP
-.nf
+.CS
 \fBproc\fR mycontrol {... script} {
   ...
   \fBuplevel\fR 1 $script
@@ -221,7 +221,7 @@ For example, with code like
     somecode
   }
 }
-.fi
+.CE
 .PP
 the standard setting will provide a relative line number for the
 command \fBsomecode\fR and the relevant frame will be of type
@@ -407,9 +407,9 @@ name as the new interpreter. This command may be used to invoke
 various operations on the interpreter.  It has the following
 general form:
 .PP
-.nf
+.CS
 \fIchild command \fR?\fIarg arg ...\fR?
-.fi
+.CE
 .PP
 \fIchild\fR is the name of the interpreter, and \fIcommand\fR
 and the \fIarg\fRs determine the exact behavior of the command.
@@ -875,15 +875,15 @@ by Nathaniel Borenstein and Marshall Rose.
 .PP
 Creating and using an alias for a command in the current interpreter:
 .PP
-.nf
+.CS
 \fBinterp alias\fR {} getIndex {} lsearch {alpha beta gamma delta}
 set idx [getIndex delta]
-.fi
+.CE
 .PP
 Executing an arbitrary command in a safe interpreter where every
 invocation of \fBlappend\fR is logged:
 .PP
-.nf
+.CS
 set i [\fBinterp create\fR -safe]
 \fBinterp hide\fR $i lappend
 \fBinterp alias\fR $i lappend {} loggedLappend $i
@@ -892,12 +892,12 @@ proc loggedLappend {i args} {
     \fBinterp invokehidden\fR $i lappend {*}$args
 }
 \fBinterp eval\fR $i $someUntrustedScript
-.fi
+.CE
 .PP
 Setting a resource limit on an interpreter so that an infinite loop
 terminates.
 .PP
-.nf
+.CS
 set i [\fBinterp create\fR]
 \fBinterp limit\fR $i command -value 1000
 \fBinterp eval\fR $i {
@@ -906,7 +906,7 @@ set i [\fBinterp create\fR]
         puts "Counting up... [incr x]"
     }
 }
-.fi
+.CE
 .SH "SEE ALSO"
 bgerror(n), load(n), safe(n), Tcl_CreateChild(3), Tcl_Eval(3), Tcl_BackgroundException(3)
 .SH KEYWORDS

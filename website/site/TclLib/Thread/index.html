@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+      <script>
+	// Hack for scrolling window when linking to anchor tag with fixed nav header
+        var shiftWindow = function() { scrollBy(0, -75) };
+        window.addEventListener("hashchange", shiftWindow);
+        function load() { if (window.location.hash) shiftWindow(); }
+      </script>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        
+        <link rel="canonical" href="https://www.tcl.tk/man/TclLib/Thread/">
+        <link rel="shortcut icon" href="../../img/favicon.ico">
+        <title>Thread - Tcl/Tk</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <link href="../../css/font-awesome.min.css" rel="stylesheet">
+    <link href="../../css/base.css" rel="stylesheet">
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+    <script src="../../js/base.js"></script> 
+    </head>
+
+    <body class="">
+
+      <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
+	<div class="container">
+	<a class="navbar-brand" href="../..">Tcl/Tk</a>
+	<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExample04" aria-controls="navbarsExample04" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+	</button>
+
+	<div class="collapse navbar-collapse">
+
+          <ul class="navbar-nav flex-row ml-md-auto d-none d-md-flex">
+            <li class="nav-item">
+              <a class="nav-link" href="#" data-toggle="modal" data-target="#mkdocs_search_modal">
+		<i class="fa fa-search"></i> Search
+              </a>
+            </li>
+          </ul>
+	</div>
+	</div>
+      </nav><div id="content" class="container">
+        
+      <div class="row">
+        <div class="col-md-9" role="main">
+
+
+<nav aria-label="breadcrumb">
+  <ol class="breadcrumb">
+    
+    <li class="breadcrumb-item active" aria-current="page">Thread</li>
+  </ol>
+</nav>
+
+
+<p>\</p>
+<h1 id="name">NAME</h1>
+<p>Tcl_ConditionNotify, Tcl_ConditionWait, Tcl_ConditionFinalize,
+Tcl_GetThreadData, Tcl_MutexLock, Tcl_MutexUnlock, Tcl_MutexFinalize,
+Tcl_CreateThread, Tcl_JoinThread - Tcl thread support</p>
+<h1 id="synopsis">SYNOPSIS</h1>
+<p><strong>#include \&lt;tcl.h></strong></p>
+<p>void <strong>Tcl_ConditionNotify</strong>(<em>condPtr</em>)</p>
+<p>void <strong>Tcl_ConditionWait</strong>(<em>condPtr, mutexPtr, timePtr</em>)</p>
+<p>void <strong>Tcl_ConditionFinalize</strong>(<em>condPtr</em>)</p>
+<p>Void * <strong>Tcl_GetThreadData</strong>(<em>keyPtr, size</em>)</p>
+<p>void <strong>Tcl_MutexLock</strong>(<em>mutexPtr</em>)</p>
+<p>void <strong>Tcl_MutexUnlock</strong>(<em>mutexPtr</em>)</p>
+<p>void <strong>Tcl_MutexFinalize</strong>(<em>mutexPtr</em>)</p>
+<p>int <strong>Tcl_CreateThread</strong>(<em>idPtr, proc, clientData, stackSize, flags</em>)</p>
+<p>int <strong>Tcl_JoinThread</strong>(<em>id, result</em>)</p>
+<h1 id="arguments">ARGUMENTS</h1>
+<p>A condition variable, which must be associated with a mutex lock.</p>
+<p>A mutex lock.</p>
+<p>A time limit on the condition wait. NULL to wait forever. Note that a
+polling value of 0 seconds does not make much sense.</p>
+<p>This identifies a block of thread local storage. The key should be
+static and process-wide, yet each thread will end up associating a
+different block of storage with this key.</p>
+<p>The size of the thread local storage block. This amount of data is
+allocated and initialized to zero the first time each thread calls
+<strong>Tcl_GetThreadData</strong>.</p>
+<p>The referred storage will contain the id of the newly created thread as
+returned by the operating system.</p>
+<p>Id of the thread waited upon.</p>
+<p>This procedure will act as the <strong>main()</strong> of the newly created thread.
+The specified <em>clientData</em> will be its sole argument.</p>
+<p>Arbitrary information. Passed as sole argument to the <em>proc</em>.</p>
+<p>The size of the stack given to the new thread.</p>
+<p>Bitmask containing flags allowing the caller to modify behavior of the
+new thread.</p>
+<p>The referred storage is used to place the exit code of the thread waited
+upon into it.</p>
+<p>\</p>
+<h1 id="introduction">INTRODUCTION</h1>
+<p>Beginning with the 8.1 release, the Tcl core is thread safe, which
+allows you to incorporate Tcl into multithreaded applications without
+customizing the Tcl core. Starting with the 8.6 release, Tcl
+multithreading support is on by default. To disable Tcl multithreading
+support, you must include the <strong>- -disable-threads</strong> option to
+<strong>configure</strong> when you configure and compile your Tcl core.</p>
+<p>An important constraint of the Tcl threads implementation is that <em>only
+the thread that created a Tcl interpreter can use that</em> interpreter. In
+other words, multiple threads can not access the same Tcl interpreter.
+(However, a single thread can safely create and use multiple
+interpreters.)</p>
+<h1 id="description">DESCRIPTION</h1>
+<p>Tcl provides <strong>Tcl_CreateThread</strong> for creating threads. The caller can
+determine the size of the stack given to the new thread and modify the
+behavior through the supplied <em>flags</em>. The value
+<strong>TCL_THREAD_STACK_DEFAULT</strong> for the <em>stackSize</em> indicates that the
+default size as specified by the operating system is to be used for the
+new thread. As for the flags, currently only the values
+<strong>TCL_THREAD_NOFLAGS</strong> and <strong>TCL_THREAD_JOINABLE</strong> are defined. The
+first of them invokes the default behavior with no special settings.
+Using the second value marks the new thread as <em>joinable</em>. This means
+that another thread can wait for the such marked thread to exit and join
+it.</p>
+<p>Restrictions: On some UNIX systems the pthread-library does not contain
+the functionality to specify the stack size of a thread. The specified
+value for the stack size is ignored on these systems. Windows currently
+does not support joinable threads. This flag value is therefore ignored
+on this platform.</p>
+<p>Tcl provides the <strong>Tcl_ExitThread</strong> and <strong>Tcl_FinalizeThread</strong> functions
+for terminating threads and invoking optional per-thread exit handlers.
+See the <strong>Tcl_Exit</strong> page for more information on these procedures.</p>
+<p>The <strong>Tcl_JoinThread</strong> function is provided to allow threads to wait
+upon the exit of another thread, which must have been marked as joinable
+through usage of the <strong>TCL_THREAD_JOINABLE</strong>-flag during its creation
+via <strong>Tcl_CreateThread</strong>.</p>
+<p>Trying to wait for the exit of a non-joinable thread or a thread which
+is already waited upon will result in an error. Waiting for a joinable
+thread which already exited is possible, the system will retain the
+necessary information until after the call to <strong>Tcl_JoinThread</strong>. This
+means that not calling <strong>Tcl_JoinThread</strong> for a joinable thread will
+cause a memory leak.</p>
+<p>The <strong>Tcl_GetThreadData</strong> call returns a pointer to a block of
+thread-private data. Its argument is a key that is shared by all threads
+and a size for the block of storage. The storage is automatically
+allocated and initialized to all zeros the first time each thread asks
+for it. The storage is automatically deallocated by
+<strong>Tcl_FinalizeThread</strong>.</p>
+<h2 id="synchronization-and-communication">SYNCHRONIZATION AND COMMUNICATION</h2>
+<p>Tcl provides <strong>Tcl_ThreadQueueEvent</strong> and <strong>Tcl_ThreadAlert</strong> for
+handling event queuing in multithreaded applications. See the
+<strong>Notifier</strong> manual page for more information on these procedures.</p>
+<p>A mutex is a lock that is used to serialize all threads through a piece
+of code by calling <strong>Tcl_MutexLock</strong> and <strong>Tcl_MutexUnlock</strong>. If one
+thread holds a mutex, any other thread calling <strong>Tcl_MutexLock</strong> will
+block until <strong>Tcl_MutexUnlock</strong> is called. A mutex can be destroyed
+after its use by calling <strong>Tcl_MutexFinalize</strong>. The result of locking a
+mutex twice from the same thread is undefined. On some platforms it will
+result in a deadlock. The <strong>Tcl_MutexLock</strong>, <strong>Tcl_MutexUnlock</strong> and
+<strong>Tcl_MutexFinalize</strong> procedures are defined as empty macros if not
+compiling with threads enabled. For declaration of mutexes the
+<strong>TCL_DECLARE_MUTEX</strong> macro should be used. This macro assures correct
+mutex handling even when the core is compiled without threads enabled.</p>
+<p>A condition variable is used as a signaling mechanism: a thread can lock
+a mutex and then wait on a condition variable with
+<strong>Tcl_ConditionWait</strong>. This atomically releases the mutex lock and
+blocks the waiting thread until another thread calls
+<strong>Tcl_ConditionNotify</strong>. The caller of <strong>Tcl_ConditionNotify</strong> should
+have the associated mutex held by previously calling <strong>Tcl_MutexLock</strong>,
+but this is not enforced. Notifying the condition variable unblocks all
+threads waiting on the condition variable, but they do not proceed until
+the mutex is released with <strong>Tcl_MutexUnlock</strong>. The implementation of
+<strong>Tcl_ConditionWait</strong> automatically locks the mutex before returning.</p>
+<p>The caller of <strong>Tcl_ConditionWait</strong> should be prepared for spurious
+notifications by calling <strong>Tcl_ConditionWait</strong> within a while loop that
+tests some invariant.</p>
+<p>A condition variable can be destroyed after its use by calling
+<strong>Tcl_ConditionFinalize</strong>.</p>
+<p>The <strong>Tcl_ConditionNotify</strong>, <strong>Tcl_ConditionWait</strong> and
+<strong>Tcl_ConditionFinalize</strong> procedures are defined as empty macros if not
+compiling with threads enabled.</p>
+<h2 id="initialization">INITIALIZATION</h2>
+<p>All of these synchronization objects are self-initializing. They are
+implemented as opaque pointers that should be NULL upon first use. The
+mutexes and condition variables are either cleaned up by process exit
+handlers (if living that long) or explicitly by calls to
+<strong>Tcl_MutexFinalize</strong> or <strong>Tcl_ConditionFinalize</strong>. Thread local storage
+is reclaimed during <strong>Tcl_FinalizeThread</strong>.</p>
+<h1 id="script-level-access-to-threads">SCRIPT-LEVEL ACCESS TO THREADS</h1>
+<p>Tcl provides no built-in commands for scripts to use to create, manage,
+or join threads, nor any script-level access to mutex or condition
+variables. It provides such facilities only via C interfaces, and leaves
+it up to packages to expose these matters to the script level. One such
+package is the <strong>Thread</strong> package.</p>
+<h1 id="example">EXAMPLE</h1>
+<p>To create a thread with portable code, its implementation function
+should be declared as follows:</p>
+<div class="language-text highlight"><pre><span></span><code>static Tcl_ThreadCreateProc MyThreadImplFunc;
+</code></pre></div>
+<p>It should then be defined like this example, which just counts up to a
+given value and then finishes.</p>
+<div class="language-text highlight"><pre><span></span><code>static Tcl_ThreadCreateType
+MyThreadImplFunc(
+    ClientData clientData)
+{
+    int i, limit = (int) clientData;
+    for (i=0 ; i&lt;limit ; i++) {
+        /* doing nothing at all here */
+    }
+    TCL_THREAD_CREATE_RETURN;
+}
+</code></pre></div>
+<p>To create the above thread, make it execute, and wait for it to finish,
+we would do this:</p>
+<div class="language-text highlight"><pre><span></span><code>int limit = 1000000000;
+ClientData limitData = (void*)((intptr_t) limit);
+Tcl_ThreadId id;    /* holds identity of thread created */
+int result;
+
+if (Tcl_CreateThread(&amp;id, MyThreadImplFunc, limitData,
+        TCL_THREAD_STACK_DEFAULT,
+        TCL_THREAD_JOINABLE) != TCL_OK) {
+    /* Thread did not create correctly */
+    return;
+}
+/* Do something else for a while here */
+if (Tcl_JoinThread(id, &amp;result) != TCL_OK) {
+    /* Thread did not finish properly */
+    return;
+}
+/* All cleaned up nicely */
+</code></pre></div>
+<h1 id="see-also">SEE ALSO</h1>
+<p>Tcl_GetCurrentThread(3), Tcl_ThreadQueueEvent(3), Tcl_ThreadAlert(3),
+Tcl_ExitThread(3), Tcl_FinalizeThread(3),
+Tcl_CreateThreadExitHandler(3), Tcl_DeleteThreadExitHandler(3), Thread</p>
+<h1 id="keywords">KEYWORDS</h1>
+<p>thread, mutex, condition variable, thread local storage</p>
+
+<ul class="metadata page-metadata" data-bi-name="page info" lang="en-us" dir="ltr">
+  <li class="last-updated-holder displayDate loading">
+    <span class="last-updated-text">Last updated:</span>
+    <time role="presentation" datetime="2018-10-25T00:00:00.000Z" data-article-date-source="ms.date"></time>
+  </li>
+<!--
+  <li class="readingTime">
+    2 minutes to read
+  </li>
+-->
+  <li class="contributors-holder">
+    <span class="contributors-text">Contributors</span>
+    <ul class="contributors" data-bi-name="contributors"></ul>
+  </li>
+</ul>
+</div>
+        <div class="col-md-3"><div class="navbar-light navbar-expand-md hidden-print sticky-top sticky-offset" role="complementary">
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggler collapsed" data-toggle="collapse" data-target="#toc-collapse" title="Table of Contents">
+            <span class="fa fa-angle-down"></span>
+        </button>
+    </div>
+
+    <div id="toc-collapse" class="navbar-collapse collapse card">
+        <ul class="nav flex-column bs-sidenav">
+            <li class="nav-item main"><a class="nav-link" href="#name">NAME</a></li>
+            <li class="nav-item main"><a class="nav-link" href="#synopsis">SYNOPSIS</a></li>
+            <li class="nav-item main"><a class="nav-link" href="#arguments">ARGUMENTS</a></li>
+            <li class="nav-item main"><a class="nav-link" href="#introduction">INTRODUCTION</a></li>
+            <li class="nav-item main"><a class="nav-link" href="#description">DESCRIPTION</a></li>
+                <li class="nav-item">
+                    <a href="#synchronization-and-communication" class="nav-link">SYNCHRONIZATION AND COMMUNICATION</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#initialization" class="nav-link">INITIALIZATION</a>
+                </li>
+            <li class="nav-item main"><a class="nav-link" href="#script-level-access-to-threads">SCRIPT-LEVEL ACCESS TO THREADS</a></li>
+            <li class="nav-item main"><a class="nav-link" href="#example">EXAMPLE</a></li>
+            <li class="nav-item main"><a class="nav-link" href="#see-also">SEE ALSO</a></li>
+            <li class="nav-item main"><a class="nav-link" href="#keywords">KEYWORDS</a></li>
+        </ul>
+    </div>
+</div></div>
+      </div>
+      </div>
+
+      <footer class="col-md-12">
+	<hr>
+	<div class="container">
+	</div>
+      </footer>
+      <script>
+	var base_url = "../..",
+            shortcuts = {"help": 191, "next": 78, "previous": 80, "search": 83};
+      </script>
+      <script src="../../js/base.js" defer></script>
+      <script src="../../search/main.js" defer></script>
+
+      <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="Search Modal" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Search</h4>
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            </div>
+            <div class="modal-body">
+                <p>
+                    From here you can search these documents. Enter
+                    your search terms below.
+                </p>
+                <form role="form">
+                    <div class="form-group">
+                        <input type="text" class="form-control" placeholder="Search..." id="mkdocs-search-query" title="Type search term here">
+                    </div>
+                </form>
+                <div id="mkdocs-search-results"></div>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div><div class="modal" id="mkdocs_keyboard_modal" tabindex="-1" role="dialog" aria-labelledby="Keyboard Shortcuts Modal" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <p class="h4 modal-title">Keyboard Shortcuts</p>
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            </div>
+            <div class="modal-body">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th style="width: 20%;">Keys</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="help shortcut"><kbd>?</kbd></td>
+                    <td>Open this help</td>
+                  </tr>
+                  <tr>
+                    <td class="next shortcut"><kbd>n</kbd></td>
+                    <td>Next page</td>
+                  </tr>
+                  <tr>
+                    <td class="prev shortcut"><kbd>p</kbd></td>
+                    <td>Previous page</td>
+                  </tr>
+                  <tr>
+                    <td class="search shortcut"><kbd>s</kbd></td>
+                    <td>Search</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>
+
+    </body>
+</html>

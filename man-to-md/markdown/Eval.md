@@ -1,5 +1,3 @@
-\
-
 # NAME
 
 eval - Evaluate a Tcl script
@@ -7,8 +5,6 @@ eval - Evaluate a Tcl script
 # SYNOPSIS
 
 **eval ***arg *?*arg \...*?
-
-\
 
 # DESCRIPTION
 
@@ -72,3 +68,9 @@ list(n), namespace(n), subst(n), uplevel(n)
 # KEYWORDS
 
 concatenate, evaluate, script
+
+<!---
+Copyright (c) 1993 The Regents of the University of California
+Copyright (c) 1994-1996 Sun Microsystems, Inc
+-->
+

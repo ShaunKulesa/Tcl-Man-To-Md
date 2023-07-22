@@ -1,5 +1,3 @@
-\
-
 # NAME
 
 while - Execute script repeatedly as long as a condition is met
@@ -7,8 +5,6 @@ while - Execute script repeatedly as long as a condition is met
 # SYNOPSIS
 
 **while ***test body*
-
-\
 
 # DESCRIPTION
 
@@ -55,3 +51,9 @@ break(n), continue(n), for(n), foreach(n)
 # KEYWORDS
 
 boolean, loop, test, while
+
+<!---
+Copyright (c) 1993 The Regents of the University of California
+Copyright (c) 1994-1997 Sun Microsystems, Inc
+-->
+

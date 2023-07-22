@@ -1,11 +1,7 @@
-\
-
 # NAME
 
 Tcl_StandardChannels - How the Tcl library deals with the standard
 channels
-
-\
 
 # DESCRIPTION
 
@@ -123,3 +119,8 @@ tclsh(1), wish(1), Tcl_Main(3), Tk_MainEx(3)
 # KEYWORDS
 
 standard channels
+
+<!---
+Copyright (c) 2001 ActiveState Corporatio
+-->
+

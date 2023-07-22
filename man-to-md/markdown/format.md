@@ -1,5 +1,3 @@
-\
-
 # NAME
 
 format - Format a string in the style of sprintf
@@ -7,8 +5,6 @@ format - Format a string in the style of sprintf
 # SYNOPSIS
 
 **format ***formatString *?*arg arg \...*?
-
-\
 
 # INTRODUCTION
 
@@ -282,3 +278,9 @@ scan(n), sprintf(3), string(n)
 # KEYWORDS
 
 conversion specifier, format, sprintf, string, substitution
+
+<!---
+Copyright (c) 1993 The Regents of the University of California
+Copyright (c) 1994-1996 Sun Microsystems, Inc
+-->
+

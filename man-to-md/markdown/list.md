@@ -1,5 +1,3 @@
-\
-
 # NAME
 
 list - Create a list
@@ -7,8 +5,6 @@ list - Create a list
 # SYNOPSIS
 
 **list **?*arg arg \...*?
-
-\
 
 # DESCRIPTION
 
@@ -44,3 +40,10 @@ lreplace(n), lsearch(n), lset(n), lsort(n)
 # KEYWORDS
 
 element, list, quoting
+
+<!---
+Copyright (c) 1993 The Regents of the University of California
+Copyright (c) 1994-1996 Sun Microsystems, Inc
+Copyright (c) 2001 Kevin B. Kenny <kennykb@acm.org>.  All rights reserved
+-->
+

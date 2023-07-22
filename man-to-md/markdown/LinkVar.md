@@ -1,5 +1,3 @@
-\
-
 # NAME
 
 Tcl_LinkVar, Tcl_UnlinkVar, Tcl_UpdateLinkedVar - link Tcl variable to C
@@ -7,14 +5,13 @@ variable
 
 # SYNOPSIS
 
-    #include <tcl.h>
+**#include \<tcl.h\>**
 
-    int
-    Tcl_LinkVar(interp, varName, addr, type)
+int **Tcl_LinkVar**(*interp, varName, addr, type*)
 
-    Tcl_UnlinkVar(interp, varName)
+**Tcl_UnlinkVar**(*interp, varName*)
 
-    Tcl_UpdateLinkedVar(interp, varName)
+**Tcl_UpdateLinkedVar**(*interp, varName*)
 
 # ARGUMENTS
 
@@ -32,8 +29,6 @@ Type of C variable. Must be one of **TCL_LINK_INT**, **TCL_LINK_UINT**,
 **TCL_LINK_DOUBLE**, **TCL_LINK_BOOLEAN**, or **TCL_LINK_STRING**,
 optionally OR\'ed with **TCL_LINK_READ_ONLY** to make Tcl variable
 read-only.
-
-\
 
 # DESCRIPTION
 
@@ -227,3 +222,9 @@ Tcl_TraceVar(3)
 # KEYWORDS
 
 boolean, integer, link, read-only, real, string, trace, variable
+
+<!---
+Copyright (c) 1993 The Regents of the University of California
+Copyright (c) 1994-1996 Sun Microsystems, Inc
+-->
+

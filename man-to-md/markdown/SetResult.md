@@ -1,5 +1,3 @@
-\
-
 # NAME
 
 Tcl_SetObjResult, Tcl_GetObjResult, Tcl_SetResult, Tcl_GetStringResult,
@@ -9,30 +7,28 @@ result
 
 # SYNOPSIS
 
-    #include <tcl.h>
+**#include \<tcl.h\>**
 
-    Tcl_SetObjResult(interp, objPtr)
+**Tcl_SetObjResult**(*interp, objPtr*)
 
-    Tcl_Obj *
-    Tcl_GetObjResult(interp)
+Tcl_Obj \* **Tcl_GetObjResult**(*interp*)
 
-    Tcl_SetResult(interp, result, freeProc)
+**Tcl_SetResult**(*interp, result, freeProc*)
 
-    const char *
-    Tcl_GetStringResult(interp)
+const char \* **Tcl_GetStringResult**(*interp*)
 
-    Tcl_AppendResult(interp, result, result, ... , (char *) NULL)
+**Tcl_AppendResult**(*interp, result, result, \... , ***(char \*)
+NULL**)
 
-    Tcl_AppendResultVA(interp, argList)
+**Tcl_AppendResultVA**(*interp, argList*)
 
-    Tcl_ResetResult(interp)
+**Tcl_ResetResult**(*interp*)
 
-    Tcl_TransferResult(sourceInterp, code, targetInterp)
+**Tcl_TransferResult**(*sourceInterp, code, targetInterp*)
 
+**Tcl_AppendElement**(*interp, element*)
 
-    Tcl_AppendElement(interp, element)
-
-    Tcl_FreeResult(interp)
+**Tcl_FreeResult**(*interp*)
 
 # ARGUMENTS
 
@@ -58,8 +54,6 @@ from.
 Interpreter that the result and return options should be transferred to.
 
 Return code value that controls transfer of return options.
-
-\
 
 # DESCRIPTION
 
@@ -222,3 +216,9 @@ Tcl_GetReturnOptions
 # KEYWORDS
 
 append, command, element, list, value, result, return value, interpreter
+
+<!---
+Copyright (c) 1989-1993 The Regents of the University of California
+Copyright (c) 1994-1997 Sun Microsystems, Inc
+-->
+

@@ -75,7 +75,7 @@ executed.
 Arrange for the \fBunknown\fR command to have its standard behavior
 except for first logging the fact that a command was not found:
 .PP
-.nf
+.CS
 # Save the original one so we can chain to it
 rename \fBunknown\fR _original_unknown
 
@@ -84,7 +84,7 @@ proc \fBunknown\fR args {
     puts stderr "WARNING: unknown command: $args"
     uplevel 1 [list _original_unknown {*}$args]
 }
-.fi
+.CE
 .SH "SEE ALSO"
 info(n), proc(n), interp(n), library(n), namespace(n)
 .SH KEYWORDS

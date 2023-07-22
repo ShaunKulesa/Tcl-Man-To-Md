@@ -11,7 +11,6 @@
 .SH NAME
 package \- Facilities for package loading and version control
 .SH SYNOPSIS
-.nf
 \fBpackage forget\fR ?\fIpackage package ...\fR?
 \fBpackage ifneeded \fIpackage version\fR ?\fIscript\fR?
 \fBpackage names\fR
@@ -25,7 +24,6 @@ package \- Facilities for package loading and version control
 \fBpackage versions \fIpackage\fR
 \fBpackage vsatisfies \fIversion requirement...\fR
 \fBpackage prefer \fR?\fBlatest\fR|\fBstable\fR?
-.fi
 .BE
 .SH DESCRIPTION
 .PP
@@ -344,23 +342,23 @@ See the documentation for \fBpkg_mkIndex\fR for details.
 To state that a Tcl script requires the Tk and http packages, put this
 at the top of the script:
 .PP
-.nf
+.CS
 \fBpackage require\fR Tk
 \fBpackage require\fR http
-.fi
+.CE
 .PP
 To test to see if the Snack package is available and load if it is
 (often useful for optional enhancements to programs where the loss of
 the functionality is not critical) do this:
 .PP
-.nf
+.CS
 if {[catch {\fBpackage require\fR Snack}]} {
     # Error thrown - package not found.
     # Set up a dummy interface to work around the absence
 } else {
     # We have the package, configure the app to use it
 }
-.fi
+.CE
 .SH "SEE ALSO"
 msgcat(n), packagens(n), pkgMkIndex(n)
 .SH KEYWORDS

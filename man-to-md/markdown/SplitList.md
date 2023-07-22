@@ -1,5 +1,3 @@
-\
-
 # NAME
 
 Tcl_SplitList, Tcl_Merge, Tcl_ScanElement, Tcl_ConvertElement,
@@ -7,25 +5,19 @@ Tcl_ScanCountedElement, Tcl_ConvertCountedElement - manipulate Tcl lists
 
 # SYNOPSIS
 
-    #include <tcl.h>
+**#include \<tcl.h\>**
 
-    int
-    Tcl_SplitList(interp, list, argcPtr, argvPtr)
+int **Tcl_SplitList**(*interp, list, argcPtr, argvPtr*)
 
-    char *
-    Tcl_Merge(argc, argv)
+char \* **Tcl_Merge**(*argc, argv*)
 
-    int
-    Tcl_ScanElement(src, flagsPtr)
+int **Tcl_ScanElement**(*src, flagsPtr*)
 
-    int
-    Tcl_ScanCountedElement(src, length, flagsPtr)
+int **Tcl_ScanCountedElement**(*src, length, flagsPtr*)
 
-    int
-    Tcl_ConvertElement(src, dst, flags)
+int **Tcl_ConvertElement**(*src, dst, flags*)
 
-    int
-    Tcl_ConvertCountedElement(src, length, dst, flags)
+int **Tcl_ConvertCountedElement**(*src, length, dst, flags*)
 
 # ARGUMENTS
 
@@ -57,8 +49,6 @@ hold converted string.
 
 Information about *src*. Must be value returned by previous call to
 **Tcl_ScanElement**, possibly OR-ed with **TCL_DONT_USE_BRACES**.
-
-\
 
 # DESCRIPTION
 
@@ -165,3 +155,9 @@ Tcl_ListObjGetElements(3)
 # KEYWORDS
 
 backslash, convert, element, list, merge, split, strings
+
+<!---
+Copyright (c) 1989-1993 The Regents of the University of California
+Copyright (c) 1994-1996 Sun Microsystems, Inc
+-->
+

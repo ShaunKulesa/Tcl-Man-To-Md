@@ -1,5 +1,3 @@
-\
-
 # NAME
 
 rename - Rename or delete a command
@@ -7,8 +5,6 @@ rename - Rename or delete a command
 # SYNOPSIS
 
 **rename ***oldName newName*
-
-\
 
 # DESCRIPTION
 
@@ -40,3 +36,9 @@ namespace(n), proc(n)
 # KEYWORDS
 
 command, delete, namespace, rename
+
+<!---
+Copyright (c) 1993 The Regents of the University of California
+Copyright (c) 1994-1997 Sun Microsystems, Inc
+-->
+

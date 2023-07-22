@@ -176,10 +176,10 @@ situation.
 This asks Internet Explorer (which must already be running) to go to a
 particularly important website:
 .PP
-.nf
+.CS
 package require dde
 \fBdde execute\fR -async iexplore WWW_OpenURL http://www.tcl-lang.org/
-.fi
+.CE
 .SH "SEE ALSO"
 tk(n), winfo(n), send(n)
 .SH KEYWORDS

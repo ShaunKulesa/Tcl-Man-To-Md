@@ -1,5 +1,3 @@
-\
-
 # NAME
 
 Tcl_NewStringObj, Tcl_NewUnicodeObj, Tcl_SetStringObj,
@@ -14,79 +12,57 @@ Tcl values as strings
 
 # SYNOPSIS
 
-    #include <tcl.h>
+**#include \<tcl.h\>**
 
-    Tcl_Obj *
-    Tcl_NewStringObj(bytes, length)
+Tcl_Obj \* **Tcl_NewStringObj**(*bytes, length*)
 
-    Tcl_Obj *
-    Tcl_NewUnicodeObj(unicode, numChars)
+Tcl_Obj \* **Tcl_NewUnicodeObj**(*unicode, numChars*)
 
-    void
-    Tcl_SetStringObj(objPtr, bytes, length)
+void **Tcl_SetStringObj**(*objPtr, bytes, length*)
 
-    void
-    Tcl_SetUnicodeObj(objPtr, unicode, numChars)
+void **Tcl_SetUnicodeObj**(*objPtr, unicode, numChars*)
 
-    char *
-    Tcl_GetStringFromObj(objPtr, lengthPtr)
+char \* **Tcl_GetStringFromObj**(*objPtr, lengthPtr*)
 
-    char *
-    Tcl_GetString(objPtr)
+char \* **Tcl_GetString**(*objPtr*)
 
-    Tcl_UniChar *
-    Tcl_GetUnicodeFromObj(objPtr, lengthPtr)
+Tcl_UniChar \* **Tcl_GetUnicodeFromObj**(*objPtr, lengthPtr*)
 
-    Tcl_UniChar *
-    Tcl_GetUnicode(objPtr)
+Tcl_UniChar \* **Tcl_GetUnicode**(*objPtr*)
 
-    Tcl_UniChar
-    Tcl_GetUniChar(objPtr, index)
+Tcl_UniChar **Tcl_GetUniChar**(*objPtr, index*)
 
-    int
-    Tcl_GetCharLength(objPtr)
+int **Tcl_GetCharLength**(*objPtr*)
 
-    Tcl_Obj *
-    Tcl_GetRange(objPtr, first, last)
+Tcl_Obj \* **Tcl_GetRange**(*objPtr, first, last*)
 
-    void
-    Tcl_AppendToObj(objPtr, bytes, length)
+void **Tcl_AppendToObj**(*objPtr, bytes, length*)
 
-    void
-    Tcl_AppendUnicodeToObj(objPtr, unicode, numChars)
+void **Tcl_AppendUnicodeToObj**(*objPtr, unicode, numChars*)
 
-    void
-    Tcl_AppendObjToObj(objPtr, appendObjPtr)
+void **Tcl_AppendObjToObj**(*objPtr, appendObjPtr*)
 
-    void
-    Tcl_AppendStringsToObj(objPtr, string, string, ... (char *) NULL)
+void **Tcl_AppendStringsToObj**(*objPtr, string, string, \... ***(char
+\*) NULL**)
 
-    void
-    Tcl_AppendStringsToObjVA(objPtr, argList)
+void **Tcl_AppendStringsToObjVA**(*objPtr, argList*)
 
-    void
-    Tcl_AppendLimitedToObj(objPtr, bytes, length, limit, ellipsis)
+void **Tcl_AppendLimitedToObj**(*objPtr, bytes, length, limit,
+ellipsis*)
 
-    Tcl_Obj *
-    Tcl_Format(interp, format, objc, objv)
+Tcl_Obj \* **Tcl_Format**(*interp, format, objc, objv*)
 
-    int
-    Tcl_AppendFormatToObj(interp, objPtr, format, objc, objv)
+int **Tcl_AppendFormatToObj**(*interp, objPtr, format, objc, objv*)
 
-    Tcl_Obj *
-    Tcl_ObjPrintf(format, ...)
+Tcl_Obj \* **Tcl_ObjPrintf**(*format, \...*)
 
-    void
-    Tcl_AppendPrintfToObj(objPtr, format, ...)
+void **Tcl_AppendPrintfToObj**(*objPtr, format, \...*)
 
-    void
-    Tcl_SetObjLength(objPtr, newLength)
+void **Tcl_SetObjLength**(*objPtr, newLength*)
 
-    int
-    Tcl_AttemptSetObjLength(objPtr, newLength)
+int **Tcl_AttemptSetObjLength**(*objPtr, newLength*)
 
-    Tcl_Obj *
-    Tcl_ConcatObj(objc, objv)
+Tcl_Obj \* **Tcl_ConcatObj**(*objc, objv*)
 
 # ARGUMENTS
 
@@ -142,8 +118,6 @@ The array of values to format or concatenate.
 
 New length for the string value of *objPtr*, not including the final
 null character.
-
-\
 
 # DESCRIPTION
 
@@ -372,3 +346,8 @@ sprintf(3)
 
 append, internal representation, value, value type, string value, string
 type, string representation, concat, concatenate, unicode
+
+<!---
+Copyright (c) 1994-1997 Sun Microsystems, Inc
+-->
+

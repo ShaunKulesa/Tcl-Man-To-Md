@@ -11,8 +11,6 @@
 .SH NAME
 Tcl_CreateChannelHandler, Tcl_DeleteChannelHandler \- call a procedure when a channel becomes readable or writable
 .SH SYNOPSIS
-.nf
-.nf
 \fB#include <tcl.h>\fR
 .sp
 void
@@ -46,11 +44,11 @@ See the manual entry for \fBfileevent\fR for a precise description of
 what it means for a channel to be readable or writable.
 \fIProc\fR must conform to the following prototype:
 .PP
-.nf
+.CS
 typedef void \fBTcl_ChannelProc\fR(
         ClientData \fIclientData\fR,
         int \fImask\fR);
-.fi
+.CE
 .PP
 The \fIclientData\fR argument is the same as the value passed to
 \fBTcl_CreateChannelHandler\fR when the handler was created. Typically,

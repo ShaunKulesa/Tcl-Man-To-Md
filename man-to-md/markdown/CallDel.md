@@ -1,5 +1,3 @@
-\
-
 # NAME
 
 Tcl_CallWhenDeleted, Tcl_DontCallWhenDeleted - Arrange for callback when
@@ -7,11 +5,11 @@ interpreter is deleted
 
 # SYNOPSIS
 
-    #include <tcl.h>
+**#include \<tcl.h\>**
 
-    Tcl_CallWhenDeleted(interp, proc, clientData)
+**Tcl_CallWhenDeleted**(*interp*, *proc*, *clientData*)
 
-    Tcl_DontCallWhenDeleted(interp, proc, clientData)
+**Tcl_DontCallWhenDeleted**(*interp*, *proc*, *clientData*)
 
 # ARGUMENTS
 
@@ -20,8 +18,6 @@ Interpreter with which to associated callback.
 Procedure to call when *interp* is deleted.
 
 Arbitrary one-word value to pass to *proc*.
-
-\
 
 # DESCRIPTION
 
@@ -59,3 +55,9 @@ Tcl_CreateExitHandler(3), Tcl_CreateThreadExitHandler(3)
 # KEYWORDS
 
 callback, cleanup, delete, interpreter
+
+<!---
+Copyright (c) 1993 The Regents of the University of California
+Copyright (c) 1994-1996 Sun Microsystems, Inc
+-->
+

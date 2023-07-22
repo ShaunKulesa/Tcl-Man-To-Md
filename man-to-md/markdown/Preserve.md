@@ -1,5 +1,3 @@
-\
-
 # NAME
 
 Tcl_Preserve, Tcl_Release, Tcl_EventuallyFree - avoid freeing storage
@@ -7,13 +5,13 @@ while it is being used
 
 # SYNOPSIS
 
-    #include <tcl.h>
+**#include \<tcl.h\>**
 
-    Tcl_Preserve(clientData)
+**Tcl_Preserve**(*clientData*)
 
-    Tcl_Release(clientData)
+**Tcl_Release**(*clientData*)
 
-    Tcl_EventuallyFree(clientData, freeProc)
+**Tcl_EventuallyFree**(*clientData, freeProc*)
 
 # ARGUMENTS
 
@@ -21,8 +19,6 @@ Token describing structure to be freed or reallocated. Usually a pointer
 to memory for structure.
 
 Procedure to invoke to free *clientData*.
-
-\
 
 # DESCRIPTION
 
@@ -96,3 +92,9 @@ Tcl_Interp, Tcl_Alloc
 # KEYWORDS
 
 free, reference count, storage
+
+<!---
+Copyright (c) 1990 The Regents of the University of California
+Copyright (c) 1994-1996 Sun Microsystems, Inc
+-->
+

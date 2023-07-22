@@ -1,20 +1,16 @@
-\
-
 # NAME
 
 oo::object - root class of the class hierarchy
 
 # SYNOPSIS
 
-    package require TclOO
+package require TclOO
 
-    oo::object method ?arg ...?
+**oo::object*** method *?*arg \...*?
 
 # CLASS HIERARCHY
 
     oo::object
-
-\
 
 # DESCRIPTION
 
@@ -133,3 +129,8 @@ my(n), oo::class(n)
 # KEYWORDS
 
 base class, class, object, root class
+
+<!---
+Copyright (c) 2007-2008 Donal K. Fellow
+-->
+

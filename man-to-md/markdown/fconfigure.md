@@ -1,16 +1,11 @@
-\
-
 # NAME
 
 fconfigure - Set and get options on a channel
 
 # SYNOPSIS
 
-    fconfigure channelId
-    fconfigure channelId name
-    fconfigure channelId name value ?name value ...?
-
-\
+**fconfigure ***channelId* **fconfigure ***channelId* *name*
+**fconfigure ***channelId* *name value *?*name value \...*?
 
 # DESCRIPTION
 
@@ -281,3 +276,8 @@ Tcl_StandardChannels(3)
 blocking, buffering, carriage return, end of line, flushing, linemode,
 newline, nonblocking, platform, translation, encoding, filter, byte
 array, binary
+
+<!---
+Copyright (c) 1995-1996 Sun Microsystems, Inc
+-->
+

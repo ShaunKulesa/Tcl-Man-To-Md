@@ -1,5 +1,3 @@
-\
-
 # NAME
 
 Tcl_ExprLong, Tcl_ExprDouble, Tcl_ExprBoolean, Tcl_ExprString - evaluate
@@ -7,19 +5,15 @@ an expression
 
 # SYNOPSIS
 
-    #include <tcl.h>
+**#include \<tcl.h\>**
 
-    int
-    Tcl_ExprLong(interp, expr, longPtr)
+int **Tcl_ExprLong**(*interp, expr, longPtr*)
 
-    int
-    Tcl_ExprDouble(interp, expr, doublePtr)
+int **Tcl_ExprDouble**(*interp, expr, doublePtr*)
 
-    int
-    Tcl_ExprBoolean(interp, expr, booleanPtr)
+int **Tcl_ExprBoolean**(*interp, expr, booleanPtr*)
 
-    int
-    Tcl_ExprString(interp, expr)
+int **Tcl_ExprString**(*interp, expr*)
 
 # ARGUMENTS
 
@@ -35,8 +29,6 @@ expression.
 
 Pointer to location in which to store the 0/1 boolean value of the
 expression.
-
-\
 
 # DESCRIPTION
 
@@ -91,3 +83,9 @@ Tcl_ExprLongObj, Tcl_ExprDoubleObj, Tcl_ExprBooleanObj, Tcl_ExprObj
 # KEYWORDS
 
 boolean, double, evaluate, expression, integer, value, string
+
+<!---
+Copyright (c) 1989-1993 The Regents of the University of California
+Copyright (c) 1994-1997 Sun Microsystems, Inc
+-->
+

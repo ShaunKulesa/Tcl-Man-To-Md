@@ -1,5 +1,3 @@
-\
-
 # NAME
 
 refchan - command handler API of reflected channels
@@ -7,8 +5,6 @@ refchan - command handler API of reflected channels
 # SYNOPSIS
 
 **cmdPrefix ***option* ?*arg arg \...*?
-
-\
 
 # DESCRIPTION
 
@@ -390,3 +386,8 @@ chan(n), transchan(n)
 # KEYWORDS
 
 API, channel, ensemble, prefix, reflection
+
+<!---
+Copyright (c) 2006 Andreas Kupries <andreas_kupries@users.sourceforge.net
+-->
+

@@ -1,0 +1,532 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+      <script>
+	// Hack for scrolling window when linking to anchor tag with fixed nav header
+        var shiftWindow = function() { scrollBy(0, -75) };
+        window.addEventListener("hashchange", shiftWindow);
+        function load() { if (window.location.hash) shiftWindow(); }
+      </script>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        
+        <link rel="canonical" href="https://www.tcl.tk/man/TclCmd/exec/">
+        <link rel="shortcut icon" href="../../img/favicon.ico">
+        <title>Exec - Tcl/Tk</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <link href="../../css/font-awesome.min.css" rel="stylesheet">
+    <link href="../../css/base.css" rel="stylesheet">
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+    <script src="../../js/base.js"></script> 
+    </head>
+
+    <body class="">
+
+      <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
+	<div class="container">
+	<a class="navbar-brand" href="../..">Tcl/Tk</a>
+	<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExample04" aria-controls="navbarsExample04" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+	</button>
+
+	<div class="collapse navbar-collapse">
+
+          <ul class="navbar-nav flex-row ml-md-auto d-none d-md-flex">
+            <li class="nav-item">
+              <a class="nav-link" href="#" data-toggle="modal" data-target="#mkdocs_search_modal">
+		<i class="fa fa-search"></i> Search
+              </a>
+            </li>
+          </ul>
+	</div>
+	</div>
+      </nav><div id="content" class="container">
+        
+      <div class="row">
+        <div class="col-md-9" role="main">
+
+
+<nav aria-label="breadcrumb">
+  <ol class="breadcrumb">
+    
+    <li class="breadcrumb-item active" aria-current="page">Exec</li>
+  </ol>
+</nav>
+
+
+<p>\</p>
+<h1 id="name">NAME</h1>
+<p>exec - Invoke subprocesses</p>
+<h1 id="synopsis">SYNOPSIS</h1>
+<p><strong>exec </strong>?<em>switches</em>? <em>arg </em>?<em>arg ...</em>? ?<strong>&amp;</strong>?</p>
+<p>\</p>
+<h1 id="description">DESCRIPTION</h1>
+<p>This command treats its arguments as the specification of one or more
+subprocesses to execute. The arguments take the form of a standard shell
+pipeline where each <em>arg</em> becomes one word of a command, and each
+distinct command becomes a subprocess. The result of the command is the
+standard output of the final subprocess in the pipeline, interpreted
+using the system <strong>encoding</strong>; to use any other encoding (especially
+including binary data), the pipeline must be <strong>open</strong>ed, configured and
+read explicitly.</p>
+<p>If the initial arguments to <strong>exec</strong> start with <strong>-</strong> then they are
+treated as command-line switches and are not part of the pipeline
+specification. The following switches are currently supported:</p>
+<p><strong>-ignorestderr</strong></p>
+<p>:   Stops the <strong>exec</strong> command from treating the output of messages to
+    the pipeline\'s standard error channel as an error case.</p>
+<p><strong>-keepnewline</strong></p>
+<p>:   Retains a trailing newline in the pipeline\'s output. Normally a
+    trailing newline will be deleted.</p>
+<p><strong>- -</strong></p>
+<p>:   Marks the end of switches. The argument following this one will be
+    treated as the first <em>arg</em> even if it starts with a <strong>-</strong>.</p>
+<p>If an <em>arg</em> (or pair of <em>arg</em>s) has one of the forms described below
+then it is used by <strong>exec</strong> to control the flow of input and output
+among the subprocess(es). Such arguments will not be passed to the
+subprocess(es). In forms such as <em>fileName</em> may either be in a separate
+argument from or in the same argument with no intervening space (i.e.</p>
+<p><strong>|</strong></p>
+<p>:   Separates distinct commands in the pipeline. The standard output of
+    the preceding command will be piped into the standard input of the
+    next command.</p>
+<p><strong>|&amp;</strong></p>
+<p>:   Separates distinct commands in the pipeline. Both standard output
+    and standard error of the preceding command will be piped into the
+    standard input of the next command. This form of redirection
+    overrides forms such as 2> and >&amp;.</p>
+<p><strong>\&lt; </strong><em>fileName</em></p>
+<p>:   The file named by <em>fileName</em> is opened and used as the standard
+    input for the first command in the pipeline.</p>
+<p><strong>\&lt;@ </strong><em>fileId</em></p>
+<p>:   <em>FileId</em> must be the identifier for an open file, such as the return
+    value from a previous call to <strong>open</strong>. It is used as the standard
+    input for the first command in the pipeline. <em>FileId</em> must have been
+    opened for reading.</p>
+<p><strong>\&lt;\&lt; </strong><em>value</em></p>
+<p>:   <em>Value</em> is passed to the first command as its standard input.</p>
+<p><strong>> </strong><em>fileName</em></p>
+<p>:   Standard output from the last command is redirected to the file
+    named <em>fileName</em>, overwriting its previous contents.</p>
+<p><strong>2> </strong><em>fileName</em></p>
+<p>:   Standard error from all commands in the pipeline is redirected to
+    the file named <em>fileName</em>, overwriting its previous contents.</p>
+<p><strong>>&amp; </strong><em>fileName</em></p>
+<p>:   Both standard output from the last command and standard error from
+    all commands are redirected to the file named <em>fileName</em>,
+    overwriting its previous contents.</p>
+<p><strong>>> </strong><em>fileName</em></p>
+<p>:   Standard output from the last command is redirected to the file
+    named <em>fileName</em>, appending to it rather than overwriting it.</p>
+<p><strong>2>> </strong><em>fileName</em></p>
+<p>:   Standard error from all commands in the pipeline is redirected to
+    the file named <em>fileName</em>, appending to it rather than overwriting
+    it.</p>
+<p><strong>>>&amp; </strong><em>fileName</em></p>
+<p>:   Both standard output from the last command and standard error from
+    all commands are redirected to the file named <em>fileName</em>, appending
+    to it rather than overwriting it.</p>
+<p><strong>>@ </strong><em>fileId</em></p>
+<p>:   <em>FileId</em> must be the identifier for an open file, such as the return
+    value from a previous call to <strong>open</strong>. Standard output from the
+    last command is redirected to <em>fileId</em>\'s file, which must have been
+    opened for writing.</p>
+<p><strong>2>@ </strong><em>fileId</em></p>
+<p>:   <em>FileId</em> must be the identifier for an open file, such as the return
+    value from a previous call to <strong>open</strong>. Standard error from all
+    commands in the pipeline is redirected to <em>fileId</em>\'s file. The file
+    must have been opened for writing.</p>
+<p><strong>2>@1 </strong></p>
+<p>:   Standard error from all commands in the pipeline is redirected to
+    the command result. This operator is only valid at the end of the
+    command pipeline.</p>
+<p><strong>>&amp;@ </strong><em>fileId</em></p>
+<p>:   <em>FileId</em> must be the identifier for an open file, such as the return
+    value from a previous call to <strong>open</strong>. Both standard output from
+    the last command and standard error from all commands are redirected
+    to <em>fileId</em>\'s file. The file must have been opened for writing.</p>
+<p>If standard output has not been redirected then the <strong>exec</strong> command
+returns the standard output from the last command in the pipeline,
+unless was specified, in which case standard error is included as well.
+If any of the commands in the pipeline exit abnormally or are killed or
+suspended, then <strong>exec</strong> will return an error and the error message will
+include the pipeline\'s output followed by error messages describing the
+abnormal terminations; the <strong>-errorcode</strong> return option will contain
+additional information about the last abnormal termination encountered.
+If any of the commands writes to its standard error file and that
+standard error is not redirected and <strong>-ignorestderr</strong> is not specified,
+then <strong>exec</strong> will return an error; the error message will include the
+pipeline\'s standard output, followed by messages about abnormal
+terminations (if any), followed by the standard error output.</p>
+<p>If the last character of the result or error message is a newline then
+that character is normally deleted from the result or error message.
+This is consistent with other Tcl return values, which do not normally
+end with newlines. However, if <strong>-keepnewline</strong> is specified then the
+trailing newline is retained.</p>
+<p>If standard input is not redirected with or then the standard input for
+the first command in the pipeline is taken from the application\'s
+current standard input.</p>
+<p>If the last <em>arg</em> is then the pipeline will be executed in background.
+In this case the <strong>exec</strong> command will return a list whose elements are
+the process identifiers for all of the subprocesses in the pipeline. The
+standard output from the last command in the pipeline will go to the
+application\'s standard output if it has not been redirected, and error
+output from all of the commands in the pipeline will go to the
+application\'s standard error file unless redirected.</p>
+<p>The first word in each command is taken as the command name;
+tilde-substitution is performed on it, and if the result contains no
+slashes then the directories in the PATH environment variable are
+searched for an executable by the given name. If the name contains a
+slash then it must refer to an executable reachable from the current
+directory. No expansion or other shell-like substitutions are performed
+on the arguments to commands.</p>
+<h1 id="portability-issues">PORTABILITY ISSUES</h1>
+<p><strong>Windows</strong> (all versions)</p>
+<p>:   Reading from or writing to a socket, using the notation, does not
+    work. When reading from a socket, a 16-bit DOS application will hang
+    and a 32-bit application will return immediately with end-of-file.
+    When either type of application writes to a socket, the information
+    is instead sent to the console, if one is present, or is discarded.</p>
+<div class="language-text highlight"><pre><span></span><code>Note that the current escape resp. quoting of arguments for windows
+works only with executables using CommandLineToArgv, CRT-library or
+similar, as well as with the windows batch files (excepting the
+newline, see below). Although it is the common escape algorithm,
+but, in fact, the way how the executable parses the command-line
+(resp. splits it into single arguments) is decisive.
+
+Unfortunately, there is currently no way to supply newline character
+within an argument to the batch files (**.cmd** or **.bat**) or to
+the command processor (**cmd.exe /c**), because this causes
+truncation of command-line (also the argument chain) on the first
+newline character. But it works properly with an executable (using
+CommandLineToArgv, etc).
+
+The Tk console text widget does not provide real standard IO
+capabilities. Under Tk, when redirecting from standard input, all
+applications will see an immediate end-of-file; information
+redirected to standard output or standard error will be discarded.
+
+Either forward or backward slashes are accepted as path separators
+for arguments to Tcl commands. When executing an application, the
+path name specified for the application may also contain forward or
+backward slashes as path separators. Bear in mind, however, that
+most Windows applications accept arguments with forward slashes only
+as option delimiters and backslashes only in paths. Any arguments to
+an application that specify a path name with forward slashes will
+not automatically be converted to use the backslash character. If an
+argument contains forward slashes as the path separator, it may or
+may not be recognized as a path name, depending on the program.
+
+Two or more forward or backward slashes in a row in a path refer to
+a network path. For example, a simple concatenation of the root
+directory **c:/** with a subdirectory **/windows/system** will yield
+**c://windows/system** (two slashes together), which refers to the
+mount point called **system** on the machine called **windows** (and
+the **c:/** is ignored), and is not equivalent to
+**c:/windows/system**, which describes a directory on the current
+computer. The **file join** command should be used to concatenate
+path components.
+
+Note that there are two general types of Win32 console applications:
+
+&gt; \[1\]
+&gt;
+&gt; :   CLI --- CommandLine Interface, simple stdio exchange.
+&gt;     **netstat.exe** for example.
+&gt;
+&gt; \[2\]
+&gt;
+&gt; :   TUI --- Textmode User Interface, any application that accesses
+&gt;     the console API for doing such things as cursor movement,
+&gt;     setting text color, detecting key presses and mouse movement,
+&gt;     etc. An example would be **telnet.exe** from Windows 2000.
+&gt;     These types of applications are not common in a windows
+&gt;     environment, but do exist.
+
+**exec** will not work well with TUI applications when a console is
+not present, as is done when launching applications under wish. It
+is desirable to have console applications hidden and detached. This
+is a designed-in limitation as **exec** wants to communicate over
+pipes. The Expect extension addresses this issue when communicating
+with a TUI application.
+
+When attempting to execute an application, **exec** first searches
+for the name as it was specified. Then, in order, **.com**,
+**.exe**, **.bat** and **.cmd** are appended to the end of the
+specified name and it searches for the longer name. If a directory
+name was not specified as part of the application name, the
+following directories are automatically searched in order when
+attempting to locate the application:
+
+-   The directory from which the Tcl executable was loaded.
+
+-   The current directory.
+
+-   The Windows 32-bit system directory.
+
+-   The Windows home directory.
+
+-   The directories listed in the path.
+
+In order to execute shell built-in commands like **dir** and
+**copy**, the caller must prepend the desired command with because
+built-in commands are not implemented using executables.
+</code></pre></div>
+<p><strong>Unix</strong> (including Mac OS X)</p>
+<p>:   The <strong>exec</strong> command is fully functional and works as described.</p>
+<h1 id="unix-examples">UNIX EXAMPLES</h1>
+<p>Here are some examples of the use of the <strong>exec</strong> command on Unix. To
+execute a simple program and get its result:</p>
+<div class="language-text highlight"><pre><span></span><code>exec uname -a
+</code></pre></div>
+<h2 id="working-with-non-zero-results">WORKING WITH NON-ZERO RESULTS</h2>
+<p>To execute a program that can return a non-zero result, you should wrap
+the call to <strong>exec</strong> in <strong>catch</strong> and check the contents of the
+<strong>-errorcode</strong> return option if you have an error:</p>
+<div class="language-text highlight"><pre><span></span><code>set status 0
+if {[catch {exec grep foo bar.txt} results options]} {
+    set details [dict get $options -errorcode]
+    if {[lindex $details 0] eq &quot;CHILDSTATUS&quot;} {
+        set status [lindex $details 2]
+    } else {
+        # Some other error; regenerate it to let caller handle
+        return -options $options -level 0 $results
+    }
+}
+</code></pre></div>
+<p>This is more easily written using the <strong>try</strong> command, as that makes it
+simpler to trap specific types of errors. This is done using code like
+this:</p>
+<div class="language-text highlight"><pre><span></span><code>try {
+    set results [exec grep foo bar.txt]
+    set status 0
+} trap CHILDSTATUS {results options} {
+    set status [lindex [dict get $options -errorcode] 2]
+}
+</code></pre></div>
+<h2 id="working-with-quoted-arguments">WORKING WITH QUOTED ARGUMENTS</h2>
+<p>When translating a command from a Unix shell invocation, care should be
+taken over the fact that single quote characters have no special
+significance to Tcl. Thus:</p>
+<div class="language-text highlight"><pre><span></span><code>awk &#39;{sum += $1} END {print sum}&#39; numbers.list
+</code></pre></div>
+<p>would be translated into something like:</p>
+<div class="language-text highlight"><pre><span></span><code>exec awk {{sum += $1} END {print sum}} numbers.list
+</code></pre></div>
+<h2 id="working-with-globbing">WORKING WITH GLOBBING</h2>
+<p>If you are converting invocations involving shell globbing, you should
+remember that Tcl does not handle globbing or expand things into
+multiple arguments by default. Instead you should write things like
+this:</p>
+<div class="language-text highlight"><pre><span></span><code>exec ls -l {*}[glob *.tcl]
+</code></pre></div>
+<h2 id="working-with-user-supplied-shell-script-fragments">WORKING WITH USER-SUPPLIED SHELL SCRIPT FRAGMENTS</h2>
+<p>One useful technique can be to expose to users of a script the ability
+to specify a fragment of shell script to execute that will have some
+data passed in on standard input that was produced by the Tcl program.
+This is a common technique for using the <em>lpr</em> program for printing. By
+far the simplest way of doing this is to pass the user\'s script to the
+user\'s shell for processing, as this avoids a lot of complexity with
+parsing other languages.</p>
+<div class="language-text highlight"><pre><span></span><code>set lprScript [get from user...]
+set postscriptData [generate somehow...]
+
+exec $env(SHELL) -c $lprScript &lt;&lt; $postscriptData
+</code></pre></div>
+<h1 id="windows-examples">WINDOWS EXAMPLES</h1>
+<p>Here are some examples of the use of the <strong>exec</strong> command on Windows. To
+start an instance of <em>notepad</em> editing a file without waiting for the
+user to finish editing the file:</p>
+<div class="language-text highlight"><pre><span></span><code>exec notepad myfile.txt &amp;
+</code></pre></div>
+<p>To print a text file using <em>notepad</em>:</p>
+<div class="language-text highlight"><pre><span></span><code>exec notepad /p myfile.txt
+</code></pre></div>
+<h2 id="working-with-console-programs">WORKING WITH CONSOLE PROGRAMS</h2>
+<p>If a program calls other programs, such as is common with compilers,
+then you may need to resort to batch files to hide the console windows
+that sometimes pop up:</p>
+<div class="language-text highlight"><pre><span></span><code>exec cmp.bat somefile.c -o somefile
+</code></pre></div>
+<p>With the file <em>cmp.bat</em> looking something like:</p>
+<div class="language-text highlight"><pre><span></span><code>@gcc %*
+</code></pre></div>
+<p>or like another variant using single parameters:</p>
+<div class="language-text highlight"><pre><span></span><code>@gcc %1 %2 %3 %4 %5 %6 %7 %8 %9
+</code></pre></div>
+<h2 id="working-with-command-built-ins">WORKING WITH COMMAND BUILT-INS</h2>
+<p>Sometimes you need to be careful, as different programs may have the
+same name and be in the path. It can then happen that typing a command
+at the DOS prompt finds <em>a different program</em> than the same command run
+via <strong>exec</strong>. This is because of the (documented) differences in
+behaviour between <strong>exec</strong> and DOS batch files.</p>
+<p>When in doubt, use the command <strong>auto_execok</strong>: it will return the
+complete path to the program as seen by the <strong>exec</strong> command. This
+applies especially when you want to run commands like <em>dir</em> from a Tcl
+script (if you just want to list filenames, use the <strong>glob</strong> command.)
+To do that, use this:</p>
+<div class="language-text highlight"><pre><span></span><code>exec {*}[auto_execok dir] *.tcl
+</code></pre></div>
+<h2 id="working-with-native-filenames">WORKING WITH NATIVE FILENAMES</h2>
+<p>Many programs on Windows require filename arguments to be passed in with
+backslashes as pathname separators. This is done with the help of the
+<strong>file nativename</strong> command. For example, to make a directory (on NTFS)
+encrypted so that only the current user can access it requires use of
+the <em>CIPHER</em> command, like this:</p>
+<div class="language-text highlight"><pre><span></span><code>set secureDir &quot;~/Desktop/Secure Directory&quot;
+file mkdir $secureDir
+exec CIPHER /e /s:[file nativename $secureDir]
+</code></pre></div>
+<h1 id="see-also">SEE ALSO</h1>
+<p>error(n), file(n), open(n)</p>
+<h1 id="keywords">KEYWORDS</h1>
+<p>execute, pipeline, redirection, subprocess</p>
+
+<ul class="metadata page-metadata" data-bi-name="page info" lang="en-us" dir="ltr">
+  <li class="last-updated-holder displayDate loading">
+    <span class="last-updated-text">Last updated:</span>
+    <time role="presentation" datetime="2018-10-25T00:00:00.000Z" data-article-date-source="ms.date"></time>
+  </li>
+<!--
+  <li class="readingTime">
+    2 minutes to read
+  </li>
+-->
+  <li class="contributors-holder">
+    <span class="contributors-text">Contributors</span>
+    <ul class="contributors" data-bi-name="contributors"></ul>
+  </li>
+</ul>
+</div>
+        <div class="col-md-3"><div class="navbar-light navbar-expand-md hidden-print sticky-top sticky-offset" role="complementary">
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggler collapsed" data-toggle="collapse" data-target="#toc-collapse" title="Table of Contents">
+            <span class="fa fa-angle-down"></span>
+        </button>
+    </div>
+
+    <div id="toc-collapse" class="navbar-collapse collapse card">
+        <ul class="nav flex-column bs-sidenav">
+            <li class="nav-item main"><a class="nav-link" href="#name">NAME</a></li>
+            <li class="nav-item main"><a class="nav-link" href="#synopsis">SYNOPSIS</a></li>
+            <li class="nav-item main"><a class="nav-link" href="#description">DESCRIPTION</a></li>
+            <li class="nav-item main"><a class="nav-link" href="#portability-issues">PORTABILITY ISSUES</a></li>
+            <li class="nav-item main"><a class="nav-link" href="#unix-examples">UNIX EXAMPLES</a></li>
+                <li class="nav-item">
+                    <a href="#working-with-non-zero-results" class="nav-link">WORKING WITH NON-ZERO RESULTS</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#working-with-quoted-arguments" class="nav-link">WORKING WITH QUOTED ARGUMENTS</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#working-with-globbing" class="nav-link">WORKING WITH GLOBBING</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#working-with-user-supplied-shell-script-fragments" class="nav-link">WORKING WITH USER-SUPPLIED SHELL SCRIPT FRAGMENTS</a>
+                </li>
+            <li class="nav-item main"><a class="nav-link" href="#windows-examples">WINDOWS EXAMPLES</a></li>
+                <li class="nav-item">
+                    <a href="#working-with-console-programs" class="nav-link">WORKING WITH CONSOLE PROGRAMS</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#working-with-command-built-ins" class="nav-link">WORKING WITH COMMAND BUILT-INS</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#working-with-native-filenames" class="nav-link">WORKING WITH NATIVE FILENAMES</a>
+                </li>
+            <li class="nav-item main"><a class="nav-link" href="#see-also">SEE ALSO</a></li>
+            <li class="nav-item main"><a class="nav-link" href="#keywords">KEYWORDS</a></li>
+        </ul>
+    </div>
+</div></div>
+      </div>
+      </div>
+
+      <footer class="col-md-12">
+	<hr>
+	<div class="container">
+	</div>
+      </footer>
+      <script>
+	var base_url = "../..",
+            shortcuts = {"help": 191, "next": 78, "previous": 80, "search": 83};
+      </script>
+      <script src="../../js/base.js" defer></script>
+      <script src="../../search/main.js" defer></script>
+
+      <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="Search Modal" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Search</h4>
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            </div>
+            <div class="modal-body">
+                <p>
+                    From here you can search these documents. Enter
+                    your search terms below.
+                </p>
+                <form role="form">
+                    <div class="form-group">
+                        <input type="text" class="form-control" placeholder="Search..." id="mkdocs-search-query" title="Type search term here">
+                    </div>
+                </form>
+                <div id="mkdocs-search-results"></div>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div><div class="modal" id="mkdocs_keyboard_modal" tabindex="-1" role="dialog" aria-labelledby="Keyboard Shortcuts Modal" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <p class="h4 modal-title">Keyboard Shortcuts</p>
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            </div>
+            <div class="modal-body">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th style="width: 20%;">Keys</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="help shortcut"><kbd>?</kbd></td>
+                    <td>Open this help</td>
+                  </tr>
+                  <tr>
+                    <td class="next shortcut"><kbd>n</kbd></td>
+                    <td>Next page</td>
+                  </tr>
+                  <tr>
+                    <td class="prev shortcut"><kbd>p</kbd></td>
+                    <td>Previous page</td>
+                  </tr>
+                  <tr>
+                    <td class="search shortcut"><kbd>s</kbd></td>
+                    <td>Search</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>
+
+    </body>
+</html>

@@ -1,5 +1,3 @@
-\
-
 # NAME
 
 Tcl_ParseCommand, Tcl_ParseExpr, Tcl_ParseBraces, Tcl_ParseQuotedString,
@@ -8,33 +6,27 @@ Tcl_EvalTokensStandard - parse Tcl scripts and expressions
 
 # SYNOPSIS
 
-    #include <tcl.h>
+**#include \<tcl.h\>**
 
-    int
-    Tcl_ParseCommand(interp, start, numBytes, nested, parsePtr)
+int **Tcl_ParseCommand**(*interp, start, numBytes, nested, parsePtr*)
 
-    int
-    Tcl_ParseExpr(interp, start, numBytes, parsePtr)
+int **Tcl_ParseExpr**(*interp, start, numBytes, parsePtr*)
 
-    int
-    Tcl_ParseBraces(interp, start, numBytes, parsePtr, append, termPtr)
+int **Tcl_ParseBraces**(*interp, start, numBytes, parsePtr, append,
+termPtr*)
 
-    int
-    Tcl_ParseQuotedString(interp, start, numBytes, parsePtr, append, termPtr)
+int **Tcl_ParseQuotedString**(*interp, start, numBytes, parsePtr,
+append, termPtr*)
 
-    int
-    Tcl_ParseVarName(interp, start, numBytes, parsePtr, append)
+int **Tcl_ParseVarName**(*interp, start, numBytes, parsePtr, append*)
 
-    const char *
-    Tcl_ParseVar(interp, start, termPtr)
+const char \* **Tcl_ParseVar**(*interp, start, termPtr*)
 
-    Tcl_FreeParse(usedParsePtr)
+**Tcl_FreeParse**(*usedParsePtr*)
 
-    Tcl_Obj *
-    Tcl_EvalTokens(interp, tokenPtr, numTokens)
+Tcl_Obj \* **Tcl_EvalTokens**(*interp, tokenPtr, numTokens*)
 
-    int
-    Tcl_EvalTokensStandard(interp, tokenPtr, numTokens)
+int **Tcl_EvalTokensStandard**(*interp, tokenPtr, numTokens*)
 
 # ARGUMENTS
 
@@ -72,8 +64,6 @@ if the parse was successful.
 
 Points to structure that was filled in by a previous call to
 **Tcl_ParseCommand**, **Tcl_ParseExpr**, **Tcl_ParseVarName**, etc.
-
-\
 
 # DESCRIPTION
 
@@ -404,3 +394,8 @@ referenced by code outside of these procedures.
 
 backslash substitution, braces, command, expression, parse, token,
 variable substitution
+
+<!---
+Copyright (c) 1997 Sun Microsystems, Inc
+-->
+

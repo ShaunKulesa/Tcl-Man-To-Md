@@ -1,5 +1,3 @@
-\
-
 # NAME
 
 info - Return information about the state of the Tcl interpreter
@@ -7,8 +5,6 @@ info - Return information about the state of the Tcl interpreter
 # SYNOPSIS
 
 **info ***option *?*arg arg \...*?
-
-\
 
 # DESCRIPTION
 
@@ -761,3 +757,12 @@ command, information, interpreter, introspection, level, namespace,
 object,
 
 procedure, variable
+
+<!---
+Copyright (c) 1993 The Regents of the University of California
+Copyright (c) 1994-1997 Sun Microsystems, Inc
+Copyright (c) 1993-1997 Bell Labs Innovations for Lucent Technologie
+Copyright (c) 1998-2000 Ajuba Solution
+Copyright (c) 2007-2012 Donal K. Fellow
+-->
+

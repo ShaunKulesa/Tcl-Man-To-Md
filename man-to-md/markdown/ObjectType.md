@@ -1,5 +1,3 @@
-\
-
 # NAME
 
 Tcl_RegisterObjType, Tcl_GetObjType, Tcl_AppendAllObjTypes,
@@ -7,18 +5,15 @@ Tcl_ConvertToType - manipulate Tcl value types
 
 # SYNOPSIS
 
-    #include <tcl.h>
+**#include \<tcl.h\>**
 
-    Tcl_RegisterObjType(typePtr)
+**Tcl_RegisterObjType**(*typePtr*)
 
-    const Tcl_ObjType *
-    Tcl_GetObjType(typeName)
+const Tcl_ObjType \* **Tcl_GetObjType**(*typeName*)
 
-    int
-    Tcl_AppendAllObjTypes(interp, objPtr)
+int **Tcl_AppendAllObjTypes**(*interp, objPtr*)
 
-    int
-    Tcl_ConvertToType(interp, objPtr, typePtr)
+int **Tcl_ConvertToType**(*interp, objPtr, typePtr*)
 
 # ARGUMENTS
 
@@ -33,8 +28,6 @@ For **Tcl_AppendAllObjTypes**, this points to the value onto which it
 appends the name of each value type as a list element. For
 **Tcl_ConvertToType**, this points to a value that must have been the
 result of a previous call to **Tcl_NewObj**.
-
-\
 
 # DESCRIPTION
 
@@ -228,3 +221,8 @@ Tcl_NewObj(3), Tcl_DecrRefCount(3), Tcl_IncrRefCount(3)
 
 internal representation, value, value type, string representation, type
 conversion
+
+<!---
+Copyright (c) 1996-1997 Sun Microsystems, Inc
+-->
+

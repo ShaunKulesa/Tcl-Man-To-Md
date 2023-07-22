@@ -51,11 +51,11 @@ See below for an example:
 .PP
 Print a line for each of the integers from 0 to 9:
 .PP
-.nf
+.CS
 \fBfor\fR {set x 0} {$x<10} {incr x} {
     puts "x is $x"
 }
-.fi
+.CE
 .PP
 Either loop infinitely or not at all because the expression being
 evaluated is actually the constant, or even generate an error!  The
@@ -65,19 +65,19 @@ that is less than or greater than/equal to ten, and this is because
 the expression will be substituted before the \fBfor\fR command is
 executed.
 .PP
-.nf
+.CS
 \fBfor\fR {set x 0} $x<10 {incr x} {
     puts "x is $x"
 }
-.fi
+.CE
 .PP
 Print out the powers of two from 1 to 1024:
 .PP
-.nf
+.CS
 \fBfor\fR {set x 1} {$x<=1024} {set x [expr {$x * 2}]} {
     puts "x is $x"
 }
-.fi
+.CE
 .SH "SEE ALSO"
 break(n), continue(n), foreach(n), while(n)
 .SH KEYWORDS

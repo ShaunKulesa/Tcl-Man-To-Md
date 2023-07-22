@@ -1,5 +1,3 @@
-\
-
 # NAME
 
 history - Manipulate the history list
@@ -7,8 +5,6 @@ history - Manipulate the history list
 # SYNOPSIS
 
 **history **?*option*? ?*arg arg \...*?
-
-\
 
 # DESCRIPTION
 
@@ -107,3 +103,9 @@ history and execute it.
 # KEYWORDS
 
 event, history, record
+
+<!---
+Copyright (c) 1993 The Regents of the University of California
+Copyright (c) 1994-1997 Sun Microsystems, Inc
+-->
+

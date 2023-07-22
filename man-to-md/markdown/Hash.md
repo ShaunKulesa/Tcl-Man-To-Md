@@ -1,5 +1,3 @@
-\
-
 # NAME
 
 Tcl_InitHashTable, Tcl_InitCustomHashTable, Tcl_InitObjHashTable,
@@ -10,40 +8,33 @@ manage hash tables
 
 # SYNOPSIS
 
-    #include <tcl.h>
+**#include \<tcl.h\>**
 
-    Tcl_InitHashTable(tablePtr, keyType)
+**Tcl_InitHashTable**(*tablePtr, keyType*)
 
-    Tcl_InitCustomHashTable(tablePtr, keyType, typePtr)
+**Tcl_InitCustomHashTable**(*tablePtr, keyType, typePtr*)
 
-    Tcl_InitObjHashTable(tablePtr)
+**Tcl_InitObjHashTable**(*tablePtr*)
 
-    Tcl_DeleteHashTable(tablePtr)
+**Tcl_DeleteHashTable**(*tablePtr*)
 
-    Tcl_HashEntry *
-    Tcl_CreateHashEntry(tablePtr, key, newPtr)
+Tcl_HashEntry \* **Tcl_CreateHashEntry**(*tablePtr, key, newPtr*)
 
-    Tcl_DeleteHashEntry(entryPtr)
+**Tcl_DeleteHashEntry**(*entryPtr*)
 
-    Tcl_HashEntry *
-    Tcl_FindHashEntry(tablePtr, key)
+Tcl_HashEntry \* **Tcl_FindHashEntry**(*tablePtr, key*)
 
-    ClientData
-    Tcl_GetHashValue(entryPtr)
+ClientData **Tcl_GetHashValue**(*entryPtr*)
 
-    Tcl_SetHashValue(entryPtr, value)
+**Tcl_SetHashValue**(*entryPtr, value*)
 
-    void *
-    Tcl_GetHashKey(tablePtr, entryPtr)
+void \* **Tcl_GetHashKey**(*tablePtr, entryPtr*)
 
-    Tcl_HashEntry *
-    Tcl_FirstHashEntry(tablePtr, searchPtr)
+Tcl_HashEntry \* **Tcl_FirstHashEntry**(*tablePtr, searchPtr*)
 
-    Tcl_HashEntry *
-    Tcl_NextHashEntry(searchPtr)
+Tcl_HashEntry \* **Tcl_NextHashEntry**(*searchPtr*)
 
-    char *
-    Tcl_HashStats(tablePtr)
+char \* **Tcl_HashStats**(*tablePtr*)
 
 # ARGUMENTS
 
@@ -70,8 +61,6 @@ but must fit in same space as ClientData.
 
 Pointer to record to use to keep track of progress in enumerating all
 the entries in a hash table.
-
-\
 
 # DESCRIPTION
 
@@ -304,3 +293,9 @@ on the value.
 # KEYWORDS
 
 hash table, key, lookup, search, value
+
+<!---
+Copyright (c) 1989-1993 The Regents of the University of California
+Copyright (c) 1994-1996 Sun Microsystems, Inc
+-->
+

@@ -1,5 +1,3 @@
-\
-
 # NAME
 
 mathfunc - Mathematical functions for Tcl expressions
@@ -39,8 +37,6 @@ package require **Tcl 8.5**
 **::tcl::mathfunc::tan** *arg*\
 **::tcl::mathfunc::tanh** *arg*\
 **::tcl::mathfunc::wide** *arg*
-
-\
 
 # DESCRIPTION
 
@@ -262,3 +258,10 @@ expr(n), mathop(n), namespace(n)
     Copyright © 1993 The Regents of the University of California.
     Copyright © 1994-2000 Sun Microsystems Incorporated.
     Copyright © 2005, 2006 Kevin B. Kenny <kennykb@acm.org>.
+
+<!---
+Copyright (c) 1993 The Regents of the University of California
+Copyright (c) 1994-2000 Sun Microsystems, Inc
+Copyright (c) 2005 Kevin B. Kenny <kennykb@acm.org>. All rights reserve
+-->
+

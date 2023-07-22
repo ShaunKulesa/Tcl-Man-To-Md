@@ -1,5 +1,3 @@
-\
-
 # NAME
 
 safe - Creating and manipulating safe interpreters
@@ -24,8 +22,6 @@ safe - Creating and manipulating safe interpreters
 
 ?**-accessPath** *pathList*? ?**-statics** *boolean*? ?**-noStatics**?
 ?**-nested** *boolean*? ?**-nestedLoadOk**? ?**-deleteHook** *script*?
-
-\
 
 # DESCRIPTION
 
@@ -344,3 +340,8 @@ interp(n), library(n), load(n), package(n), source(n), unknown(n)
 
 alias, auto-loading, auto_mkindex, load, parent interpreter, safe
 interpreter, child interpreter, source
+
+<!---
+Copyright (c) 1995-1996 Sun Microsystems, Inc
+-->
+

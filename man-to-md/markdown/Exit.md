@@ -1,5 +1,3 @@
-\
-
 # NAME
 
 exit - End the application
@@ -7,8 +5,6 @@ exit - End the application
 # SYNOPSIS
 
 **exit **?*returnCode*?
-
-\
 
 # DESCRIPTION
 
@@ -45,3 +41,9 @@ exec(n)
 # KEYWORDS
 
 abort, exit, process
+
+<!---
+Copyright (c) 1993 The Regents of the University of California
+Copyright (c) 1994-1996 Sun Microsystems, Inc
+-->
+

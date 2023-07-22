@@ -1,5 +1,3 @@
-\
-
 # NAME
 
 argc, argv, argv0, auto_path, env, errorCode, errorInfo,
@@ -7,8 +5,6 @@ tcl_interactive, tcl_library, tcl_nonwordchars, tcl_patchLevel,
 tcl_pkgPath, tcl_platform, tcl_precision, tcl_rcFileName,
 tcl_traceCompile, tcl_traceExec, tcl_wordchars, tcl_version - Variables
 used by Tcl
-
-\
 
 # DESCRIPTION
 
@@ -506,3 +502,9 @@ eval(n), library(n), tclsh(1), tkvars(n), wish(1)
 
 arithmetic, bytecode, compiler, error, environment, POSIX, precision,
 subprocess, user, variables
+
+<!---
+Copyright (c) 1993 The Regents of the University of California
+Copyright (c) 1994-1997 Sun Microsystems, Inc
+-->
+

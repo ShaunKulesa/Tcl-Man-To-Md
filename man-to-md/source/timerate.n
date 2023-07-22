@@ -40,9 +40,9 @@ iterations is reached or the time is exceeded.
 .sp
 It will then return a canonical tcl-list of the form:
 .PP
-.nf
+.CS
 \fB0.095977 \(mcs/# 52095836 # 10419167 #/sec 5000.000 net-ms\fR
-.fi
+.CE
 .PP
 which indicates:
 .IP \(bu 3
@@ -95,18 +95,18 @@ it practical for measuring scripts with highly uncertain execution times.
 Estimate how fast it takes for a simple Tcl \fBfor\fR loop (including
 operations on variable \fIi\fR) to count to ten:
 .PP
-.nf
+.CS
 \fI# calibrate\fR
 \fBtimerate\fR -calibrate {}
 
 \fI# measure\fR
 \fBtimerate\fR { for {set i 0} {$i<10} {incr i} {} } 5000
-.fi
+.CE
 .PP
 Estimate how fast it takes for a simple Tcl \fBfor\fR loop, ignoring the
 overhead of the management of the variable that controls the loop:
 .PP
-.nf
+.CS
 \fI# calibrate for overhead of variable operations\fR
 set i 0; \fBtimerate\fR -calibrate {expr {$i<10}; incr i} 1000
 
@@ -114,13 +114,13 @@ set i 0; \fBtimerate\fR -calibrate {expr {$i<10}; incr i} 1000
 \fBtimerate\fR {
     for {set i 0} {$i<10} {incr i} {}
 } 5000
-.fi
+.CE
 .PP
 Estimate the speed of calculating the hour of the day using \fBclock format\fR only,
 ignoring overhead of the portion of the script that prepares the time for it to
 calculate:
 .PP
-.nf
+.CS
 \fI# calibrate\fR
 \fBtimerate\fR -calibrate {}
 
@@ -136,7 +136,7 @@ set tm 0
     clock format $tm -format %H
     incr tm [expr {24*60*60}]; # overhead for this is ignored
 } 5000
-.fi
+.CE
 .SH "SEE ALSO"
 time(n)
 .SH KEYWORDS

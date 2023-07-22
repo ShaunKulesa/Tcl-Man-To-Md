@@ -1,10 +1,6 @@
-\
-
 # NAME
 
 filename - File name conventions supported by Tcl commands
-
-\
 
 # INTRODUCTION
 
@@ -177,3 +173,8 @@ file(n), glob(n)
 
 current directory, absolute file name, relative file name,
 volume-relative file name, portability
+
+<!---
+Copyright (c) 1995-1996 Sun Microsystems, Inc
+-->
+

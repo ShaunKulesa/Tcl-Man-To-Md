@@ -1,0 +1,485 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+      <script>
+	// Hack for scrolling window when linking to anchor tag with fixed nav header
+        var shiftWindow = function() { scrollBy(0, -75) };
+        window.addEventListener("hashchange", shiftWindow);
+        function load() { if (window.location.hash) shiftWindow(); }
+      </script>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        
+        <link rel="canonical" href="https://www.tcl.tk/man/TkCmd/font/">
+        <link rel="shortcut icon" href="../../img/favicon.ico">
+        <title>Font - Tcl/Tk</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <link href="../../css/font-awesome.min.css" rel="stylesheet">
+    <link href="../../css/base.css" rel="stylesheet">
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+    <script src="../../js/base.js"></script> 
+    </head>
+
+    <body class="">
+
+      <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
+	<div class="container">
+	<a class="navbar-brand" href="../..">Tcl/Tk</a>
+	<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExample04" aria-controls="navbarsExample04" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+	</button>
+
+	<div class="collapse navbar-collapse">
+
+          <ul class="navbar-nav flex-row ml-md-auto d-none d-md-flex">
+            <li class="nav-item">
+              <a class="nav-link" href="#" data-toggle="modal" data-target="#mkdocs_search_modal">
+		<i class="fa fa-search"></i> Search
+              </a>
+            </li>
+          </ul>
+	</div>
+	</div>
+      </nav><div id="content" class="container">
+        
+      <div class="row">
+        <div class="col-md-9" role="main">
+
+
+<nav aria-label="breadcrumb">
+  <ol class="breadcrumb">
+    
+    <li class="breadcrumb-item active" aria-current="page">Font</li>
+  </ol>
+</nav>
+
+
+<p>\</p>
+<h1 id="name">NAME</h1>
+<p>font - Create and inspect fonts.</p>
+<h1 id="synopsis">SYNOPSIS</h1>
+<p><strong>font</strong><em> option </em>?<em>arg arg ...</em>?</p>
+<p>\</p>
+<h1 id="description">DESCRIPTION</h1>
+<p>The <strong>font</strong> command provides several facilities for dealing with fonts,
+such as defining named fonts and inspecting the actual attributes of a
+font. The command has several different forms, determined by the first
+argument. The following forms are currently supported:</p>
+<p><strong>font actual </strong><em>font</em> ?<strong>-displayof </strong><em>window</em>? ?<em>option</em>? ?<strong>- -</strong>? ?<em>char</em>?</p>
+<p>:   Returns information about the actual attributes that are obtained
+    when <em>font</em> is used on <em>window</em>\'s display; the actual attributes
+    obtained may differ from the attributes requested due to
+    platform-dependent limitations, such as the availability of font
+    families and point sizes. <em>font</em> is a font description; see <strong>FONT
+    DESCRIPTIONS</strong> below. If the <em>window</em> argument is omitted, it
+    defaults to the main window. If <em>option</em> is specified, returns the
+    value of that attribute; if it is omitted, the return value is a
+    list of all the attributes and their values. See <strong>FONT OPTIONS</strong>
+    below for a list of the possible attributes. If the <em>char</em> argument
+    is supplied, it must be a single character. The font attributes
+    returned will be those of the specific font used to render that
+    character, which will be different from the base font if the base
+    font does not contain the given character. If <em>char</em> may be a
+    hyphen, it should be preceded by <strong>- -</strong> to distinguish it from a
+    misspelled <em>option</em>.</p>
+<p><strong>font configure </strong><em>fontname</em> ?<em>option</em>? ?<em>value option value ...</em>?</p>
+<p>:   Query or modify the desired attributes for the named font called
+    <em>fontname</em>. If no <em>option</em> is specified, returns a list describing
+    all the options and their values for <em>fontname</em>. If a single
+    <em>option</em> is specified with no <em>value</em>, then returns the current
+    value of that attribute. If one or more <em>option</em>-<em>value</em> pairs are
+    specified, then the command modifies the given named font to have
+    the given values; in this case, all widgets using that font will
+    redisplay themselves using the new attributes for the font. See
+    <strong>FONT OPTIONS</strong> below for a list of the possible attributes.</p>
+<div class="language-text highlight"><pre><span></span><code>Note that on Aqua/Mac OS X, the system fonts (see **PLATFORM
+SPECIFIC FONTS** below) may not be actually altered because they are
+implemented by the system theme. To achieve the effect of
+modification, use **font actual** to get their configuration and
+**font create** to synthesize a copy of the font which can be
+modified.
+</code></pre></div>
+<p><strong>font create</strong> ?<em>fontname</em>? ?<em>option value ...</em>?</p>
+<p>:   Creates a new named font and returns its name. <em>fontname</em> specifies
+    the name for the font; if it is omitted, then Tk generates a new
+    name of the form <strong>font</strong><em>x</em>, where <em>x</em> is an integer. There may be
+    any number of <em>option</em>-<em>value</em> pairs, which provide the desired
+    attributes for the new named font. See <strong>FONT OPTIONS</strong> below for a
+    list of the possible attributes.</p>
+<p><strong>font delete</strong> <em>fontname</em> ?<em>fontname ...</em>?</p>
+<p>:   Delete the specified named fonts. If there are widgets using the
+    named font, the named font will not actually be deleted until all
+    the instances are released. Those widgets will continue to display
+    using the last known values for the named font. If a deleted named
+    font is subsequently recreated with another call to <strong>font create</strong>,
+    the widgets will use the new named font and redisplay themselves
+    using the new attributes of that font.</p>
+<p><strong>font families</strong> ?<strong>-displayof </strong><em>window</em>?</p>
+<p>:   The return value is a list of the case-insensitive names of all font
+    families that exist on <em>window</em>\'s display. If the <em>window</em> argument
+    is omitted, it defaults to the main window.</p>
+<p><strong>font measure </strong><em>font</em> ?<strong>-displayof </strong><em>window</em>? <em>text</em></p>
+<p>:   Measures the amount of space the string <em>text</em> would use in the
+    given <em>font</em> when displayed in <em>window</em>. <em>font</em> is a font
+    description; see <strong>FONT DESCRIPTIONS</strong> below. If the <em>window</em>
+    argument is omitted, it defaults to the main window. The return
+    value is the total width in pixels of <em>text</em>, not including the
+    extra pixels used by highly exaggerated characters such as cursive
+    If the string contains newlines or tabs, those characters are not
+    expanded or treated specially when measuring the string.</p>
+<p><strong>font metrics </strong><em>font</em> ?<strong>-displayof </strong><em>window</em>? ?<em>option</em>?</p>
+<p>:   Returns information about the metrics (the font-specific data), for
+    <em>font</em> when it is used on <em>window</em>\'s display. <em>font</em> is a font
+    description; see <strong>FONT DESCRIPTIONS</strong> below. If the <em>window</em>
+    argument is omitted, it defaults to the main window. If <em>option</em> is
+    specified, returns the value of that metric; if it is omitted, the
+    return value is a list of all the metrics and their values. See
+    <strong>FONT METRICS</strong> below for a list of the possible metrics.</p>
+<p><strong>font names</strong></p>
+<p>:   The return value is a list of all the named fonts that are currently
+    defined.</p>
+<h1 id="font-descriptions">FONT DESCRIPTIONS</h1>
+<p>The following formats are accepted as a font description anywhere <em>font</em>
+is specified as an argument above; these same forms are also permitted
+when specifying the <strong>-font</strong> option for widgets.</p>
+<p>[1] <em>fontname</em></p>
+<p>:   The name of a named font, created using the <strong>font create</strong> command.
+    When a widget uses a named font, it is guaranteed that this will
+    never cause an error, as long as the named font exists, no matter
+    what potentially invalid or meaningless set of attributes the named
+    font has. If the named font cannot be displayed with exactly the
+    specified attributes, some other close font will be substituted
+    automatically.</p>
+<p>[2] <em>systemfont</em></p>
+<p>:   The platform-specific name of a font, interpreted by the graphics
+    server. This also includes, under X, an XLFD (see [4]) for which a
+    single character was used to elide more than one field in the middle
+    of the name. See <strong>PLATFORM SPECIFIC FONTS</strong> for a list of the
+    system fonts.</p>
+<p>[3] <em>family </em>?<em>size</em>? ?<em>style</em>? ?<em>style ...</em>?</p>
+<p>:   A properly formed list whose first element is the desired font
+    <em>family</em> and whose optional second element is the desired <em>size</em>.
+    The interpretation of the <em>size</em> attribute follows the same rules
+    described for <strong>-size</strong> in <strong>FONT OPTIONS</strong> below. Any additional
+    optional arguments following the <em>size</em> are font <em>style</em>s. Possible
+    values for the <em>style</em> arguments are as follows:</p>
+<div class="language-text highlight"><pre><span></span><code>&gt;
+&gt;     normal    bold    roman   italic
+&gt;     underline overstrike
+</code></pre></div>
+<p>[4] X-font names (XLFD)</p>
+<p>:   A Unix-centric font name of the form
+    <em>-foundry-family-weight-slant-setwidth-addstyle-pixel-point-resx-resy-spacing-width-charset-encoding</em>.
+    The character may be used to skip individual fields that the user
+    does not care about. There must be exactly one for each field
+    skipped, except that a at the end of the XLFD skips any remaining
+    fields; the shortest valid XLFD is simply signifying all fields as
+    defaults. Any fields that were skipped are given default values. For
+    compatibility, an XLFD always chooses a font of the specified pixel
+    size (not point size); although this interpretation is not strictly
+    correct, all existing applications using XLFDs assumed that one was
+    in fact one pixel and would display incorrectly (generally larger)
+    if the correct size font were actually used.</p>
+<p>[5] <em>option value </em>?<em>option value ...</em>?</p>
+<p>:   A properly formed list of <em>option</em>-<em>value</em> pairs that specify the
+    desired attributes of the font, in the same format used when
+    defining a named font; see <strong>FONT OPTIONS</strong> below.</p>
+<p>When font description <em>font</em> is used, the system attempts to parse the
+description according to each of the above five rules, in the order
+specified. Cases [1] and [2] must match the name of an existing
+named font or of a system font. Cases [3], [4], and [5] are
+accepted on all platforms and the closest available font will be used.
+In some situations it may not be possible to find any close font (e.g.,
+the font family was a garbage value); in that case, some
+system-dependent default font is chosen. If the font description does
+not match any of the above patterns, an error is generated.</p>
+<h1 id="font-metrics">FONT METRICS</h1>
+<p>The following options are used by the <strong>font metrics</strong> command to query
+font-specific data determined when the font was created. These
+properties are for the whole font itself and not for individual
+characters drawn in that font. In the following definitions, the of a
+font is the horizontal line where the bottom of most letters line up;
+certain letters, such as lower-case stick below the baseline.</p>
+<p><strong>-ascent  </strong></p>
+<p>:   The amount in pixels that the tallest letter sticks up above the
+    baseline of the font, plus any extra blank space added by the
+    designer of the font.</p>
+<p><strong>-descent  </strong></p>
+<p>:   The largest amount in pixels that any letter sticks down below the
+    baseline of the font, plus any extra blank space added by the
+    designer of the font.</p>
+<p><strong>-linespace</strong></p>
+<p>:   Returns how far apart vertically in pixels two lines of text using
+    the same font should be placed so that none of the characters in one
+    line overlap any of the characters in the other line. This is
+    generally the sum of the ascent above the baseline line plus the
+    descent below the baseline.</p>
+<p><strong>-fixed  </strong></p>
+<p>:   Returns a boolean flag that is if this is a fixed-width font, where
+    each normal character is the same width as all the other characters,
+    or is if this is a proportionally-spaced font, where individual
+    characters have different widths. The widths of control characters,
+    tab characters, and other non-printing characters are not included
+    when calculating this value.</p>
+<h1 id="font-options">FONT OPTIONS</h1>
+<p>The following options are supported on all platforms, and are used when
+constructing a named font or when specifying a font using style [5] as
+above:</p>
+<p><strong>-family </strong><em>name</em></p>
+<p>:   The case-insensitive font family name. Tk guarantees to support the
+    font families named <strong>Courier</strong> (a monospaced font), <strong>Times</strong> (a
+    serifed font), and <strong>Helvetica</strong> (a sans-serif font). The most
+    closely matching native font family will automatically be
+    substituted when one of the above font families is used. The <em>name</em>
+    may also be the name of a native, platform-specific font family; in
+    that case it will work as desired on one platform but may not
+    display correctly on other platforms. If the family is unspecified
+    or unrecognized, a platform-specific default font will be chosen.</p>
+<p><strong>-size </strong><em>size</em></p>
+<p>:   The desired size of the font. If the <em>size</em> argument is a positive
+    number, it is interpreted as a size in points. If <em>size</em> is a
+    negative number, its absolute value is interpreted as a size in
+    pixels. If a font cannot be displayed at the specified size, a
+    nearby size will be chosen. If <em>size</em> is unspecified or zero, a
+    platform-dependent default size will be chosen.</p>
+<div class="language-text highlight"><pre><span></span><code>Sizes should normally be specified in points so the application will
+remain the same ruler size on the screen, even when changing screen
+resolutions or moving scripts across platforms. However, specifying
+pixels is useful in certain circumstances such as when a piece of
+text must line up with respect to a fixed-size bitmap. The mapping
+between points and pixels is set when the application starts, based
+on properties of the installed monitor, but it can be overridden by
+calling the **tk scaling** command.
+</code></pre></div>
+<p><strong>-weight </strong><em>weight</em></p>
+<p>:   The nominal thickness of the characters in the font. The value
+    <strong>normal</strong> specifies a normal weight font, while <strong>bold</strong> specifies
+    a bold font. The closest available weight to the one specified will
+    be chosen. The default weight is <strong>normal</strong>.</p>
+<p><strong>-slant </strong><em>slant</em></p>
+<p>:   The amount the characters in the font are slanted away from the
+    vertical. Valid values for slant are <strong>roman</strong> and <strong>italic</strong>. A
+    roman font is the normal, upright appearance of a font, while an
+    italic font is one that is tilted some number of degrees from
+    upright. The closest available slant to the one specified will be
+    chosen. The default slant is <strong>roman</strong>.</p>
+<p><strong>-underline </strong><em>boolean</em></p>
+<p>:   The value is a boolean flag that specifies whether characters in
+    this font should be underlined. The default value for underline is
+    <strong>false</strong>.</p>
+<p><strong>-overstrike </strong><em>boolean</em></p>
+<p>:   The value is a boolean flag that specifies whether a horizontal line
+    should be drawn through the middle of characters in this font. The
+    default value for overstrike is <strong>false</strong>.</p>
+<h1 id="standard-fonts">STANDARD FONTS</h1>
+<p>The following named fonts are supported on all systems, and default to
+values that match appropriate system defaults.</p>
+<p><strong>TkDefaultFont</strong></p>
+<p>:   This font is the default for all GUI items not otherwise specified.</p>
+<p><strong>TkTextFont</strong></p>
+<p>:   This font should be used for user text in entry widgets, listboxes
+    etc.</p>
+<p><strong>TkFixedFont</strong></p>
+<p>:   This font is the standard fixed-width font.</p>
+<p><strong>TkMenuFont</strong></p>
+<p>:   This font is used for menu items.</p>
+<p><strong>TkHeadingFont</strong></p>
+<p>:   This font should be used for column headings in lists and tables.</p>
+<p><strong>TkCaptionFont</strong></p>
+<p>:   This font should be used for window and dialog caption bars.</p>
+<p><strong>TkSmallCaptionFont</strong></p>
+<p>:   This font should be used for captions on contained windows or tool
+    dialogs.</p>
+<p><strong>TkIconFont</strong></p>
+<p>:   This font should be used for icon captions.</p>
+<p><strong>TkTooltipFont</strong></p>
+<p>:   This font should be used for tooltip windows (transient information
+    windows).</p>
+<p>It is <em>not</em> advised to change these fonts, as they may be modified by Tk
+itself in response to system changes. Instead, make a copy of the font
+and modify that.</p>
+<h1 id="platform-specific-fonts">PLATFORM SPECIFIC FONTS</h1>
+<p>The following system fonts are supported:</p>
+<p><strong>X Windows</strong></p>
+<p>:   All valid X font names, including those listed by xlsfonts(1), are
+    available.</p>
+<p><strong>MS Windows</strong></p>
+<p>:   The following fonts are supported, and are mapped to the user\'s
+    style defaults.</p>
+<div class="language-text highlight"><pre><span></span><code>&gt;
+&gt;     system    ansi    device
+&gt;     systemfixed   ansifixed   oemfixed
+</code></pre></div>
+<p><strong>Mac OS X</strong></p>
+<p>:   The following fonts are supported, and are mapped to the user\'s
+    style defaults.</p>
+<div class="language-text highlight"><pre><span></span><code>&gt;
+&gt;     system    application menu
+
+Additionally, the following named fonts provide access to the Aqua
+theme fonts:
+
+&gt;
+&gt;     systemSystemFont  systemEmphasizedSystemFont
+&gt;     systemSmallSystemFont systemSmallEmphasizedSystemFont
+&gt;     systemApplicationFont systemLabelFont
+&gt;     systemViewsFont   systemMenuTitleFont
+&gt;     systemMenuItemFont    systemMenuItemMarkFont
+&gt;     systemMenuItemCmdKeyFont  systemWindowTitleFont
+&gt;     systemPushButtonFont  systemUtilityWindowTitleFont
+&gt;     systemAlertHeaderFont systemToolbarFont
+&gt;     systemMiniSystemFont  systemDetailSystemFont
+&gt;     systemDetailEmphasizedSystemFont
+</code></pre></div>
+<h1 id="example">EXAMPLE</h1>
+<p>Fill a text widget with lots of font demonstrators, one for every font
+family installed on your system:</p>
+<div class="language-text highlight"><pre><span></span><code>pack [text .t -wrap none] -fill both -expand 1
+set count 0
+set tabwidth 0
+foreach family [lsort -dictionary [font families]] {
+    .t tag configure f[incr count] -font [list $family 10]
+    .t insert end ${family}:\t {} \
+            &quot;This is a simple sampler\n&quot; f$count
+    set w [font measure [.t cget -font] ${family}:]
+    if {$w+5 &gt; $tabwidth} {
+        set tabwidth [expr {$w+5}]
+        .t configure -tabs $tabwidth
+    }
+}
+</code></pre></div>
+<h1 id="see-also">SEE ALSO</h1>
+<p>options(n)</p>
+<h1 id="keywords">KEYWORDS</h1>
+<p>font</p>
+
+<ul class="metadata page-metadata" data-bi-name="page info" lang="en-us" dir="ltr">
+  <li class="last-updated-holder displayDate loading">
+    <span class="last-updated-text">Last updated:</span>
+    <time role="presentation" datetime="2018-10-25T00:00:00.000Z" data-article-date-source="ms.date"></time>
+  </li>
+<!--
+  <li class="readingTime">
+    2 minutes to read
+  </li>
+-->
+  <li class="contributors-holder">
+    <span class="contributors-text">Contributors</span>
+    <ul class="contributors" data-bi-name="contributors"></ul>
+  </li>
+</ul>
+</div>
+        <div class="col-md-3"><div class="navbar-light navbar-expand-md hidden-print sticky-top sticky-offset" role="complementary">
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggler collapsed" data-toggle="collapse" data-target="#toc-collapse" title="Table of Contents">
+            <span class="fa fa-angle-down"></span>
+        </button>
+    </div>
+
+    <div id="toc-collapse" class="navbar-collapse collapse card">
+        <ul class="nav flex-column bs-sidenav">
+            <li class="nav-item main"><a class="nav-link" href="#name">NAME</a></li>
+            <li class="nav-item main"><a class="nav-link" href="#synopsis">SYNOPSIS</a></li>
+            <li class="nav-item main"><a class="nav-link" href="#description">DESCRIPTION</a></li>
+            <li class="nav-item main"><a class="nav-link" href="#font-descriptions">FONT DESCRIPTIONS</a></li>
+            <li class="nav-item main"><a class="nav-link" href="#font-metrics">FONT METRICS</a></li>
+            <li class="nav-item main"><a class="nav-link" href="#font-options">FONT OPTIONS</a></li>
+            <li class="nav-item main"><a class="nav-link" href="#standard-fonts">STANDARD FONTS</a></li>
+            <li class="nav-item main"><a class="nav-link" href="#platform-specific-fonts">PLATFORM SPECIFIC FONTS</a></li>
+            <li class="nav-item main"><a class="nav-link" href="#example">EXAMPLE</a></li>
+            <li class="nav-item main"><a class="nav-link" href="#see-also">SEE ALSO</a></li>
+            <li class="nav-item main"><a class="nav-link" href="#keywords">KEYWORDS</a></li>
+        </ul>
+    </div>
+</div></div>
+      </div>
+      </div>
+
+      <footer class="col-md-12">
+	<hr>
+	<div class="container">
+	</div>
+      </footer>
+      <script>
+	var base_url = "../..",
+            shortcuts = {"help": 191, "next": 78, "previous": 80, "search": 83};
+      </script>
+      <script src="../../js/base.js" defer></script>
+      <script src="../../search/main.js" defer></script>
+
+      <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="Search Modal" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Search</h4>
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            </div>
+            <div class="modal-body">
+                <p>
+                    From here you can search these documents. Enter
+                    your search terms below.
+                </p>
+                <form role="form">
+                    <div class="form-group">
+                        <input type="text" class="form-control" placeholder="Search..." id="mkdocs-search-query" title="Type search term here">
+                    </div>
+                </form>
+                <div id="mkdocs-search-results"></div>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div><div class="modal" id="mkdocs_keyboard_modal" tabindex="-1" role="dialog" aria-labelledby="Keyboard Shortcuts Modal" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <p class="h4 modal-title">Keyboard Shortcuts</p>
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            </div>
+            <div class="modal-body">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th style="width: 20%;">Keys</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="help shortcut"><kbd>?</kbd></td>
+                    <td>Open this help</td>
+                  </tr>
+                  <tr>
+                    <td class="next shortcut"><kbd>n</kbd></td>
+                    <td>Next page</td>
+                  </tr>
+                  <tr>
+                    <td class="prev shortcut"><kbd>p</kbd></td>
+                    <td>Previous page</td>
+                  </tr>
+                  <tr>
+                    <td class="search shortcut"><kbd>s</kbd></td>
+                    <td>Search</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>
+
+    </body>
+</html>

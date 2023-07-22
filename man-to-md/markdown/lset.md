@@ -1,5 +1,3 @@
-\
-
 # NAME
 
 lset - Change an element in a list
@@ -7,8 +5,6 @@ lset - Change an element in a list
 # SYNOPSIS
 
 **lset ***varName ?index \...? newValue*
-
-\
 
 # DESCRIPTION
 
@@ -121,3 +117,8 @@ lsort(n), lrange(n), lreplace(n), string(n)
 # KEYWORDS
 
 element, index, list, replace, set
+
+<!---
+Copyright (c) 2001 Kevin B. Kenny <kennykb@acm.org>.  All rights reserved
+-->
+

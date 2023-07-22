@@ -112,9 +112,9 @@ and their interpretation, are described under \fBFORMAT GROUPS\fR.
 .PP
 On \fBclock format\fR, the default format is
 .PP
-.nf
+.CS
 %a %b %d %H:%M:%S %Z %Y
-.fi
+.CE
 .PP
 On \fBclock scan\fR, the lack of a \fB\-format\fR option indicates that a
 .QW "free format scan"
@@ -199,14 +199,14 @@ that observe summer time (Daylight Saving Time).  For example,
 the following code sets the value of \fBx\fR to \fB04:00:00\fR because
 the clock has changed in the interval in question.
 .PP
-.nf
+.CS
 set s [\fBclock scan\fR {2004-10-30 05:00:00} \e
            -format {%Y-%m-%d %H:%M:%S} \e
            -timezone :America/New_York]
 set a [\fBclock add\fR $s 24 hours -timezone :America/New_York]
 set x [\fBclock format\fR $a \e
            -format {%H:%M:%S} -timezone :America/New_York]
-.fi
+.CE
 .PP
 Adding and subtracting days and weeks is accomplished by converting
 the given time to a calendar day and time of day in the appropriate
@@ -220,14 +220,14 @@ the time changes at the start or end of summer time (Daylight Saving Time)
 results in the \fIsame local time\fR on the day in question.  For
 instance, the following code sets the value of \fBx\fR to \fB05:00:00\fR.
 .PP
-.nf
+.CS
 set s [\fBclock scan\fR {2004-10-30 05:00:00} \e
            -format {%Y-%m-%d %H:%M:%S} \e
            -timezone :America/New_York]
 set a [\fBclock add\fR $s 1 day -timezone :America/New_York]
 set x [\fBclock format\fR $a \e
            -format {%H:%M:%S} -timezone :America/New_York]
-.fi
+.CE
 .PP
 In cases of ambiguity, where the same local time happens twice
 on the same day, the earlier time is used.  In cases where the conversion
@@ -236,24 +236,24 @@ Daylight Saving Time change using US rules), the time is converted
 as if the clock had not changed.  Thus, the following code
 will set the value of \fBx\fR to \fB03:30:00\fR.
 .PP
-.nf
+.CS
 set s [\fBclock scan\fR {2004-04-03 02:30:00} \e
            -format {%Y-%m-%d %H:%M:%S} \e
            -timezone :America/New_York]
 set a [\fBclock add\fR $s 1 day -timezone :America/New_York]
 set x [\fBclock format\fR $a \e
            -format {%H:%M:%S} -timezone :America/New_York]
-.fi
+.CE
 .PP
 Adding a given number of days or weeks works correctly across the conversion
 between the Julian and Gregorian calendars; the omitted days are skipped.
 The following code sets \fBz\fR to \fB1752-09-14\fR.
 .PP
-.nf
+.CS
 set x [\fBclock scan\fR 1752-09-02 -format %Y-%m-%d -locale en_US]
 set y [\fBclock add\fR $x 1 day -locale en_US]
 set z [\fBclock format\fR $y -format %Y-%m-%d -locale en_US]
-.fi
+.CE
 .PP
 In the bizarre case that adding the given number of days yields a date
 that does not exist because it falls within the dropped days of the
@@ -781,7 +781,7 @@ The C library's idea of the local time zone, as defined by the
 In case [1] \fIonly,\fR the string is tested to see if it is one
 of the strings:
 .PP
-.nf
+.CS
  gmt     ut      utc     bst     wet     wat     at
  nft     nst     ndt     ast     adt     est     edt
  cst     cdt     mst     mdt     pst     pdt     yst
@@ -791,7 +791,7 @@ of the strings:
  zp6     wast    wadt    jt      cct     jst     cast
  cadt    east    eadt    gst     nzt     nzst    nzdt
  idle
-.fi
+.CE
 .PP
 If it is a string in the above list, it designates a known
 time zone, and is interpreted as such.

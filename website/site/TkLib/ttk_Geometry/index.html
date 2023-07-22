@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+      <script>
+	// Hack for scrolling window when linking to anchor tag with fixed nav header
+        var shiftWindow = function() { scrollBy(0, -75) };
+        window.addEventListener("hashchange", shiftWindow);
+        function load() { if (window.location.hash) shiftWindow(); }
+      </script>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        
+        <link rel="canonical" href="https://www.tcl.tk/man/TkLib/ttk_Geometry/">
+        <link rel="shortcut icon" href="../../img/favicon.ico">
+        <title>ttk Geometry - Tcl/Tk</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <link href="../../css/font-awesome.min.css" rel="stylesheet">
+    <link href="../../css/base.css" rel="stylesheet">
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+    <script src="../../js/base.js"></script> 
+    </head>
+
+    <body class="">
+
+      <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
+	<div class="container">
+	<a class="navbar-brand" href="../..">Tcl/Tk</a>
+	<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExample04" aria-controls="navbarsExample04" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+	</button>
+
+	<div class="collapse navbar-collapse">
+
+          <ul class="navbar-nav flex-row ml-md-auto d-none d-md-flex">
+            <li class="nav-item">
+              <a class="nav-link" href="#" data-toggle="modal" data-target="#mkdocs_search_modal">
+		<i class="fa fa-search"></i> Search
+              </a>
+            </li>
+          </ul>
+	</div>
+	</div>
+      </nav><div id="content" class="container">
+        
+      <div class="row">
+        <div class="col-md-9" role="main">
+
+
+<nav aria-label="breadcrumb">
+  <ol class="breadcrumb">
+    
+    <li class="breadcrumb-item active" aria-current="page">ttk Geometry</li>
+  </ol>
+</nav>
+
+
+<p>\</p>
+<h1 id="name">NAME</h1>
+<p>Ttk_MakeBox, Ttk_PadBox, Ttk_ExpandBox, Ttk_PackBox, Ttk_StickBox,
+Ttk_PlaceBox, Ttk_BoxContains, Ttk_MakePadding, Ttk_UniformPadding,
+Ttk_AddPadding, Ttk_RelievePadding, Ttk_GetPaddingFromObj,
+Ttk_GetBorderFromObj, Ttk_GetStickyFromObj - Tk themed geometry
+utilities</p>
+<h1 id="synopsis">SYNOPSIS</h1>
+<p><strong>#include \&lt;tkTheme.h></strong></p>
+<p>Ttk_Box <strong>Ttk_MakeBox</strong>(int <em>x</em>, int <em>y</em>, int <em>width</em>, int <em>height</em>);</p>
+<p>Ttk_Box <strong>Ttk_PadBox</strong>(Ttk_Box <em>parcel</em>, Ttk_Padding <em>padding</em>);</p>
+<p>Ttk_Box <strong>Ttk_ExpandBox</strong>(Ttk_Box <em>parcel</em>, Ttk_Padding <em>padding</em>);</p>
+<p>Ttk_Box <strong>Ttk_PackBox</strong>(Ttk_Box *<em>cavity</em>, int <em>width</em>, int <em>height</em>,
+Ttk_Side <em>side</em>);</p>
+<p>Ttk_Box <strong>Ttk_StickBox</strong>(Ttk_Box <em>parcel</em>, int <em>width</em>, int <em>height</em>,
+unsigned <em>sticky</em>);</p>
+<p>Ttk_Box <strong>Ttk_PlaceBox</strong>(Ttk_Box *<em>cavity</em>, int <em>width</em>, int <em>height</em>,
+Ttk_Side <em>side</em>, unsigned <em>sticky</em>);</p>
+<p>Ttk_Box <strong>Ttk_AnchorBox</strong>(Ttk_Box <em>parcel</em>, int <em>width</em>, int <em>height</em>,
+Tk_Anchor <em>anchor</em>);</p>
+<p>Ttk_Padding <strong>Ttk_MakePadding</strong>(short <em>left</em>, short <em>top</em>, short
+<em>right</em>, short <em>bottom</em>);</p>
+<p>Ttk_Padding <strong>Ttk_UniformPadding</strong>(short <em>border</em>);</p>
+<p>Ttk_Padding <strong>Ttk_AddPadding</strong>(Ttk_Padding <em>padding1</em>, Ttk_Padding
+<em>padding2</em>;</p>
+<p>Ttk_Padding <strong>Ttk_RelievePadding</strong>(Ttk_Padding <em>padding</em>, int <em>relief</em>);</p>
+<p>int <strong>Ttk_BoxContains</strong>(Ttk_Box <em>box</em>, int <em>x</em>, int <em>y</em>);</p>
+<p>int <strong>Ttk_GetPaddingFromObj</strong>(Tcl_Interp *<em>interp</em>, Tk_Window <em>tkwin</em>,
+Tcl_Obj *<em>objPtr</em>, Ttk_Padding *<em>padding_rtn</em>);</p>
+<p>int <strong>Ttk_GetBorderFromObj</strong>(Tcl_Interp *<em>interp</em>, Tcl_Obj *<em>objPtr</em>,
+Ttk_Padding *<em>padding_rtn</em>);</p>
+<p>int <strong>Ttk_GetStickyFromObj</strong>(Tcl_Interp *<em>interp</em>, Tcl_Obj *<em>objPtr</em>,
+int *<em>sticky_rtn</em>);</p>
+<h1 id="arguments">ARGUMENTS</h1>
+<p>One of the symbolic constants <strong>TK_ANCHOR_N</strong>, <strong>TK_ANCHOR_NE</strong>, etc.
+See <em>Tk_GetAnchorFromObj(3)</em>.</p>
+<p>A rectangular region from which a parcel is allocated.</p>
+<p>Extra padding (in pixels) to add uniformly to each side of a region.</p>
+<p>Extra padding (in pixels) to add to the bottom of a region.</p>
+<p>Specifies a rectangular region.</p>
+<p>A rectangular region.</p>
+<p>The height in pixels of a region.</p>
+<p>Used to store error messages.</p>
+<p>Extra padding (in pixels) to add to the left side of a region.</p>
+<p>String value contains a symbolic name to be converted to an enumerated
+value or bitmask. Internal rep may be be modified to cache corresponding
+value.</p>
+<p>Extra padding to add on the inside of a region.</p>
+<p>Padding present in the inside of a region.</p>
+<p>A rectangular region, allocated from a cavity.</p>
+<p>One of the standard Tk relief options (<strong>TK_RELIEF_RAISED</strong>,
+<strong>TK_RELIEF_SUNKEN</strong>, etc.). See <strong>Tk_GetReliefFromObj</strong>.</p>
+<p>Extra padding (in pixels) to add to the right side of a region.</p>
+<p>One of <strong>TTK_SIDE_LEFT</strong>, <strong>TTK_SIDE_TOP</strong>, <strong>TTK_SIDE_RIGHT</strong>, or
+<strong>TTK_SIDE_BOTTOM</strong>.</p>
+<p>A bitmask containing one or more of the bits <strong>TTK_STICK_W</strong> (west, or
+left), <strong>TTK_STICK_E</strong> (east, or right), <strong>TTK_STICK_N</strong> (north, or
+top), and <strong>TTK_STICK_S</strong> (south, or bottom). <strong>TTK_FILL_X</strong> is defined
+as a synonym for (<strong>TTK_STICK_W</strong>|<strong>TTK_STICK_E</strong>), <strong>TTK_FILL_Y</strong> is a
+synonym for (<strong>TTK_STICK_N</strong>|<strong>TTK_STICK_S</strong>), and <strong>TTK_FILL_BOTH</strong> is
+a synonym for (<strong>TTK_FILL_X</strong>|<strong>TTK_FILL_Y</strong>). See also: <em>grid(n)</em>.</p>
+<p>Window whose screen geometry determines the conversion between absolute
+units and pixels.</p>
+<p>Extra padding at the top of a region.</p>
+<p>The width in pixels of a region.</p>
+<p>X coordinate of upper-left corner of region.</p>
+<p>Y coordinate of upper-left corner of region.</p>
+<p>\</p>
+<h1 id="boxes">BOXES</h1>
+<p>The <strong>Ttk_Box</strong> structure represents a rectangular region of a window:</p>
+<div class="language-text highlight"><pre><span></span><code>typedef struct {
+    int x;
+    int y;
+    int width;
+    int height;
+} Ttk_Box;
+</code></pre></div>
+<p>All coordinates are relative to the window.</p>
+<p><strong>Ttk_MakeBox</strong> is a convenience routine that constructs a <strong>Ttk_Box</strong>
+structure representing a region <em>width</em> pixels wide, <em>height</em> pixels
+tall, at the specified <em>x, y</em> coordinates.</p>
+<p><strong>Ttk_PadBox</strong> returns a new box located inside the specified <em>parcel</em>,
+shrunken according to the left, top, right, and bottom margins specified
+by <em>padding</em>.</p>
+<p><strong>Ttk_ExpandBox</strong> is the inverse of <strong>Ttk_PadBox</strong>: it returns a new box
+surrounding the specified <em>parcel</em>, expanded according to the left, top,
+right, and bottom margins specified by <em>padding</em>.</p>
+<p><strong>Ttk_PackBox</strong> allocates a parcel <em>width</em> by <em>height</em> pixels wide on
+the specified <em>side</em> of the <em>cavity</em>, and shrinks the <em>cavity</em>
+accordingly.</p>
+<p><strong>Ttk_StickBox</strong> places a box with the requested <em>width</em> and <em>height</em>
+inside the <em>parcel</em> according to the <em>sticky</em> bits.</p>
+<p><strong>Ttk_PlaceBox</strong> combines <strong>Ttk_PackBox</strong> and <strong>Ttk_StickBox</strong>: it
+allocates a parcel on the specified <em>side</em> of the <em>cavity</em>, places a box
+of the requested size inside the parcel according to <em>sticky</em>, and
+shrinks the <em>cavity</em>.</p>
+<p><strong>Ttk_AnchorBox</strong> places a box with the requested <em>width</em> and <em>height</em>
+inside the <em>parcel</em> according to the specified <em>anchor</em> option.</p>
+<p><strong>Ttk_BoxContains</strong> tests if the specified <em>x, y</em> coordinate lies within
+the rectangular region <em>box</em>.</p>
+<h1 id="paddding">PADDDING</h1>
+<p>The <strong>Ttk_Padding</strong> structure is used to represent borders, internal
+padding, and external margins:</p>
+<div class="language-text highlight"><pre><span></span><code>typedef struct {
+    short left;
+    short top;
+    short right;
+    short bottom;
+} Ttk_Padding;
+</code></pre></div>
+<p><strong>Ttk_MakePadding</strong> is a convenience routine that constructs a
+<strong>Ttk_Padding</strong> structure with the specified left, top, right, and
+bottom components.</p>
+<p><strong>Ttk_UniformPadding</strong> constructs a <strong>Ttk_Padding</strong> structure with all
+components equal to the specified <em>border</em>.</p>
+<p><strong>Ttk_AddPadding</strong> adds two <strong>Ttk_Padding</strong>s together and returns a
+combined padding containing the sum of the individual padding
+components.</p>
+<p><strong>Ttk_RelievePadding</strong> adds an extra 2 pixels of padding to <em>padding</em>
+according to the specified <em>relief</em>. If <em>relief</em> is
+<strong>TK_RELIEF_SUNKEN</strong>, adds two pixels at the top and left so the inner
+region is shifted down and to the left. If it is <strong>TK_RELIEF_RAISED</strong>,
+adds two pixels at the bottom and right so the inner region is shifted
+up and to the right. Otherwise, adds 1 pixel on all sides. This is
+typically used in element geometry procedures to simulate a look for
+pushbuttons.</p>
+<h1 id="conversion-routines">CONVERSION ROUTINES</h1>
+<p><strong>Ttk_GetPaddingFromObj</strong> converts the string in <em>objPtr</em> to a
+<strong>Ttk_Padding</strong> structure. The string representation is a list of up to
+four length specifications If fewer than four elements are specified,
+<em>bottom</em> defaults to <em>top</em>, <em>right</em> defaults to <em>left</em>, and <em>top</em>
+defaults to <em>left</em>. See <strong>Tk_GetPixelsFromObj(3)</strong> for the syntax of
+length specifications.</p>
+<p><strong>Ttk_GetBorderFromObj</strong> is the same as <strong>Ttk_GetPaddingFromObj</strong> except
+that the lengths are specified as integers (i.e., resolution-dependent
+values like <em>3m</em> are not allowed).</p>
+<p><strong>Ttk_GetStickyFromObj</strong> converts the string in <em>objPtr</em> to a <em>sticky</em>
+bitmask. The string contains zero or more of the characters <strong>n</strong>,
+<strong>s</strong>, <strong>e</strong>, or <strong>w</strong>.</p>
+<h1 id="see-also">SEE ALSO</h1>
+<p>Tk_GetReliefFromObj(3), Tk_GetPixelsFromObj(3), Tk_GetAnchorFromObj(3)</p>
+<h1 id="keywords">KEYWORDS</h1>
+<p>geometry, padding, margins, box, region, sticky, relief</p>
+
+<ul class="metadata page-metadata" data-bi-name="page info" lang="en-us" dir="ltr">
+  <li class="last-updated-holder displayDate loading">
+    <span class="last-updated-text">Last updated:</span>
+    <time role="presentation" datetime="2018-10-25T00:00:00.000Z" data-article-date-source="ms.date"></time>
+  </li>
+<!--
+  <li class="readingTime">
+    2 minutes to read
+  </li>
+-->
+  <li class="contributors-holder">
+    <span class="contributors-text">Contributors</span>
+    <ul class="contributors" data-bi-name="contributors"></ul>
+  </li>
+</ul>
+</div>
+        <div class="col-md-3"><div class="navbar-light navbar-expand-md hidden-print sticky-top sticky-offset" role="complementary">
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggler collapsed" data-toggle="collapse" data-target="#toc-collapse" title="Table of Contents">
+            <span class="fa fa-angle-down"></span>
+        </button>
+    </div>
+
+    <div id="toc-collapse" class="navbar-collapse collapse card">
+        <ul class="nav flex-column bs-sidenav">
+            <li class="nav-item main"><a class="nav-link" href="#name">NAME</a></li>
+            <li class="nav-item main"><a class="nav-link" href="#synopsis">SYNOPSIS</a></li>
+            <li class="nav-item main"><a class="nav-link" href="#arguments">ARGUMENTS</a></li>
+            <li class="nav-item main"><a class="nav-link" href="#boxes">BOXES</a></li>
+            <li class="nav-item main"><a class="nav-link" href="#paddding">PADDDING</a></li>
+            <li class="nav-item main"><a class="nav-link" href="#conversion-routines">CONVERSION ROUTINES</a></li>
+            <li class="nav-item main"><a class="nav-link" href="#see-also">SEE ALSO</a></li>
+            <li class="nav-item main"><a class="nav-link" href="#keywords">KEYWORDS</a></li>
+        </ul>
+    </div>
+</div></div>
+      </div>
+      </div>
+
+      <footer class="col-md-12">
+	<hr>
+	<div class="container">
+	</div>
+      </footer>
+      <script>
+	var base_url = "../..",
+            shortcuts = {"help": 191, "next": 78, "previous": 80, "search": 83};
+      </script>
+      <script src="../../js/base.js" defer></script>
+      <script src="../../search/main.js" defer></script>
+
+      <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="Search Modal" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Search</h4>
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            </div>
+            <div class="modal-body">
+                <p>
+                    From here you can search these documents. Enter
+                    your search terms below.
+                </p>
+                <form role="form">
+                    <div class="form-group">
+                        <input type="text" class="form-control" placeholder="Search..." id="mkdocs-search-query" title="Type search term here">
+                    </div>
+                </form>
+                <div id="mkdocs-search-results"></div>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div><div class="modal" id="mkdocs_keyboard_modal" tabindex="-1" role="dialog" aria-labelledby="Keyboard Shortcuts Modal" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <p class="h4 modal-title">Keyboard Shortcuts</p>
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            </div>
+            <div class="modal-body">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th style="width: 20%;">Keys</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="help shortcut"><kbd>?</kbd></td>
+                    <td>Open this help</td>
+                  </tr>
+                  <tr>
+                    <td class="next shortcut"><kbd>n</kbd></td>
+                    <td>Next page</td>
+                  </tr>
+                  <tr>
+                    <td class="prev shortcut"><kbd>p</kbd></td>
+                    <td>Previous page</td>
+                  </tr>
+                  <tr>
+                    <td class="search shortcut"><kbd>s</kbd></td>
+                    <td>Search</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>
+
+    </body>
+</html>

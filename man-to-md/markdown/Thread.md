@@ -1,5 +1,3 @@
-\
-
 # NAME
 
 Tcl_ConditionNotify, Tcl_ConditionWait, Tcl_ConditionFinalize,
@@ -8,34 +6,25 @@ Tcl_CreateThread, Tcl_JoinThread - Tcl thread support
 
 # SYNOPSIS
 
-    #include <tcl.h>
+**#include \<tcl.h\>**
 
-    void
-    Tcl_ConditionNotify(condPtr)
+void **Tcl_ConditionNotify**(*condPtr*)
 
-    void
-    Tcl_ConditionWait(condPtr, mutexPtr, timePtr)
+void **Tcl_ConditionWait**(*condPtr, mutexPtr, timePtr*)
 
-    void
-    Tcl_ConditionFinalize(condPtr)
+void **Tcl_ConditionFinalize**(*condPtr*)
 
-    Void *
-    Tcl_GetThreadData(keyPtr, size)
+Void \* **Tcl_GetThreadData**(*keyPtr, size*)
 
-    void
-    Tcl_MutexLock(mutexPtr)
+void **Tcl_MutexLock**(*mutexPtr*)
 
-    void
-    Tcl_MutexUnlock(mutexPtr)
+void **Tcl_MutexUnlock**(*mutexPtr*)
 
-    void
-    Tcl_MutexFinalize(mutexPtr)
+void **Tcl_MutexFinalize**(*mutexPtr*)
 
-    int
-    Tcl_CreateThread(idPtr, proc, clientData, stackSize, flags)
+int **Tcl_CreateThread**(*idPtr, proc, clientData, stackSize, flags*)
 
-    int
-    Tcl_JoinThread(id, result)
+int **Tcl_JoinThread**(*id, result*)
 
 # ARGUMENTS
 
@@ -71,8 +60,6 @@ new thread.
 
 The referred storage is used to place the exit code of the thread waited
 upon into it.
-
-\
 
 # INTRODUCTION
 
@@ -240,3 +227,9 @@ Tcl_CreateThreadExitHandler(3), Tcl_DeleteThreadExitHandler(3), Thread
 # KEYWORDS
 
 thread, mutex, condition variable, thread local storage
+
+<!---
+Copyright (c) 1999 Scriptics Corporatio
+Copyright (c) 1998 Sun Microsystems, Inc
+-->
+

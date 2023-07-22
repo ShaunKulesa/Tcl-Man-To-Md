@@ -89,11 +89,11 @@ detached from the process.
 .PP
 The unload procedure must match the following prototype:
 .PP
-.nf
+.CS
 typedef int \fBTcl_PackageUnloadProc\fR(
         Tcl_Interp *\fIinterp\fR,
         int \fIflags\fR);
-.fi
+.CE
 .PP
 The \fIinterp\fR argument identifies the interpreter from which the
 library is to be unloaded.  The unload procedure must return
@@ -149,15 +149,15 @@ from the application while some interpreters will continue to use it).
 If an unloadable module in the file \fBfoobar.dll\fR had been loaded
 using the \fBload\fR command like this (on Windows):
 .PP
-.nf
+.CS
 load c:/some/dir/foobar.dll
-.fi
+.CE
 .PP
 then it would be unloaded like this:
 .PP
-.nf
+.CS
 \fBunload\fR c:/some/dir/foobar.dll
-.fi
+.CE
 .PP
 This allows a C code module to be installed temporarily into a
 long-running Tcl program and then removed again (either because it is

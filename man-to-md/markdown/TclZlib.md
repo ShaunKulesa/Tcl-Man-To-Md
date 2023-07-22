@@ -1,5 +1,3 @@
-\
-
 # NAME
 
 Tcl_ZlibAdler32, Tcl_ZlibCRC32, Tcl_ZlibDeflate, Tcl_ZlibInflate,
@@ -9,45 +7,34 @@ Tcl_ZlibStreamPut - compression and decompression functions
 
 # SYNOPSIS
 
-    #include <tcl.h>
+#include \<tcl.h\>
 
-    int
-    Tcl_ZlibDeflate(interp, format, dataObj, level, dictObj)
+int **Tcl_ZlibDeflate**(*interp, format, dataObj, level, dictObj*)
 
-    int
-    Tcl_ZlibInflate(interp, format, dataObj, dictObj)
+int **Tcl_ZlibInflate**(*interp, format, dataObj, dictObj*)
 
-    unsigned int
-    Tcl_ZlibCRC32(initValue, bytes, length)
+unsigned int **Tcl_ZlibCRC32**(*initValue, bytes, length*)
 
-    unsigned int
-    Tcl_ZlibAdler32(initValue, bytes, length)
+unsigned int **Tcl_ZlibAdler32**(*initValue, bytes, length*)
 
-    int
-    Tcl_ZlibStreamInit(interp, mode, format, level, dictObj, zshandlePtr)
+int **Tcl_ZlibStreamInit**(*interp, mode, format, level, dictObj,
+zshandlePtr*)
 
-    Tcl_Obj *
-    Tcl_ZlibStreamGetCommandName(zshandle)
+Tcl_Obj \* **Tcl_ZlibStreamGetCommandName**(*zshandle*)
 
-    int
-    Tcl_ZlibStreamEof(zshandle)
+int **Tcl_ZlibStreamEof**(*zshandle*)
 
-    int
-    Tcl_ZlibStreamClose(zshandle)
+int **Tcl_ZlibStreamClose**(*zshandle*)
 
-    int
-    Tcl_ZlibStreamReset(zshandle)
+int **Tcl_ZlibStreamReset**(*zshandle*)
 
-    int
-    Tcl_ZlibStreamChecksum(zshandle)
+int **Tcl_ZlibStreamChecksum**(*zshandle*)
 
-    int
-    Tcl_ZlibStreamPut(zshandle, dataObj, flush)
+int **Tcl_ZlibStreamPut**(*zshandle, dataObj, flush*)
 
-    int
-    Tcl_ZlibStreamGet(zshandle, dataObj, count)
+int **Tcl_ZlibStreamGet**(*zshandle, dataObj, count*)
 
-    Tcl_ZlibStreamSetCompressionDictionary(zshandle, compDict)
+**Tcl_ZlibStreamSetCompressionDictionary**(*zshandle, compDict*)
 
 # ARGUMENTS
 
@@ -115,8 +102,6 @@ that this only ever be used with streams that were created with their
 *format* set to **TCL_ZLIB_FORMAT_ZLIB** because the other formats have
 no mechanism to indicate whether a compression dictionary was present
 other than to fail on decompression.
-
-\
 
 # DESCRIPTION
 
@@ -278,3 +263,8 @@ Tcl_NewByteArrayObj(3), zlib(n)
 # KEYWORDS
 
 compress, decompress, deflate, gzip, inflate
+
+<!---
+Copyright (c) 2008 Donal K. Fellow
+-->
+

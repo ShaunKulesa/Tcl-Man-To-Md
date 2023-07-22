@@ -1,0 +1,459 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+      <script>
+	// Hack for scrolling window when linking to anchor tag with fixed nav header
+        var shiftWindow = function() { scrollBy(0, -75) };
+        window.addEventListener("hashchange", shiftWindow);
+        function load() { if (window.location.hash) shiftWindow(); }
+      </script>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        
+        <link rel="canonical" href="https://www.tcl.tk/man/TkCmd/radiobutton/">
+        <link rel="shortcut icon" href="../../img/favicon.ico">
+        <title>Radiobutton - Tcl/Tk</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <link href="../../css/font-awesome.min.css" rel="stylesheet">
+    <link href="../../css/base.css" rel="stylesheet">
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+    <script src="../../js/base.js"></script> 
+    </head>
+
+    <body class="">
+
+      <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
+	<div class="container">
+	<a class="navbar-brand" href="../..">Tcl/Tk</a>
+	<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExample04" aria-controls="navbarsExample04" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+	</button>
+
+	<div class="collapse navbar-collapse">
+
+          <ul class="navbar-nav flex-row ml-md-auto d-none d-md-flex">
+            <li class="nav-item">
+              <a class="nav-link" href="#" data-toggle="modal" data-target="#mkdocs_search_modal">
+		<i class="fa fa-search"></i> Search
+              </a>
+            </li>
+          </ul>
+	</div>
+	</div>
+      </nav><div id="content" class="container">
+        
+      <div class="row">
+        <div class="col-md-9" role="main">
+
+
+<nav aria-label="breadcrumb">
+  <ol class="breadcrumb">
+    
+    <li class="breadcrumb-item active" aria-current="page">Radiobutton</li>
+  </ol>
+</nav>
+
+
+<p>\</p>
+<h1 id="name">NAME</h1>
+<p>radiobutton - Create and manipulate \'radiobutton\' pick-one widgets</p>
+<h1 id="synopsis">SYNOPSIS</h1>
+<p><strong>radiobutton</strong> <em>pathName </em>?<em>options</em>?</p>
+<h1 id="standard-options">STANDARD OPTIONS</h1>
+<div class="language-text highlight"><pre><span></span><code>-activebackground   -disabledforeground -padx
+-activeforeground   -font   -pady
+-anchor -foreground -relief
+-background -highlightbackground    -takefocus
+-bitmap -highlightcolor -text
+-borderwidth    -highlightthickness -textvariable
+-compound   -image  -underline
+-cursor -justify    -wraplength
+</code></pre></div>
+<p>See the manual entry for details on the standard options.</p>
+<h1 id="widget-specific-options">WIDGET-SPECIFIC OPTIONS</h1>
+<div class="language-text highlight"><pre><span></span><code>Command-Line Name:  -command
+Database Name:  command
+Database Class: Command
+</code></pre></div>
+<blockquote>
+<p>Specifies a Tcl command to associate with the button. This command is
+typically invoked when mouse button 1 is released over the button
+window. The button\'s global variable (<strong>-variable</strong> option) will be
+updated before the command is invoked.</p>
+</blockquote>
+<div class="language-text highlight"><pre><span></span><code>Command-Line Name:  -height
+Database Name:  height
+Database Class: Height
+</code></pre></div>
+<blockquote>
+<p>Specifies a desired height for the button. If an image or bitmap is
+being displayed in the button then the value is in screen units (i.e.
+any of the forms acceptable to <strong>Tk_GetPixels</strong>); for text it is in
+lines of text. If this option is not specified, the button\'s desired
+height is computed from the size of the image or bitmap or text being
+displayed in it.</p>
+</blockquote>
+<div class="language-text highlight"><pre><span></span><code>Command-Line Name:  -indicatoron
+Database Name:  indicatorOn
+Database Class: IndicatorOn
+</code></pre></div>
+<blockquote>
+<p>Specifies whether or not the indicator should be drawn. Must be a
+proper boolean value. If false, the <strong>-relief</strong> option is ignored and
+the widget\'s relief is always sunken if the widget is selected and
+raised otherwise.</p>
+</blockquote>
+<div class="language-text highlight"><pre><span></span><code>Command-Line Name:  -offrelief
+Database Name:  offRelief
+Database Class: OffRelief
+</code></pre></div>
+<blockquote>
+<p>Specifies the relief for the checkbutton when the indicator is not
+drawn and the checkbutton is off. The default value is By setting this
+option to and setting <strong>-indicatoron</strong> to false and <strong>-overrelief</strong> to
+the effect is achieved of having a flat button that raises on
+mouse-over and which is depressed when activated. This is the behavior
+typically exhibited by the Align-Left, Align-Right, and Center
+radiobuttons on the toolbar of a word-processor, for example.</p>
+</blockquote>
+<div class="language-text highlight"><pre><span></span><code>Command-Line Name:  -overrelief
+Database Name:  overRelief
+Database Class: OverRelief
+</code></pre></div>
+<blockquote>
+<p>Specifies an alternative relief for the radiobutton, to be used when
+the mouse cursor is over the widget. This option can be used to make
+toolbar buttons, by configuring <strong>-relief flat -overrelief</strong> raised.
+If the value of this option is the empty string, then no alternative
+relief is used when the mouse cursor is over the radiobutton. The
+empty string is the default value.</p>
+</blockquote>
+<div class="language-text highlight"><pre><span></span><code>Command-Line Name:  -selectcolor
+Database Name:  selectColor
+Database Class: Background
+</code></pre></div>
+<blockquote>
+<p>Specifies a background color to use when the button is selected. If
+<strong>indicatorOn</strong> is true then the color is used as the background for
+the indicator regardless of the select state. If <strong>-indicatoron</strong> is
+false, this color is used as the background for the entire widget, in
+place of <strong>-background</strong> or <strong>-activeBackground</strong>, whenever the widget
+is selected. If specified as an empty string then no special color is
+used for displaying when the widget is selected.</p>
+</blockquote>
+<div class="language-text highlight"><pre><span></span><code>Command-Line Name:  -selectimage
+Database Name:  selectImage
+Database Class: SelectImage
+</code></pre></div>
+<blockquote>
+<p>Specifies an image to display (in place of the <strong>-image</strong> option) when
+the radiobutton is selected. This option is ignored unless the
+<strong>-image</strong> option has been specified.</p>
+</blockquote>
+<div class="language-text highlight"><pre><span></span><code>Command-Line Name:  -state
+Database Name:  state
+Database Class: State
+</code></pre></div>
+<blockquote>
+<p>Specifies one of three states for the radiobutton: <strong>normal</strong>,
+<strong>active</strong>, or <strong>disabled</strong>. In normal state the radiobutton is
+displayed using the <strong>-foreground</strong> and <strong>-background</strong> options. The
+active state is typically used when the pointer is over the
+radiobutton. In active state the radiobutton is displayed using the
+<strong>-activeforeground</strong> and <strong>-activebackground</strong> options. Disabled
+state means that the radiobutton should be insensitive: the default
+bindings will refuse to activate the widget and will ignore mouse
+button presses. In this state the <strong>-disabledforeground</strong> and
+<strong>-background</strong> options determine how the radiobutton is displayed.</p>
+</blockquote>
+<div class="language-text highlight"><pre><span></span><code>Command-Line Name:  -tristateimage
+Database Name:  tristateImage
+Database Class: TristateImage
+</code></pre></div>
+<blockquote>
+<p>Specifies an image to display (in place of the <strong>-image</strong> option) when
+the radiobutton is selected. This option is ignored unless the
+<strong>-image</strong> option has been specified.</p>
+</blockquote>
+<div class="language-text highlight"><pre><span></span><code>Command-Line Name:  -tristatevalue
+Database Name:  tristateValue
+Database Class: Value
+</code></pre></div>
+<blockquote>
+<p>Specifies the value that causes the radiobutton to display the
+multi-value selection, also known as the tri-state mode. Defaults to</p>
+</blockquote>
+<div class="language-text highlight"><pre><span></span><code>Command-Line Name:  -value
+Database Name:  value
+Database Class: Value
+</code></pre></div>
+<blockquote>
+<p>Specifies value to store in the button\'s associated variable whenever
+this button is selected.</p>
+</blockquote>
+<div class="language-text highlight"><pre><span></span><code>Command-Line Name:  -variable
+Database Name:  variable
+Database Class: Variable
+</code></pre></div>
+<blockquote>
+<p>Specifies the name of a global variable to set whenever this button is
+selected. Changes in this variable also cause the button to select or
+deselect itself. Defaults to the value <strong>selectedButton</strong>.</p>
+</blockquote>
+<div class="language-text highlight"><pre><span></span><code>Command-Line Name:  -width
+Database Name:  width
+Database Class: Width
+</code></pre></div>
+<blockquote>
+<p>Specifies a desired width for the button. If an image or bitmap is
+being displayed in the button, the value is in screen units (i.e. any
+of the forms acceptable to <strong>Tk_GetPixels</strong>); for text it is in
+characters. If this option is not specified, the button\'s desired
+width is computed from the size of the image or bitmap or text being
+displayed in it.</p>
+</blockquote>
+<p>\</p>
+<h1 id="description">DESCRIPTION</h1>
+<p>The <strong>radiobutton</strong> command creates a new window (given by the
+<em>pathName</em> argument) and makes it into a radiobutton widget. Additional
+options, described above, may be specified on the command line or in the
+option database to configure aspects of the radiobutton such as its
+colors, font, text, and initial relief. The <strong>radiobutton</strong> command
+returns its <em>pathName</em> argument. At the time this command is invoked,
+there must not exist a window named <em>pathName</em>, but <em>pathName</em>\'s parent
+must exist.</p>
+<p>A radiobutton is a widget that displays a textual string, bitmap or
+image and a diamond or circle called an <em>indicator</em>. If text is
+displayed, it must all be in a single font, but it can occupy multiple
+lines on the screen (if it contains newlines or if wrapping occurs
+because of the <strong>-wraplength</strong> option) and one of the characters may
+optionally be underlined using the <strong>-underline</strong> option. A radiobutton
+has all of the behavior of a simple button: it can display itself in
+either of three different ways, according to the <strong>-state</strong> option; it
+can be made to appear raised, sunken, or flat; it can be made to flash;
+and it invokes a Tcl command whenever mouse button 1 is clicked over the
+check button.</p>
+<p>In addition, radiobuttons can be <em>selected</em>. If a radiobutton is
+selected, the indicator is normally drawn with a selected appearance,
+and a Tcl variable associated with the radiobutton is set to a
+particular value (normally 1). Under Unix, the indicator is drawn with a
+sunken relief and a special color. Under Windows, the indicator is drawn
+with a round mark inside. If the radiobutton is not selected, then the
+indicator is drawn with a deselected appearance, and the associated
+variable is set to a different value (typically 0). The indicator is
+drawn without a round mark inside. Typically, several radiobuttons share
+a single variable and the value of the variable indicates which
+radiobutton is to be selected. When a radiobutton is selected it sets
+the value of the variable to indicate that fact; each radiobutton also
+monitors the value of the variable and automatically selects and
+deselects itself when the variable\'s value changes. If the variable\'s
+value matches the <strong>-tristatevalue</strong>, then the radiobutton is drawn
+using the tri-state mode. This mode is used to indicate mixed or
+multiple values. (This is used when the radiobutton represents the state
+of multiple items.) By default the variable <strong>selectedButton</strong> is used;
+its contents give the name of the button that is selected, or the empty
+string if no button associated with that variable is selected. The name
+of the variable for a radiobutton, plus the variable to be stored into
+it, may be modified with options on the command line or in the option
+database. Configuration options may also be used to modify the way the
+indicator is displayed (or whether it is displayed at all). By default a
+radiobutton is configured to select itself on button clicks.</p>
+<h1 id="widget-command">WIDGET COMMAND</h1>
+<p>The <strong>radiobutton</strong> command creates a new Tcl command whose name is
+<em>pathName</em>. This command may be used to invoke various operations on the
+widget. It has the following general form:</p>
+<div class="language-text highlight"><pre><span></span><code>pathName option ?arg arg ...?
+</code></pre></div>
+<p><em>Option</em> and the <em>arg</em>s determine the exact behavior of the command. The
+following commands are possible for radiobutton widgets:</p>
+<p><em>pathName </em><strong>cget</strong> <em>option</em></p>
+<p>:   Returns the current value of the configuration option given by
+    <em>option</em>. <em>Option</em> may have any of the values accepted by the
+    <strong>radiobutton</strong> command.</p>
+<p><em>pathName </em><strong>configure</strong> ?<em>option</em>? ?<em>value option value ...</em>?</p>
+<p>:   Query or modify the configuration options of the widget. If no
+    <em>option</em> is specified, returns a list describing all of the
+    available options for <em>pathName</em> (see <strong>Tk_ConfigureInfo</strong> for
+    information on the format of this list). If <em>option</em> is specified
+    with no <em>value</em>, the command returns a list describing the one named
+    option (this list will be identical to the corresponding sublist of
+    the value returned if no <em>option</em> is specified). If one or more
+    <em>option-value</em> pairs are specified, the command modifies the given
+    widget option(s) to have the given value(s); in this case the
+    command returns an empty string. <em>Option</em> may have any of the values
+    accepted by the <strong>radiobutton</strong> command.</p>
+<p><em>pathName </em><strong>deselect</strong></p>
+<p>:   Deselects the radiobutton and sets the associated variable to an
+    empty string. If this radiobutton was not currently selected, the
+    command has no effect.</p>
+<p><em>pathName </em><strong>flash</strong></p>
+<p>:   Flashes the radiobutton. This is accomplished by redisplaying the
+    radiobutton several times, alternating between active and normal
+    colors. At the end of the flash the radiobutton is left in the same
+    normal/active state as when the command was invoked. This command is
+    ignored if the radiobutton\'s state is <strong>disabled</strong>.</p>
+<p><em>pathName </em><strong>invoke</strong></p>
+<p>:   Does just what would have happened if the user invoked the
+    radiobutton with the mouse: selects the button and invokes its
+    associated Tcl command, if there is one. The return value is the
+    return value from the Tcl command, or an empty string if there is no
+    command associated with the radiobutton. This command is ignored if
+    the radiobutton\'s state is <strong>disabled</strong>.</p>
+<p><em>pathName </em><strong>select</strong></p>
+<p>:   Selects the radiobutton and sets the associated variable to the
+    value corresponding to this widget.</p>
+<h1 id="bindings">BINDINGS</h1>
+<p>Tk automatically creates class bindings for radiobuttons that give them
+the following default behavior:</p>
+<p>[1]</p>
+<p>:   On Unix systems, a radiobutton activates whenever the mouse passes
+    over it and deactivates whenever the mouse leaves the radiobutton.
+    On Mac and Windows systems, when mouse button 1 is pressed over a
+    radiobutton, the button activates whenever the mouse pointer is
+    inside the button, and deactivates whenever the mouse pointer leaves
+    the button.</p>
+<p>[2]</p>
+<p>:   When mouse button 1 is pressed over a radiobutton it is invoked (it
+    becomes selected and the command associated with the button is
+    invoked, if there is one).</p>
+<p>[3]</p>
+<p>:   When a radiobutton has the input focus, the space key causes the
+    radiobutton to be invoked.</p>
+<p>If the radiobutton\'s state is <strong>disabled</strong> then none of the above
+actions occur: the radiobutton is completely non-responsive.</p>
+<p>The behavior of radiobuttons can be changed by defining new bindings for
+individual widgets or by redefining the class bindings.</p>
+<h1 id="see-also">SEE ALSO</h1>
+<p>checkbutton(n), labelframe(n), listbox(n), options(n), scale(n),
+ttk::radiobutton(n)</p>
+<h1 id="keywords">KEYWORDS</h1>
+<p>radiobutton, widget</p>
+
+<ul class="metadata page-metadata" data-bi-name="page info" lang="en-us" dir="ltr">
+  <li class="last-updated-holder displayDate loading">
+    <span class="last-updated-text">Last updated:</span>
+    <time role="presentation" datetime="2018-10-25T00:00:00.000Z" data-article-date-source="ms.date"></time>
+  </li>
+<!--
+  <li class="readingTime">
+    2 minutes to read
+  </li>
+-->
+  <li class="contributors-holder">
+    <span class="contributors-text">Contributors</span>
+    <ul class="contributors" data-bi-name="contributors"></ul>
+  </li>
+</ul>
+</div>
+        <div class="col-md-3"><div class="navbar-light navbar-expand-md hidden-print sticky-top sticky-offset" role="complementary">
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggler collapsed" data-toggle="collapse" data-target="#toc-collapse" title="Table of Contents">
+            <span class="fa fa-angle-down"></span>
+        </button>
+    </div>
+
+    <div id="toc-collapse" class="navbar-collapse collapse card">
+        <ul class="nav flex-column bs-sidenav">
+            <li class="nav-item main"><a class="nav-link" href="#name">NAME</a></li>
+            <li class="nav-item main"><a class="nav-link" href="#synopsis">SYNOPSIS</a></li>
+            <li class="nav-item main"><a class="nav-link" href="#standard-options">STANDARD OPTIONS</a></li>
+            <li class="nav-item main"><a class="nav-link" href="#widget-specific-options">WIDGET-SPECIFIC OPTIONS</a></li>
+            <li class="nav-item main"><a class="nav-link" href="#description">DESCRIPTION</a></li>
+            <li class="nav-item main"><a class="nav-link" href="#widget-command">WIDGET COMMAND</a></li>
+            <li class="nav-item main"><a class="nav-link" href="#bindings">BINDINGS</a></li>
+            <li class="nav-item main"><a class="nav-link" href="#see-also">SEE ALSO</a></li>
+            <li class="nav-item main"><a class="nav-link" href="#keywords">KEYWORDS</a></li>
+        </ul>
+    </div>
+</div></div>
+      </div>
+      </div>
+
+      <footer class="col-md-12">
+	<hr>
+	<div class="container">
+	</div>
+      </footer>
+      <script>
+	var base_url = "../..",
+            shortcuts = {"help": 191, "next": 78, "previous": 80, "search": 83};
+      </script>
+      <script src="../../js/base.js" defer></script>
+      <script src="../../search/main.js" defer></script>
+
+      <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="Search Modal" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Search</h4>
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            </div>
+            <div class="modal-body">
+                <p>
+                    From here you can search these documents. Enter
+                    your search terms below.
+                </p>
+                <form role="form">
+                    <div class="form-group">
+                        <input type="text" class="form-control" placeholder="Search..." id="mkdocs-search-query" title="Type search term here">
+                    </div>
+                </form>
+                <div id="mkdocs-search-results"></div>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div><div class="modal" id="mkdocs_keyboard_modal" tabindex="-1" role="dialog" aria-labelledby="Keyboard Shortcuts Modal" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <p class="h4 modal-title">Keyboard Shortcuts</p>
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            </div>
+            <div class="modal-body">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th style="width: 20%;">Keys</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="help shortcut"><kbd>?</kbd></td>
+                    <td>Open this help</td>
+                  </tr>
+                  <tr>
+                    <td class="next shortcut"><kbd>n</kbd></td>
+                    <td>Next page</td>
+                  </tr>
+                  <tr>
+                    <td class="prev shortcut"><kbd>p</kbd></td>
+                    <td>Previous page</td>
+                  </tr>
+                  <tr>
+                    <td class="search shortcut"><kbd>s</kbd></td>
+                    <td>Search</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>
+
+    </body>
+</html>

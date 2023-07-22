@@ -147,29 +147,29 @@ of regular expressions.
 Replace (in the string in variable \fIstring\fR) every instance of
 \fBfoo\fR which is a word by itself with \fBbar\fR:
 .PP
-.nf
+.CS
 \fBregsub\fR -all {\emfoo\eM} $string bar string
-.fi
+.CE
 .PP
 or (using the
 .QW "basic regular expression"
 syntax):
 .PP
-.nf
+.CS
 \fBregsub\fR -all {(?b)\e<foo\e>} $string bar string
-.fi
+.CE
 .PP
 Insert double-quotes around the first instance of the word
 \fBinteresting\fR, however it is capitalized.
 .PP
-.nf
+.CS
 \fBregsub\fR -nocase {\eyinteresting\ey} $string {"&"} string
-.fi
+.CE
 .PP
 Convert all non-ASCII and Tcl-significant characters into \eu escape
 sequences by using \fBregsub\fR and \fBsubst\fR in combination:
 .PP
-.nf
+.CS
 # This RE is just a character class for almost everything "bad"
 set RE {[][{};#\e\e\e$ \er\et\eu0080-\euffff]}
 
@@ -182,7 +182,7 @@ set substitution {[format \e\e\e\eu%04x [scan "\e\e&" %c]]}
 # backslash-newline is a special sequence.
 set quoted [subst [string map {\en {\e\eu000a}} \e
         [\fBregsub\fR -all $RE $string $substitution]]]
-.fi
+.CE
 .SH "SEE ALSO"
 regexp(n), re_syntax(n), subst(n), string(n)
 .SH KEYWORDS

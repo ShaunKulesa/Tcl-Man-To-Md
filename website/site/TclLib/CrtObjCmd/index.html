@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+      <script>
+	// Hack for scrolling window when linking to anchor tag with fixed nav header
+        var shiftWindow = function() { scrollBy(0, -75) };
+        window.addEventListener("hashchange", shiftWindow);
+        function load() { if (window.location.hash) shiftWindow(); }
+      </script>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        
+        <link rel="canonical" href="https://www.tcl.tk/man/TclLib/CrtObjCmd/">
+        <link rel="shortcut icon" href="../../img/favicon.ico">
+        <title>CrtObjCmd - Tcl/Tk</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <link href="../../css/font-awesome.min.css" rel="stylesheet">
+    <link href="../../css/base.css" rel="stylesheet">
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+    <script src="../../js/base.js"></script> 
+    </head>
+
+    <body class="">
+
+      <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
+	<div class="container">
+	<a class="navbar-brand" href="../..">Tcl/Tk</a>
+	<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExample04" aria-controls="navbarsExample04" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+	</button>
+
+	<div class="collapse navbar-collapse">
+
+          <ul class="navbar-nav flex-row ml-md-auto d-none d-md-flex">
+            <li class="nav-item">
+              <a class="nav-link" href="#" data-toggle="modal" data-target="#mkdocs_search_modal">
+		<i class="fa fa-search"></i> Search
+              </a>
+            </li>
+          </ul>
+	</div>
+	</div>
+      </nav><div id="content" class="container">
+        
+      <div class="row">
+        <div class="col-md-9" role="main">
+
+
+<nav aria-label="breadcrumb">
+  <ol class="breadcrumb">
+    
+    <li class="breadcrumb-item active" aria-current="page">CrtObjCmd</li>
+  </ol>
+</nav>
+
+
+<p>\</p>
+<h1 id="name">NAME</h1>
+<p>Tcl_CreateObjCommand, Tcl_DeleteCommand, Tcl_DeleteCommandFromToken,
+Tcl_GetCommandInfo, Tcl_GetCommandInfoFromToken, Tcl_SetCommandInfo,
+Tcl_SetCommandInfoFromToken, Tcl_GetCommandName, Tcl_GetCommandFullName,
+Tcl_GetCommandFromObj - implement new commands in C</p>
+<h1 id="synopsis">SYNOPSIS</h1>
+<p><strong>#include \&lt;tcl.h></strong></p>
+<p>Tcl_Command <strong>Tcl_CreateObjCommand</strong>(<em>interp, cmdName, proc, clientData,
+deleteProc</em>)</p>
+<p>int <strong>Tcl_DeleteCommand</strong>(<em>interp, cmdName</em>)</p>
+<p>int <strong>Tcl_DeleteCommandFromToken</strong>(<em>interp, token</em>)</p>
+<p>int <strong>Tcl_GetCommandInfo</strong>(<em>interp, cmdName, infoPtr</em>)</p>
+<p>int <strong>Tcl_SetCommandInfo</strong>(<em>interp, cmdName, infoPtr</em>)</p>
+<p>int <strong>Tcl_GetCommandInfoFromToken</strong>(<em>token, infoPtr</em>)</p>
+<p>int <strong>Tcl_SetCommandInfoFromToken</strong>(<em>token, infoPtr</em>)</p>
+<p>const char * <strong>Tcl_GetCommandName</strong>(<em>interp, token</em>)</p>
+<p>void <strong>Tcl_GetCommandFullName</strong>(<em>interp, token, objPtr</em>)</p>
+<p>Tcl_Command <strong>Tcl_GetCommandFromObj</strong>(<em>interp, objPtr</em>)</p>
+<h1 id="arguments">ARGUMENTS</h1>
+<p>Interpreter in which to create a new command or that contains a command.</p>
+<p>Name of command.</p>
+<p>Implementation of the new command: <em>proc</em> will be called whenever
+<em>cmdName</em> is invoked as a command.</p>
+<p>Arbitrary one-word value to pass to <em>proc</em> and <em>deleteProc</em>.</p>
+<p>Procedure to call before <em>cmdName</em> is deleted from the interpreter;
+allows for command-specific cleanup. If NULL, then no procedure is
+called before the command is deleted.</p>
+<p>Token for command, returned by previous call to
+<strong>Tcl_CreateObjCommand</strong>. The command must not have been deleted.</p>
+<p>Pointer to structure containing various information about a Tcl command.</p>
+<p>Value containing the name of a Tcl command.</p>
+<p>\</p>
+<h1 id="description">DESCRIPTION</h1>
+<p><strong>Tcl_CreateObjCommand</strong> defines a new command in <em>interp</em> and
+associates it with procedure <em>proc</em> such that whenever <em>name</em> is invoked
+as a Tcl command (e.g., via a call to <strong>Tcl_EvalObjEx</strong>) the Tcl
+interpreter will call <em>proc</em> to process the command.</p>
+<p><strong>Tcl_CreateObjCommand</strong> deletes any existing command <em>name</em> already
+associated with the interpreter (however see below for an exception
+where the existing command is not deleted). It returns a token that may
+be used to refer to the command in subsequent calls to
+<strong>Tcl_GetCommandName</strong>. If <em>name</em> contains any <strong>::</strong> namespace
+qualifiers, then the command is added to the specified namespace;
+otherwise the command is added to the global namespace. If
+<strong>Tcl_CreateObjCommand</strong> is called for an interpreter that is in the
+process of being deleted, then it does not create a new command and it
+returns NULL. <em>proc</em> should have arguments and result that match the
+type <strong>Tcl_ObjCmdProc</strong>:</p>
+<div class="language-text highlight"><pre><span></span><code>typedef int Tcl_ObjCmdProc(
+        ClientData clientData,
+        Tcl_Interp *interp,
+        int objc,
+        Tcl_Obj *const objv[]);
+</code></pre></div>
+<p>When <em>proc</em> is invoked, the <em>clientData</em> and <em>interp</em> parameters will be
+copies of the <em>clientData</em> and <em>interp</em> arguments given to
+<strong>Tcl_CreateObjCommand</strong>. Typically, <em>clientData</em> points to an
+application-specific data structure that describes what to do when the
+command procedure is invoked. <em>Objc</em> and <em>objv</em> describe the arguments
+to the command, <em>objc</em> giving the number of argument values (including
+the command name) and <em>objv</em> giving the values of the arguments. The
+<em>objv</em> array will contain <em>objc</em> values, pointing to the argument
+values. Unlike <em>argv</em>[<em>argv</em>] used in a string-based command
+procedure, <em>objv</em>[<em>objc</em>] will not contain NULL.</p>
+<p>Additionally, when <em>proc</em> is invoked, it must not modify the contents of
+the <em>objv</em> array by assigning new pointer values to any element of the
+array (for example, <em>objv</em>[<strong>2</strong>] = <strong>NULL</strong>) because this will cause
+memory to be lost and the runtime stack to be corrupted. The <strong>const</strong>
+in the declaration of <em>objv</em> will cause ANSI-compliant compilers to
+report any such attempted assignment as an error. However, it is
+acceptable to modify the internal representation of any individual value
+argument. For instance, the user may call <strong>Tcl_GetIntFromObj</strong> on
+<em>objv</em>[<strong>2</strong>] to obtain the integer representation of that value; that
+call may change the type of the value that <em>objv</em>[<strong>2</strong>] points at,
+but will not change where <em>objv</em>[<strong>2</strong>] points.</p>
+<p><em>proc</em> must return an integer code that is either <strong>TCL_OK</strong>,
+<strong>TCL_ERROR</strong>, <strong>TCL_RETURN</strong>, <strong>TCL_BREAK</strong>, or <strong>TCL_CONTINUE</strong>. See
+the Tcl overview man page for details on what these codes mean. Most
+normal commands will only return <strong>TCL_OK</strong> or <strong>TCL_ERROR</strong>. In
+addition, if <em>proc</em> needs to return a non-empty result, it can call
+<strong>Tcl_SetObjResult</strong> to set the interpreter\'s result. In the case of a
+<strong>TCL_OK</strong> return code this gives the result of the command, and in the
+case of <strong>TCL_ERROR</strong> this gives an error message. Before invoking a
+command procedure, <strong>Tcl_EvalObjEx</strong> sets interpreter\'s result to point
+to a value representing an empty string, so simple commands can return
+an empty result by doing nothing at all.</p>
+<p>The contents of the <em>objv</em> array belong to Tcl and are not guaranteed to
+persist once <em>proc</em> returns: <em>proc</em> should not modify them. Call
+<strong>Tcl_SetObjResult</strong> if you want to return something from the <em>objv</em>
+array.</p>
+<p>Ordinarily, <strong>Tcl_CreateObjCommand</strong> deletes any existing command <em>name</em>
+already associated with the interpreter. However, if the existing
+command was created by a previous call to <strong>Tcl_CreateCommand</strong>,
+<strong>Tcl_CreateObjCommand</strong> does not delete the command but instead
+arranges for the Tcl interpreter to call the <strong>Tcl_ObjCmdProc</strong> <em>proc</em>
+in the future. The old string-based <strong>Tcl_CmdProc</strong> associated with the
+command is retained and its address can be obtained by subsequent
+<strong>Tcl_GetCommandInfo</strong> calls. This is done for backwards compatibility.</p>
+<p><em>DeleteProc</em> will be invoked when (if) <em>name</em> is deleted. This can occur
+through a call to <strong>Tcl_DeleteCommand</strong>, <strong>Tcl_DeleteCommandFromToken</strong>,
+or <strong>Tcl_DeleteInterp</strong>, or by replacing <em>name</em> in another call to
+<strong>Tcl_CreateObjCommand</strong>. <em>DeleteProc</em> is invoked before the command is
+deleted, and gives the application an opportunity to release any
+structures associated with the command. <em>DeleteProc</em> should have
+arguments and result that match the type <strong>Tcl_CmdDeleteProc</strong>:</p>
+<div class="language-text highlight"><pre><span></span><code>typedef void Tcl_CmdDeleteProc(
+        ClientData clientData);
+</code></pre></div>
+<p>The <em>clientData</em> argument will be the same as the <em>clientData</em> argument
+passed to <strong>Tcl_CreateObjCommand</strong>.</p>
+<p><strong>Tcl_DeleteCommand</strong> deletes a command from a command interpreter. Once
+the call completes, attempts to invoke <em>cmdName</em> in <em>interp</em> will result
+in errors. If <em>cmdName</em> is not bound as a command in <em>interp</em> then
+<strong>Tcl_DeleteCommand</strong> does nothing and returns -1; otherwise it returns
+0. There are no restrictions on <em>cmdName</em>: it may refer to a built-in
+command, an application-specific command, or a Tcl procedure. If <em>name</em>
+contains any <strong>::</strong> namespace qualifiers, the command is deleted from
+the specified namespace.</p>
+<p>Given a token returned by <strong>Tcl_CreateObjCommand</strong>,
+<strong>Tcl_DeleteCommandFromToken</strong> deletes the command from a command
+interpreter. It will delete a command even if that command has been
+renamed. Once the call completes, attempts to invoke the command in
+<em>interp</em> will result in errors. If the command corresponding to <em>token</em>
+has already been deleted from <em>interp</em> then <strong>Tcl_DeleteCommand</strong> does
+nothing and returns -1; otherwise it returns 0.</p>
+<p><strong>Tcl_GetCommandInfo</strong> checks to see whether its <em>cmdName</em> argument
+exists as a command in <em>interp</em>. <em>cmdName</em> may include <strong>::</strong> namespace
+qualifiers to identify a command in a particular namespace. If the
+command is not found, then it returns 0. Otherwise it places information
+about the command in the <strong>Tcl_CmdInfo</strong> structure pointed to by
+<em>infoPtr</em> and returns 1. A <strong>Tcl_CmdInfo</strong> structure has the following
+fields:</p>
+<div class="language-text highlight"><pre><span></span><code>typedef struct Tcl_CmdInfo {
+    int isNativeObjectProc;
+    Tcl_ObjCmdProc *objProc;
+    ClientData objClientData;
+    Tcl_CmdProc *proc;
+    ClientData clientData;
+    Tcl_CmdDeleteProc *deleteProc;
+    ClientData deleteData;
+    Tcl_Namespace *namespacePtr;
+} Tcl_CmdInfo;
+</code></pre></div>
+<p>The <em>isNativeObjectProc</em> field has the value 1 if
+<strong>Tcl_CreateObjCommand</strong> was called to register the command; it is 0 if
+only <strong>Tcl_CreateCommand</strong> was called. It allows a program to determine
+whether it is faster to call <em>objProc</em> or <em>proc</em>: <em>objProc</em> is normally
+faster if <em>isNativeObjectProc</em> has the value 1. The fields <em>objProc</em> and
+<em>objClientData</em> have the same meaning as the <em>proc</em> and <em>clientData</em>
+arguments to <strong>Tcl_CreateObjCommand</strong>; they hold information about the
+value-based command procedure that the Tcl interpreter calls to
+implement the command. The fields <em>proc</em> and <em>clientData</em> hold
+information about the string-based command procedure that implements the
+command. If <strong>Tcl_CreateCommand</strong> was called for this command, this is
+the procedure passed to it; otherwise, this is a compatibility procedure
+registered by <strong>Tcl_CreateObjCommand</strong> that simply calls the command\'s
+value-based procedure after converting its string arguments to Tcl
+values. The field <em>deleteData</em> is the ClientData value to pass to
+<em>deleteProc</em>; it is normally the same as <em>clientData</em> but may be set
+independently using the <strong>Tcl_SetCommandInfo</strong> procedure. The field
+<em>namespacePtr</em> holds a pointer to the Tcl_Namespace that contains the
+command.</p>
+<p><strong>Tcl_GetCommandInfoFromToken</strong> is identical to <strong>Tcl_GetCommandInfo</strong>
+except that it uses a command token returned from
+<strong>Tcl_CreateObjCommand</strong> in place of the command name. If the <em>token</em>
+parameter is NULL, it returns 0; otherwise, it returns 1 and fills in
+the structure designated by <em>infoPtr</em>.</p>
+<p><strong>Tcl_SetCommandInfo</strong> is used to modify the procedures and ClientData
+values associated with a command. Its <em>cmdName</em> argument is the name of
+a command in <em>interp</em>. <em>cmdName</em> may include <strong>::</strong> namespace qualifiers
+to identify a command in a particular namespace. If this command does
+not exist then <strong>Tcl_SetCommandInfo</strong> returns 0. Otherwise, it copies
+the information from <em>*infoPtr</em> to Tcl\'s internal structure for the
+command and returns 1.</p>
+<p><strong>Tcl_SetCommandInfoFromToken</strong> is identical to <strong>Tcl_SetCommandInfo</strong>
+except that it takes a command token as returned by
+<strong>Tcl_CreateObjCommand</strong> instead of the command name. If the <em>token</em>
+parameter is NULL, it returns 0. Otherwise, it copies the information
+from <em>*infoPtr</em> to Tcl\'s internal structure for the command and
+returns 1.</p>
+<p>Note that <strong>Tcl_SetCommandInfo</strong> and <strong>Tcl_SetCommandInfoFromToken</strong>
+both allow the ClientData for a command\'s deletion procedure to be
+given a different value than the ClientData for its command procedure.</p>
+<p>Note that neither <strong>Tcl_SetCommandInfo</strong> nor
+<strong>Tcl_SetCommandInfoFromToken</strong> will change a command\'s namespace. Use
+<strong>Tcl_Eval</strong> to call the <strong>rename</strong> command to do that.</p>
+<p><strong>Tcl_GetCommandName</strong> provides a mechanism for tracking commands that
+have been renamed. Given a token returned by <strong>Tcl_CreateObjCommand</strong>
+when the command was created, <strong>Tcl_GetCommandName</strong> returns the string
+name of the command. If the command has been renamed since it was
+created, then <strong>Tcl_GetCommandName</strong> returns the current name. This name
+does not include any <strong>::</strong> namespace qualifiers. The command
+corresponding to <em>token</em> must not have been deleted. The string returned
+by <strong>Tcl_GetCommandName</strong> is in dynamic memory owned by Tcl and is only
+guaranteed to retain its value as long as the command is not deleted or
+renamed; callers should copy the string if they need to keep it for a
+long time.</p>
+<p><strong>Tcl_GetCommandFullName</strong> produces the fully qualified name of a
+command from a command token. The name, including all namespace
+prefixes, is appended to the value specified by <em>objPtr</em>.</p>
+<p><strong>Tcl_GetCommandFromObj</strong> returns a token for the command specified by
+the name in a <strong>Tcl_Obj</strong>. The command name is resolved relative to the
+current namespace. Returns NULL if the command is not found.</p>
+<h1 id="see-also">SEE ALSO</h1>
+<p>Tcl_CreateCommand(3), Tcl_ResetResult(3), Tcl_SetObjResult(3)</p>
+<h1 id="keywords">KEYWORDS</h1>
+<p>bind, command, create, delete, namespace, value</p>
+
+<ul class="metadata page-metadata" data-bi-name="page info" lang="en-us" dir="ltr">
+  <li class="last-updated-holder displayDate loading">
+    <span class="last-updated-text">Last updated:</span>
+    <time role="presentation" datetime="2018-10-25T00:00:00.000Z" data-article-date-source="ms.date"></time>
+  </li>
+<!--
+  <li class="readingTime">
+    2 minutes to read
+  </li>
+-->
+  <li class="contributors-holder">
+    <span class="contributors-text">Contributors</span>
+    <ul class="contributors" data-bi-name="contributors"></ul>
+  </li>
+</ul>
+</div>
+        <div class="col-md-3"><div class="navbar-light navbar-expand-md hidden-print sticky-top sticky-offset" role="complementary">
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggler collapsed" data-toggle="collapse" data-target="#toc-collapse" title="Table of Contents">
+            <span class="fa fa-angle-down"></span>
+        </button>
+    </div>
+
+    <div id="toc-collapse" class="navbar-collapse collapse card">
+        <ul class="nav flex-column bs-sidenav">
+            <li class="nav-item main"><a class="nav-link" href="#name">NAME</a></li>
+            <li class="nav-item main"><a class="nav-link" href="#synopsis">SYNOPSIS</a></li>
+            <li class="nav-item main"><a class="nav-link" href="#arguments">ARGUMENTS</a></li>
+            <li class="nav-item main"><a class="nav-link" href="#description">DESCRIPTION</a></li>
+            <li class="nav-item main"><a class="nav-link" href="#see-also">SEE ALSO</a></li>
+            <li class="nav-item main"><a class="nav-link" href="#keywords">KEYWORDS</a></li>
+        </ul>
+    </div>
+</div></div>
+      </div>
+      </div>
+
+      <footer class="col-md-12">
+	<hr>
+	<div class="container">
+	</div>
+      </footer>
+      <script>
+	var base_url = "../..",
+            shortcuts = {"help": 191, "next": 78, "previous": 80, "search": 83};
+      </script>
+      <script src="../../js/base.js" defer></script>
+      <script src="../../search/main.js" defer></script>
+
+      <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="Search Modal" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Search</h4>
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            </div>
+            <div class="modal-body">
+                <p>
+                    From here you can search these documents. Enter
+                    your search terms below.
+                </p>
+                <form role="form">
+                    <div class="form-group">
+                        <input type="text" class="form-control" placeholder="Search..." id="mkdocs-search-query" title="Type search term here">
+                    </div>
+                </form>
+                <div id="mkdocs-search-results"></div>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div><div class="modal" id="mkdocs_keyboard_modal" tabindex="-1" role="dialog" aria-labelledby="Keyboard Shortcuts Modal" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <p class="h4 modal-title">Keyboard Shortcuts</p>
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            </div>
+            <div class="modal-body">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th style="width: 20%;">Keys</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="help shortcut"><kbd>?</kbd></td>
+                    <td>Open this help</td>
+                  </tr>
+                  <tr>
+                    <td class="next shortcut"><kbd>n</kbd></td>
+                    <td>Next page</td>
+                  </tr>
+                  <tr>
+                    <td class="prev shortcut"><kbd>p</kbd></td>
+                    <td>Previous page</td>
+                  </tr>
+                  <tr>
+                    <td class="search shortcut"><kbd>s</kbd></td>
+                    <td>Search</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>
+
+    </body>
+</html>

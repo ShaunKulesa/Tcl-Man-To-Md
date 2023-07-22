@@ -1,5 +1,3 @@
-\
-
 # NAME
 
 flush - Flush buffered output for a channel
@@ -7,8 +5,6 @@ flush - Flush buffered output for a channel
 # SYNOPSIS
 
 **flush ***channelId*
-
-\
 
 # DESCRIPTION
 
@@ -42,3 +38,9 @@ file(n), open(n), socket(n), Tcl_StandardChannels(3)
 # KEYWORDS
 
 blocking, buffer, channel, flush, nonblocking, output
+
+<!---
+Copyright (c) 1993 The Regents of the University of California
+Copyright (c) 1994-1996 Sun Microsystems, Inc
+-->
+

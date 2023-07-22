@@ -1,15 +1,12 @@
-\
-
 # NAME
 
 Tcl_RecordAndEvalObj - save command on history list before evaluating
 
 # SYNOPSIS
 
-    #include <tcl.h>
+**#include \<tcl.h\>**
 
-    int
-    Tcl_RecordAndEvalObj(interp, cmdPtr, flags)
+int **Tcl_RecordAndEvalObj**(*interp, cmdPtr, flags*)
 
 # ARGUMENTS
 
@@ -21,8 +18,6 @@ execute.
 An OR\'ed combination of flag bits. **TCL_NO_EVAL** means record the
 command but do not evaluate it. **TCL_EVAL_GLOBAL** means evaluate the
 command at global level instead of the current stack level.
-
-\
 
 # DESCRIPTION
 
@@ -47,3 +42,8 @@ Tcl_EvalObjEx, Tcl_GetObjResult
 # KEYWORDS
 
 command, event, execute, history, interpreter, value, record
+
+<!---
+Copyright (c) 1997 Sun Microsystems, Inc
+-->
+

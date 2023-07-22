@@ -1,5 +1,3 @@
-\
-
 # NAME
 
 fileevent - Execute a script when a channel becomes readable or writable
@@ -9,8 +7,6 @@ fileevent - Execute a script when a channel becomes readable or writable
 **fileevent ***channelId ***readable **?*script*?
 
 **fileevent ***channelId ***writable **?*script*?
-
-\
 
 # DESCRIPTION
 
@@ -143,3 +139,10 @@ Tcl_StandardChannels(3)
 
 asynchronous I/O, blocking, channel, event handler, nonblocking,
 readable, script, writable.
+
+<!---
+Copyright (c) 1994 The Regents of the University of California
+Copyright (c) 1994-1996 Sun Microsystems, Inc
+Copyright (c) 2008 Pat Thoyt
+-->
+

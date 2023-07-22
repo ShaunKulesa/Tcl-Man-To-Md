@@ -527,21 +527,21 @@ To add a directory to the collection of locations searched by
 packages that are used, the \fBauto_path\fR variable needs to be
 updated:
 .PP
-.nf
+.CS
 lappend ::\fBauto_path\fR [file join [pwd] "theLibDir"]
-.fi
+.CE
 .PP
 A simple though not very robust way to handle command line arguments
 of the form
 .QW "\-foo 1 \-bar 2"
 is to load them into an array having first loaded in the default settings:
-.nf
+.CS
 array set arguments {-foo 0 -bar 0 -grill 0}
 array set arguments $::\fBargv\fR
 puts "foo is $arguments(-foo)"
 puts "bar is $arguments(-bar)"
 puts "grill is $arguments(-grill)"
-.fi
+.CE
 .PP
 The \fBargv0\fR global variable can be used (in conjunction with the
 \fBinfo script\fR command) to determine whether the current script is
@@ -549,13 +549,13 @@ being executed as the main script or loaded as a library.  This is
 useful because it allows a single script to be used as both a library
 and a demonstration of that library:
 .PP
-.nf
+.CS
 if {$::\fBargv0\fR eq [info script]} {
     # running as: tclsh example.tcl
 } else {
     package provide Example 1.0
 }
-.fi
+.CE
 .SH "SEE ALSO"
 eval(n), library(n), tclsh(1), tkvars(n), wish(1)
 .SH KEYWORDS

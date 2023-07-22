@@ -1,5 +1,3 @@
-\
-
 # NAME
 
 Tcl_NewDoubleObj, Tcl_SetDoubleObj, Tcl_GetDoubleFromObj - manipulate
@@ -7,15 +5,13 @@ Tcl values as floating-point values
 
 # SYNOPSIS
 
-    #include <tcl.h>
+**#include \<tcl.h\>**
 
-    Tcl_Obj *
-    Tcl_NewDoubleObj(doubleValue)
+Tcl_Obj \* **Tcl_NewDoubleObj**(*doubleValue*)
 
-    Tcl_SetDoubleObj(objPtr, doubleValue)
+**Tcl_SetDoubleObj**(*objPtr, doubleValue*)
 
-    int
-    Tcl_GetDoubleFromObj(interp, objPtr, doublePtr)
+int **Tcl_GetDoubleFromObj**(*interp, objPtr, doublePtr*)
 
 # ARGUMENTS
 
@@ -30,8 +26,6 @@ When non-NULL, an error message is left here when double value retrieval
 fails.
 
 Points to place to store the double value obtained from *objPtr*.
-
-\
 
 # DESCRIPTION
 
@@ -64,3 +58,8 @@ Tcl_NewObj, Tcl_DecrRefCount, Tcl_IncrRefCount, Tcl_GetObjResult
 
 double, double value, double type, internal representation, value, value
 type, string representation
+
+<!---
+Copyright (c) 1996-1997 Sun Microsystems, Inc
+-->
+

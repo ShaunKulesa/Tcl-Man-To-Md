@@ -34,14 +34,14 @@ when \fB$a\fR is long.
 .PP
 Using \fBlappend\fR to build up a list of numbers.
 .PP
-.nf
+.CS
 % set var 1
 1
 % \fBlappend\fR var 2
 1 2
 % \fBlappend\fR var 3 4 5
 1 2 3 4 5
-.fi
+.CE
 .SH "SEE ALSO"
 list(n), lindex(n), linsert(n), llength(n), lset(n),
 lsort(n), lrange(n)

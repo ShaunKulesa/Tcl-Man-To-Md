@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+      <script>
+	// Hack for scrolling window when linking to anchor tag with fixed nav header
+        var shiftWindow = function() { scrollBy(0, -75) };
+        window.addEventListener("hashchange", shiftWindow);
+        function load() { if (window.location.hash) shiftWindow(); }
+      </script>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        
+        <link rel="canonical" href="https://www.tcl.tk/man/TkCmd/console/">
+        <link rel="shortcut icon" href="../../img/favicon.ico">
+        <title>Console - Tcl/Tk</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <link href="../../css/font-awesome.min.css" rel="stylesheet">
+    <link href="../../css/base.css" rel="stylesheet">
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+    <script src="../../js/base.js"></script> 
+    </head>
+
+    <body class="">
+
+      <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
+	<div class="container">
+	<a class="navbar-brand" href="../..">Tcl/Tk</a>
+	<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExample04" aria-controls="navbarsExample04" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+	</button>
+
+	<div class="collapse navbar-collapse">
+
+          <ul class="navbar-nav flex-row ml-md-auto d-none d-md-flex">
+            <li class="nav-item">
+              <a class="nav-link" href="#" data-toggle="modal" data-target="#mkdocs_search_modal">
+		<i class="fa fa-search"></i> Search
+              </a>
+            </li>
+          </ul>
+	</div>
+	</div>
+      </nav><div id="content" class="container">
+        
+      <div class="row">
+        <div class="col-md-9" role="main">
+
+
+<nav aria-label="breadcrumb">
+  <ol class="breadcrumb">
+    
+    <li class="breadcrumb-item active" aria-current="page">Console</li>
+  </ol>
+</nav>
+
+
+<p>\</p>
+<h1 id="name">NAME</h1>
+<p>console - Control the console on systems without a real console</p>
+<h1 id="synopsis">SYNOPSIS</h1>
+<p><strong>console</strong> <em>subcommand</em> ?<em>arg ...</em>?</p>
+<p>\</p>
+<h1 id="description">DESCRIPTION</h1>
+<p>The console window is a replacement for a real console to allow input
+and output on the standard I/O channels on platforms that do not have a
+real console. It is implemented as a separate interpreter with the Tk
+toolkit loaded, and control over this interpreter is given through the
+<strong>console</strong> command. The behaviour of the console window is defined
+mainly through the contents of the <em>console.tcl</em> file in the Tk library.
+Except for TkAqua, this command is not available when Tk is loaded into
+a tclsh interpreter with as a conventional terminal is expected to be
+present in that case. In TkAqua, this command is disabled when there is
+a startup script and stdin is <strong>/dev/null</strong> (as is the case e.g. when a
+bundled application embedding Tk is started by the macOS Launcher). To
+enable the command in that case, define the environment variable
+<strong>TK_CONSOLE</strong>. This can be done by modifying the Info.plist file by
+adding the LSEnvironment key to the main dict and setting its value to
+be a dict with the key <strong>TK_CONSOLE</strong>.</p>
+<p><strong>console eval </strong><em>script</em></p>
+<p>:   Evaluate the <em>script</em> argument as a Tcl script in the console
+    interpreter. The normal interpreter is accessed through the
+    <strong>consoleinterp</strong> command in the console interpreter.</p>
+<p><strong>console hide</strong></p>
+<p>:   Hide the console window from view. Precisely equivalent to
+    withdrawing the <strong>.</strong> window in the console interpreter.</p>
+<p><strong>console show</strong></p>
+<p>:   Display the console window. Precisely equivalent to deiconifying the
+    <strong>.</strong> window in the console interpreter.</p>
+<p><strong>console title </strong>?<em>string</em>?</p>
+<p>:   Query or modify the title of the console window. If <em>string</em> is not
+    specified, queries the title of the console window, and sets the
+    title of the console window to <em>string</em> otherwise. Precisely
+    equivalent to using the <strong>wm title</strong> command in the console
+    interpreter.</p>
+<h1 id="access-to-the-main-interpreter">ACCESS TO THE MAIN INTERPRETER</h1>
+<p>The <strong>consoleinterp</strong> command in the console interpreter allows scripts
+to be evaluated in the main interpreter. It supports two subcommands:
+<strong>eval</strong> and <strong>record</strong>.</p>
+<p><strong>consoleinterp eval </strong><em>script</em></p>
+<p>:   Evaluates <em>script</em> as a Tcl script at the global level in the main
+    interpreter.</p>
+<p><strong>consoleinterp record </strong><em>script</em></p>
+<p>:   Records and evaluates <em>script</em> as a Tcl script at the global level
+    in the main interpreter as if <em>script</em> had been typed in at the
+    console.</p>
+<h1 id="additional-trap-calls">ADDITIONAL TRAP CALLS</h1>
+<p>There are several additional commands in the console interpreter that
+are called in response to activity in the main interpreter. <em>These are
+documented here for completeness only; they form part of</em> the internal
+implementation of the console and are likely to change or be modified
+without warning.</p>
+<p>Output to the console from the main interpreter via the stdout and
+stderr channels is handled by invoking the <strong>tk::ConsoleOutput</strong> command
+in the console interpreter with two arguments. The first argument is the
+name of the channel being written to, and the second argument is the
+string being written to the channel (after encoding and end-of-line
+translation processing has been performed.)</p>
+<p>When the <strong>.</strong> window of the main interpreter is destroyed, the
+<strong>tk::ConsoleExit</strong> command in the console interpreter is called
+(assuming the console interpreter has not already been deleted itself,
+that is.)</p>
+<h1 id="default-bindings">DEFAULT BINDINGS</h1>
+<p>The default script creates a console window (implemented using a text
+widget) that has the following behaviour:</p>
+<p>[1]</p>
+<p>:   Pressing the tab key inserts a TAB character (as defined by the Tcl
+    \t escape.)</p>
+<p>[2]</p>
+<p>:   Pressing the return key causes the current line (if complete by the
+    rules of <strong>info complete</strong>) to be passed to the main interpreter for
+    evaluation.</p>
+<p>[3]</p>
+<p>:   Pressing the delete key deletes the selected text (if any text is
+    selected) or the character to the right of the cursor (if not at the
+    end of the line.)</p>
+<p>[4]</p>
+<p>:   Pressing the backspace key deletes the selected text (if any text is
+    selected) or the character to the left of the cursor (of not at the
+    start of the line.)</p>
+<p>[5]</p>
+<p>:   Pressing either Control+A or the home key causes the cursor to go to
+    the start of the line (but after the prompt, if a prompt is present
+    on the line.)</p>
+<p>[6]</p>
+<p>:   Pressing either Control+E or the end key causes the cursor to go to
+    the end of the line.</p>
+<p>[7]</p>
+<p>:   Pressing either Control+P or the up key causes the previous entry in
+    the command history to be selected.</p>
+<p>[8]</p>
+<p>:   Pressing either Control+N or the down key causes the next entry in
+    the command history to be selected.</p>
+<p>[9]</p>
+<p>:   Pressing either Control+B or the left key causes the cursor to move
+    one character backward as long as the cursor is not at the prompt.</p>
+<p>[10]</p>
+<p>:   Pressing either Control+F or the right key causes the cursor to move
+    one character forward.</p>
+<p>[11]</p>
+<p>:   Pressing F9 rebuilds the console window by destroying all its
+    children and reloading the Tcl script that defined the console\'s
+    behaviour.</p>
+<p>Most other behaviour is the same as a conventional text widget except
+for the way that the <em>\&lt;\&lt;Cut>></em> event is handled identically to the
+<em>\&lt;\&lt;Copy>></em> event.</p>
+<h1 id="example">EXAMPLE</h1>
+<p>Not all platforms have the <strong>console</strong> command, so debugging code often
+has the following code fragment in it so output produced by <strong>puts</strong> can
+be seen while during development:</p>
+<div class="language-text highlight"><pre><span></span><code>catch {console show}
+</code></pre></div>
+<h1 id="see-also">SEE ALSO</h1>
+<p>destroy(n), fconfigure(n), history(n), interp(n), puts(n), text(n),
+wm(n)</p>
+<h1 id="keywords">KEYWORDS</h1>
+<p>console, interpreter, window, interactive, output channels</p>
+
+<ul class="metadata page-metadata" data-bi-name="page info" lang="en-us" dir="ltr">
+  <li class="last-updated-holder displayDate loading">
+    <span class="last-updated-text">Last updated:</span>
+    <time role="presentation" datetime="2018-10-25T00:00:00.000Z" data-article-date-source="ms.date"></time>
+  </li>
+<!--
+  <li class="readingTime">
+    2 minutes to read
+  </li>
+-->
+  <li class="contributors-holder">
+    <span class="contributors-text">Contributors</span>
+    <ul class="contributors" data-bi-name="contributors"></ul>
+  </li>
+</ul>
+</div>
+        <div class="col-md-3"><div class="navbar-light navbar-expand-md hidden-print sticky-top sticky-offset" role="complementary">
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggler collapsed" data-toggle="collapse" data-target="#toc-collapse" title="Table of Contents">
+            <span class="fa fa-angle-down"></span>
+        </button>
+    </div>
+
+    <div id="toc-collapse" class="navbar-collapse collapse card">
+        <ul class="nav flex-column bs-sidenav">
+            <li class="nav-item main"><a class="nav-link" href="#name">NAME</a></li>
+            <li class="nav-item main"><a class="nav-link" href="#synopsis">SYNOPSIS</a></li>
+            <li class="nav-item main"><a class="nav-link" href="#description">DESCRIPTION</a></li>
+            <li class="nav-item main"><a class="nav-link" href="#access-to-the-main-interpreter">ACCESS TO THE MAIN INTERPRETER</a></li>
+            <li class="nav-item main"><a class="nav-link" href="#additional-trap-calls">ADDITIONAL TRAP CALLS</a></li>
+            <li class="nav-item main"><a class="nav-link" href="#default-bindings">DEFAULT BINDINGS</a></li>
+            <li class="nav-item main"><a class="nav-link" href="#example">EXAMPLE</a></li>
+            <li class="nav-item main"><a class="nav-link" href="#see-also">SEE ALSO</a></li>
+            <li class="nav-item main"><a class="nav-link" href="#keywords">KEYWORDS</a></li>
+        </ul>
+    </div>
+</div></div>
+      </div>
+      </div>
+
+      <footer class="col-md-12">
+	<hr>
+	<div class="container">
+	</div>
+      </footer>
+      <script>
+	var base_url = "../..",
+            shortcuts = {"help": 191, "next": 78, "previous": 80, "search": 83};
+      </script>
+      <script src="../../js/base.js" defer></script>
+      <script src="../../search/main.js" defer></script>
+
+      <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="Search Modal" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Search</h4>
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            </div>
+            <div class="modal-body">
+                <p>
+                    From here you can search these documents. Enter
+                    your search terms below.
+                </p>
+                <form role="form">
+                    <div class="form-group">
+                        <input type="text" class="form-control" placeholder="Search..." id="mkdocs-search-query" title="Type search term here">
+                    </div>
+                </form>
+                <div id="mkdocs-search-results"></div>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div><div class="modal" id="mkdocs_keyboard_modal" tabindex="-1" role="dialog" aria-labelledby="Keyboard Shortcuts Modal" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <p class="h4 modal-title">Keyboard Shortcuts</p>
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            </div>
+            <div class="modal-body">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th style="width: 20%;">Keys</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="help shortcut"><kbd>?</kbd></td>
+                    <td>Open this help</td>
+                  </tr>
+                  <tr>
+                    <td class="next shortcut"><kbd>n</kbd></td>
+                    <td>Next page</td>
+                  </tr>
+                  <tr>
+                    <td class="prev shortcut"><kbd>p</kbd></td>
+                    <td>Previous page</td>
+                  </tr>
+                  <tr>
+                    <td class="search shortcut"><kbd>s</kbd></td>
+                    <td>Search</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>
+
+    </body>
+</html>

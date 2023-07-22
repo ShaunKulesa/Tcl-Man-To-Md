@@ -11,12 +11,10 @@
 .SH NAME
 tm \- Facilities for locating and loading of Tcl Modules
 .SH SYNOPSIS
-.nf
 \fB::tcl::tm::path add \fR?\fIpath\fR...?
 \fB::tcl::tm::path remove \fR?\fIpath\fR...?
 \fB::tcl::tm::path list\fR
 \fB::tcl::tm::roots \fR?\fIpath\fR...?
-.fi
 .BE
 .SH DESCRIPTION
 .PP
@@ -81,9 +79,9 @@ A Tcl Module is a Tcl Package contained in a single file, and no other
 files required by it. This file has to be \fBsource\fRable. In other
 words, a Tcl Module is always imported via:
 .PP
-.nf
+.CS
 source module_file
-.fi
+.CE
 .PP
 The \fBload\fR command is not directly used. This restriction is not
 an actual limitation, as some may believe.
@@ -95,18 +93,18 @@ package.
 .PP
 The name of a module file has to match the regular expression:
 .PP
-.nf
+.CS
 ([_[:alpha:]][:_[:alnum:]]*)-([[:digit:]].*)\e.tm
-.fi
+.CE
 .PP
 The first capturing parentheses provides the name of the package, the
 second clause its version. In addition to matching the pattern, the
 extracted version number must not raise an error when used in the
 command:
 .PP
-.nf
+.CS
 package vcompare $version 0
-.fi
+.CE
 .SH "FINDING MODULES"
 .PP
 The directory tree for storing Tcl modules is separate from other
@@ -170,23 +168,23 @@ Note that packages in module form have \fIno\fR control over the
 database for them.
 For a module file \fBMF\fR the \fIindex script\fR is always:
 .PP
-.nf
+.CS
 package ifneeded \fBPNAME PVERSION\fR [list source \fBMF\fR]
-.fi
+.CE
 .PP
 and the \fIprovide script\fR embedded in the above is:
 .PP
-.nf
+.CS
 source \fBMF\fR
-.fi
+.CE
 .PP
 Both package name \fBPNAME\fR and package version \fBPVERSION\fR are
 extracted from the filename \fBMF\fR according to the definition
 below:
 .PP
-.nf
+.CS
 \fBMF\fR = /module_path/\fBPNAME\(fm\fR-\fBPVERSION\fR.tm
-.fi
+.CE
 .PP
 Where \fBPNAME\(fm\fR is the partial path of the module as defined in
 section \fBFINDING MODULES\fR, and translated into \fBPNAME\fR by
@@ -234,13 +232,13 @@ to the minor version of the interpreter.
 .PP
 For example for Tcl 8.4 the paths searched are:
 .PP
-.nf
+.CS
 \fB[info library]/../tcl8/8.4\fR
 \fB[info library]/../tcl8/8.3\fR
 \fB[info library]/../tcl8/8.2\fR
 \fB[info library]/../tcl8/8.1\fR
 \fB[info library]/../tcl8/8.0\fR
-.fi
+.CE
 .PP
 This definition assumes that a package defined for Tcl \fIX\fB.\fIy\fR
 can also be used by all interpreters which have the same major number
@@ -288,13 +286,13 @@ Note that \fIX\fR and \fIy\fR follow the general rules set out
 above. In other words, Tcl 8.4, for example, will look at these 10
 environment variables:
 .PP
-.nf
+.CS
 \fB$::env(TCL8.4_TM_PATH)\fR  \fB$::env(TCL8_4_TM_PATH)\fR
 \fB$::env(TCL8.3_TM_PATH)\fR  \fB$::env(TCL8_3_TM_PATH)\fR
 \fB$::env(TCL8.2_TM_PATH)\fR  \fB$::env(TCL8_2_TM_PATH)\fR
 \fB$::env(TCL8.1_TM_PATH)\fR  \fB$::env(TCL8_1_TM_PATH)\fR
 \fB$::env(TCL8.0_TM_PATH)\fR  \fB$::env(TCL8_0_TM_PATH)\fR
-.fi
+.CE
 .SH "SEE ALSO"
 package(n), Tcl Improvement Proposal #189
 .QW "\fITcl Modules\fR"

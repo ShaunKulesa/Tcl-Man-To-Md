@@ -1,5 +1,3 @@
-\
-
 # NAME
 
 Tcl_SetRecursionLimit - set maximum allowable nesting depth in
@@ -7,10 +5,9 @@ interpreter
 
 # SYNOPSIS
 
-    #include <tcl.h>
+**#include \<tcl.h\>**
 
-    int
-    Tcl_SetRecursionLimit(interp, depth)
+int **Tcl_SetRecursionLimit**(*interp, depth*)
 
 # ARGUMENTS
 
@@ -18,8 +15,6 @@ Interpreter whose recursion limit is to be set. Must be greater than
 zero.
 
 New limit for nested calls to **Tcl_Eval** for *interp*.
-
-\
 
 # DESCRIPTION
 
@@ -44,3 +39,9 @@ in your system for increasing the maximum size of the C stack.
 # KEYWORDS
 
 nesting depth, recursion
+
+<!---
+Copyright (c) 1989-1993 The Regents of the University of California
+Copyright (c) 1994-1996 Sun Microsystems, Inc
+-->
+

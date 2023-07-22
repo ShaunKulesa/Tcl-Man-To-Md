@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+      <script>
+	// Hack for scrolling window when linking to anchor tag with fixed nav header
+        var shiftWindow = function() { scrollBy(0, -75) };
+        window.addEventListener("hashchange", shiftWindow);
+        function load() { if (window.location.hash) shiftWindow(); }
+      </script>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        
+        <link rel="canonical" href="https://www.tcl.tk/man/TclCmd/registry/">
+        <link rel="shortcut icon" href="../../img/favicon.ico">
+        <title>Registry - Tcl/Tk</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <link href="../../css/font-awesome.min.css" rel="stylesheet">
+    <link href="../../css/base.css" rel="stylesheet">
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+    <script src="../../js/base.js"></script> 
+    </head>
+
+    <body class="">
+
+      <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
+	<div class="container">
+	<a class="navbar-brand" href="../..">Tcl/Tk</a>
+	<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExample04" aria-controls="navbarsExample04" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+	</button>
+
+	<div class="collapse navbar-collapse">
+
+          <ul class="navbar-nav flex-row ml-md-auto d-none d-md-flex">
+            <li class="nav-item">
+              <a class="nav-link" href="#" data-toggle="modal" data-target="#mkdocs_search_modal">
+		<i class="fa fa-search"></i> Search
+              </a>
+            </li>
+          </ul>
+	</div>
+	</div>
+      </nav><div id="content" class="container">
+        
+      <div class="row">
+        <div class="col-md-9" role="main">
+
+
+<nav aria-label="breadcrumb">
+  <ol class="breadcrumb">
+    
+    <li class="breadcrumb-item active" aria-current="page">Registry</li>
+  </ol>
+</nav>
+
+
+<p>\</p>
+<h1 id="name">NAME</h1>
+<p>registry - Manipulate the Windows registry</p>
+<h1 id="synopsis">SYNOPSIS</h1>
+<p><strong>package require registry 1.3</strong></p>
+<p><strong>registry </strong>?<em>-mode</em>? <em>option</em> <em>keyName</em> ?<em>arg arg ...</em>?</p>
+<p>\</p>
+<h1 id="description">DESCRIPTION</h1>
+<p>The <strong>registry</strong> package provides a general set of operations for
+manipulating the Windows registry. The package implements the
+<strong>registry</strong> Tcl command. This command is only supported on the Windows
+platform. Warning: this command should be used with caution as a
+corrupted registry can leave your system in an unusable state.</p>
+<p><em>KeyName</em> is the name of a registry key. Registry keys must be one of
+the following forms:</p>
+<blockquote>
+<p><strong>\\</strong><em>hostname</em><strong>\</strong><em>rootname</em><strong>\</strong><em>keypath</em></p>
+<p><em>rootname</em><strong>\</strong><em>keypath</em></p>
+<p><em>rootname</em></p>
+</blockquote>
+<p><em>Hostname</em> specifies the name of any valid Windows host that exports its
+registry. The <em>rootname</em> component must be one of
+<strong>HKEY_LOCAL_MACHINE</strong>, <strong>HKEY_USERS</strong>, <strong>HKEY_CLASSES_ROOT</strong>,
+<strong>HKEY_CURRENT_USER</strong>, <strong>HKEY_CURRENT_CONFIG</strong>,
+<strong>HKEY_PERFORMANCE_DATA</strong>, or <strong>HKEY_DYN_DATA</strong>. The <em>keypath</em> can be
+one or more registry key names separated by backslash (<strong>\</strong>)
+characters.</p>
+<p>The optional <em>-mode</em> argument indicates which registry to work with;
+when it is <strong>-32bit</strong> the 32-bit registry will be used, and when it is
+<strong>-64bit</strong> the 64-bit registry will be used. If this argument is
+omitted, the system\'s default registry will be the subject of the
+requested operation.</p>
+<p><em>Option</em> indicates what to do with the registry key name. Any unique
+abbreviation for <em>option</em> is acceptable. The valid options are:</p>
+<p><strong>registry broadcast </strong><em>keyName</em> ?<strong>-timeout </strong><em>milliseconds</em>?</p>
+<p>:   Sends a broadcast message to the system and running programs to
+    notify them of certain updates. This is necessary to propagate
+    changes to key registry keys like Environment. The timeout specifies
+    the amount of time, in milliseconds, to wait for applications to
+    respond to the broadcast message. It defaults to 3000. The following
+    example demonstrates how to add a path to the global Environment and
+    notify applications of the change without requiring a logoff/logon
+    step (assumes admin privileges):</p>
+<div class="language-text highlight"><pre><span></span><code>    set regPath [join {
+        HKEY_LOCAL_MACHINE
+        SYSTEM
+        CurrentControlSet
+        Control
+        {Session Manager}
+        Environment
+    } &quot;\\&quot;]
+    set curPath [registry get $regPath &quot;Path&quot;]
+    registry set $regPath &quot;Path&quot; &quot;$curPath;$addPath&quot;
+    registry broadcast &quot;Environment&quot;
+</code></pre></div>
+<p><strong>registry delete </strong><em>keyName</em> ?<em>valueName</em>?</p>
+<p>:   If the optional <em>valueName</em> argument is present, the specified value
+    under <em>keyName</em> will be deleted from the registry. If the optional
+    <em>valueName</em> is omitted, the specified key and any subkeys or values
+    beneath it in the registry hierarchy will be deleted. If the key
+    could not be deleted then an error is generated. If the key did not
+    exist, the command has no effect.</p>
+<p><strong>registry get </strong><em>keyName valueName</em></p>
+<p>:   Returns the data associated with the value <em>valueName</em> under the key
+    <em>keyName</em>. If either the key or the value does not exist, then an
+    error is generated. For more details on the format of the returned
+    data, see <strong>SUPPORTED TYPES</strong>, below.</p>
+<p><strong>registry keys </strong><em>keyName</em> ?<em>pattern</em>?</p>
+<p>:   If <em>pattern</em> is not specified, returns a list of names of all the
+    subkeys of <em>keyName</em>. If <em>pattern</em> is specified, only those names
+    matching <em>pattern</em> are returned. Matching is determined using the
+    same rules as for <strong>string match</strong>. If the specified <em>keyName</em> does
+    not exist, then an error is generated.</p>
+<p><strong>registry set </strong><em>keyName</em> ?<em>valueName data </em>?<em>type</em>??</p>
+<p>:   If <em>valueName</em> is not specified, creates the key <em>keyName</em> if it
+    does not already exist. If <em>valueName</em> is specified, creates the key
+    <em>keyName</em> and value <em>valueName</em> if necessary. The contents of
+    <em>valueName</em> are set to <em>data</em> with the type indicated by <em>type</em>. If
+    <em>type</em> is not specified, the type <strong>sz</strong> is assumed. For more
+    details on the data and type arguments, see <strong>SUPPORTED TYPES</strong>
+    below.</p>
+<p><strong>registry type </strong><em>keyName valueName</em></p>
+<p>:   Returns the type of the value <em>valueName</em> in the key <em>keyName</em>. For
+    more information on the possible types, see <strong>SUPPORTED TYPES</strong>,
+    below.</p>
+<p><strong>registry values </strong><em>keyName</em> ?<em>pattern</em>?</p>
+<p>:   If <em>pattern</em> is not specified, returns a list of names of all the
+    values of <em>keyName</em>. If <em>pattern</em> is specified, only those names
+    matching <em>pattern</em> are returned. Matching is determined using the
+    same rules as for <strong>string match</strong>.</p>
+<h1 id="supported-types">SUPPORTED TYPES</h1>
+<p>Each value under a key in the registry contains some data of a
+particular type in a type-specific representation. The <strong>registry</strong>
+command converts between this internal representation and one that can
+be manipulated by Tcl scripts. In most cases, the data is simply
+returned as a Tcl string. The type indicates the intended use for the
+data, but does not actually change the representation. For some types,
+the <strong>registry</strong> command returns the data in a different form to make it
+easier to manipulate. The following types are recognized by the registry
+command:</p>
+<p><strong>binary</strong></p>
+<p>:   The registry value contains arbitrary binary data. The data is
+    represented exactly in Tcl, including any embedded nulls.</p>
+<p><strong>none</strong></p>
+<p>:   The registry value contains arbitrary binary data with no defined
+    type. The data is represented exactly in Tcl, including any embedded
+    nulls.</p>
+<p><strong>sz</strong></p>
+<p>:   The registry value contains a null-terminated string. The data is
+    represented in Tcl as a string.</p>
+<p><strong>expand_sz</strong></p>
+<p>:   The registry value contains a null-terminated string that contains
+    unexpanded references to environment variables in the normal Windows
+    style (for example, The data is represented in Tcl as a string.</p>
+<p><strong>dword</strong></p>
+<p>:   The registry value contains a little-endian 32-bit number. The data
+    is represented in Tcl as a decimal string.</p>
+<p><strong>dword_big_endian</strong></p>
+<p>:   The registry value contains a big-endian 32-bit number. The data is
+    represented in Tcl as a decimal string.</p>
+<p><strong>link</strong></p>
+<p>:   The registry value contains a symbolic link. The data is represented
+    exactly in Tcl, including any embedded nulls.</p>
+<p><strong>multi_sz</strong></p>
+<p>:   The registry value contains an array of null-terminated strings. The
+    data is represented in Tcl as a list of strings.</p>
+<p><strong>resource_list</strong></p>
+<p>:   The registry value contains a device-driver resource list. The data
+    is represented exactly in Tcl, including any embedded nulls.</p>
+<p>In addition to the symbolically named types listed above, unknown types
+are identified using a 32-bit integer that corresponds to the type code
+returned by the system interfaces. In this case, the data is represented
+exactly in Tcl, including any embedded nulls.</p>
+<h1 id="portability-issues">PORTABILITY ISSUES</h1>
+<p>The registry command is only available on Windows.</p>
+<h1 id="example">EXAMPLE</h1>
+<p>Print out how double-clicking on a Tcl script file will invoke a Tcl
+interpreter:</p>
+<div class="language-text highlight"><pre><span></span><code>package require registry
+set ext .tcl
+
+# Read the type name
+set type [registry get HKEY_CLASSES_ROOT\\$ext {}]
+# Work out where to look for the command
+set path HKEY_CLASSES_ROOT\\$type\\Shell\\Open\\command
+# Read the command!
+set command [registry get $path {}]
+
+puts &quot;$ext opens with $command&quot;
+</code></pre></div>
+<h1 id="keywords">KEYWORDS</h1>
+<p>registry</p>
+
+<ul class="metadata page-metadata" data-bi-name="page info" lang="en-us" dir="ltr">
+  <li class="last-updated-holder displayDate loading">
+    <span class="last-updated-text">Last updated:</span>
+    <time role="presentation" datetime="2018-10-25T00:00:00.000Z" data-article-date-source="ms.date"></time>
+  </li>
+<!--
+  <li class="readingTime">
+    2 minutes to read
+  </li>
+-->
+  <li class="contributors-holder">
+    <span class="contributors-text">Contributors</span>
+    <ul class="contributors" data-bi-name="contributors"></ul>
+  </li>
+</ul>
+</div>
+        <div class="col-md-3"><div class="navbar-light navbar-expand-md hidden-print sticky-top sticky-offset" role="complementary">
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggler collapsed" data-toggle="collapse" data-target="#toc-collapse" title="Table of Contents">
+            <span class="fa fa-angle-down"></span>
+        </button>
+    </div>
+
+    <div id="toc-collapse" class="navbar-collapse collapse card">
+        <ul class="nav flex-column bs-sidenav">
+            <li class="nav-item main"><a class="nav-link" href="#name">NAME</a></li>
+            <li class="nav-item main"><a class="nav-link" href="#synopsis">SYNOPSIS</a></li>
+            <li class="nav-item main"><a class="nav-link" href="#description">DESCRIPTION</a></li>
+            <li class="nav-item main"><a class="nav-link" href="#supported-types">SUPPORTED TYPES</a></li>
+            <li class="nav-item main"><a class="nav-link" href="#portability-issues">PORTABILITY ISSUES</a></li>
+            <li class="nav-item main"><a class="nav-link" href="#example">EXAMPLE</a></li>
+            <li class="nav-item main"><a class="nav-link" href="#keywords">KEYWORDS</a></li>
+        </ul>
+    </div>
+</div></div>
+      </div>
+      </div>
+
+      <footer class="col-md-12">
+	<hr>
+	<div class="container">
+	</div>
+      </footer>
+      <script>
+	var base_url = "../..",
+            shortcuts = {"help": 191, "next": 78, "previous": 80, "search": 83};
+      </script>
+      <script src="../../js/base.js" defer></script>
+      <script src="../../search/main.js" defer></script>
+
+      <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="Search Modal" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Search</h4>
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            </div>
+            <div class="modal-body">
+                <p>
+                    From here you can search these documents. Enter
+                    your search terms below.
+                </p>
+                <form role="form">
+                    <div class="form-group">
+                        <input type="text" class="form-control" placeholder="Search..." id="mkdocs-search-query" title="Type search term here">
+                    </div>
+                </form>
+                <div id="mkdocs-search-results"></div>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div><div class="modal" id="mkdocs_keyboard_modal" tabindex="-1" role="dialog" aria-labelledby="Keyboard Shortcuts Modal" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <p class="h4 modal-title">Keyboard Shortcuts</p>
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            </div>
+            <div class="modal-body">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th style="width: 20%;">Keys</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="help shortcut"><kbd>?</kbd></td>
+                    <td>Open this help</td>
+                  </tr>
+                  <tr>
+                    <td class="next shortcut"><kbd>n</kbd></td>
+                    <td>Next page</td>
+                  </tr>
+                  <tr>
+                    <td class="prev shortcut"><kbd>p</kbd></td>
+                    <td>Previous page</td>
+                  </tr>
+                  <tr>
+                    <td class="search shortcut"><kbd>s</kbd></td>
+                    <td>Search</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>
+
+    </body>
+</html>

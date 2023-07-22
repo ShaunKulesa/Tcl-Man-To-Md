@@ -87,7 +87,7 @@ This illustrates how you can use Tcl to ensure that files get closed
 even when errors happen by combining \fBcatch\fR, \fBclose\fR and
 \fBreturn\fR:
 .PP
-.nf
+.CS
 proc withOpenFile {filename channelVar script} {
     upvar 1 $channelVar chan
     set chan [open $filename]
@@ -97,7 +97,7 @@ proc withOpenFile {filename channelVar script} {
     \fBclose\fR $chan
     return -options $options $result
 }
-.fi
+.CE
 .SH "SEE ALSO"
 file(n), open(n), socket(n), eof(n), Tcl_StandardChannels(3)
 .SH KEYWORDS

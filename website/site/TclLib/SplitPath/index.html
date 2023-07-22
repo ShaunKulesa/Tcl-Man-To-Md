@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+      <script>
+	// Hack for scrolling window when linking to anchor tag with fixed nav header
+        var shiftWindow = function() { scrollBy(0, -75) };
+        window.addEventListener("hashchange", shiftWindow);
+        function load() { if (window.location.hash) shiftWindow(); }
+      </script>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        
+        <link rel="canonical" href="https://www.tcl.tk/man/TclLib/SplitPath/">
+        <link rel="shortcut icon" href="../../img/favicon.ico">
+        <title>SplitPath - Tcl/Tk</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <link href="../../css/font-awesome.min.css" rel="stylesheet">
+    <link href="../../css/base.css" rel="stylesheet">
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+    <script src="../../js/base.js"></script> 
+    </head>
+
+    <body class="">
+
+      <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
+	<div class="container">
+	<a class="navbar-brand" href="../..">Tcl/Tk</a>
+	<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExample04" aria-controls="navbarsExample04" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+	</button>
+
+	<div class="collapse navbar-collapse">
+
+          <ul class="navbar-nav flex-row ml-md-auto d-none d-md-flex">
+            <li class="nav-item">
+              <a class="nav-link" href="#" data-toggle="modal" data-target="#mkdocs_search_modal">
+		<i class="fa fa-search"></i> Search
+              </a>
+            </li>
+          </ul>
+	</div>
+	</div>
+      </nav><div id="content" class="container">
+        
+      <div class="row">
+        <div class="col-md-9" role="main">
+
+
+<nav aria-label="breadcrumb">
+  <ol class="breadcrumb">
+    
+    <li class="breadcrumb-item active" aria-current="page">SplitPath</li>
+  </ol>
+</nav>
+
+
+<p>\</p>
+<h1 id="name">NAME</h1>
+<p>Tcl_SplitPath, Tcl_JoinPath, Tcl_GetPathType - manipulate
+platform-dependent file paths</p>
+<h1 id="synopsis">SYNOPSIS</h1>
+<p><strong>#include \&lt;tcl.h></strong></p>
+<p><strong>Tcl_SplitPath</strong>(<em>path, argcPtr, argvPtr</em>)</p>
+<p>char * <strong>Tcl_JoinPath</strong>(<em>argc, argv, resultPtr</em>)</p>
+<p>Tcl_PathType <strong>Tcl_GetPathType</strong>(<em>path</em>)</p>
+<h1 id="arguments">ARGUMENTS</h1>
+<p>File path in a form appropriate for the current platform (see the
+<strong>filename</strong> manual entry for acceptable forms for path names).</p>
+<p>Filled in with number of path elements in <em>path</em>.</p>
+<p><em>*argvPtr</em> will be filled in with the address of an array of pointers
+to the strings that are the extracted elements of <em>path</em>. There will be
+<em>*argcPtr</em> valid entries in the array, followed by a NULL entry.</p>
+<p>Number of elements in <em>argv</em>.</p>
+<p>Array of path elements to merge together into a single path.</p>
+<p>A pointer to an initialized <strong>Tcl_DString</strong> to which the result of
+<strong>Tcl_JoinPath</strong> will be appended.</p>
+<p>\</p>
+<h1 id="description">DESCRIPTION</h1>
+<p>These procedures have been superseded by the Tcl-value-aware procedures
+in the <strong>FileSystem</strong> man page, which are more efficient.</p>
+<p>These procedures may be used to disassemble and reassemble file paths in
+a platform independent manner: they provide C-level access to the same
+functionality as the <strong>file split</strong>, <strong>file join</strong>, and <strong>file
+pathtype</strong> commands.</p>
+<p><strong>Tcl_SplitPath</strong> breaks a path into its constituent elements, returning
+an array of pointers to the elements using <em>argcPtr</em> and <em>argvPtr</em>. The
+area of memory pointed to by <em>*argvPtr</em> is dynamically allocated; in
+addition to the array of pointers, it also holds copies of all the path
+elements. It is the caller\'s responsibility to free all of this
+storage. For example, suppose that you have called <strong>Tcl_SplitPath</strong>
+with the following code:</p>
+<div class="language-text highlight"><pre><span></span><code>int argc;
+char *path;
+char **argv;
+...
+Tcl_SplitPath(string, &amp;argc, &amp;argv);
+</code></pre></div>
+<p>Then you should eventually free the storage with a call like the
+following:</p>
+<div class="language-text highlight"><pre><span></span><code>Tcl_Free((char *) argv);
+</code></pre></div>
+<p><strong>Tcl_JoinPath</strong> is the inverse of <strong>Tcl_SplitPath</strong>: it takes a
+collection of path elements given by <em>argc</em> and <em>argv</em> and generates a
+result string that is a properly constructed path. The result string is
+appended to <em>resultPtr</em>. <em>ResultPtr</em> must refer to an initialized
+<strong>Tcl_DString</strong>.</p>
+<p>If the result of <strong>Tcl_SplitPath</strong> is passed to <strong>Tcl_JoinPath</strong>, the
+result will refer to the same location, but may not be in the same form.
+This is because <strong>Tcl_SplitPath</strong> and <strong>Tcl_JoinPath</strong> eliminate
+duplicate path separators and return a normalized form for each
+platform.</p>
+<p><strong>Tcl_GetPathType</strong> returns the type of the specified <em>path</em>, where
+<strong>Tcl_PathType</strong> is one of <strong>TCL_PATH_ABSOLUTE</strong>, <strong>TCL_PATH_RELATIVE</strong>,
+or <strong>TCL_PATH_VOLUME_RELATIVE</strong>. See the <strong>filename</strong> manual entry for a
+description of the path types for each platform.</p>
+<h1 id="keywords">KEYWORDS</h1>
+<p>file, filename, join, path, split, type</p>
+
+<ul class="metadata page-metadata" data-bi-name="page info" lang="en-us" dir="ltr">
+  <li class="last-updated-holder displayDate loading">
+    <span class="last-updated-text">Last updated:</span>
+    <time role="presentation" datetime="2018-10-25T00:00:00.000Z" data-article-date-source="ms.date"></time>
+  </li>
+<!--
+  <li class="readingTime">
+    2 minutes to read
+  </li>
+-->
+  <li class="contributors-holder">
+    <span class="contributors-text">Contributors</span>
+    <ul class="contributors" data-bi-name="contributors"></ul>
+  </li>
+</ul>
+</div>
+        <div class="col-md-3"><div class="navbar-light navbar-expand-md hidden-print sticky-top sticky-offset" role="complementary">
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggler collapsed" data-toggle="collapse" data-target="#toc-collapse" title="Table of Contents">
+            <span class="fa fa-angle-down"></span>
+        </button>
+    </div>
+
+    <div id="toc-collapse" class="navbar-collapse collapse card">
+        <ul class="nav flex-column bs-sidenav">
+            <li class="nav-item main"><a class="nav-link" href="#name">NAME</a></li>
+            <li class="nav-item main"><a class="nav-link" href="#synopsis">SYNOPSIS</a></li>
+            <li class="nav-item main"><a class="nav-link" href="#arguments">ARGUMENTS</a></li>
+            <li class="nav-item main"><a class="nav-link" href="#description">DESCRIPTION</a></li>
+            <li class="nav-item main"><a class="nav-link" href="#keywords">KEYWORDS</a></li>
+        </ul>
+    </div>
+</div></div>
+      </div>
+      </div>
+
+      <footer class="col-md-12">
+	<hr>
+	<div class="container">
+	</div>
+      </footer>
+      <script>
+	var base_url = "../..",
+            shortcuts = {"help": 191, "next": 78, "previous": 80, "search": 83};
+      </script>
+      <script src="../../js/base.js" defer></script>
+      <script src="../../search/main.js" defer></script>
+
+      <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="Search Modal" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Search</h4>
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            </div>
+            <div class="modal-body">
+                <p>
+                    From here you can search these documents. Enter
+                    your search terms below.
+                </p>
+                <form role="form">
+                    <div class="form-group">
+                        <input type="text" class="form-control" placeholder="Search..." id="mkdocs-search-query" title="Type search term here">
+                    </div>
+                </form>
+                <div id="mkdocs-search-results"></div>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div><div class="modal" id="mkdocs_keyboard_modal" tabindex="-1" role="dialog" aria-labelledby="Keyboard Shortcuts Modal" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <p class="h4 modal-title">Keyboard Shortcuts</p>
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            </div>
+            <div class="modal-body">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th style="width: 20%;">Keys</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="help shortcut"><kbd>?</kbd></td>
+                    <td>Open this help</td>
+                  </tr>
+                  <tr>
+                    <td class="next shortcut"><kbd>n</kbd></td>
+                    <td>Next page</td>
+                  </tr>
+                  <tr>
+                    <td class="prev shortcut"><kbd>p</kbd></td>
+                    <td>Previous page</td>
+                  </tr>
+                  <tr>
+                    <td class="search shortcut"><kbd>s</kbd></td>
+                    <td>Search</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>
+
+    </body>
+</html>

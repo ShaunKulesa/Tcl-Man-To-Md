@@ -1,5 +1,3 @@
-\
-
 # NAME
 
 Tcl_TraceVar, Tcl_TraceVar2, Tcl_UntraceVar, Tcl_UntraceVar2,
@@ -7,23 +5,22 @@ Tcl_VarTraceInfo, Tcl_VarTraceInfo2 - monitor accesses to a variable
 
 # SYNOPSIS
 
-    #include <tcl.h>
+**#include \<tcl.h\>**
 
-    int
-    Tcl_TraceVar(interp, varName, flags, proc, clientData)
+int **Tcl_TraceVar(***interp, varName, flags, proc, clientData***)**
 
-    int
-    Tcl_TraceVar2(interp, name1, name2, flags, proc, clientData)
+int **Tcl_TraceVar2(***interp, name1, name2, flags, proc,
+clientData***)**
 
-    Tcl_UntraceVar(interp, varName, flags, proc, clientData)
+**Tcl_UntraceVar(***interp, varName, flags, proc, clientData***)**
 
-    Tcl_UntraceVar2(interp, name1, name2, flags, proc, clientData)
+**Tcl_UntraceVar2(***interp, name1, name2, flags, proc, clientData***)**
 
-    ClientData
-    Tcl_VarTraceInfo(interp, varName, flags, proc, prevClientData)
+ClientData **Tcl_VarTraceInfo(***interp, varName, flags, proc,
+prevClientData***)**
 
-    ClientData
-    Tcl_VarTraceInfo2(interp, name1, name2, flags, proc, prevClientData)
+ClientData **Tcl_VarTraceInfo2(***interp, name1, name2, flags, proc,
+prevClientData***)**
 
 # ARGUMENTS
 
@@ -50,8 +47,6 @@ For traces on scalar variables or on whole arrays, is NULL.
 If non-NULL, gives last value returned by **Tcl_VarTraceInfo** or
 **Tcl_VarTraceInfo2**, so this call will return information about next
 trace. If NULL, this call will return information about first trace.
-
-\
 
 # DESCRIPTION
 
@@ -344,3 +339,9 @@ trace(n)
 # KEYWORDS
 
 clientData, trace, variable
+
+<!---
+Copyright (c) 1989-1993 The Regents of the University of California
+Copyright (c) 1994-1996 Sun Microsystems, Inc
+-->
+

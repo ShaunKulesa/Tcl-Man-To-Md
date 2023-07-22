@@ -1,5 +1,3 @@
-\
-
 # NAME
 
 Tcl_StackChannel, Tcl_UnstackChannel, Tcl_GetStackedChannel,
@@ -7,19 +5,16 @@ Tcl_GetTopChannel - manipulate stacked I/O channels
 
 # SYNOPSIS
 
-    #include <tcl.h>
+**#include \<tcl.h\>**
 
-    Tcl_Channel
-    Tcl_StackChannel(interp, typePtr, clientData, mask, channel)
+Tcl_Channel **Tcl_StackChannel**(*interp, typePtr, clientData, mask,
+channel*)
 
-    int
-    Tcl_UnstackChannel(interp, channel)
+int **Tcl_UnstackChannel**(*interp, channel*)
 
-    Tcl_Channel
-    Tcl_GetStackedChannel(channel)
+Tcl_Channel **Tcl_GetStackedChannel**(*channel*)
 
-    Tcl_Channel
-    Tcl_GetTopChannel(channel)
+Tcl_Channel **Tcl_GetTopChannel**(*channel*)
 
 # ARGUMENTS
 
@@ -34,8 +29,6 @@ Conditions under which *channel* will be used: OR-ed combination of
 subset of the operations currently allowed on *channel*.
 
 An existing Tcl channel such as returned by **Tcl_CreateChannel**.
-
-\
 
 # DESCRIPTION
 
@@ -92,3 +85,8 @@ Notifier(3), Tcl_CreateChannel(3), Tcl_OpenFileChannel(3), vwait(n).
 # KEYWORDS
 
 channel, compression
+
+<!---
+Copyright (c) 1999-2000 Ajuba Solutions
+-->
+

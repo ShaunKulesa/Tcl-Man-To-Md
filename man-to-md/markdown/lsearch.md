@@ -1,5 +1,3 @@
-\
-
 # NAME
 
 lsearch - See if a list contains a particular element
@@ -7,8 +5,6 @@ lsearch - See if a list contains a particular element
 # SYNOPSIS
 
 **lsearch **?*options*? *list pattern*
-
-\
 
 # DESCRIPTION
 
@@ -209,3 +205,11 @@ lset(n), lsort(n), lrange(n), lreplace(n), string(n)
 
 binary search, linear search, list, match, pattern, regular expression,
 search, string
+
+<!---
+Copyright (c) 1993 The Regents of the University of California
+Copyright (c) 1994-1996 Sun Microsystems, Inc
+Copyright (c) 2001 Kevin B. Kenny <kennykb@acm.org>.  All rights reserved
+Copyright (c) 2003-2004 Donal K. Fellows
+-->
+

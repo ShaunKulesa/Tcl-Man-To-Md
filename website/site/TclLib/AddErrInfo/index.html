@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+      <script>
+	// Hack for scrolling window when linking to anchor tag with fixed nav header
+        var shiftWindow = function() { scrollBy(0, -75) };
+        window.addEventListener("hashchange", shiftWindow);
+        function load() { if (window.location.hash) shiftWindow(); }
+      </script>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        
+        <link rel="canonical" href="https://www.tcl.tk/man/TclLib/AddErrInfo/">
+        <link rel="shortcut icon" href="../../img/favicon.ico">
+        <title>AddErrInfo - Tcl/Tk</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <link href="../../css/font-awesome.min.css" rel="stylesheet">
+    <link href="../../css/base.css" rel="stylesheet">
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+    <script src="../../js/base.js"></script> 
+    </head>
+
+    <body class="">
+
+      <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
+	<div class="container">
+	<a class="navbar-brand" href="../..">Tcl/Tk</a>
+	<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExample04" aria-controls="navbarsExample04" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+	</button>
+
+	<div class="collapse navbar-collapse">
+
+          <ul class="navbar-nav flex-row ml-md-auto d-none d-md-flex">
+            <li class="nav-item">
+              <a class="nav-link" href="#" data-toggle="modal" data-target="#mkdocs_search_modal">
+		<i class="fa fa-search"></i> Search
+              </a>
+            </li>
+          </ul>
+	</div>
+	</div>
+      </nav><div id="content" class="container">
+        
+      <div class="row">
+        <div class="col-md-9" role="main">
+
+
+<nav aria-label="breadcrumb">
+  <ol class="breadcrumb">
+    
+    <li class="breadcrumb-item active" aria-current="page">AddErrInfo</li>
+  </ol>
+</nav>
+
+
+<p>\</p>
+<h1 id="name">NAME</h1>
+<p>Tcl_GetReturnOptions, Tcl_SetReturnOptions, Tcl_AddErrorInfo,
+Tcl_AppendObjToErrorInfo, Tcl_AddObjErrorInfo, Tcl_SetObjErrorCode,
+Tcl_SetErrorCode, Tcl_SetErrorCodeVA, Tcl_SetErrorLine,
+Tcl_GetErrorLine, Tcl_PosixError, Tcl_LogCommandInfo - retrieve or
+record information about errors and other return options</p>
+<h1 id="synopsis">SYNOPSIS</h1>
+<p><strong>#include \&lt;tcl.h></strong></p>
+<p>Tcl_Obj * <strong>Tcl_GetReturnOptions</strong>(<em>interp, code</em>)</p>
+<p>int <strong>Tcl_SetReturnOptions</strong>(<em>interp, options</em>)</p>
+<p><strong>Tcl_AddErrorInfo</strong>(<em>interp, message</em>)</p>
+<p><strong>Tcl_AppendObjToErrorInfo</strong>(<em>interp, objPtr</em>)</p>
+<p><strong>Tcl_AddObjErrorInfo</strong>(<em>interp, message, length</em>)</p>
+<p><strong>Tcl_SetObjErrorCode</strong>(<em>interp, errorObjPtr</em>)</p>
+<p><strong>Tcl_SetErrorCode</strong>(<em>interp, element, element, ... </em><strong>(char *)
+NULL</strong>)</p>
+<p><strong>Tcl_SetErrorCodeVA</strong>(<em>interp, argList</em>)</p>
+<p><strong>Tcl_GetErrorLine</strong>(<em>interp</em>)</p>
+<p><strong>Tcl_SetErrorLine</strong>(<em>interp, lineNum</em>)</p>
+<p>const char * <strong>Tcl_PosixError</strong>(<em>interp</em>)</p>
+<p>void <strong>Tcl_LogCommandInfo</strong>(<em>interp, script, command, commandLength</em>)</p>
+<h1 id="arguments">ARGUMENTS</h1>
+<p>Interpreter in which to record information.</p>
+<p>The code returned from script evaluation.</p>
+<p>A dictionary of return options.</p>
+<p>For <strong>Tcl_AddErrorInfo</strong>, this is a conventional C string to append to
+the <strong>-errorinfo</strong> return option. For <strong>Tcl_AddObjErrorInfo</strong>, this
+points to the first byte of an array of <em>length</em> bytes containing a
+string to append to the <strong>-errorinfo</strong> return option. This byte array
+may contain embedded null bytes unless <em>length</em> is negative.</p>
+<p>A message to be appended to the <strong>-errorinfo</strong> return option in the form
+of a Tcl_Obj value.</p>
+<p>The number of bytes to copy from <em>message</em> when appending to the
+<strong>-errorinfo</strong> return option. If negative, all bytes up to the first
+null byte are used.</p>
+<p>The <strong>-errorcode</strong> return option will be set to this value.</p>
+<p>String to record as one element of the <strong>-errorcode</strong> return option.
+Last <em>element</em> argument must be NULL.</p>
+<p>An argument list which must have been initialized using <strong>va_start</strong>,
+and cleared using <strong>va_end</strong>.</p>
+<p>The line number of a script where an error occurred.</p>
+<p>Pointer to first character in script containing command (must be \&lt;=
+command)</p>
+<p>Pointer to first character in command that generated the error</p>
+<p>Number of bytes in command; -1 means use all bytes up to first null byte</p>
+<p>\</p>
+<h1 id="description">DESCRIPTION</h1>
+<p>The <strong>Tcl_SetReturnOptions</strong> and <strong>Tcl_GetReturnOptions</strong> routines
+expose the same capabilities as the <strong>return</strong> and <strong>catch</strong> commands,
+respectively, in the form of a C interface.</p>
+<p><strong>Tcl_GetReturnOptions</strong> retrieves the dictionary of return options from
+an interpreter following a script evaluation. Routines such as
+<strong>Tcl_Eval</strong> are called to evaluate a script in an interpreter. These
+routines return an integer completion code. These routines also leave in
+the interpreter both a result and a dictionary of return options
+generated by script evaluation. Just as <strong>Tcl_GetObjResult</strong> retrieves
+the result, <strong>Tcl_GetReturnOptions</strong> retrieves the dictionary of return
+options. The integer completion code should be passed as the <em>code</em>
+argument to <strong>Tcl_GetReturnOptions</strong> so that all required options will
+be present in the dictionary. Specifically, a <em>code</em> value of
+<strong>TCL_ERROR</strong> will ensure that entries for the keys <strong>-errorinfo</strong>,
+<strong>-errorcode</strong>, and <strong>-errorline</strong> will appear in the dictionary. Also,
+the entries for the keys <strong>-code</strong> and <strong>-level</strong> will be adjusted if
+necessary to agree with the value of <em>code</em>. The <strong>(Tcl_Obj *)</strong>
+returned by <strong>Tcl_GetReturnOptions</strong> points to an unshared <strong>Tcl_Obj</strong>
+with reference count of zero. The dictionary may be written to, either
+adding, removing, or overwriting any entries in it, without the need to
+check for a shared value. As with any <strong>Tcl_Obj</strong> with reference count
+of zero, it is up to the caller to arrange for its disposal with
+<strong>Tcl_DecrRefCount</strong> or to a reference to it via <strong>Tcl_IncrRefCount</strong>
+(or one of the many functions that call that, notably including
+<strong>Tcl_SetObjResult</strong> and <strong>Tcl_SetVar2Ex</strong>).</p>
+<p>A typical usage for <strong>Tcl_GetReturnOptions</strong> is to retrieve the stack
+trace when script evaluation returns <strong>TCL_ERROR</strong>, like so:</p>
+<div class="language-text highlight"><pre><span></span><code>int code = Tcl_Eval(interp, script);
+if (code == TCL_ERROR) {
+    Tcl_Obj *options = Tcl_GetReturnOptions(interp, code);
+    Tcl_Obj *key = Tcl_NewStringObj(&quot;-errorinfo&quot;, -1);
+    Tcl_Obj *stackTrace;
+    Tcl_IncrRefCount(key);
+    Tcl_DictObjGet(NULL, options, key, &amp;stackTrace);
+    Tcl_DecrRefCount(key);
+    /* Do something with stackTrace */
+    Tcl_DecrRefCount(options);
+}
+</code></pre></div>
+<p><strong>Tcl_SetReturnOptions</strong> sets the return options of <em>interp</em> to be
+<em>options</em>. If <em>options</em> contains any invalid value for any key,
+TCL_ERROR will be returned, and the interp result will be set to an
+appropriate error message. Otherwise, a completion code in agreement
+with the <strong>-code</strong> and <strong>-level</strong> keys in <em>options</em> will be returned.</p>
+<p>As an example, Tcl\'s <strong>return</strong> command itself could be implemented in
+terms of <strong>Tcl_SetReturnOptions</strong> like so:</p>
+<div class="language-text highlight"><pre><span></span><code>if ((objc % 2) == 0) { /* explicit result argument */
+    objc--;
+    Tcl_SetObjResult(interp, objv[objc]);
+}
+return Tcl_SetReturnOptions(interp, Tcl_NewListObj(objc-1, objv+1));
+</code></pre></div>
+<p>(It is not really implemented that way. Internal access privileges allow
+for a more efficient alternative that meshes better with the bytecode
+compiler.)</p>
+<p>Note that a newly created <strong>Tcl_Obj</strong> may be passed in as the <em>options</em>
+argument without the need to tend to any reference counting. This is
+analogous to <strong>Tcl_SetObjResult</strong>.</p>
+<p>While <strong>Tcl_SetReturnOptions</strong> provides a general interface to set any
+collection of return options, there are a handful of return options that
+are very frequently used. Most notably the <strong>-errorinfo</strong> and
+<strong>-errorcode</strong> return options should be set properly when the command
+procedure of a command returns <strong>TCL_ERROR</strong>. The <strong>-errorline</strong> return
+option is also read by commands that evaluate scripts and wish to supply
+detailed error location information in the stack trace text they append
+to the <strong>-errorinfo</strong> option. Tcl provides several simpler interfaces to
+more directly set these return options.</p>
+<p>The <strong>-errorinfo</strong> option holds a stack trace of the operations that
+were in progress when an error occurred, and is intended to be
+human-readable. The <strong>-errorcode</strong> option holds a Tcl list of items that
+are intended to be machine-readable. The first item in the
+<strong>-errorcode</strong> value identifies the class of error that occurred (e.g.,
+POSIX means an error occurred in a POSIX system call) and additional
+elements hold additional pieces of information that depend on the class.
+See the manual entry on the <strong>errorCode</strong> variable for details on the
+various formats for the <strong>-errorcode</strong> option used by Tcl\'s built-in
+commands.</p>
+<p>The <strong>-errorinfo</strong> option value is gradually built up as an error
+unwinds through the nested operations. Each time an error code is
+returned to <strong>Tcl_Eval</strong>, or any of the routines that performs script
+evaluation, the procedure <strong>Tcl_AddErrorInfo</strong> is called to add
+additional text to the <strong>-errorinfo</strong> value describing the command that
+was being executed when the error occurred. By the time the error has
+been passed all the way back to the application, it will contain a
+complete trace of the activity in progress when the error occurred.</p>
+<p>It is sometimes useful to add additional information to the
+<strong>-errorinfo</strong> value beyond what can be supplied automatically by the
+script evaluation routines. <strong>Tcl_AddErrorInfo</strong> may be used for this
+purpose: its <em>message</em> argument is an additional string to be appended
+to the <strong>-errorinfo</strong> option. For example, when an error arises during
+the <strong>source</strong> command, the procedure <strong>Tcl_AddErrorInfo</strong> is called to
+record the name of the file being processed and the line number on which
+the error occurred. Likewise, when an error arises during evaluation of
+a Tcl procedures, the procedure name and line number within the
+procedure are recorded, and so on. The best time to call
+<strong>Tcl_AddErrorInfo</strong> is just after a script evaluation routine has
+returned <strong>TCL_ERROR</strong>. The value of the <strong>-errorline</strong> return option
+(retrieved via a call to <strong>Tcl_GetReturnOptions</strong>) often makes up a
+useful part of the <em>message</em> passed to <strong>Tcl_AddErrorInfo</strong>.</p>
+<p><strong>Tcl_AppendObjToErrorInfo</strong> is an alternative interface to the same
+functionality as <strong>Tcl_AddErrorInfo</strong>. <strong>Tcl_AppendObjToErrorInfo</strong> is
+called when the string value to be appended to the <strong>-errorinfo</strong> option
+is available as a <strong>Tcl_Obj</strong> instead of as a <strong>char</strong> array.</p>
+<p><strong>Tcl_AddObjErrorInfo</strong> is nearly identical to <strong>Tcl_AddErrorInfo</strong>,
+except that it has an additional <em>length</em> argument. This allows the
+<em>message</em> string to contain embedded null bytes. This is essentially
+never a good idea. If the <em>message</em> needs to contain the null character
+<strong>U+0000</strong>, Tcl\'s usual internal encoding rules should be used to avoid
+the need for a null byte. If the <strong>Tcl_AddObjErrorInfo</strong> interface is
+used at all, it should be with a negative <em>length</em> value.</p>
+<p>The procedure <strong>Tcl_SetObjErrorCode</strong> is used to set the <strong>-errorcode</strong>
+return option to the list value <em>errorObjPtr</em> built up by the caller.
+<strong>Tcl_SetObjErrorCode</strong> is typically invoked just before returning an
+error. If an error is returned without calling <strong>Tcl_SetObjErrorCode</strong>
+or <strong>Tcl_SetErrorCode</strong> the Tcl interpreter automatically sets the
+<strong>-errorcode</strong> return option to <strong>NONE</strong>.</p>
+<p>The procedure <strong>Tcl_SetErrorCode</strong> is also used to set the
+<strong>-errorcode</strong> return option. However, it takes one or more strings to
+record instead of a value. Otherwise, it is similar to
+<strong>Tcl_SetObjErrorCode</strong> in behavior.</p>
+<p><strong>Tcl_SetErrorCodeVA</strong> is the same as <strong>Tcl_SetErrorCode</strong> except that
+instead of taking a variable number of arguments it takes an argument
+list.</p>
+<p>The procedure <strong>Tcl_GetErrorLine</strong> is used to read the integer value of
+the <strong>-errorline</strong> return option without the overhead of a full call to
+<strong>Tcl_GetReturnOptions</strong>. Likewise, <strong>Tcl_SetErrorLine</strong> sets the
+<strong>-errorline</strong> return option value.</p>
+<p><strong>Tcl_PosixError</strong> sets the <strong>-errorcode</strong> variable after an error in a
+POSIX kernel call. It reads the value of the <strong>errno</strong> C variable and
+calls <strong>Tcl_SetErrorCode</strong> to set the <strong>-errorcode</strong> return option in
+the <strong>POSIX</strong> format. The caller must previously have called
+<strong>Tcl_SetErrno</strong> to set <strong>errno</strong>; this is necessary on some platforms
+(e.g. Windows) where Tcl is linked into an application as a shared
+library, or when the error occurs in a dynamically loaded extension. See
+the manual entry for <strong>Tcl_SetErrno</strong> for more information.</p>
+<p><strong>Tcl_PosixError</strong> returns a human-readable diagnostic message for the
+error (this is the same value that will appear as the third element in
+the <strong>-errorcode</strong> value). It may be convenient to include this string
+as part of the error message returned to the application in the
+interpreter\'s result.</p>
+<p><strong>Tcl_LogCommandInfo</strong> is invoked after an error occurs in an
+interpreter. It adds information about the command that was being
+executed when the error occurred to the <strong>-errorinfo</strong> value, and the
+line number stored internally in the interpreter is set.</p>
+<p>In older releases of Tcl, there was no <strong>Tcl_GetReturnOptions</strong> routine.
+In its place, the global Tcl variables <strong>errorInfo</strong> and <strong>errorCode</strong>
+were the only place to retrieve the error information. Much existing
+code written for older Tcl releases still access this information via
+those global variables.</p>
+<p>It is important to realize that while reading from those global
+variables remains a supported way to access these return option values,
+it is important not to assume that writing to those global variables
+will properly set the corresponding return options. It has long been
+emphasized in this manual page that it is important to call the
+procedures described here rather than setting <strong>errorInfo</strong> or
+<strong>errorCode</strong> directly with <strong>Tcl_ObjSetVar2</strong>.</p>
+<p>If the procedure <strong>Tcl_ResetResult</strong> is called, it clears all of the
+state of the interpreter associated with script evaluation, including
+the entire return options dictionary. In particular, the <strong>-errorinfo</strong>
+and <strong>-errorcode</strong> options are reset. If an error had occurred, the
+<strong>Tcl_ResetResult</strong> call will clear the error state to make it appear as
+if no error had occurred after all. The global variables <strong>errorInfo</strong>
+and <strong>errorCode</strong> are not modified by <strong>Tcl_ResetResult</strong> so they
+continue to hold a record of information about the most recent error
+seen in an interpreter.</p>
+<h1 id="see-also">SEE ALSO</h1>
+<p>Tcl_DecrRefCount(3), Tcl_IncrRefCount(3), Tcl_Interp(3),
+Tcl_ResetResult(3), Tcl_SetErrno(3), errorCode(n), errorInfo(n)</p>
+<h1 id="keywords">KEYWORDS</h1>
+<p>error, value, value result, stack, trace, variable</p>
+
+<ul class="metadata page-metadata" data-bi-name="page info" lang="en-us" dir="ltr">
+  <li class="last-updated-holder displayDate loading">
+    <span class="last-updated-text">Last updated:</span>
+    <time role="presentation" datetime="2018-10-25T00:00:00.000Z" data-article-date-source="ms.date"></time>
+  </li>
+<!--
+  <li class="readingTime">
+    2 minutes to read
+  </li>
+-->
+  <li class="contributors-holder">
+    <span class="contributors-text">Contributors</span>
+    <ul class="contributors" data-bi-name="contributors"></ul>
+  </li>
+</ul>
+</div>
+        <div class="col-md-3"><div class="navbar-light navbar-expand-md hidden-print sticky-top sticky-offset" role="complementary">
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggler collapsed" data-toggle="collapse" data-target="#toc-collapse" title="Table of Contents">
+            <span class="fa fa-angle-down"></span>
+        </button>
+    </div>
+
+    <div id="toc-collapse" class="navbar-collapse collapse card">
+        <ul class="nav flex-column bs-sidenav">
+            <li class="nav-item main"><a class="nav-link" href="#name">NAME</a></li>
+            <li class="nav-item main"><a class="nav-link" href="#synopsis">SYNOPSIS</a></li>
+            <li class="nav-item main"><a class="nav-link" href="#arguments">ARGUMENTS</a></li>
+            <li class="nav-item main"><a class="nav-link" href="#description">DESCRIPTION</a></li>
+            <li class="nav-item main"><a class="nav-link" href="#see-also">SEE ALSO</a></li>
+            <li class="nav-item main"><a class="nav-link" href="#keywords">KEYWORDS</a></li>
+        </ul>
+    </div>
+</div></div>
+      </div>
+      </div>
+
+      <footer class="col-md-12">
+	<hr>
+	<div class="container">
+	</div>
+      </footer>
+      <script>
+	var base_url = "../..",
+            shortcuts = {"help": 191, "next": 78, "previous": 80, "search": 83};
+      </script>
+      <script src="../../js/base.js" defer></script>
+      <script src="../../search/main.js" defer></script>
+
+      <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="Search Modal" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Search</h4>
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            </div>
+            <div class="modal-body">
+                <p>
+                    From here you can search these documents. Enter
+                    your search terms below.
+                </p>
+                <form role="form">
+                    <div class="form-group">
+                        <input type="text" class="form-control" placeholder="Search..." id="mkdocs-search-query" title="Type search term here">
+                    </div>
+                </form>
+                <div id="mkdocs-search-results"></div>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div><div class="modal" id="mkdocs_keyboard_modal" tabindex="-1" role="dialog" aria-labelledby="Keyboard Shortcuts Modal" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <p class="h4 modal-title">Keyboard Shortcuts</p>
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            </div>
+            <div class="modal-body">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th style="width: 20%;">Keys</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="help shortcut"><kbd>?</kbd></td>
+                    <td>Open this help</td>
+                  </tr>
+                  <tr>
+                    <td class="next shortcut"><kbd>n</kbd></td>
+                    <td>Next page</td>
+                  </tr>
+                  <tr>
+                    <td class="prev shortcut"><kbd>p</kbd></td>
+                    <td>Previous page</td>
+                  </tr>
+                  <tr>
+                    <td class="search shortcut"><kbd>s</kbd></td>
+                    <td>Search</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>
+
+    </body>
+</html>

@@ -88,31 +88,31 @@ based on the given element.
 For example,
 .RS
 .PP
-.nf
+.CS
 \fBlsort\fR -integer -index 1 \e
       {{First 24} {Second 18} {Third 30}}
-.fi
+.CE
 .PP
 returns \fB{Second 18} {First 24} {Third 30}\fR,
 .PP
 '\"
 '\" This example is from the test suite!
 '\"
-.nf
+.CS
 \fBlsort\fR -index end-1 \e
         {{a 1 e i} {b 2 3 f g} {c 4 5 6 d h}}
-.fi
+.CE
 .PP
 returns \fB{c 4 5 6 d h} {a 1 e i} {b 2 3 f g}\fR,
 and
 .PP
-.nf
+.CS
 \fBlsort\fR -index {0 1} {
     {{b i g} 12345}
     {{d e m o} 34512}
     {{c o d e} 54321}
 }
-.fi
+.CE
 .PP
 returns \fB{{d e m o} 34512} {{b i g} 12345} {{c o d e} 54321}\fR
 (because \fBe\fR sorts before \fBi\fR which sorts before \fBo\fR.)
@@ -135,17 +135,17 @@ in turn must be at least 2.
 .PP
 For example,
 .PP
-.nf
+.CS
 \fBlsort\fR \-stride 2 {carrot 10 apple 50 banana 25}
-.fi
+.CE
 .PP
 returns
 .QW "apple 50 banana 25 carrot 10" ,
 and
 .PP
-.nf
+.CS
 \fBlsort\fR \-stride 2 \-index 1 \-integer {carrot 10 apple 50 banana 25}
-.fi
+.CE
 .PP
 returns
 .QW "carrot 10 banana 25 apple 50" .
@@ -179,39 +179,39 @@ option.
 .PP
 Sorting a list using ASCII sorting:
 .PP
-.nf
+.CS
 \fI%\fR \fBlsort\fR {a10 B2 b1 a1 a2}
 B2 a1 a10 a2 b1
-.fi
+.CE
 .PP
 Sorting a list using Dictionary sorting:
 .PP
-.nf
+.CS
 \fI%\fR \fBlsort\fR -dictionary {a10 B2 b1 a1 a2}
 a1 a2 a10 b1 B2
-.fi
+.CE
 .PP
 Sorting lists of integers:
 .PP
-.nf
+.CS
 \fI%\fR \fBlsort\fR -integer {5 3 1 2 11 4}
 1 2 3 4 5 11
 \fI%\fR \fBlsort\fR -integer {1 2 0x5 7 0 4 -1}
 -1 0 1 2 4 0x5 7
-.fi
+.CE
 .PP
 Sorting lists of floating-point numbers:
 .PP
-.nf
+.CS
 \fI%\fR \fBlsort\fR -real {5 3 1 2 11 4}
 1 2 3 4 5 11
 \fI%\fR \fBlsort\fR -real {.5 0.07e1 0.4 6e-1}
 0.4 .5 6e-1 0.07e1
-.fi
+.CE
 .PP
 Sorting using indices:
 .PP
-.nf
+.CS
 \fI%\fR # Note the space character before the c
 \fI%\fR \fBlsort\fR {{a 5} { c 3} {b 4} {e 1} {d 2}}
 { c 3} {a 5} {b 4} {d 2} {e 1}
@@ -219,38 +219,38 @@ Sorting using indices:
 {a 5} {b 4} { c 3} {d 2} {e 1}
 \fI%\fR \fBlsort\fR -index 1 {{a 5} { c 3} {b 4} {e 1} {d 2}}
 {e 1} {d 2} { c 3} {b 4} {a 5}
-.fi
+.CE
 .PP
 .VS 8.6
 Sorting a dictionary:
 .PP
-.nf
+.CS
 \fI%\fR set d [dict create c d a b h i f g c e]
 c e a b h i f g
 \fI%\fR \fBlsort\fR -stride 2 $d
 a b c e f g h i
-.fi
+.CE
 .PP
 Sorting using striding and multiple indices:
 .PP
-.nf
+.CS
 \fI%\fR # Note the first index value is relative to the group
 \fI%\fR \fBlsort\fR \-stride 3 \-index {0 1} \e
      {{Bob Smith} 25 Audi {Jane Doe} 40 Ford}
 {{Jane Doe} 40 Ford {Bob Smith} 25 Audi}
-.fi
+.CE
 .VE 8.6
 .PP
 Stripping duplicate values using sorting:
 .PP
-.nf
+.CS
 \fI%\fR \fBlsort\fR -unique {a b c a b c a b c}
 a b c
-.fi
+.CE
 .PP
 More complex sorting using a comparison function:
 .PP
-.nf
+.CS
 \fI%\fR proc compare {a b} {
     set a0 [lindex $a 0]
     set b0 [lindex $b 0]
@@ -264,7 +264,7 @@ More complex sorting using a comparison function:
 \fI%\fR \fBlsort\fR -command compare \e
         {{3 apple} {0x2 carrot} {1 dingo} {2 banana}}
 {1 dingo} {2 banana} {0x2 carrot} {3 apple}
-.fi
+.CE
 .SH "SEE ALSO"
 list(n), lappend(n), lindex(n), linsert(n), llength(n), lsearch(n),
 lset(n), lrange(n), lreplace(n)

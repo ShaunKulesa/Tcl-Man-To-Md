@@ -1,0 +1,686 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+      <script>
+	// Hack for scrolling window when linking to anchor tag with fixed nav header
+        var shiftWindow = function() { scrollBy(0, -75) };
+        window.addEventListener("hashchange", shiftWindow);
+        function load() { if (window.location.hash) shiftWindow(); }
+      </script>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        
+        <link rel="canonical" href="https://www.tcl.tk/man/TkCmd/ttk_treeview/">
+        <link rel="shortcut icon" href="../../img/favicon.ico">
+        <title>Ttk treeview - Tcl/Tk</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <link href="../../css/font-awesome.min.css" rel="stylesheet">
+    <link href="../../css/base.css" rel="stylesheet">
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+    <script src="../../js/base.js"></script> 
+    </head>
+
+    <body class="">
+
+      <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
+	<div class="container">
+	<a class="navbar-brand" href="../..">Tcl/Tk</a>
+	<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExample04" aria-controls="navbarsExample04" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+	</button>
+
+	<div class="collapse navbar-collapse">
+
+          <ul class="navbar-nav flex-row ml-md-auto d-none d-md-flex">
+            <li class="nav-item">
+              <a class="nav-link" href="#" data-toggle="modal" data-target="#mkdocs_search_modal">
+		<i class="fa fa-search"></i> Search
+              </a>
+            </li>
+          </ul>
+	</div>
+	</div>
+      </nav><div id="content" class="container">
+        
+      <div class="row">
+        <div class="col-md-9" role="main">
+
+
+<nav aria-label="breadcrumb">
+  <ol class="breadcrumb">
+    
+    <li class="breadcrumb-item active" aria-current="page">Ttk treeview</li>
+  </ol>
+</nav>
+
+
+<p>\</p>
+<h1 id="name">NAME</h1>
+<p>ttk::treeview - hierarchical multicolumn data display widget</p>
+<h1 id="synopsis">SYNOPSIS</h1>
+<p><strong>ttk::treeview </strong><em>pathname </em>?<em>options</em>?</p>
+<p>\</p>
+<h1 id="description">DESCRIPTION</h1>
+<p>The <strong>ttk::treeview</strong> widget displays a hierarchical collection of
+items. Each item has a textual label, an optional image, and an optional
+list of data values. The data values are displayed in successive columns
+after the tree label.</p>
+<p>The order in which data values are displayed may be controlled by
+setting the <strong>-displaycolumns</strong> widget option. The tree widget can also
+display column headings. Columns may be accessed by number or by
+symbolic names listed in the <strong>-columns</strong> widget option; see <strong>COLUMN
+IDENTIFIERS</strong>.</p>
+<p>Each item is identified by a unique name. The widget will generate item
+IDs if they are not supplied by the caller. There is a distinguished
+root item, named <strong>{}</strong>. The root item itself is not displayed; its
+children appear at the top level of the hierarchy.</p>
+<p>Each item also has a list of <em>tags</em>, which can be used to associate
+event bindings with individual items and control the appearance of the
+item.</p>
+<p>Treeview widgets support horizontal and vertical scrolling with the
+standard <strong>-</strong>[<strong>xy</strong>]<strong>scrollcommand</strong> options and [<strong>xy</strong>]<strong>view</strong>
+widget commands.</p>
+<h1 id="standard-options">STANDARD OPTIONS</h1>
+<div class="language-text highlight"><pre><span></span><code>-class  -cursor -takefocus
+-style  -xscrollcommand -yscrollcommand
+-padding
+</code></pre></div>
+<p>See the manual entry for details on the standard options.</p>
+<h1 id="widget-specific-options">WIDGET-SPECIFIC OPTIONS</h1>
+<div class="language-text highlight"><pre><span></span><code>Command-Line Name:  -columns
+Database Name:  columns
+Database Class: Columns
+</code></pre></div>
+<blockquote>
+<p>A list of column identifiers, specifying the number of columns and
+their names.</p>
+</blockquote>
+<div class="language-text highlight"><pre><span></span><code>Command-Line Name:  -displaycolumns
+Database Name:  displayColumns
+Database Class: DisplayColumns
+</code></pre></div>
+<blockquote>
+<p>A list of column identifiers (either symbolic names or integer
+indices) specifying which data columns are displayed and the order in
+which they appear, or the string <strong>#all</strong>. If set to <strong>#all</strong> (the
+default), all columns are shown in the order given.</p>
+</blockquote>
+<div class="language-text highlight"><pre><span></span><code>Command-Line Name:  -height
+Database Name:  height
+Database Class: Height
+</code></pre></div>
+<blockquote>
+<p>Specifies the number of rows which should be visible. Note: the
+requested width is determined from the sum of the column widths.</p>
+</blockquote>
+<div class="language-text highlight"><pre><span></span><code>Command-Line Name:  -selectmode
+Database Name:  selectMode
+Database Class: SelectMode
+</code></pre></div>
+<blockquote>
+<p>Controls how the built-in class bindings manage the selection. One of
+<strong>extended</strong>, <strong>browse</strong>, or <strong>none</strong>.</p>
+<p>If set to <strong>extended</strong> (the default), multiple items may be selected.
+If <strong>browse</strong>, only a single item will be selected at a time. If
+<strong>none</strong>, the selection will not be changed.</p>
+<p>Note that application code and tag bindings can set the selection
+however they wish, regardless of the value of <strong>-selectmode</strong>.</p>
+</blockquote>
+<div class="language-text highlight"><pre><span></span><code>Command-Line Name:  -show
+Database Name:  show
+Database Class: Show
+</code></pre></div>
+<blockquote>
+<p>A list containing zero or more of the following values, specifying
+which elements of the tree to display.</p>
+<p>tree</p>
+<p>:   Display tree labels in column #0.</p>
+<p>headings</p>
+<p>:   Display the heading row.</p>
+<p>The default is <strong>tree headings</strong>, i.e., show all elements.</p>
+<p><strong>NOTE:</strong> Column #0 always refers to the tree column, even if <strong>-show
+tree</strong> is not specified.</p>
+</blockquote>
+<h1 id="widget-command">WIDGET COMMAND</h1>
+<p><em>pathname </em><strong>bbox </strong><em>item</em> ?<em>column</em>?</p>
+<p>:   Returns the bounding box (relative to the treeview widget\'s window)
+    of the specified <em>item</em> in the form <em>x y width height</em>. If <em>column</em>
+    is specified, returns the bounding box of that cell. If the <em>item</em>
+    is not visible (i.e., if it is a descendant of a closed item or is
+    scrolled offscreen), returns the empty list.</p>
+<p><em>pathname </em><strong>cget </strong><em>option</em></p>
+<p>:   Returns the current value of the specified <em>option</em>; see
+    <em>ttk::widget(n)</em>.</p>
+<p><em>pathname </em><strong>children </strong><em>item</em> ?<em>newchildren</em>?</p>
+<p>:   If <em>newchildren</em> is not specified, returns the list of children
+    belonging to <em>item</em>.</p>
+<div class="language-text highlight"><pre><span></span><code>If *newchildren* is specified, replaces *item*\&#39;s child list with
+*newchildren*. Items in the old child list not present in the new
+child list are detached from the tree. None of the items in
+*newchildren* may be an ancestor of *item*.
+</code></pre></div>
+<p><em>pathname </em><strong>column </strong><em>column</em> ?<em>-option </em>?<em>value -option value...</em>?</p>
+<p>:   Query or modify the options for the specified <em>column</em>. If no
+    <em>-option</em> is specified, returns a dictionary of option/value pairs.
+    If a single <em>-option</em> is specified, returns the value of that
+    option. Otherwise, the options are updated with the specified
+    values. The following options may be set on each column:</p>
+<div class="language-text highlight"><pre><span></span><code>**-id ***name*
+
+:   The column name. This is a read-only option. For example,
+    \[*\$pathname ***column \#***n ***-id**\] returns the data
+    column associated with display column \#*n*.
+
+**-anchor ***anchor*
+
+:   Specifies how the text in this column should be aligned with
+    respect to the cell. *Anchor* is one of **n**, **ne**, **e**,
+    **se**, **s**, **sw**, **w**, **nw**, or **center**.
+
+**-minwidth ***minwidth*
+
+:   The minimum width of the column in pixels. The treeview widget
+    will not make the column any smaller than **-minwidth** when the
+    widget is resized or the user drags a column separator. Default
+    is 20 pixels.
+
+**-stretch ***boolean*
+
+:   Specifies whether or not the column width should be adjusted
+    when the widget is resized or the user drags a column separator.
+    *Boolean* may have any of the forms accepted by
+    **Tcl_GetBoolean**. By default columns are stretchable.
+
+**-width ***width*
+
+:   The width of the column in pixels. Default is 200 pixels. The
+    specified column width may be changed by Tk in order to honor
+    **-stretch** and/or **-minwidth**, or when the widget is resized
+    or the user drags a column separator.
+
+Use *pathname column #0* to configure the tree column.
+</code></pre></div>
+<p><em>pathname </em><strong>configure</strong> ?<em>option</em>? ?<em>value option value ...</em>?</p>
+<p>:   Modify or query widget options; see <em>ttk::widget(n)</em>.</p>
+<p><em>pathname </em><strong>delete </strong><em>itemList</em></p>
+<p>:   Deletes each of the items in <em>itemList</em> and all of their
+    descendants. The root item may not be deleted. See also: <strong>detach</strong>.</p>
+<p><em>pathname </em><strong>detach </strong><em>itemList</em></p>
+<p>:   Unlinks all of the specified items in <em>itemList</em> from the tree. The
+    items and all of their descendants are still present and may be
+    reinserted at another point in the tree with the <strong>move</strong> operation,
+    but will not be displayed until that is done. The root item may not
+    be detached. See also: <strong>delete</strong>.</p>
+<p><em>pathname </em><strong>exists </strong><em>item</em></p>
+<p>:   Returns 1 if the specified <em>item</em> is present in the tree, 0
+    otherwise.</p>
+<p><em>pathname </em><strong>focus </strong>?<em>item</em>?</p>
+<p>:   If <em>item</em> is specified, sets the focus item to <em>item</em>. Otherwise,
+    returns the current focus item, or <strong>{}</strong> if there is none.</p>
+<p><em>pathname </em><strong>heading </strong><em>column</em> ?<em>-option </em>?<em>value -option value...</em>?</p>
+<p>:   Query or modify the heading options for the specified <em>column</em>.
+    Valid options are:</p>
+<div class="language-text highlight"><pre><span></span><code>**-text ***text*
+
+:   The text to display in the column heading.
+
+**-image ***imageName*
+
+:   Specifies an image to display to the right of the column
+    heading.
+
+**-anchor ***anchor*
+
+:   Specifies how the heading text should be aligned. One of the
+    standard Tk anchor values.
+
+**-command ***script*
+
+:   A script to evaluate when the heading label is pressed.
+
+Use *pathname heading #0* to configure the tree column heading.
+</code></pre></div>
+<p><em>pathname </em><strong>identify </strong><em>component x y</em></p>
+<p>:   Returns a description of the specified <em>component</em> under the point
+    given by <em>x</em> and <em>y</em>, or the empty string if no such <em>component</em> is
+    present at that position. The following subcommands are supported:</p>
+<div class="language-text highlight"><pre><span></span><code>*pathname ***identify region ***x y*
+
+:
+
+    Returns one of:
+
+    heading
+
+    :   Tree heading area; use \[**pathname identify column ***x
+        y*\] to determine the heading number.
+
+    separator
+
+    :   Space between two column headings; \[**pathname identify
+        column ***x y*\] will return the display column identifier
+        of the heading to left of the separator.
+
+    tree
+
+    :   The tree area.
+
+    cell
+
+    :   A data cell.
+
+*pathname ***identify item ***x y* Returns the item ID of the item
+at position *y*.
+
+*pathname ***identify column ***x y*
+
+:   Returns the display column identifier of the cell at position
+    *x*. The tree column has ID **#0**.
+
+*pathname ***identify element ***x y*
+
+:   The element at position *x,y*.
+
+*pathname ***identify row ***x y*
+
+:   Obsolescent synonym for *pathname ***identify item**.
+
+See **COLUMN IDENTIFIERS** for a discussion of display columns and
+data columns.
+</code></pre></div>
+<p><em>pathname </em><strong>index </strong><em>item</em></p>
+<p>:   Returns the integer index of <em>item</em> within its parent\'s list of
+    children.</p>
+<p><em>pathname </em><strong>insert </strong><em>parent index</em> ?<strong>-id </strong><em>id</em>? <em>options...</em></p>
+<p>:   Creates a new item. <em>parent</em> is the item ID of the parent item, or
+    the empty string <strong>{}</strong> to create a new top-level item. <em>index</em> is
+    an integer, or the value <strong>end</strong>, specifying where in the list of
+    <em>parent</em>\'s children to insert the new item. If <em>index</em> is less than
+    or equal to zero, the new node is inserted at the beginning; if
+    <em>index</em> is greater than or equal to the current number of children,
+    it is inserted at the end. If <strong>-id</strong> is specified, it is used as
+    the item identifier; <em>id</em> must not already exist in the tree.
+    Otherwise, a new unique identifier is generated.</p>
+<div class="language-text highlight"><pre><span></span><code>*pathname ***insert** returns the item identifier of the newly
+created item. See **ITEM OPTIONS** for the list of available
+options.
+</code></pre></div>
+<p><em>pathname </em><strong>instate </strong><em>statespec</em> ?<em>script</em>?</p>
+<p>:   Test the widget state; see <em>ttk::widget(n)</em>.</p>
+<p><em>pathname </em><strong>item </strong><em>item</em> ?<em>-option </em>?<em>value -option value...</em>?</p>
+<p>:   Query or modify the options for the specified <em>item</em>. If no
+    <em>-option</em> is specified, returns a dictionary of option/value pairs.
+    If a single <em>-option</em> is specified, returns the value of that
+    option. Otherwise, the item\'s options are updated with the
+    specified values. See <strong>ITEM OPTIONS</strong> for the list of available
+    options.</p>
+<p><em>pathname </em><strong>move </strong><em>item parent index</em></p>
+<p>:   Moves <em>item</em> to position <em>index</em> in <em>parent</em>\'s list of children. It
+    is illegal to move an item under one of its descendants.</p>
+<div class="language-text highlight"><pre><span></span><code>If *index* is less than or equal to zero, *item* is moved to the
+beginning; if greater than or equal to the number of children, it is
+moved to the end.
+</code></pre></div>
+<p><em>pathname </em><strong>next </strong><em>item</em></p>
+<p>:   Returns the identifier of <em>item</em>\'s next sibling, or <strong>{}</strong> if
+    <em>item</em> is the last child of its parent.</p>
+<p><em>pathname </em><strong>parent </strong><em>item</em></p>
+<p>:   Returns the ID of the parent of <em>item</em>, or <strong>{}</strong> if <em>item</em> is at
+    the top level of the hierarchy.</p>
+<p><em>pathname </em><strong>prev </strong><em>item</em></p>
+<p>:   Returns the identifier of <em>item</em>\'s previous sibling, or <strong>{}</strong> if
+    <em>item</em> is the first child of its parent.</p>
+<p><em>pathname </em><strong>see </strong><em>item</em></p>
+<p>:   Ensure that <em>item</em> is visible: sets all of <em>item</em>\'s ancestors to
+    <strong>-open true</strong>, and scrolls the widget if necessary so that <em>item</em>
+    is within the visible portion of the tree.</p>
+<p><em>pathname </em><strong>selection</strong> ?<em>selop itemList</em>?</p>
+<p>:   If <em>selop</em> is not specified, returns the list of selected items.
+    Otherwise, <em>selop</em> is one of the following:</p>
+<div class="language-text highlight"><pre><span></span><code>*pathname ***selection set ***itemList*
+
+:   *itemList* becomes the new selection.
+
+*pathname ***selection add ***itemList*
+
+:   Add *itemList* to the selection
+
+*pathname ***selection remove ***itemList*
+
+:   Remove *itemList* from the selection
+
+*pathname ***selection toggle ***itemList*
+
+:   Toggle the selection state of each item in *itemList*.
+</code></pre></div>
+<p><em>pathname </em><strong>set </strong><em>item</em> ?<em>column</em>? ?<em>value</em>?</p>
+<p>:   With one argument, returns a dictionary of column/value pairs for
+    the specified <em>item</em>. With two arguments, returns the current value
+    of the specified <em>column</em>. With three arguments, sets the value of
+    column <em>column</em> in item <em>item</em> to the specified <em>value</em>. See also
+    <strong>COLUMN IDENTIFIERS</strong>.</p>
+<p><em>pathname </em><strong>state</strong> ?<em>stateSpec</em>?</p>
+<p>:   Modify or query the widget state; see <em>ttk::widget(n)</em>.</p>
+<p><em>pathName </em><strong>tag </strong><em>args...</em></p>
+<p>:   </p>
+<div class="language-text highlight"><pre><span></span><code>*pathName ***tag bind ***tagName *?*sequence*? ?*script*?
+
+:   Add a Tk binding script for the event sequence *sequence* to the
+    tag *tagName*. When an X event is delivered to an item, binding
+    scripts for each of the item\&#39;s **-tags** are evaluated in order
+    as per *bindtags(n)*.
+
+    **\&lt;KeyPress\&gt;**, **\&lt;KeyRelease\&gt;**, and virtual events are
+    sent to the focus item. **\&lt;ButtonPress\&gt;**,
+    **\&lt;ButtonRelease\&gt;**, and **\&lt;Motion\&gt;** events are sent to the
+    item under the mouse pointer. No other event types are
+    supported.
+
+    The binding *script* undergoes **%**-substitutions before
+    evaluation; see **bind(n)** for details.
+
+*pathName ***tag configure ***tagName* ?*option*? ?*value option value\...*?
+
+:   Query or modify the options for the specified *tagName*. If one
+    or more *option/value* pairs are specified, sets the value of
+    those options for the specified tag. If a single *option* is
+    specified, returns the value of that option (or the empty string
+    if the option has not been specified for *tagName*). With no
+    additional arguments, returns a dictionary of the option
+    settings for *tagName*. See **TAG OPTIONS** for the list of
+    available options.
+
+*pathName ***tag has ***tagName* ?*item*?
+
+:   If *item* is specified, returns 1 or 0 depending on whether the
+    specified item has the named tag. Otherwise, returns a list of
+    all items which have the specified tag.
+
+*pathName ***tag names**
+
+:   Returns a list of all tags used by the widget.
+
+*pathName ***tag add ***tag items*
+
+:   Adds the specified *tag* to each of the listed *items*. If *tag*
+    is already present for a particular item, then the **-tags** for
+    that item are unchanged.
+
+*pathName ***tag remove ***tag* ?*items*?
+
+:   Removes the specified *tag* from each of the listed *items*. If
+    *items* is omitted, removes *tag* from each item in the tree. If
+    *tag* is not present for a particular item, then the **-tags**
+    for that item are unchanged.
+</code></pre></div>
+<p>The treeview widget also supports the following generic <strong>ttk::widget</strong>
+widget subcommands (see <em>ttk::widget(n)</em> for details):</p>
+<blockquote>
+<div class="language-text highlight"><pre><span></span><code>xview yview
+</code></pre></div>
+</blockquote>
+<h1 id="item-options">ITEM OPTIONS</h1>
+<p>The following item options may be specified for items in the <strong>insert</strong>
+and <strong>item</strong> widget commands.</p>
+<div class="language-text highlight"><pre><span></span><code>Command-Line Name:  -text
+Database Name:  text
+Database Class: Text
+</code></pre></div>
+<blockquote>
+<p>The textual label to display for the item.</p>
+</blockquote>
+<div class="language-text highlight"><pre><span></span><code>Command-Line Name:  -image
+Database Name:  image
+Database Class: Image
+</code></pre></div>
+<blockquote>
+<p>A Tk image, displayed to the left of the label.</p>
+</blockquote>
+<div class="language-text highlight"><pre><span></span><code>Command-Line Name:  -values
+Database Name:  values
+Database Class: Values
+</code></pre></div>
+<blockquote>
+<p>The list of values associated with the item.</p>
+<p>Each item should have the same number of values as the <strong>-columns</strong>
+widget option. If there are fewer values than columns, the remaining
+values are assumed empty. If there are more values than columns, the
+extra values are ignored.</p>
+</blockquote>
+<div class="language-text highlight"><pre><span></span><code>Command-Line Name:  -open
+Database Name:  open
+Database Class: Open
+</code></pre></div>
+<blockquote>
+<p>A boolean value indicating whether the item\'s children should be
+displayed (<strong>-open true</strong>) or hidden (<strong>-open false</strong>).</p>
+</blockquote>
+<div class="language-text highlight"><pre><span></span><code>Command-Line Name:  -tags
+Database Name:  tags
+Database Class: Tags
+</code></pre></div>
+<blockquote>
+<p>A list of tags associated with this item.</p>
+</blockquote>
+<h1 id="tag-options">TAG OPTIONS</h1>
+<p>The following options may be specified on tags:</p>
+<p>-foreground</p>
+<p>:   Specifies the text foreground color.</p>
+<p>-background</p>
+<p>:   Specifies the cell or item background color.</p>
+<p>-font</p>
+<p>:   Specifies the font to use when drawing text.</p>
+<p>-image</p>
+<p>:   Specifies the item image, in case the item\'s <strong>-image</strong> option is
+    empty.</p>
+<p>Tag priority is decided by the creation order: tags created first
+receive higher priority.</p>
+<h1 id="column-identifiers">COLUMN IDENTIFIERS</h1>
+<p>Column identifiers take any of the following forms:</p>
+<ul>
+<li>
+<p>A symbolic name from the list of <strong>-columns</strong>.</p>
+</li>
+<li>
+<p>An integer <em>n</em>, specifying the <em>n</em>th data column.</p>
+</li>
+<li>
+<p>A string of the form <strong>#</strong><em>n</em>, where <em>n</em> is an integer, specifying
+    the <em>n</em>th display column.</p>
+</li>
+</ul>
+<p><strong>NOTE:</strong> Item <strong>-values</strong> may be displayed in a different order than
+the order in which they are stored.</p>
+<p><strong>NOTE:</strong> Column #0 always refers to the tree column, even if <strong>-show
+tree</strong> is not specified.</p>
+<p>A <em>data column number</em> is an index into an item\'s <strong>-values</strong> list; a
+<em>display column number</em> is the column number in the tree where the
+values are displayed. Tree labels are displayed in column #0. If
+<strong>-displaycolumns</strong> is not set, then data column <em>n</em> is displayed in
+display column <strong>#</strong><em>n+1</em>. Again, <strong>column #0 always refers to the tree
+column</strong>.</p>
+<h1 id="virtual-events">VIRTUAL EVENTS</h1>
+<p>The treeview widget generates the following virtual events.</p>
+<p>\&lt;\&lt;TreeviewSelect>></p>
+<p>:   Generated whenever the selection changes. It might also be generated
+    when selection is affected but not actually changed. Further,
+    multiple selection changes could happen before events can be
+    processed leading to multiple events with the same visible
+    selection.</p>
+<p>\&lt;\&lt;TreeviewOpen>></p>
+<p>:   Generated just before setting the focus item to <strong>-open true</strong>.</p>
+<p>\&lt;\&lt;TreeviewClose>></p>
+<p>:   Generated just after setting the focus item to <strong>-open false</strong>.</p>
+<p>The <strong>focus</strong> and <strong>selection</strong> widget commands can be used to determine
+the affected item or items.</p>
+<h1 id="styling-options">STYLING OPTIONS</h1>
+<p>The class name for a <strong>ttk::treeview</strong> is <strong>Treeview</strong>. The treeview
+header class name is <strong>Heading</strong>. The treeview item class name is
+<strong>Item</strong>. The treeview cell class name is <strong>Cell</strong>.</p>
+<p>Dynamic states: <strong>disabled</strong>, <strong>selected</strong>.</p>
+<p><strong>Treeview</strong> styling options configurable with <strong>ttk::style</strong> are:</p>
+<p><strong>-background</strong> <em>color</em>\
+<strong>-fieldbackground</strong> <em>color</em>\
+<strong>-font</strong> <em>font</em>\
+<strong>-foreground</strong> <em>color</em>\
+<strong>-rowheight</strong> <em>amount</em></p>
+<blockquote>
+<p>The <strong>-rowheight</strong> value is not corrected by the <strong>tk scaling</strong> value
+or by the configured font size and must always be set. Also make sure
+that the <strong>-rowheight</strong> is large enough to contain any images.</p>
+<p>To adjust the <strong>-rowheight</strong> for the Treeview style, use the following
+code after <strong>tk scaling</strong> has been applied. Note that even if you do
+not support or change <strong>tk scaling</strong> in your program, your users may
+have it set in their .wishrc.</p>
+</blockquote>
+<div class="language-text highlight"><pre><span></span><code>ttk::style configure Treeview \
+     -rowheight [expr {[font metrics font -linespace] + 2}]
+</code></pre></div>
+<p><strong>Heading</strong> styling options configurable with <strong>ttk::style</strong> are:</p>
+<p><strong>-background</strong> <em>color</em>\
+<strong>-font</strong> <em>font</em>\
+<strong>-relief</strong> <em>relief</em></p>
+<p><strong>Item</strong> styling options configurable with <strong>ttk::style</strong> are:</p>
+<p><strong>-foreground</strong> <em>color</em>\
+<strong>-indicatormargins</strong> <em>padding</em>\
+<strong>-indicatorsize</strong> <em>amount</em>\
+<strong>-padding</strong> <em>padding</em></p>
+<p><strong>Cell</strong> styling options configurable with <strong>ttk::style</strong> are:</p>
+<p><strong>-padding</strong> <em>padding</em></p>
+<p>Some options are only available for specific themes.</p>
+<p>See the <strong>ttk::style</strong> manual page for information on how to configure
+ttk styles.</p>
+<h1 id="see-also">SEE ALSO</h1>
+<p>ttk::widget(n), listbox(n), image(n), bind(n)</p>
+
+<ul class="metadata page-metadata" data-bi-name="page info" lang="en-us" dir="ltr">
+  <li class="last-updated-holder displayDate loading">
+    <span class="last-updated-text">Last updated:</span>
+    <time role="presentation" datetime="2018-10-25T00:00:00.000Z" data-article-date-source="ms.date"></time>
+  </li>
+<!--
+  <li class="readingTime">
+    2 minutes to read
+  </li>
+-->
+  <li class="contributors-holder">
+    <span class="contributors-text">Contributors</span>
+    <ul class="contributors" data-bi-name="contributors"></ul>
+  </li>
+</ul>
+</div>
+        <div class="col-md-3"><div class="navbar-light navbar-expand-md hidden-print sticky-top sticky-offset" role="complementary">
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggler collapsed" data-toggle="collapse" data-target="#toc-collapse" title="Table of Contents">
+            <span class="fa fa-angle-down"></span>
+        </button>
+    </div>
+
+    <div id="toc-collapse" class="navbar-collapse collapse card">
+        <ul class="nav flex-column bs-sidenav">
+            <li class="nav-item main"><a class="nav-link" href="#name">NAME</a></li>
+            <li class="nav-item main"><a class="nav-link" href="#synopsis">SYNOPSIS</a></li>
+            <li class="nav-item main"><a class="nav-link" href="#description">DESCRIPTION</a></li>
+            <li class="nav-item main"><a class="nav-link" href="#standard-options">STANDARD OPTIONS</a></li>
+            <li class="nav-item main"><a class="nav-link" href="#widget-specific-options">WIDGET-SPECIFIC OPTIONS</a></li>
+            <li class="nav-item main"><a class="nav-link" href="#widget-command">WIDGET COMMAND</a></li>
+            <li class="nav-item main"><a class="nav-link" href="#item-options">ITEM OPTIONS</a></li>
+            <li class="nav-item main"><a class="nav-link" href="#tag-options">TAG OPTIONS</a></li>
+            <li class="nav-item main"><a class="nav-link" href="#column-identifiers">COLUMN IDENTIFIERS</a></li>
+            <li class="nav-item main"><a class="nav-link" href="#virtual-events">VIRTUAL EVENTS</a></li>
+            <li class="nav-item main"><a class="nav-link" href="#styling-options">STYLING OPTIONS</a></li>
+            <li class="nav-item main"><a class="nav-link" href="#see-also">SEE ALSO</a></li>
+        </ul>
+    </div>
+</div></div>
+      </div>
+      </div>
+
+      <footer class="col-md-12">
+	<hr>
+	<div class="container">
+	</div>
+      </footer>
+      <script>
+	var base_url = "../..",
+            shortcuts = {"help": 191, "next": 78, "previous": 80, "search": 83};
+      </script>
+      <script src="../../js/base.js" defer></script>
+      <script src="../../search/main.js" defer></script>
+
+      <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="Search Modal" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Search</h4>
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            </div>
+            <div class="modal-body">
+                <p>
+                    From here you can search these documents. Enter
+                    your search terms below.
+                </p>
+                <form role="form">
+                    <div class="form-group">
+                        <input type="text" class="form-control" placeholder="Search..." id="mkdocs-search-query" title="Type search term here">
+                    </div>
+                </form>
+                <div id="mkdocs-search-results"></div>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div><div class="modal" id="mkdocs_keyboard_modal" tabindex="-1" role="dialog" aria-labelledby="Keyboard Shortcuts Modal" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <p class="h4 modal-title">Keyboard Shortcuts</p>
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            </div>
+            <div class="modal-body">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th style="width: 20%;">Keys</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="help shortcut"><kbd>?</kbd></td>
+                    <td>Open this help</td>
+                  </tr>
+                  <tr>
+                    <td class="next shortcut"><kbd>n</kbd></td>
+                    <td>Next page</td>
+                  </tr>
+                  <tr>
+                    <td class="prev shortcut"><kbd>p</kbd></td>
+                    <td>Previous page</td>
+                  </tr>
+                  <tr>
+                    <td class="search shortcut"><kbd>s</kbd></td>
+                    <td>Search</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>
+
+    </body>
+</html>

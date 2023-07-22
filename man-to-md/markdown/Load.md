@@ -1,5 +1,3 @@
-\
-
 # NAME
 
 load - Load machine code and initialize new commands
@@ -9,8 +7,6 @@ load - Load machine code and initialize new commands
 **load** ?**-global**? ?**-lazy**? ?**\--**? *fileName*\
 **load** ?**-global**? ?**-lazy**? ?**\--**? *fileName prefix*\
 **load** ?**-global**? ?**-lazy**? ?**\--**? *fileName prefix interp*
-
-\
 
 # DESCRIPTION
 
@@ -168,3 +164,8 @@ info sharedlibextension, package(n), Tcl_StaticPackage(3), safe(n)
 # KEYWORDS
 
 binary code, dynamic library, load, safe interpreter, shared library
+
+<!---
+Copyright (c) 1995-1996 Sun Microsystems, Inc
+-->
+

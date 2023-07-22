@@ -31,39 +31,39 @@ If \fIsplitChars\fR is an empty string then each character of
 .PP
 Divide up a USENET group name into its hierarchical components:
 .PP
-.nf
+.CS
 \fBsplit\fR "comp.lang.tcl" .
       \fI\(-> comp lang tcl\fR
-.fi
+.CE
 .PP
 See how the \fBsplit\fR command splits on \fIevery\fR character in
 \fIsplitChars\fR, which can result in information loss if you are not
 careful:
 .PP
-.nf
+.CS
 \fBsplit\fR "alpha beta gamma" "temp"
       \fI\(-> al {ha b} {} {a ga} {} a\fR
-.fi
+.CE
 .PP
 Extract the list words from a string that is not a well-formed list:
 .PP
-.nf
+.CS
 \fBsplit\fR "Example with {unbalanced brace character"
       \fI\(-> Example with \e{unbalanced brace character\fR
-.fi
+.CE
 .PP
 Split a string into its constituent characters
 .PP
-.nf
+.CS
 \fBsplit\fR "Hello world" {}
       \fI\(-> H e l l o { } w o r l d\fR
-.fi
+.CE
 .SS "PARSING RECORD-ORIENTED FILES"
 .PP
 Parse a Unix /etc/passwd file, which consists of one entry per line,
 with each line consisting of a colon-separated list of fields:
 .PP
-.nf
+.CS
 ## Read the file
 set fid [open /etc/passwd]
 set content [read $fid]
@@ -83,7 +83,7 @@ foreach rec $records {
             userName password uid grp longName homeDir shell
     puts "$longName uses [file tail $shell] for a login shell"
 }
-.fi
+.CE
 .SH "SEE ALSO"
 join(n), list(n), string(n)
 .SH KEYWORDS

@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+      <script>
+	// Hack for scrolling window when linking to anchor tag with fixed nav header
+        var shiftWindow = function() { scrollBy(0, -75) };
+        window.addEventListener("hashchange", shiftWindow);
+        function load() { if (window.location.hash) shiftWindow(); }
+      </script>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        
+        <link rel="canonical" href="https://www.tcl.tk/man/UserCmd/wish/">
+        <link rel="shortcut icon" href="../../img/favicon.ico">
+        <title>Wish - Tcl/Tk</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <link href="../../css/font-awesome.min.css" rel="stylesheet">
+    <link href="../../css/base.css" rel="stylesheet">
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+    <script src="../../js/base.js"></script> 
+    </head>
+
+    <body class="">
+
+      <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
+	<div class="container">
+	<a class="navbar-brand" href="../..">Tcl/Tk</a>
+	<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExample04" aria-controls="navbarsExample04" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+	</button>
+
+	<div class="collapse navbar-collapse">
+
+          <ul class="navbar-nav flex-row ml-md-auto d-none d-md-flex">
+            <li class="nav-item">
+              <a class="nav-link" href="#" data-toggle="modal" data-target="#mkdocs_search_modal">
+		<i class="fa fa-search"></i> Search
+              </a>
+            </li>
+          </ul>
+	</div>
+	</div>
+      </nav><div id="content" class="container">
+        
+      <div class="row">
+        <div class="col-md-9" role="main">
+
+
+<nav aria-label="breadcrumb">
+  <ol class="breadcrumb">
+    
+    <li class="breadcrumb-item active" aria-current="page">Wish</li>
+  </ol>
+</nav>
+
+
+<p>\</p>
+<h1 id="name">NAME</h1>
+<p>wish - Simple windowing shell</p>
+<h1 id="synopsis">SYNOPSIS</h1>
+<p><strong>wish</strong> ?<strong>-encoding </strong><em>name</em>? ?<em>fileName arg arg ...</em>?</p>
+<h1 id="options">OPTIONS</h1>
+<p>-encoding name</p>
+<p>:   Specifies the encoding of the text stored in <em>fileName</em>. This option
+    is only recognized prior to the <em>fileName</em> argument.</p>
+<p>-colormap new</p>
+<p>:   Specifies that the window should have a new private colormap instead
+    of using the default colormap for the screen.</p>
+<p>-display display</p>
+<p>:   Display (and screen) on which to display window.</p>
+<p>-geometry geometry</p>
+<p>:   Initial geometry to use for window. If this option is specified, its
+    value is stored in the <strong>geometry</strong> global variable of the
+    application\'s Tcl interpreter.</p>
+<p>-name name</p>
+<p>:   Use <em>name</em> as the title to be displayed in the window, and as the
+    name of the interpreter for <strong>send</strong> commands.</p>
+<p>-sync</p>
+<p>:   Execute all X server commands synchronously, so that errors are
+    reported immediately. This will result in much slower execution, but
+    it is useful for debugging.</p>
+<p>-use id</p>
+<p>:   Specifies that the main window for the application is to be embedded
+    in the window whose identifier is <em>id</em>, instead of being created as
+    an independent toplevel window. <em>Id</em> must be specified in the same
+    way as the value for the <strong>-use</strong> option for toplevel widgets (i.e.
+    it has a form like that returned by the <strong>winfo id</strong> command).</p>
+<div class="language-text highlight"><pre><span></span><code>Note that on some platforms this will only work correctly if *id*
+refers to a Tk **frame** or **toplevel** that has its **-container**
+option enabled.
+</code></pre></div>
+<p>-visual visual</p>
+<p>:   Specifies the visual to use for the window. <em>Visual</em> may have any of
+    the forms supported by the <strong>Tk_GetVisual</strong> procedure.</p>
+<p>- -</p>
+<p>:   Pass all remaining arguments through to the script\'s <strong>argv</strong>
+    variable without interpreting them. This provides a mechanism for
+    passing arguments such as <strong>-name</strong> to a script instead of having
+    <strong>wish</strong> interpret them.</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>&lt;!-- --&gt;
+</span></code></pre></div>
+<p>\</p>
+<h1 id="description">DESCRIPTION</h1>
+<p><strong>Wish</strong> is a simple program consisting of the Tcl command language, the
+Tk toolkit, and a main program that reads commands from standard input
+or from a file. It creates a main window and then processes Tcl
+commands. If <strong>wish</strong> is invoked with arguments, then the first few
+arguments, ?<strong>-encoding </strong><em>name</em>? ?<em>fileName</em>?, specify the name of a
+script file, and, optionally, the encoding of the text data stored in
+that script file. A value for <em>fileName</em> is recognized if the
+appropriate argument does not start with</p>
+<p>If there are no arguments, or the arguments do not specify a <em>fileName</em>,
+then wish reads Tcl commands interactively from standard input. It will
+continue processing commands until all windows have been deleted or
+until end-of-file is reached on standard input. If there exists a file
+in the home directory of the user, <strong>wish</strong> evaluates the file as a Tcl
+script just before reading the first command from standard input.</p>
+<p>If arguments to <strong>wish</strong> do specify a <em>fileName</em>, then <em>fileName</em> is
+treated as the name of a script file. <strong>Wish</strong> will evaluate the script
+in <em>fileName</em> (which presumably creates a user interface), then it will
+respond to events until all windows have been deleted. Commands will not
+be read from standard input. There is no automatic evaluation of when
+the name of a script file is presented on the <strong>wish</strong> command line, but
+the script file can always <strong>source</strong> it if desired.</p>
+<p>Note that on Windows, the <strong>wish</strong><em>version</em><strong>.exe</strong> program varies from
+the <strong>tclsh</strong><em>version</em><strong>.exe</strong> program in an additional important way:
+it does not connect to a standard Windows console and is instead a
+windowed program. Because of this, it additionally provides access to
+its own <strong>console</strong> command.</p>
+<h1 id="option-processing">OPTION PROCESSING</h1>
+<p><strong>Wish</strong> automatically processes all of the command-line options
+described in the <strong>OPTIONS</strong> summary above. Any other command-line
+arguments besides these are passed through to the application using the
+<strong>argc</strong> and <strong>argv</strong> variables described later.</p>
+<h1 id="application-name-and-class">APPLICATION NAME AND CLASS</h1>
+<p>The name of the application, which is used for purposes such as <strong>send</strong>
+commands, is taken from the <strong>-name</strong> option, if it is specified;
+otherwise it is taken from <em>fileName</em>, if it is specified, or from the
+command name by which <strong>wish</strong> was invoked. In the last two cases, if
+the name contains a character, then only the characters after the last
+slash are used as the application name.</p>
+<p>The class of the application, which is used for purposes such as
+specifying options with a <strong>RESOURCE_MANAGER</strong> property or .Xdefaults
+file, is the same as its name except that the first letter is
+capitalized.</p>
+<h1 id="variables">VARIABLES</h1>
+<p><strong>Wish</strong> sets the following Tcl variables:</p>
+<p><strong>argc</strong></p>
+<p>:   Contains a count of the number of <em>arg</em> arguments (0 if none), not
+    including the options described above.</p>
+<p><strong>argv</strong></p>
+<p>:   Contains a Tcl list whose elements are the <em>arg</em> arguments that
+    follow a <strong>- -</strong> option or do not match any of the options described
+    in <strong>OPTIONS</strong> above, in order, or an empty string if there are no
+    such arguments.</p>
+<p><strong>argv0</strong></p>
+<p>:   Contains <em>fileName</em> if it was specified. Otherwise, contains the
+    name by which <strong>wish</strong> was invoked.</p>
+<p><strong>geometry</strong></p>
+<p>:   If the <strong>-geometry</strong> option is specified, <strong>wish</strong> copies its value
+    into this variable. If the variable still exists after <em>fileName</em>
+    has been evaluated, <strong>wish</strong> uses the value of the variable in a
+    <strong>wm geometry</strong> command to set the main window\'s geometry.</p>
+<p><strong>tcl_interactive</strong></p>
+<p>:   Contains 1 if <strong>wish</strong> is reading commands interactively (<em>fileName</em>
+    was not specified and standard input is a terminal-like device), 0
+    otherwise.</p>
+<h1 id="script-files">SCRIPT FILES</h1>
+<p>If you create a Tcl script in a file whose first line is</p>
+<div class="language-text highlight"><pre><span></span><code>#!/usr/local/bin/wish
+</code></pre></div>
+<p>then you can invoke the script file directly from your shell if you mark
+it as executable. This assumes that <strong>wish</strong> has been installed in the
+default location in /usr/local/bin; if it is installed somewhere else
+then you will have to modify the above line to match. Many UNIX systems
+do not allow the <strong>#!</strong> line to exceed about 30 characters in length, so
+be sure that the <strong>wish</strong> executable can be accessed with a short file
+name.</p>
+<p>An even better approach is to start your script files with the following
+three lines:</p>
+<div class="language-text highlight"><pre><span></span><code>#!/bin/sh
+# the next line restarts using wish \
+exec wish &quot;$0&quot; ${1+&quot;$@&quot;}
+</code></pre></div>
+<p>This approach has three advantages over the approach in the previous
+paragraph. First, the location of the <strong>wish</strong> binary does not have to
+be hard-wired into the script: it can be anywhere in your shell search
+path. Second, it gets around the 30-character file name limit in the
+previous approach. Third, this approach will work even if <strong>wish</strong> is
+itself a shell script (this is done on some systems in order to handle
+multiple architectures or operating systems: the <strong>wish</strong> script selects
+one of several binaries to run). The three lines cause both <strong>sh</strong> and
+<strong>wish</strong> to process the script, but the <strong>exec</strong> is only executed by
+<strong>sh</strong>. <strong>sh</strong> processes the script first; it treats the second line as
+a comment and executes the third line. The <strong>exec</strong> statement cause the
+shell to stop processing and instead to start up <strong>wish</strong> to reprocess
+the entire script. When <strong>wish</strong> starts up, it treats all three lines as
+comments, since the backslash at the end of the second line causes the
+third line to be treated as part of the comment on the second line.</p>
+<p>The end of a script file may be marked either by the physical end of the
+medium, or by the character, If this character is present in the file,
+the <strong>wish</strong> application will read text up to but not including the
+character. An application that requires this character in the file may
+encode it as or or may generate it by use of commands such as <strong>format</strong>
+or <strong>binary</strong>.</p>
+<h1 id="prompts">PROMPTS</h1>
+<p>When <strong>wish</strong> is invoked interactively it normally prompts for each
+command with You can change the prompt by setting the variables
+<strong>tcl_prompt1</strong> and <strong>tcl_prompt2</strong>. If variable <strong>tcl_prompt1</strong> exists
+then it must consist of a Tcl script to output a prompt; instead of
+outputting a prompt <strong>wish</strong> will evaluate the script in
+<strong>tcl_prompt1</strong>. The variable <strong>tcl_prompt2</strong> is used in a similar way
+when a newline is typed but the current command is not yet complete; if
+<strong>tcl_prompt2</strong> is not set then no prompt is output for incomplete
+commands.</p>
+<h1 id="see-also">SEE ALSO</h1>
+<p>tclsh(1), toplevel(n), Tk_Main(3), Tk_MainLoop(3), Tk_MainWindow(3)</p>
+<h1 id="keywords">KEYWORDS</h1>
+<p>application, argument, interpreter, prompt, script file, shell, toolkit,
+toplevel</p>
+
+<ul class="metadata page-metadata" data-bi-name="page info" lang="en-us" dir="ltr">
+  <li class="last-updated-holder displayDate loading">
+    <span class="last-updated-text">Last updated:</span>
+    <time role="presentation" datetime="2018-10-25T00:00:00.000Z" data-article-date-source="ms.date"></time>
+  </li>
+<!--
+  <li class="readingTime">
+    2 minutes to read
+  </li>
+-->
+  <li class="contributors-holder">
+    <span class="contributors-text">Contributors</span>
+    <ul class="contributors" data-bi-name="contributors"></ul>
+  </li>
+</ul>
+</div>
+        <div class="col-md-3"><div class="navbar-light navbar-expand-md hidden-print sticky-top sticky-offset" role="complementary">
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggler collapsed" data-toggle="collapse" data-target="#toc-collapse" title="Table of Contents">
+            <span class="fa fa-angle-down"></span>
+        </button>
+    </div>
+
+    <div id="toc-collapse" class="navbar-collapse collapse card">
+        <ul class="nav flex-column bs-sidenav">
+            <li class="nav-item main"><a class="nav-link" href="#name">NAME</a></li>
+            <li class="nav-item main"><a class="nav-link" href="#synopsis">SYNOPSIS</a></li>
+            <li class="nav-item main"><a class="nav-link" href="#options">OPTIONS</a></li>
+            <li class="nav-item main"><a class="nav-link" href="#description">DESCRIPTION</a></li>
+            <li class="nav-item main"><a class="nav-link" href="#option-processing">OPTION PROCESSING</a></li>
+            <li class="nav-item main"><a class="nav-link" href="#application-name-and-class">APPLICATION NAME AND CLASS</a></li>
+            <li class="nav-item main"><a class="nav-link" href="#variables">VARIABLES</a></li>
+            <li class="nav-item main"><a class="nav-link" href="#script-files">SCRIPT FILES</a></li>
+            <li class="nav-item main"><a class="nav-link" href="#prompts">PROMPTS</a></li>
+            <li class="nav-item main"><a class="nav-link" href="#see-also">SEE ALSO</a></li>
+            <li class="nav-item main"><a class="nav-link" href="#keywords">KEYWORDS</a></li>
+        </ul>
+    </div>
+</div></div>
+      </div>
+      </div>
+
+      <footer class="col-md-12">
+	<hr>
+	<div class="container">
+	</div>
+      </footer>
+      <script>
+	var base_url = "../..",
+            shortcuts = {"help": 191, "next": 78, "previous": 80, "search": 83};
+      </script>
+      <script src="../../js/base.js" defer></script>
+      <script src="../../search/main.js" defer></script>
+
+      <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="Search Modal" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Search</h4>
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            </div>
+            <div class="modal-body">
+                <p>
+                    From here you can search these documents. Enter
+                    your search terms below.
+                </p>
+                <form role="form">
+                    <div class="form-group">
+                        <input type="text" class="form-control" placeholder="Search..." id="mkdocs-search-query" title="Type search term here">
+                    </div>
+                </form>
+                <div id="mkdocs-search-results"></div>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div><div class="modal" id="mkdocs_keyboard_modal" tabindex="-1" role="dialog" aria-labelledby="Keyboard Shortcuts Modal" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <p class="h4 modal-title">Keyboard Shortcuts</p>
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            </div>
+            <div class="modal-body">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th style="width: 20%;">Keys</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="help shortcut"><kbd>?</kbd></td>
+                    <td>Open this help</td>
+                  </tr>
+                  <tr>
+                    <td class="next shortcut"><kbd>n</kbd></td>
+                    <td>Next page</td>
+                  </tr>
+                  <tr>
+                    <td class="prev shortcut"><kbd>p</kbd></td>
+                    <td>Previous page</td>
+                  </tr>
+                  <tr>
+                    <td class="search shortcut"><kbd>s</kbd></td>
+                    <td>Search</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>
+
+    </body>
+</html>

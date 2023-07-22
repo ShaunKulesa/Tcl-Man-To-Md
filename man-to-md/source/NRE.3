@@ -11,7 +11,6 @@
 .SH NAME
 Tcl_NRCreateCommand, Tcl_NRCallObjProc, Tcl_NREvalObj, Tcl_NREvalObjv, Tcl_NRCmdSwap, Tcl_NRExprObj, Tcl_NRAddCallback \- Non-Recursive (stackless) evaluation of Tcl scripts.
 .SH SYNOPSIS
-.nf
 \fB#include <tcl.h>\fR
 .sp
 Tcl_Command
@@ -35,7 +34,6 @@ int
 .sp
 void
 \fBTcl_NRAddCallback\fR(\fIinterp, postProcPtr, data0, data1, data2, data3\fR)
-.fi
 .SH ARGUMENTS
 .AS Tcl_CmdDeleteProc *interp in
 .AP Tcl_Interp *interp in
@@ -127,13 +125,13 @@ a message as the interpreter's result.
 \fBTcl_NRAddCallback\fR pushes \fIpostProcPtr\fR.  The signature for
 \fBTcl_NRPostProc\fR is:
 .PP
-.nf
+.CS
 typedef int
 \fBTcl_NRPostProc\fR(
         \fBClientData\fR \fIdata\fR[],
         \fBTcl_Interp\fR *\fIinterp\fR,
         int \fIresult\fR);
-.fi
+.CE
 .PP
 \fIdata\fR is a pointer to an array containing \fIdata0\fR through \fIdata3\fR.
 \fIresult\fR is the value returned by the previous function implementing part
@@ -143,7 +141,7 @@ the routine.
 The following command uses \fBTcl_EvalObjEx\fR, which consumes space on the C
 stack, to evalute a script:
 .PP
-.nf
+.CS
 int
 \fITheCmdOldObjProc\fR(
     ClientData clientData,
@@ -164,7 +162,7 @@ int
 }
 \fBTcl_CreateObjCommand\fR(interp, "theCommand",
         \fITheCmdOldObjProc\fR, clientData, TheCmdDeleteProc);
-.fi
+.CE
 .PP
 To avoid consuming space on the C stack, \fITheCmdOldObjProc\fR is renamed to
 \fITheCmdNRObjProc\fR and the postprocessing step is split into a separate
@@ -174,7 +172,7 @@ trampoline instead of consuming space on the C stack.  A new version of
 \fITheCmdOldObjProc\fR is just a a wrapper that uses \fBTcl_NRCallObjProc\fR to
 call \fITheCmdNRObjProc\fR:
 .PP
-.nf
+.CS
 int
 \fITheCmdOldObjProc\fR(
     ClientData clientData,
@@ -185,9 +183,9 @@ int
     return \fBTcl_NRCallObjProc\fR(interp, \fITheCmdNRObjProc\fR,
             clientData, objc, objv);
 }
-.fi
+.CE
 .PP
-.nf
+.CS
 int
 \fITheCmdNRObjProc\fR
     ClientData clientData,
@@ -206,9 +204,9 @@ int
 
     return \fBTcl_NREvalObj\fR(interp, objPtr, 0);
 }
-.fi
+.CE
 .PP
-.nf
+.CS
 int
 \fITheCmdNRPostProc\fR(
     ClientData data[],
@@ -222,7 +220,7 @@ int
 
     return result;
 }
-.fi
+.CE
 .PP
 Any function comprising a routine can push other functions, making it possible
 implement looping and sequencing constructs using the function stack.

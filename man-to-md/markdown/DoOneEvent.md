@@ -1,15 +1,12 @@
-\
-
 # NAME
 
 Tcl_DoOneEvent - wait for events and invoke event handlers
 
 # SYNOPSIS
 
-    #include <tcl.h>
+**#include \<tcl.h\>**
 
-    int
-    Tcl_DoOneEvent(flags)
+int **Tcl_DoOneEvent**(*flags*)
 
 # ARGUMENTS
 
@@ -17,8 +14,6 @@ This parameter is normally zero. It may be an OR-ed combination of any
 of the following flag bits: **TCL_WINDOW_EVENTS**, **TCL_FILE_EVENTS**,
 **TCL_TIMER_EVENTS**, **TCL_IDLE_EVENTS**, **TCL_ALL_EVENTS**, or
 **TCL_DONT_WAIT**.
-
-\
 
 # DESCRIPTION
 
@@ -98,3 +93,9 @@ before doing anything else.
 # KEYWORDS
 
 callback, event, handler, idle, timer
+
+<!---
+Copyright (c) 1990-1992 The Regents of the University of California
+Copyright (c) 1994-1996 Sun Microsystems, Inc
+-->
+

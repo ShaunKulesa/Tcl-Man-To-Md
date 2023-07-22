@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+      <script>
+	// Hack for scrolling window when linking to anchor tag with fixed nav header
+        var shiftWindow = function() { scrollBy(0, -75) };
+        window.addEventListener("hashchange", shiftWindow);
+        function load() { if (window.location.hash) shiftWindow(); }
+      </script>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        
+        <link rel="canonical" href="https://www.tcl.tk/man/TkLib/Grab/">
+        <link rel="shortcut icon" href="../../img/favicon.ico">
+        <title>Grab - Tcl/Tk</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <link href="../../css/font-awesome.min.css" rel="stylesheet">
+    <link href="../../css/base.css" rel="stylesheet">
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+    <script src="../../js/base.js"></script> 
+    </head>
+
+    <body class="">
+
+      <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
+	<div class="container">
+	<a class="navbar-brand" href="../..">Tcl/Tk</a>
+	<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExample04" aria-controls="navbarsExample04" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+	</button>
+
+	<div class="collapse navbar-collapse">
+
+          <ul class="navbar-nav flex-row ml-md-auto d-none d-md-flex">
+            <li class="nav-item">
+              <a class="nav-link" href="#" data-toggle="modal" data-target="#mkdocs_search_modal">
+		<i class="fa fa-search"></i> Search
+              </a>
+            </li>
+          </ul>
+	</div>
+	</div>
+      </nav><div id="content" class="container">
+        
+      <div class="row">
+        <div class="col-md-9" role="main">
+
+
+<nav aria-label="breadcrumb">
+  <ol class="breadcrumb">
+    
+    <li class="breadcrumb-item active" aria-current="page">Grab</li>
+  </ol>
+</nav>
+
+
+<p>\</p>
+<h1 id="name">NAME</h1>
+<p>grab - Confine pointer and keyboard events to a window sub-tree</p>
+<h1 id="synopsis">SYNOPSIS</h1>
+<p><strong>grab </strong>?<strong>-global</strong>? <em>window</em></p>
+<p><strong>grab </strong><em>option </em>?<em>arg arg </em>...?</p>
+<p>\</p>
+<h1 id="description">DESCRIPTION</h1>
+<p>This command implements simple pointer and keyboard grabs for Tk. Tk\'s
+grabs are different than the grabs described in the Xlib documentation.
+When a grab is set for a particular window, Tk restricts all pointer
+events to the grab window and its descendants in Tk\'s window hierarchy.
+Whenever the pointer is within the grab window\'s subtree, the pointer
+will behave exactly the same as if there had been no grab at all and all
+events will be reported in the normal fashion. When the pointer is
+outside <em>window</em>\'s tree, button presses and releases and mouse motion
+events are reported to <em>window</em>, and window entry and window exit events
+are ignored. The grab subtree the pointer: windows outside the grab
+subtree will be visible on the screen but they will be insensitive until
+the grab is released. The tree of windows underneath the grab window can
+include top-level windows, in which case all of those top-level windows
+and their descendants will continue to receive mouse events during the
+grab.</p>
+<p>Two forms of grabs are possible: local and global. A local grab affects
+only the grabbing application: events will be reported to other
+applications as if the grab had never occurred. Grabs are local by
+default. A global grab locks out all applications on the screen, so that
+only the given subtree of the grabbing application will be sensitive to
+pointer events (mouse button presses, mouse button releases, pointer
+motions, window entries, and window exits). During global grabs the
+window manager will not receive pointer events either.</p>
+<p>During local grabs, keyboard events (key presses and key releases) are
+delivered as usual: the window manager controls which application
+receives keyboard events, and if they are sent to any window in the
+grabbing application then they are redirected to the focus window.
+During a global grab Tk grabs the keyboard so that all keyboard events
+are always sent to the grabbing application. The <strong>focus</strong> command is
+still used to determine which window in the application receives the
+keyboard events. The keyboard grab is released when the grab is
+released.</p>
+<p>On macOS a global grab affects all windows created by one Tk process. No
+window in that process other than the grab window can even be focused,
+hence no other window receives key or mouse events. A local grab on
+macOS affects all windows created by one Tcl interpreter. It is possible
+to focus any window belonging to the Tk process during a local grab but
+the grab window is the only window created by its interpreter which
+receives key or mouse events. Windows belonging to the same process but
+created by different interpreters continue to receive key and mouse
+events normally.</p>
+<p>Grabs apply to particular displays. If an application has windows on
+multiple displays then it can establish a separate grab on each display.
+The grab on a particular display affects only the windows on that
+display. It is possible for different applications on a single display
+to have simultaneous local grabs, but only one application can have a
+global grab on a given display at once.</p>
+<p>The <strong>grab</strong> command can take any of the following forms:</p>
+<p><strong>grab </strong>?<strong>-global</strong>? <em>window</em></p>
+<p>:   Same as <strong>grab set</strong>, described below.</p>
+<p><strong>grab current </strong>?<em>window</em>?</p>
+<p>:   If <em>window</em> is specified, returns the name of the current grab
+    window in this application for <em>window</em>\'s display, or an empty
+    string if there is no such window. If <em>window</em> is omitted, the
+    command returns a list whose elements are all of the windows grabbed
+    by this application for all displays, or an empty string if the
+    application has no grabs.</p>
+<p><strong>grab release </strong><em>window</em></p>
+<p>:   Releases the grab on <em>window</em> if there is one, otherwise does
+    nothing. Returns an empty string.</p>
+<p><strong>grab set </strong>?<strong>-global</strong>? <em>window</em></p>
+<p>:   Sets a grab on <em>window</em>. If <strong>-global</strong> is specified then the grab
+    is global, otherwise it is local. If a grab was already in effect
+    for this application on <em>window</em>\'s display then it is automatically
+    released. If there is already a grab on <em>window</em> and it has the same
+    global/local form as the requested grab, then the command does
+    nothing. Returns an empty string.</p>
+<p><strong>grab status </strong><em>window</em></p>
+<p>:   Returns <strong>none</strong> if no grab is currently set on <em>window</em>, <strong>local</strong>
+    if a local grab is set on <em>window</em>, and <strong>global</strong> if a global grab
+    is set.</p>
+<h1 id="warning">WARNING</h1>
+<p>It is very easy to use global grabs to render a display completely
+unusable (e.g. by setting a grab on a widget which does not respond to
+events and not providing any mechanism for releasing the grab). Take
+<em>extreme</em> care when using them!</p>
+<h1 id="bugs">BUGS</h1>
+<p>It took an incredibly complex and gross implementation to produce the
+simple grab effect described above. Given the current implementation, it
+is not safe for applications to use the Xlib grab facilities at all
+except through the Tk grab procedures. If applications try to manipulate
+X\'s grab mechanisms directly, things will probably break.</p>
+<p>If a single process is managing several different Tk applications, only
+one of those applications can have a local grab for a given display at
+any given time. If the applications are in different processes, this
+restriction does not exist.</p>
+<h1 id="example">EXAMPLE</h1>
+<p>Set a grab so that only one button may be clicked out of a group. The
+other buttons are unresponsive to the mouse until the middle button is
+clicked.</p>
+<div class="language-text highlight"><pre><span></span><code>pack [button .b1 -text &quot;Click me! #1&quot; -command {destroy .b1}]
+pack [button .b2 -text &quot;Click me! #2&quot; -command {destroy .b2}]
+pack [button .b3 -text &quot;Click me! #3&quot; -command {destroy .b3}]
+grab .b2
+</code></pre></div>
+<h1 id="see-also">SEE ALSO</h1>
+<p>busy(n)</p>
+<h1 id="keywords">KEYWORDS</h1>
+<p>grab, keyboard events, pointer events, window</p>
+
+<ul class="metadata page-metadata" data-bi-name="page info" lang="en-us" dir="ltr">
+  <li class="last-updated-holder displayDate loading">
+    <span class="last-updated-text">Last updated:</span>
+    <time role="presentation" datetime="2018-10-25T00:00:00.000Z" data-article-date-source="ms.date"></time>
+  </li>
+<!--
+  <li class="readingTime">
+    2 minutes to read
+  </li>
+-->
+  <li class="contributors-holder">
+    <span class="contributors-text">Contributors</span>
+    <ul class="contributors" data-bi-name="contributors"></ul>
+  </li>
+</ul>
+</div>
+        <div class="col-md-3"><div class="navbar-light navbar-expand-md hidden-print sticky-top sticky-offset" role="complementary">
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggler collapsed" data-toggle="collapse" data-target="#toc-collapse" title="Table of Contents">
+            <span class="fa fa-angle-down"></span>
+        </button>
+    </div>
+
+    <div id="toc-collapse" class="navbar-collapse collapse card">
+        <ul class="nav flex-column bs-sidenav">
+            <li class="nav-item main"><a class="nav-link" href="#name">NAME</a></li>
+            <li class="nav-item main"><a class="nav-link" href="#synopsis">SYNOPSIS</a></li>
+            <li class="nav-item main"><a class="nav-link" href="#description">DESCRIPTION</a></li>
+            <li class="nav-item main"><a class="nav-link" href="#warning">WARNING</a></li>
+            <li class="nav-item main"><a class="nav-link" href="#bugs">BUGS</a></li>
+            <li class="nav-item main"><a class="nav-link" href="#example">EXAMPLE</a></li>
+            <li class="nav-item main"><a class="nav-link" href="#see-also">SEE ALSO</a></li>
+            <li class="nav-item main"><a class="nav-link" href="#keywords">KEYWORDS</a></li>
+        </ul>
+    </div>
+</div></div>
+      </div>
+      </div>
+
+      <footer class="col-md-12">
+	<hr>
+	<div class="container">
+	</div>
+      </footer>
+      <script>
+	var base_url = "../..",
+            shortcuts = {"help": 191, "next": 78, "previous": 80, "search": 83};
+      </script>
+      <script src="../../js/base.js" defer></script>
+      <script src="../../search/main.js" defer></script>
+
+      <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="Search Modal" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Search</h4>
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            </div>
+            <div class="modal-body">
+                <p>
+                    From here you can search these documents. Enter
+                    your search terms below.
+                </p>
+                <form role="form">
+                    <div class="form-group">
+                        <input type="text" class="form-control" placeholder="Search..." id="mkdocs-search-query" title="Type search term here">
+                    </div>
+                </form>
+                <div id="mkdocs-search-results"></div>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div><div class="modal" id="mkdocs_keyboard_modal" tabindex="-1" role="dialog" aria-labelledby="Keyboard Shortcuts Modal" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <p class="h4 modal-title">Keyboard Shortcuts</p>
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            </div>
+            <div class="modal-body">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th style="width: 20%;">Keys</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="help shortcut"><kbd>?</kbd></td>
+                    <td>Open this help</td>
+                  </tr>
+                  <tr>
+                    <td class="next shortcut"><kbd>n</kbd></td>
+                    <td>Next page</td>
+                  </tr>
+                  <tr>
+                    <td class="prev shortcut"><kbd>p</kbd></td>
+                    <td>Previous page</td>
+                  </tr>
+                  <tr>
+                    <td class="search shortcut"><kbd>s</kbd></td>
+                    <td>Search</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>
+
+    </body>
+</html>

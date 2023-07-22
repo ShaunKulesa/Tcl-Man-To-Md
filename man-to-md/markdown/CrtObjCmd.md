@@ -1,5 +1,3 @@
-\
-
 # NAME
 
 Tcl_CreateObjCommand, Tcl_DeleteCommand, Tcl_DeleteCommandFromToken,
@@ -9,37 +7,28 @@ Tcl_GetCommandFromObj - implement new commands in C
 
 # SYNOPSIS
 
-    #include <tcl.h>
+**#include \<tcl.h\>**
 
-    Tcl_Command
-    Tcl_CreateObjCommand(interp, cmdName, proc, clientData, deleteProc)
+Tcl_Command **Tcl_CreateObjCommand**(*interp, cmdName, proc, clientData,
+deleteProc*)
 
-    int
-    Tcl_DeleteCommand(interp, cmdName)
+int **Tcl_DeleteCommand**(*interp, cmdName*)
 
-    int
-    Tcl_DeleteCommandFromToken(interp, token)
+int **Tcl_DeleteCommandFromToken**(*interp, token*)
 
-    int
-    Tcl_GetCommandInfo(interp, cmdName, infoPtr)
+int **Tcl_GetCommandInfo**(*interp, cmdName, infoPtr*)
 
-    int
-    Tcl_SetCommandInfo(interp, cmdName, infoPtr)
+int **Tcl_SetCommandInfo**(*interp, cmdName, infoPtr*)
 
-    int
-    Tcl_GetCommandInfoFromToken(token, infoPtr)
+int **Tcl_GetCommandInfoFromToken**(*token, infoPtr*)
 
-    int
-    Tcl_SetCommandInfoFromToken(token, infoPtr)
+int **Tcl_SetCommandInfoFromToken**(*token, infoPtr*)
 
-    const char *
-    Tcl_GetCommandName(interp, token)
+const char \* **Tcl_GetCommandName**(*interp, token*)
 
-    void
-    Tcl_GetCommandFullName(interp, token, objPtr)
+void **Tcl_GetCommandFullName**(*interp, token, objPtr*)
 
-    Tcl_Command
-    Tcl_GetCommandFromObj(interp, objPtr)
+Tcl_Command **Tcl_GetCommandFromObj**(*interp, objPtr*)
 
 # ARGUMENTS
 
@@ -62,8 +51,6 @@ Token for command, returned by previous call to
 Pointer to structure containing various information about a Tcl command.
 
 Value containing the name of a Tcl command.
-
-\
 
 # DESCRIPTION
 
@@ -265,3 +252,8 @@ Tcl_CreateCommand(3), Tcl_ResetResult(3), Tcl_SetObjResult(3)
 # KEYWORDS
 
 bind, command, create, delete, namespace, value
+
+<!---
+Copyright (c) 1996-1997 Sun Microsystems, Inc
+-->
+

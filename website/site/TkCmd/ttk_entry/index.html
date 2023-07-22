@@ -1,0 +1,604 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+      <script>
+	// Hack for scrolling window when linking to anchor tag with fixed nav header
+        var shiftWindow = function() { scrollBy(0, -75) };
+        window.addEventListener("hashchange", shiftWindow);
+        function load() { if (window.location.hash) shiftWindow(); }
+      </script>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        
+        <link rel="canonical" href="https://www.tcl.tk/man/TkCmd/ttk_entry/">
+        <link rel="shortcut icon" href="../../img/favicon.ico">
+        <title>Ttk entry - Tcl/Tk</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <link href="../../css/font-awesome.min.css" rel="stylesheet">
+    <link href="../../css/base.css" rel="stylesheet">
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+    <script src="../../js/base.js"></script> 
+    </head>
+
+    <body class="">
+
+      <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
+	<div class="container">
+	<a class="navbar-brand" href="../..">Tcl/Tk</a>
+	<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExample04" aria-controls="navbarsExample04" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+	</button>
+
+	<div class="collapse navbar-collapse">
+
+          <ul class="navbar-nav flex-row ml-md-auto d-none d-md-flex">
+            <li class="nav-item">
+              <a class="nav-link" href="#" data-toggle="modal" data-target="#mkdocs_search_modal">
+		<i class="fa fa-search"></i> Search
+              </a>
+            </li>
+          </ul>
+	</div>
+	</div>
+      </nav><div id="content" class="container">
+        
+      <div class="row">
+        <div class="col-md-9" role="main">
+
+
+<nav aria-label="breadcrumb">
+  <ol class="breadcrumb">
+    
+    <li class="breadcrumb-item active" aria-current="page">Ttk entry</li>
+  </ol>
+</nav>
+
+
+<p>\</p>
+<h1 id="name">NAME</h1>
+<p>ttk::entry - Editable text field widget</p>
+<h1 id="synopsis">SYNOPSIS</h1>
+<p><strong>ttk::entry</strong> <em>pathName </em>?<em>options</em>?</p>
+<p>\</p>
+<h1 id="description">DESCRIPTION</h1>
+<p>An <strong>ttk::entry</strong> widget displays a one-line text string and allows that
+string to be edited by the user. The value of the string may be linked
+to a Tcl variable with the <strong>-textvariable</strong> option. Entry widgets
+support horizontal scrolling with the standard <strong>-xscrollcommand</strong>
+option and <strong>xview</strong> widget command.</p>
+<h1 id="standard-options">STANDARD OPTIONS</h1>
+<div class="language-text highlight"><pre><span></span><code>-class  -cursor
+-font   -foreground
+-style
+-takefocus  -xscrollcommand
+</code></pre></div>
+<p>See the manual entry for details on the standard options.</p>
+<h1 id="widget-specific-options">WIDGET-SPECIFIC OPTIONS</h1>
+<div class="language-text highlight"><pre><span></span><code>Command-Line Name:  -exportselection
+Database Name:  exportSelection
+Database Class: ExportSelection
+</code></pre></div>
+<blockquote>
+<p>A boolean value specifying whether or not a selection in the widget
+should be linked to the X selection. If the selection is exported,
+then selecting in the widget deselects the current X selection,
+selecting outside the widget deselects any widget selection, and the
+widget will respond to selection retrieval requests when it has a
+selection.</p>
+</blockquote>
+<div class="language-text highlight"><pre><span></span><code>Command-Line Name:  -invalidcommand
+Database Name:  invalidCommand
+Database Class: InvalidCommand
+</code></pre></div>
+<blockquote>
+<p>A script template to evaluate whenever the <strong>-validatecommand</strong>
+returns 0. See <strong>VALIDATION</strong> below for more information.</p>
+</blockquote>
+<div class="language-text highlight"><pre><span></span><code>Command-Line Name:  -justify
+Database Name:  justify
+Database Class: Justify
+</code></pre></div>
+<blockquote>
+<p>Specifies how the text is aligned within the entry widget. One of
+<strong>left</strong>, <strong>center</strong>, or <strong>right</strong>.</p>
+</blockquote>
+<div class="language-text highlight"><pre><span></span><code>Command-Line Name:  -show
+Database Name:  show
+Database Class: Show
+</code></pre></div>
+<blockquote>
+<p>If this option is specified, then the true contents of the entry are
+not displayed in the window. Instead, each character in the entry\'s
+value will be displayed as the first character in the value of this
+option, such as or a bullet. This is useful, for example, if the entry
+is to be used to enter a password. If characters in the entry are
+selected and copied elsewhere, the information copied will be what is
+displayed, not the true contents of the entry.</p>
+</blockquote>
+<div class="language-text highlight"><pre><span></span><code>Command-Line Name:  -state
+Database Name:  state
+Database Class: State
+</code></pre></div>
+<blockquote>
+<p>Compatibility option; see <em>ttk::widget(n)</em> for details. Specifies one
+of three states for the entry, <strong>normal</strong>, <strong>disabled</strong>, or
+<strong>readonly</strong>. See <strong>WIDGET STATES</strong>, below.</p>
+</blockquote>
+<div class="language-text highlight"><pre><span></span><code>Command-Line Name:  -textvariable
+Database Name:  textVariable
+Database Class: Variable
+</code></pre></div>
+<blockquote>
+<p>Specifies the name of a global variable whose value is linked to the
+entry widget\'s contents. Whenever the variable changes value, the
+widget\'s contents are updated, and vice versa.</p>
+</blockquote>
+<div class="language-text highlight"><pre><span></span><code>Command-Line Name:  -validate
+Database Name:  validate
+Database Class: Validate
+</code></pre></div>
+<blockquote>
+<p>Specifies the mode in which validation should operate: <strong>none</strong>,
+<strong>focus</strong>, <strong>focusin</strong>, <strong>focusout</strong>, <strong>key</strong>, or <strong>all</strong>. Default is
+<strong>none</strong>, meaning that validation is disabled. See <strong>VALIDATION</strong>
+below.</p>
+</blockquote>
+<div class="language-text highlight"><pre><span></span><code>Command-Line Name:  -validatecommand
+Database Name:  validateCommand
+Database Class: ValidateCommand
+</code></pre></div>
+<blockquote>
+<p>A script template to evaluate whenever validation is triggered. If set
+to the empty string (the default), validation is disabled. The script
+must return a boolean value. See <strong>VALIDATION</strong> below.</p>
+</blockquote>
+<div class="language-text highlight"><pre><span></span><code>Command-Line Name:  -width
+Database Name:  width
+Database Class: Width
+</code></pre></div>
+<blockquote>
+<p>Specifies an integer value indicating the desired width of the entry
+window, in average-size characters of the widget\'s font.</p>
+</blockquote>
+<h1 id="notes">NOTES</h1>
+<p>A portion of the entry may be selected as described below. If an entry
+is exporting its selection (see the <strong>-exportselection</strong> option), then
+it will observe the standard X11 protocols for handling the selection;
+entry selections are available as type <strong>STRING</strong>. Entries also observe
+the standard Tk rules for dealing with the input focus. When an entry
+has the input focus it displays an <em>insert cursor</em> to indicate where new
+characters will be inserted.</p>
+<p>Entries are capable of displaying strings that are too long to fit
+entirely within the widget\'s window. In this case, only a portion of
+the string will be displayed; commands described below may be used to
+change the view in the window. Entries use the standard
+<strong>-xscrollcommand</strong> mechanism for interacting with scrollbars (see the
+description of the <strong>-xscrollcommand</strong> option for details).</p>
+<h1 id="indices">INDICES</h1>
+<p>Many of the <strong>entry</strong> widget commands take one or more indices as
+arguments. An index specifies a particular character in the entry\'s
+string, in any of the following ways:</p>
+<p>number</p>
+<p>:   Specifies the character as a numerical index, where 0 corresponds to
+    the first character in the string.</p>
+<ol>
+<li>In this form, <em>number</em> is treated as an x-coordinate in the entry\'s
+    window; the character spanning that x-coordinate is used. For
+    example, indicates the left-most character in the window.</li>
+</ol>
+<p>end</p>
+<p>:   Indicates the character just after the last one in the entry\'s
+    string. This is equivalent to specifying a numerical index equal to
+    the length of the entry\'s string.</p>
+<p>insert</p>
+<p>:   Indicates the character adjacent to and immediately following the
+    insert cursor.</p>
+<p>sel.first</p>
+<p>:   Indicates the first character in the selection. It is an error to
+    use this form if the selection is not in the entry window.</p>
+<p>sel.last</p>
+<p>:   Indicates the character just after the last one in the selection. It
+    is an error to use this form if the selection is not in the entry
+    window.</p>
+<p>Abbreviations may be used for any of the forms above, e.g.  or In
+general, out-of-range indices are automatically rounded to the nearest
+legal value.</p>
+<h1 id="widget-command">WIDGET COMMAND</h1>
+<p>The following subcommands are possible for entry widgets:</p>
+<p><em>pathName </em><strong>bbox </strong><em>index</em></p>
+<p>:   Returns a list of four numbers describing the bounding box of the
+    character given by <em>index</em>. The first two elements of the list give
+    the x and y coordinates of the upper-left corner of the screen area
+    covered by the character (in pixels relative to the widget) and the
+    last two elements give the width and height of the character, in
+    pixels. The bounding box may refer to a region outside the visible
+    area of the window.</p>
+<p><em>pathName </em><strong>delete </strong><em>first </em>?<em>last</em>?</p>
+<p>:   Delete one or more elements of the entry. <em>First</em> is the index of
+    the first character to delete, and <em>last</em> is the index of the
+    character just after the last one to delete. If <em>last</em> is not
+    specified it defaults to <em>first</em>+1, i.e. a single character is
+    deleted. This command returns the empty string.</p>
+<p><em>pathName </em><strong>get</strong></p>
+<p>:   Returns the entry\'s string.</p>
+<p><em>pathName </em><strong>icursor </strong><em>index</em></p>
+<p>:   Arrange for the insert cursor to be displayed just before the
+    character given by <em>index</em>. Returns the empty string.</p>
+<p><em>pathName </em><strong>index</strong><em> index</em></p>
+<p>:   Returns the numerical index corresponding to <em>index</em>.</p>
+<p><em>pathName </em><strong>insert </strong><em>index string</em></p>
+<p>:   Insert <em>string</em> just before the character indicated by <em>index</em>.
+    Returns the empty string.</p>
+<p><em>pathName </em><strong>selection </strong><em>option arg</em></p>
+<p>:   This command is used to adjust the selection within an entry. It has
+    several forms, depending on <em>option</em>:</p>
+<div class="language-text highlight"><pre><span></span><code>*pathName ***selection clear**
+
+:   Clear the selection if it is currently in this widget. If the
+    selection is not in this widget then the command has no effect.
+    Returns the empty string.
+
+*pathName ***selection present**
+
+:   Returns 1 if there is are characters selected in the entry, 0 if
+    nothing is selected.
+
+*pathName ***selection range ***start* *end*
+
+:   Sets the selection to include the characters starting with the
+    one indexed by *start* and ending with the one just before
+    *end*. If *end* refers to the same character as *start* or an
+    earlier one, then the entry\&#39;s selection is cleared.
+</code></pre></div>
+<p><em>pathName </em><strong>validate</strong></p>
+<p>:   Force revalidation, independent of the conditions specified by the
+    <strong>-validate</strong> option. Returns 0 if validation fails, 1 if it
+    succeeds. Sets or clears the <strong>invalid</strong> state accordingly. See
+    <strong>VALIDATION</strong> below for more details.</p>
+<p>The entry widget also supports the following generic <strong>ttk::widget</strong>
+widget subcommands (see <em>ttk::widget(n)</em> for details):</p>
+<blockquote>
+<div class="language-text highlight"><pre><span></span><code>cget  configure   identify
+instate   state   xview
+</code></pre></div>
+</blockquote>
+<h1 id="validation">VALIDATION</h1>
+<p>The <strong>-validate</strong>, <strong>-validatecommand</strong>, and <strong>-invalidcommand</strong> options
+are used to enable entry widget validation.</p>
+<h2 id="validation-modes">VALIDATION MODES</h2>
+<p>There are two main validation modes: <em>prevalidation</em>, in which the
+<strong>-validatecommand</strong> is evaluated prior to each edit and the return
+value is used to determine whether to accept or reject the change; and
+<em>revalidation</em>, in which the <strong>-validatecommand</strong> is evaluated to
+determine whether the current value is valid.</p>
+<p>The <strong>-validate</strong> option determines when validation occurs; it may be
+set to any of the following values:</p>
+<blockquote>
+<p>none</p>
+<p>:   Default. This means validation will only occur when specifically
+    requested by the <strong>validate</strong> widget command.</p>
+<p>key</p>
+<p>:   The entry will be prevalidated prior to each edit (specifically,
+    whenever the <strong>insert</strong> or <strong>delete</strong> widget commands are called).
+    If prevalidation fails, the edit is rejected.</p>
+<p>focus</p>
+<p>:   The entry is revalidated when the entry receives or loses focus.</p>
+<p>focusin</p>
+<p>:   The entry is revalidated when the entry receives focus.</p>
+<p>focusout</p>
+<p>:   The entry is revalidated when the entry loses focus.</p>
+<p>all</p>
+<p>:   Validation is performed for all above conditions.</p>
+</blockquote>
+<p>The <strong>-invalidcommand</strong> is evaluated whenever the <strong>-validatecommand</strong>
+returns a false value.</p>
+<p>The <strong>-validatecommand</strong> and <strong>-invalidcommand</strong> may modify the entry
+widget\'s value via the widget <strong>insert</strong> or <strong>delete</strong> commands, or by
+setting the linked <strong>-textvariable</strong>. If either does so during
+prevalidation, then the edit is rejected regardless of the value
+returned by the <strong>-validatecommand</strong>.</p>
+<p>If <strong>-validatecommand</strong> is empty (the default), validation always
+succeeds.</p>
+<h2 id="validation-script-substitutions">VALIDATION SCRIPT SUBSTITUTIONS</h2>
+<p>It is possible to perform percent substitutions on the
+<strong>-validatecommand</strong> and <strong>-invalidcommand</strong>, just as in a <strong>bind</strong>
+script. The following substitutions are recognized:</p>
+<blockquote>
+<p>%d</p>
+<p>:   Type of action: 1 for <strong>insert</strong> prevalidation, 0 for <strong>delete</strong>
+    prevalidation, or -1 for revalidation.</p>
+<p>%i</p>
+<p>:   Index of character string to be inserted/deleted, if any,
+    otherwise -1.</p>
+<p>%P</p>
+<p>:   In prevalidation, the new value of the entry if the edit is
+    accepted. In revalidation, the current value of the entry.</p>
+<p>%s</p>
+<p>:   The current value of entry prior to editing.</p>
+<p>%S</p>
+<p>:   The text string being inserted/deleted, if any, {} otherwise.</p>
+<p>%v</p>
+<p>:   The current value of the <strong>-validate</strong> option.</p>
+<p>%V</p>
+<p>:   The validation condition that triggered the callback (<strong>key</strong>,
+    <strong>focusin</strong>, <strong>focusout</strong>, or <strong>forced</strong>).</p>
+<p>%W</p>
+<p>:   The name of the entry widget.</p>
+</blockquote>
+<h2 id="differences-from-tk-entry-widget-validation">DIFFERENCES FROM TK ENTRY WIDGET VALIDATION</h2>
+<p>The standard Tk entry widget automatically disables validation (by
+setting <strong>-validate</strong> to <strong>none</strong>) if the <strong>-validatecommand</strong> or
+<strong>-invalidcommand</strong> modifies the entry\'s value. The Tk themed entry
+widget only disables validation if one of the validation scripts raises
+an error, or if <strong>-validatecommand</strong> does not return a valid boolean
+value. (Thus, it is not necessary to re-enable validation after
+modifying the entry value in a validation script).</p>
+<p>In addition, the standard entry widget invokes validation whenever the
+linked <strong>-textvariable</strong> is modified; the Tk themed entry widget does
+not.</p>
+<h1 id="default-bindings">DEFAULT BINDINGS</h1>
+<p>The entry widget\'s default bindings enable the following behavior. In
+the descriptions below, refers to a contiguous group of letters, digits,
+or characters, or any single character other than these.</p>
+<p>·</p>
+<p>:   Clicking mouse button 1 positions the insert cursor just before the
+    character underneath the mouse cursor, sets the input focus to this
+    widget, and clears any selection in the widget. Dragging with mouse
+    button 1 down strokes out a selection between the insert cursor and
+    the character under the mouse.</p>
+<p>·</p>
+<p>:   Double-clicking with mouse button 1 selects the word under the mouse
+    and positions the insert cursor at the end of the word. Dragging
+    after a double click strokes out a selection consisting of whole
+    words.</p>
+<p>·</p>
+<p>:   Triple-clicking with mouse button 1 selects all of the text in the
+    entry and positions the insert cursor at the end of the line.</p>
+<p>·</p>
+<p>:   The ends of the selection can be adjusted by dragging with mouse
+    button 1 while the Shift key is down. If the button is
+    double-clicked before dragging then the selection will be adjusted
+    in units of whole words.</p>
+<p>·</p>
+<p>:   Clicking mouse button 1 with the Control key down will position the
+    insert cursor in the entry without affecting the selection.</p>
+<p>·</p>
+<p>:   If any normal printing characters are typed in an entry, they are
+    inserted at the point of the insert cursor.</p>
+<p>·</p>
+<p>:   The view in the entry can be adjusted by dragging with the middle
+    mouse button (button 2, or button 3 in TkAqua). If the middle mouse
+    button is clicked without moving the mouse, the selection is copied
+    into the entry at the position of the mouse cursor.</p>
+<p>·</p>
+<p>:   If the mouse is dragged out of the entry on the left or right sides
+    while button 1 is pressed, the entry will automatically scroll to
+    make more text visible (if there is more text off-screen on the side
+    where the mouse left the window).</p>
+<p>·</p>
+<p>:   The Left and Right keys move the insert cursor one character to the
+    left or right; they also clear any selection in the entry. If Left
+    or Right is typed with the Shift key down, then the insertion cursor
+    moves and the selection is extended to include the new character.
+    Control-Left and Control-Right move the insert cursor by words, and
+    Control-Shift-Left and Control-Shift-Right move the insert cursor by
+    words and also extend the selection. Control-b and Control-f behave
+    the same as Left and Right, respectively.</p>
+<p>·</p>
+<p>:   The Home key and Control-a move the insert cursor to the beginning
+    of the entry and clear any selection in the entry. Shift-Home moves
+    the insert cursor to the beginning of the entry and extends the
+    selection to that point.</p>
+<p>·</p>
+<p>:   The End key and Control-e move the insert cursor to the end of the
+    entry and clear any selection in the entry. Shift-End moves the
+    cursor to the end and extends the selection to that point.</p>
+<p>·</p>
+<p>:   Control-/ selects all the text in the entry.</p>
+<p>·</p>
+<p>:   Control-\ clears any selection in the entry.</p>
+<p>·</p>
+<p>:   The standard Tk \&lt;\&lt;Cut>>, \&lt;\&lt;Copy>>, \&lt;\&lt;Paste>>, and
+    \&lt;\&lt;Clear>> virtual events operate on the selection in the
+    expected manner.</p>
+<p>·</p>
+<p>:   The Delete key deletes the selection, if there is one in the entry.
+    If there is no selection, it deletes the character to the right of
+    the insert cursor.</p>
+<p>·</p>
+<p>:   The BackSpace key and Control-h delete the selection, if there is
+    one in the entry. If there is no selection, it deletes the character
+    to the left of the insert cursor.</p>
+<p>·</p>
+<p>:   Control-d deletes the character to the right of the insert cursor.</p>
+<p>·</p>
+<p>:   Control-k deletes all the characters to the right of the insertion
+    cursor.</p>
+<h1 id="widget-states">WIDGET STATES</h1>
+<p>In the <strong>disabled</strong> state, the entry cannot be edited and the text
+cannot be selected. In the <strong>readonly</strong> state, no insert cursor is
+displayed and the entry cannot be edited (specifically: the <strong>insert</strong>
+and <strong>delete</strong> commands have no effect). The <strong>disabled</strong> state is the
+same as <strong>readonly</strong>, and in addition text cannot be selected.</p>
+<p>Note that changes to the linked <strong>-textvariable</strong> will still be
+reflected in the entry, even if it is disabled or readonly.</p>
+<p>Typically, the text is in the <strong>disabled</strong> state, and a different
+background is used in the <strong>readonly</strong> state.</p>
+<p>The entry widget sets the <strong>invalid</strong> state if revalidation fails, and
+clears it whenever validation succeeds.</p>
+<h1 id="styling-options">STYLING OPTIONS</h1>
+<p>The class name for a <strong>ttk::entry</strong> is <strong>TEntry</strong>.</p>
+<p>Dynamic states: <strong>disabled</strong>, <strong>focus</strong>, <strong>readonly</strong>.</p>
+<p><strong>TEntry</strong> styling options configurable with <strong>ttk::style</strong> are:</p>
+<p><strong>-background</strong> <em>color</em></p>
+<blockquote>
+<p>For backwards compatibility, when using the aqua theme (for macOS),
+this option behaves as an alias for the <strong>-fieldbackground</strong> provided
+that no value is specified for <strong>-fieldbackground</strong>. Otherwise it is
+ignored.</p>
+</blockquote>
+<p><strong>-bordercolor</strong> <em>color</em>\
+<strong>-darkcolor</strong> <em>color</em>\
+<strong>-fieldbackground</strong> <em>color</em></p>
+<blockquote>
+<p>Some themes use a graphical background and their field background
+colors cannot be changed.</p>
+</blockquote>
+<p><strong>-foreground</strong> <em>color</em>\
+<strong>-insertcolor</strong> <em>color</em>\
+<strong>-insertwidth</strong> <em>amount</em>\
+<strong>-lightcolor</strong> <em>color</em>\
+<strong>-padding</strong> <em>padding</em>\
+<strong>-relief</strong> <em>relief</em>\
+<strong>-selectbackground</strong> <em>color</em>\
+<strong>-selectborderwidth</strong> <em>amount</em>\
+<strong>-selectforeground</strong> <em>color</em></p>
+<p>See the <strong>ttk::style</strong> manual page for information on how to configure
+ttk styles.</p>
+<h1 id="see-also">SEE ALSO</h1>
+<p>ttk::widget(n), entry(n)</p>
+<h1 id="keywords">KEYWORDS</h1>
+<p>entry, widget, text field</p>
+
+<ul class="metadata page-metadata" data-bi-name="page info" lang="en-us" dir="ltr">
+  <li class="last-updated-holder displayDate loading">
+    <span class="last-updated-text">Last updated:</span>
+    <time role="presentation" datetime="2018-10-25T00:00:00.000Z" data-article-date-source="ms.date"></time>
+  </li>
+<!--
+  <li class="readingTime">
+    2 minutes to read
+  </li>
+-->
+  <li class="contributors-holder">
+    <span class="contributors-text">Contributors</span>
+    <ul class="contributors" data-bi-name="contributors"></ul>
+  </li>
+</ul>
+</div>
+        <div class="col-md-3"><div class="navbar-light navbar-expand-md hidden-print sticky-top sticky-offset" role="complementary">
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggler collapsed" data-toggle="collapse" data-target="#toc-collapse" title="Table of Contents">
+            <span class="fa fa-angle-down"></span>
+        </button>
+    </div>
+
+    <div id="toc-collapse" class="navbar-collapse collapse card">
+        <ul class="nav flex-column bs-sidenav">
+            <li class="nav-item main"><a class="nav-link" href="#name">NAME</a></li>
+            <li class="nav-item main"><a class="nav-link" href="#synopsis">SYNOPSIS</a></li>
+            <li class="nav-item main"><a class="nav-link" href="#description">DESCRIPTION</a></li>
+            <li class="nav-item main"><a class="nav-link" href="#standard-options">STANDARD OPTIONS</a></li>
+            <li class="nav-item main"><a class="nav-link" href="#widget-specific-options">WIDGET-SPECIFIC OPTIONS</a></li>
+            <li class="nav-item main"><a class="nav-link" href="#notes">NOTES</a></li>
+            <li class="nav-item main"><a class="nav-link" href="#indices">INDICES</a></li>
+            <li class="nav-item main"><a class="nav-link" href="#widget-command">WIDGET COMMAND</a></li>
+            <li class="nav-item main"><a class="nav-link" href="#validation">VALIDATION</a></li>
+                <li class="nav-item">
+                    <a href="#validation-modes" class="nav-link">VALIDATION MODES</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#validation-script-substitutions" class="nav-link">VALIDATION SCRIPT SUBSTITUTIONS</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#differences-from-tk-entry-widget-validation" class="nav-link">DIFFERENCES FROM TK ENTRY WIDGET VALIDATION</a>
+                </li>
+            <li class="nav-item main"><a class="nav-link" href="#default-bindings">DEFAULT BINDINGS</a></li>
+            <li class="nav-item main"><a class="nav-link" href="#widget-states">WIDGET STATES</a></li>
+            <li class="nav-item main"><a class="nav-link" href="#styling-options">STYLING OPTIONS</a></li>
+            <li class="nav-item main"><a class="nav-link" href="#see-also">SEE ALSO</a></li>
+            <li class="nav-item main"><a class="nav-link" href="#keywords">KEYWORDS</a></li>
+        </ul>
+    </div>
+</div></div>
+      </div>
+      </div>
+
+      <footer class="col-md-12">
+	<hr>
+	<div class="container">
+	</div>
+      </footer>
+      <script>
+	var base_url = "../..",
+            shortcuts = {"help": 191, "next": 78, "previous": 80, "search": 83};
+      </script>
+      <script src="../../js/base.js" defer></script>
+      <script src="../../search/main.js" defer></script>
+
+      <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="Search Modal" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Search</h4>
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            </div>
+            <div class="modal-body">
+                <p>
+                    From here you can search these documents. Enter
+                    your search terms below.
+                </p>
+                <form role="form">
+                    <div class="form-group">
+                        <input type="text" class="form-control" placeholder="Search..." id="mkdocs-search-query" title="Type search term here">
+                    </div>
+                </form>
+                <div id="mkdocs-search-results"></div>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div><div class="modal" id="mkdocs_keyboard_modal" tabindex="-1" role="dialog" aria-labelledby="Keyboard Shortcuts Modal" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <p class="h4 modal-title">Keyboard Shortcuts</p>
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            </div>
+            <div class="modal-body">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th style="width: 20%;">Keys</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="help shortcut"><kbd>?</kbd></td>
+                    <td>Open this help</td>
+                  </tr>
+                  <tr>
+                    <td class="next shortcut"><kbd>n</kbd></td>
+                    <td>Next page</td>
+                  </tr>
+                  <tr>
+                    <td class="prev shortcut"><kbd>p</kbd></td>
+                    <td>Previous page</td>
+                  </tr>
+                  <tr>
+                    <td class="search shortcut"><kbd>s</kbd></td>
+                    <td>Search</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>
+
+    </body>
+</html>

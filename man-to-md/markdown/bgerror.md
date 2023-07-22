@@ -1,5 +1,3 @@
-\
-
 # NAME
 
 bgerror - Command invoked to process background errors
@@ -7,8 +5,6 @@ bgerror - Command invoked to process background errors
 # SYNOPSIS
 
 **bgerror ***message*
-
-\
 
 # DESCRIPTION
 
@@ -84,3 +80,9 @@ after(n), errorCode(n), errorInfo(n), interp(n)
 # KEYWORDS
 
 background error, reporting
+
+<!---
+Copyright (c) 1990-1994 The Regents of the University of California
+Copyright (c) 1994-1996 Sun Microsystems, Inc
+-->
+

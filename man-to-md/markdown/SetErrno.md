@@ -1,5 +1,3 @@
-\
-
 # NAME
 
 Tcl_SetErrno, Tcl_GetErrno, Tcl_ErrnoId, Tcl_ErrnoMsg - manipulate errno
@@ -7,25 +5,19 @@ to store and retrieve error codes
 
 # SYNOPSIS
 
-    #include <tcl.h>
+**#include \<tcl.h\>**
 
-    void
-    Tcl_SetErrno(errorCode)
+void **Tcl_SetErrno**(*errorCode*)
 
-    int
-    Tcl_GetErrno()
+int **Tcl_GetErrno**()
 
-    const char *
-    Tcl_ErrnoId()
+const char \* **Tcl_ErrnoId**()
 
-    const char *
-    Tcl_ErrnoMsg(errorCode)
+const char \* **Tcl_ErrnoMsg**(*errorCode*)
 
 # ARGUMENTS
 
 A POSIX error code such as **ENOENT**.
-
-\
 
 # DESCRIPTION
 
@@ -56,3 +48,8 @@ caller must not free or modify them.
 # KEYWORDS
 
 errno, error code, global variables
+
+<!---
+Copyright (c) 1996 Sun Microsystems, Inc
+-->
+

@@ -1,5 +1,3 @@
-\
-
 # NAME
 
 Tcl_UniChar, Tcl_UniCharToUtf, Tcl_UtfToUniChar,
@@ -12,66 +10,47 @@ strings
 
 # SYNOPSIS
 
-    #include <tcl.h>
+**#include \<tcl.h\>**
 
-    typedef ... Tcl_UniChar;
+typedef \... **Tcl_UniChar**;
 
-    int
-    Tcl_UniCharToUtf(ch, buf)
+int **Tcl_UniCharToUtf**(*ch, buf*)
 
-    int
-    Tcl_UtfToUniChar(src, chPtr)
+int **Tcl_UtfToUniChar**(*src, chPtr*)
 
-    char *
-    Tcl_UniCharToUtfDString(uniStr, uniLength, dsPtr)
+char \* **Tcl_UniCharToUtfDString**(*uniStr, uniLength, dsPtr*)
 
-    Tcl_UniChar *
-    Tcl_UtfToUniCharDString(src, length, dsPtr)
+Tcl_UniChar \* **Tcl_UtfToUniCharDString**(*src, length, dsPtr*)
 
-    int
-    Tcl_UniCharLen(uniStr)
+int **Tcl_UniCharLen**(*uniStr*)
 
-    int
-    Tcl_UniCharNcmp(ucs, uct, numChars)
+int **Tcl_UniCharNcmp**(*ucs, uct, numChars*)
 
-    int
-    Tcl_UniCharNcasecmp(ucs, uct, numChars)
+int **Tcl_UniCharNcasecmp**(*ucs, uct, numChars*)
 
-    int
-    Tcl_UniCharCaseMatch(uniStr, uniPattern, nocase)
+int **Tcl_UniCharCaseMatch**(*uniStr, uniPattern, nocase*)
 
-    int
-    Tcl_UtfNcmp(cs, ct, numChars)
+int **Tcl_UtfNcmp**(*cs, ct, numChars*)
 
-    int
-    Tcl_UtfNcasecmp(cs, ct, numChars)
+int **Tcl_UtfNcasecmp**(*cs, ct, numChars*)
 
-    int
-    Tcl_UtfCharComplete(src, length)
+int **Tcl_UtfCharComplete**(*src, length*)
 
-    int
-    Tcl_NumUtfChars(src, length)
+int **Tcl_NumUtfChars**(*src, length*)
 
-    const char *
-    Tcl_UtfFindFirst(src, ch)
+const char \* **Tcl_UtfFindFirst**(*src, ch*)
 
-    const char *
-    Tcl_UtfFindLast(src, ch)
+const char \* **Tcl_UtfFindLast**(*src, ch*)
 
-    const char *
-    Tcl_UtfNext(src)
+const char \* **Tcl_UtfNext**(*src*)
 
-    const char *
-    Tcl_UtfPrev(src, start)
+const char \* **Tcl_UtfPrev**(*src, start*)
 
-    Tcl_UniChar
-    Tcl_UniCharAtIndex(src, index)
+Tcl_UniChar **Tcl_UniCharAtIndex**(*src, index*)
 
-    const char *
-    Tcl_UtfAtIndex(src, index)
+const char \* **Tcl_UtfAtIndex**(*src, index*)
 
-    int
-    Tcl_UtfBackslash(src, readPtr, dst)
+int **Tcl_UtfBackslash**(*src, readPtr, dst*)
 
 # ARGUMENTS
 
@@ -118,8 +97,6 @@ stored. At most **TCL_UTF_MAX** bytes are stored in the buffer.
 
 Specifies whether the match should be done case-sensitive (0) or
 case-insensitive (1).
-
-\
 
 # DESCRIPTION
 
@@ -271,3 +248,8 @@ supported by **Tcl_UtfBackslash**.
 # KEYWORDS
 
 utf, unicode, backslash
+
+<!---
+Copyright (c) 1997 Sun Microsystems, Inc
+-->
+

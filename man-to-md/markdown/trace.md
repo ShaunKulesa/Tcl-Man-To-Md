@@ -1,5 +1,3 @@
-\
-
 # NAME
 
 trace - Monitor variable accesses, command usages and command executions
@@ -7,8 +5,6 @@ trace - Monitor variable accesses, command usages and command executions
 # SYNOPSIS
 
 **trace ***option* ?*arg arg \...*?
-
-\
 
 # DESCRIPTION
 
@@ -415,3 +411,10 @@ set(n), unset(n)
 # KEYWORDS
 
 read, command, rename, variable, write, trace, unset
+
+<!---
+Copyright (c) 1993 The Regents of the University of California
+Copyright (c) 1994-1996 Sun Microsystems, Inc
+Copyright (c) 2000 Ajuba Solutions
+-->
+

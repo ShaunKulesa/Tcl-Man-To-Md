@@ -100,7 +100,7 @@ See the section on \fBOPTIONS\fR below for options description.
 Example of use:
 .RS
 .PP
-.nf
+.CS
 # Create new interp with the same configuration as "$i0":
 set i1 [safe::interpCreate {*}[safe::interpConfigure $i0]]
 
@@ -110,7 +110,7 @@ set dh [safe::interpConfigure $i0  \-del]
 # Change (only) the statics loading ok attribute of an
 # interp and its deleteHook (leaving the rest unchanged):
 safe::interpConfigure $i0  \-delete {foo bar} \-statics 0
-.fi
+.CE
 .RE
 .TP
 \fB::safe::interpDelete\fR \fIchild\fR
@@ -127,10 +127,10 @@ It generates an error if the directory is not found.
 Example of use:
 .RS
 .PP
-.nf
+.CS
 $child eval [list set tk_library \e
       [::safe::interpFindInAccessPath $name $tk_library]]
-.fi
+.CE
 .RE
 .TP
 \fB::safe::interpAddToAccessPath\fR \fIchild\fR \fIdirectory\fR
@@ -142,10 +142,10 @@ without adding the directory to the virtual path again.
 Example of use:
 .RS
 .PP
-.nf
+.CS
 $child eval [list set tk_library \e
       [::safe::interpAddToAccessPath $name $tk_library]]
-.fi
+.CE
 .RE
 .TP
 \fB::safe::setLogCmd\fR ?\fIcmd arg...\fR?
@@ -166,21 +166,21 @@ directory names.
 .PP
 Example of use:
 .PP
-.nf
+.CS
 ::safe::setLogCmd puts stderr
-.fi
+.CE
 .PP
 Below is the output of a sample session in which a safe interpreter
 attempted to source a file not found in its virtual access path.
 Note that the safe interpreter only received an error message saying that
 the file was not found:
 .PP
-.nf
+.CS
 NOTICE for child interp10 : Created
 NOTICE for child interp10 : Setting accessPath=(/foo/bar) staticsok=1 nestedok=0 deletehook=()
 NOTICE for child interp10 : auto_path in interp10 has been set to {$p(:0:)}
 ERROR for child interp10 : /foo/bar/init.tcl: no such file or directory
-.fi
+.CE
 .RE
 .SS OPTIONS
 The following options are common to

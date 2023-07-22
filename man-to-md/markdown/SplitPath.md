@@ -1,5 +1,3 @@
-\
-
 # NAME
 
 Tcl_SplitPath, Tcl_JoinPath, Tcl_GetPathType - manipulate
@@ -7,15 +5,13 @@ platform-dependent file paths
 
 # SYNOPSIS
 
-    #include <tcl.h>
+**#include \<tcl.h\>**
 
-    Tcl_SplitPath(path, argcPtr, argvPtr)
+**Tcl_SplitPath**(*path, argcPtr, argvPtr*)
 
-    char *
-    Tcl_JoinPath(argc, argv, resultPtr)
+char \* **Tcl_JoinPath**(*argc, argv, resultPtr*)
 
-    Tcl_PathType
-    Tcl_GetPathType(path)
+Tcl_PathType **Tcl_GetPathType**(*path*)
 
 # ARGUMENTS
 
@@ -34,8 +30,6 @@ Array of path elements to merge together into a single path.
 
 A pointer to an initialized **Tcl_DString** to which the result of
 **Tcl_JoinPath** will be appended.
-
-\
 
 # DESCRIPTION
 
@@ -86,3 +80,8 @@ description of the path types for each platform.
 # KEYWORDS
 
 file, filename, join, path, split, type
+
+<!---
+Copyright (c) 1996 Sun Microsystems, Inc
+-->
+

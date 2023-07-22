@@ -1,5 +1,3 @@
-\
-
 # NAME
 
 Tcl_SaveInterpState, Tcl_RestoreInterpState, Tcl_DiscardInterpState,
@@ -8,21 +6,19 @@ an interpreter\'s state
 
 # SYNOPSIS
 
-    #include <tcl.h>
+**#include \<tcl.h\>**
 
-    Tcl_InterpState
-    Tcl_SaveInterpState(interp, status)
+Tcl_InterpState **Tcl_SaveInterpState**(*interp, status*)
 
-    int
-    Tcl_RestoreInterpState(interp, state)
+int **Tcl_RestoreInterpState**(*interp, state*)
 
-    Tcl_DiscardInterpState(state)
+**Tcl_DiscardInterpState**(*state*)
 
-    Tcl_SaveResult(interp, savedPtr)
+**Tcl_SaveResult**(*interp, savedPtr*)
 
-    Tcl_RestoreResult(interp, savedPtr)
+**Tcl_RestoreResult**(*interp, savedPtr*)
 
-    Tcl_DiscardResult(savedPtr)
+**Tcl_DiscardResult**(*savedPtr*)
 
 # ARGUMENTS
 
@@ -34,8 +30,6 @@ Saved state token to be restored or discarded.
 
 Pointer to location where interpreter result should be saved or
 restored.
-
-\
 
 # DESCRIPTION
 
@@ -115,3 +109,8 @@ properly clean up the memory associated with the saved state.
 # KEYWORDS
 
 result, state, interp
+
+<!---
+Copyright (c) 1997 Sun Microsystems, Inc
+-->
+

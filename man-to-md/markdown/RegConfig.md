@@ -1,5 +1,3 @@
-\
-
 # NAME
 
 Tcl_RegisterConfig - procedures to register embedded configuration
@@ -7,10 +5,10 @@ information
 
 # SYNOPSIS
 
-    #include <tcl.h>
+**#include \<tcl.h\>**
 
-    void
-    Tcl_RegisterConfig(interp, pkgName, configuration, valEncoding)
+void **Tcl_RegisterConfig**(*interp, pkgName, configuration,
+valEncoding*)
 
 # ARGUMENTS
 
@@ -29,8 +27,6 @@ empty string.
 Contains the name of the encoding used to store the configuration values
 as ASCII string. This means that this information is in UTF-8 too. Must
 not be NULL.
-
-\
 
 # DESCRIPTION
 
@@ -103,3 +99,8 @@ The **Tcl_Config** structure contains the following fields:
 # KEYWORDS
 
 embedding, configuration, binary library
+
+<!---
+Copyright (c) 2002 Andreas Kupries <andreas_kupries@users.sourceforge.net
+-->
+

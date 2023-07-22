@@ -1,5 +1,3 @@
-\
-
 # NAME
 
 Tcl_NewByteArrayObj, Tcl_SetByteArrayObj, Tcl_GetByteArrayFromObj,
@@ -7,19 +5,15 @@ Tcl_SetByteArrayLength - manipulate Tcl values as a arrays of bytes
 
 # SYNOPSIS
 
-    #include <tcl.h>
+**#include \<tcl.h\>**
 
-    Tcl_Obj *
-    Tcl_NewByteArrayObj(bytes, length)
+Tcl_Obj \* **Tcl_NewByteArrayObj**(*bytes, length*)
 
-    void
-    Tcl_SetByteArrayObj(objPtr, bytes, length)
+void **Tcl_SetByteArrayObj**(*objPtr, bytes, length*)
 
-    unsigned char *
-    Tcl_GetByteArrayFromObj(objPtr, lengthPtr)
+unsigned char \* **Tcl_GetByteArrayFromObj**(*objPtr, lengthPtr*)
 
-    unsigned char *
-    Tcl_SetByteArrayLength(objPtr, length)
+unsigned char \* **Tcl_SetByteArrayLength**(*objPtr, length*)
 
 # ARGUMENTS
 
@@ -35,8 +29,6 @@ the byte-array value; if *objPtr* does not already point to a byte-array
 value, it will be converted to one.
 
 If non-NULL, filled with the length of the array of bytes in the value.
-
-\
 
 # DESCRIPTION
 
@@ -88,3 +80,8 @@ Tcl_GetStringFromObj, Tcl_NewObj, Tcl_IncrRefCount, Tcl_DecrRefCount
 # KEYWORDS
 
 value, binary data, byte array, utf, unicode, internationalization
+
+<!---
+Copyright (c) 1997 Sun Microsystems, Inc
+-->
+

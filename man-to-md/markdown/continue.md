@@ -1,5 +1,3 @@
-\
-
 # NAME
 
 continue - Skip to the next iteration of a loop
@@ -7,8 +5,6 @@ continue - Skip to the next iteration of a loop
 # SYNOPSIS
 
 **continue**
-
-\
 
 # DESCRIPTION
 
@@ -39,3 +35,9 @@ break(n), for(n), foreach(n), return(n), while(n)
 # KEYWORDS
 
 continue, iteration, loop
+
+<!---
+Copyright (c) 1993-1994 The Regents of the University of California
+Copyright (c) 1994-1996 Sun Microsystems, Inc
+-->
+

@@ -1,5 +1,3 @@
-\
-
 # NAME
 
 puts - Write to a channel
@@ -7,8 +5,6 @@ puts - Write to a channel
 # SYNOPSIS
 
 **puts **?**-nonewline**? ?*channelId*? *string*
-
-\
 
 # DESCRIPTION
 
@@ -83,3 +79,9 @@ file(n), fileevent(n), Tcl_StandardChannels(3)
 # KEYWORDS
 
 channel, newline, output, write
+
+<!---
+Copyright (c) 1993 The Regents of the University of California
+Copyright (c) 1994-1996 Sun Microsystems, Inc
+-->
+

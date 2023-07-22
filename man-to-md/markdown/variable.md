@@ -1,5 +1,3 @@
-\
-
 # NAME
 
 variable - create and initialize a namespace variable
@@ -9,8 +7,6 @@ variable - create and initialize a namespace variable
 **variable ***name*
 
 **variable **?*name value\...*?
-
-\
 
 # DESCRIPTION
 
@@ -84,3 +80,9 @@ global(n), namespace(n), upvar(n)
 # KEYWORDS
 
 global, namespace, procedure, variable
+
+<!---
+Copyright (c) 1993-1997 Bell Labs Innovations for Lucent Technologie
+Copyright (c) 1997 Sun Microsystems, Inc
+-->
+

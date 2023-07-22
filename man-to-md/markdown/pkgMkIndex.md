@@ -1,14 +1,10 @@
-\
-
 # NAME
 
 pkg_mkIndex - Build an index for automatic loading of packages
 
 # SYNOPSIS
 
-    pkg_mkIndex ?options...? dir ?pattern pattern ...?
-
-\
+**pkg_mkIndex** ?*options\...*? *dir* ?*pattern pattern \...*?
 
 # DESCRIPTION
 
@@ -218,3 +214,8 @@ package(n)
 # KEYWORDS
 
 auto-load, index, package, version
+
+<!---
+Copyright (c) 1996 Sun Microsystems, Inc
+-->
+

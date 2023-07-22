@@ -10,7 +10,6 @@
 .SH NAME
 Tcl_GetEncoding, Tcl_FreeEncoding, Tcl_GetEncodingFromObj, Tcl_ExternalToUtfDString, Tcl_ExternalToUtf, Tcl_UtfToExternalDString, Tcl_UtfToExternal, Tcl_WinTCharToUtf, Tcl_WinUtfToTChar, Tcl_GetEncodingName, Tcl_SetSystemEncoding, Tcl_GetEncodingNameFromEnvironment, Tcl_GetEncodingNames, Tcl_CreateEncoding, Tcl_GetEncodingSearchPath, Tcl_SetEncodingSearchPath, Tcl_GetDefaultEncodingDir, Tcl_SetDefaultEncodingDir \- procedures for creating and using encodings
 .SH SYNOPSIS
-.nf
 \fB#include <tcl.h>\fR
 .sp
 Tcl_Encoding
@@ -308,7 +307,7 @@ The \fItypePtr\fR argument to \fBTcl_CreateEncoding\fR contains information
 about the name of the encoding and the procedures that will be called to
 convert between this encoding and UTF-8.  It is defined as follows:
 .PP
-.nf
+.CS
 typedef struct Tcl_EncodingType {
     const char *\fIencodingName\fR;
     Tcl_EncodingConvertProc *\fItoUtfProc\fR;
@@ -317,7 +316,7 @@ typedef struct Tcl_EncodingType {
     ClientData \fIclientData\fR;
     int \fInullSize\fR;
 } \fBTcl_EncodingType\fR;
-.fi
+.CE
 .PP
 The \fIencodingName\fR provides a string name for the encoding, by
 which it can be referred in other procedures such as
@@ -343,7 +342,7 @@ CNS11643) are not accepted.
 The callback procedures \fItoUtfProc\fR and \fIfromUtfProc\fR should match the
 type \fBTcl_EncodingConvertProc\fR:
 .PP
-.nf
+.CS
 typedef int \fBTcl_EncodingConvertProc\fR(
         ClientData \fIclientData\fR,
         const char *\fIsrc\fR,
@@ -355,7 +354,7 @@ typedef int \fBTcl_EncodingConvertProc\fR(
         int *\fIsrcReadPtr\fR,
         int *\fIdstWrotePtr\fR,
         int *\fIdstCharsPtr\fR);
-.fi
+.CE
 .PP
 The \fItoUtfProc\fR and \fIfromUtfProc\fR procedures are called by the
 \fBTcl_ExternalToUtf\fR or \fBTcl_UtfToExternal\fR family of functions to
@@ -375,10 +374,10 @@ procedure will be a non-NULL location.
 The callback procedure \fIfreeProc\fR, if non-NULL, should match the type
 \fBTcl_EncodingFreeProc\fR:
 .PP
-.nf
+.CS
 typedef void \fBTcl_EncodingFreeProc\fR(
         ClientData \fIclientData\fR);
-.fi
+.CE
 .PP
 This \fIfreeProc\fR function is called when the encoding is deleted.  The
 \fIclientData\fR parameter is the same as the \fIclientData\fR field
@@ -452,7 +451,7 @@ files.  The lines in a table-based encoding file are in the same
 format as this example taken from the \fBshiftjis\fR encoding (this is not
 the complete file):
 .PP
-.nf
+.CS
 # Encoding file: shiftjis, multi-byte
 M
 003F 0 40
@@ -490,7 +489,7 @@ FF0400A200A3FF05FF03FF06FF0AFF2000A72606260525CB25CF25CE25C725C6
 0000000000000000000000000000000000000000222022A52312220222072261
 2252226A226B221A223D221D2235222B222C0000000000000000000000000000
 212B2030266F266D266A2020202100B6000000000000000025EF000000000000
-.fi
+.CE
 .PP
 The third line of the file is three numbers.  The first number is the
 fallback character (in base 16) to use when converting from UTF-8 to this
@@ -518,7 +517,7 @@ Case [4] is the escape-sequence encoding file.  The lines in an this type of
 file are in the same format as this example taken from the \fBiso2022-jp\fR
 encoding:
 .PP
-.nf
+.CS
 .ta 1.5i
 # Encoding file: iso2022-jp, escape-driven
 E
@@ -531,7 +530,7 @@ jis0208		\ex1b$B
 jis0212		\ex1b$(D
 gb2312		\ex1b$A
 ksc5601		\ex1b$(C
-.fi
+.CE
 .PP
 In the file, the first column represents an option and the second column
 is the associated value.  \fBinit\fR is a string to emit or expect before

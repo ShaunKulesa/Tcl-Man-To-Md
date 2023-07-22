@@ -10,7 +10,6 @@
 .SH NAME
 Tcl_SplitPath, Tcl_JoinPath, Tcl_GetPathType \- manipulate platform-dependent file paths
 .SH SYNOPSIS
-.nf
 \fB#include <tcl.h>\fR
 .sp
 \fBTcl_SplitPath\fR(\fIpath, argcPtr, argvPtr\fR)
@@ -60,20 +59,20 @@ responsibility to free all of this storage.
 For example, suppose that you have called \fBTcl_SplitPath\fR with the
 following code:
 .PP
-.nf
+.CS
 int argc;
 char *path;
 char **argv;
 \&...
 Tcl_SplitPath(string, &argc, &argv);
-.fi
+.CE
 .PP
 Then you should eventually free the storage with a call like the
 following:
 .PP
-.nf
+.CS
 Tcl_Free((char *) argv);
-.fi
+.CE
 .PP
 \fBTcl_JoinPath\fR is the inverse of \fBTcl_SplitPath\fR: it takes a
 collection of path elements given by \fIargc\fR and \fIargv\fR and

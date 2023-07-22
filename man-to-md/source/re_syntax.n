@@ -714,9 +714,9 @@ shortest substring possible given that
 .QW \fBabc\fR
 will be matched as early as possible (the quantifier does not change that):
 .PP
-.nf
+.CS
 ab{1,1}?c.*x.*cba
-.fi
+.CE
 .PP
 The atom
 .QW \fBa\fR

@@ -1,5 +1,3 @@
-\
-
 # NAME
 
 Tcl - Tool Command Language
@@ -7,8 +5,6 @@ Tcl - Tool Command Language
 # SYNOPSIS
 
 Summary of Tcl language syntax.
-
-\
 
 # DESCRIPTION
 
@@ -259,3 +255,9 @@ The following rules define the syntax and semantics of the Tcl language:
 # KEYWORDS
 
 backslash, command, comment, script, substitution, variable
+
+<!---
+Copyright (c) 1993 The Regents of the University of California
+Copyright (c) 1994-1996 Sun Microsystems, Inc
+-->
+

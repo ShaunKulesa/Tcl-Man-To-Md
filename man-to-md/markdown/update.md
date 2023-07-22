@@ -1,5 +1,3 @@
-\
-
 # NAME
 
 update - Process pending events and idle callbacks
@@ -7,8 +5,6 @@ update - Process pending events and idle callbacks
 # SYNOPSIS
 
 **update** ?**idletasks**?
-
-\
 
 # DESCRIPTION
 
@@ -61,3 +57,9 @@ after(n), interp(n)
 # KEYWORDS
 
 asynchronous I/O, event, flush, handler, idle, update
+
+<!---
+Copyright (c) 1990-1992 The Regents of the University of California
+Copyright (c) 1994-1996 Sun Microsystems, Inc
+-->
+

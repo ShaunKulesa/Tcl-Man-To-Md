@@ -49,14 +49,14 @@ Run the event-loop continually until some event calls \fBexit\fR.
 (You can use any variable not mentioned elsewhere, but the name
 \fIforever\fR reminds you at a glance of the intent.)
 .PP
-.nf
+.CS
 \fBvwait\fR forever
-.fi
+.CE
 .PP
 Wait five seconds for a connection to a server socket, otherwise
 close the socket and continue running the script:
 .PP
-.nf
+.CS
 # Initialise the state
 after 5000 set state timeout
 set server [socket -server accept 12345]
@@ -83,12 +83,12 @@ switch $state {
        puts [lindex $connectionInfo 0] "Hello there!"
     }
 }
-.fi
+.CE
 .PP
 A command that will wait for some time delay by waiting for a namespace
 variable to be set.  Includes an interlock to prevent nested waits.
 .PP
-.nf
+.CS
 namespace eval example {
     variable v done
     proc wait {delay} {
@@ -101,13 +101,13 @@ namespace eval example {
         return $v
     }
 }
-.fi
+.CE
 .PP
 When running inside a \fBcoroutine\fR, an alternative to using \fBvwait\fR is
 to \fByield\fR to an outer event loop and to get recommenced when the variable
 is set, or at an idle moment after that.
 .PP
-.nf
+.CS
 coroutine task apply {{} {
     # simulate [after 1000]
     after 1000 [info coroutine]
@@ -124,7 +124,7 @@ coroutine task apply {{} {
     trace add variable ::var write "updatedVar [info coroutine]"
     yield
 }}
-.fi
+.CE
 .SS "NESTED VWAITS BY EXAMPLE"
 .PP
 This example demonstrates what can happen when the \fBvwait\fR command is
@@ -134,7 +134,7 @@ script scheduled with \fBafter\fR to complete, which just happens to be
 running an inner \fBvwait\fR (for \fIb\fR) even though the event that the
 outer \fBvwait\fR was waiting for (the setting of \fIa\fR) has occurred.
 .PP
-.nf
+.CS
 after 500 {
     puts "waiting for b"
     \fBvwait\fR b
@@ -149,15 +149,15 @@ puts "waiting for a"
 puts "a was set"
 puts "setting b"
 set b 42
-.fi
+.CE
 .PP
 If you run the above code, you get this output:
 .PP
-.nf
+.CS
 waiting for a
 waiting for b
 setting a
-.fi
+.CE
 .PP
 The script will never print
 .QW "a was set"
@@ -169,7 +169,7 @@ The only ways to avoid this are to either structure the overall program in
 continuation-passing style or to use \fBcoroutine\fR to make the continuations
 implicit. The first of these options would be written as:
 .PP
-.nf
+.CS
 after 500 {
     puts "waiting for b"
     trace add variable b write {apply {args {
@@ -193,12 +193,12 @@ trace add variable a write {apply {args {
     set b 42
 }}}
 \fBvwait\fR done
-.fi
+.CE
 .PP
 The second option, with \fBcoroutine\fR and some helper procedures, is done
 like this:
 .PP
-.nf
+.CS
 # A coroutine-based wait-for-variable command
 proc waitvar globalVar {
     trace add variable ::$globalVar write \e
@@ -235,7 +235,7 @@ coroutine task-3 eval {
     set a 10
 }
 \fBvwait\fR done
-.fi
+.CE
 .SH "SEE ALSO"
 global(n), update(n)
 .SH KEYWORDS

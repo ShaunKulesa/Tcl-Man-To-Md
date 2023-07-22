@@ -1,15 +1,12 @@
-\
-
 # NAME
 
 Tcl_SubstObj - perform substitutions on Tcl values
 
 # SYNOPSIS
 
-    #include <tcl.h>
+**#include \<tcl.h\>**
 
-    Tcl_Obj *
-    Tcl_SubstObj(interp, objPtr, flags)
+Tcl_Obj \* **Tcl_SubstObj**(*interp, objPtr, flags*)
 
 # ARGUMENTS
 
@@ -24,8 +21,6 @@ perform. The flags **TCL_SUBST_COMMANDS**, **TCL_SUBST_VARIABLES** and
 **TCL_SUBST_BACKSLASHES** are currently supported, and **TCL_SUBST_ALL**
 is provided as a convenience for the common case where all substitutions
 are desired.
-
-\
 
 # DESCRIPTION
 
@@ -64,3 +59,8 @@ subst(n)
 # KEYWORDS
 
 backslash substitution, command substitution, variable substitution
+
+<!---
+Copyright (c) 2001 Donal K. Fellow
+-->
+

@@ -1,5 +1,3 @@
-\
-
 # NAME
 
 Tcl_DumpActiveMemory, Tcl_InitMemory, Tcl_ValidateAllMemory - Validated
@@ -7,16 +5,13 @@ memory allocation interface
 
 # SYNOPSIS
 
-    #include <tcl.h>
+**#include \<tcl.h\>**
 
-    int
-    Tcl_DumpActiveMemory(fileName)
+int **Tcl_DumpActiveMemory**(*fileName*)
 
-    void
-    Tcl_InitMemory(interp)
+void **Tcl_InitMemory**(*interp*)
 
-    void
-    Tcl_ValidateAllMemory(fileName, line)
+void **Tcl_ValidateAllMemory**(*fileName, line*)
 
 # ARGUMENTS
 
@@ -28,8 +23,6 @@ file from which the call is being made (normally **\_\_FILE\_\_**).
 
 Line number at which the call to **Tcl_ValidateAllMemory** is made
 (normally **\_\_LINE\_\_**).
-
-\
 
 # DESCRIPTION
 
@@ -61,3 +54,9 @@ TCL_MEM_DEBUG, memory
 # KEYWORDS
 
 memory, debug
+
+<!---
+Copyright (c) 1992-1999 Karl Lehenbauer & Mark Diekhans
+Copyright (c) 2000 Scriptics Corporation
+-->
+

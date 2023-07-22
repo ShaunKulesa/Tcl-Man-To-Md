@@ -1,0 +1,465 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+      <script>
+	// Hack for scrolling window when linking to anchor tag with fixed nav header
+        var shiftWindow = function() { scrollBy(0, -75) };
+        window.addEventListener("hashchange", shiftWindow);
+        function load() { if (window.location.hash) shiftWindow(); }
+      </script>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        
+        <link rel="canonical" href="https://www.tcl.tk/man/TkCmd/scale/">
+        <link rel="shortcut icon" href="../../img/favicon.ico">
+        <title>Scale - Tcl/Tk</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <link href="../../css/font-awesome.min.css" rel="stylesheet">
+    <link href="../../css/base.css" rel="stylesheet">
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+    <script src="../../js/base.js"></script> 
+    </head>
+
+    <body class="">
+
+      <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
+	<div class="container">
+	<a class="navbar-brand" href="../..">Tcl/Tk</a>
+	<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExample04" aria-controls="navbarsExample04" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+	</button>
+
+	<div class="collapse navbar-collapse">
+
+          <ul class="navbar-nav flex-row ml-md-auto d-none d-md-flex">
+            <li class="nav-item">
+              <a class="nav-link" href="#" data-toggle="modal" data-target="#mkdocs_search_modal">
+		<i class="fa fa-search"></i> Search
+              </a>
+            </li>
+          </ul>
+	</div>
+	</div>
+      </nav><div id="content" class="container">
+        
+      <div class="row">
+        <div class="col-md-9" role="main">
+
+
+<nav aria-label="breadcrumb">
+  <ol class="breadcrumb">
+    
+    <li class="breadcrumb-item active" aria-current="page">Scale</li>
+  </ol>
+</nav>
+
+
+<p>\</p>
+<h1 id="name">NAME</h1>
+<p>scale - Create and manipulate \'scale\' value-controlled slider widgets</p>
+<h1 id="synopsis">SYNOPSIS</h1>
+<p><strong>scale</strong> <em>pathName </em>?<em>options</em>?</p>
+<h1 id="standard-options">STANDARD OPTIONS</h1>
+<div class="language-text highlight"><pre><span></span><code>-activebackground   -foreground -relief
+-background -highlightbackground    -repeatdelay
+-borderwidth    -highlightcolor -repeatinterval
+-cursor -highlightthickness -takefocus
+-font   -orient -troughcolor
+</code></pre></div>
+<p>See the manual entry for details on the standard options.</p>
+<h1 id="widget-specific-options">WIDGET-SPECIFIC OPTIONS</h1>
+<div class="language-text highlight"><pre><span></span><code>Command-Line Name:  -bigincrement
+Database Name:  bigIncrement
+Database Class: BigIncrement
+</code></pre></div>
+<blockquote>
+<p>Some interactions with the scale cause its value to change by
+increments; this option specifies the size of the large increments. If
+specified as 0, the large increments default to 1/10 the range of the
+scale.</p>
+</blockquote>
+<div class="language-text highlight"><pre><span></span><code>Command-Line Name:  -command
+Database Name:  command
+Database Class: Command
+</code></pre></div>
+<blockquote>
+<p>Specifies the prefix of a Tcl command to invoke whenever the scale\'s
+value is changed via a widget command. The actual command consists of
+this option followed by a space and a real number indicating the new
+value of the scale.</p>
+</blockquote>
+<div class="language-text highlight"><pre><span></span><code>Command-Line Name:  -digits
+Database Name:  digits
+Database Class: Digits
+</code></pre></div>
+<blockquote>
+<p>An integer specifying how many significant digits should be retained
+when converting the value of the scale to a string. If the number is
+less than or equal to zero, then the scale picks the smallest value
+that guarantees that every possible slider position prints as a
+different string.</p>
+</blockquote>
+<div class="language-text highlight"><pre><span></span><code>Command-Line Name:  -from
+Database Name:  from
+Database Class: From
+</code></pre></div>
+<blockquote>
+<p>A real value corresponding to the left or top end of the scale.</p>
+</blockquote>
+<div class="language-text highlight"><pre><span></span><code>Command-Line Name:  -label
+Database Name:  label
+Database Class: Label
+</code></pre></div>
+<blockquote>
+<p>A string to display as a label for the scale. For vertical scales the
+label is displayed just to the right of the top end of the scale. For
+horizontal scales the label is displayed just above the left end of
+the scale. If the option is specified as an empty string, no label is
+displayed.</p>
+</blockquote>
+<div class="language-text highlight"><pre><span></span><code>Command-Line Name:  -length
+Database Name:  length
+Database Class: Length
+</code></pre></div>
+<blockquote>
+<p>Specifies the desired long dimension of the scale in screen units
+(i.e. any of the forms acceptable to <strong>Tk_GetPixels</strong>). For vertical
+scales this is the scale\'s height; for horizontal scales it is the
+scale\'s width.</p>
+</blockquote>
+<div class="language-text highlight"><pre><span></span><code>Command-Line Name:  -resolution
+Database Name:  resolution
+Database Class: Resolution
+</code></pre></div>
+<blockquote>
+<p>A real value specifying the resolution for the scale. If this value is
+greater than zero then the scale\'s value will always be rounded to an
+even multiple of this value, as will the endpoints of the scale. If
+the value is less than zero then no rounding occurs. Defaults to 1
+(i.e., the value will be integral).</p>
+</blockquote>
+<div class="language-text highlight"><pre><span></span><code>Command-Line Name:  -showvalue
+Database Name:  showValue
+Database Class: ShowValue
+</code></pre></div>
+<blockquote>
+<p>Specifies a boolean value indicating whether or not the current value
+of the scale is to be displayed.</p>
+</blockquote>
+<div class="language-text highlight"><pre><span></span><code>Command-Line Name:  -sliderlength
+Database Name:  sliderLength
+Database Class: SliderLength
+</code></pre></div>
+<blockquote>
+<p>Specifies the size of the slider, measured in screen units along the
+slider\'s long dimension. The value may be specified in any of the
+forms acceptable to <strong>Tk_GetPixels</strong>.</p>
+</blockquote>
+<div class="language-text highlight"><pre><span></span><code>Command-Line Name:  -sliderrelief
+Database Name:  sliderRelief
+Database Class: SliderRelief
+</code></pre></div>
+<blockquote>
+<p>Specifies the relief to use when drawing the slider, such as
+<strong>raised</strong> or <strong>sunken</strong>.</p>
+</blockquote>
+<div class="language-text highlight"><pre><span></span><code>Command-Line Name:  -state
+Database Name:  state
+Database Class: State
+</code></pre></div>
+<blockquote>
+<p>Specifies one of three states for the scale: <strong>normal</strong>, <strong>active</strong>,
+or <strong>disabled</strong>. If the scale is disabled then the value may not be
+changed and the scale will not activate. If the scale is active, the
+slider is displayed using the color specified by the
+<strong>-activebackground</strong> option.</p>
+</blockquote>
+<div class="language-text highlight"><pre><span></span><code>Command-Line Name:  -tickinterval
+Database Name:  tickInterval
+Database Class: TickInterval
+</code></pre></div>
+<blockquote>
+<p>Must be a real value. Determines the spacing between numerical tick
+marks displayed below or to the left of the slider. The values will
+all be displayed with the same number of decimal places, which will be
+enough to ensure they are all accurate to within 20% of a tick
+interval. If 0, no tick marks will be displayed.</p>
+</blockquote>
+<div class="language-text highlight"><pre><span></span><code>Command-Line Name:  -to
+Database Name:  to
+Database Class: To
+</code></pre></div>
+<blockquote>
+<p>Specifies a real value corresponding to the right or bottom end of the
+scale. This value may be either less than or greater than the
+<strong>-from</strong> option.</p>
+</blockquote>
+<div class="language-text highlight"><pre><span></span><code>Command-Line Name:  -variable
+Database Name:  variable
+Database Class: Variable
+</code></pre></div>
+<blockquote>
+<p>Specifies the name of a global variable to link to the scale. Whenever
+the value of the variable changes, the scale will update to reflect
+this value. Whenever the scale is manipulated interactively, the
+variable will be modified to reflect the scale\'s new value.</p>
+</blockquote>
+<div class="language-text highlight"><pre><span></span><code>Command-Line Name:  -width
+Database Name:  width
+Database Class: Width
+</code></pre></div>
+<blockquote>
+<p>Specifies the desired narrow dimension of the scale in screen units
+(i.e. any of the forms acceptable to <strong>Tk_GetPixels</strong>). For vertical
+scales this is the scale\'s width; for horizontal scales this is the
+scale\'s height.</p>
+</blockquote>
+<p>\</p>
+<h1 id="description">DESCRIPTION</h1>
+<p>The <strong>scale</strong> command creates a new window (given by the <em>pathName</em>
+argument) and makes it into a scale widget. Additional options,
+described above, may be specified on the command line or in the option
+database to configure aspects of the scale such as its colors,
+orientation, and relief. The <strong>scale</strong> command returns its <em>pathName</em>
+argument. At the time this command is invoked, there must not exist a
+window named <em>pathName</em>, but <em>pathName</em>\'s parent must exist.</p>
+<p>A scale is a widget that displays a rectangular <em>trough</em> and a small
+<em>slider</em>. The trough corresponds to a range of real values (determined
+by the <strong>-from</strong>, <strong>-to</strong>, and <strong>-resolution</strong> options), and the
+position of the slider selects a particular real value. The slider\'s
+position (and hence the scale\'s value) may be adjusted with the mouse
+or keyboard as described in the <strong>BINDINGS</strong> section below. Whenever the
+scale\'s value is changed, a Tcl command is invoked (using the
+<strong>-command</strong> option) to notify other interested widgets of the change.
+In addition, the value of the scale can be linked to a Tcl variable
+(using the <strong>-variable</strong> option), so that changes in either are
+reflected in the other.</p>
+<p>Three annotations may be displayed in a scale widget: a label appearing
+at the top right of the widget (top left for horizontal scales), a
+number displayed just to the left of the slider (just above the slider
+for horizontal scales), and a collection of numerical tick marks just to
+the left of the current value (just below the trough for horizontal
+scales). Each of these three annotations may be enabled or disabled
+using the configuration options.</p>
+<h1 id="widget-command">WIDGET COMMAND</h1>
+<p>The <strong>scale</strong> command creates a new Tcl command whose name is
+<em>pathName</em>. This command may be used to invoke various operations on the
+widget. It has the following general form:</p>
+<div class="language-text highlight"><pre><span></span><code>pathName option ?arg arg ...?
+</code></pre></div>
+<p><em>Option</em> and the <em>arg</em>s determine the exact behavior of the command. The
+following commands are possible for scale widgets:</p>
+<p><em>pathName </em><strong>cget</strong> <em>option</em></p>
+<p>:   Returns the current value of the configuration option given by
+    <em>option</em>. <em>Option</em> may have any of the values accepted by the
+    <strong>scale</strong> command.</p>
+<p><em>pathName </em><strong>configure</strong> ?<em>option</em>? ?<em>value option value ...</em>?</p>
+<p>:   Query or modify the configuration options of the widget. If no
+    <em>option</em> is specified, returns a list describing all of the
+    available options for <em>pathName</em> (see <strong>Tk_ConfigureInfo</strong> for
+    information on the format of this list). If <em>option</em> is specified
+    with no <em>value</em>, then the command returns a list describing the one
+    named option (this list will be identical to the corresponding
+    sublist of the value returned if no <em>option</em> is specified). If one
+    or more <em>option-value</em> pairs are specified, then the command
+    modifies the given widget option(s) to have the given value(s); in
+    this case the command returns an empty string. <em>Option</em> may have any
+    of the values accepted by the <strong>scale</strong> command.</p>
+<p><em>pathName </em><strong>coords </strong>?<em>value</em>?</p>
+<p>:   Returns a list whose elements are the x and y coordinates of the
+    point along the centerline of the trough that corresponds to
+    <em>value</em>. If <em>value</em> is omitted then the scale\'s current value is
+    used.</p>
+<p><em>pathName </em><strong>get</strong> ?<em>x y</em>?</p>
+<p>:   If <em>x</em> and <em>y</em> are omitted, returns the current value of the scale.
+    If <em>x</em> and <em>y</em> are specified, they give pixel coordinates within the
+    widget; the command returns the scale value corresponding to the
+    given pixel. Only one of <em>x</em> or <em>y</em> is used: for horizontal scales
+    <em>y</em> is ignored, and for vertical scales <em>x</em> is ignored.</p>
+<p><em>pathName </em><strong>identify </strong><em>x y</em></p>
+<p>:   Returns a string indicating what part of the scale lies under the
+    coordinates given by <em>x</em> and <em>y</em>. A return value of <strong>slider</strong> means
+    that the point is over the slider; <strong>trough1</strong> means that the point
+    is over the portion of the slider above or to the left of the
+    slider; and <strong>trough2</strong> means that the point is over the portion of
+    the slider below or to the right of the slider. If the point is not
+    over one of these elements, an empty string is returned.</p>
+<p><em>pathName </em><strong>set </strong><em>value</em></p>
+<p>:   This command is invoked to change the current value of the scale,
+    and hence the position at which the slider is displayed. <em>Value</em>
+    gives the new value for the scale. The command has no effect if the
+    scale is disabled.</p>
+<h1 id="bindings">BINDINGS</h1>
+<p>Tk automatically creates class bindings for scales that give them the
+following default behavior. Where the behavior is different for vertical
+and horizontal scales, the horizontal behavior is described in
+parentheses.</p>
+<p>[1]</p>
+<p>:   If button 1 is pressed in the trough, the scale\'s value will be
+    incremented or decremented by the value of the <strong>-resolution</strong>
+    option so that the slider moves in the direction of the cursor. If
+    the button is held down, the action auto-repeats.</p>
+<p>[2]</p>
+<p>:   If button 1 is pressed over the slider, the slider can be dragged
+    with the mouse.</p>
+<p>[3]</p>
+<p>:   If button 1 is pressed in the trough with the Control key down, the
+    slider moves all the way to the end of its range, in the direction
+    towards the mouse cursor.</p>
+<p>[4]</p>
+<p>:   If button 2 is pressed, the scale\'s value is set to the mouse
+    position. If the mouse is dragged with button 2 down, the scale\'s
+    value changes with the drag.</p>
+<p>[5]</p>
+<p>:   The Up and Left keys move the slider up (left) by the value of the
+    <strong>-resolution</strong> option.</p>
+<p>[6]</p>
+<p>:   The Down and Right keys move the slider down (right) by the value of
+    the <strong>-resolution</strong> option.</p>
+<p>[7]</p>
+<p>:   Control-Up and Control-Left move the slider up (left) by the value
+    of the <strong>-bigincrement</strong> option.</p>
+<p>[8]</p>
+<p>:   Control-Down and Control-Right move the slider down (right) by the
+    value of the <strong>-bigincrement</strong> option.</p>
+<p>[9]</p>
+<p>:   Home moves the slider to the top (left) end of its range.</p>
+<p>[10]</p>
+<p>:   End moves the slider to the bottom (right) end of its range.</p>
+<p>If the scale is disabled using the <strong>-state</strong> option then none of the
+above bindings have any effect.</p>
+<p>The behavior of scales can be changed by defining new bindings for
+individual widgets or by redefining the class bindings.</p>
+<h1 id="see-also">SEE ALSO</h1>
+<p>ttk::scale(n)</p>
+<h1 id="keywords">KEYWORDS</h1>
+<p>scale, slider, trough, widget</p>
+
+<ul class="metadata page-metadata" data-bi-name="page info" lang="en-us" dir="ltr">
+  <li class="last-updated-holder displayDate loading">
+    <span class="last-updated-text">Last updated:</span>
+    <time role="presentation" datetime="2018-10-25T00:00:00.000Z" data-article-date-source="ms.date"></time>
+  </li>
+<!--
+  <li class="readingTime">
+    2 minutes to read
+  </li>
+-->
+  <li class="contributors-holder">
+    <span class="contributors-text">Contributors</span>
+    <ul class="contributors" data-bi-name="contributors"></ul>
+  </li>
+</ul>
+</div>
+        <div class="col-md-3"><div class="navbar-light navbar-expand-md hidden-print sticky-top sticky-offset" role="complementary">
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggler collapsed" data-toggle="collapse" data-target="#toc-collapse" title="Table of Contents">
+            <span class="fa fa-angle-down"></span>
+        </button>
+    </div>
+
+    <div id="toc-collapse" class="navbar-collapse collapse card">
+        <ul class="nav flex-column bs-sidenav">
+            <li class="nav-item main"><a class="nav-link" href="#name">NAME</a></li>
+            <li class="nav-item main"><a class="nav-link" href="#synopsis">SYNOPSIS</a></li>
+            <li class="nav-item main"><a class="nav-link" href="#standard-options">STANDARD OPTIONS</a></li>
+            <li class="nav-item main"><a class="nav-link" href="#widget-specific-options">WIDGET-SPECIFIC OPTIONS</a></li>
+            <li class="nav-item main"><a class="nav-link" href="#description">DESCRIPTION</a></li>
+            <li class="nav-item main"><a class="nav-link" href="#widget-command">WIDGET COMMAND</a></li>
+            <li class="nav-item main"><a class="nav-link" href="#bindings">BINDINGS</a></li>
+            <li class="nav-item main"><a class="nav-link" href="#see-also">SEE ALSO</a></li>
+            <li class="nav-item main"><a class="nav-link" href="#keywords">KEYWORDS</a></li>
+        </ul>
+    </div>
+</div></div>
+      </div>
+      </div>
+
+      <footer class="col-md-12">
+	<hr>
+	<div class="container">
+	</div>
+      </footer>
+      <script>
+	var base_url = "../..",
+            shortcuts = {"help": 191, "next": 78, "previous": 80, "search": 83};
+      </script>
+      <script src="../../js/base.js" defer></script>
+      <script src="../../search/main.js" defer></script>
+
+      <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="Search Modal" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Search</h4>
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            </div>
+            <div class="modal-body">
+                <p>
+                    From here you can search these documents. Enter
+                    your search terms below.
+                </p>
+                <form role="form">
+                    <div class="form-group">
+                        <input type="text" class="form-control" placeholder="Search..." id="mkdocs-search-query" title="Type search term here">
+                    </div>
+                </form>
+                <div id="mkdocs-search-results"></div>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div><div class="modal" id="mkdocs_keyboard_modal" tabindex="-1" role="dialog" aria-labelledby="Keyboard Shortcuts Modal" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <p class="h4 modal-title">Keyboard Shortcuts</p>
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            </div>
+            <div class="modal-body">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th style="width: 20%;">Keys</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="help shortcut"><kbd>?</kbd></td>
+                    <td>Open this help</td>
+                  </tr>
+                  <tr>
+                    <td class="next shortcut"><kbd>n</kbd></td>
+                    <td>Next page</td>
+                  </tr>
+                  <tr>
+                    <td class="prev shortcut"><kbd>p</kbd></td>
+                    <td>Previous page</td>
+                  </tr>
+                  <tr>
+                    <td class="search shortcut"><kbd>s</kbd></td>
+                    <td>Search</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>
+
+    </body>
+</html>

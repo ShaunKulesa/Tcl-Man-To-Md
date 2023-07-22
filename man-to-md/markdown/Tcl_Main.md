@@ -1,5 +1,3 @@
-\
-
 # NAME
 
 Tcl_Main, Tcl_MainEx, Tcl_MainExW, Tcl_SetStartupScript,
@@ -8,20 +6,19 @@ and event loop definition for Tcl-based applications
 
 # SYNOPSIS
 
-    #include <tcl.h>
+**#include \<tcl.h\>**
 
-    Tcl_Main(argc, argv, appInitProc)
+**Tcl_Main**(*argc, argv, appInitProc*)
 
-    Tcl_MainEx(argc, charargv, appInitProc, interp)
+**Tcl_MainEx**(*argc, charargv, appInitProc, interp*)
 
-    Tcl_MainExW(argc, wideargv, appInitProc, interp)
+**Tcl_MainExW**(*argc, wideargv, appInitProc, interp*)
 
-    Tcl_SetStartupScript(path, encoding)
+**Tcl_SetStartupScript**(*path, encoding*)
 
-    Tcl_Obj *
-    Tcl_GetStartupScript(encodingPtr)
+Tcl_Obj \* **Tcl_GetStartupScript**(*encodingPtr*)
 
-    Tcl_SetMainLoop(mainLoopProc)
+**Tcl_SetMainLoop**(*mainLoopProc*)
 
 # ARGUMENTS
 
@@ -47,8 +44,6 @@ the encoding name.
 Address of an application-specific event loop procedure.
 
 Already created Tcl Interpreter.
-
-\
 
 # DESCRIPTION
 
@@ -184,3 +179,10 @@ exit(n), encoding(n)
 
 application-specific initialization, command-line arguments, main
 program
+
+<!---
+Copyright (c) 1994 The Regents of the University of California
+Copyright (c) 1994-1996 Sun Microsystems, Inc
+Copyright (c) 2000 Ajuba Solutions
+-->
+

@@ -13,7 +13,6 @@
 .SH NAME
 Tcl_AppendExportList, Tcl_CreateNamespace, Tcl_DeleteNamespace, Tcl_Export, Tcl_FindCommand, Tcl_FindNamespace, Tcl_ForgetImport, Tcl_GetCurrentNamespace, Tcl_GetGlobalNamespace, Tcl_GetNamespaceUnknownHandler, Tcl_Import, Tcl_SetNamespaceUnknownHandler \- manipulate namespaces
 .SH SYNOPSIS
-.nf
 \fB#include <tcl.h>\fR
 .sp
 Tcl_Namespace *
@@ -115,10 +114,10 @@ the global namespace.)
 \fBTcl_CreateNamespace\fR creates a new namespace.  The
 \fIdeleteProc\fR will have the following type signature:
 .PP
-.nf
+.CS
 typedef void \fBTcl_NamespaceDeleteProc\fR(
         ClientData \fIclientData\fR);
-.fi
+.CE
 .PP
 \fBTcl_DeleteNamespace\fR deletes a namespace, calling the
 \fIdeleteProc\fR defined for the namespace (if any).

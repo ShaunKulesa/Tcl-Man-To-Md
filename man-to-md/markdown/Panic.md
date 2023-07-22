@@ -1,21 +1,16 @@
-\
-
 # NAME
 
 Tcl_Panic, Tcl_PanicVA, Tcl_SetPanicProc - report fatal error and abort
 
 # SYNOPSIS
 
-    #include <tcl.h>
+**#include \<tcl.h\>**
 
-    void
-    Tcl_Panic(format, arg, arg, ...)
+void **Tcl_Panic**(*format*, *arg*, *arg*, *\...*)
 
-    void
-    Tcl_PanicVA(format, argList)
+void **Tcl_PanicVA**(*format*, *argList*)
 
-    void
-    Tcl_SetPanicProc(panicProc)
+void **Tcl_SetPanicProc**(*panicProc*)
 
 # ARGUMENTS
 
@@ -27,8 +22,6 @@ An argument list of arguments matching the format string. Must have been
 initialized using **va_start**, and cleared using **va_end**.
 
 Procedure to report fatal error message and abort.
-
-\
 
 # DESCRIPTION
 
@@ -84,3 +77,7 @@ abort(3), printf(3), exec(n), format(n)
 # KEYWORDS
 
 abort, fatal, error
+
+<!---
+-->
+

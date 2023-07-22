@@ -254,16 +254,16 @@ according to the user's environment.  The variables \fBenv(LC_ALL)\fR,
 The first of them to have a non-empty value is used to determine the
 initial locale.  The value is parsed according to the XPG4 pattern
 .PP
-.nf
+.CS
 language[_country][.codeset][@modifier]
-.fi
+.CE
 .PP
 to extract its parts.  The initial locale is then set by calling
 \fB::msgcat::mclocale\fR with the argument
 .PP
-.nf
+.CS
 language[_country][_modifier]
-.fi
+.CE
 .PP
 On Windows and Cygwin, if none of those environment variables is set,
 msgcat will attempt to extract locale information from the registry.
@@ -300,21 +300,21 @@ error.
 .PP
 For example, executing the code
 .PP
-.nf
+.CS
 \fB::msgcat::mcset\fR en hello "hello from ::"
 namespace eval foo {
     \fB::msgcat::mcset\fR en hello "hello from ::foo"
 }
 puts [\fB::msgcat::mc\fR hello]
 namespace eval foo {puts [\fB::msgcat::mc\fR hello]}
-.fi
+.CE
 .PP
 will print
 .PP
-.nf
+.CS
 hello from ::
 hello from ::foo
-.fi
+.CE
 .PP
 When searching for a translation of a message, the
 message catalog will search first the current namespace,
@@ -327,7 +327,7 @@ For example, executing (in the
 .QW en
 locale) the code
 .PP
-.nf
+.CS
 \fB::msgcat::mcset\fR en m1 ":: message1"
 \fB::msgcat::mcset\fR en m2 ":: message2"
 \fB::msgcat::mcset\fR en m3 ":: message3"
@@ -342,15 +342,15 @@ namespace import \fB::msgcat::mc\fR
 puts "[\fBmc\fR m1]; [\fBmc\fR m2]; [\fBmc\fR m3]"
 namespace eval ::foo {puts "[\fBmc\fR m1]; [\fBmc\fR m2]; [\fBmc\fR m3]"}
 namespace eval ::foo::bar {puts "[\fBmc\fR m1]; [\fBmc\fR m2]; [\fBmc\fR m3]"}
-.fi
+.CE
 .PP
 will print
 .PP
-.nf
+.CS
 :: message1; :: message2; :: message3
 :: message1; ::foo message2; ::foo message3
 :: message1; ::foo message2; ::foo::bar message3
-.fi
+.CE
 .SH "LOCATION AND FORMAT OF MESSAGE FILES"
 .PP
 Message files can be located in any directory, subject
@@ -362,10 +362,10 @@ The message file name is a msgcat locale specifier (all lowercase) followed by
 .QW .msg .
 For example:
 .PP
-.nf
+.CS
 es.msg    \(em spanish
 en_gb.msg \(em United Kingdom English
-.fi
+.CE
 .PP
 \fIException:\fR The message file for the root locale
 .MT
@@ -382,11 +382,11 @@ for the language, likely enclosed in a \fBnamespace eval\fR
 so that all source strings are tied to the namespace of
 the package. For example, a short \fBes.msg\fR might contain:
 .PP
-.nf
+.CS
 namespace eval ::mypackage {
     \fB::msgcat::mcflset\fR "Free Beer" "Cerveza Gratis"
 }
-.fi
+.CE
 .SH "RECOMMENDED MESSAGE SETUP FOR PACKAGES"
 .PP
 If a package is installed into a subdirectory of the
@@ -400,10 +400,10 @@ Copy your *.msg files into that directory.
 .IP [3]
 Add the following command to your package initialization script:
 .PP
-.nf
+.CS
 # load language files, stored in msgs subdirectory
 \fB::msgcat::mcload\fR [file join [file dirname [info script]] msgs]
-.fi
+.CE
 .SH "POSITIONAL CODES FOR FORMAT AND SCAN COMMANDS"
 .PP
 It is possible that a message string used as an argument
@@ -412,18 +412,18 @@ might need to be repositioned.  For example, it might be
 syntactically desirable to rearrange the sentence structure
 while translating.
 .PP
-.nf
+.CS
 format "We produced %d units in location %s" $num $city
 format "In location %s we produced %d units" $city $num
-.fi
+.CE
 .PP
 This can be handled by using the positional
 parameters:
 .PP
-.nf
+.CS
 format "We produced %1\e$d units in location %2\e$s" $num $city
 format "In location %2\e$s we produced %1\e$d units" $num $city
-.fi
+.CE
 .PP
 Similarly, positional parameters can be used with \fBscan\fR to
 extract values from internationalized strings. Note that it is not
@@ -431,11 +431,11 @@ necessary to pass the output of \fB::msgcat::mc\fR to \fBformat\fR
 directly; by passing the values to substitute in as arguments, the
 formatting substitution is done directly.
 .PP
-.nf
+.CS
 \fBmsgcat::mc\fR {Produced %1$d at %2$s} $num $city
 # ... where that key is mapped to one of the
 # human-oriented versions by \fBmsgcat::mcset\fR
-.fi
+.CE
 .VS "TIP 412"
 .SH Package private locale
 .PP
@@ -580,7 +580,7 @@ Only exception is the callback \fBunknowncmd\fR, where an error causes the invok
 .SS Examples
 Packages which display a GUI may update their widgets when the global locale changes.
 To register to a callback, use:
-.nf
+.CS
 namespace eval gui {
     msgcat::mcpackageconfig changecmd updateGUI
 
@@ -591,10 +591,10 @@ namespace eval gui {
 % msgcat::mclocale fr
 fr
 % New locale is 'fr'.
-.fi
+.CE
 .PP
 If locales (or additional locales) are contained in another source like a data base, a package may use the load callback and not mcload:
-.nf
+.CS
 namespace eval db {
     msgcat::mcpackageconfig loadcmd loadMessages
 
@@ -606,28 +606,28 @@ namespace eval db {
         }
     }
 }
-.fi
+.CE
 .PP
 The \fBclock\fR command implementation uses \fBmsgcat\fR with a package locale to implement the command line parameter \fB-locale\fR.
 Here are some sketches of the implementation:
 .PP
 First, a package locale is initialized and the generic unknown function is desactivated:
-.nf
+.CS
 msgcat::mcpackagelocale set
 msgcat::mcpackageconfig unknowncmd ""
-.fi
+.CE
 As an example, the user requires the week day in a certain locale as follows:
-.nf
+.CS
 clock format [clock seconds] -format %A -locale fr
-.fi
+.CE
 \fBclock\fR sets the package locale to \fBfr\fR and looks for the day name as follows:
-.nf
+.CS
 msgcat::mcpackagelocale set $locale
 return [lindex [msgcat::mc DAYS_OF_WEEK_FULL] $day]
 ### Returns "mercredi"
-.fi
+.CE
 Within \fBclock\fR, some message-catalog items are heavy in computation and thus are dynamically cached using:
-.nf
+.CS
 proc ::tcl::clock::LocalizeFormat { locale format } {
     set key FORMAT_$format
     if { [::msgcat::mcexists -exactlocale -exactnamespace $key] } {
@@ -637,7 +637,7 @@ proc ::tcl::clock::LocalizeFormat { locale format } {
     mcset $locale $key $format
     return $format
 }
-.fi
+.CE
 .VE "TIP 412"
 .SH CREDITS
 .PP

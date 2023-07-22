@@ -1,5 +1,3 @@
-\
-
 # NAME
 
 mathop - Mathematical operators as Tcl commands
@@ -31,8 +29,6 @@ package require **Tcl 8.5**
 **::tcl::mathop::ne** *arg arg*\
 **::tcl::mathop::in** *arg list*\
 **::tcl::mathop::ni** *arg list*
-
-\
 
 # DESCRIPTION
 
@@ -284,3 +280,7 @@ expr(n), mathfunc(n), namespace(n)
 # KEYWORDS
 
 command, expression, operator
+
+<!---
+-->
+

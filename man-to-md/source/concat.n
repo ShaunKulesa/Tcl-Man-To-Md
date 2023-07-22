@@ -27,26 +27,26 @@ if no \fIarg\fRs are supplied, the result is an empty string.
 Although \fBconcat\fR will concatenate lists, flattening them in the process
 (so giving the following interactive session):
 .PP
-.nf
+.CS
 \fI%\fR \fBconcat\fR a b {c d e} {f {g h}}
 \fIa b c d e f {g h}\fR
-.fi
+.CE
 .PP
 it will also concatenate things that are not lists, as can be seen from this
 session:
 .PP
-.nf
+.CS
 \fI%\fR \fBconcat\fR " a b {c   " d "  e} f"
 \fIa b {c d e} f\fR
-.fi
+.CE
 .PP
 Note also that the concatenation does not remove spaces from the middle of
 values, as can be seen here:
 .PP
-.nf
+.CS
 \fI%\fR \fBconcat\fR "a   b   c" { d e f }
 \fIa   b   c d e f\fR
-.fi
+.CE
 .PP
 (i.e., there are three spaces between each of the \fBa\fR, the \fBb\fR and the
 \fBc\fR).

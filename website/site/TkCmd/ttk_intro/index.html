@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+      <script>
+	// Hack for scrolling window when linking to anchor tag with fixed nav header
+        var shiftWindow = function() { scrollBy(0, -75) };
+        window.addEventListener("hashchange", shiftWindow);
+        function load() { if (window.location.hash) shiftWindow(); }
+      </script>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        
+        <link rel="canonical" href="https://www.tcl.tk/man/TkCmd/ttk_intro/">
+        <link rel="shortcut icon" href="../../img/favicon.ico">
+        <title>Ttk intro - Tcl/Tk</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <link href="../../css/font-awesome.min.css" rel="stylesheet">
+    <link href="../../css/base.css" rel="stylesheet">
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+    <script src="../../js/base.js"></script> 
+    </head>
+
+    <body class="">
+
+      <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
+	<div class="container">
+	<a class="navbar-brand" href="../..">Tcl/Tk</a>
+	<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExample04" aria-controls="navbarsExample04" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+	</button>
+
+	<div class="collapse navbar-collapse">
+
+          <ul class="navbar-nav flex-row ml-md-auto d-none d-md-flex">
+            <li class="nav-item">
+              <a class="nav-link" href="#" data-toggle="modal" data-target="#mkdocs_search_modal">
+		<i class="fa fa-search"></i> Search
+              </a>
+            </li>
+          </ul>
+	</div>
+	</div>
+      </nav><div id="content" class="container">
+        
+      <div class="row">
+        <div class="col-md-9" role="main">
+
+
+<nav aria-label="breadcrumb">
+  <ol class="breadcrumb">
+    
+    <li class="breadcrumb-item active" aria-current="page">Ttk intro</li>
+  </ol>
+</nav>
+
+
+<p>\</p>
+<h1 id="name">NAME</h1>
+<p>ttk::intro - Introduction to the Tk theme engine</p>
+<p>\</p>
+<h1 id="overview">OVERVIEW</h1>
+<p>The Tk themed widget set is based on a revised and enhanced version of
+TIP #48 (https://tip.tcl-lang.org/48) specified style engine. The main
+concepts are described below. The basic idea is to separate, to the
+extent possible, the code implementing a widget\'s behavior from the
+code implementing its appearance. Widget class bindings are primarily
+responsible for maintaining the widget state and invoking callbacks; all
+aspects of the widget\'s appearance are controlled by the style of the
+widget (i.e. the style of the elements of the widget).</p>
+<h1 id="themes">THEMES</h1>
+<p>A <em>theme</em> is a collection of elements and styles that determine the look
+and feel of the widget set. Themes can be used to:</p>
+<ul>
+<li>
+<p>isolate platform differences (X11 vs. classic Windows vs. XP vs.
+    Aqua ...)</p>
+</li>
+<li>
+<p>adapt to display limitations (low-color, grayscale, monochrome, tiny
+    screens)</p>
+</li>
+<li>
+<p>accessibility (high contrast, large type)</p>
+</li>
+<li>
+<p>application suite branding</p>
+</li>
+<li>
+<p>blend in with the rest of the desktop (Gnome, KDE, Java)</p>
+</li>
+<li>
+<p>and, of course: eye candy.</p>
+</li>
+</ul>
+<h1 id="elements">ELEMENTS</h1>
+<p>An <em>element</em> displays an individual part of a widget. For example, a
+vertical scrollbar widget contains <strong>uparrow</strong>, <strong>downarrow</strong>,
+<strong>trough</strong> and <strong>slider</strong> elements.</p>
+<p>Element names use a recursive dotted notation. For example, <strong>uparrow</strong>
+identifies a generic arrow element, and <strong>Scrollbar.uparrow</strong> and
+<strong>Combobox.uparrow</strong> identify widget-specific elements. When looking for
+an element, the style engine looks for the specific name first, and if
+an element of that name is not found it looks for generic elements by
+stripping off successive leading components of the element name.</p>
+<p>Like widgets, elements have <em>options</em> which specify what to display and
+how to display it. For example, the <strong>text</strong> element (which displays a
+text string) has <strong>-text</strong>, <strong>-font</strong>, <strong>-foreground</strong>, <strong>-background</strong>,
+<strong>-underline</strong>, and <strong>-width</strong> options. The value of an element option
+is taken from (in precedence order):</p>
+<ul>
+<li>
+<p>an option of the same name and type in the widget containing the
+    element;</p>
+</li>
+<li>
+<p>a dynamic setting specified by <strong>style map</strong> and the current state;</p>
+</li>
+<li>
+<p>the default setting specified by <strong>style configure</strong>; or</p>
+</li>
+<li>
+<p>the element\'s built-in default value for the option.</p>
+</li>
+</ul>
+<h1 id="layouts">LAYOUTS</h1>
+<p>A <em>layout</em> specifies which elements make up a widget and how they are
+arranged. The layout engine uses a simplified version of the <strong>pack</strong>
+algorithm: starting with an initial cavity equal to the size of the
+widget, elements are allocated a parcel within the cavity along the side
+specified by the <strong>-side</strong> option, and placed within the parcel
+according to the <strong>-sticky</strong> option. For example, the layout for a
+horizontal scrollbar is:</p>
+<div class="language-text highlight"><pre><span></span><code>ttk::style layout Horizontal.TScrollbar {
+    Scrollbar.trough -children {
+    Scrollbar.leftarrow -side left -sticky w
+    Scrollbar.rightarrow -side right -sticky e
+    Scrollbar.thumb -sticky ew
+    }
+}
+</code></pre></div>
+<p>By default, the layout for a widget is the same as its class name. Some
+widgets may override this (for example, the <strong>ttk::scrollbar</strong> widget
+chooses different layouts based on the <strong>-orient</strong> option).</p>
+<h1 id="states">STATES</h1>
+<p>In standard Tk, many widgets have a <strong>-state</strong> option which (in most
+cases) is either <strong>normal</strong> or <strong>disabled</strong>. Some widgets support
+additional states, such as the <strong>entry</strong> widget which has a <strong>readonly</strong>
+state and the various flavors of buttons which have <strong>active</strong> state.</p>
+<p>The themed Tk widgets generalizes this idea: every widget has a bitmap
+of independent state flags. Widget state flags include <strong>active</strong>,
+<strong>disabled</strong>, <strong>pressed</strong>, <strong>focus</strong>, etc., (see <em>ttk::widget(n)</em> for
+the full list of state flags).</p>
+<p>Instead of a <strong>-state</strong> option, every widget now has a <strong>state</strong> widget
+command which is used to set or query the state. A <em>state specification</em>
+is a list of symbolic state names indicating which bits are set, each
+optionally prefixed with an exclamation point indicating that the bit is
+cleared instead.</p>
+<p>For example, the class bindings for the <strong>ttk::button</strong> widget are:</p>
+<div class="language-text highlight"><pre><span></span><code>bind TButton &lt;Enter&gt;        { %W state active }
+bind TButton &lt;Leave&gt;        { %W state !active }
+bind TButton &lt;ButtonPress-1&gt;    { %W state pressed }
+bind TButton &lt;Button1-Leave&gt;    { %W state !pressed }
+bind TButton &lt;Button1-Enter&gt;    { %W state pressed }
+bind TButton &lt;ButtonRelease-1&gt;  \
+    { %W instate {pressed} { %W state !pressed ; %W invoke } }
+</code></pre></div>
+<p>This specifies that the widget becomes <strong>active</strong> when the pointer
+enters the widget, and inactive when it leaves. Similarly it becomes
+<strong>pressed</strong> when the mouse button is pressed, and <strong>!pressed</strong> on the
+ButtonRelease event. In addition, the button unpresses if pointer is
+dragged outside the widget while Button-1 is held down, and represses if
+it\'s dragged back in. Finally, when the mouse button is released, the
+widget\'s <strong>-command</strong> is invoked, but only if the button is currently
+in the <strong>pressed</strong> state. (The actual bindings are a little more
+complicated than the above, but not by much).</p>
+<h1 id="styles">STYLES</h1>
+<p>Each widget is associated with a <em>style</em>, which specifies values for
+element options. Style names use a recursive dotted notation like
+layouts and elements; by default, widgets use the class name to look up
+a style in the current theme. For example:</p>
+<div class="language-text highlight"><pre><span></span><code>ttk::style configure TButton \
+    -background #d9d9d9 \
+    -foreground black \
+    -relief raised \
+    ;
+</code></pre></div>
+<p>Many elements are displayed differently depending on the widget state.
+For example, buttons have a different background when they are active, a
+different foreground when disabled, and a different relief when pressed.
+The <strong>style map</strong> command specifies dynamic option settings for a
+particular style:</p>
+<div class="language-text highlight"><pre><span></span><code>ttk::style map TButton \
+    -background [list disabled #d9d9d9  active #ececec] \
+    -foreground [list disabled #a3a3a3] \
+    -relief [list {pressed !disabled} sunken] \
+    ;
+</code></pre></div>
+<h1 id="see-also">SEE ALSO</h1>
+<p>ttk::widget(n), ttk::style(n)</p>
+
+<ul class="metadata page-metadata" data-bi-name="page info" lang="en-us" dir="ltr">
+  <li class="last-updated-holder displayDate loading">
+    <span class="last-updated-text">Last updated:</span>
+    <time role="presentation" datetime="2018-10-25T00:00:00.000Z" data-article-date-source="ms.date"></time>
+  </li>
+<!--
+  <li class="readingTime">
+    2 minutes to read
+  </li>
+-->
+  <li class="contributors-holder">
+    <span class="contributors-text">Contributors</span>
+    <ul class="contributors" data-bi-name="contributors"></ul>
+  </li>
+</ul>
+</div>
+        <div class="col-md-3"><div class="navbar-light navbar-expand-md hidden-print sticky-top sticky-offset" role="complementary">
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggler collapsed" data-toggle="collapse" data-target="#toc-collapse" title="Table of Contents">
+            <span class="fa fa-angle-down"></span>
+        </button>
+    </div>
+
+    <div id="toc-collapse" class="navbar-collapse collapse card">
+        <ul class="nav flex-column bs-sidenav">
+            <li class="nav-item main"><a class="nav-link" href="#name">NAME</a></li>
+            <li class="nav-item main"><a class="nav-link" href="#overview">OVERVIEW</a></li>
+            <li class="nav-item main"><a class="nav-link" href="#themes">THEMES</a></li>
+            <li class="nav-item main"><a class="nav-link" href="#elements">ELEMENTS</a></li>
+            <li class="nav-item main"><a class="nav-link" href="#layouts">LAYOUTS</a></li>
+            <li class="nav-item main"><a class="nav-link" href="#states">STATES</a></li>
+            <li class="nav-item main"><a class="nav-link" href="#styles">STYLES</a></li>
+            <li class="nav-item main"><a class="nav-link" href="#see-also">SEE ALSO</a></li>
+        </ul>
+    </div>
+</div></div>
+      </div>
+      </div>
+
+      <footer class="col-md-12">
+	<hr>
+	<div class="container">
+	</div>
+      </footer>
+      <script>
+	var base_url = "../..",
+            shortcuts = {"help": 191, "next": 78, "previous": 80, "search": 83};
+      </script>
+      <script src="../../js/base.js" defer></script>
+      <script src="../../search/main.js" defer></script>
+
+      <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="Search Modal" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Search</h4>
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            </div>
+            <div class="modal-body">
+                <p>
+                    From here you can search these documents. Enter
+                    your search terms below.
+                </p>
+                <form role="form">
+                    <div class="form-group">
+                        <input type="text" class="form-control" placeholder="Search..." id="mkdocs-search-query" title="Type search term here">
+                    </div>
+                </form>
+                <div id="mkdocs-search-results"></div>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div><div class="modal" id="mkdocs_keyboard_modal" tabindex="-1" role="dialog" aria-labelledby="Keyboard Shortcuts Modal" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <p class="h4 modal-title">Keyboard Shortcuts</p>
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            </div>
+            <div class="modal-body">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th style="width: 20%;">Keys</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="help shortcut"><kbd>?</kbd></td>
+                    <td>Open this help</td>
+                  </tr>
+                  <tr>
+                    <td class="next shortcut"><kbd>n</kbd></td>
+                    <td>Next page</td>
+                  </tr>
+                  <tr>
+                    <td class="prev shortcut"><kbd>p</kbd></td>
+                    <td>Previous page</td>
+                  </tr>
+                  <tr>
+                    <td class="search shortcut"><kbd>s</kbd></td>
+                    <td>Search</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>
+
+    </body>
+</html>

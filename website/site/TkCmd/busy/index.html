@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+      <script>
+	// Hack for scrolling window when linking to anchor tag with fixed nav header
+        var shiftWindow = function() { scrollBy(0, -75) };
+        window.addEventListener("hashchange", shiftWindow);
+        function load() { if (window.location.hash) shiftWindow(); }
+      </script>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        
+        <link rel="canonical" href="https://www.tcl.tk/man/TkCmd/busy/">
+        <link rel="shortcut icon" href="../../img/favicon.ico">
+        <title>Busy - Tcl/Tk</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <link href="../../css/font-awesome.min.css" rel="stylesheet">
+    <link href="../../css/base.css" rel="stylesheet">
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+    <script src="../../js/base.js"></script> 
+    </head>
+
+    <body class="">
+
+      <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
+	<div class="container">
+	<a class="navbar-brand" href="../..">Tcl/Tk</a>
+	<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExample04" aria-controls="navbarsExample04" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+	</button>
+
+	<div class="collapse navbar-collapse">
+
+          <ul class="navbar-nav flex-row ml-md-auto d-none d-md-flex">
+            <li class="nav-item">
+              <a class="nav-link" href="#" data-toggle="modal" data-target="#mkdocs_search_modal">
+		<i class="fa fa-search"></i> Search
+              </a>
+            </li>
+          </ul>
+	</div>
+	</div>
+      </nav><div id="content" class="container">
+        
+      <div class="row">
+        <div class="col-md-9" role="main">
+
+
+<nav aria-label="breadcrumb">
+  <ol class="breadcrumb">
+    
+    <li class="breadcrumb-item active" aria-current="page">Busy</li>
+  </ol>
+</nav>
+
+
+<p>\</p>
+<h1 id="name">NAME</h1>
+<p>busy - confine pointer events to a window sub-tree</p>
+<h1 id="synopsis">SYNOPSIS</h1>
+<p><strong>tk busy</strong> <em>window </em>?<em>options</em>?</p>
+<p><strong>tk busy hold</strong> <em>window </em>?<em>options</em>?</p>
+<p><strong>tk busy configure </strong><em>window</em> ?<em>option value</em>?...</p>
+<p><strong>tk busy forget</strong> <em>window </em>?<em>window </em>?...</p>
+<p><strong>tk busy current</strong> ?<em>pattern</em>?</p>
+<p><strong>tk busy status </strong><em>window</em></p>
+<p>\</p>
+<h1 id="description">DESCRIPTION</h1>
+<p>The <strong>tk busy</strong> command provides a simple means to block pointer events
+from Tk widgets, while overriding the widget\'s cursor with a
+configurable busy cursor. Note this command does not prevent keyboard
+events from being sent to the widgets made busy.</p>
+<h1 id="introduction">INTRODUCTION</h1>
+<p>There are many times in applications where you want to temporarily
+restrict what actions the user can take. For example, an application
+could have a button that when pressed causes some processing to occur.
+However, while the application is busy processing, you probably don\'t
+want the user to be able to click the button again. You may also want
+restrict the user from other tasks such as clicking a button.</p>
+<p>The <strong>tk busy</strong> command lets you make Tk widgets busy. This means that
+user interactions such as button clicks, moving the mouse, typing at the
+keyboard, etc. are ignored by the widget. You can set a special cursor
+(like a watch) that overrides the widget\'s normal cursor, providing
+feedback that the application (widget) is temporarily busy.</p>
+<p>When a widget is made busy, the widget and all of its descendants will
+ignore pointer events. It\'s easy to make an entire panel of widgets
+busy. You can simply make the toplevel widget (such as busy. This is
+easier and far much more efficient than recursively traversing the
+widget hierarchy, disabling each widget and re-configuring its cursor.</p>
+<p>Often, the <strong>tk busy</strong> command can be used instead of Tk\'s <strong>grab</strong>
+command. Unlike <strong>grab</strong> which restricts all user interactions to one
+widget, with the <strong>tk busy</strong> command you can have more than one widget
+active (for example, a dialog and a button).</p>
+<h2 id="example">EXAMPLE</h2>
+<p>You can make several widgets busy by simply making its ancestor widget
+busy using the <strong>hold</strong> operation.</p>
+<div class="language-text highlight"><pre><span></span><code>frame .top
+button .top.button; canvas .top.canvas
+pack .top.button .top.canvas
+pack .top
+# . . .
+tk busy hold .top
+update
+</code></pre></div>
+<p>All the widgets within <strong>.top</strong> (including <strong>.top</strong>) are now busy. Using
+<strong>update</strong> insures that <strong>tk busy</strong> command will take effect before any
+other user events can occur.</p>
+<p>When the application is no longer busy processing, you can allow user
+interactions again and free any resources it allocated by the <strong>forget</strong>
+operation.</p>
+<div class="language-text highlight"><pre><span></span><code>tk busy forget .top
+</code></pre></div>
+<p>The busy window has a configurable cursor. You can change the busy
+cursor using the <strong>configure</strong> operation.</p>
+<div class="language-text highlight"><pre><span></span><code>tk busy configure .top -cursor &quot;watch&quot;
+</code></pre></div>
+<p>Destroying the widget will also clean up any resources allocated by the
+<strong>tk</strong> busy command.</p>
+<h1 id="operations">OPERATIONS</h1>
+<p>The following operations are available for the <strong>tk busy</strong> command:</p>
+<p><strong>tk busy </strong><em>window</em> ?<em>option value</em>?...</p>
+<p>:   Shortcut for <strong>tk busy hold</strong> command.</p>
+<p><strong>tk busy hold </strong><em>window</em> ?<em>option value</em>?...</p>
+<p>:   Makes the specified <em>window</em> (and its descendants in the Tk window
+    hierarchy) appear busy. <em>Window</em> must be a valid path name of a Tk
+    widget. A transparent window is put in front of the specified
+    window. This transparent window is mapped the next time idle tasks
+    are processed, and the specified window and its descendants will be
+    blocked from user interactions. Normally <strong>update</strong> should be called
+    immediately afterward to insure that the hold operation is in effect
+    before the application starts its processing. The following
+    configuration options are valid:</p>
+<div class="language-text highlight"><pre><span></span><code>**-cursor ***cursorName*
+
+:   Specifies the cursor to be displayed when the widget is made
+    busy. *CursorName* can be in any form accepted by
+    **Tk_GetCursor**. The default cursor is **wait** on Windows and
+    **watch** on other platforms.
+</code></pre></div>
+<p><strong>tk busy cget </strong><em>window</em> <em>option</em></p>
+<p>:   Queries the <strong>tk busy</strong> command configuration options for <em>window</em>.
+    <em>Window</em> must be the path name of a widget previously made busy by
+    the <strong>hold</strong> operation. The command returns the present value of the
+    specified <em>option</em>. <em>Option</em> may have any of the values accepted by
+    the <strong>hold</strong> operation.</p>
+<p><strong>tk busy configure </strong><em>window</em> ?<em>option value</em>?...</p>
+<p>:   Queries or modifies the <strong>tk busy</strong> command configuration options
+    for <em>window</em>. <em>Window</em> must be the path name of a widget previously
+    made busy by the <strong>hold</strong> operation. If no options are specified, a
+    list describing all of the available options for <em>window</em> (see
+    <strong>Tk_ConfigureInfo</strong> for information on the format of this list) is
+    returned. If <em>option</em> is specified with no <em>value</em>, then the command
+    returns a list describing the one named option (this list will be
+    identical to the corresponding sublist of the value returned if no
+    <em>option</em> is specified). If one or more <em>option-value</em> pairs are
+    specified, then the command modifies the given widget option(s) to
+    have the given value(s); in this case the command returns the empty
+    string. <em>Option</em> may have any of the values accepted by the <strong>hold</strong>
+    operation.</p>
+<div class="language-text highlight"><pre><span></span><code>Please note that the option database is referenced through *window*.
+For example, if the widget **.frame** is to be made busy, the busy
+cursor can be specified for it by either **option** command:
+
+    option add *frame.busyCursor gumby
+    option add *Frame.BusyCursor gumby
+</code></pre></div>
+<p><strong>tk busy forget </strong><em>window</em> ?<em>window</em>?...</p>
+<p>:   Releases resources allocated by the <strong>tk busy</strong> command for
+    <em>window</em>, including the transparent window. User events will again
+    be received by <em>window</em>. Resources are also released when <em>window</em>
+    is destroyed. <em>Window</em> must be the name of a widget specified in the
+    <strong>hold</strong> operation, otherwise an error is reported.</p>
+<p><strong>tk busy current </strong>?<em>pattern</em>?</p>
+<p>:   Returns the pathnames of all widgets that are currently busy. If a
+    <em>pattern</em> is given, only the path names of busy widgets matching
+    <em>pattern</em> are returned.</p>
+<p><strong>tk busy status </strong><em>window</em></p>
+<p>:   Returns the status of a widget <em>window</em>. If <em>window</em> presently can
+    not receive user interactions, <strong>1</strong> is returned, otherwise <strong>0</strong>.</p>
+<h1 id="event-handling">EVENT HANDLING</h1>
+<h2 id="bindings">BINDINGS</h2>
+<p>The event blocking feature is implemented by creating and mapping a
+transparent window that completely covers the widget. When the busy
+window is mapped, it invisibly shields the widget and its hierarchy from
+all events that may be sent. Like Tk widgets, busy windows have widget
+names in the Tk window hierarchy. This means that you can use the
+<strong>bind</strong> command, to handle events in the busy window.</p>
+<div class="language-text highlight"><pre><span></span><code>tk busy hold .frame.canvas
+bind .frame.canvas_Busy &lt;Enter&gt; { ... }
+</code></pre></div>
+<p>Normally the busy window is a sibling of the widget. The name of the
+busy window is where <em>widget</em> is the name of the widget to be made busy.
+In the previous example, the pathname of the busy window is The
+exception is when the widget is a toplevel widget (such as where the
+busy window can\'t be made a sibling. The busy window is then a child of
+the widget named where <em>widget</em> is the name of the toplevel widget. In
+the following example, the pathname of the busy window is</p>
+<div class="language-text highlight"><pre><span></span><code>tk busy hold .
+bind ._Busy &lt;Enter&gt; { ... }
+</code></pre></div>
+<h2 id="enterleave-events">ENTER/LEAVE EVENTS</h2>
+<p>Mapping and unmapping busy windows generates Enter/Leave events for all
+widgets they cover. Please note this if you are tracking Enter/Leave
+events in widgets.</p>
+<h2 id="keyboard-events">KEYBOARD EVENTS</h2>
+<p>When a widget is made busy, the widget is prevented from gaining the
+keyboard focus by a user clicking on it by the busy window. But if the
+widget already had focus, it still may receive keyboard events. The
+widget can also still receive focus through keyboard traversal. To
+prevent this, you must move focus to another window and make sure the
+focus can not go back to the widgets made busy (e.g. but restricting
+focus to a cancel button).</p>
+<div class="language-text highlight"><pre><span></span><code>pack [frame .frame]
+pack [text .frame.text]
+tk busy hold .frame
+pack [button .cancel -text &quot;Cancel&quot; -command exit]
+focus .cancel
+bind .cancel &lt;Tab&gt; {break}
+bind .cancel &lt;Shift-Tab&gt; {break}
+update
+</code></pre></div>
+<p>The above example moves the focus from .frame immediately after invoking
+the <strong>hold</strong> so that no keyboard events will be sent to <strong>.frame</strong> or
+any of its descendants. It also makes sure it\'s not possible to leave
+button <strong>.cancel</strong> using the keyboard.</p>
+<h1 id="portability">PORTABILITY</h1>
+<p>Note that the <strong>tk busy</strong> command does not currently have any effect on
+OSX when Tk is built using Aqua support.</p>
+<h1 id="see-also">SEE ALSO</h1>
+<p>grab(n)</p>
+<h1 id="keywords">KEYWORDS</h1>
+<p>busy, keyboard events, pointer events, window</p>
+
+<ul class="metadata page-metadata" data-bi-name="page info" lang="en-us" dir="ltr">
+  <li class="last-updated-holder displayDate loading">
+    <span class="last-updated-text">Last updated:</span>
+    <time role="presentation" datetime="2018-10-25T00:00:00.000Z" data-article-date-source="ms.date"></time>
+  </li>
+<!--
+  <li class="readingTime">
+    2 minutes to read
+  </li>
+-->
+  <li class="contributors-holder">
+    <span class="contributors-text">Contributors</span>
+    <ul class="contributors" data-bi-name="contributors"></ul>
+  </li>
+</ul>
+</div>
+        <div class="col-md-3"><div class="navbar-light navbar-expand-md hidden-print sticky-top sticky-offset" role="complementary">
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggler collapsed" data-toggle="collapse" data-target="#toc-collapse" title="Table of Contents">
+            <span class="fa fa-angle-down"></span>
+        </button>
+    </div>
+
+    <div id="toc-collapse" class="navbar-collapse collapse card">
+        <ul class="nav flex-column bs-sidenav">
+            <li class="nav-item main"><a class="nav-link" href="#name">NAME</a></li>
+            <li class="nav-item main"><a class="nav-link" href="#synopsis">SYNOPSIS</a></li>
+            <li class="nav-item main"><a class="nav-link" href="#description">DESCRIPTION</a></li>
+            <li class="nav-item main"><a class="nav-link" href="#introduction">INTRODUCTION</a></li>
+                <li class="nav-item">
+                    <a href="#example" class="nav-link">EXAMPLE</a>
+                </li>
+            <li class="nav-item main"><a class="nav-link" href="#operations">OPERATIONS</a></li>
+            <li class="nav-item main"><a class="nav-link" href="#event-handling">EVENT HANDLING</a></li>
+                <li class="nav-item">
+                    <a href="#bindings" class="nav-link">BINDINGS</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#enterleave-events" class="nav-link">ENTER/LEAVE EVENTS</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#keyboard-events" class="nav-link">KEYBOARD EVENTS</a>
+                </li>
+            <li class="nav-item main"><a class="nav-link" href="#portability">PORTABILITY</a></li>
+            <li class="nav-item main"><a class="nav-link" href="#see-also">SEE ALSO</a></li>
+            <li class="nav-item main"><a class="nav-link" href="#keywords">KEYWORDS</a></li>
+        </ul>
+    </div>
+</div></div>
+      </div>
+      </div>
+
+      <footer class="col-md-12">
+	<hr>
+	<div class="container">
+	</div>
+      </footer>
+      <script>
+	var base_url = "../..",
+            shortcuts = {"help": 191, "next": 78, "previous": 80, "search": 83};
+      </script>
+      <script src="../../js/base.js" defer></script>
+      <script src="../../search/main.js" defer></script>
+
+      <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="Search Modal" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Search</h4>
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            </div>
+            <div class="modal-body">
+                <p>
+                    From here you can search these documents. Enter
+                    your search terms below.
+                </p>
+                <form role="form">
+                    <div class="form-group">
+                        <input type="text" class="form-control" placeholder="Search..." id="mkdocs-search-query" title="Type search term here">
+                    </div>
+                </form>
+                <div id="mkdocs-search-results"></div>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div><div class="modal" id="mkdocs_keyboard_modal" tabindex="-1" role="dialog" aria-labelledby="Keyboard Shortcuts Modal" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <p class="h4 modal-title">Keyboard Shortcuts</p>
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            </div>
+            <div class="modal-body">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th style="width: 20%;">Keys</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="help shortcut"><kbd>?</kbd></td>
+                    <td>Open this help</td>
+                  </tr>
+                  <tr>
+                    <td class="next shortcut"><kbd>n</kbd></td>
+                    <td>Next page</td>
+                  </tr>
+                  <tr>
+                    <td class="prev shortcut"><kbd>p</kbd></td>
+                    <td>Previous page</td>
+                  </tr>
+                  <tr>
+                    <td class="search shortcut"><kbd>s</kbd></td>
+                    <td>Search</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>
+
+    </body>
+</html>

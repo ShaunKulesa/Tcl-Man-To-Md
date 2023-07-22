@@ -1,16 +1,11 @@
-\
-
 # NAME
 
 tcl::prefix - facilities for prefix matching
 
 # SYNOPSIS
 
-    ::tcl::prefix all table string
-    ::tcl::prefix longest table string
-    ::tcl::prefix match ?option ...? table string
-
-\
+**::tcl::prefix all** *table* *string* **::tcl::prefix longest** *table*
+*string* **::tcl::prefix match** *?option \...?* *table* *string*
 
 # DESCRIPTION
 
@@ -96,3 +91,8 @@ lsearch(n), namespace(n), string(n), Tcl_GetIndexFromObj(3)
 # KEYWORDS
 
 prefix, table lookup
+
+<!---
+Copyright (c) 2008 Peter Spjuth <pspjuth@users.sourceforge.net
+-->
+

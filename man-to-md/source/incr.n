@@ -31,30 +31,30 @@ the value \fIincrement\fR or to the default increment value of \fB1\fR.
 .PP
 Add one to the contents of the variable \fIx\fR:
 .PP
-.nf
+.CS
 \fBincr\fR x
-.fi
+.CE
 .PP
 Add 42 to the contents of the variable \fIx\fR:
 .PP
-.nf
+.CS
 \fBincr\fR x 42
-.fi
+.CE
 .PP
 Add the contents of the variable \fIy\fR to the contents of the
 variable \fIx\fR:
 .PP
-.nf
+.CS
 \fBincr\fR x $y
-.fi
+.CE
 .PP
 Add nothing at all to the variable \fIx\fR (often useful for checking
 whether an argument to a procedure is actually integral and generating
 an error if it is not):
 .PP
-.nf
+.CS
 \fBincr\fR x 0
-.fi
+.CE
 .SH "SEE ALSO"
 expr(n), set(n)
 .SH KEYWORDS

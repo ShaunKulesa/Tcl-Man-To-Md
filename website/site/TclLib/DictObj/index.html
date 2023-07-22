@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+      <script>
+	// Hack for scrolling window when linking to anchor tag with fixed nav header
+        var shiftWindow = function() { scrollBy(0, -75) };
+        window.addEventListener("hashchange", shiftWindow);
+        function load() { if (window.location.hash) shiftWindow(); }
+      </script>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        
+        <link rel="canonical" href="https://www.tcl.tk/man/TclLib/DictObj/">
+        <link rel="shortcut icon" href="../../img/favicon.ico">
+        <title>DictObj - Tcl/Tk</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <link href="../../css/font-awesome.min.css" rel="stylesheet">
+    <link href="../../css/base.css" rel="stylesheet">
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+    <script src="../../js/base.js"></script> 
+    </head>
+
+    <body class="">
+
+      <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
+	<div class="container">
+	<a class="navbar-brand" href="../..">Tcl/Tk</a>
+	<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExample04" aria-controls="navbarsExample04" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+	</button>
+
+	<div class="collapse navbar-collapse">
+
+          <ul class="navbar-nav flex-row ml-md-auto d-none d-md-flex">
+            <li class="nav-item">
+              <a class="nav-link" href="#" data-toggle="modal" data-target="#mkdocs_search_modal">
+		<i class="fa fa-search"></i> Search
+              </a>
+            </li>
+          </ul>
+	</div>
+	</div>
+      </nav><div id="content" class="container">
+        
+      <div class="row">
+        <div class="col-md-9" role="main">
+
+
+<nav aria-label="breadcrumb">
+  <ol class="breadcrumb">
+    
+    <li class="breadcrumb-item active" aria-current="page">DictObj</li>
+  </ol>
+</nav>
+
+
+<p>\</p>
+<h1 id="name">NAME</h1>
+<p>Tcl_NewDictObj, Tcl_DictObjPut, Tcl_DictObjGet, Tcl_DictObjRemove,
+Tcl_DictObjSize, Tcl_DictObjFirst, Tcl_DictObjNext, Tcl_DictObjDone,
+Tcl_DictObjPutKeyList, Tcl_DictObjRemoveKeyList - manipulate Tcl values
+as dictionaries</p>
+<h1 id="synopsis">SYNOPSIS</h1>
+<p><strong>#include \&lt;tcl.h></strong></p>
+<p>Tcl_Obj * <strong>Tcl_NewDictObj</strong>()</p>
+<p>int <strong>Tcl_DictObjGet</strong>(<em>interp, dictPtr, keyPtr, valuePtrPtr</em>)</p>
+<p>int <strong>Tcl_DictObjPut</strong>(<em>interp, dictPtr, keyPtr, valuePtr</em>)</p>
+<p>int <strong>Tcl_DictObjRemove</strong>(<em>interp, dictPtr, keyPtr</em>)</p>
+<p>int <strong>Tcl_DictObjSize</strong>(<em>interp, dictPtr, sizePtr</em>)</p>
+<p>int <strong>Tcl_DictObjFirst</strong>(<em>interp, dictPtr, searchPtr,</em> keyPtrPtr,
+valuePtrPtr, donePtr)</p>
+<p>void <strong>Tcl_DictObjNext</strong>(<em>searchPtr, keyPtrPtr, valuePtrPtr, donePtr</em>)</p>
+<p>void <strong>Tcl_DictObjDone</strong>(<em>searchPtr</em>)</p>
+<p>int <strong>Tcl_DictObjPutKeyList</strong>(<em>interp, dictPtr, keyc, keyv, valuePtr</em>)</p>
+<p>int <strong>Tcl_DictObjRemoveKeyList</strong>(<em>interp, dictPtr, keyc, keyv</em>)</p>
+<h1 id="arguments">ARGUMENTS</h1>
+<p>If an error occurs while converting a value to be a dictionary value, an
+error message is left in the interpreter\'s result value unless <em>interp</em>
+is NULL.</p>
+<p>Points to the dictionary value to be manipulated. If <em>dictPtr</em> does not
+already point to a dictionary value, an attempt will be made to convert
+it to one.</p>
+<p>Points to the key for the key/value pair being manipulated within the
+dictionary value.</p>
+<p>Points to a variable that will have the key from a key/value pair placed
+within it. May be NULL to indicate that the caller is not interested in
+the key.</p>
+<p>Points to the value for the key/value pair being manipulated within the
+dictionary value (or sub-value, in the case of
+<strong>Tcl_DictObjPutKeyList</strong>.)</p>
+<p>Points to a variable that will have the value from a key/value pair
+placed within it. For <strong>Tcl_DictObjFirst</strong> and <strong>Tcl_DictObjNext</strong>, this
+may be NULL to indicate that the caller is not interested in the value.</p>
+<p>Points to a variable that will have the number of key/value pairs
+contained within the dictionary placed within it.</p>
+<p>Pointer to record to use to keep track of progress in enumerating all
+key/value pairs in a dictionary. The contents of the record will be
+initialized by the call to <strong>Tcl_DictObjFirst</strong>. If the enumerating is
+to be terminated before all values in the dictionary have been returned,
+the search record <em>must</em> be passed to <strong>Tcl_DictObjDone</strong> to enable the
+internal locks to be released.</p>
+<p>Points to a variable that will have a non-zero value written into it
+when the enumeration of the key/value pairs in a dictionary has
+completed, and a zero otherwise.</p>
+<p>Indicates the number of keys that will be supplied in the <em>keyv</em> array.</p>
+<p>Array of <em>keyc</em> pointers to values that <strong>Tcl_DictObjPutKeyList</strong> and
+<strong>Tcl_DictObjRemoveKeyList</strong> will use to locate the key/value pair to
+manipulate within the sub-dictionaries of the main dictionary value
+passed to them.</p>
+<p>\</p>
+<h1 id="description">DESCRIPTION</h1>
+<p>Tcl dictionary values have an internal representation that supports
+efficient mapping from keys to values and which guarantees that the
+particular ordering of keys within the dictionary remains the same
+modulo any keys being deleted (which removes them from the order) or
+added (which adds them to the end of the order). If reinterpreted as a
+list, the values at the even-valued indices in the list will be the keys
+of the dictionary, and each will be followed (in the odd-valued index)
+by the value associated with that key.</p>
+<p>The procedures described in this man page are used to create, modify,
+index, and iterate over dictionary values from C code.</p>
+<p><strong>Tcl_NewDictObj</strong> creates a new, empty dictionary value. The string
+representation of the value will be invalid, and the reference count of
+the value will be zero.</p>
+<p><strong>Tcl_DictObjGet</strong> looks up the given key within the given dictionary
+and writes a pointer to the value associated with that key into the
+variable pointed to by <em>valuePtrPtr</em>, or a NULL if the key has no
+mapping within the dictionary. The result of this procedure is
+<strong>TCL_OK</strong>, or <strong>TCL_ERROR</strong> if the <em>dictPtr</em> cannot be converted to a
+dictionary.</p>
+<p><strong>Tcl_DictObjPut</strong> updates the given dictionary so that the given key
+maps to the given value; any key may exist at most once in any
+particular dictionary. The dictionary must not be shared, but the key
+and value may be. This procedure may increase the reference count of
+both key and value if it proves necessary to store them. Neither key nor
+value should be NULL. The result of this procedure is <strong>TCL_OK</strong>, or
+<strong>TCL_ERROR</strong> if the <em>dictPtr</em> cannot be converted to a dictionary.</p>
+<p><strong>Tcl_DictObjRemove</strong> updates the given dictionary so that the given key
+has no mapping to any value. The dictionary must not be shared, but the
+key may be. The key actually stored in the dictionary will have its
+reference count decremented if it was present. It is not an error if the
+key did not previously exist. The result of this procedure is
+<strong>TCL_OK</strong>, or <strong>TCL_ERROR</strong> if the <em>dictPtr</em> cannot be converted to a
+dictionary.</p>
+<p><strong>Tcl_DictObjSize</strong> updates the given variable with the number of
+key/value pairs currently in the given dictionary. The result of this
+procedure is <strong>TCL_OK</strong>, or <strong>TCL_ERROR</strong> if the <em>dictPtr</em> cannot be
+converted to a dictionary.</p>
+<p><strong>Tcl_DictObjFirst</strong> commences an iteration across all the key/value
+pairs in the given dictionary, placing the key and value in the
+variables pointed to by the <em>keyPtrPtr</em> and <em>valuePtrPtr</em> arguments
+(which may be NULL to indicate that the caller is uninterested in they
+key or variable respectively.) The next key/value pair in the dictionary
+may be retrieved with <strong>Tcl_DictObjNext</strong>. Concurrent updates of the
+dictionary\'s internal representation will not modify the iteration
+processing unless the dictionary is unshared, when this will trigger
+premature termination of the iteration instead (which Tcl scripts cannot
+trigger via the <strong>dict</strong> command.) The <em>searchPtr</em> argument points to a
+piece of context that is used to identify which particular iteration is
+being performed, and is initialized by the call to <strong>Tcl_DictObjFirst</strong>.
+The <em>donePtr</em> argument points to a variable that is updated to be zero
+of there are further key/value pairs to be iterated over, or non-zero if
+the iteration is complete. The order of iteration is
+implementation-defined. If the <em>dictPtr</em> argument cannot be converted to
+a dictionary, <strong>Tcl_DictObjFirst</strong> returns <strong>TCL_ERROR</strong> and the
+iteration is not commenced, and otherwise it returns <strong>TCL_OK</strong>.</p>
+<p>When <strong>Tcl_DictObjFirst</strong> is called upon a dictionary, a lock is placed
+on the dictionary to enable that dictionary to be iterated over safely
+without regard for whether the dictionary is modified during the
+iteration. Because of this, once the iteration over a dictionary\'s keys
+has finished (whether because all values have been iterated over as
+indicated by the variable indicated by the <em>donePtr</em> argument being set
+to one, or because no further values are required) the
+<strong>Tcl_DictObjDone</strong> function must be called with the same <em>searchPtr</em> as
+was passed to <strong>Tcl_DictObjFirst</strong> so that the internal locks can be
+released. Once a particular <em>searchPtr</em> is passed to
+<strong>Tcl_DictObjDone</strong>, passing it to <strong>Tcl_DictObjNext</strong> (without first
+initializing it with <strong>Tcl_DictObjFirst</strong>) will result in no values
+being produced and the variable pointed to by <em>donePtr</em> being set to
+one. It is safe to call <strong>Tcl_DictObjDone</strong> multiple times on the same
+<em>searchPtr</em> for each call to <strong>Tcl_DictObjFirst</strong>.</p>
+<p>The procedures <strong>Tcl_DictObjPutKeyList</strong> and
+<strong>Tcl_DictObjRemoveKeyList</strong> are the close analogues of
+<strong>Tcl_DictObjPut</strong> and <strong>Tcl_DictObjRemove</strong> respectively, except that
+instead of working with a single dictionary, they are designed to
+operate on a nested tree of dictionaries, with inner dictionaries stored
+as values inside outer dictionaries. The <em>keyc</em> and <em>keyv</em> arguments
+specify a list of keys (with outermost keys first) that acts as a path
+to the key/value pair to be affected. Note that there is no
+corresponding operation for reading a value for a path as this is easy
+to construct from repeated use of <strong>Tcl_DictObjGet</strong>. With
+<strong>Tcl_DictObjPutKeyList</strong>, nested dictionaries are created for
+non-terminal keys where they do not already exist. With
+<strong>Tcl_DictObjRemoveKeyList</strong>, all non-terminal keys must exist and have
+dictionaries as their values.</p>
+<h1 id="example">EXAMPLE</h1>
+<p>Using the dictionary iteration interface to search determine if there is
+a key that maps to itself:</p>
+<div class="language-text highlight"><pre><span></span><code>Tcl_DictSearch search;
+Tcl_Obj *key, *value;
+int done;
+
+/*
+ * Assume interp and objPtr are parameters.  This is the
+ * idiomatic way to start an iteration over the dictionary; it
+ * sets a lock on the internal representation that ensures that
+ * there are no concurrent modification issues when normal
+ * reference count management is also used.  The lock is
+ * released automatically when the loop is finished, but must
+ * be released manually when an exceptional exit from the loop
+ * is performed. However it is safe to try to release the lock
+ * even if we&#39;ve finished iterating over the loop.
+ */
+if (Tcl_DictObjFirst(interp, objPtr, &amp;search,
+        &amp;key, &amp;value, &amp;done) != TCL_OK) {
+    return TCL_ERROR;
+}
+for (; !done ; Tcl_DictObjNext(&amp;search, &amp;key, &amp;value, &amp;done)) {
+    /*
+     * Note that strcmp() is not a good way of comparing
+     * values and is just used here for demonstration
+     * purposes.
+     */
+    if (!strcmp(Tcl_GetString(key), Tcl_GetString(value))) {
+        break;
+    }
+}
+Tcl_DictObjDone(&amp;search);
+Tcl_SetObjResult(interp, Tcl_NewBooleanObj(!done));
+return TCL_OK;
+</code></pre></div>
+<h1 id="see-also">SEE ALSO</h1>
+<p>Tcl_NewObj, Tcl_DecrRefCount, Tcl_IncrRefCount, Tcl_InitObjHashTable</p>
+<h1 id="keywords">KEYWORDS</h1>
+<p>dict, dict value, dictionary, dictionary value, hash table, iteration,
+value</p>
+
+<ul class="metadata page-metadata" data-bi-name="page info" lang="en-us" dir="ltr">
+  <li class="last-updated-holder displayDate loading">
+    <span class="last-updated-text">Last updated:</span>
+    <time role="presentation" datetime="2018-10-25T00:00:00.000Z" data-article-date-source="ms.date"></time>
+  </li>
+<!--
+  <li class="readingTime">
+    2 minutes to read
+  </li>
+-->
+  <li class="contributors-holder">
+    <span class="contributors-text">Contributors</span>
+    <ul class="contributors" data-bi-name="contributors"></ul>
+  </li>
+</ul>
+</div>
+        <div class="col-md-3"><div class="navbar-light navbar-expand-md hidden-print sticky-top sticky-offset" role="complementary">
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggler collapsed" data-toggle="collapse" data-target="#toc-collapse" title="Table of Contents">
+            <span class="fa fa-angle-down"></span>
+        </button>
+    </div>
+
+    <div id="toc-collapse" class="navbar-collapse collapse card">
+        <ul class="nav flex-column bs-sidenav">
+            <li class="nav-item main"><a class="nav-link" href="#name">NAME</a></li>
+            <li class="nav-item main"><a class="nav-link" href="#synopsis">SYNOPSIS</a></li>
+            <li class="nav-item main"><a class="nav-link" href="#arguments">ARGUMENTS</a></li>
+            <li class="nav-item main"><a class="nav-link" href="#description">DESCRIPTION</a></li>
+            <li class="nav-item main"><a class="nav-link" href="#example">EXAMPLE</a></li>
+            <li class="nav-item main"><a class="nav-link" href="#see-also">SEE ALSO</a></li>
+            <li class="nav-item main"><a class="nav-link" href="#keywords">KEYWORDS</a></li>
+        </ul>
+    </div>
+</div></div>
+      </div>
+      </div>
+
+      <footer class="col-md-12">
+	<hr>
+	<div class="container">
+	</div>
+      </footer>
+      <script>
+	var base_url = "../..",
+            shortcuts = {"help": 191, "next": 78, "previous": 80, "search": 83};
+      </script>
+      <script src="../../js/base.js" defer></script>
+      <script src="../../search/main.js" defer></script>
+
+      <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="Search Modal" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Search</h4>
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            </div>
+            <div class="modal-body">
+                <p>
+                    From here you can search these documents. Enter
+                    your search terms below.
+                </p>
+                <form role="form">
+                    <div class="form-group">
+                        <input type="text" class="form-control" placeholder="Search..." id="mkdocs-search-query" title="Type search term here">
+                    </div>
+                </form>
+                <div id="mkdocs-search-results"></div>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div><div class="modal" id="mkdocs_keyboard_modal" tabindex="-1" role="dialog" aria-labelledby="Keyboard Shortcuts Modal" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <p class="h4 modal-title">Keyboard Shortcuts</p>
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            </div>
+            <div class="modal-body">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th style="width: 20%;">Keys</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="help shortcut"><kbd>?</kbd></td>
+                    <td>Open this help</td>
+                  </tr>
+                  <tr>
+                    <td class="next shortcut"><kbd>n</kbd></td>
+                    <td>Next page</td>
+                  </tr>
+                  <tr>
+                    <td class="prev shortcut"><kbd>p</kbd></td>
+                    <td>Previous page</td>
+                  </tr>
+                  <tr>
+                    <td class="search shortcut"><kbd>s</kbd></td>
+                    <td>Search</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>
+
+    </body>
+</html>

@@ -1,20 +1,16 @@
-\
-
 # NAME
 
 Tcl_Sleep - delay execution for a given number of milliseconds
 
 # SYNOPSIS
 
-    #include <tcl.h>
+**#include \<tcl.h\>**
 
-    Tcl_Sleep(ms)
+**Tcl_Sleep**(*ms*)
 
 # ARGUMENTS
 
 Number of milliseconds to sleep.
-
-\
 
 # DESCRIPTION
 
@@ -29,3 +25,9 @@ used instead of **Tcl_Sleep**.
 # KEYWORDS
 
 sleep, time, wait
+
+<!---
+Copyright (c) 1990 The Regents of the University of California
+Copyright (c) 1994-1996 Sun Microsystems, Inc
+-->
+

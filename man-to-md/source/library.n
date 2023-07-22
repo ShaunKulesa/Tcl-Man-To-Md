@@ -11,7 +11,6 @@
 .SH NAME
 auto_execok, auto_import, auto_load, auto_mkindex, auto_qualify, auto_reset, tcl_findLibrary, parray, tcl_endOfWord, tcl_startOfNextWord, tcl_startOfPreviousWord, tcl_wordBreakAfter, tcl_wordBreakBefore \- standard library of Tcl procedures
 .SH SYNOPSIS
-.nf
 \fBauto_execok \fIcmd\fR
 \fBauto_import \fIpattern\fR
 \fBauto_load \fIcmd\fR
@@ -44,9 +43,9 @@ To access the procedures in the Tcl library, an application should
 source the file \fBinit.tcl\fR in the library, for example with
 the Tcl command
 .PP
-.nf
+.CS
 \fBsource [file join [info library] init.tcl]\fR
-.fi
+.CE
 .PP
 If the library procedure \fBTcl_Init\fR is invoked from an application's
 \fBTcl_AppInit\fR procedure, this happens automatically.
@@ -116,9 +115,9 @@ named \fBtclIndex\fR in \fIdir\fR. If no pattern is given a pattern of
 \fB*.tcl\fR will be assumed.  For example, the command
 .RS
 .PP
-.nf
+.CS
 \fBauto_mkindex foo *.tcl\fR
-.fi
+.CE
 .PP
 will read all the \fB.tcl\fR files in subdirectory \fBfoo\fR and
 generate a new index file \fBfoo/tclIndex\fR.

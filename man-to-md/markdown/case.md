@@ -1,5 +1,3 @@
-\
-
 # NAME
 
 case - Evaluate one of several scripts, depending on a given value
@@ -9,8 +7,6 @@ case - Evaluate one of several scripts, depending on a given value
 **case*** string *?**in**? *patList body *?*patList body *\...?
 
 **case*** string *?**in**? {*patList body *?*patList body *\...?}
-
-\
 
 # DESCRIPTION
 
@@ -50,3 +46,9 @@ switch(n)
 # KEYWORDS
 
 case, match, regular expression
+
+<!---
+Copyright (c) 1993 The Regents of the University of California
+Copyright (c) 1994-1996 Sun Microsystems, Inc
+-->
+

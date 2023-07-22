@@ -1,5 +1,3 @@
-\
-
 # NAME
 
 after - Execute a command after a time delay
@@ -17,8 +15,6 @@ after - Execute a command after a time delay
 **after idle **?*script script script \...*?
 
 **after info **?*id*?
-
-\
 
 # DESCRIPTION
 
@@ -133,3 +129,9 @@ concat(n), interp(n), update(n), vwait(n)
 # KEYWORDS
 
 cancel, delay, idle callback, sleep, time
+
+<!---
+Copyright (c) 1990-1994 The Regents of the University of California
+Copyright (c) 1994-1996 Sun Microsystems, Inc
+-->
+

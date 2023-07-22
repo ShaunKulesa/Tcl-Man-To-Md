@@ -1,24 +1,18 @@
-\
-
 # NAME
 
 Tcl_SignalId, Tcl_SignalMsg - Convert signal codes
 
 # SYNOPSIS
 
-    #include <tcl.h>
+**#include \<tcl.h\>**
 
-    const char *
-    Tcl_SignalId(sig)
+const char \* **Tcl_SignalId**(*sig*)
 
-    const char *
-    Tcl_SignalMsg(sig)
+const char \* **Tcl_SignalMsg**(*sig*)
 
 # ARGUMENTS
 
 A POSIX signal number such as **SIGPIPE**.
-
-\
 
 # DESCRIPTION
 
@@ -31,3 +25,8 @@ are statically allocated and the caller must not free or modify them.
 # KEYWORDS
 
 signals, signal numbers
+
+<!---
+Copyright (c) 2001 ActiveState Tool Corp
+-->
+

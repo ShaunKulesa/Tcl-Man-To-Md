@@ -1,0 +1,667 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+      <script>
+	// Hack for scrolling window when linking to anchor tag with fixed nav header
+        var shiftWindow = function() { scrollBy(0, -75) };
+        window.addEventListener("hashchange", shiftWindow);
+        function load() { if (window.location.hash) shiftWindow(); }
+      </script>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        
+        <link rel="canonical" href="https://www.tcl.tk/man/TkLib/ConfigWidg/">
+        <link rel="shortcut icon" href="../../img/favicon.ico">
+        <title>ConfigWidg - Tcl/Tk</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <link href="../../css/font-awesome.min.css" rel="stylesheet">
+    <link href="../../css/base.css" rel="stylesheet">
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+    <script src="../../js/base.js"></script> 
+    </head>
+
+    <body class="">
+
+      <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
+	<div class="container">
+	<a class="navbar-brand" href="../..">Tcl/Tk</a>
+	<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExample04" aria-controls="navbarsExample04" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+	</button>
+
+	<div class="collapse navbar-collapse">
+
+          <ul class="navbar-nav flex-row ml-md-auto d-none d-md-flex">
+            <li class="nav-item">
+              <a class="nav-link" href="#" data-toggle="modal" data-target="#mkdocs_search_modal">
+		<i class="fa fa-search"></i> Search
+              </a>
+            </li>
+          </ul>
+	</div>
+	</div>
+      </nav><div id="content" class="container">
+        
+      <div class="row">
+        <div class="col-md-9" role="main">
+
+
+<nav aria-label="breadcrumb">
+  <ol class="breadcrumb">
+    
+    <li class="breadcrumb-item active" aria-current="page">ConfigWidg</li>
+  </ol>
+</nav>
+
+
+<p>\</p>
+<h1 id="name">NAME</h1>
+<p>Tk_ConfigureWidget, Tk_ConfigureInfo, Tk_ConfigureValue,
+Tk_FreeOptions - process configuration options for widgets</p>
+<h1 id="synopsis">SYNOPSIS</h1>
+<p><strong>#include \&lt;tk.h></strong></p>
+<p>int <strong>Tk_ConfigureWidget(</strong><em>interp, tkwin, specs, argc, argv, widgRec,
+flags</em><strong>)</strong></p>
+<p>int <strong>Tk_ConfigureInfo(</strong><em>interp, tkwin, specs, widgRec, argvName,
+flags</em><strong>)</strong></p>
+<p>int <strong>Tk_ConfigureValue(</strong><em>interp, tkwin, specs, widgRec, argvName,
+flags</em><strong>)</strong></p>
+<p><strong>Tk_FreeOptions(</strong><em>specs, widgRec, display, flags</em><strong>)</strong></p>
+<h1 id="arguments">ARGUMENTS</h1>
+<p>Interpreter to use for returning error messages.</p>
+<p>Window used to represent widget (needed to set up X resources).</p>
+<p>Pointer to table specifying legal configuration options for this widget.</p>
+<p>Number of arguments in <em>argv</em>.</p>
+<p>Command-line options for configuring widget.</p>
+<p>Points to widget record structure. Fields in this structure get modified
+by <strong>Tk_ConfigureWidget</strong> to hold configuration information.</p>
+<p>If non-zero, then it specifies an OR-ed combination of flags that
+control the processing of configuration information.
+<strong>TK_CONFIG_ARGV_ONLY</strong> causes the option database and defaults to be
+ignored, and flag bits <strong>TK_CONFIG_USER_BIT</strong> and higher are used to
+selectively disable entries in <em>specs</em>.</p>
+<p>The name of the type of a widget record.</p>
+<p>The name of a field in records of type <em>type</em>.</p>
+<p>The name used on Tcl command lines to refer to a particular option (e.g.
+when creating a widget or invoking the <strong>configure</strong> widget command). If
+non-NULL, then information is returned only for this option. If NULL,
+then information is returned for all available options.</p>
+<p>Display containing widget whose record is being freed; needed in order
+to free up resources.</p>
+<p>\</p>
+<h1 id="description">DESCRIPTION</h1>
+<p>Note: <strong>Tk_ConfigureWidget</strong> should be replaced with the new <strong>Tcl_Obj</strong>
+based API <strong>Tk_SetOptions</strong>. The old interface is retained for backward
+compatibility.</p>
+<p><strong>Tk_ConfigureWidget</strong> is called to configure various aspects of a
+widget, such as colors, fonts, border width, etc. It is intended as a
+convenience procedure to reduce the amount of code that must be written
+in individual widget managers to handle configuration information. It is
+typically invoked when widgets are created, and again when the
+<strong>configure</strong> command is invoked for a widget. Although intended
+primarily for widgets, <strong>Tk_ConfigureWidget</strong> can be used in other
+situations where <em>argc-argv</em> information is to be used to fill in a
+record structure, such as configuring graphical elements for a canvas
+widget or entries of a menu.</p>
+<p><strong>Tk_ConfigureWidget</strong> processes a table specifying the configuration
+options that are supported (<em>specs</em>) and a collection of command-line
+arguments (<em>argc</em> and <em>argv</em>) to fill in fields of a record (<em>widgRec</em>).
+It uses the option database and defaults specified in <em>specs</em> to fill in
+fields of <em>widgRec</em> that are not specified in <em>argv</em>.
+<strong>Tk_ConfigureWidget</strong> normally returns the value <strong>TCL_OK</strong>; in this
+case it does not modify <em>interp</em>. If an error occurs then <strong>TCL_ERROR</strong>
+is returned and <strong>Tk_ConfigureWidget</strong> will leave an error message in
+interpreter <em>interp</em>\'s result in the standard Tcl fashion. In the event
+of an error return, some of the fields of <em>widgRec</em> could already have
+been set, if configuration information for them was successfully
+processed before the error occurred. The other fields will be set to
+reasonable initial values so that <strong>Tk_FreeOptions</strong> can be called for
+cleanup.</p>
+<p>The <em>specs</em> array specifies the kinds of configuration options expected
+by the widget. Each of its entries specifies one configuration option
+and has the following structure:</p>
+<div class="language-text highlight"><pre><span></span><code>typedef struct {
+    int type;
+    const char *argvName;
+    const char *dbName;
+    const char *dbClass;
+    const char *defValue;
+    int offset;
+    int specFlags;
+    const Tk_CustomOption *customPtr;
+} Tk_ConfigSpec;
+</code></pre></div>
+<p>The <em>type</em> field indicates what type of configuration option this is
+(e.g. <strong>TK_CONFIG_COLOR</strong> for a color value, or <strong>TK_CONFIG_INT</strong> for an
+integer value). The <em>type</em> field indicates how to use the value of the
+option (more on this below). The <em>argvName</em> field is a string such as or
+which is compared with the values in <em>argv</em> (if <em>argvName</em> is NULL it
+means this is a grouped entry; see <strong>GROUPED ENTRIES</strong> below). The
+<em>dbName</em> and <em>dbClass</em> fields are used to look up a value for this
+option in the option database. The <em>defValue</em> field specifies a default
+value for this configuration option if no value is specified in either
+<em>argv</em> or the option database. <em>Offset</em> indicates where in <em>widgRec</em> to
+store information about this option, and <em>specFlags</em> contains additional
+information to control the processing of this configuration option (see
+FLAGS below). The last field, <em>customPtr</em>, is only used if <em>type</em> is
+<strong>TK_CONFIG_CUSTOM</strong>; see CUSTOM OPTION TYPES below.</p>
+<p><strong>Tk_ConfigureWidget</strong> first processes <em>argv</em> to see which (if any)
+configuration options are specified there. <em>Argv</em> must contain an even
+number of fields; the first of each pair of fields must match the
+<em>argvName</em> of some entry in <em>specs</em> (unique abbreviations are
+acceptable), and the second field of the pair contains the value for
+that configuration option. If there are entries in <em>spec</em> for which
+there were no matching entries in <em>argv</em>, <strong>Tk_ConfigureWidget</strong> uses
+the <em>dbName</em> and <em>dbClass</em> fields of the <em>specs</em> entry to probe the
+option database; if a value is found, then it is used as the value for
+the option. Finally, if no entry is found in the option database, the
+<em>defValue</em> field of the <em>specs</em> entry is used as the value for the
+configuration option. If the <em>defValue</em> is NULL, or if the
+<strong>TK_CONFIG_DONT_SET_DEFAULT</strong> bit is set in <em>flags</em>, then there is no
+default value and this <em>specs</em> entry will be ignored if no value is
+specified in <em>argv</em> or the option database.</p>
+<p>Once a string value has been determined for a configuration option,
+<strong>Tk_ConfigureWidget</strong> translates the string value into a more useful
+form, such as a color if <em>type</em> is <strong>TK_CONFIG_COLOR</strong> or an integer if
+<em>type</em> is <strong>TK_CONFIG_INT</strong>. This value is then stored in the record
+pointed to by <em>widgRec</em>. This record is assumed to contain information
+relevant to the manager of the widget; its exact type is unknown to
+<strong>Tk_ConfigureWidget</strong>. The <em>offset</em> field of each <em>specs</em> entry
+indicates where in <em>widgRec</em> to store the information about this
+configuration option. You should use the <strong>Tk_Offset</strong> macro to generate
+<em>offset</em> values (see below for a description of <strong>Tk_Offset</strong>). The
+location indicated by <em>widgRec</em> and <em>offset</em> will be referred to as the
+in the descriptions below.</p>
+<p>The <em>type</em> field of each entry in <em>specs</em> determines what to do with the
+string value of that configuration option. The legal values for <em>type</em>,
+and the corresponding actions, are:</p>
+<p><strong>TK_CONFIG_ACTIVE_CURSOR</strong></p>
+<p>:   The value must be an ASCII string identifying a cursor in a form
+    suitable for passing to <strong>Tk_GetCursor</strong>. The value is converted to
+    a <strong>Tk_Cursor</strong> by calling <strong>Tk_GetCursor</strong> and the result is stored
+    in the target. In addition, the resulting cursor is made the active
+    cursor for <em>tkwin</em> by calling <strong>XDefineCursor</strong>. If
+    <strong>TK_CONFIG_NULL_OK</strong> is specified in <em>specFlags</em> then the value may
+    be an empty string, in which case the target and <em>tkwin</em>\'s active
+    cursor will be set to <strong>None</strong>. If the previous value of the target
+    was not <strong>None</strong>, then it is freed by passing it to
+    <strong>Tk_FreeCursor</strong>.</p>
+<p><strong>TK_CONFIG_ANCHOR</strong></p>
+<p>:   The value must be an ASCII string identifying an anchor point in one
+    of the ways accepted by <strong>Tk_GetAnchor</strong>. The string is converted to
+    a <strong>Tk_Anchor</strong> by calling <strong>Tk_GetAnchor</strong> and the result is stored
+    in the target.</p>
+<p><strong>TK_CONFIG_BITMAP</strong></p>
+<p>:   The value must be an ASCII string identifying a bitmap in a form
+    suitable for passing to <strong>Tk_GetBitmap</strong>. The value is converted to
+    a <strong>Pixmap</strong> by calling <strong>Tk_GetBitmap</strong> and the result is stored in
+    the target. If <strong>TK_CONFIG_NULL_OK</strong> is specified in <em>specFlags</em>
+    then the value may be an empty string, in which case the target is
+    set to <strong>None</strong>. If the previous value of the target was not
+    <strong>None</strong>, then it is freed by passing it to <strong>Tk_FreeBitmap</strong>.</p>
+<p><strong>TK_CONFIG_BOOLEAN</strong></p>
+<p>:   The value must be an ASCII string specifying a boolean value. Any of
+    the values or or an abbreviation of one of these values, means true;
+    any of the values or or an abbreviation of one of these values,
+    means false. The target is expected to be an integer; for true
+    values it will be set to 1 and for false values it will be set to 0.</p>
+<p><strong>TK_CONFIG_BORDER</strong></p>
+<p>:   The value must be an ASCII string identifying a border color in a
+    form suitable for passing to <strong>Tk_Get3DBorder</strong>. The value is
+    converted to a (<strong>Tk_3DBorder *</strong>) by calling <strong>Tk_Get3DBorder</strong>
+    and the result is stored in the target. If <strong>TK_CONFIG_NULL_OK</strong> is
+    specified in <em>specFlags</em> then the value may be an empty string, in
+    which case the target will be set to NULL. If the previous value of
+    the target was not NULL, then it is freed by passing it to
+    <strong>Tk_Free3DBorder</strong>.</p>
+<p><strong>TK_CONFIG_CAP_STYLE</strong></p>
+<p>:   The value must be an ASCII string identifying a cap style in one of
+    the ways accepted by <strong>Tk_GetCapStyle</strong>. The string is converted to
+    an integer value corresponding to the cap style by calling
+    <strong>Tk_GetCapStyle</strong> and the result is stored in the target.</p>
+<p><strong>TK_CONFIG_COLOR</strong></p>
+<p>:   The value must be an ASCII string identifying a color in a form
+    suitable for passing to <strong>Tk_GetColor</strong>. The value is converted to
+    an (<strong>XColor *</strong>) by calling <strong>Tk_GetColor</strong> and the result is
+    stored in the target. If <strong>TK_CONFIG_NULL_OK</strong> is specified in
+    <em>specFlags</em> then the value may be an empty string, in which case the
+    target will be set to <strong>None</strong>. If the previous value of the target
+    was not NULL, then it is freed by passing it to <strong>Tk_FreeColor</strong>.</p>
+<p><strong>TK_CONFIG_CURSOR</strong></p>
+<p>:   This option is identical to <strong>TK_CONFIG_ACTIVE_CURSOR</strong> except that
+    the new cursor is not made the active one for <em>tkwin</em>.</p>
+<p><strong>TK_CONFIG_CUSTOM</strong></p>
+<p>:   This option allows applications to define new option types. The
+    <em>customPtr</em> field of the entry points to a structure defining the
+    new option type. See the section <strong>CUSTOM OPTION TYPES</strong> below for
+    details.</p>
+<p><strong>TK_CONFIG_DOUBLE</strong></p>
+<p>:   The value must be an ASCII floating-point number in the format
+    accepted by <strong>strtol</strong>. The string is converted to a <strong>double</strong>
+    value, and the value is stored in the target.</p>
+<p><strong>TK_CONFIG_END</strong></p>
+<p>:   Marks the end of the table. The last entry in <em>specs</em> must have this
+    type; all of its other fields are ignored and it will never match
+    any arguments.</p>
+<p><strong>TK_CONFIG_FONT</strong></p>
+<p>:   The value must be an ASCII string identifying a font in a form
+    suitable for passing to <strong>Tk_GetFont</strong>. The value is converted to a
+    <strong>Tk_Font</strong> by calling <strong>Tk_GetFont</strong> and the result is stored in
+    the target. If <strong>TK_CONFIG_NULL_OK</strong> is specified in <em>specFlags</em>
+    then the value may be an empty string, in which case the target will
+    be set to NULL. If the previous value of the target was not NULL,
+    then it is freed by passing it to <strong>Tk_FreeFont</strong>.</p>
+<p><strong>TK_CONFIG_INT</strong></p>
+<p>:   The value must be an ASCII integer string in the format accepted by
+    <strong>strtol</strong> (e.g. and prefixes may be used to specify octal or
+    hexadecimal numbers, respectively). The string is converted to an
+    integer value and the integer is stored in the target.</p>
+<p><strong>TK_CONFIG_JOIN_STYLE</strong></p>
+<p>:   The value must be an ASCII string identifying a join style in one of
+    the ways accepted by <strong>Tk_GetJoinStyle</strong>. The string is converted to
+    an integer value corresponding to the join style by calling
+    <strong>Tk_GetJoinStyle</strong> and the result is stored in the target.</p>
+<p><strong>TK_CONFIG_JUSTIFY</strong></p>
+<p>:   The value must be an ASCII string identifying a justification method
+    in one of the ways accepted by <strong>Tk_GetJustify</strong>. The string is
+    converted to a <strong>Tk_Justify</strong> by calling <strong>Tk_GetJustify</strong> and the
+    result is stored in the target.</p>
+<p><strong>TK_CONFIG_MM</strong></p>
+<p>:   The value must specify a screen distance in one of the forms
+    acceptable to <strong>Tk_GetScreenMM</strong>. The string is converted to
+    double-precision floating-point distance in millimeters and the
+    value is stored in the target.</p>
+<p><strong>TK_CONFIG_PIXELS</strong></p>
+<p>:   The value must specify screen units in one of the forms acceptable
+    to <strong>Tk_GetPixels</strong>. The string is converted to an integer distance
+    in pixels and the value is stored in the target.</p>
+<p><strong>TK_CONFIG_RELIEF</strong></p>
+<p>:   The value must be an ASCII string identifying a relief in a form
+    suitable for passing to <strong>Tk_GetRelief</strong>. The value is converted to
+    an integer relief value by calling <strong>Tk_GetRelief</strong> and the result
+    is stored in the target.</p>
+<p><strong>TK_CONFIG_STRING</strong></p>
+<p>:   A copy of the value is made by allocating memory space with
+    <strong>Tcl_Alloc</strong> and copying the value into the dynamically-allocated
+    space. A pointer to the new string is stored in the target. If
+    <strong>TK_CONFIG_NULL_OK</strong> is specified in <em>specFlags</em> then the value may
+    be an empty string, in which case the target will be set to NULL. If
+    the previous value of the target was not NULL, then it is freed by
+    passing it to <strong>Tcl_Free</strong>.</p>
+<p><strong>TK_CONFIG_SYNONYM</strong></p>
+<p>:   This <em>type</em> value identifies special entries in <em>specs</em> that are
+    synonyms for other entries. If an <em>argv</em> value matches the
+    <em>argvName</em> of a <strong>TK_CONFIG_SYNONYM</strong> entry, the entry is not used
+    directly. Instead, <strong>Tk_ConfigureWidget</strong> searches <em>specs</em> for
+    another entry whose <em>argvName</em> is the same as the <em>dbName</em> field in
+    the <strong>TK_CONFIG_SYNONYM</strong> entry; this new entry is used just as if
+    its <em>argvName</em> had matched the <em>argv</em> value. The synonym mechanism
+    allows multiple <em>argv</em> values to be used for a single configuration
+    option, such as and</p>
+<p><strong>TK_CONFIG_UID</strong></p>
+<p>:   The value is translated to a <strong>Tk_Uid</strong> (by passing it to
+    <strong>Tk_GetUid</strong>). The resulting value is stored in the target. If
+    <strong>TK_CONFIG_NULL_OK</strong> is specified in <em>specFlags</em> and the value is
+    an empty string then the target will be set to NULL.</p>
+<p><strong>TK_CONFIG_WINDOW</strong></p>
+<p>:   The value must be a window path name. It is translated to a
+    <strong>Tk_Window</strong> token and the token is stored in the target.</p>
+<h1 id="grouped-entries">GROUPED ENTRIES</h1>
+<p>In some cases it is useful to generate multiple resources from a single
+configuration value. For example, a color name might be used both to
+generate the background color for a widget (using <strong>TK_CONFIG_COLOR</strong>)
+and to generate a 3-D border to draw around the widget (using
+<strong>TK_CONFIG_BORDER</strong>). In cases like this it is possible to specify that
+several consecutive entries in <em>specs</em> are to be treated as a group. The
+first entry is used to determine a value (using its <em>argvName</em>,
+<em>dbName</em>, <em>dbClass</em>, and <em>defValue</em> fields). The value will be processed
+several times (one for each entry in the group), generating multiple
+different resources and modifying multiple targets within <em>widgRec</em>.
+Each of the entries after the first must have a NULL value in its
+<em>argvName</em> field; this indicates that the entry is to be grouped with
+the entry that precedes it. Only the <em>type</em> and <em>offset</em> fields are used
+from these follow-on entries.</p>
+<h1 id="flags">FLAGS</h1>
+<p>The <em>flags</em> argument passed to <strong>Tk_ConfigureWidget</strong> is used in
+conjunction with the <em>specFlags</em> fields in the entries of <em>specs</em> to
+provide additional control over the processing of configuration options.
+These values are used in three different ways as described below.</p>
+<p>First, if the <em>flags</em> argument to <strong>Tk_ConfigureWidget</strong> has the
+<strong>TK_CONFIG_ARGV_ONLY</strong> bit set (i.e., <em>flags</em> |
+<strong>TK_CONFIG_ARGV_ONLY</strong> != 0), then the option database and <em>defValue</em>
+fields are not used. In this case, if an entry in <em>specs</em> does not match
+a field in <em>argv</em> then nothing happens: the corresponding target is not
+modified. This feature is useful when the goal is to modify certain
+configuration options while leaving others in their current state, such
+as when a <strong>configure</strong> widget command is being processed.</p>
+<p>Second, the <em>specFlags</em> field of an entry in <em>specs</em> may be used to
+control the processing of that entry. Each <em>specFlags</em> field may
+consists of an OR-ed combination of the following values:</p>
+<p><strong>TK_CONFIG_COLOR_ONLY</strong></p>
+<p>:   If this bit is set then the entry will only be considered if the
+    display for <em>tkwin</em> has more than one bit plane. If the display is
+    monochromatic then this <em>specs</em> entry will be ignored.</p>
+<p><strong>TK_CONFIG_MONO_ONLY</strong></p>
+<p>:   If this bit is set then the entry will only be considered if the
+    display for <em>tkwin</em> has exactly one bit plane. If the display is not
+    monochromatic then this <em>specs</em> entry will be ignored.</p>
+<p><strong>TK_CONFIG_NULL_OK</strong></p>
+<p>:   This bit is only relevant for some types of entries (see the
+    descriptions of the various entry types above). If this bit is set,
+    it indicates that an empty string value for the field is acceptable
+    and if it occurs then the target should be set to NULL or <strong>None</strong>,
+    depending on the type of the target. This flag is typically used to
+    allow a feature to be turned off entirely, e.g. set a cursor value
+    to <strong>None</strong> so that a window simply inherits its parent\'s cursor.
+    If this bit is not set then empty strings are processed as strings,
+    which generally results in an error.</p>
+<p><strong>TK_CONFIG_DONT_SET_DEFAULT</strong></p>
+<p>:   If this bit is one, it means that the <em>defValue</em> field of the entry
+    should only be used for returning the default value in
+    <strong>Tk_ConfigureInfo</strong>. In calls to <strong>Tk_ConfigureWidget</strong> no default
+    will be supplied for entries with this flag set; it is assumed that
+    the caller has already supplied a default value in the target
+    location. This flag provides a performance optimization where it is
+    expensive to process the default string: the client can compute the
+    default once, save the value, and provide it before calling
+    <strong>Tk_ConfigureWidget</strong>.</p>
+<p><strong>TK_CONFIG_OPTION_SPECIFIED</strong></p>
+<p>:   This bit is deprecated. It used to be set and cleared by
+    <strong>Tk_ConfigureWidget</strong> so that callers could detect what entries
+    were specified in <em>argv</em>, but it was removed because it was
+    inherently thread-unsafe. Code that wishes to detect what options
+    were specified should use <strong>Tk_SetOptions</strong> instead.</p>
+<p>The <strong>TK_CONFIG_MONO_ONLY</strong> and <strong>TK_CONFIG_COLOR_ONLY</strong> flags are
+typically used to specify different default values for monochrome and
+color displays. This is done by creating two entries in <em>specs</em> that are
+identical except for their <em>defValue</em> and <em>specFlags</em> fields. One entry
+should have the value <strong>TK_CONFIG_MONO_ONLY</strong> in its <em>specFlags</em> and the
+default value for monochrome displays in its <em>defValue</em>; the other entry
+should have the value <strong>TK_CONFIG_COLOR_ONLY</strong> in its <em>specFlags</em> and
+the appropriate <em>defValue</em> for color displays.</p>
+<p>Third, it is possible to use <em>flags</em> and <em>specFlags</em> together to
+selectively disable some entries. This feature is not needed very often.
+It is useful in cases where several similar kinds of widgets are
+implemented in one place. It allows a single <em>specs</em> table to be created
+with all the configuration options for all the widget types. When
+processing a particular widget type, only entries relevant to that type
+will be used. This effect is achieved by setting the high-order bits
+(those in positions equal to or greater than <strong>TK_CONFIG_USER_BIT</strong>) in
+<em>specFlags</em> values or in <em>flags</em>. In order for a particular entry in
+<em>specs</em> to be used, its high-order bits must match exactly the
+high-order bits of the <em>flags</em> value passed to <strong>Tk_ConfigureWidget</strong>.
+If a <em>specs</em> table is being used for N different widget types, then N of
+the high-order bits will be used. Each <em>specs</em> entry will have one of
+more of those bits set in its <em>specFlags</em> field to indicate the widget
+types for which this entry is valid. When calling
+<strong>Tk_ConfigureWidget</strong>, <em>flags</em> will have a single one of these bits set
+to select the entries for the desired widget type. For a working example
+of this feature, see the code in tkButton.c.</p>
+<h1 id="tk_offset">TK_OFFSET</h1>
+<p>The <strong>Tk_Offset</strong> macro is provided as a safe way of generating the
+<em>offset</em> values for entries in Tk_ConfigSpec structures. It takes two
+arguments: the name of a type of record, and the name of a field in that
+record. It returns the byte offset of the named field in records of the
+given type.</p>
+<h1 id="tk_configureinfo">TK_CONFIGUREINFO</h1>
+<p>The <strong>Tk_ConfigureInfo</strong> procedure may be used to obtain information
+about one or all of the options for a given widget. Given a token for a
+window (<em>tkwin</em>), a table describing the configuration options for a
+class of widgets (<em>specs</em>), a pointer to a widget record containing the
+current information for a widget (<em>widgRec</em>), and a NULL <em>argvName</em>
+argument, <strong>Tk_ConfigureInfo</strong> generates a string describing all of the
+configuration options for the window. The string is placed in
+interpreter <em>interp</em>\'s result. Under normal circumstances it returns
+<strong>TCL_OK</strong>; if an error occurs then it returns <strong>TCL_ERROR</strong> and the
+interpreter\'s result will contain an error message.</p>
+<p>If <em>argvName</em> is NULL, then the value left in the interpreter\'s result
+by <strong>Tk_ConfigureInfo</strong> consists of a list of one or more entries, each
+of which describes one configuration option (i.e. one entry in <em>specs</em>).
+Each entry in the list will contain either two or five values. If the
+corresponding entry in <em>specs</em> has type <strong>TK_CONFIG_SYNONYM</strong>, then the
+list will contain two values: the <em>argvName</em> for the entry and the
+<em>dbName</em> (synonym name). Otherwise the list will contain five values:
+<em>argvName</em>, <em>dbName</em>, <em>dbClass</em>, <em>defValue</em>, and current value. The
+current value is computed from the appropriate field of <em>widgRec</em> by
+calling procedures like <strong>Tk_NameOfColor</strong>.</p>
+<p>If the <em>argvName</em> argument to <strong>Tk_ConfigureInfo</strong> is non-NULL, then it
+indicates a single option, and information is returned only for that
+option. The string placed in the interpreter\'s result will be a list
+containing two or five values as described above; this will be identical
+to the corresponding sublist that would have been returned if <em>argvName</em>
+had been NULL.</p>
+<p>The <em>flags</em> argument to <strong>Tk_ConfigureInfo</strong> is used to restrict the
+<em>specs</em> entries to consider, just as for <strong>Tk_ConfigureWidget</strong>.</p>
+<h1 id="tk_configurevalue">TK_CONFIGUREVALUE</h1>
+<p><strong>Tk_ConfigureValue</strong> takes arguments similar to <strong>Tk_ConfigureInfo</strong>;
+instead of returning a list of values, it just returns the current value
+of the option given by <em>argvName</em> (<em>argvName</em> must not be NULL). The
+value is returned in interpreter <em>interp</em>\'s result and <strong>TCL_OK</strong> is
+normally returned as the procedure\'s result. If an error occurs in
+<strong>Tk_ConfigureValue</strong> (e.g., <em>argvName</em> is not a valid option name),
+<strong>TCL_ERROR</strong> is returned and an error message is left in the
+interpreter\'s result. This procedure is typically called to implement
+<strong>cget</strong> widget commands.</p>
+<h1 id="tk_freeoptions">TK_FREEOPTIONS</h1>
+<p>The <strong>Tk_FreeOptions</strong> procedure may be invoked during widget cleanup to
+release all of the resources associated with configuration options. It
+scans through <em>specs</em> and for each entry corresponding to a resource
+that must be explicitly freed (e.g. those with type
+<strong>TK_CONFIG_COLOR</strong>), it frees the resource in the widget record. If the
+field in the widget record does not refer to a resource (e.g. it
+contains a null pointer) then no resource is freed for that entry. After
+freeing a resource, <strong>Tk_FreeOptions</strong> sets the corresponding field of
+the widget record to null.</p>
+<h1 id="custom-option-types">CUSTOM OPTION TYPES</h1>
+<p>Applications can extend the built-in configuration types with additional
+configuration types by writing procedures to parse and print options of
+the a type and creating a structure pointing to those procedures:</p>
+<div class="language-text highlight"><pre><span></span><code>typedef struct Tk_CustomOption {
+    Tk_OptionParseProc *parseProc;
+    Tk_OptionPrintProc *printProc;
+    ClientData clientData;
+} Tk_CustomOption;
+
+typedef int Tk_OptionParseProc(
+        ClientData clientData,
+        Tcl_Interp *interp,
+        Tk_Window tkwin,
+        char *value,
+        char *widgRec,
+        int offset);
+
+typedef const char *Tk_OptionPrintProc(
+        ClientData clientData,
+        Tk_Window tkwin,
+        char *widgRec,
+        int offset,
+        Tcl_FreeProc **freeProcPtr);
+</code></pre></div>
+<p>The Tk_CustomOption structure contains three fields, which are pointers
+to the two procedures and a <em>clientData</em> value to be passed to those
+procedures when they are invoked. The <em>clientData</em> value typically
+points to a structure containing information that is needed by the
+procedures when they are parsing and printing options.</p>
+<p>The <em>parseProc</em> procedure is invoked by <strong>Tk_ConfigureWidget</strong> to parse
+a string and store the resulting value in the widget record. The
+<em>clientData</em> argument is a copy of the <em>clientData</em> field in the
+Tk_CustomOption structure. The <em>interp</em> argument points to a Tcl
+interpreter used for error reporting. <em>Tkwin</em> is a copy of the <em>tkwin</em>
+argument to <strong>Tk_ConfigureWidget</strong>. The <em>value</em> argument is a string
+describing the value for the option; it could have been specified
+explicitly in the call to <strong>Tk_ConfigureWidget</strong> or it could come from
+the option database or a default. <em>Value</em> will never be a null pointer
+but it may point to an empty string. <em>RecordPtr</em> is the same as the
+<em>widgRec</em> argument to <strong>Tk_ConfigureWidget</strong>; it points to the start of
+the widget record to modify. The last argument, <em>offset</em>, gives the
+offset in bytes from the start of the widget record to the location
+where the option value is to be placed. The procedure should translate
+the string to whatever form is appropriate for the option and store the
+value in the widget record. It should normally return <strong>TCL_OK</strong>, but if
+an error occurs in translating the string to a value then it should
+return <strong>TCL_ERROR</strong> and store an error message in interpreter
+<em>interp</em>\'s result.</p>
+<p>The <em>printProc</em> procedure is called by <strong>Tk_ConfigureInfo</strong> to produce a
+string value describing an existing option. Its <em>clientData</em>, <em>tkwin</em>,
+<em>widgRec</em>, and <em>offset</em> arguments all have the same meaning as for
+Tk_OptionParseProc procedures. The <em>printProc</em> procedure should examine
+the option whose value is stored at <em>offset</em> in <em>widgRec</em>, produce a
+string describing that option, and return a pointer to the string. If
+the string is stored in dynamically-allocated memory, then the procedure
+must set <em>*freeProcPtr</em> to the address of a procedure to call to free
+the string\'s memory; <strong>Tk_ConfigureInfo</strong> will call this procedure when
+it is finished with the string. If the result string is stored in static
+memory then <em>printProc</em> need not do anything with the <em>freeProcPtr</em>
+argument.</p>
+<p>Once <em>parseProc</em> and <em>printProc</em> have been defined and a Tk_CustomOption
+structure has been created for them, options of this new type may be
+manipulated with Tk_ConfigSpec entries whose <em>type</em> fields are
+<strong>TK_CONFIG_CUSTOM</strong> and whose <em>customPtr</em> fields point to the
+Tk_CustomOption structure.</p>
+<h1 id="examples">EXAMPLES</h1>
+<p>Although the explanation of <strong>Tk_ConfigureWidget</strong> is fairly
+complicated, its actual use is pretty straightforward. The easiest way
+to get started is to copy the code from an existing widget. The library
+implementation of frames (tkFrame.c) has a simple configuration table,
+and the library implementation of buttons (tkButton.c) has a much more
+complex table that uses many of the fancy <em>specFlags</em> mechanisms.</p>
+<h1 id="see-also">SEE ALSO</h1>
+<p>Tk_SetOptions(3)</p>
+<h1 id="keywords">KEYWORDS</h1>
+<p>anchor, bitmap, boolean, border, cap style, color, configuration
+options, cursor, custom, double, font, integer, join style, justify,
+millimeters, pixels, relief, synonym, uid</p>
+
+<ul class="metadata page-metadata" data-bi-name="page info" lang="en-us" dir="ltr">
+  <li class="last-updated-holder displayDate loading">
+    <span class="last-updated-text">Last updated:</span>
+    <time role="presentation" datetime="2018-10-25T00:00:00.000Z" data-article-date-source="ms.date"></time>
+  </li>
+<!--
+  <li class="readingTime">
+    2 minutes to read
+  </li>
+-->
+  <li class="contributors-holder">
+    <span class="contributors-text">Contributors</span>
+    <ul class="contributors" data-bi-name="contributors"></ul>
+  </li>
+</ul>
+</div>
+        <div class="col-md-3"><div class="navbar-light navbar-expand-md hidden-print sticky-top sticky-offset" role="complementary">
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggler collapsed" data-toggle="collapse" data-target="#toc-collapse" title="Table of Contents">
+            <span class="fa fa-angle-down"></span>
+        </button>
+    </div>
+
+    <div id="toc-collapse" class="navbar-collapse collapse card">
+        <ul class="nav flex-column bs-sidenav">
+            <li class="nav-item main"><a class="nav-link" href="#name">NAME</a></li>
+            <li class="nav-item main"><a class="nav-link" href="#synopsis">SYNOPSIS</a></li>
+            <li class="nav-item main"><a class="nav-link" href="#arguments">ARGUMENTS</a></li>
+            <li class="nav-item main"><a class="nav-link" href="#description">DESCRIPTION</a></li>
+            <li class="nav-item main"><a class="nav-link" href="#grouped-entries">GROUPED ENTRIES</a></li>
+            <li class="nav-item main"><a class="nav-link" href="#flags">FLAGS</a></li>
+            <li class="nav-item main"><a class="nav-link" href="#tk_offset">TK_OFFSET</a></li>
+            <li class="nav-item main"><a class="nav-link" href="#tk_configureinfo">TK_CONFIGUREINFO</a></li>
+            <li class="nav-item main"><a class="nav-link" href="#tk_configurevalue">TK_CONFIGUREVALUE</a></li>
+            <li class="nav-item main"><a class="nav-link" href="#tk_freeoptions">TK_FREEOPTIONS</a></li>
+            <li class="nav-item main"><a class="nav-link" href="#custom-option-types">CUSTOM OPTION TYPES</a></li>
+            <li class="nav-item main"><a class="nav-link" href="#examples">EXAMPLES</a></li>
+            <li class="nav-item main"><a class="nav-link" href="#see-also">SEE ALSO</a></li>
+            <li class="nav-item main"><a class="nav-link" href="#keywords">KEYWORDS</a></li>
+        </ul>
+    </div>
+</div></div>
+      </div>
+      </div>
+
+      <footer class="col-md-12">
+	<hr>
+	<div class="container">
+	</div>
+      </footer>
+      <script>
+	var base_url = "../..",
+            shortcuts = {"help": 191, "next": 78, "previous": 80, "search": 83};
+      </script>
+      <script src="../../js/base.js" defer></script>
+      <script src="../../search/main.js" defer></script>
+
+      <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="Search Modal" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Search</h4>
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            </div>
+            <div class="modal-body">
+                <p>
+                    From here you can search these documents. Enter
+                    your search terms below.
+                </p>
+                <form role="form">
+                    <div class="form-group">
+                        <input type="text" class="form-control" placeholder="Search..." id="mkdocs-search-query" title="Type search term here">
+                    </div>
+                </form>
+                <div id="mkdocs-search-results"></div>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div><div class="modal" id="mkdocs_keyboard_modal" tabindex="-1" role="dialog" aria-labelledby="Keyboard Shortcuts Modal" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <p class="h4 modal-title">Keyboard Shortcuts</p>
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            </div>
+            <div class="modal-body">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th style="width: 20%;">Keys</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="help shortcut"><kbd>?</kbd></td>
+                    <td>Open this help</td>
+                  </tr>
+                  <tr>
+                    <td class="next shortcut"><kbd>n</kbd></td>
+                    <td>Next page</td>
+                  </tr>
+                  <tr>
+                    <td class="prev shortcut"><kbd>p</kbd></td>
+                    <td>Previous page</td>
+                  </tr>
+                  <tr>
+                    <td class="search shortcut"><kbd>s</kbd></td>
+                    <td>Search</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>
+
+    </body>
+</html>

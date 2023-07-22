@@ -1,5 +1,3 @@
-\
-
 # NAME
 
 Tcl_CreateChannelHandler, Tcl_DeleteChannelHandler - call a procedure
@@ -7,13 +5,11 @@ when a channel becomes readable or writable
 
 # SYNOPSIS
 
-    #include <tcl.h>
+**#include \<tcl.h\>**
 
-    void
-    Tcl_CreateChannelHandler(channel, mask, proc, clientData)
+void **Tcl_CreateChannelHandler**(*channel, mask, proc, clientData*)
 
-    void
-    Tcl_DeleteChannelHandler(channel, proc, clientData)
+void **Tcl_DeleteChannelHandler**(*channel, proc, clientData*)
 
 # ARGUMENTS
 
@@ -27,8 +23,6 @@ Procedure to invoke whenever the channel indicated by *channel* meets
 the conditions specified by *mask*.
 
 Arbitrary one-word value to pass to *proc*.
-
-\
 
 # DESCRIPTION
 
@@ -81,3 +75,8 @@ Notifier(3), Tcl_CreateChannel(3), Tcl_OpenFileChannel(3), vwait(n).
 # KEYWORDS
 
 blocking, callback, channel, events, handler, nonblocking.
+
+<!---
+Copyright (c) 1996 Sun Microsystems, Inc
+-->
+

@@ -1,0 +1,693 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+      <script>
+	// Hack for scrolling window when linking to anchor tag with fixed nav header
+        var shiftWindow = function() { scrollBy(0, -75) };
+        window.addEventListener("hashchange", shiftWindow);
+        function load() { if (window.location.hash) shiftWindow(); }
+      </script>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        
+        <link rel="canonical" href="https://www.tcl.tk/man/TkCmd/options/">
+        <link rel="shortcut icon" href="../../img/favicon.ico">
+        <title>Options - Tcl/Tk</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <link href="../../css/font-awesome.min.css" rel="stylesheet">
+    <link href="../../css/base.css" rel="stylesheet">
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+    <script src="../../js/base.js"></script> 
+    </head>
+
+    <body class="">
+
+      <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
+	<div class="container">
+	<a class="navbar-brand" href="../..">Tcl/Tk</a>
+	<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExample04" aria-controls="navbarsExample04" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+	</button>
+
+	<div class="collapse navbar-collapse">
+
+          <ul class="navbar-nav flex-row ml-md-auto d-none d-md-flex">
+            <li class="nav-item">
+              <a class="nav-link" href="#" data-toggle="modal" data-target="#mkdocs_search_modal">
+		<i class="fa fa-search"></i> Search
+              </a>
+            </li>
+          </ul>
+	</div>
+	</div>
+      </nav><div id="content" class="container">
+        
+      <div class="row">
+        <div class="col-md-9" role="main">
+
+
+<nav aria-label="breadcrumb">
+  <ol class="breadcrumb">
+    
+    <li class="breadcrumb-item active" aria-current="page">Options</li>
+  </ol>
+</nav>
+
+
+<p>\</p>
+<h1 id="name">NAME</h1>
+<p>options - Standard options supported by widgets</p>
+<p>\</p>
+<h1 id="description">DESCRIPTION</h1>
+<p>This manual entry describes the common configuration options supported
+by widgets in the Tk toolkit. Every widget does not necessarily support
+every option (see the manual entries for individual widgets for a list
+of the standard options supported by that widget), but if a widget does
+support an option with one of the names listed below, then the option
+has exactly the effect described below.</p>
+<p>In the descriptions below, refers to the switch used in class commands
+and <strong>configure</strong> widget commands to set this value. For example, if an
+option\'s command-line switch is <strong>-foreground</strong> and there exists a
+widget <strong>.a.b.c</strong>, then the command</p>
+<div class="language-text highlight"><pre><span></span><code>.a.b.c  configure  -foreground black
+</code></pre></div>
+<p>may be used to specify the value <strong>black</strong> for the option in the widget
+<strong>.a.b.c</strong>. Command-line switches may be abbreviated, as long as the
+abbreviation is unambiguous. refers to the option\'s name in the option
+database (e.g. in .Xdefaults files). refers to the option\'s class value
+in the option database.</p>
+<div class="language-text highlight"><pre><span></span><code>Command-Line Name:  -activebackground
+Database Name:  activeBackground
+Database Class: Foreground
+</code></pre></div>
+<blockquote>
+<p>Specifies background color to use when drawing active elements. An
+element (a widget or portion of a widget) is active if the mouse
+cursor is positioned over the element and pressing a mouse button will
+cause some action to occur. If strict Motif compliance has been
+requested by setting the <strong>tk_strictMotif</strong> variable, this option will
+normally be ignored; the normal background color will be used instead.
+For some elements on Windows and Macintosh systems, the active color
+will only be used while mouse button 1 is pressed over the element.</p>
+</blockquote>
+<div class="language-text highlight"><pre><span></span><code>Command-Line Name:  -activeborderwidth
+Database Name:  activeBorderWidth
+Database Class: BorderWidth
+</code></pre></div>
+<blockquote>
+<p>Specifies a non-negative value indicating the width of the 3-D border
+drawn around active elements. See above for definition of active
+elements. The value may have any of the forms acceptable to
+<strong>Tk_GetPixels</strong>. This option is typically only available in widgets
+displaying more than one element at a time (e.g. menus but not
+buttons).</p>
+</blockquote>
+<div class="language-text highlight"><pre><span></span><code>Command-Line Name:  -activeforeground
+Database Name:  activeForeground
+Database Class: Background
+</code></pre></div>
+<blockquote>
+<p>Specifies foreground color to use when drawing active elements. See
+above for definition of active elements.</p>
+</blockquote>
+<div class="language-text highlight"><pre><span></span><code>Command-Line Name:  -anchor
+Database Name:  anchor
+Database Class: Anchor
+</code></pre></div>
+<blockquote>
+<p>Specifies how the information in a widget (e.g. text or a bitmap) is
+to be displayed in the widget. Must be one of the values <strong>n</strong>,
+<strong>ne</strong>, <strong>e</strong>, <strong>se</strong>, <strong>s</strong>, <strong>sw</strong>, <strong>w</strong>, <strong>nw</strong>, or <strong>center</strong>.
+For example, <strong>nw</strong> means display the information such that its
+top-left corner is at the top-left corner of the widget.</p>
+</blockquote>
+<div class="language-text highlight"><pre><span></span><code>Command-Line Name:  -background or -bg
+Database Name:  background
+Database Class: Background
+</code></pre></div>
+<blockquote>
+<p>Specifies the normal background color to use when displaying the
+widget.</p>
+</blockquote>
+<div class="language-text highlight"><pre><span></span><code>Command-Line Name:  -bitmap
+Database Name:  bitmap
+Database Class: Bitmap
+</code></pre></div>
+<blockquote>
+<p>Specifies a bitmap to display in the widget, in any of the forms
+acceptable to <strong>Tk_GetBitmap</strong>. The exact way in which the bitmap is
+displayed may be affected by other options such as <strong>-anchor</strong> or
+<strong>-justify</strong>. Typically, if this option is specified then it overrides
+other options that specify a textual value to display in the widget
+but this is controlled by the <strong>-compound</strong> option; the <strong>-bitmap</strong>
+option may be reset to an empty string to re-enable a text display. In
+widgets that support both <strong>-bitmap</strong> and <strong>-image</strong> options,
+<strong>-image</strong> will usually override <strong>-bitmap</strong>.</p>
+</blockquote>
+<div class="language-text highlight"><pre><span></span><code>Command-Line Name:  -borderwidth or -bd
+Database Name:  borderWidth
+Database Class: BorderWidth
+</code></pre></div>
+<blockquote>
+<p>Specifies a non-negative value indicating the width of the 3-D border
+to draw around the outside of the widget (if such a border is being
+drawn; the <strong>-relief</strong> option typically determines this). The value
+may also be used when drawing 3-D effects in the interior of the
+widget. The value may have any of the forms acceptable to
+<strong>Tk_GetPixels</strong>.</p>
+</blockquote>
+<div class="language-text highlight"><pre><span></span><code>Command-Line Name:  -cursor
+Database Name:  cursor
+Database Class: Cursor
+</code></pre></div>
+<blockquote>
+<p>Specifies the mouse cursor to be used for the widget. The value may
+have any of the forms acceptable to <strong>Tk_GetCursor</strong>. In addition, if
+an empty string is specified, it indicates that the widget should
+defer to its parent for cursor specification.</p>
+</blockquote>
+<div class="language-text highlight"><pre><span></span><code>Command-Line Name:  -compound
+Database Name:  compound
+Database Class: Compound
+</code></pre></div>
+<blockquote>
+<p>Specifies if the widget should display text and bitmaps/images at the
+same time, and if so, where the bitmap/image should be placed relative
+to the text. Must be one of the values <strong>none</strong>, <strong>bottom</strong>, <strong>top</strong>,
+<strong>left</strong>, <strong>right</strong>, or <strong>center</strong>. For example, the (default) value
+<strong>none</strong> specifies that the bitmap or image should (if defined) be
+displayed instead of the text, the value <strong>left</strong> specifies that the
+bitmap or image should be displayed to the left of the text, and the
+value <strong>center</strong> specifies that the bitmap or image should be
+displayed on top of the text.</p>
+</blockquote>
+<div class="language-text highlight"><pre><span></span><code>Command-Line Name:  -disabledforeground
+Database Name:  disabledForeground
+Database Class: DisabledForeground
+</code></pre></div>
+<blockquote>
+<p>Specifies foreground color to use when drawing a disabled element. If
+the option is specified as an empty string (which is typically the
+case on monochrome displays), disabled elements are drawn with the
+normal foreground color but they are dimmed by drawing them with a
+stippled fill pattern.</p>
+</blockquote>
+<div class="language-text highlight"><pre><span></span><code>Command-Line Name:  -exportselection
+Database Name:  exportSelection
+Database Class: ExportSelection
+</code></pre></div>
+<blockquote>
+<p>Specifies whether or not a selection in the widget should also be the
+X selection. The value may have any of the forms accepted by
+<strong>Tcl_GetBoolean</strong>, such as <strong>true</strong>, <strong>false</strong>, <strong>0</strong>, <strong>1</strong>,
+<strong>yes</strong>, or <strong>no</strong>. If the selection is exported, then selecting in
+the widget deselects the current X selection, selecting outside the
+widget deselects any widget selection, and the widget will respond to
+selection retrieval requests when it has a selection. The default is
+usually for widgets to export selections.</p>
+</blockquote>
+<div class="language-text highlight"><pre><span></span><code>Command-Line Name:  -font
+Database Name:  font
+Database Class: Font
+</code></pre></div>
+<blockquote>
+<p>Specifies the font to use when drawing text inside the widget. The
+value may have any of the forms described in the <strong>font</strong> manual page
+under <strong>FONT DESCRIPTION</strong>.</p>
+</blockquote>
+<div class="language-text highlight"><pre><span></span><code>Command-Line Name:  -foreground or -fg
+Database Name:  foreground
+Database Class: Foreground
+</code></pre></div>
+<blockquote>
+<p>Specifies the normal foreground color to use when displaying the
+widget.</p>
+</blockquote>
+<div class="language-text highlight"><pre><span></span><code>Command-Line Name:  -highlightbackground
+Database Name:  highlightBackground
+Database Class: HighlightBackground
+</code></pre></div>
+<blockquote>
+<p>Specifies the color to display in the traversal highlight region when
+the widget does not have the input focus.</p>
+</blockquote>
+<div class="language-text highlight"><pre><span></span><code>Command-Line Name:  -highlightcolor
+Database Name:  highlightColor
+Database Class: HighlightColor
+</code></pre></div>
+<blockquote>
+<p>Specifies the color to use for the traversal highlight rectangle that
+is drawn around the widget when it has the input focus.</p>
+</blockquote>
+<div class="language-text highlight"><pre><span></span><code>Command-Line Name:  -highlightthickness
+Database Name:  highlightThickness
+Database Class: HighlightThickness
+</code></pre></div>
+<blockquote>
+<p>Specifies a non-negative value indicating the width of the highlight
+rectangle to draw around the outside of the widget when it has the
+input focus. The value may have any of the forms acceptable to
+<strong>Tk_GetPixels</strong>. If the value is zero, no focus highlight is drawn
+around the widget.</p>
+</blockquote>
+<div class="language-text highlight"><pre><span></span><code>Command-Line Name:  -image
+Database Name:  image
+Database Class: Image
+</code></pre></div>
+<blockquote>
+<p>Specifies an image to display in the widget, which must have been
+created with the <strong>image create</strong> command. Typically, if the
+<strong>-image</strong> option is specified then it overrides other options that
+specify a bitmap or textual value to display in the widget, though
+this is controlled by the <strong>-compound</strong> option; the <strong>-image</strong> option
+may be reset to an empty string to re-enable a bitmap or text display.</p>
+</blockquote>
+<div class="language-text highlight"><pre><span></span><code>Command-Line Name:  -insertbackground
+Database Name:  insertBackground
+Database Class: Foreground
+</code></pre></div>
+<blockquote>
+<p>Specifies the color to use as background in the area covered by the
+insertion cursor. This color will normally override either the normal
+background for the widget (or the selection background if the
+insertion cursor happens to fall in the selection).</p>
+</blockquote>
+<div class="language-text highlight"><pre><span></span><code>Command-Line Name:  -insertborderwidth
+Database Name:  insertBorderWidth
+Database Class: BorderWidth
+</code></pre></div>
+<blockquote>
+<p>Specifies a non-negative value indicating the width of the 3-D border
+to draw around the insertion cursor. The value may have any of the
+forms acceptable to <strong>Tk_GetPixels</strong>.</p>
+</blockquote>
+<div class="language-text highlight"><pre><span></span><code>Command-Line Name:  -insertofftime
+Database Name:  insertOffTime
+Database Class: OffTime
+</code></pre></div>
+<blockquote>
+<p>Specifies a non-negative integer value indicating the number of
+milliseconds the insertion cursor should remain in each blink cycle.
+If this option is zero then the cursor does not blink: it is on all
+the time.</p>
+</blockquote>
+<div class="language-text highlight"><pre><span></span><code>Command-Line Name:  -insertontime
+Database Name:  insertOnTime
+Database Class: OnTime
+</code></pre></div>
+<blockquote>
+<p>Specifies a non-negative integer value indicating the number of
+milliseconds the insertion cursor should remain in each blink cycle.</p>
+</blockquote>
+<div class="language-text highlight"><pre><span></span><code>Command-Line Name:  -insertwidth
+Database Name:  insertWidth
+Database Class: InsertWidth
+</code></pre></div>
+<blockquote>
+<p>Specifies a value indicating the total width of the insertion cursor.
+The value may have any of the forms acceptable to <strong>Tk_GetPixels</strong>. If
+a border has been specified for the insertion cursor (using the
+<strong>-insertborderwidth</strong> option), the border will be drawn inside the
+width specified by the <strong>-insertwidth</strong> option.</p>
+</blockquote>
+<div class="language-text highlight"><pre><span></span><code>Command-Line Name:  -jump
+Database Name:  jump
+Database Class: Jump
+</code></pre></div>
+<blockquote>
+<p>For widgets with a slider that can be dragged to adjust a value, such
+as scrollbars, this option determines when notifications are made
+about changes in the value. The option\'s value must be a boolean of
+the form accepted by <strong>Tcl_GetBoolean</strong>. If the value is false,
+updates are made continuously as the slider is dragged. If the value
+is true, updates are delayed until the mouse button is released to end
+the drag; at that point a single notification is made (the value
+rather than changing smoothly).</p>
+</blockquote>
+<div class="language-text highlight"><pre><span></span><code>Command-Line Name:  -justify
+Database Name:  justify
+Database Class: Justify
+</code></pre></div>
+<blockquote>
+<p>When there are multiple lines of text displayed in a widget, this
+option determines how the lines line up with each other. Must be one
+of <strong>left</strong>, <strong>center</strong>, or <strong>right</strong>. <strong>Left</strong> means that the lines\'
+left edges all line up, <strong>center</strong> means that the lines\' centers are
+aligned, and <strong>right</strong> means that the lines\' right edges line up.</p>
+</blockquote>
+<div class="language-text highlight"><pre><span></span><code>Command-Line Name:  -orient
+Database Name:  orient
+Database Class: Orient
+</code></pre></div>
+<blockquote>
+<p>For widgets that can lay themselves out with either a horizontal or
+vertical orientation, such as scrollbars, this option specifies which
+orientation should be used. Must be either <strong>horizontal</strong> or
+<strong>vertical</strong> or an abbreviation of one of these.</p>
+</blockquote>
+<div class="language-text highlight"><pre><span></span><code>Command-Line Name:  -padx
+Database Name:  padX
+Database Class: Pad
+</code></pre></div>
+<blockquote>
+<p>Specifies a non-negative value indicating how much extra space to
+request for the widget in the X-direction. The value may have any of
+the forms acceptable to <strong>Tk_GetPixels</strong>. When computing how large a
+window it needs, the widget will add this amount to the width it would
+normally need (as determined by the width of the things displayed in
+the widget); if the geometry manager can satisfy this request, the
+widget will end up with extra internal space to the left and/or right
+of what it displays inside. Most widgets only use this option for
+padding text: if they are displaying a bitmap or image, then they
+usually ignore padding options.</p>
+</blockquote>
+<div class="language-text highlight"><pre><span></span><code>Command-Line Name:  -pady
+Database Name:  padY
+Database Class: Pad
+</code></pre></div>
+<blockquote>
+<p>Specifies a non-negative value indicating how much extra space to
+request for the widget in the Y-direction. The value may have any of
+the forms acceptable to <strong>Tk_GetPixels</strong>. When computing how large a
+window it needs, the widget will add this amount to the height it
+would normally need (as determined by the height of the things
+displayed in the widget); if the geometry manager can satisfy this
+request, the widget will end up with extra internal space above and/or
+below what it displays inside. Most widgets only use this option for
+padding text: if they are displaying a bitmap or image, then they
+usually ignore padding options.</p>
+</blockquote>
+<div class="language-text highlight"><pre><span></span><code>Command-Line Name:  -relief
+Database Name:  relief
+Database Class: Relief
+</code></pre></div>
+<blockquote>
+<p>Specifies the 3-D effect desired for the widget. Acceptable values are
+<strong>raised</strong>, <strong>sunken</strong>, <strong>flat</strong>, <strong>ridge</strong>, <strong>solid</strong>, and
+<strong>groove</strong>. The value indicates how the interior of the widget should
+appear relative to its exterior; for example, <strong>raised</strong> means the
+interior of the widget should appear to protrude from the screen,
+relative to the exterior of the widget.</p>
+</blockquote>
+<div class="language-text highlight"><pre><span></span><code>Command-Line Name:  -repeatdelay
+Database Name:  repeatDelay
+Database Class: RepeatDelay
+</code></pre></div>
+<blockquote>
+<p>Specifies the number of milliseconds a button or key must be held down
+before it begins to auto-repeat. Used, for example, on the up- and
+down-arrows in scrollbars.</p>
+</blockquote>
+<div class="language-text highlight"><pre><span></span><code>Command-Line Name:  -repeatinterval
+Database Name:  repeatInterval
+Database Class: RepeatInterval
+</code></pre></div>
+<blockquote>
+<p>Used in conjunction with <strong>-repeatdelay</strong>: once auto-repeat begins,
+this option determines the number of milliseconds between
+auto-repeats.</p>
+</blockquote>
+<div class="language-text highlight"><pre><span></span><code>Command-Line Name:  -selectbackground
+Database Name:  selectBackground
+Database Class: Foreground
+</code></pre></div>
+<blockquote>
+<p>Specifies the background color to use when displaying selected items.</p>
+</blockquote>
+<div class="language-text highlight"><pre><span></span><code>Command-Line Name:  -selectborderwidth
+Database Name:  selectBorderWidth
+Database Class: BorderWidth
+</code></pre></div>
+<blockquote>
+<p>Specifies a non-negative value indicating the width of the 3-D border
+to draw around selected items. The value may have any of the forms
+acceptable to <strong>Tk_GetPixels</strong>.</p>
+</blockquote>
+<div class="language-text highlight"><pre><span></span><code>Command-Line Name:  -selectforeground
+Database Name:  selectForeground
+Database Class: Background
+</code></pre></div>
+<blockquote>
+<p>Specifies the foreground color to use when displaying selected items.</p>
+</blockquote>
+<div class="language-text highlight"><pre><span></span><code>Command-Line Name:  -setgrid
+Database Name:  setGrid
+Database Class: SetGrid
+</code></pre></div>
+<blockquote>
+<p>Specifies a boolean value that determines whether this widget controls
+the resizing grid for its top-level window. This option is typically
+used in text widgets, where the information in the widget has a
+natural size (the size of a character) and it makes sense for the
+window\'s dimensions to be integral numbers of these units. These
+natural window sizes form a grid. If the <strong>-setgrid</strong> option is set to
+true then the widget will communicate with the window manager so that
+when the user interactively resizes the top-level window that contains
+the widget, the dimensions of the window will be displayed to the user
+in grid units and the window size will be constrained to integral
+numbers of grid units. See the section <strong>GRIDDED GEOMETRY MANAGEMENT</strong>
+in the <strong>wm</strong> manual entry for more details.</p>
+</blockquote>
+<div class="language-text highlight"><pre><span></span><code>Command-Line Name:  -takefocus
+Database Name:  takeFocus
+Database Class: TakeFocus
+</code></pre></div>
+<blockquote>
+<p>Determines whether the window accepts the focus during keyboard
+traversal (e.g., Tab and Shift-Tab). Before setting the focus to a
+window, the traversal scripts consult the value of the <strong>-takefocus</strong>
+option. A value of <strong>0</strong> means that the window should be skipped
+entirely during keyboard traversal. <strong>1</strong> means that the window should
+receive the input focus as long as it is viewable (it and all of its
+ancestors are mapped). An empty value for the option means that the
+traversal scripts make the decision about whether or not to focus on
+the window: the current algorithm is to skip the window if it is
+disabled, if it has no key bindings, or if it is not viewable. If the
+value has any other form, then the traversal scripts take the value,
+append the name of the window to it (with a separator space), and
+evaluate the resulting string as a Tcl script. The script must return
+<strong>0</strong>, <strong>1</strong>, or an empty string: a <strong>0</strong> or <strong>1</strong> value specifies
+whether the window will receive the input focus, and an empty string
+results in the default decision described above. Note: this
+interpretation of the option is defined entirely by the Tcl scripts
+that implement traversal: the widget implementations ignore the option
+entirely, so you can change its meaning if you redefine the keyboard
+traversal scripts.</p>
+</blockquote>
+<div class="language-text highlight"><pre><span></span><code>Command-Line Name:  -text
+Database Name:  text
+Database Class: Text
+</code></pre></div>
+<blockquote>
+<p>Specifies a string to be displayed inside the widget. The way in which
+the string is displayed depends on the particular widget and may be
+determined by other options, such as <strong>-anchor</strong> or <strong>-justify</strong>.</p>
+</blockquote>
+<div class="language-text highlight"><pre><span></span><code>Command-Line Name:  -textvariable
+Database Name:  textVariable
+Database Class: Variable
+</code></pre></div>
+<blockquote>
+<p>Specifies the name of a global variable. The value of the variable is
+a text string to be displayed inside the widget; if the variable value
+changes then the widget will automatically update itself to reflect
+the new value. The way in which the string is displayed in the widget
+depends on the particular widget and may be determined by other
+options, such as <strong>-anchor</strong> or <strong>-justify</strong>.</p>
+</blockquote>
+<div class="language-text highlight"><pre><span></span><code>Command-Line Name:  -troughcolor
+Database Name:  troughColor
+Database Class: Background
+</code></pre></div>
+<blockquote>
+<p>Specifies the color to use for the rectangular trough areas in widgets
+such as scrollbars and scales. This option is ignored for scrollbars
+on Windows (native widget does not recognize this option).</p>
+</blockquote>
+<div class="language-text highlight"><pre><span></span><code>Command-Line Name:  -underline
+Database Name:  underline
+Database Class: Underline
+</code></pre></div>
+<blockquote>
+<p>Specifies the integer index of a character to underline in the widget.
+This option is used by the default bindings to implement keyboard
+traversal for menu buttons and menu entries. 0 corresponds to the
+first character of the text displayed in the widget, 1 to the next
+character, and so on.</p>
+</blockquote>
+<div class="language-text highlight"><pre><span></span><code>Command-Line Name:  -wraplength
+Database Name:  wrapLength
+Database Class: WrapLength
+</code></pre></div>
+<blockquote>
+<p>For widgets that can perform word-wrapping, this option specifies the
+maximum line length. Lines that would exceed this length are wrapped
+onto the next line, so that no line is longer than the specified
+length. The value may be specified in any of the standard forms for
+screen distances. If this value is less than or equal to 0 then no
+wrapping is done: lines will break only at newline characters in the
+text.</p>
+</blockquote>
+<div class="language-text highlight"><pre><span></span><code>Command-Line Name:  -xscrollcommand
+Database Name:  xScrollCommand
+Database Class: ScrollCommand
+</code></pre></div>
+<blockquote>
+<p>Specifies the prefix for a command used to communicate with horizontal
+scrollbars. When the view in the widget\'s window changes (or whenever
+anything else occurs that could change the display in a scrollbar,
+such as a change in the total size of the widget\'s contents), the
+widget will generate a Tcl command by concatenating the scroll command
+and two numbers. Each of the numbers is a fraction between 0 and 1,
+which indicates a position in the document. 0 indicates the beginning
+of the document, 1 indicates the end, .333 indicates a position one
+third the way through the document, and so on. The first fraction
+indicates the first information in the document that is visible in the
+window, and the second fraction indicates the information just after
+the last portion that is visible. The command is then passed to the
+Tcl interpreter for execution. Typically the <strong>-xscrollcommand</strong>
+option consists of the path name of a scrollbar widget followed by
+e.g. this will cause the scrollbar to be updated whenever the view in
+the window changes. If this option is not specified, then no command
+will be executed.</p>
+</blockquote>
+<div class="language-text highlight"><pre><span></span><code>Command-Line Name:  -yscrollcommand
+Database Name:  yScrollCommand
+Database Class: ScrollCommand
+</code></pre></div>
+<blockquote>
+<p>Specifies the prefix for a command used to communicate with vertical
+scrollbars. This option is treated in the same way as the
+<strong>-xscrollcommand</strong> option, except that it is used for vertical
+scrollbars and is provided by widgets that support vertical scrolling.
+See the description of <strong>-xscrollcommand</strong> for details on how this
+option is used.</p>
+</blockquote>
+<h1 id="see-also">SEE ALSO</h1>
+<p>colors, cursors, font</p>
+<h1 id="keywords">KEYWORDS</h1>
+<p>class, name, standard option, switch</p>
+
+<ul class="metadata page-metadata" data-bi-name="page info" lang="en-us" dir="ltr">
+  <li class="last-updated-holder displayDate loading">
+    <span class="last-updated-text">Last updated:</span>
+    <time role="presentation" datetime="2018-10-25T00:00:00.000Z" data-article-date-source="ms.date"></time>
+  </li>
+<!--
+  <li class="readingTime">
+    2 minutes to read
+  </li>
+-->
+  <li class="contributors-holder">
+    <span class="contributors-text">Contributors</span>
+    <ul class="contributors" data-bi-name="contributors"></ul>
+  </li>
+</ul>
+</div>
+        <div class="col-md-3"><div class="navbar-light navbar-expand-md hidden-print sticky-top sticky-offset" role="complementary">
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggler collapsed" data-toggle="collapse" data-target="#toc-collapse" title="Table of Contents">
+            <span class="fa fa-angle-down"></span>
+        </button>
+    </div>
+
+    <div id="toc-collapse" class="navbar-collapse collapse card">
+        <ul class="nav flex-column bs-sidenav">
+            <li class="nav-item main"><a class="nav-link" href="#name">NAME</a></li>
+            <li class="nav-item main"><a class="nav-link" href="#description">DESCRIPTION</a></li>
+            <li class="nav-item main"><a class="nav-link" href="#see-also">SEE ALSO</a></li>
+            <li class="nav-item main"><a class="nav-link" href="#keywords">KEYWORDS</a></li>
+        </ul>
+    </div>
+</div></div>
+      </div>
+      </div>
+
+      <footer class="col-md-12">
+	<hr>
+	<div class="container">
+	</div>
+      </footer>
+      <script>
+	var base_url = "../..",
+            shortcuts = {"help": 191, "next": 78, "previous": 80, "search": 83};
+      </script>
+      <script src="../../js/base.js" defer></script>
+      <script src="../../search/main.js" defer></script>
+
+      <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="Search Modal" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Search</h4>
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            </div>
+            <div class="modal-body">
+                <p>
+                    From here you can search these documents. Enter
+                    your search terms below.
+                </p>
+                <form role="form">
+                    <div class="form-group">
+                        <input type="text" class="form-control" placeholder="Search..." id="mkdocs-search-query" title="Type search term here">
+                    </div>
+                </form>
+                <div id="mkdocs-search-results"></div>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div><div class="modal" id="mkdocs_keyboard_modal" tabindex="-1" role="dialog" aria-labelledby="Keyboard Shortcuts Modal" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <p class="h4 modal-title">Keyboard Shortcuts</p>
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            </div>
+            <div class="modal-body">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th style="width: 20%;">Keys</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="help shortcut"><kbd>?</kbd></td>
+                    <td>Open this help</td>
+                  </tr>
+                  <tr>
+                    <td class="next shortcut"><kbd>n</kbd></td>
+                    <td>Next page</td>
+                  </tr>
+                  <tr>
+                    <td class="prev shortcut"><kbd>p</kbd></td>
+                    <td>Previous page</td>
+                  </tr>
+                  <tr>
+                    <td class="search shortcut"><kbd>s</kbd></td>
+                    <td>Search</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>
+
+    </body>
+</html>

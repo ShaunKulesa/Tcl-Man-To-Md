@@ -11,11 +11,9 @@
 .SH NAME
 fconfigure \- Set and get options on a channel
 .SH SYNOPSIS
-.nf
 \fBfconfigure \fIchannelId\fR
 \fBfconfigure \fIchannelId\fR \fIname\fR
 \fBfconfigure \fIchannelId\fR \fIname value \fR?\fIname value ...\fR?
-.fi
 .BE
 .SH DESCRIPTION
 .PP
@@ -218,14 +216,14 @@ sockets and thus support the socket options.
 Instruct Tcl to always send output to \fBstdout\fR immediately,
 whether or not it is to a terminal:
 .PP
-.nf
+.CS
 \fBfconfigure\fR stdout -buffering none
-.fi
+.CE
 .PP
 Open a socket and read lines from it without ever blocking the
 processing of other events:
 .PP
-.nf
+.CS
 set s [socket some.where.com 12345]
 \fBfconfigure\fR $s -blocking 0
 fileevent $s readable "readMe $s"
@@ -242,11 +240,11 @@ proc readMe chan {
         puts stdout $line
     }
 }
-.fi
+.CE
 .PP
 Read a PPM-format image from a file:
 .PP
-.nf
+.CS
 # Open the file and put it into Unix ASCII mode
 set f [open teapot.ppm]
 \fBfconfigure\fR $f \-encoding ascii \-translation lf
@@ -276,7 +274,7 @@ set numDataBytes [expr {3 * $xSize * $ySize}]
 set data [read $f $numDataBytes]
 
 close $f
-.fi
+.CE
 .SH "SEE ALSO"
 close(n), flush(n), gets(n), open(n), puts(n), read(n), socket(n),
 Tcl_StandardChannels(3)

@@ -40,36 +40,36 @@ braces); it does, however, produce exactly the same results as
 .PP
 Selecting the first two elements:
 .PP
-.nf
+.CS
 % \fBlrange\fR {a b c d e} 0 1
 a b
-.fi
+.CE
 .PP
 Selecting the last three elements:
 .PP
-.nf
+.CS
 % \fBlrange\fR {a b c d e} end-2 end
 c d e
-.fi
+.CE
 .PP
 Selecting everything except the first and last element:
 .PP
-.nf
+.CS
 % \fBlrange\fR {a b c d e} 1 end-1
 b c d
-.fi
+.CE
 .PP
 Selecting a single element with \fBlrange\fR is not the same as doing
 so with \fBlindex\fR:
 .PP
-.nf
+.CS
 % set var {some {elements to} select}
 some {elements to} select
 % lindex $var 1
 elements to
 % \fBlrange\fR $var 1 1
 {elements to}
-.fi
+.CE
 .SH "SEE ALSO"
 list(n), lappend(n), lindex(n), linsert(n), llength(n), lsearch(n),
 lset(n), lreplace(n), lsort(n),

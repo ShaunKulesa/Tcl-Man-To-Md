@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+      <script>
+	// Hack for scrolling window when linking to anchor tag with fixed nav header
+        var shiftWindow = function() { scrollBy(0, -75) };
+        window.addEventListener("hashchange", shiftWindow);
+        function load() { if (window.location.hash) shiftWindow(); }
+      </script>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        
+        <link rel="canonical" href="https://www.tcl.tk/man/TclLib/Utf/">
+        <link rel="shortcut icon" href="../../img/favicon.ico">
+        <title>Utf - Tcl/Tk</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <link href="../../css/font-awesome.min.css" rel="stylesheet">
+    <link href="../../css/base.css" rel="stylesheet">
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+    <script src="../../js/base.js"></script> 
+    </head>
+
+    <body class="">
+
+      <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
+	<div class="container">
+	<a class="navbar-brand" href="../..">Tcl/Tk</a>
+	<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExample04" aria-controls="navbarsExample04" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+	</button>
+
+	<div class="collapse navbar-collapse">
+
+          <ul class="navbar-nav flex-row ml-md-auto d-none d-md-flex">
+            <li class="nav-item">
+              <a class="nav-link" href="#" data-toggle="modal" data-target="#mkdocs_search_modal">
+		<i class="fa fa-search"></i> Search
+              </a>
+            </li>
+          </ul>
+	</div>
+	</div>
+      </nav><div id="content" class="container">
+        
+      <div class="row">
+        <div class="col-md-9" role="main">
+
+
+<nav aria-label="breadcrumb">
+  <ol class="breadcrumb">
+    
+    <li class="breadcrumb-item active" aria-current="page">Utf</li>
+  </ol>
+</nav>
+
+
+<p>\</p>
+<h1 id="name">NAME</h1>
+<p>Tcl_UniChar, Tcl_UniCharToUtf, Tcl_UtfToUniChar,
+Tcl_UniCharToUtfDString, Tcl_UtfToUniCharDString, Tcl_UniCharLen,
+Tcl_UniCharNcmp, Tcl_UniCharNcasecmp, Tcl_UniCharCaseMatch, Tcl_UtfNcmp,
+Tcl_UtfNcasecmp, Tcl_UtfCharComplete, Tcl_NumUtfChars, Tcl_UtfFindFirst,
+Tcl_UtfFindLast, Tcl_UtfNext, Tcl_UtfPrev, Tcl_UniCharAtIndex,
+Tcl_UtfAtIndex, Tcl_UtfBackslash - routines for manipulating UTF-8
+strings</p>
+<h1 id="synopsis">SYNOPSIS</h1>
+<p><strong>#include \&lt;tcl.h></strong></p>
+<p>typedef ... <strong>Tcl_UniChar</strong>;</p>
+<p>int <strong>Tcl_UniCharToUtf</strong>(<em>ch, buf</em>)</p>
+<p>int <strong>Tcl_UtfToUniChar</strong>(<em>src, chPtr</em>)</p>
+<p>char * <strong>Tcl_UniCharToUtfDString</strong>(<em>uniStr, uniLength, dsPtr</em>)</p>
+<p>Tcl_UniChar * <strong>Tcl_UtfToUniCharDString</strong>(<em>src, length, dsPtr</em>)</p>
+<p>int <strong>Tcl_UniCharLen</strong>(<em>uniStr</em>)</p>
+<p>int <strong>Tcl_UniCharNcmp</strong>(<em>ucs, uct, numChars</em>)</p>
+<p>int <strong>Tcl_UniCharNcasecmp</strong>(<em>ucs, uct, numChars</em>)</p>
+<p>int <strong>Tcl_UniCharCaseMatch</strong>(<em>uniStr, uniPattern, nocase</em>)</p>
+<p>int <strong>Tcl_UtfNcmp</strong>(<em>cs, ct, numChars</em>)</p>
+<p>int <strong>Tcl_UtfNcasecmp</strong>(<em>cs, ct, numChars</em>)</p>
+<p>int <strong>Tcl_UtfCharComplete</strong>(<em>src, length</em>)</p>
+<p>int <strong>Tcl_NumUtfChars</strong>(<em>src, length</em>)</p>
+<p>const char * <strong>Tcl_UtfFindFirst</strong>(<em>src, ch</em>)</p>
+<p>const char * <strong>Tcl_UtfFindLast</strong>(<em>src, ch</em>)</p>
+<p>const char * <strong>Tcl_UtfNext</strong>(<em>src</em>)</p>
+<p>const char * <strong>Tcl_UtfPrev</strong>(<em>src, start</em>)</p>
+<p>Tcl_UniChar <strong>Tcl_UniCharAtIndex</strong>(<em>src, index</em>)</p>
+<p>const char * <strong>Tcl_UtfAtIndex</strong>(<em>src, index</em>)</p>
+<p>int <strong>Tcl_UtfBackslash</strong>(<em>src, readPtr, dst</em>)</p>
+<h1 id="arguments">ARGUMENTS</h1>
+<p>Buffer in which the UTF-8 representation of the Tcl_UniChar is stored.
+At most <strong>TCL_UTF_MAX</strong> bytes are stored in the buffer.</p>
+<p>The Unicode character to be converted or examined.</p>
+<p>Filled with the Tcl_UniChar represented by the head of the UTF-8 string.</p>
+<p>Pointer to a UTF-8 string.</p>
+<p>Pointer to a UTF-8 string.</p>
+<p>Pointer to a UTF-8 string.</p>
+<p>A null-terminated Unicode string.</p>
+<p>A null-terminated Unicode string.</p>
+<p>A null-terminated Unicode string.</p>
+<p>A null-terminated Unicode string.</p>
+<p>The length of the UTF-8 string in bytes (not UTF-8 characters). If
+negative, all bytes up to the first null byte are used.</p>
+<p>The length of the Unicode string in characters. Must be greater than or
+equal to 0.</p>
+<p>A pointer to a previously initialized <strong>Tcl_DString</strong>.</p>
+<p>The number of characters to compare.</p>
+<p>Pointer to the beginning of a UTF-8 string.</p>
+<p>The index of a character (not byte) in the UTF-8 string.</p>
+<p>If non-NULL, filled with the number of bytes in the backslash sequence,
+including the backslash character.</p>
+<p>Buffer in which the bytes represented by the backslash sequence are
+stored. At most <strong>TCL_UTF_MAX</strong> bytes are stored in the buffer.</p>
+<p>Specifies whether the match should be done case-sensitive (0) or
+case-insensitive (1).</p>
+<p>\</p>
+<h1 id="description">DESCRIPTION</h1>
+<p>These routines convert between UTF-8 strings and Tcl_UniChars. A
+Tcl_UniChar is a Unicode character represented as an unsigned,
+fixed-size quantity. A UTF-8 character is a Unicode character
+represented as a varying-length sequence of up to <strong>TCL_UTF_MAX</strong> bytes.
+A multibyte UTF-8 sequence consists of a lead byte followed by some
+number of trail bytes.</p>
+<p><strong>TCL_UTF_MAX</strong> is the maximum number of bytes that it takes to
+represent one Unicode character in the UTF-8 representation.</p>
+<p><strong>Tcl_UniCharToUtf</strong> stores the Tcl_UniChar <em>ch</em> as a UTF-8 string in
+starting at <em>buf</em>. The return value is the number of bytes stored in
+<em>buf</em>.</p>
+<p><strong>Tcl_UtfToUniChar</strong> reads one UTF-8 character starting at <em>src</em> and
+stores it as a Tcl_UniChar in <em>*chPtr</em>. The return value is the number
+of bytes read from <em>src</em>. The caller must ensure that the source buffer
+is long enough such that this routine does not run off the end and
+dereference non-existent or random memory; if the source buffer is known
+to be null-terminated, this will not happen. If the input is not in
+proper UTF-8 format, <strong>Tcl_UtfToUniChar</strong> will store the first byte of
+<em>src</em> in <em>*chPtr</em> as a Tcl_UniChar between 0x80 and 0xFF and return 1.</p>
+<p><strong>Tcl_UniCharToUtfDString</strong> converts the given Unicode string to UTF-8,
+storing the result in a previously initialized <strong>Tcl_DString</strong>. You must
+specify <em>uniLength</em>, the length of the given Unicode string. The return
+value is a pointer to the UTF-8 representation of the Unicode string.
+Storage for the return value is appended to the end of the
+<strong>Tcl_DString</strong>.</p>
+<p><strong>Tcl_UtfToUniCharDString</strong> converts the given UTF-8 string to Unicode,
+storing the result in the previously initialized <strong>Tcl_DString</strong>. In the
+argument <em>length</em>, you may either specify the length of the given UTF-8
+string in bytes or in which case <strong>Tcl_UtfToUniCharDString</strong> uses
+<strong>strlen</strong> to calculate the length. The return value is a pointer to the
+Unicode representation of the UTF-8 string. Storage for the return value
+is appended to the end of the <strong>Tcl_DString</strong>. The Unicode string is
+terminated with a Unicode null character.</p>
+<p><strong>Tcl_UniCharLen</strong> corresponds to <strong>strlen</strong> for Unicode characters. It
+accepts a null-terminated Unicode string and returns the number of
+Unicode characters (not bytes) in that string.</p>
+<p><strong>Tcl_UniCharNcmp</strong> and <strong>Tcl_UniCharNcasecmp</strong> correspond to
+<strong>strncmp</strong> and <strong>strncasecmp</strong>, respectively, for Unicode characters.
+They accept two null-terminated Unicode strings and the number of
+characters to compare. Both strings are assumed to be at least
+<em>numChars</em> characters long. <strong>Tcl_UniCharNcmp</strong> compares the two strings
+character-by-character according to the Unicode character ordering. It
+returns an integer greater than, equal to, or less than 0 if the first
+string is greater than, equal to, or less than the second string
+respectively. <strong>Tcl_UniCharNcasecmp</strong> is the Unicode case insensitive
+version.</p>
+<p><strong>Tcl_UniCharCaseMatch</strong> is the Unicode equivalent to
+<strong>Tcl_StringCaseMatch</strong>. It accepts a null-terminated Unicode string, a
+Unicode pattern, and a boolean value specifying whether the match should
+be case sensitive and returns whether the string matches the pattern.</p>
+<p><strong>Tcl_UtfNcmp</strong> corresponds to <strong>strncmp</strong> for UTF-8 strings. It accepts
+two null-terminated UTF-8 strings and the number of characters to
+compare. (Both strings are assumed to be at least <em>numChars</em> characters
+long.) <strong>Tcl_UtfNcmp</strong> compares the two strings character-by-character
+according to the Unicode character ordering. It returns an integer
+greater than, equal to, or less than 0 if the first string is greater
+than, equal to, or less than the second string respectively.</p>
+<p><strong>Tcl_UtfNcasecmp</strong> corresponds to <strong>strncasecmp</strong> for UTF-8 strings. It
+is similar to <strong>Tcl_UtfNcmp</strong> except comparisons ignore differences in
+case when comparing upper, lower or title case characters.</p>
+<p><strong>Tcl_UtfCharComplete</strong> returns 1 if the source UTF-8 string <em>src</em> of
+<em>length</em> bytes is long enough to be decoded by
+<strong>Tcl_UtfToUniChar</strong>/<strong>Tcl_UtfNext</strong>, or 0 otherwise. This function does
+not guarantee that the UTF-8 string is properly formed. This routine is
+used by procedures that are operating on a byte at a time and need to
+know if a full Tcl_UniChar has been seen.</p>
+<p><strong>Tcl_NumUtfChars</strong> corresponds to <strong>strlen</strong> for UTF-8 strings. It
+returns the number of Tcl_UniChars that are represented by the UTF-8
+string <em>src</em>. The length of the source string is <em>length</em> bytes. If the
+length is negative, all bytes up to the first null byte are used.</p>
+<p><strong>Tcl_UtfFindFirst</strong> corresponds to <strong>strchr</strong> for UTF-8 strings. It
+returns a pointer to the first occurrence of the Tcl_UniChar <em>ch</em> in the
+null-terminated UTF-8 string <em>src</em>. The null terminator is considered
+part of the UTF-8 string.</p>
+<p><strong>Tcl_UtfFindLast</strong> corresponds to <strong>strrchr</strong> for UTF-8 strings. It
+returns a pointer to the last occurrence of the Tcl_UniChar <em>ch</em> in the
+null-terminated UTF-8 string <em>src</em>. The null terminator is considered
+part of the UTF-8 string.</p>
+<p>Given <em>src</em>, a pointer to some location in a UTF-8 string,
+<strong>Tcl_UtfNext</strong> returns a pointer to the next UTF-8 character in the
+string. The caller must not ask for the next character after the last
+character in the string if the string is not terminated by a null
+character. <strong>Tcl_UtfCharComplete</strong> can be used in that case to make sure
+enough bytes are available before calling <strong>Tcl_UtfNext</strong>.</p>
+<p><strong>Tcl_UtfPrev</strong> is used to step backward through but not beyond the
+UTF-8 string that begins at <em>start</em>. If the UTF-8 string is made up
+entirely of complete and well-formed characters, and <em>src</em> points to the
+lead byte of one of those characters (or to the location one byte past
+the end of the string), then repeated calls of <strong>Tcl_UtfPrev</strong> will
+return pointers to the lead bytes of each character in the string, one
+character at a time, terminating when it returns <em>start</em>.</p>
+<p>When the conditions of completeness and well-formedness may not be
+satisfied, a more precise description of the function of <strong>Tcl_UtfPrev</strong>
+is necessary. It always returns a pointer greater than or equal to
+<em>start</em>; that is, always a pointer to a location in the string. It
+always returns a pointer to a byte that begins a character when scanning
+for characters beginning from <em>start</em>. When <em>src</em> is greater than
+<em>start</em>, it always returns a pointer less than <em>src</em> and greater than or
+equal to (<em>src</em> - <strong>TCL_UTF_MAX</strong>). The character that begins at the
+returned pointer is the first one that either includes the byte
+<em>src[-1]</em>, or might include it if the right trail bytes are present at
+<em>src</em> and greater. <strong>Tcl_UtfPrev</strong> never reads the byte <em>src[0]</em> nor
+the byte <em>start[-1]</em> nor the byte <em>src[-</em><strong>TCL_UTF_MAX</strong><em>-1]</em>.</p>
+<p><strong>Tcl_UniCharAtIndex</strong> corresponds to a C string array dereference or
+the Pascal Ord() function. It returns the Tcl_UniChar represented at the
+specified character (not byte) <em>index</em> in the UTF-8 string <em>src</em>. The
+source string must contain at least <em>index</em> characters. Behavior is
+undefined if a negative <em>index</em> is given.</p>
+<p><strong>Tcl_UtfAtIndex</strong> returns a pointer to the specified character (not
+byte) <em>index</em> in the UTF-8 string <em>src</em>. The source string must contain
+at least <em>index</em> characters. This is equivalent to calling
+<strong>Tcl_UtfToUniChar</strong> <em>index</em> times. If a negative <em>index</em> is given, the
+return pointer points to the first character in the source string.</p>
+<p><strong>Tcl_UtfBackslash</strong> is a utility procedure used by several of the Tcl
+commands. It parses a backslash sequence and stores the properly formed
+UTF-8 character represented by the backslash sequence in the output
+buffer <em>dst</em>. At most <strong>TCL_UTF_MAX</strong> bytes are stored in the buffer.
+<strong>Tcl_UtfBackslash</strong> modifies <em>*readPtr</em> to contain the number of bytes
+in the backslash sequence, including the backslash character. The return
+value is the number of bytes stored in the output buffer.</p>
+<p>See the <strong>Tcl</strong> manual entry for information on the valid backslash
+sequences. All of the sequences described in the Tcl manual entry are
+supported by <strong>Tcl_UtfBackslash</strong>.</p>
+<h1 id="keywords">KEYWORDS</h1>
+<p>utf, unicode, backslash</p>
+
+<ul class="metadata page-metadata" data-bi-name="page info" lang="en-us" dir="ltr">
+  <li class="last-updated-holder displayDate loading">
+    <span class="last-updated-text">Last updated:</span>
+    <time role="presentation" datetime="2018-10-25T00:00:00.000Z" data-article-date-source="ms.date"></time>
+  </li>
+<!--
+  <li class="readingTime">
+    2 minutes to read
+  </li>
+-->
+  <li class="contributors-holder">
+    <span class="contributors-text">Contributors</span>
+    <ul class="contributors" data-bi-name="contributors"></ul>
+  </li>
+</ul>
+</div>
+        <div class="col-md-3"><div class="navbar-light navbar-expand-md hidden-print sticky-top sticky-offset" role="complementary">
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggler collapsed" data-toggle="collapse" data-target="#toc-collapse" title="Table of Contents">
+            <span class="fa fa-angle-down"></span>
+        </button>
+    </div>
+
+    <div id="toc-collapse" class="navbar-collapse collapse card">
+        <ul class="nav flex-column bs-sidenav">
+            <li class="nav-item main"><a class="nav-link" href="#name">NAME</a></li>
+            <li class="nav-item main"><a class="nav-link" href="#synopsis">SYNOPSIS</a></li>
+            <li class="nav-item main"><a class="nav-link" href="#arguments">ARGUMENTS</a></li>
+            <li class="nav-item main"><a class="nav-link" href="#description">DESCRIPTION</a></li>
+            <li class="nav-item main"><a class="nav-link" href="#keywords">KEYWORDS</a></li>
+        </ul>
+    </div>
+</div></div>
+      </div>
+      </div>
+
+      <footer class="col-md-12">
+	<hr>
+	<div class="container">
+	</div>
+      </footer>
+      <script>
+	var base_url = "../..",
+            shortcuts = {"help": 191, "next": 78, "previous": 80, "search": 83};
+      </script>
+      <script src="../../js/base.js" defer></script>
+      <script src="../../search/main.js" defer></script>
+
+      <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="Search Modal" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Search</h4>
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            </div>
+            <div class="modal-body">
+                <p>
+                    From here you can search these documents. Enter
+                    your search terms below.
+                </p>
+                <form role="form">
+                    <div class="form-group">
+                        <input type="text" class="form-control" placeholder="Search..." id="mkdocs-search-query" title="Type search term here">
+                    </div>
+                </form>
+                <div id="mkdocs-search-results"></div>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div><div class="modal" id="mkdocs_keyboard_modal" tabindex="-1" role="dialog" aria-labelledby="Keyboard Shortcuts Modal" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <p class="h4 modal-title">Keyboard Shortcuts</p>
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            </div>
+            <div class="modal-body">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th style="width: 20%;">Keys</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="help shortcut"><kbd>?</kbd></td>
+                    <td>Open this help</td>
+                  </tr>
+                  <tr>
+                    <td class="next shortcut"><kbd>n</kbd></td>
+                    <td>Next page</td>
+                  </tr>
+                  <tr>
+                    <td class="prev shortcut"><kbd>p</kbd></td>
+                    <td>Previous page</td>
+                  </tr>
+                  <tr>
+                    <td class="search shortcut"><kbd>s</kbd></td>
+                    <td>Search</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>
+
+    </body>
+</html>

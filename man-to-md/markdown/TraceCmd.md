@@ -1,5 +1,3 @@
-\
-
 # NAME
 
 Tcl_CommandTraceInfo, Tcl_TraceCommand, Tcl_UntraceCommand - monitor
@@ -7,16 +5,15 @@ renames and deletes of a command
 
 # SYNOPSIS
 
-    #include <tcl.h>
+**#include \<tcl.h\>**
 
-    ClientData
-    Tcl_CommandTraceInfo(interp, cmdName, flags, proc, prevClientData)
+ClientData **Tcl_CommandTraceInfo(***interp, cmdName, flags, proc,
+prevClientData***)**
 
-    int
-    Tcl_TraceCommand(interp, cmdName, flags, proc, clientData)
+int **Tcl_TraceCommand(***interp, cmdName, flags, proc, clientData***)**
 
-    void
-    Tcl_UntraceCommand(interp, cmdName, flags, proc, clientData)
+void **Tcl_UntraceCommand(***interp, cmdName, flags, proc,
+clientData***)**
 
 # ARGUMENTS
 
@@ -34,8 +31,6 @@ Arbitrary argument to pass to *proc*.
 If non-NULL, gives last value returned by **Tcl_CommandTraceInfo**, so
 this call will return information about next trace. If NULL, this call
 will return information about first trace.
-
-\
 
 # DESCRIPTION
 
@@ -143,3 +138,8 @@ in *flags*.
 # KEYWORDS
 
 clientData, trace, command
+
+<!---
+Copyright (c) 2002 Donal K. Fellow
+-->
+

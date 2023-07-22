@@ -1,5 +1,3 @@
-\
-
 # NAME
 
 expr - Evaluate an expression
@@ -7,8 +5,6 @@ expr - Evaluate an expression
 # SYNOPSIS
 
 **expr ***arg *?*arg arg \...*?
-
-\
 
 # DESCRIPTION
 
@@ -431,3 +427,10 @@ arithmetic, boolean, compare, expression, fuzzy comparison
     Copyright © 1993 The Regents of the University of California.
     Copyright © 1994-2000 Sun Microsystems Incorporated.
     Copyright © 2005 Kevin B. Kenny <kennykb@acm.org>. All rights reserved.
+
+<!---
+Copyright (c) 1993 The Regents of the University of California
+Copyright (c) 1994-2000 Sun Microsystems, Inc
+Copyright (c) 2005 Kevin B. Kenny <kennykb@acm.org>. All rights reserve
+-->
+

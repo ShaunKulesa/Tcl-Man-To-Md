@@ -20,9 +20,9 @@ This command will call the Tcl interpreter \fIcount\fR
 times to evaluate \fIscript\fR (or once if \fIcount\fR is not
 specified).  It will then return a string of the form
 .PP
-.nf
+.CS
 \fB503.2 microseconds per iteration\fR
-.fi
+.CE
 .PP
 which indicates the average amount of time required per iteration,
 in microseconds.
@@ -31,13 +31,13 @@ Time is measured in elapsed time, not CPU time.
 Estimate how long it takes for a simple Tcl \fBfor\fR loop to count to
 a thousand:
 .PP
-.nf
+.CS
 time {
     for {set i 0} {$i<1000} {incr i} {
         # empty body
     }
 }
-.fi
+.CE
 .SH "SEE ALSO"
 clock(n)
 .SH KEYWORDS

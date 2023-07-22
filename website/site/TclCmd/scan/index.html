@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+      <script>
+	// Hack for scrolling window when linking to anchor tag with fixed nav header
+        var shiftWindow = function() { scrollBy(0, -75) };
+        window.addEventListener("hashchange", shiftWindow);
+        function load() { if (window.location.hash) shiftWindow(); }
+      </script>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        
+        <link rel="canonical" href="https://www.tcl.tk/man/TclCmd/scan/">
+        <link rel="shortcut icon" href="../../img/favicon.ico">
+        <title>Scan - Tcl/Tk</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <link href="../../css/font-awesome.min.css" rel="stylesheet">
+    <link href="../../css/base.css" rel="stylesheet">
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+    <script src="../../js/base.js"></script> 
+    </head>
+
+    <body class="">
+
+      <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
+	<div class="container">
+	<a class="navbar-brand" href="../..">Tcl/Tk</a>
+	<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExample04" aria-controls="navbarsExample04" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+	</button>
+
+	<div class="collapse navbar-collapse">
+
+          <ul class="navbar-nav flex-row ml-md-auto d-none d-md-flex">
+            <li class="nav-item">
+              <a class="nav-link" href="#" data-toggle="modal" data-target="#mkdocs_search_modal">
+		<i class="fa fa-search"></i> Search
+              </a>
+            </li>
+          </ul>
+	</div>
+	</div>
+      </nav><div id="content" class="container">
+        
+      <div class="row">
+        <div class="col-md-9" role="main">
+
+
+<nav aria-label="breadcrumb">
+  <ol class="breadcrumb">
+    
+    <li class="breadcrumb-item active" aria-current="page">Scan</li>
+  </ol>
+</nav>
+
+
+<p>\</p>
+<h1 id="name">NAME</h1>
+<p>scan - Parse string using conversion specifiers in the style of sscanf</p>
+<h1 id="synopsis">SYNOPSIS</h1>
+<p><strong>scan </strong><em>string format </em>?<em>varName varName ...</em>?</p>
+<p>\</p>
+<h1 id="introduction">INTRODUCTION</h1>
+<p>This command parses substrings from an input string in a fashion similar
+to the ANSI C <strong>sscanf</strong> procedure and returns a count of the number of
+conversions performed, or -1 if the end of the input string is reached
+before any conversions have been performed. <em>String</em> gives the input to
+be parsed and <em>format</em> indicates how to parse it, using <strong>%</strong> conversion
+specifiers as in <strong>sscanf</strong>. Each <em>varName</em> gives the name of a
+variable; when a substring is scanned from <em>string</em> that matches a
+conversion specifier, the substring is assigned to the corresponding
+variable. If no <em>varName</em> variables are specified, then <strong>scan</strong> works
+in an inline manner, returning the data that would otherwise be stored
+in the variables as a list. In the inline case, an empty string is
+returned when the end of the input string is reached before any
+conversions have been performed.</p>
+<h1 id="details-on-scanning">DETAILS ON SCANNING</h1>
+<p><strong>Scan</strong> operates by scanning <em>string</em> and <em>format</em> together. If the
+next character in <em>format</em> is a blank or tab then it matches any number
+of white space characters in <em>string</em> (including zero). Otherwise, if it
+is not a <strong>%</strong> character then it must match the next character of
+<em>string</em>. When a <strong>%</strong> is encountered in <em>format</em>, it indicates the
+start of a conversion specifier. A conversion specifier contains up to
+four fields after the <strong>%</strong>: a XPG3 position specifier (or a <strong>*</strong> to
+indicate the converted value is to be discarded instead of assigned to
+any variable); a number indicating a maximum substring width; a size
+modifier; and a conversion character. All of these fields are optional
+except for the conversion character. The fields that are present must
+appear in the order given above.</p>
+<p>When <strong>scan</strong> finds a conversion specifier in <em>format</em>, it first skips
+any white-space characters in <em>string</em> (unless the conversion character
+is <strong>[</strong> or <strong>c</strong>). Then it converts the next input characters
+according to the conversion specifier and stores the result in the
+variable given by the next argument to <strong>scan</strong>.</p>
+<h2 id="optional-positional-specifier">OPTIONAL POSITIONAL SPECIFIER</h2>
+<p>If the <strong>%</strong> is followed by a decimal number and a <strong>\$</strong>, as in then
+the variable to use is not taken from the next sequential argument.
+Instead, it is taken from the argument indicated by the number, where 1
+corresponds to the first <em>varName</em>. If there are any positional
+specifiers in <em>format</em> then all of the specifiers must be positional.
+Every <em>varName</em> on the argument list must correspond to exactly one
+conversion specifier or an error is generated, or in the inline case,
+any position can be specified at most once and the empty positions will
+be filled in with empty strings.</p>
+<h2 id="optional-size-modifier">OPTIONAL SIZE MODIFIER</h2>
+<p>The size modifier field is used only when scanning a substring into one
+of Tcl\'s integer values. The size modifier field dictates the integer
+range acceptable to be stored in a variable, or, for the inline case, in
+a position in the result list. The syntactically valid values for the
+size modifier are <strong>h</strong>, <strong>L</strong>, <strong>l</strong>, and <strong>ll</strong>. The <strong>h</strong> size
+modifier value is equivalent to the absence of a size modifier in the
+the conversion specifier. Either one indicates the integer range to be
+stored is limited to the same range produced by the <strong>int()</strong> function
+of the <strong>expr</strong> command. The <strong>L</strong> size modifier is equivalent to the
+<strong>l</strong> size modifier. Either one indicates the integer range to be stored
+is limited to the same range produced by the <strong>wide()</strong> function of the
+<strong>expr</strong> command. The <strong>ll</strong> size modifier indicates that the integer
+range to be stored is unlimited.</p>
+<h2 id="mandatory-conversion-character">MANDATORY CONVERSION CHARACTER</h2>
+<p>The following conversion characters are supported:</p>
+<p><strong>d</strong></p>
+<p>:   The input substring must be a decimal integer. It is read in and the
+    integer value is stored in the variable, truncated as required by
+    the size modifier value.</p>
+<p><strong>o</strong></p>
+<p>:   The input substring must be an octal integer. It is read in and the
+    integer value is stored in the variable, truncated as required by
+    the size modifier value.</p>
+<p><strong>x</strong> or <strong>X</strong></p>
+<p>:   The input substring must be a hexadecimal integer. It is read in and
+    the integer value is stored in the variable, truncated as required
+    by the size modifier value.</p>
+<p><strong>b</strong></p>
+<p>:   The input substring must be a binary integer. It is read in and the
+    integer value is stored in the variable, truncated as required by
+    the size modifier value.</p>
+<p><strong>u</strong></p>
+<p>:   The input substring must be a decimal integer. The integer value is
+    truncated as required by the size modifier value, and the
+    corresponding unsigned value for that truncated range is computed
+    and stored in the variable as a decimal string. The conversion makes
+    no sense without reference to a truncation range, so the size
+    modifier <strong>ll</strong> is not permitted in combination with conversion
+    character <strong>u</strong>.</p>
+<p><strong>i</strong></p>
+<p>:   The input substring must be an integer. The base (i.e. decimal,
+    octal, or hexadecimal) is determined by the C convention (leading 0
+    for octal; prefix 0x for hexadecimal). The integer value is stored
+    in the variable, truncated as required by the size modifier value.</p>
+<p><strong>c</strong></p>
+<p>:   A single character is read in and its Unicode value is stored in the
+    variable as an integer value. Initial white space is not skipped in
+    this case, so the input substring may be a white-space character.</p>
+<p><strong>s</strong></p>
+<p>:   The input substring consists of all the characters up to the next
+    white-space character; the characters are copied to the variable.</p>
+<p><strong>e</strong> or <strong>f</strong> or <strong>g</strong> or <strong>E</strong> or <strong>G</strong></p>
+<p>:   The input substring must be a floating-point number consisting of an
+    optional sign, a string of decimal digits possibly containing a
+    decimal point, and an optional exponent consisting of an <strong>e</strong> or
+    <strong>E</strong> followed by an optional sign and a string of decimal digits.
+    It is read in and stored in the variable as a floating-point value.</p>
+<p><strong>[</strong><em>chars</em><strong>]</strong></p>
+<p>:   The input substring consists of one or more characters in <em>chars</em>.
+    The matching string is stored in the variable. If the first
+    character between the brackets is a <strong>]</strong> then it is treated as
+    part of <em>chars</em> rather than the closing bracket for the set. If
+    <em>chars</em> contains a sequence of the form <em>a</em><strong>-</strong><em>b</em> then any
+    character between <em>a</em> and <em>b</em> (inclusive) will match. If the first
+    or last character between the brackets is a <strong>-</strong>, then it is
+    treated as part of <em>chars</em> rather than indicating a range.</p>
+<p><strong>[\^</strong><em>chars</em><strong>]</strong></p>
+<p>:   The input substring consists of one or more characters not in
+    <em>chars</em>. The matching string is stored in the variable. If the
+    character immediately following the <strong>\^</strong> is a <strong>]</strong> then it is
+    treated as part of the set rather than the closing bracket for the
+    set. If <em>chars</em> contains a sequence of the form <em>a</em><strong>-</strong><em>b</em> then any
+    character between <em>a</em> and <em>b</em> (inclusive) will be excluded from the
+    set. If the first or last character between the brackets is a <strong>-</strong>,
+    then it is treated as part of <em>chars</em> rather than indicating a range
+    value.</p>
+<p><strong>n</strong></p>
+<p>:   No input is consumed from the input string. Instead, the total
+    number of characters scanned from the input string so far is stored
+    in the variable.</p>
+<p>The number of characters read from the input for a conversion is the
+largest number that makes sense for that particular conversion (e.g. as
+many decimal digits as possible for <strong>%d</strong>, as many octal digits as
+possible for <strong>%o</strong>, and so on). The input substring for a given
+conversion terminates either when a white-space character is encountered
+or when the maximum substring width has been reached, whichever comes
+first. If a <strong>*</strong> is present in the conversion specifier then no
+variable is assigned and the next scan argument is not consumed.</p>
+<h1 id="differences-from-ansi-sscanf">DIFFERENCES FROM ANSI SSCANF</h1>
+<p>The behavior of the <strong>scan</strong> command is the same as the behavior of the
+ANSI C <strong>sscanf</strong> procedure except for the following differences:</p>
+<p>[1]</p>
+<p>:   <strong>%p</strong> conversion specifier is not supported.</p>
+<p>[2]</p>
+<p>:   For <strong>%c</strong> conversions a single character value is converted to a
+    decimal string, which is then assigned to the corresponding
+    <em>varName</em>; no substring width may be specified for this conversion.</p>
+<p>[3]</p>
+<p>:   The <strong>h</strong> modifier is always ignored and the <strong>l</strong> and <strong>L</strong>
+    modifiers are ignored when converting real values (i.e. type
+    <strong>double</strong> is used for the internal representation). The <strong>ll</strong>
+    modifier has no <strong>sscanf</strong> counterpart.</p>
+<p>[4]</p>
+<p>:   If the end of the input string is reached before any conversions
+    have been performed and no variables are given, an empty string is
+    returned.</p>
+<h1 id="examples">EXAMPLES</h1>
+<p>Convert a UNICODE character to its numeric value:</p>
+<div class="language-text highlight"><pre><span></span><code>set char &quot;x&quot;
+set value [scan $char %c]
+</code></pre></div>
+<p>Parse a simple color specification of the form <em>#RRGGBB</em> using
+hexadecimal conversions with substring sizes:</p>
+<div class="language-text highlight"><pre><span></span><code>set string &quot;#08D03F&quot;
+scan $string &quot;#%2x%2x%2x&quot; r g b
+</code></pre></div>
+<p>Parse a <em>HH:MM</em> time string, noting that this avoids problems with octal
+numbers by forcing interpretation as decimals (if we did not care, we
+would use the <strong>%i</strong> conversion instead):</p>
+<div class="language-text highlight"><pre><span></span><code>set string &quot;08:08&quot;   ;# *Not* octal!
+if {[scan $string &quot;%d:%d&quot; hours minutes] != 2} {
+    error &quot;not a valid time string&quot;
+}
+# We have to understand numeric ranges ourselves...
+if {$minutes &lt; 0 || $minutes &gt; 59} {
+    error &quot;invalid number of minutes&quot;
+}
+</code></pre></div>
+<p>Break a string up into sequences of non-whitespace characters (note the
+use of the <strong>%n</strong> conversion so that we get skipping over leading
+whitespace correct):</p>
+<div class="language-text highlight"><pre><span></span><code>set string &quot; a string {with braced words} + leading space &quot;
+set words {}
+while {[scan $string %s%n word length] == 2} {
+    lappend words $word
+    set string [string range $string $length end]
+}
+</code></pre></div>
+<p>Parse a simple coordinate string, checking that it is complete by
+looking for the terminating character explicitly:</p>
+<div class="language-text highlight"><pre><span></span><code>set string &quot;(5.2,-4e-2)&quot;
+# Note that the spaces before the literal parts of
+# the scan pattern are significant, and that &quot;)&quot; is
+# the Unicode character \u0029
+if {
+    [scan $string &quot; (%f ,%f %c&quot; x y last] != 3
+    || $last != 0x0029
+} then {
+    error &quot;invalid coordinate string&quot;
+}
+puts &quot;X=$x, Y=$y&quot;
+</code></pre></div>
+<p>An interactive session demonstrating the truncation of integer values
+determined by size modifiers:</p>
+<div class="language-text highlight"><pre><span></span><code>% set tcl_platform(wordSize)
+4
+% scan 20000000000000000000 %d
+2147483647
+% scan 20000000000000000000 %ld
+9223372036854775807
+% scan 20000000000000000000 %lld
+20000000000000000000
+</code></pre></div>
+<h1 id="see-also">SEE ALSO</h1>
+<p>format(n), sscanf(3)</p>
+<h1 id="keywords">KEYWORDS</h1>
+<p>conversion specifier, parse, scan</p>
+
+<ul class="metadata page-metadata" data-bi-name="page info" lang="en-us" dir="ltr">
+  <li class="last-updated-holder displayDate loading">
+    <span class="last-updated-text">Last updated:</span>
+    <time role="presentation" datetime="2018-10-25T00:00:00.000Z" data-article-date-source="ms.date"></time>
+  </li>
+<!--
+  <li class="readingTime">
+    2 minutes to read
+  </li>
+-->
+  <li class="contributors-holder">
+    <span class="contributors-text">Contributors</span>
+    <ul class="contributors" data-bi-name="contributors"></ul>
+  </li>
+</ul>
+</div>
+        <div class="col-md-3"><div class="navbar-light navbar-expand-md hidden-print sticky-top sticky-offset" role="complementary">
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggler collapsed" data-toggle="collapse" data-target="#toc-collapse" title="Table of Contents">
+            <span class="fa fa-angle-down"></span>
+        </button>
+    </div>
+
+    <div id="toc-collapse" class="navbar-collapse collapse card">
+        <ul class="nav flex-column bs-sidenav">
+            <li class="nav-item main"><a class="nav-link" href="#name">NAME</a></li>
+            <li class="nav-item main"><a class="nav-link" href="#synopsis">SYNOPSIS</a></li>
+            <li class="nav-item main"><a class="nav-link" href="#introduction">INTRODUCTION</a></li>
+            <li class="nav-item main"><a class="nav-link" href="#details-on-scanning">DETAILS ON SCANNING</a></li>
+                <li class="nav-item">
+                    <a href="#optional-positional-specifier" class="nav-link">OPTIONAL POSITIONAL SPECIFIER</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#optional-size-modifier" class="nav-link">OPTIONAL SIZE MODIFIER</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#mandatory-conversion-character" class="nav-link">MANDATORY CONVERSION CHARACTER</a>
+                </li>
+            <li class="nav-item main"><a class="nav-link" href="#differences-from-ansi-sscanf">DIFFERENCES FROM ANSI SSCANF</a></li>
+            <li class="nav-item main"><a class="nav-link" href="#examples">EXAMPLES</a></li>
+            <li class="nav-item main"><a class="nav-link" href="#see-also">SEE ALSO</a></li>
+            <li class="nav-item main"><a class="nav-link" href="#keywords">KEYWORDS</a></li>
+        </ul>
+    </div>
+</div></div>
+      </div>
+      </div>
+
+      <footer class="col-md-12">
+	<hr>
+	<div class="container">
+	</div>
+      </footer>
+      <script>
+	var base_url = "../..",
+            shortcuts = {"help": 191, "next": 78, "previous": 80, "search": 83};
+      </script>
+      <script src="../../js/base.js" defer></script>
+      <script src="../../search/main.js" defer></script>
+
+      <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="Search Modal" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Search</h4>
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            </div>
+            <div class="modal-body">
+                <p>
+                    From here you can search these documents. Enter
+                    your search terms below.
+                </p>
+                <form role="form">
+                    <div class="form-group">
+                        <input type="text" class="form-control" placeholder="Search..." id="mkdocs-search-query" title="Type search term here">
+                    </div>
+                </form>
+                <div id="mkdocs-search-results"></div>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div><div class="modal" id="mkdocs_keyboard_modal" tabindex="-1" role="dialog" aria-labelledby="Keyboard Shortcuts Modal" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <p class="h4 modal-title">Keyboard Shortcuts</p>
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            </div>
+            <div class="modal-body">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th style="width: 20%;">Keys</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="help shortcut"><kbd>?</kbd></td>
+                    <td>Open this help</td>
+                  </tr>
+                  <tr>
+                    <td class="next shortcut"><kbd>n</kbd></td>
+                    <td>Next page</td>
+                  </tr>
+                  <tr>
+                    <td class="prev shortcut"><kbd>p</kbd></td>
+                    <td>Previous page</td>
+                  </tr>
+                  <tr>
+                    <td class="search shortcut"><kbd>s</kbd></td>
+                    <td>Search</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>
+
+    </body>
+</html>

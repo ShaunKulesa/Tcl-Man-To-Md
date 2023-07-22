@@ -1,250 +1,53 @@
 
 site_name: Tcl/Tk
 site_url: https://www.tcl.tk/man
-theme: readthedocs
+
+theme:
+  name: readthedocs
+  highlightjs: false
+
+  features:
+    - content.code.copy
+
+markdown_extensions:
+  - pymdownx.highlight:
+      anchor_linenums: true
+      line_spans: __span
+      pygments_lang_class: true
+  - pymdownx.inlinehilite
+  - pymdownx.snippets
+  - pymdownx.superfences
 
 nav:
-  - 1man_to_md: 1man_to_md.md
-  - abstract: abstract.md
-  - Access: Access.md
-  - AddErrInfo: AddErrInfo.md
-  - after: after.md
-  - Alloc: Alloc.md
-  - AllowExc: AllowExc.md
-  - append: append.md
-  - AppInit: AppInit.md
-  - apply: apply.md
-  - array: array.md
-  - AssocData: AssocData.md
-  - Async: Async.md
-  - BackgdErr: BackgdErr.md
-  - Backslash: Backslash.md
-  - bgerror: bgerror.md
-  - binary: binary.md
-  - BoolObj: BoolObj.md
-  - break: break.md
-  - ByteArrObj: ByteArrObj.md
-  - callback: callback.md
-  - CallDel: CallDel.md
-  - Cancel: Cancel.md
-  - case: case.md
-  - catch: catch.md
-  - cd: cd.md
-  - chan: chan.md
-  - ChnlStack: ChnlStack.md
-  - Class: Class.md
-  - classvariable: classvariable.md
-  - clock: clock.md
-  - close: close.md
-  - CmdCmplt: CmdCmplt.md
-  - Concat: Concat.md
-  - configurable: configurable.md
-  - continue: continue.md
-  - cookiejar: cookiejar.md
-  - copy: copy.md
-  - coroutine: coroutine.md
-  - CrtAlias: CrtAlias.md
-  - CrtChannel: CrtChannel.md
-  - CrtChnlHdlr: CrtChnlHdlr.md
-  - CrtCloseHdlr: CrtCloseHdlr.md
-  - CrtCommand: CrtCommand.md
-  - CrtFileHdlr: CrtFileHdlr.md
-  - CrtInterp: CrtInterp.md
-  - CrtMathFnc: CrtMathFnc.md
-  - CrtObjCmd: CrtObjCmd.md
-  - CrtTimerHdlr: CrtTimerHdlr.md
-  - CrtTrace: CrtTrace.md
-  - dde: dde.md
-  - define: define.md
-  - DetachPids: DetachPids.md
-  - dict: dict.md
-  - DictObj: DictObj.md
-  - DoOneEvent: DoOneEvent.md
-  - DoubleObj: DoubleObj.md
-  - DoWhenIdle: DoWhenIdle.md
-  - DString: DString.md
-  - DumpActiveMemory: DumpActiveMemory.md
-  - Encoding: Encoding.md
-  - Ensemble: Ensemble.md
-  - Environment: Environment.md
-  - eof: eof.md
-  - error: error.md
-  - Eval: Eval.md
-  - exec: exec.md
-  - Exit: Exit.md
-  - expr: expr.md
-  - ExprLong: ExprLong.md
-  - ExprLongObj: ExprLongObj.md
-  - fblocked: fblocked.md
-  - fconfigure: fconfigure.md
-  - fcopy: fcopy.md
-  - file: file.md
-  - fileevent: fileevent.md
-  - filename: filename.md
-  - FileSystem: FileSystem.md
-  - FindExec: FindExec.md
-  - flush: flush.md
-  - for: for.md
-  - foreach: foreach.md
-  - format: format.md
-  - fpclassify: fpclassify.md
-  - GetCwd: GetCwd.md
-  - GetHostName: GetHostName.md
-  - GetIndex: GetIndex.md
-  - GetInt: GetInt.md
-  - GetOpnFl: GetOpnFl.md
-  - gets: gets.md
-  - GetStdChan: GetStdChan.md
-  - GetTime: GetTime.md
-  - GetVersion: GetVersion.md
-  - glob: glob.md
-  - global: global.md
-  - Hash: Hash.md
-  - history: history.md
-  - http: http.md
-  - idna: idna.md
-  - if: if.md
-  - incr: incr.md
-  - info: info.md
-  - Init: Init.md
-  - InitStubs: InitStubs.md
-  - InitSubSyst: InitSubSyst.md
-  - interp: interp.md
-  - IntObj: IntObj.md
-  - join: join.md
-  - lappend: lappend.md
-  - lassign: lassign.md
-  - ledit: ledit.md
-  - library: library.md
-  - license: license.md
-  - Limit: Limit.md
-  - lindex: lindex.md
-  - link: link.md
-  - LinkVar: LinkVar.md
-  - linsert: linsert.md
-  - list: list.md
-  - ListObj: ListObj.md
-  - llength: llength.md
-  - lmap: lmap.md
-  - Load: Load.md
-  - lpop: lpop.md
-  - lrange: lrange.md
-  - lremove: lremove.md
-  - lrepeat: lrepeat.md
-  - lreplace: lreplace.md
-  - lreverse: lreverse.md
-  - lsearch: lsearch.md
-  - lseq: lseq.md
-  - lset: lset.md
-  - lsort: lsort.md
-  - man: man.md
-  - markdown: markdown.md
-  - mathfunc: mathfunc.md
-  - mathop: mathop.md
-  - memory: memory.md
-  - Method: Method.md
-  - msgcat: msgcat.md
-  - my: my.md
-  - Namespace: Namespace.md
-  - next: next.md
-  - Notifier: Notifier.md
-  - NRE: NRE.md
-  - Number: Number.md
-  - Object: Object.md
-  - ObjectType: ObjectType.md
-  - OOInitStubs: OOInitStubs.md
-  - open: open.md
-  - OpenFileChnl: OpenFileChnl.md
-  - OpenTcp: OpenTcp.md
-  - package: package.md
-  - packagens: packagens.md
-  - Panic: Panic.md
-  - ParseArgs: ParseArgs.md
-  - ParseCmd: ParseCmd.md
-  - pid: pid.md
-  - pkgMkIndex: pkgMkIndex.md
-  - PkgRequire: PkgRequire.md
-  - platform: platform.md
-  - platform_shell: platform_shell.md
-  - prefix: prefix.md
-  - Preserve: Preserve.md
-  - PrintDbl: PrintDbl.md
-  - proc: proc.md
-  - process: process.md
-  - puts: puts.md
-  - pwd: pwd.md
-  - read: read.md
-  - RecEvalObj: RecEvalObj.md
-  - RecordEval: RecordEval.md
-  - refchan: refchan.md
-  - RegConfig: RegConfig.md
-  - RegExp: RegExp.md
-  - registry: registry.md
-  - regsub: regsub.md
-  - rename: rename.md
-  - return: return.md
-  - re_syntax: re_syntax.md
-  - safe: safe.md
-  - SaveInterpState: SaveInterpState.md
-  - SaveResult: SaveResult.md
-  - scan: scan.md
-  - seek: seek.md
-  - self: self.md
-  - set: set.md
-  - SetChanErr: SetChanErr.md
-  - SetErrno: SetErrno.md
-  - SetRecLmt: SetRecLmt.md
-  - SetResult: SetResult.md
-  - SetVar: SetVar.md
-  - Signal: Signal.md
-  - singleton: singleton.md
-  - Sleep: Sleep.md
-  - socket: socket.md
-  - SourceRCFile: SourceRCFile.md
-  - split: split.md
-  - SplitList: SplitList.md
-  - SplitPath: SplitPath.md
-  - StaticLibrary: StaticLibrary.md
-  - StaticPkg: StaticPkg.md
-  - StdChannels: StdChannels.md
-  - string: string.md
-  - StringObj: StringObj.md
-  - StrMatch: StrMatch.md
-  - subst: subst.md
-  - SubstObj: SubstObj.md
-  - switch: switch.md
-  - tailcall: tailcall.md
-  - Tcl: Tcl.md
-  - tclsh: tclsh.md
-  - tcltest: tcltest.md
-  - tclvars: tclvars.md
-  - TclZlib: TclZlib.md
-  - Tcl_Main: Tcl_Main.md
-  - TCL_MEM_DEBUG: TCL_MEM_DEBUG.md
-  - tell: tell.md
-  - Thread: Thread.md
-  - throw: throw.md
-  - time: time.md
-  - timerate: timerate.md
-  - tm: tm.md
-  - ToUpper: ToUpper.md
-  - trace: trace.md
-  - TraceCmd: TraceCmd.md
-  - TraceVar: TraceVar.md
-  - transchan: transchan.md
-  - Translate: Translate.md
-  - try: try.md
-  - UniCharIsAlpha: UniCharIsAlpha.md
-  - unknown: unknown.md
-  - unload: unload.md
-  - unset: unset.md
-  - update: update.md
-  - uplevel: uplevel.md
-  - UpVar: UpVar.md
-  - Utf: Utf.md
-  - variable: variable.md
-  - vwait: vwait.md
-  - while: while.md
-  - WrongNumArgs: WrongNumArgs.md
-  - zipfs: zipfs.md
-  - zlib: zlib.md
+  - Home: 
+    - index.md
+    - ItclCmd:
+      - ItclCmd/index.md
+    - ItclLib:
+      - ItclLib/index.md
+    - Keywords:
+      - Keywords/index.md
+    - SqliteCmd:
+      - SqliteCmd/index.md
+    - TclCmd:
+      - TclCmd/index.md
+    - TclLib:
+      - TclLib/index.md
+    - TdbcCmd:
+      - TdbcCmd/index.md
+    - TdbcLib:
+      - TdbcLib/index.md
+    - TdbcmysqlCmd:
+      - TdbcmysqlCmd/index.md
+    - TdbcodbcCmd:
+      - TdbcodbcCmd/index.md
+    - TdbcpostgresCmd:
+      - TdbcpostgresCmd/index.md
+    - ThreadCmd:
+      - ThreadCmd/index.md
+    - TkCmd:
+      - TkCmd/index.md
+    - TkLib:
+      - TkLib/index.md
+    - UserCmd:
+      - UserCmd/index.md

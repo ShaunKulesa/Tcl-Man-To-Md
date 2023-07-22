@@ -1,0 +1,674 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+      <script>
+	// Hack for scrolling window when linking to anchor tag with fixed nav header
+        var shiftWindow = function() { scrollBy(0, -75) };
+        window.addEventListener("hashchange", shiftWindow);
+        function load() { if (window.location.hash) shiftWindow(); }
+      </script>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        
+        <link rel="canonical" href="https://www.tcl.tk/man/TclCmd/msgcat/">
+        <link rel="shortcut icon" href="../../img/favicon.ico">
+        <title>Msgcat - Tcl/Tk</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <link href="../../css/font-awesome.min.css" rel="stylesheet">
+    <link href="../../css/base.css" rel="stylesheet">
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+    <script src="../../js/base.js"></script> 
+    </head>
+
+    <body class="">
+
+      <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
+	<div class="container">
+	<a class="navbar-brand" href="../..">Tcl/Tk</a>
+	<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExample04" aria-controls="navbarsExample04" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+	</button>
+
+	<div class="collapse navbar-collapse">
+
+          <ul class="navbar-nav flex-row ml-md-auto d-none d-md-flex">
+            <li class="nav-item">
+              <a class="nav-link" href="#" data-toggle="modal" data-target="#mkdocs_search_modal">
+		<i class="fa fa-search"></i> Search
+              </a>
+            </li>
+          </ul>
+	</div>
+	</div>
+      </nav><div id="content" class="container">
+        
+      <div class="row">
+        <div class="col-md-9" role="main">
+
+
+<nav aria-label="breadcrumb">
+  <ol class="breadcrumb">
+    
+    <li class="breadcrumb-item active" aria-current="page">Msgcat</li>
+  </ol>
+</nav>
+
+
+<p>\</p>
+<h1 id="name">NAME</h1>
+<p>msgcat - Tcl message catalog</p>
+<h1 id="synopsis">SYNOPSIS</h1>
+<p><strong>package require Tcl 8.5</strong></p>
+<p><strong>package require msgcat 1.6</strong></p>
+<p><strong>::msgcat::mc </strong><em>src-string</em> ?<em>arg arg ...</em>?</p>
+<p><strong>::msgcat::mcmax ?</strong><em>src-string src-string ...</em>?</p>
+<p><strong>::msgcat::mcexists</strong> ?<strong>-exactnamespace</strong>? ?<strong>-exactlocale</strong>?
+<em>src-string</em></p>
+<p><strong>::msgcat::mclocale </strong>?<em>newLocale</em>?</p>
+<p><strong>::msgcat::mcpreferences</strong></p>
+<p><strong>::msgcat::mcloadedlocales subcommand</strong> ?<em>locale</em>?</p>
+<p><strong>::msgcat::mcload </strong><em>dirname</em></p>
+<p><strong>::msgcat::mcset </strong><em>locale src-string </em>?<em>translate-string</em>?</p>
+<p><strong>::msgcat::mcmset </strong><em>locale src-trans-list</em></p>
+<p><strong>::msgcat::mcflset </strong><em>src-string </em>?<em>translate-string</em>?</p>
+<p><strong>::msgcat::mcflmset </strong><em>src-trans-list</em></p>
+<p><strong>::msgcat::mcunknown </strong><em>locale src-string</em> ?<em>arg arg ...</em>?</p>
+<p><strong>::msgcat::mcpackagelocale subcommand</strong> ?<em>locale</em>?</p>
+<p><strong>::msgcat::mcpackageconfig subcommand</strong> <em>option</em> ?<em>value</em>?</p>
+<p><strong>::msgcat::mcforgetpackage</strong></p>
+<p>\</p>
+<h1 id="description">DESCRIPTION</h1>
+<p>The <strong>msgcat</strong> package provides a set of functions that can be used to
+manage multi-lingual user interfaces. Text strings are defined in a
+which is independent from the application, and which can be edited or
+localized without modifying the application source code. New languages
+or locales may be provided by adding a new file to the message catalog.</p>
+<p><strong>msgcat</strong> distinguises packages by its namespace. Each package has its
+own message catalog and configuration settings in <strong>msgcat</strong>.</p>
+<p>A <em>locale</em> is a specification string describing a user language like
+<strong>de_ch</strong> for Swiss German. In <strong>msgcat</strong>, there is a global locale
+initialized by the system locale of the current system. Each package may
+decide to use the global locale or to use a package specific locale.</p>
+<p>The global locale may be changed on demand, for example by a user
+initiated language change or within a multi user application like a web
+server.</p>
+<h1 id="commands">COMMANDS</h1>
+<p><strong>::msgcat::mc </strong><em>src-string</em> ?<em>arg arg ...</em>?</p>
+<p>:   Returns a translation of <em>src-string</em> according to the current
+    locale. If additional arguments past <em>src-string</em> are given, the
+    <strong>format</strong> command is used to substitute the additional arguments in
+    the translation of <em>src-string</em>.</p>
+<div class="language-text highlight"><pre><span></span><code>**::msgcat::mc** will search the messages defined in the current
+namespace for a translation of *src-string*; if none is found, it
+will search in the parent of the current namespace, and so on until
+it reaches the global namespace. If no translation string exists,
+**::msgcat::mcunknown** is called and the string returned from
+**::msgcat::mcunknown** is returned.
+
+**::msgcat::mc** is the main function used to localize an
+application. Instead of using an English string directly, an
+application can pass the English string through **::msgcat::mc** and
+use the result. If an application is written for a single language
+in this fashion, then it is easy to add support for additional
+languages later simply by defining new message catalog entries.
+</code></pre></div>
+<p><strong>::msgcat::mcmax ?</strong><em>src-string src-string ...</em>?</p>
+<p>:   Given several source strings, <strong>::msgcat::mcmax</strong> returns the length
+    of the longest translated string. This is useful when designing
+    localized GUIs, which may require that all buttons, for example, be
+    a fixed width (which will be the width of the widest button).</p>
+<p><strong>::msgcat::mcexists</strong> ?<strong>-exactnamespace</strong>? ?<strong>-exactlocale</strong>? <em>src-string</em></p>
+<p>:   </p>
+<p>Return true, if there is a translation for the given <em>src-string</em>.</p>
+<blockquote>
+<p>The search may be limited by the option <strong>-exactnamespace</strong> to only
+check the current namespace and not any parent namespaces.</p>
+<p>It may also be limited by the option <strong>-exactlocale</strong> to only check
+the first prefered locale (e.g. first element returned by
+<strong>::msgcat::mcpreferences</strong> if global locale is used).</p>
+</blockquote>
+<p><strong>::msgcat::mclocale </strong>?<em>newLocale</em>?</p>
+<p>:   This function sets the locale to <em>newLocale</em>. If <em>newLocale</em> is
+    omitted, the current locale is returned, otherwise the current
+    locale is set to <em>newLocale</em>. msgcat stores and compares the locale
+    in a case-insensitive manner, and returns locales in lowercase. The
+    initial locale is determined by the locale specified in the user\'s
+    environment. See <strong>LOCALE SPECIFICATION</strong> below for a description of
+    the locale string format.</p>
+<div class="language-text highlight"><pre><span></span><code>If the locale is set, the preference list of locales is evaluated.
+Locales in this list are loaded now, if not jet loaded.
+</code></pre></div>
+<p><strong>::msgcat::mcpreferences</strong></p>
+<p>:   Returns an ordered list of the locales preferred by the user, based
+    on the user\'s language specification. The list is ordered from most
+    specific to least preference. The list is derived from the current
+    locale set in msgcat by <strong>::msgcat::mclocale</strong>, and cannot be set
+    independently. For example, if the current locale is en_US_funky,
+    then <strong>::msgcat::mcpreferences</strong> returns <strong>{en_us_funky en_us en
+    {}}</strong>.</p>
+<p><strong>::msgcat::mcloadedlocales subcommand</strong> ?<em>locale</em>?</p>
+<p>:   This group of commands manage the list of loaded locales for
+    packages not setting a package locale.</p>
+<blockquote>
+<p>The subcommand <strong>get</strong> returns the list of currently loaded locales.</p>
+<p>The subcommand <strong>present</strong> requires the argument <em>locale</em> and returns
+true, if this locale is loaded.</p>
+<p>The subcommand <strong>clear</strong> removes all locales and their data, which are
+not in the current preference list.</p>
+</blockquote>
+<p><strong>::msgcat::mcload </strong><em>dirname</em></p>
+<p>:   </p>
+<p>Searches the specified directory for files that match the language
+specifications returned by <strong>::msgcat::mcloadedlocales get</strong> (or
+<strong>msgcat::mcpackagelocale preferences</strong> if a package locale is set)
+(note that these are all lowercase), extended by the file extension Each
+matching file is read in order, assuming a UTF-8 encoding. The file
+contents are then evaluated as a Tcl script. This means that Unicode
+characters may be present in the message file either directly in their
+UTF-8 encoded form, or by use of the backslash-u quoting recognized by
+Tcl evaluation. The number of message files which matched the
+specification and were loaded is returned.</p>
+<blockquote>
+<p>In addition, the given folder is stored in the <strong>msgcat</strong> package
+configuration option <em>mcfolder</em> to eventually load message catalog
+files required by a locale change.</p>
+</blockquote>
+<p><strong>::msgcat::mcset </strong><em>locale src-string </em>?<em>translate-string</em>?</p>
+<p>:   Sets the translation for <em>src-string</em> to <em>translate-string</em> in the
+    specified <em>locale</em> and the current namespace. If <em>translate-string</em>
+    is not specified, <em>src-string</em> is used for both. The function
+    returns <em>translate-string</em>.</p>
+<p><strong>::msgcat::mcmset </strong><em>locale src-trans-list</em></p>
+<p>:   Sets the translation for multiple source strings in <em>src-trans-list</em>
+    in the specified <em>locale</em> and the current namespace.
+    <em>src-trans-list</em> must have an even number of elements and is in the
+    form {<em>src-string translate-string</em> ?<em>src-string</em> translate-string
+    ...?} <strong>::msgcat::mcmset</strong> can be significantly faster than
+    multiple invocations of <strong>::msgcat::mcset</strong>. The function returns
+    the number of translations set.</p>
+<p><strong>::msgcat::mcflset </strong><em>src-string </em>?<em>translate-string</em>?</p>
+<p>:   Sets the translation for <em>src-string</em> to <em>translate-string</em> in the
+    current namespace for the locale implied by the name of the message
+    catalog being loaded via <strong>::msgcat::mcload</strong>. If <em>translate-string</em>
+    is not specified, <em>src-string</em> is used for both. The function
+    returns <em>translate-string</em>.</p>
+<p><strong>::msgcat::mcflmset </strong><em>src-trans-list</em></p>
+<p>:   Sets the translation for multiple source strings in <em>src-trans-list</em>
+    in the current namespace for the locale implied by the name of the
+    message catalog being loaded via <strong>::msgcat::mcload</strong>.
+    <em>src-trans-list</em> must have an even number of elements and is in the
+    form {<em>src-string</em> translate-string ?<em>src-string translate-string
+    ...</em>?} <strong>::msgcat::mcflmset</strong> can be significantly faster than
+    multiple invocations of <strong>::msgcat::mcflset</strong>. The function returns
+    the number of translations set.</p>
+<p><strong>::msgcat::mcunknown </strong><em>locale src-string</em> ?<em>arg arg ...</em>?</p>
+<p>:   This routine is called by <strong>::msgcat::mc</strong> in the case when a
+    translation for <em>src-string</em> is not defined in the current locale.
+    The default action is to return <em>src-string</em> passed by format if
+    there are any arguments. This procedure can be redefined by the
+    application, for example to log error messages for each unknown
+    string. The <strong>::msgcat::mcunknown</strong> procedure is invoked at the same
+    stack context as the call to <strong>::msgcat::mc</strong>. The return value of
+    <strong>::msgcat::mcunknown</strong> is used as the return value for the call to
+    <strong>::msgcat::mc</strong>.</p>
+<blockquote>
+<p>Note that this routine is only called if the concerned package did not
+set a package locale unknown command name.</p>
+</blockquote>
+<p><strong>::msgcat::mcforgetpackage</strong></p>
+<p>:   The calling package clears all its state within the <strong>msgcat</strong>
+    package including all settings and translations.</p>
+<h1 id="locale-specification">LOCALE SPECIFICATION</h1>
+<p>The locale is specified to <strong>msgcat</strong> by a locale string passed to
+<strong>::msgcat::mclocale</strong>. The locale string consists of a language code,
+an optional country code, and an optional system-specific code, each
+separated by The country and language codes are specified in standards
+ISO-639 and ISO-3166. For example, the locale specifies English and
+specifies U.S. English.</p>
+<p>When the msgcat package is first loaded, the locale is initialized
+according to the user\'s environment. The variables <strong>env(LC_ALL)</strong>,
+<strong>env(LC_MESSAGES)</strong>, and <strong>env(LANG)</strong> are examined in order. The first
+of them to have a non-empty value is used to determine the initial
+locale. The value is parsed according to the XPG4 pattern</p>
+<div class="language-text highlight"><pre><span></span><code>language[_country][.codeset][@modifier]
+</code></pre></div>
+<p>to extract its parts. The initial locale is then set by calling
+<strong>::msgcat::mclocale</strong> with the argument</p>
+<div class="language-text highlight"><pre><span></span><code>language[_country][_modifier]
+</code></pre></div>
+<p>On Windows and Cygwin, if none of those environment variables is set,
+msgcat will attempt to extract locale information from the registry.
+From Windows Vista on, the RFC4747 locale name
+\"lang-script-country-options\" is transformed to the locale as
+\"lang_country_script\" (Example: sr-Latn-CS -> sr_cs_latin). For
+Windows XP, the language id is transformed analoguously (Example: 0c1a
+-> sr_yu_cyrillic). If all these attempts to discover an initial locale
+from the user\'s environment fail, msgcat defaults to an initial locale
+of</p>
+<p>When a locale is specified by the user, a search is performed during
+string translation. For example, if a user specifies en_GB_Funky, the
+locales and (the empty string) are searched in order until a matching
+translation string is found. If no translation string is available, then
+the unknown handler is called.</p>
+<h1 id="namespaces-and-message-catalogs">NAMESPACES AND MESSAGE CATALOGS</h1>
+<p>Strings stored in the message catalog are stored relative to the
+namespace from which they were added. This allows multiple packages to
+use the same strings without fear of collisions with other packages. It
+also allows the source string to be shorter and less prone to
+typographical error.</p>
+<p>For example, executing the code</p>
+<div class="language-text highlight"><pre><span></span><code>::msgcat::mcset en hello &quot;hello from ::&quot;
+namespace eval foo {
+    ::msgcat::mcset en hello &quot;hello from ::foo&quot;
+}
+puts [::msgcat::mc hello]
+namespace eval foo {puts [::msgcat::mc hello]}
+</code></pre></div>
+<p>will print</p>
+<div class="language-text highlight"><pre><span></span><code>hello from ::
+hello from ::foo
+</code></pre></div>
+<p>When searching for a translation of a message, the message catalog will
+search first the current namespace, then the parent of the current
+namespace, and so on until the global namespace is reached. This allows
+child namespaces to messages from their parent namespace.</p>
+<p>For example, executing (in the locale) the code</p>
+<div class="language-text highlight"><pre><span></span><code>::msgcat::mcset en m1 &quot;:: message1&quot;
+::msgcat::mcset en m2 &quot;:: message2&quot;
+::msgcat::mcset en m3 &quot;:: message3&quot;
+namespace eval ::foo {
+    ::msgcat::mcset en m2 &quot;::foo message2&quot;
+    ::msgcat::mcset en m3 &quot;::foo message3&quot;
+}
+namespace eval ::foo::bar {
+    ::msgcat::mcset en m3 &quot;::foo::bar message3&quot;
+}
+namespace import ::msgcat::mc
+puts &quot;[mc m1]; [mc m2]; [mc m3]&quot;
+namespace eval ::foo {puts &quot;[mc m1]; [mc m2]; [mc m3]&quot;}
+namespace eval ::foo::bar {puts &quot;[mc m1]; [mc m2]; [mc m3]&quot;}
+</code></pre></div>
+<p>will print</p>
+<div class="language-text highlight"><pre><span></span><code>:: message1; :: message2; :: message3
+:: message1; ::foo message2; ::foo message3
+:: message1; ::foo message2; ::foo::bar message3
+</code></pre></div>
+<h1 id="location-and-format-of-message-files">LOCATION AND FORMAT OF MESSAGE FILES</h1>
+<p>Message files can be located in any directory, subject to the following
+conditions:</p>
+<p>[1]</p>
+<p>:   All message files for a package are in the same directory.</p>
+<p>[2]</p>
+<p>:   The message file name is a msgcat locale specifier (all lowercase)
+    followed by For example:</p>
+<p><div class="language-text highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>&lt;!-- --&gt;
+</span></code></pre></div>
+    es.msg    — spanish
+    en_gb.msg — United Kingdom English</p>
+<p><em>Exception:</em> The message file for the root locale is called This
+exception is made so as not to cause peculiar behavior, such as marking
+the message file as on Unix file systems.</p>
+<p>[3]</p>
+<p>:   The file contains a series of calls to <strong>mcflset</strong> and <strong>mcflmset</strong>,
+    setting the necessary translation strings for the language, likely
+    enclosed in a <strong>namespace eval</strong> so that all source strings are tied
+    to the namespace of the package. For example, a short <strong>es.msg</strong>
+    might contain:</p>
+<p><div class="language-text highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>&lt;!-- --&gt;
+</span></code></pre></div>
+    namespace eval ::mypackage {
+        ::msgcat::mcflset "Free Beer" "Cerveza Gratis"
+    }</p>
+<h1 id="recommended-message-setup-for-packages">RECOMMENDED MESSAGE SETUP FOR PACKAGES</h1>
+<p>If a package is installed into a subdirectory of the <strong>tcl_pkgPath</strong> and
+loaded via <strong>package require</strong>, the following procedure is recommended.</p>
+<p>[1]</p>
+<p>:   During package installation, create a subdirectory <strong>msgs</strong> under
+    your package directory.</p>
+<p>[2]</p>
+<p>:   Copy your *.msg files into that directory.</p>
+<p>[3]</p>
+<p>:   Add the following command to your package initialization script:</p>
+<p><div class="language-text highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>&lt;!-- --&gt;
+</span></code></pre></div>
+    # load language files, stored in msgs subdirectory
+    ::msgcat::mcload [file join [file dirname [info script]] msgs]</p>
+<h1 id="positional-codes-for-format-and-scan-commands">POSITIONAL CODES FOR FORMAT AND SCAN COMMANDS</h1>
+<p>It is possible that a message string used as an argument to <strong>format</strong>
+might have positionally dependent parameters that might need to be
+repositioned. For example, it might be syntactically desirable to
+rearrange the sentence structure while translating.</p>
+<div class="language-text highlight"><pre><span></span><code>format &quot;We produced %d units in location %s&quot; $num $city
+format &quot;In location %s we produced %d units&quot; $city $num
+</code></pre></div>
+<p>This can be handled by using the positional parameters:</p>
+<div class="language-text highlight"><pre><span></span><code>format &quot;We produced %1\$d units in location %2\$s&quot; $num $city
+format &quot;In location %2\$s we produced %1\$d units&quot; $num $city
+</code></pre></div>
+<p>Similarly, positional parameters can be used with <strong>scan</strong> to extract
+values from internationalized strings. Note that it is not necessary to
+pass the output of <strong>::msgcat::mc</strong> to <strong>format</strong> directly; by passing
+the values to substitute in as arguments, the formatting substitution is
+done directly.</p>
+<div class="language-text highlight"><pre><span></span><code>msgcat::mc {Produced %1$d at %2$s} $num $city
+# ... where that key is mapped to one of the
+# human-oriented versions by msgcat::mcset
+</code></pre></div>
+<h1 id="package-private-locale">Package private locale</h1>
+<p>A package using <strong>msgcat</strong> may choose to use its own package private
+locale and its own set of loaded locales, independent to the global
+locale set by <strong>::msgcat::mclocale</strong>.</p>
+<p>This allows a package to change its locale without causing any locales
+load or removal in other packages and not to invoke the global locale
+change callback (see below).</p>
+<p>This action is controled by the following ensemble:</p>
+<p><strong>::msgcat::mcpackagelocale set</strong> ?<em>locale</em>?</p>
+<p>:   Set or change a package private locale. The package private locale
+    is set to the given <em>locale</em> if the <em>locale</em> is given. If the option
+    <em>locale</em> is not given, the package is set to package private locale
+    mode, but no locale is changed (e.g. if the global locale was valid
+    for the package before, it is copied to the package private locale).</p>
+<blockquote>
+<p>This command may cause the load of locales.</p>
+</blockquote>
+<p><strong>::msgcat::mcpackagelocale get</strong></p>
+<p>:   Return the package private locale or the global locale, if no
+    package private locale is set.</p>
+<p><strong>::msgcat::mcpackagelocale preferences</strong></p>
+<p>:   Return the package private preferences or the global preferences, if
+    no package private locale is set.</p>
+<p><strong>::msgcat::mcpackagelocale loaded</strong></p>
+<p>:   Return the list of locales loaded for this package.</p>
+<p><strong>::msgcat::mcpackagelocale isset</strong></p>
+<p>:   Returns true, if a package private locale is set.</p>
+<p><strong>::msgcat::mcpackagelocale unset</strong></p>
+<p>:   Unset the package private locale and use the globale locale. Load
+    and remove locales to adjust the list of loaded locales for the
+    package to the global loaded locales list.</p>
+<p><strong>::msgcat::mcpackagelocale present</strong> <em>locale</em></p>
+<p>:   Returns true, if the given locale is loaded for the package.</p>
+<p><strong>::msgcat::mcpackagelocale clear</strong></p>
+<p>:   Clear any loaded locales of the package not present in the package
+    preferences.</p>
+<h1 id="changing-package-options">Changing package options</h1>
+<p>Each package using msgcat has a set of options within <strong>msgcat</strong>. The
+package options are described in the next sectionPackage options. Each
+package option may be set or unset individually using the following
+ensemble:</p>
+<p><strong>::msgcat::mcpackageconfig get</strong> <em>option</em></p>
+<p>:   Return the current value of the given <em>option</em>. This call returns an
+    error if the option is not set for the package.</p>
+<p><strong>::msgcat::mcpackageconfig isset</strong> <em>option</em></p>
+<p>:   Returns 1, if the given <em>option</em> is set for the package, 0
+    otherwise.</p>
+<p><strong>::msgcat::mcpackageconfig set</strong> <em>option</em> <em>value</em></p>
+<p>:   Set the given <em>option</em> to the given <em>value</em>. This may invoke
+    additional actions in dependency of the <em>option</em>. The return value
+    is 0 or the number of loaded packages for the option <strong>mcfolder</strong>.</p>
+<p><strong>::msgcat::mcpackageconfig unset</strong> <em>option</em></p>
+<p>:   Unsets the given <em>option</em> for the package. No action is taken if the
+    <em>option</em> is not set for the package. The empty string is returned.</p>
+<h2 id="package-options">Package options</h2>
+<p>The following package options are available for each package:</p>
+<p><strong>mcfolder</strong></p>
+<p>:   This is the message folder of the package. This option is set by
+    mcload and by the subcommand set. Both are identical and both return
+    the number of loaded message catalog files.</p>
+<div class="language-text highlight"><pre><span></span><code>Setting or changing this value will load all locales contained in
+the preferences valid for the package. This implies also to invoke
+any set loadcmd (see below).
+
+Unsetting this value will disable message file load for the package.
+</code></pre></div>
+<p><strong>loadcmd</strong></p>
+<p>:   This callback is invoked before a set of message catalog files are
+    loaded for the package which has this property set.</p>
+<blockquote>
+<p>This callback may be used to do any preparation work for message file
+load or to get the message data from another source like a data base.
+In this case, no message files are used (mcfolder is unset).</p>
+<p>See section <strong>callback invocation</strong> below. The parameter list appended
+to this callback is the list of locales to load.</p>
+<p>If this callback is changed, it is called with the preferences valid
+for the package.</p>
+</blockquote>
+<p><strong>changecmd</strong></p>
+<p>:   This callback is invoked when a default local change was performed.
+    Its purpose is to allow a package to update any dependency on the
+    default locale like showing the GUI in another language.</p>
+<blockquote>
+<p>See the callback invocation section below. The parameter list appended
+to this callback is <strong>mcpreferences</strong>. The registered callbacks are
+invoked in no particular order.</p>
+</blockquote>
+<p><strong>unknowncmd</strong></p>
+<p>:   Use a package locale mcunknown procedure instead of the standard
+    version supplied by the msgcat package (msgcat::mcunknown).</p>
+<blockquote>
+<p>The called procedure must return the formatted message which will
+finally be returned by msgcat::mc.</p>
+<p>A generic unknown handler is used if set to the empty string. This
+consists in returning the key if no arguments are given. With given
+arguments, format is used to process the arguments.</p>
+<p>See section <strong>callback invocation</strong> below. The appended arguments are
+identical to <strong>::msgcat::mcunknown</strong>.</p>
+</blockquote>
+<h2 id="callback-invocation">Callback invocation</h2>
+<p>A package may decide to register one or multiple callbacks, as described
+above.</p>
+<p>Callbacks are invoked, if:</p>
+<p>1. the callback command is set,</p>
+<p>2. the command is not the empty string,</p>
+<p>3. the registering namespace exists.</p>
+<p>If a called routine fails with an error, the <strong>bgerror</strong> routine for the
+interpreter is invoked after command completion. Only exception is the
+callback <strong>unknowncmd</strong>, where an error causes the invoking
+<strong>mc</strong>-command to fail with that error.</p>
+<h2 id="examples">Examples</h2>
+<p>Packages which display a GUI may update their widgets when the global
+locale changes. To register to a callback, use:</p>
+<div class="language-text highlight"><pre><span></span><code>namespace eval gui {
+    msgcat::mcpackageconfig changecmd updateGUI
+
+    proc updateGUI args {
+        puts &quot;New locale is &#39;[lindex $args 0]&#39;.&quot;
+    }
+}
+% msgcat::mclocale fr
+fr
+% New locale is &#39;fr&#39;.
+</code></pre></div>
+<p>If locales (or additional locales) are contained in another source like
+a data base, a package may use the load callback and not mcload:</p>
+<div class="language-text highlight"><pre><span></span><code>namespace eval db {
+    msgcat::mcpackageconfig loadcmd loadMessages
+
+    proc loadMessages args {
+        foreach locale $args {
+            if {[LocaleInDB $locale]} {
+                msgcat::mcmset $locale [GetLocaleList $locale]
+            }
+        }
+    }
+}
+</code></pre></div>
+<p>The <strong>clock</strong> command implementation uses <strong>msgcat</strong> with a package
+locale to implement the command line parameter <strong>-locale</strong>. Here are
+some sketches of the implementation:</p>
+<p>First, a package locale is initialized and the generic unknown function
+is desactivated:</p>
+<div class="language-text highlight"><pre><span></span><code>msgcat::mcpackagelocale set
+msgcat::mcpackageconfig unknowncmd &quot;&quot;
+</code></pre></div>
+<p>As an example, the user requires the week day in a certain locale as
+follows:</p>
+<div class="language-text highlight"><pre><span></span><code>clock format [clock seconds] -format %A -locale fr
+</code></pre></div>
+<p><strong>clock</strong> sets the package locale to <strong>fr</strong> and looks for the day name
+as follows:</p>
+<div class="language-text highlight"><pre><span></span><code>msgcat::mcpackagelocale set $locale
+return [lindex [msgcat::mc DAYS_OF_WEEK_FULL] $day]
+### Returns &quot;mercredi&quot;
+</code></pre></div>
+<p>Within <strong>clock</strong>, some message-catalog items are heavy in computation
+and thus are dynamically cached using:</p>
+<div class="language-text highlight"><pre><span></span><code>proc ::tcl::clock::LocalizeFormat { locale format } {
+    set key FORMAT_$format
+    if { [::msgcat::mcexists -exactlocale -exactnamespace $key] } {
+        return [mc $key]
+    }
+    #...expensive computation of format clipped...
+    mcset $locale $key $format
+    return $format
+}
+</code></pre></div>
+<h1 id="credits">CREDITS</h1>
+<p>The message catalog code was developed by Mark Harrison.</p>
+<h1 id="see-also">SEE ALSO</h1>
+<p>format(n), scan(n), namespace(n), package(n)</p>
+<h1 id="keywords">KEYWORDS</h1>
+<p>internationalization, i18n, localization, l10n, message, text,
+translation</p>
+
+<ul class="metadata page-metadata" data-bi-name="page info" lang="en-us" dir="ltr">
+  <li class="last-updated-holder displayDate loading">
+    <span class="last-updated-text">Last updated:</span>
+    <time role="presentation" datetime="2018-10-25T00:00:00.000Z" data-article-date-source="ms.date"></time>
+  </li>
+<!--
+  <li class="readingTime">
+    2 minutes to read
+  </li>
+-->
+  <li class="contributors-holder">
+    <span class="contributors-text">Contributors</span>
+    <ul class="contributors" data-bi-name="contributors"></ul>
+  </li>
+</ul>
+</div>
+        <div class="col-md-3"><div class="navbar-light navbar-expand-md hidden-print sticky-top sticky-offset" role="complementary">
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggler collapsed" data-toggle="collapse" data-target="#toc-collapse" title="Table of Contents">
+            <span class="fa fa-angle-down"></span>
+        </button>
+    </div>
+
+    <div id="toc-collapse" class="navbar-collapse collapse card">
+        <ul class="nav flex-column bs-sidenav">
+            <li class="nav-item main"><a class="nav-link" href="#name">NAME</a></li>
+            <li class="nav-item main"><a class="nav-link" href="#synopsis">SYNOPSIS</a></li>
+            <li class="nav-item main"><a class="nav-link" href="#description">DESCRIPTION</a></li>
+            <li class="nav-item main"><a class="nav-link" href="#commands">COMMANDS</a></li>
+            <li class="nav-item main"><a class="nav-link" href="#locale-specification">LOCALE SPECIFICATION</a></li>
+            <li class="nav-item main"><a class="nav-link" href="#namespaces-and-message-catalogs">NAMESPACES AND MESSAGE CATALOGS</a></li>
+            <li class="nav-item main"><a class="nav-link" href="#location-and-format-of-message-files">LOCATION AND FORMAT OF MESSAGE FILES</a></li>
+            <li class="nav-item main"><a class="nav-link" href="#recommended-message-setup-for-packages">RECOMMENDED MESSAGE SETUP FOR PACKAGES</a></li>
+            <li class="nav-item main"><a class="nav-link" href="#positional-codes-for-format-and-scan-commands">POSITIONAL CODES FOR FORMAT AND SCAN COMMANDS</a></li>
+            <li class="nav-item main"><a class="nav-link" href="#package-private-locale">Package private locale</a></li>
+            <li class="nav-item main"><a class="nav-link" href="#changing-package-options">Changing package options</a></li>
+                <li class="nav-item">
+                    <a href="#package-options" class="nav-link">Package options</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#callback-invocation" class="nav-link">Callback invocation</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#examples" class="nav-link">Examples</a>
+                </li>
+            <li class="nav-item main"><a class="nav-link" href="#credits">CREDITS</a></li>
+            <li class="nav-item main"><a class="nav-link" href="#see-also">SEE ALSO</a></li>
+            <li class="nav-item main"><a class="nav-link" href="#keywords">KEYWORDS</a></li>
+        </ul>
+    </div>
+</div></div>
+      </div>
+      </div>
+
+      <footer class="col-md-12">
+	<hr>
+	<div class="container">
+	</div>
+      </footer>
+      <script>
+	var base_url = "../..",
+            shortcuts = {"help": 191, "next": 78, "previous": 80, "search": 83};
+      </script>
+      <script src="../../js/base.js" defer></script>
+      <script src="../../search/main.js" defer></script>
+
+      <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="Search Modal" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Search</h4>
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            </div>
+            <div class="modal-body">
+                <p>
+                    From here you can search these documents. Enter
+                    your search terms below.
+                </p>
+                <form role="form">
+                    <div class="form-group">
+                        <input type="text" class="form-control" placeholder="Search..." id="mkdocs-search-query" title="Type search term here">
+                    </div>
+                </form>
+                <div id="mkdocs-search-results"></div>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div><div class="modal" id="mkdocs_keyboard_modal" tabindex="-1" role="dialog" aria-labelledby="Keyboard Shortcuts Modal" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <p class="h4 modal-title">Keyboard Shortcuts</p>
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            </div>
+            <div class="modal-body">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th style="width: 20%;">Keys</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="help shortcut"><kbd>?</kbd></td>
+                    <td>Open this help</td>
+                  </tr>
+                  <tr>
+                    <td class="next shortcut"><kbd>n</kbd></td>
+                    <td>Next page</td>
+                  </tr>
+                  <tr>
+                    <td class="prev shortcut"><kbd>p</kbd></td>
+                    <td>Previous page</td>
+                  </tr>
+                  <tr>
+                    <td class="search shortcut"><kbd>s</kbd></td>
+                    <td>Search</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>
+
+    </body>
+</html>

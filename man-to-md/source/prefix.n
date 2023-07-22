@@ -11,11 +11,9 @@
 .SH NAME
 tcl::prefix \- facilities for prefix matching
 .SH SYNOPSIS
-.nf
 \fB::tcl::prefix all\fR \fItable\fR \fIstring\fR
 \fB::tcl::prefix longest\fR \fItable\fR \fIstring\fR
 \fB::tcl::prefix match\fR \fI?option ...?\fR \fItable\fR \fIstring\fR
-.fi
 .BE
 .SH DESCRIPTION
 .PP
@@ -63,17 +61,17 @@ Example: If
 is used, an error would be generated as:
 .RS
 .PP
-.nf
+.CS
 return \-errorcode MyError \-level 1 \-code error \e
        "ambiguous option ..."
-.fi
+.CE
 .RE
 .RE
 .SH "EXAMPLES"
 .PP
 Basic use:
 .PP
-.nf
+.CS
 namespace import ::tcl::prefix
 \fBprefix match\fR {apa bepa cepa} apa
      \fI\(-> apa\fR
@@ -87,26 +85,26 @@ namespace import ::tcl::prefix
      \fI\(-> fco\fR
 \fBprefix all\fR {fblocked fconfigure fcopy file fileevent flush} fc
      \fI\(-> fconfigure fcopy\fR
-.fi
+.CE
 .PP
 Simplifying option matching:
 .PP
-.nf
+.CS
 array set opts {\-apa 1 \-bepa "" \-cepa 0}
 foreach {arg val} $args {
     set opts([\fBprefix match\fR {\-apa \-bepa \-cepa} $arg]) $val
 }
-.fi
+.CE
 .PP
 Creating a \fBswitch\fR that supports prefixes:
 .PP
-.nf
+.CS
 switch [\fBprefix match\fR {apa bepa cepa} $arg] {
     apa  { }
     bepa { }
     cepa { }
 }
-.fi
+.CE
 .SH "SEE ALSO"
 lsearch(n), namespace(n), string(n), Tcl_GetIndexFromObj(3)
 .SH "KEYWORDS"

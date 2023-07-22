@@ -1,18 +1,16 @@
-\
-
 # NAME
 
 Tcl_GetTime, Tcl_SetTimeProc, Tcl_QueryTimeProc - get date and time
 
 # SYNOPSIS
 
-    #include <tcl.h>
+**#include \<tcl.h\>**
 
-    Tcl_GetTime(timePtr)
+**Tcl_GetTime**(*timePtr*)
 
-    Tcl_SetTimeProc(getProc, scaleProc, clientData)
+**Tcl_SetTimeProc**(*getProc, scaleProc, clientData*)
 
-    Tcl_QueryTimeProc(getProcPtr, scaleProcPtr, clientDataPtr)
+**Tcl_QueryTimeProc**(*getProcPtr, scaleProcPtr, clientDataPtr*)
 
 # ARGUMENTS
 
@@ -31,8 +29,6 @@ Pointer to place the currently registered get handler function into.
 Pointer to place the currently registered scale handler function into.
 
 Pointer to place the currently registered pass-through value into.
-
-\
 
 # DESCRIPTION
 
@@ -107,3 +103,8 @@ clock(n)
 # KEYWORDS
 
 date, time
+
+<!---
+Copyright (c) 2001 Kevin B. Kenny <kennykb@acm.org>
+-->
+

@@ -12,7 +12,6 @@
 .SH NAME
 Tcl_Main, Tcl_MainEx, Tcl_MainExW, Tcl_SetStartupScript, Tcl_GetStartupScript, Tcl_SetMainLoop \- main program, startup script, and event loop definition for Tcl-based applications
 .SH SYNOPSIS
-.nf
 \fB#include <tcl.h>\fR
 .sp
 \fBTcl_Main\fR(\fIargc, argv, appInitProc\fR)
@@ -151,10 +150,10 @@ call \fBTcl_SetStartupScript\fR to (re-)set the file and encoding
 to be used as a startup script.  The procedure must have an interface
 that matches the type \fBTcl_AppInitProc\fR:
 .PP
-.nf
+.CS
 typedef int \fBTcl_AppInitProc\fR(
         Tcl_Interp *\fIinterp\fR);
-.fi
+.CE
 .PP
 \fIAppInitProc\fR is almost always a pointer to \fBTcl_AppInit\fR; for more
 details on this procedure, see the documentation for \fBTcl_AppInit\fR.
@@ -186,9 +185,9 @@ will continue.
 The main loop procedure must have an interface that matches the type
 \fBTcl_MainLoopProc\fR:
 .PP
-.nf
+.CS
 typedef void \fBTcl_MainLoopProc\fR(void);
-.fi
+.CE
 .PP
 \fBTcl_Main\fR does not return.  Normally a program based on
 \fBTcl_Main\fR will terminate when the \fBexit\fR command is

@@ -11,7 +11,6 @@
 .SH NAME
 Tcl_CreateTimerHandler, Tcl_DeleteTimerHandler \- call a procedure at a given time
 .SH SYNOPSIS
-.nf
 \fB#include <tcl.h>\fR
 .sp
 Tcl_TimerToken
@@ -49,10 +48,10 @@ are other pending events to process before the call to
 \fIProc\fR should have arguments and return value that match
 the type \fBTcl_TimerProc\fR:
 .PP
-.nf
+.CS
 typedef void \fBTcl_TimerProc\fR(
         ClientData \fIclientData\fR);
-.fi
+.CE
 .PP
 The \fIclientData\fR parameter to \fIproc\fR is a
 copy of the \fIclientData\fR argument given to
