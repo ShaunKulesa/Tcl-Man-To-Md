@@ -2,2052 +2,2052 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     <url>
          <loc>https://www.tcl.tk/man/</loc>
-         <lastmod>2023-07-21</lastmod>
+         <lastmod>2023-07-22</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://www.tcl.tk/man/ItclCmd/</loc>
-         <lastmod>2023-07-21</lastmod>
+         <lastmod>2023-07-22</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://www.tcl.tk/man/ItclLib/</loc>
-         <lastmod>2023-07-21</lastmod>
+         <lastmod>2023-07-22</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://www.tcl.tk/man/ItclLib/Class/</loc>
-         <lastmod>2023-07-21</lastmod>
+         <lastmod>2023-07-22</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://www.tcl.tk/man/ItclLib/Object/</loc>
-         <lastmod>2023-07-21</lastmod>
+         <lastmod>2023-07-22</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://www.tcl.tk/man/ItclLib/Preserve/</loc>
-         <lastmod>2023-07-21</lastmod>
+         <lastmod>2023-07-22</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://www.tcl.tk/man/Keywords/</loc>
-         <lastmod>2023-07-21</lastmod>
+         <lastmod>2023-07-22</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://www.tcl.tk/man/SqliteCmd/</loc>
-         <lastmod>2023-07-21</lastmod>
+         <lastmod>2023-07-22</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://www.tcl.tk/man/TclCmd/</loc>
-         <lastmod>2023-07-21</lastmod>
+         <lastmod>2023-07-22</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://www.tcl.tk/man/TclCmd/Tcl/</loc>
-         <lastmod>2023-07-21</lastmod>
+         <lastmod>2023-07-22</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://www.tcl.tk/man/TclCmd/after/</loc>
-         <lastmod>2023-07-21</lastmod>
+         <lastmod>2023-07-22</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://www.tcl.tk/man/TclCmd/append/</loc>
-         <lastmod>2023-07-21</lastmod>
+         <lastmod>2023-07-22</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://www.tcl.tk/man/TclCmd/apply/</loc>
-         <lastmod>2023-07-21</lastmod>
+         <lastmod>2023-07-22</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://www.tcl.tk/man/TclCmd/array/</loc>
-         <lastmod>2023-07-21</lastmod>
+         <lastmod>2023-07-22</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://www.tcl.tk/man/TclCmd/bgerror/</loc>
-         <lastmod>2023-07-21</lastmod>
+         <lastmod>2023-07-22</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://www.tcl.tk/man/TclCmd/binary/</loc>
-         <lastmod>2023-07-21</lastmod>
+         <lastmod>2023-07-22</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://www.tcl.tk/man/TclCmd/break/</loc>
-         <lastmod>2023-07-21</lastmod>
+         <lastmod>2023-07-22</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://www.tcl.tk/man/TclCmd/catch/</loc>
-         <lastmod>2023-07-21</lastmod>
+         <lastmod>2023-07-22</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://www.tcl.tk/man/TclCmd/cd/</loc>
-         <lastmod>2023-07-21</lastmod>
+         <lastmod>2023-07-22</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://www.tcl.tk/man/TclCmd/chan/</loc>
-         <lastmod>2023-07-21</lastmod>
+         <lastmod>2023-07-22</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://www.tcl.tk/man/TclCmd/clock/</loc>
-         <lastmod>2023-07-21</lastmod>
+         <lastmod>2023-07-22</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://www.tcl.tk/man/TclCmd/close/</loc>
-         <lastmod>2023-07-21</lastmod>
+         <lastmod>2023-07-22</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://www.tcl.tk/man/TclCmd/continue/</loc>
-         <lastmod>2023-07-21</lastmod>
+         <lastmod>2023-07-22</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://www.tcl.tk/man/TclCmd/copy/</loc>
-         <lastmod>2023-07-21</lastmod>
+         <lastmod>2023-07-22</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://www.tcl.tk/man/TclCmd/coroutine/</loc>
-         <lastmod>2023-07-21</lastmod>
+         <lastmod>2023-07-22</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://www.tcl.tk/man/TclCmd/dde/</loc>
-         <lastmod>2023-07-21</lastmod>
+         <lastmod>2023-07-22</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://www.tcl.tk/man/TclCmd/define/</loc>
-         <lastmod>2023-07-21</lastmod>
+         <lastmod>2023-07-22</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://www.tcl.tk/man/TclCmd/dict/</loc>
-         <lastmod>2023-07-21</lastmod>
+         <lastmod>2023-07-22</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://www.tcl.tk/man/TclCmd/eof/</loc>
-         <lastmod>2023-07-21</lastmod>
+         <lastmod>2023-07-22</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://www.tcl.tk/man/TclCmd/error/</loc>
-         <lastmod>2023-07-21</lastmod>
+         <lastmod>2023-07-22</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://www.tcl.tk/man/TclCmd/exec/</loc>
-         <lastmod>2023-07-21</lastmod>
+         <lastmod>2023-07-22</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://www.tcl.tk/man/TclCmd/expr/</loc>
-         <lastmod>2023-07-21</lastmod>
+         <lastmod>2023-07-22</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://www.tcl.tk/man/TclCmd/fblocked/</loc>
-         <lastmod>2023-07-21</lastmod>
+         <lastmod>2023-07-22</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://www.tcl.tk/man/TclCmd/fconfigure/</loc>
-         <lastmod>2023-07-21</lastmod>
+         <lastmod>2023-07-22</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://www.tcl.tk/man/TclCmd/fcopy/</loc>
-         <lastmod>2023-07-21</lastmod>
+         <lastmod>2023-07-22</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://www.tcl.tk/man/TclCmd/file/</loc>
-         <lastmod>2023-07-21</lastmod>
+         <lastmod>2023-07-22</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://www.tcl.tk/man/TclCmd/fileevent/</loc>
-         <lastmod>2023-07-21</lastmod>
+         <lastmod>2023-07-22</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://www.tcl.tk/man/TclCmd/filename/</loc>
-         <lastmod>2023-07-21</lastmod>
+         <lastmod>2023-07-22</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://www.tcl.tk/man/TclCmd/flush/</loc>
-         <lastmod>2023-07-21</lastmod>
+         <lastmod>2023-07-22</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://www.tcl.tk/man/TclCmd/for/</loc>
-         <lastmod>2023-07-21</lastmod>
+         <lastmod>2023-07-22</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://www.tcl.tk/man/TclCmd/foreach/</loc>
-         <lastmod>2023-07-21</lastmod>
+         <lastmod>2023-07-22</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://www.tcl.tk/man/TclCmd/format/</loc>
-         <lastmod>2023-07-21</lastmod>
+         <lastmod>2023-07-22</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://www.tcl.tk/man/TclCmd/gets/</loc>
-         <lastmod>2023-07-21</lastmod>
+         <lastmod>2023-07-22</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://www.tcl.tk/man/TclCmd/glob/</loc>
-         <lastmod>2023-07-21</lastmod>
+         <lastmod>2023-07-22</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://www.tcl.tk/man/TclCmd/global/</loc>
-         <lastmod>2023-07-21</lastmod>
+         <lastmod>2023-07-22</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://www.tcl.tk/man/TclCmd/history/</loc>
-         <lastmod>2023-07-21</lastmod>
+         <lastmod>2023-07-22</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://www.tcl.tk/man/TclCmd/http/</loc>
-         <lastmod>2023-07-21</lastmod>
+         <lastmod>2023-07-22</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://www.tcl.tk/man/TclCmd/if/</loc>
-         <lastmod>2023-07-21</lastmod>
+         <lastmod>2023-07-22</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://www.tcl.tk/man/TclCmd/incr/</loc>
-         <lastmod>2023-07-21</lastmod>
+         <lastmod>2023-07-22</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://www.tcl.tk/man/TclCmd/info/</loc>
-         <lastmod>2023-07-21</lastmod>
+         <lastmod>2023-07-22</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://www.tcl.tk/man/TclCmd/join/</loc>
-         <lastmod>2023-07-21</lastmod>
+         <lastmod>2023-07-22</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://www.tcl.tk/man/TclCmd/lappend/</loc>
-         <lastmod>2023-07-21</lastmod>
+         <lastmod>2023-07-22</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://www.tcl.tk/man/TclCmd/lassign/</loc>
-         <lastmod>2023-07-21</lastmod>
+         <lastmod>2023-07-22</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://www.tcl.tk/man/TclCmd/library/</loc>
-         <lastmod>2023-07-21</lastmod>
+         <lastmod>2023-07-22</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://www.tcl.tk/man/TclCmd/lindex/</loc>
-         <lastmod>2023-07-21</lastmod>
+         <lastmod>2023-07-22</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://www.tcl.tk/man/TclCmd/linsert/</loc>
-         <lastmod>2023-07-21</lastmod>
+         <lastmod>2023-07-22</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://www.tcl.tk/man/TclCmd/list/</loc>
-         <lastmod>2023-07-21</lastmod>
+         <lastmod>2023-07-22</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://www.tcl.tk/man/TclCmd/llength/</loc>
-         <lastmod>2023-07-21</lastmod>
+         <lastmod>2023-07-22</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://www.tcl.tk/man/TclCmd/lmap/</loc>
-         <lastmod>2023-07-21</lastmod>
+         <lastmod>2023-07-22</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://www.tcl.tk/man/TclCmd/lrange/</loc>
-         <lastmod>2023-07-21</lastmod>
+         <lastmod>2023-07-22</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://www.tcl.tk/man/TclCmd/lrepeat/</loc>
-         <lastmod>2023-07-21</lastmod>
+         <lastmod>2023-07-22</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://www.tcl.tk/man/TclCmd/lreplace/</loc>
-         <lastmod>2023-07-21</lastmod>
+         <lastmod>2023-07-22</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://www.tcl.tk/man/TclCmd/lreverse/</loc>
-         <lastmod>2023-07-21</lastmod>
+         <lastmod>2023-07-22</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://www.tcl.tk/man/TclCmd/lsearch/</loc>
-         <lastmod>2023-07-21</lastmod>
+         <lastmod>2023-07-22</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://www.tcl.tk/man/TclCmd/lset/</loc>
-         <lastmod>2023-07-21</lastmod>
+         <lastmod>2023-07-22</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://www.tcl.tk/man/TclCmd/lsort/</loc>
-         <lastmod>2023-07-21</lastmod>
+         <lastmod>2023-07-22</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://www.tcl.tk/man/TclCmd/mathfunc/</loc>
-         <lastmod>2023-07-21</lastmod>
+         <lastmod>2023-07-22</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://www.tcl.tk/man/TclCmd/mathop/</loc>
-         <lastmod>2023-07-21</lastmod>
+         <lastmod>2023-07-22</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://www.tcl.tk/man/TclCmd/memory/</loc>
-         <lastmod>2023-07-21</lastmod>
+         <lastmod>2023-07-22</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://www.tcl.tk/man/TclCmd/msgcat/</loc>
-         <lastmod>2023-07-21</lastmod>
+         <lastmod>2023-07-22</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://www.tcl.tk/man/TclCmd/my/</loc>
-         <lastmod>2023-07-21</lastmod>
+         <lastmod>2023-07-22</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://www.tcl.tk/man/TclCmd/next/</loc>
-         <lastmod>2023-07-21</lastmod>
+         <lastmod>2023-07-22</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://www.tcl.tk/man/TclCmd/open/</loc>
-         <lastmod>2023-07-21</lastmod>
+         <lastmod>2023-07-22</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://www.tcl.tk/man/TclCmd/package/</loc>
-         <lastmod>2023-07-21</lastmod>
+         <lastmod>2023-07-22</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://www.tcl.tk/man/TclCmd/packagens/</loc>
-         <lastmod>2023-07-21</lastmod>
+         <lastmod>2023-07-22</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://www.tcl.tk/man/TclCmd/pid/</loc>
-         <lastmod>2023-07-21</lastmod>
+         <lastmod>2023-07-22</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://www.tcl.tk/man/TclCmd/pkgMkIndex/</loc>
-         <lastmod>2023-07-21</lastmod>
+         <lastmod>2023-07-22</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://www.tcl.tk/man/TclCmd/platform/</loc>
-         <lastmod>2023-07-21</lastmod>
+         <lastmod>2023-07-22</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://www.tcl.tk/man/TclCmd/platform_shell/</loc>
-         <lastmod>2023-07-21</lastmod>
+         <lastmod>2023-07-22</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://www.tcl.tk/man/TclCmd/prefix/</loc>
-         <lastmod>2023-07-21</lastmod>
+         <lastmod>2023-07-22</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://www.tcl.tk/man/TclCmd/proc/</loc>
-         <lastmod>2023-07-21</lastmod>
+         <lastmod>2023-07-22</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://www.tcl.tk/man/TclCmd/puts/</loc>
-         <lastmod>2023-07-21</lastmod>
+         <lastmod>2023-07-22</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://www.tcl.tk/man/TclCmd/pwd/</loc>
-         <lastmod>2023-07-21</lastmod>
+         <lastmod>2023-07-22</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://www.tcl.tk/man/TclCmd/re_syntax/</loc>
-         <lastmod>2023-07-21</lastmod>
+         <lastmod>2023-07-22</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://www.tcl.tk/man/TclCmd/read/</loc>
-         <lastmod>2023-07-21</lastmod>
+         <lastmod>2023-07-22</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://www.tcl.tk/man/TclCmd/refchan/</loc>
-         <lastmod>2023-07-21</lastmod>
+         <lastmod>2023-07-22</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://www.tcl.tk/man/TclCmd/registry/</loc>
-         <lastmod>2023-07-21</lastmod>
+         <lastmod>2023-07-22</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://www.tcl.tk/man/TclCmd/regsub/</loc>
-         <lastmod>2023-07-21</lastmod>
+         <lastmod>2023-07-22</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://www.tcl.tk/man/TclCmd/rename/</loc>
-         <lastmod>2023-07-21</lastmod>
+         <lastmod>2023-07-22</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://www.tcl.tk/man/TclCmd/return/</loc>
-         <lastmod>2023-07-21</lastmod>
+         <lastmod>2023-07-22</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://www.tcl.tk/man/TclCmd/safe/</loc>
-         <lastmod>2023-07-21</lastmod>
+         <lastmod>2023-07-22</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://www.tcl.tk/man/TclCmd/scan/</loc>
-         <lastmod>2023-07-21</lastmod>
+         <lastmod>2023-07-22</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://www.tcl.tk/man/TclCmd/seek/</loc>
-         <lastmod>2023-07-21</lastmod>
+         <lastmod>2023-07-22</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://www.tcl.tk/man/TclCmd/self/</loc>
-         <lastmod>2023-07-21</lastmod>
+         <lastmod>2023-07-22</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://www.tcl.tk/man/TclCmd/set/</loc>
-         <lastmod>2023-07-21</lastmod>
+         <lastmod>2023-07-22</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://www.tcl.tk/man/TclCmd/socket/</loc>
-         <lastmod>2023-07-21</lastmod>
+         <lastmod>2023-07-22</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://www.tcl.tk/man/TclCmd/split/</loc>
-         <lastmod>2023-07-21</lastmod>
+         <lastmod>2023-07-22</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://www.tcl.tk/man/TclCmd/string/</loc>
-         <lastmod>2023-07-21</lastmod>
+         <lastmod>2023-07-22</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://www.tcl.tk/man/TclCmd/subst/</loc>
-         <lastmod>2023-07-21</lastmod>
+         <lastmod>2023-07-22</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://www.tcl.tk/man/TclCmd/switch/</loc>
-         <lastmod>2023-07-21</lastmod>
+         <lastmod>2023-07-22</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://www.tcl.tk/man/TclCmd/tailcall/</loc>
-         <lastmod>2023-07-21</lastmod>
+         <lastmod>2023-07-22</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://www.tcl.tk/man/TclCmd/tcltest/</loc>
-         <lastmod>2023-07-21</lastmod>
+         <lastmod>2023-07-22</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://www.tcl.tk/man/TclCmd/tclvars/</loc>
-         <lastmod>2023-07-21</lastmod>
+         <lastmod>2023-07-22</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://www.tcl.tk/man/TclCmd/tell/</loc>
-         <lastmod>2023-07-21</lastmod>
+         <lastmod>2023-07-22</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://www.tcl.tk/man/TclCmd/throw/</loc>
-         <lastmod>2023-07-21</lastmod>
+         <lastmod>2023-07-22</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://www.tcl.tk/man/TclCmd/time/</loc>
-         <lastmod>2023-07-21</lastmod>
+         <lastmod>2023-07-22</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://www.tcl.tk/man/TclCmd/timerate/</loc>
-         <lastmod>2023-07-21</lastmod>
+         <lastmod>2023-07-22</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://www.tcl.tk/man/TclCmd/tm/</loc>
-         <lastmod>2023-07-21</lastmod>
+         <lastmod>2023-07-22</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://www.tcl.tk/man/TclCmd/trace/</loc>
-         <lastmod>2023-07-21</lastmod>
+         <lastmod>2023-07-22</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://www.tcl.tk/man/TclCmd/transchan/</loc>
-         <lastmod>2023-07-21</lastmod>
+         <lastmod>2023-07-22</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://www.tcl.tk/man/TclCmd/try/</loc>
-         <lastmod>2023-07-21</lastmod>
+         <lastmod>2023-07-22</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://www.tcl.tk/man/TclCmd/unknown/</loc>
-         <lastmod>2023-07-21</lastmod>
+         <lastmod>2023-07-22</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://www.tcl.tk/man/TclCmd/unload/</loc>
-         <lastmod>2023-07-21</lastmod>
+         <lastmod>2023-07-22</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://www.tcl.tk/man/TclCmd/unset/</loc>
-         <lastmod>2023-07-21</lastmod>
+         <lastmod>2023-07-22</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://www.tcl.tk/man/TclCmd/update/</loc>
-         <lastmod>2023-07-21</lastmod>
+         <lastmod>2023-07-22</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://www.tcl.tk/man/TclCmd/uplevel/</loc>
-         <lastmod>2023-07-21</lastmod>
+         <lastmod>2023-07-22</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://www.tcl.tk/man/TclCmd/variable/</loc>
-         <lastmod>2023-07-21</lastmod>
+         <lastmod>2023-07-22</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://www.tcl.tk/man/TclCmd/vwait/</loc>
-         <lastmod>2023-07-21</lastmod>
+         <lastmod>2023-07-22</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://www.tcl.tk/man/TclCmd/while/</loc>
-         <lastmod>2023-07-21</lastmod>
+         <lastmod>2023-07-22</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://www.tcl.tk/man/TclCmd/zlib/</loc>
-         <lastmod>2023-07-21</lastmod>
+         <lastmod>2023-07-22</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://www.tcl.tk/man/TclLib/</loc>
-         <lastmod>2023-07-21</lastmod>
+         <lastmod>2023-07-22</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://www.tcl.tk/man/TclLib/Access/</loc>
-         <lastmod>2023-07-21</lastmod>
+         <lastmod>2023-07-22</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://www.tcl.tk/man/TclLib/AddErrInfo/</loc>
-         <lastmod>2023-07-21</lastmod>
+         <lastmod>2023-07-22</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://www.tcl.tk/man/TclLib/Alloc/</loc>
-         <lastmod>2023-07-21</lastmod>
+         <lastmod>2023-07-22</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://www.tcl.tk/man/TclLib/AllowExc/</loc>
-         <lastmod>2023-07-21</lastmod>
+         <lastmod>2023-07-22</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://www.tcl.tk/man/TclLib/AppInit/</loc>
-         <lastmod>2023-07-21</lastmod>
+         <lastmod>2023-07-22</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://www.tcl.tk/man/TclLib/AssocData/</loc>
-         <lastmod>2023-07-21</lastmod>
+         <lastmod>2023-07-22</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://www.tcl.tk/man/TclLib/Async/</loc>
-         <lastmod>2023-07-21</lastmod>
+         <lastmod>2023-07-22</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://www.tcl.tk/man/TclLib/BackgdErr/</loc>
-         <lastmod>2023-07-21</lastmod>
+         <lastmod>2023-07-22</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://www.tcl.tk/man/TclLib/Backslash/</loc>
-         <lastmod>2023-07-21</lastmod>
+         <lastmod>2023-07-22</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://www.tcl.tk/man/TclLib/BoolObj/</loc>
-         <lastmod>2023-07-21</lastmod>
+         <lastmod>2023-07-22</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://www.tcl.tk/man/TclLib/ByteArrObj/</loc>
-         <lastmod>2023-07-21</lastmod>
+         <lastmod>2023-07-22</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://www.tcl.tk/man/TclLib/CallDel/</loc>
-         <lastmod>2023-07-21</lastmod>
+         <lastmod>2023-07-22</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://www.tcl.tk/man/TclLib/Cancel/</loc>
-         <lastmod>2023-07-21</lastmod>
+         <lastmod>2023-07-22</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://www.tcl.tk/man/TclLib/ChnlStack/</loc>
-         <lastmod>2023-07-21</lastmod>
+         <lastmod>2023-07-22</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://www.tcl.tk/man/TclLib/Class/</loc>
-         <lastmod>2023-07-21</lastmod>
+         <lastmod>2023-07-22</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://www.tcl.tk/man/TclLib/CmdCmplt/</loc>
-         <lastmod>2023-07-21</lastmod>
+         <lastmod>2023-07-22</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://www.tcl.tk/man/TclLib/Concat/</loc>
-         <lastmod>2023-07-21</lastmod>
+         <lastmod>2023-07-22</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://www.tcl.tk/man/TclLib/CrtAlias/</loc>
-         <lastmod>2023-07-21</lastmod>
+         <lastmod>2023-07-22</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://www.tcl.tk/man/TclLib/CrtChannel/</loc>
-         <lastmod>2023-07-21</lastmod>
+         <lastmod>2023-07-22</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://www.tcl.tk/man/TclLib/CrtChnlHdlr/</loc>
-         <lastmod>2023-07-21</lastmod>
+         <lastmod>2023-07-22</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://www.tcl.tk/man/TclLib/CrtCloseHdlr/</loc>
-         <lastmod>2023-07-21</lastmod>
+         <lastmod>2023-07-22</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://www.tcl.tk/man/TclLib/CrtCommand/</loc>
-         <lastmod>2023-07-21</lastmod>
+         <lastmod>2023-07-22</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://www.tcl.tk/man/TclLib/CrtFileHdlr/</loc>
-         <lastmod>2023-07-21</lastmod>
+         <lastmod>2023-07-22</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://www.tcl.tk/man/TclLib/CrtInterp/</loc>
-         <lastmod>2023-07-21</lastmod>
+         <lastmod>2023-07-22</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://www.tcl.tk/man/TclLib/CrtMathFnc/</loc>
-         <lastmod>2023-07-21</lastmod>
+         <lastmod>2023-07-22</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://www.tcl.tk/man/TclLib/CrtObjCmd/</loc>
-         <lastmod>2023-07-21</lastmod>
+         <lastmod>2023-07-22</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://www.tcl.tk/man/TclLib/CrtTimerHdlr/</loc>
-         <lastmod>2023-07-21</lastmod>
+         <lastmod>2023-07-22</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://www.tcl.tk/man/TclLib/CrtTrace/</loc>
-         <lastmod>2023-07-21</lastmod>
+         <lastmod>2023-07-22</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://www.tcl.tk/man/TclLib/DString/</loc>
-         <lastmod>2023-07-21</lastmod>
+         <lastmod>2023-07-22</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://www.tcl.tk/man/TclLib/DetachPids/</loc>
-         <lastmod>2023-07-21</lastmod>
+         <lastmod>2023-07-22</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://www.tcl.tk/man/TclLib/DictObj/</loc>
-         <lastmod>2023-07-21</lastmod>
+         <lastmod>2023-07-22</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://www.tcl.tk/man/TclLib/DoOneEvent/</loc>
-         <lastmod>2023-07-21</lastmod>
+         <lastmod>2023-07-22</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://www.tcl.tk/man/TclLib/DoWhenIdle/</loc>
-         <lastmod>2023-07-21</lastmod>
+         <lastmod>2023-07-22</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://www.tcl.tk/man/TclLib/DoubleObj/</loc>
-         <lastmod>2023-07-21</lastmod>
+         <lastmod>2023-07-22</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://www.tcl.tk/man/TclLib/DumpActiveMemory/</loc>
-         <lastmod>2023-07-21</lastmod>
+         <lastmod>2023-07-22</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://www.tcl.tk/man/TclLib/Encoding/</loc>
-         <lastmod>2023-07-21</lastmod>
+         <lastmod>2023-07-22</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://www.tcl.tk/man/TclLib/Ensemble/</loc>
-         <lastmod>2023-07-21</lastmod>
+         <lastmod>2023-07-22</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://www.tcl.tk/man/TclLib/Environment/</loc>
-         <lastmod>2023-07-21</lastmod>
+         <lastmod>2023-07-22</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://www.tcl.tk/man/TclLib/Eval/</loc>
-         <lastmod>2023-07-21</lastmod>
+         <lastmod>2023-07-22</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://www.tcl.tk/man/TclLib/Exit/</loc>
-         <lastmod>2023-07-21</lastmod>
+         <lastmod>2023-07-22</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://www.tcl.tk/man/TclLib/ExprLong/</loc>
-         <lastmod>2023-07-21</lastmod>
+         <lastmod>2023-07-22</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://www.tcl.tk/man/TclLib/ExprLongObj/</loc>
-         <lastmod>2023-07-21</lastmod>
+         <lastmod>2023-07-22</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://www.tcl.tk/man/TclLib/FileSystem/</loc>
-         <lastmod>2023-07-21</lastmod>
+         <lastmod>2023-07-22</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://www.tcl.tk/man/TclLib/FindExec/</loc>
-         <lastmod>2023-07-21</lastmod>
+         <lastmod>2023-07-22</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://www.tcl.tk/man/TclLib/GetCwd/</loc>
-         <lastmod>2023-07-21</lastmod>
+         <lastmod>2023-07-22</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://www.tcl.tk/man/TclLib/GetHostName/</loc>
-         <lastmod>2023-07-21</lastmod>
+         <lastmod>2023-07-22</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://www.tcl.tk/man/TclLib/GetIndex/</loc>
-         <lastmod>2023-07-21</lastmod>
+         <lastmod>2023-07-22</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://www.tcl.tk/man/TclLib/GetInt/</loc>
-         <lastmod>2023-07-21</lastmod>
+         <lastmod>2023-07-22</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://www.tcl.tk/man/TclLib/GetOpnFl/</loc>
-         <lastmod>2023-07-21</lastmod>
+         <lastmod>2023-07-22</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://www.tcl.tk/man/TclLib/GetStdChan/</loc>
-         <lastmod>2023-07-21</lastmod>
+         <lastmod>2023-07-22</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://www.tcl.tk/man/TclLib/GetTime/</loc>
-         <lastmod>2023-07-21</lastmod>
+         <lastmod>2023-07-22</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://www.tcl.tk/man/TclLib/GetVersion/</loc>
-         <lastmod>2023-07-21</lastmod>
+         <lastmod>2023-07-22</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://www.tcl.tk/man/TclLib/Hash/</loc>
-         <lastmod>2023-07-21</lastmod>
+         <lastmod>2023-07-22</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://www.tcl.tk/man/TclLib/Init/</loc>
-         <lastmod>2023-07-21</lastmod>
+         <lastmod>2023-07-22</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://www.tcl.tk/man/TclLib/InitStubs/</loc>
-         <lastmod>2023-07-21</lastmod>
+         <lastmod>2023-07-22</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://www.tcl.tk/man/TclLib/IntObj/</loc>
-         <lastmod>2023-07-21</lastmod>
+         <lastmod>2023-07-22</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://www.tcl.tk/man/TclLib/Interp/</loc>
-         <lastmod>2023-07-21</lastmod>
+         <lastmod>2023-07-22</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://www.tcl.tk/man/TclLib/Limit/</loc>
-         <lastmod>2023-07-21</lastmod>
+         <lastmod>2023-07-22</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://www.tcl.tk/man/TclLib/LinkVar/</loc>
-         <lastmod>2023-07-21</lastmod>
+         <lastmod>2023-07-22</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://www.tcl.tk/man/TclLib/ListObj/</loc>
-         <lastmod>2023-07-21</lastmod>
+         <lastmod>2023-07-22</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://www.tcl.tk/man/TclLib/Load/</loc>
-         <lastmod>2023-07-21</lastmod>
+         <lastmod>2023-07-22</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://www.tcl.tk/man/TclLib/Method/</loc>
-         <lastmod>2023-07-21</lastmod>
+         <lastmod>2023-07-22</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://www.tcl.tk/man/TclLib/NRE/</loc>
-         <lastmod>2023-07-21</lastmod>
+         <lastmod>2023-07-22</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://www.tcl.tk/man/TclLib/Namespace/</loc>
-         <lastmod>2023-07-21</lastmod>
+         <lastmod>2023-07-22</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://www.tcl.tk/man/TclLib/Notifier/</loc>
-         <lastmod>2023-07-21</lastmod>
+         <lastmod>2023-07-22</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://www.tcl.tk/man/TclLib/OOInitStubs/</loc>
-         <lastmod>2023-07-21</lastmod>
+         <lastmod>2023-07-22</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://www.tcl.tk/man/TclLib/Object/</loc>
-         <lastmod>2023-07-21</lastmod>
+         <lastmod>2023-07-22</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://www.tcl.tk/man/TclLib/ObjectType/</loc>
-         <lastmod>2023-07-21</lastmod>
+         <lastmod>2023-07-22</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://www.tcl.tk/man/TclLib/OpenFileChnl/</loc>
-         <lastmod>2023-07-21</lastmod>
+         <lastmod>2023-07-22</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://www.tcl.tk/man/TclLib/OpenTcp/</loc>
-         <lastmod>2023-07-21</lastmod>
+         <lastmod>2023-07-22</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://www.tcl.tk/man/TclLib/Panic/</loc>
-         <lastmod>2023-07-21</lastmod>
+         <lastmod>2023-07-22</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://www.tcl.tk/man/TclLib/ParseArgs/</loc>
-         <lastmod>2023-07-21</lastmod>
+         <lastmod>2023-07-22</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://www.tcl.tk/man/TclLib/ParseCmd/</loc>
-         <lastmod>2023-07-21</lastmod>
+         <lastmod>2023-07-22</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://www.tcl.tk/man/TclLib/PkgRequire/</loc>
-         <lastmod>2023-07-21</lastmod>
+         <lastmod>2023-07-22</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://www.tcl.tk/man/TclLib/Preserve/</loc>
-         <lastmod>2023-07-21</lastmod>
+         <lastmod>2023-07-22</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://www.tcl.tk/man/TclLib/PrintDbl/</loc>
-         <lastmod>2023-07-21</lastmod>
+         <lastmod>2023-07-22</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://www.tcl.tk/man/TclLib/RecEvalObj/</loc>
-         <lastmod>2023-07-21</lastmod>
+         <lastmod>2023-07-22</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://www.tcl.tk/man/TclLib/RecordEval/</loc>
-         <lastmod>2023-07-21</lastmod>
+         <lastmod>2023-07-22</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://www.tcl.tk/man/TclLib/RegConfig/</loc>
-         <lastmod>2023-07-21</lastmod>
+         <lastmod>2023-07-22</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://www.tcl.tk/man/TclLib/RegExp/</loc>
-         <lastmod>2023-07-21</lastmod>
+         <lastmod>2023-07-22</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://www.tcl.tk/man/TclLib/SaveResult/</loc>
-         <lastmod>2023-07-21</lastmod>
+         <lastmod>2023-07-22</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://www.tcl.tk/man/TclLib/SetChanErr/</loc>
-         <lastmod>2023-07-21</lastmod>
+         <lastmod>2023-07-22</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://www.tcl.tk/man/TclLib/SetErrno/</loc>
-         <lastmod>2023-07-21</lastmod>
+         <lastmod>2023-07-22</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://www.tcl.tk/man/TclLib/SetRecLmt/</loc>
-         <lastmod>2023-07-21</lastmod>
+         <lastmod>2023-07-22</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://www.tcl.tk/man/TclLib/SetResult/</loc>
-         <lastmod>2023-07-21</lastmod>
+         <lastmod>2023-07-22</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://www.tcl.tk/man/TclLib/SetVar/</loc>
-         <lastmod>2023-07-21</lastmod>
+         <lastmod>2023-07-22</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://www.tcl.tk/man/TclLib/Signal/</loc>
-         <lastmod>2023-07-21</lastmod>
+         <lastmod>2023-07-22</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://www.tcl.tk/man/TclLib/Sleep/</loc>
-         <lastmod>2023-07-21</lastmod>
+         <lastmod>2023-07-22</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://www.tcl.tk/man/TclLib/SourceRCFile/</loc>
-         <lastmod>2023-07-21</lastmod>
+         <lastmod>2023-07-22</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://www.tcl.tk/man/TclLib/SplitList/</loc>
-         <lastmod>2023-07-21</lastmod>
+         <lastmod>2023-07-22</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://www.tcl.tk/man/TclLib/SplitPath/</loc>
-         <lastmod>2023-07-21</lastmod>
+         <lastmod>2023-07-22</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://www.tcl.tk/man/TclLib/StaticPkg/</loc>
-         <lastmod>2023-07-21</lastmod>
+         <lastmod>2023-07-22</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://www.tcl.tk/man/TclLib/StdChannels/</loc>
-         <lastmod>2023-07-21</lastmod>
+         <lastmod>2023-07-22</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://www.tcl.tk/man/TclLib/StrMatch/</loc>
-         <lastmod>2023-07-21</lastmod>
+         <lastmod>2023-07-22</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://www.tcl.tk/man/TclLib/StringObj/</loc>
-         <lastmod>2023-07-21</lastmod>
+         <lastmod>2023-07-22</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://www.tcl.tk/man/TclLib/SubstObj/</loc>
-         <lastmod>2023-07-21</lastmod>
+         <lastmod>2023-07-22</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://www.tcl.tk/man/TclLib/TCL_MEM_DEBUG/</loc>
-         <lastmod>2023-07-21</lastmod>
+         <lastmod>2023-07-22</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://www.tcl.tk/man/TclLib/TclZlib/</loc>
-         <lastmod>2023-07-21</lastmod>
+         <lastmod>2023-07-22</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://www.tcl.tk/man/TclLib/Tcl_Main/</loc>
-         <lastmod>2023-07-21</lastmod>
+         <lastmod>2023-07-22</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://www.tcl.tk/man/TclLib/Thread/</loc>
-         <lastmod>2023-07-21</lastmod>
+         <lastmod>2023-07-22</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://www.tcl.tk/man/TclLib/ToUpper/</loc>
-         <lastmod>2023-07-21</lastmod>
+         <lastmod>2023-07-22</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://www.tcl.tk/man/TclLib/TraceCmd/</loc>
-         <lastmod>2023-07-21</lastmod>
+         <lastmod>2023-07-22</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://www.tcl.tk/man/TclLib/TraceVar/</loc>
-         <lastmod>2023-07-21</lastmod>
+         <lastmod>2023-07-22</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://www.tcl.tk/man/TclLib/Translate/</loc>
-         <lastmod>2023-07-21</lastmod>
+         <lastmod>2023-07-22</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://www.tcl.tk/man/TclLib/UniCharIsAlpha/</loc>
-         <lastmod>2023-07-21</lastmod>
+         <lastmod>2023-07-22</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://www.tcl.tk/man/TclLib/UpVar/</loc>
-         <lastmod>2023-07-21</lastmod>
+         <lastmod>2023-07-22</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://www.tcl.tk/man/TclLib/Utf/</loc>
-         <lastmod>2023-07-21</lastmod>
+         <lastmod>2023-07-22</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://www.tcl.tk/man/TclLib/WrongNumArgs/</loc>
-         <lastmod>2023-07-21</lastmod>
+         <lastmod>2023-07-22</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://www.tcl.tk/man/TdbcCmd/</loc>
-         <lastmod>2023-07-21</lastmod>
+         <lastmod>2023-07-22</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://www.tcl.tk/man/TdbcLib/</loc>
-         <lastmod>2023-07-21</lastmod>
+         <lastmod>2023-07-22</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://www.tcl.tk/man/TdbcmysqlCmd/</loc>
-         <lastmod>2023-07-21</lastmod>
+         <lastmod>2023-07-22</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://www.tcl.tk/man/TdbcodbcCmd/</loc>
-         <lastmod>2023-07-21</lastmod>
+         <lastmod>2023-07-22</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://www.tcl.tk/man/TdbcpostgresCmd/</loc>
-         <lastmod>2023-07-21</lastmod>
+         <lastmod>2023-07-22</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://www.tcl.tk/man/ThreadCmd/</loc>
-         <lastmod>2023-07-21</lastmod>
+         <lastmod>2023-07-22</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://www.tcl.tk/man/TkCmd/</loc>
-         <lastmod>2023-07-21</lastmod>
+         <lastmod>2023-07-22</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://www.tcl.tk/man/TkCmd/bell/</loc>
-         <lastmod>2023-07-21</lastmod>
+         <lastmod>2023-07-22</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://www.tcl.tk/man/TkCmd/bind/</loc>
-         <lastmod>2023-07-21</lastmod>
+         <lastmod>2023-07-22</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://www.tcl.tk/man/TkCmd/bindtags/</loc>
-         <lastmod>2023-07-21</lastmod>
+         <lastmod>2023-07-22</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://www.tcl.tk/man/TkCmd/bitmap/</loc>
-         <lastmod>2023-07-21</lastmod>
+         <lastmod>2023-07-22</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://www.tcl.tk/man/TkCmd/busy/</loc>
-         <lastmod>2023-07-21</lastmod>
+         <lastmod>2023-07-22</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://www.tcl.tk/man/TkCmd/button/</loc>
-         <lastmod>2023-07-21</lastmod>
+         <lastmod>2023-07-22</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://www.tcl.tk/man/TkCmd/canvas/</loc>
-         <lastmod>2023-07-21</lastmod>
+         <lastmod>2023-07-22</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://www.tcl.tk/man/TkCmd/checkbutton/</loc>
-         <lastmod>2023-07-21</lastmod>
+         <lastmod>2023-07-22</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://www.tcl.tk/man/TkCmd/chooseColor/</loc>
-         <lastmod>2023-07-21</lastmod>
+         <lastmod>2023-07-22</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://www.tcl.tk/man/TkCmd/chooseDirectory/</loc>
-         <lastmod>2023-07-21</lastmod>
+         <lastmod>2023-07-22</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://www.tcl.tk/man/TkCmd/colors/</loc>
-         <lastmod>2023-07-21</lastmod>
+         <lastmod>2023-07-22</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://www.tcl.tk/man/TkCmd/console/</loc>
-         <lastmod>2023-07-21</lastmod>
+         <lastmod>2023-07-22</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://www.tcl.tk/man/TkCmd/cursors/</loc>
-         <lastmod>2023-07-21</lastmod>
+         <lastmod>2023-07-22</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://www.tcl.tk/man/TkCmd/destroy/</loc>
-         <lastmod>2023-07-21</lastmod>
+         <lastmod>2023-07-22</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://www.tcl.tk/man/TkCmd/dialog/</loc>
-         <lastmod>2023-07-21</lastmod>
+         <lastmod>2023-07-22</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://www.tcl.tk/man/TkCmd/entry/</loc>
-         <lastmod>2023-07-21</lastmod>
+         <lastmod>2023-07-22</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://www.tcl.tk/man/TkCmd/event/</loc>
-         <lastmod>2023-07-21</lastmod>
+         <lastmod>2023-07-22</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://www.tcl.tk/man/TkCmd/focus/</loc>
-         <lastmod>2023-07-21</lastmod>
+         <lastmod>2023-07-22</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://www.tcl.tk/man/TkCmd/focusNext/</loc>
-         <lastmod>2023-07-21</lastmod>
+         <lastmod>2023-07-22</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://www.tcl.tk/man/TkCmd/font/</loc>
-         <lastmod>2023-07-21</lastmod>
+         <lastmod>2023-07-22</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://www.tcl.tk/man/TkCmd/fontchooser/</loc>
-         <lastmod>2023-07-21</lastmod>
+         <lastmod>2023-07-22</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://www.tcl.tk/man/TkCmd/frame/</loc>
-         <lastmod>2023-07-21</lastmod>
+         <lastmod>2023-07-22</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://www.tcl.tk/man/TkCmd/getOpenFile/</loc>
-         <lastmod>2023-07-21</lastmod>
+         <lastmod>2023-07-22</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://www.tcl.tk/man/TkCmd/grid/</loc>
-         <lastmod>2023-07-21</lastmod>
+         <lastmod>2023-07-22</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://www.tcl.tk/man/TkCmd/image/</loc>
-         <lastmod>2023-07-21</lastmod>
+         <lastmod>2023-07-22</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://www.tcl.tk/man/TkCmd/keysyms/</loc>
-         <lastmod>2023-07-21</lastmod>
+         <lastmod>2023-07-22</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://www.tcl.tk/man/TkCmd/label/</loc>
-         <lastmod>2023-07-21</lastmod>
+         <lastmod>2023-07-22</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://www.tcl.tk/man/TkCmd/labelframe/</loc>
-         <lastmod>2023-07-21</lastmod>
+         <lastmod>2023-07-22</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://www.tcl.tk/man/TkCmd/listbox/</loc>
-         <lastmod>2023-07-21</lastmod>
+         <lastmod>2023-07-22</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://www.tcl.tk/man/TkCmd/loadTk/</loc>
-         <lastmod>2023-07-21</lastmod>
+         <lastmod>2023-07-22</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://www.tcl.tk/man/TkCmd/lower/</loc>
-         <lastmod>2023-07-21</lastmod>
+         <lastmod>2023-07-22</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://www.tcl.tk/man/TkCmd/menu/</loc>
-         <lastmod>2023-07-21</lastmod>
+         <lastmod>2023-07-22</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://www.tcl.tk/man/TkCmd/menubutton/</loc>
-         <lastmod>2023-07-21</lastmod>
+         <lastmod>2023-07-22</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://www.tcl.tk/man/TkCmd/message/</loc>
-         <lastmod>2023-07-21</lastmod>
+         <lastmod>2023-07-22</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://www.tcl.tk/man/TkCmd/messageBox/</loc>
-         <lastmod>2023-07-21</lastmod>
+         <lastmod>2023-07-22</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://www.tcl.tk/man/TkCmd/option/</loc>
-         <lastmod>2023-07-21</lastmod>
+         <lastmod>2023-07-22</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://www.tcl.tk/man/TkCmd/optionMenu/</loc>
-         <lastmod>2023-07-21</lastmod>
+         <lastmod>2023-07-22</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://www.tcl.tk/man/TkCmd/options/</loc>
-         <lastmod>2023-07-21</lastmod>
+         <lastmod>2023-07-22</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://www.tcl.tk/man/TkCmd/pack/</loc>
-         <lastmod>2023-07-21</lastmod>
+         <lastmod>2023-07-22</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://www.tcl.tk/man/TkCmd/palette/</loc>
-         <lastmod>2023-07-21</lastmod>
+         <lastmod>2023-07-22</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://www.tcl.tk/man/TkCmd/panedwindow/</loc>
-         <lastmod>2023-07-21</lastmod>
+         <lastmod>2023-07-22</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://www.tcl.tk/man/TkCmd/photo/</loc>
-         <lastmod>2023-07-21</lastmod>
+         <lastmod>2023-07-22</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://www.tcl.tk/man/TkCmd/place/</loc>
-         <lastmod>2023-07-21</lastmod>
+         <lastmod>2023-07-22</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://www.tcl.tk/man/TkCmd/popup/</loc>
-         <lastmod>2023-07-21</lastmod>
+         <lastmod>2023-07-22</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://www.tcl.tk/man/TkCmd/radiobutton/</loc>
-         <lastmod>2023-07-21</lastmod>
+         <lastmod>2023-07-22</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://www.tcl.tk/man/TkCmd/raise/</loc>
-         <lastmod>2023-07-21</lastmod>
+         <lastmod>2023-07-22</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://www.tcl.tk/man/TkCmd/scale/</loc>
-         <lastmod>2023-07-21</lastmod>
+         <lastmod>2023-07-22</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://www.tcl.tk/man/TkCmd/scrollbar/</loc>
-         <lastmod>2023-07-21</lastmod>
+         <lastmod>2023-07-22</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://www.tcl.tk/man/TkCmd/selection/</loc>
-         <lastmod>2023-07-21</lastmod>
+         <lastmod>2023-07-22</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://www.tcl.tk/man/TkCmd/send/</loc>
-         <lastmod>2023-07-21</lastmod>
+         <lastmod>2023-07-22</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://www.tcl.tk/man/TkCmd/spinbox/</loc>
-         <lastmod>2023-07-21</lastmod>
+         <lastmod>2023-07-22</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://www.tcl.tk/man/TkCmd/text/</loc>
-         <lastmod>2023-07-21</lastmod>
+         <lastmod>2023-07-22</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://www.tcl.tk/man/TkCmd/tk/</loc>
-         <lastmod>2023-07-21</lastmod>
+         <lastmod>2023-07-22</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://www.tcl.tk/man/TkCmd/tk_mac/</loc>
-         <lastmod>2023-07-21</lastmod>
+         <lastmod>2023-07-22</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://www.tcl.tk/man/TkCmd/tkerror/</loc>
-         <lastmod>2023-07-21</lastmod>
+         <lastmod>2023-07-22</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://www.tcl.tk/man/TkCmd/tkvars/</loc>
-         <lastmod>2023-07-21</lastmod>
+         <lastmod>2023-07-22</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://www.tcl.tk/man/TkCmd/tkwait/</loc>
-         <lastmod>2023-07-21</lastmod>
+         <lastmod>2023-07-22</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://www.tcl.tk/man/TkCmd/toplevel/</loc>
-         <lastmod>2023-07-21</lastmod>
+         <lastmod>2023-07-22</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://www.tcl.tk/man/TkCmd/ttk_button/</loc>
-         <lastmod>2023-07-21</lastmod>
+         <lastmod>2023-07-22</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://www.tcl.tk/man/TkCmd/ttk_checkbutton/</loc>
-         <lastmod>2023-07-21</lastmod>
+         <lastmod>2023-07-22</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://www.tcl.tk/man/TkCmd/ttk_combobox/</loc>
-         <lastmod>2023-07-21</lastmod>
+         <lastmod>2023-07-22</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://www.tcl.tk/man/TkCmd/ttk_entry/</loc>
-         <lastmod>2023-07-21</lastmod>
+         <lastmod>2023-07-22</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://www.tcl.tk/man/TkCmd/ttk_frame/</loc>
-         <lastmod>2023-07-21</lastmod>
+         <lastmod>2023-07-22</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://www.tcl.tk/man/TkCmd/ttk_image/</loc>
-         <lastmod>2023-07-21</lastmod>
+         <lastmod>2023-07-22</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://www.tcl.tk/man/TkCmd/ttk_intro/</loc>
-         <lastmod>2023-07-21</lastmod>
+         <lastmod>2023-07-22</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://www.tcl.tk/man/TkCmd/ttk_label/</loc>
-         <lastmod>2023-07-21</lastmod>
+         <lastmod>2023-07-22</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://www.tcl.tk/man/TkCmd/ttk_labelframe/</loc>
-         <lastmod>2023-07-21</lastmod>
+         <lastmod>2023-07-22</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://www.tcl.tk/man/TkCmd/ttk_menubutton/</loc>
-         <lastmod>2023-07-21</lastmod>
+         <lastmod>2023-07-22</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://www.tcl.tk/man/TkCmd/ttk_notebook/</loc>
-         <lastmod>2023-07-21</lastmod>
+         <lastmod>2023-07-22</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://www.tcl.tk/man/TkCmd/ttk_panedwindow/</loc>
-         <lastmod>2023-07-21</lastmod>
+         <lastmod>2023-07-22</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://www.tcl.tk/man/TkCmd/ttk_progressbar/</loc>
-         <lastmod>2023-07-21</lastmod>
+         <lastmod>2023-07-22</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://www.tcl.tk/man/TkCmd/ttk_radiobutton/</loc>
-         <lastmod>2023-07-21</lastmod>
+         <lastmod>2023-07-22</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://www.tcl.tk/man/TkCmd/ttk_scale/</loc>
-         <lastmod>2023-07-21</lastmod>
+         <lastmod>2023-07-22</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://www.tcl.tk/man/TkCmd/ttk_scrollbar/</loc>
-         <lastmod>2023-07-21</lastmod>
+         <lastmod>2023-07-22</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://www.tcl.tk/man/TkCmd/ttk_separator/</loc>
-         <lastmod>2023-07-21</lastmod>
+         <lastmod>2023-07-22</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://www.tcl.tk/man/TkCmd/ttk_sizegrip/</loc>
-         <lastmod>2023-07-21</lastmod>
+         <lastmod>2023-07-22</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://www.tcl.tk/man/TkCmd/ttk_spinbox/</loc>
-         <lastmod>2023-07-21</lastmod>
+         <lastmod>2023-07-22</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://www.tcl.tk/man/TkCmd/ttk_style/</loc>
-         <lastmod>2023-07-21</lastmod>
+         <lastmod>2023-07-22</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://www.tcl.tk/man/TkCmd/ttk_treeview/</loc>
-         <lastmod>2023-07-21</lastmod>
+         <lastmod>2023-07-22</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://www.tcl.tk/man/TkCmd/ttk_vsapi/</loc>
-         <lastmod>2023-07-21</lastmod>
+         <lastmod>2023-07-22</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://www.tcl.tk/man/TkCmd/ttk_widget/</loc>
-         <lastmod>2023-07-21</lastmod>
+         <lastmod>2023-07-22</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://www.tcl.tk/man/TkCmd/winfo/</loc>
-         <lastmod>2023-07-21</lastmod>
+         <lastmod>2023-07-22</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://www.tcl.tk/man/TkCmd/wm/</loc>
-         <lastmod>2023-07-21</lastmod>
+         <lastmod>2023-07-22</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://www.tcl.tk/man/TkLib/</loc>
-         <lastmod>2023-07-21</lastmod>
+         <lastmod>2023-07-22</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://www.tcl.tk/man/TkLib/3DBorder/</loc>
-         <lastmod>2023-07-21</lastmod>
+         <lastmod>2023-07-22</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://www.tcl.tk/man/TkLib/AddOption/</loc>
-         <lastmod>2023-07-21</lastmod>
+         <lastmod>2023-07-22</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://www.tcl.tk/man/TkLib/BindTable/</loc>
-         <lastmod>2023-07-21</lastmod>
+         <lastmod>2023-07-22</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://www.tcl.tk/man/TkLib/CanvPsY/</loc>
-         <lastmod>2023-07-21</lastmod>
+         <lastmod>2023-07-22</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://www.tcl.tk/man/TkLib/CanvTkwin/</loc>
-         <lastmod>2023-07-21</lastmod>
+         <lastmod>2023-07-22</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://www.tcl.tk/man/TkLib/CanvTxtInfo/</loc>
-         <lastmod>2023-07-21</lastmod>
+         <lastmod>2023-07-22</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://www.tcl.tk/man/TkLib/Clipboard/</loc>
-         <lastmod>2023-07-21</lastmod>
+         <lastmod>2023-07-22</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://www.tcl.tk/man/TkLib/ClrSelect/</loc>
-         <lastmod>2023-07-21</lastmod>
+         <lastmod>2023-07-22</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://www.tcl.tk/man/TkLib/ConfigWidg/</loc>
-         <lastmod>2023-07-21</lastmod>
+         <lastmod>2023-07-22</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://www.tcl.tk/man/TkLib/ConfigWind/</loc>
-         <lastmod>2023-07-21</lastmod>
+         <lastmod>2023-07-22</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://www.tcl.tk/man/TkLib/CoordToWin/</loc>
-         <lastmod>2023-07-21</lastmod>
+         <lastmod>2023-07-22</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://www.tcl.tk/man/TkLib/CrtCmHdlr/</loc>
-         <lastmod>2023-07-21</lastmod>
+         <lastmod>2023-07-22</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://www.tcl.tk/man/TkLib/CrtConsoleChan/</loc>
-         <lastmod>2023-07-21</lastmod>
+         <lastmod>2023-07-22</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://www.tcl.tk/man/TkLib/CrtErrHdlr/</loc>
-         <lastmod>2023-07-21</lastmod>
+         <lastmod>2023-07-22</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://www.tcl.tk/man/TkLib/CrtGenHdlr/</loc>
-         <lastmod>2023-07-21</lastmod>
+         <lastmod>2023-07-22</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://www.tcl.tk/man/TkLib/CrtImgType/</loc>
-         <lastmod>2023-07-21</lastmod>
+         <lastmod>2023-07-22</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://www.tcl.tk/man/TkLib/CrtItemType/</loc>
-         <lastmod>2023-07-21</lastmod>
+         <lastmod>2023-07-22</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://www.tcl.tk/man/TkLib/CrtPhImgFmt/</loc>
-         <lastmod>2023-07-21</lastmod>
+         <lastmod>2023-07-22</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://www.tcl.tk/man/TkLib/CrtSelHdlr/</loc>
-         <lastmod>2023-07-21</lastmod>
+         <lastmod>2023-07-22</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://www.tcl.tk/man/TkLib/CrtWindow/</loc>
-         <lastmod>2023-07-21</lastmod>
+         <lastmod>2023-07-22</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://www.tcl.tk/man/TkLib/DeleteImg/</loc>
-         <lastmod>2023-07-21</lastmod>
+         <lastmod>2023-07-22</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://www.tcl.tk/man/TkLib/DrawFocHlt/</loc>
-         <lastmod>2023-07-21</lastmod>
+         <lastmod>2023-07-22</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://www.tcl.tk/man/TkLib/EventHndlr/</loc>
-         <lastmod>2023-07-21</lastmod>
+         <lastmod>2023-07-22</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://www.tcl.tk/man/TkLib/FindPhoto/</loc>
-         <lastmod>2023-07-21</lastmod>
+         <lastmod>2023-07-22</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://www.tcl.tk/man/TkLib/FontId/</loc>
-         <lastmod>2023-07-21</lastmod>
+         <lastmod>2023-07-22</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://www.tcl.tk/man/TkLib/FreeXId/</loc>
-         <lastmod>2023-07-21</lastmod>
+         <lastmod>2023-07-22</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://www.tcl.tk/man/TkLib/GeomReq/</loc>
-         <lastmod>2023-07-21</lastmod>
+         <lastmod>2023-07-22</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://www.tcl.tk/man/TkLib/GetAnchor/</loc>
-         <lastmod>2023-07-21</lastmod>
+         <lastmod>2023-07-22</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://www.tcl.tk/man/TkLib/GetBitmap/</loc>
-         <lastmod>2023-07-21</lastmod>
+         <lastmod>2023-07-22</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://www.tcl.tk/man/TkLib/GetCapStyl/</loc>
-         <lastmod>2023-07-21</lastmod>
+         <lastmod>2023-07-22</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://www.tcl.tk/man/TkLib/GetClrmap/</loc>
-         <lastmod>2023-07-21</lastmod>
+         <lastmod>2023-07-22</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://www.tcl.tk/man/TkLib/GetColor/</loc>
-         <lastmod>2023-07-21</lastmod>
+         <lastmod>2023-07-22</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://www.tcl.tk/man/TkLib/GetCursor/</loc>
-         <lastmod>2023-07-21</lastmod>
+         <lastmod>2023-07-22</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://www.tcl.tk/man/TkLib/GetDash/</loc>
-         <lastmod>2023-07-21</lastmod>
+         <lastmod>2023-07-22</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://www.tcl.tk/man/TkLib/GetFont/</loc>
-         <lastmod>2023-07-21</lastmod>
+         <lastmod>2023-07-22</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://www.tcl.tk/man/TkLib/GetGC/</loc>
-         <lastmod>2023-07-21</lastmod>
+         <lastmod>2023-07-22</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://www.tcl.tk/man/TkLib/GetHINSTANCE/</loc>
-         <lastmod>2023-07-21</lastmod>
+         <lastmod>2023-07-22</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://www.tcl.tk/man/TkLib/GetHWND/</loc>
-         <lastmod>2023-07-21</lastmod>
+         <lastmod>2023-07-22</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://www.tcl.tk/man/TkLib/GetImage/</loc>
-         <lastmod>2023-07-21</lastmod>
+         <lastmod>2023-07-22</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://www.tcl.tk/man/TkLib/GetJoinStl/</loc>
-         <lastmod>2023-07-21</lastmod>
+         <lastmod>2023-07-22</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://www.tcl.tk/man/TkLib/GetJustify/</loc>
-         <lastmod>2023-07-21</lastmod>
+         <lastmod>2023-07-22</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://www.tcl.tk/man/TkLib/GetOption/</loc>
-         <lastmod>2023-07-21</lastmod>
+         <lastmod>2023-07-22</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://www.tcl.tk/man/TkLib/GetPixels/</loc>
-         <lastmod>2023-07-21</lastmod>
+         <lastmod>2023-07-22</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://www.tcl.tk/man/TkLib/GetPixmap/</loc>
-         <lastmod>2023-07-21</lastmod>
+         <lastmod>2023-07-22</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://www.tcl.tk/man/TkLib/GetRelief/</loc>
-         <lastmod>2023-07-21</lastmod>
+         <lastmod>2023-07-22</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://www.tcl.tk/man/TkLib/GetRootCrd/</loc>
-         <lastmod>2023-07-21</lastmod>
+         <lastmod>2023-07-22</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://www.tcl.tk/man/TkLib/GetScroll/</loc>
-         <lastmod>2023-07-21</lastmod>
+         <lastmod>2023-07-22</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://www.tcl.tk/man/TkLib/GetSelect/</loc>
-         <lastmod>2023-07-21</lastmod>
+         <lastmod>2023-07-22</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://www.tcl.tk/man/TkLib/GetUid/</loc>
-         <lastmod>2023-07-21</lastmod>
+         <lastmod>2023-07-22</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://www.tcl.tk/man/TkLib/GetVRoot/</loc>
-         <lastmod>2023-07-21</lastmod>
+         <lastmod>2023-07-22</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://www.tcl.tk/man/TkLib/GetVisual/</loc>
-         <lastmod>2023-07-21</lastmod>
+         <lastmod>2023-07-22</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://www.tcl.tk/man/TkLib/Grab/</loc>
-         <lastmod>2023-07-21</lastmod>
+         <lastmod>2023-07-22</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://www.tcl.tk/man/TkLib/HWNDToWindow/</loc>
-         <lastmod>2023-07-21</lastmod>
+         <lastmod>2023-07-22</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://www.tcl.tk/man/TkLib/HandleEvent/</loc>
-         <lastmod>2023-07-21</lastmod>
+         <lastmod>2023-07-22</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://www.tcl.tk/man/TkLib/IdToWindow/</loc>
-         <lastmod>2023-07-21</lastmod>
+         <lastmod>2023-07-22</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://www.tcl.tk/man/TkLib/ImgChanged/</loc>
-         <lastmod>2023-07-21</lastmod>
+         <lastmod>2023-07-22</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://www.tcl.tk/man/TkLib/Inactive/</loc>
-         <lastmod>2023-07-21</lastmod>
+         <lastmod>2023-07-22</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://www.tcl.tk/man/TkLib/InternAtom/</loc>
-         <lastmod>2023-07-21</lastmod>
+         <lastmod>2023-07-22</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://www.tcl.tk/man/TkLib/MainLoop/</loc>
-         <lastmod>2023-07-21</lastmod>
+         <lastmod>2023-07-22</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://www.tcl.tk/man/TkLib/MainWin/</loc>
-         <lastmod>2023-07-21</lastmod>
+         <lastmod>2023-07-22</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://www.tcl.tk/man/TkLib/MaintGeom/</loc>
-         <lastmod>2023-07-21</lastmod>
+         <lastmod>2023-07-22</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://www.tcl.tk/man/TkLib/ManageGeom/</loc>
-         <lastmod>2023-07-21</lastmod>
+         <lastmod>2023-07-22</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://www.tcl.tk/man/TkLib/MapWindow/</loc>
-         <lastmod>2023-07-21</lastmod>
+         <lastmod>2023-07-22</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://www.tcl.tk/man/TkLib/MeasureChar/</loc>
-         <lastmod>2023-07-21</lastmod>
+         <lastmod>2023-07-22</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://www.tcl.tk/man/TkLib/MoveToplev/</loc>
-         <lastmod>2023-07-21</lastmod>
+         <lastmod>2023-07-22</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://www.tcl.tk/man/TkLib/Name/</loc>
-         <lastmod>2023-07-21</lastmod>
+         <lastmod>2023-07-22</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://www.tcl.tk/man/TkLib/NameOfImg/</loc>
-         <lastmod>2023-07-21</lastmod>
+         <lastmod>2023-07-22</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://www.tcl.tk/man/TkLib/OwnSelect/</loc>
-         <lastmod>2023-07-21</lastmod>
+         <lastmod>2023-07-22</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://www.tcl.tk/man/TkLib/ParseArgv/</loc>
-         <lastmod>2023-07-21</lastmod>
+         <lastmod>2023-07-22</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://www.tcl.tk/man/TkLib/QWinEvent/</loc>
-         <lastmod>2023-07-21</lastmod>
+         <lastmod>2023-07-22</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://www.tcl.tk/man/TkLib/Restack/</loc>
-         <lastmod>2023-07-21</lastmod>
+         <lastmod>2023-07-22</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://www.tcl.tk/man/TkLib/RestrictEv/</loc>
-         <lastmod>2023-07-21</lastmod>
+         <lastmod>2023-07-22</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://www.tcl.tk/man/TkLib/SetAppName/</loc>
-         <lastmod>2023-07-21</lastmod>
+         <lastmod>2023-07-22</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://www.tcl.tk/man/TkLib/SetCaret/</loc>
-         <lastmod>2023-07-21</lastmod>
+         <lastmod>2023-07-22</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://www.tcl.tk/man/TkLib/SetClass/</loc>
-         <lastmod>2023-07-21</lastmod>
+         <lastmod>2023-07-22</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://www.tcl.tk/man/TkLib/SetClassProcs/</loc>
-         <lastmod>2023-07-21</lastmod>
+         <lastmod>2023-07-22</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://www.tcl.tk/man/TkLib/SetGrid/</loc>
-         <lastmod>2023-07-21</lastmod>
+         <lastmod>2023-07-22</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://www.tcl.tk/man/TkLib/SetOptions/</loc>
-         <lastmod>2023-07-21</lastmod>
+         <lastmod>2023-07-22</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://www.tcl.tk/man/TkLib/SetVisual/</loc>
-         <lastmod>2023-07-21</lastmod>
+         <lastmod>2023-07-22</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://www.tcl.tk/man/TkLib/StrictMotif/</loc>
-         <lastmod>2023-07-21</lastmod>
+         <lastmod>2023-07-22</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://www.tcl.tk/man/TkLib/TextLayout/</loc>
-         <lastmod>2023-07-21</lastmod>
+         <lastmod>2023-07-22</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://www.tcl.tk/man/TkLib/TkInitStubs/</loc>
-         <lastmod>2023-07-21</lastmod>
+         <lastmod>2023-07-22</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://www.tcl.tk/man/TkLib/Tk_Init/</loc>
-         <lastmod>2023-07-21</lastmod>
+         <lastmod>2023-07-22</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://www.tcl.tk/man/TkLib/Tk_Main/</loc>
-         <lastmod>2023-07-21</lastmod>
+         <lastmod>2023-07-22</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://www.tcl.tk/man/TkLib/WindowId/</loc>
-         <lastmod>2023-07-21</lastmod>
+         <lastmod>2023-07-22</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://www.tcl.tk/man/TkLib/ttk_Geometry/</loc>
-         <lastmod>2023-07-21</lastmod>
+         <lastmod>2023-07-22</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://www.tcl.tk/man/TkLib/ttk_Theme/</loc>
-         <lastmod>2023-07-21</lastmod>
+         <lastmod>2023-07-22</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://www.tcl.tk/man/UserCmd/</loc>
-         <lastmod>2023-07-21</lastmod>
+         <lastmod>2023-07-22</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://www.tcl.tk/man/UserCmd/tclsh/</loc>
-         <lastmod>2023-07-21</lastmod>
+         <lastmod>2023-07-22</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://www.tcl.tk/man/UserCmd/wish/</loc>
-         <lastmod>2023-07-21</lastmod>
+         <lastmod>2023-07-22</lastmod>
          <changefreq>daily</changefreq>
     </url>
 </urlset>
