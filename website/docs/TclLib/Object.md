@@ -129,3 +129,8 @@ my(n), oo::class(n)
 # KEYWORDS
 
 base class, class, object, root class
+
+<!---
+Copyright (c) 2007-2008 Donal K. Fellow
+-->
+

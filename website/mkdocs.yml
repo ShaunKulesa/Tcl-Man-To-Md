@@ -3,7 +3,7 @@ site_name: Tcl/Tk
 site_url: https://www.tcl.tk/man
 
 theme:
-  name: readthedocs
+  name: material
   highlightjs: false
 
   features:

@@ -130,3 +130,8 @@ oo::define(n), oo::object(n)
 # KEYWORDS
 
 class, metaclass, object
+
+<!---
+Copyright (c) 2007 Donal K. Fellow
+-->
+
